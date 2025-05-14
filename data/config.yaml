@@ -1,0 +1,17 @@
+# Genome Complete MCF10A Model
+# Last update: TBD
+
+
+# General infos
+name: "MCF10A Model"
+header: "Under Construction"
+location: "data"
+
+# Compilation
+compilation:
+    directory: "."
+    files:
+      compartments: "Compartments.tsv"
+      ratelaws: "Ratelaws.tsv"
+      species: "Species.tsv"
+    parameters_path: "."
