@@ -1,18 +1,18 @@
-/*
-filename: StochasticModule.h
-created by: Jonah R. Huggins
-created on: 25-05-15
-
-description: 
-Class Creator For Single Cell Model, Stochastic Module Instance.
-*/
-//--------------header file definition------------------------------------//
-#pragma once;
+/**
+ * @file: StochasticModule.h
+ * 
+ * @authors  Jonah R. Huggins, Marc R. Birtwistle
+ * @date 15-05-2025
+ * 
+ * @brief Class Creator For Single Cell Model, Stochastic Module Instance.
+ */
+//----------------------header file definition-----------------------------//
+#pragma once
 
 #ifndef STOCHASTICMODULE_h
 #define STOCHASTICMODULE_h
 
-// --------------------------Library Import-----------------------------------//
+// --------------------------Library Import--------------------------------//
 #include <vector>
 #include <memory>
 #include <unordered_map>
@@ -25,32 +25,35 @@ Class Creator For Single Cell Model, Stochastic Module Instance.
 class StochasticModule : public SingleCell {
     public:
         StochasticModule( //Constructor. ctor
-            const std::string& sbml_path = "../sbml_files/Stochastic.sbml", 
-            double timeStep = 30.0
+            const std::string& sbml_path
         );
 
         ~StochasticModule() override = default; //Destructor, dtor
 
-        std::vector<double> runStochasticStep(
-            const std::vector<double>& stochastic_states
-        );
+        std::vector<double> runStep(
+            const std::vector<double>& state_vector
+        ) override;
 
         void setModelState(
             const std::vector<double>& state
         );
 
+        void exchangeData() override;
+
+            
+        std::vector<std::vector<double>> createResultsMatrix(
+            int numSpecies,
+            double start, 
+            double stop,
+            double step
+        ) override;
+
     private:
-        std::unique_ptr<StochasticModule> StochMod_;
         std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
-        double step;
 
         
-        std::vector<double> computeReactions(
-            const std::vector<double>& state
-        );
-
         std::vector<double> computeReactions(
             const std::vector<double>& state
         );
@@ -70,10 +73,7 @@ class StochasticModule : public SingleCell {
         std::vector<double> samplePoisson(
             std::vector<double> initial_reaction_vector
         );
-    
-    protected:
-        void exchangeData() override;
-};
 
+};
 
 #endif // STOCHASTICMODULE_H

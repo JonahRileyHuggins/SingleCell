@@ -1,5 +1,5 @@
 /**
- * @file stochastic_module.h
+ * @file StochasticModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
@@ -29,10 +29,8 @@
 //-----------------------------Method Details-----------------------------//
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
-    const std::string& sbml_path, 
-    double timeStep
-) : sbmlHandler(std::make_unique<SBMLHandler>(sbml_path)),
-    step(timeStep)
+    const std::string& sbml_path
+) : sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
  {
     // Retrieve the stoichiometric matrix from the sbml document.
     stoichmat = sbmlHandler->getStoichiometricMatrix();
@@ -51,7 +49,7 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
      * @returns v vector of state values after initial stochiometric calculations 
     */
     
-    Model* sbml_model = sbmlHandler.model;
+    Model* sbml_model = sbmlHandler->getModel();
 
     unsigned int numReactions = sbml_model->getNumReactions();
 
@@ -60,9 +58,9 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
         //Reaction getter
-        std::vector<std::string> formula_i = formulas_vector[i];
+        std::string formula_i = formulas_vector[i];
 
-        v[i] = computeReaction(formula_i, state);
+        v[i] = computeReaction(formula_i);
     }
     
     return v;
@@ -82,10 +80,13 @@ double StochasticModule::computeReaction(std::string formula_str) {
 
     // get variables in formula
     std::unordered_map<std::string, double> components = StochasticModule::mapComponentsToValues(formula_str);
-    try {
-    for (const auto& entity : components) {
+    //Persistent copy of component values:
+    std::unordered_map<std::string, double> component_values;
 
-        parser.DefineVar(entity.first, entity.second);
+    try {
+    for (const auto& [name, value] : components) {
+        component_values[name] = value;
+        parser.DefineVar(name, &component_values[name]);
     }
     parser.SetExpr(formula_str);
 
@@ -95,7 +96,7 @@ double StochasticModule::computeReaction(std::string formula_str) {
 
     }
     catch (mu::Parser::exception_type &e) {
-        std::cout <<< e.GetMsg() <<< "\n";
+        std::cout << "Error while parsing: " << e.GetMsg() << "\n";
     }
 }
 
@@ -112,12 +113,12 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
 
     std::unordered_map<std::string, double> component_value_map;
 
-    Model* sbml_model = sbmlHandler.model;
+    Model* sbml_model = sbmlHandler->getModel();
 
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
-    for (const auto& i : components_vector) {
+    for (unsigned int i; components_vector.size(); i++) {
 
         const std::string component = components_vector[i];
 
@@ -125,8 +126,8 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
         if (sbml_model->getParameter(component)!= nullptr) {
             double value = sbml_model->getParameter(component)->getValue();
             component_value_map[component] = value;
-        } else if (sbml_model->getSpecies(component) != nullptr)) {
-            double value = sbml_model->getSpecies(component)->getValue();
+        } else if (sbml_model->getSpecies(component) != nullptr) {
+            double value = sbml_model->getSpecies(component)->getInitialConcentration();
             component_value_map[component] = value;
         } else if (sbml_model->getCompartment(component)!= nullptr) {
             double value = sbml_model->getCompartment(component)->getVolume();
@@ -186,16 +187,12 @@ std::vector<double> StochasticModule::samplePoisson(std::vector<double> initial_
 
     for (size_t i = 0; i < initial_reaction_vector.size(); ++i) { // NEEDS WORK HERE!
 
-        std::poisson_distribution<int> d((initial_reaction_vector[i] * this.step));
+        std::poisson_distribution<int> d((initial_reaction_vector[i] * this->step));
 
         stochastic_array[i] = d(mrand);
     }
-
     return stochastic_array;
-
 }
-
-
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
     /**
@@ -208,37 +205,66 @@ void StochasticModule::setModelState(const std::vector<double>& state) {
      */
     auto speciesIds = sbmlHandler->getSpeciesIds();
     for (size_t i = 0; i < speciesIds.size(); ++i) {
-        Species* s = sbmlHandler.model->getSpecies(speciesIds[i]);
+        Species* s = sbmlHandler->getModel()->getSpecies(speciesIds[i]);
         s->setInitialConcentration(state[i]);
     }
 }
 
-std::vector<double> StochasticModule::runStochasticStep(const std::vector<double>& stochastic_states) {
+std::vector<double> StochasticModule::runStep(
+    const std::vector<double>& state_vector
+) {
     /**
      * @brief Calculates a single timestep for the stochastic module
      * 
-     * @param stochastic_state The current state vector of the sbml model.
+     * @param state_vector The current state vector of the sbml model.
      * 
      * @returns new_state t+1 values for stochastic step.
     */
 
     // Calculate v = formula where v is a vector of left hand reaction values
-    std::vector<double> v = computeReactions(stochastic_states);
+    std::vector<double> v = computeReactions(state_vector);
 
     // Sample stochastic answer from Poisson distribution
     std::vector<double> r = samplePoisson(v);
 
     // Update the stochastic state vector: new_state = max((old_state * ))
-    std::vector<double> new_state(stochastic_states.size());
-    for (size_t i = 0; i < stochastic_states.size(); ++i) {
+    std::vector<double> new_state(state_vector.size());
+    for (size_t i = 0; i < state_vector.size(); ++i) {
         double delta = 0.0;
         for (size_t j = 0; j < r.size(); ++j) {
             delta += stoichmat[i][j] * r[j];
         }
-        new_state[i] = std::max(stochastic_states[i] + delta, 0.0);
+        new_state[i] = std::max(state_vector[i] + delta, 0.0);
     }
-
     return new_state;
 }
+
+void StochasticModule::exchangeData() {
+    /**
+     * @brief 
+     *
+     * @param 
+     * @param 
+     * @param 
+     * 
+     * @returns
+     */
+}
+
+std::vector<std::vector<double>> StochasticModule::createResultsMatrix(
+    int numSpecies,
+    double step
+) {
+    /**
+     * @brief creates a matrix of 
+     *
+     * @param step delta_t timestep for calculating the number of total timesteps taken during simulation.
+     * @param 
+     * @param 
+     * 
+     * @returns
+     */
+
+
 
 }
