@@ -8,6 +8,7 @@
  */
 
 //--------------helper function definition------------------------------------//
+#pragma once
 
 #ifndef DETERMINISTICMODULE_h
 #define DETERMINISTICMODULE_h
@@ -17,7 +18,8 @@
 #include <memory>
 
 //Internal Libraries
-#include "singlecell/SingleCell.h"
+#include "SingleCell.h"
+#include "SBMLHandler.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
@@ -26,10 +28,16 @@
 class DeterministicModule : public SingleCell {
     public:
         DeterministicModule(
-            const std::string* sbml_path
+            const std::string& sbml_path
         ); //Ctor
 
         ~DeterministicModule() override = default; //Dtor
+
+        void _simulationPrep(
+            double start,
+            double stop, 
+            double step
+        );
 
         std::vector<double> runStep(
             const std::vector<double>& state_vector
@@ -37,12 +45,6 @@ class DeterministicModule : public SingleCell {
 
         void exchangeData() override;
 
-        std::vector<std::vector<double>> createResultsMatrix(
-            int numSpecies,
-            double start, 
-            double stop,
-            double step
-        ) override;
 
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
@@ -50,6 +52,7 @@ class DeterministicModule : public SingleCell {
         std::vector<std::string> formulas_vector;
         std::unique_ptr<amici::Model> model;
         std::unique_ptr<amici::Solver> solver;
+        std::vector<std::vector<double>> results_matrix;
 
         std::vector<double> setAllSpeciesValues(
             std::vector<double> current_states,
@@ -60,6 +63,11 @@ class DeterministicModule : public SingleCell {
             const amici::ReturnData &rdata
         );
 
+    protected:
+        void recordTimeStep(
+            const std::vector<double>& state_vector,
+            int timepoint
+        );
 };
 
 #endif

@@ -30,21 +30,20 @@
 //-----------------------------Method Details-----------------------------//
 DeterministicModule::DeterministicModule(
     const std::string& sbml_path
-) : sbmlHandler(std::make_unique<SBMLHandler>(sbml_path)) {
-    /**
-     * @brief
-     * 
-     * @param
-     * 
-     * @returns
-     */
-    
+) : SingleCell(),
+    sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
+ {
+    // Retrieve the stoichiometric matrix from the sbml document.
+    this->stoichmat = sbmlHandler->getStoichiometricMatrix();
+
+    // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
+    this->formulas_vector = sbmlHandler->getReactionExpressions();
 
      // Import AMICI Model from 'bin/AMICI_MODELS/model
-    std::unique_ptr<amici::Model> amici_model = amici::generic_model::getModel();
+    this->model = amici::generic_model::getModel();
 
     // Create an instance of the solver class
-    std::unique_ptr<amici::Solver> solver = model->getSolver();
+    this->solver = model->getSolver();
 
 }
 
@@ -105,14 +104,29 @@ std::vector<double> getLastValues(const amici::ReturnData &rdata) {
     return last_species_values;
 }
 
-std::vector<std::vector<double>> DeterministicModule::createResultsMatrix() {
+void DeterministicModule::_simulationPrep(
+    double start, 
+    double stop, 
+    double step
+) {
     /**
-     * @brief 
-     *
-     * @param 
-     * @param 
-     * @param 
+     * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
+     *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
      * 
-     * @returns
+     * @param None
+     * 
+     * @returns None
      */
+    
+     int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
+     
+     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
+
+     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); //<- @TODO: I need to extract number of species and timesteps
+ 
+    // Assign solver settings
+    solver->setAbsoluteTolerance(1e-10);
+    solver->setRelativeTolerance(1e-10);
+    solver->setMaxSteps(10000);
+
 }

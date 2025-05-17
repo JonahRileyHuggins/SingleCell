@@ -18,8 +18,8 @@
 #include "singlecell/DeterministicModule.h"
 //-----------------------------Class Details-------------------------------//
 SingleCell::SingleCell(
-    std::string stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
-    std::string deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
+    std::string stochastic_sbml_path,
+    std::string deterministic_sbml_path
 )
     : stochasticModule(std::make_unique<StochasticModule>(stochastic_sbml_path)),
       deterministicModule(std::make_unique<DeterministicModule>(deterministic_sbml_path))
@@ -53,12 +53,13 @@ std::vector<std::vector<double>> SingleCell::simulate(
     std::unique_ptr<StochasticModule> stochMod = std::make_unique<StochasticModule>();
     std::unique_ptr<DeterministicModule> detMod = std::make_unique<DeterministicModule>();
 
+    // Add simulation time steps, results matrix, 
+    stochMod->_simulationPrep(start, stop, step);
+    detMod->_simulationPrep(start, stop, step);
 
+    std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
-    // Species array to assign results to:
-    // std::vector<std::vector<double>> results_array(timesteps.size(), std::vector<double>(species_ids.size()));
-
-    // return results_array;
+    
 }
 
 std::vector<double> SingleCell::setTimeSteps(double start, double stop, double step) {
@@ -84,3 +85,22 @@ std::vector<double> SingleCell::setTimeSteps(double start, double stop, double s
     return timepoints;
 }
 
+std::vector<std::vector<double>> SingleCell::createResultsMatrix(
+    int numSpecies,
+    int numTimeSteps
+) {
+    /**
+     * @brief creates a matrix of results to be implemented within a derived class
+     *      @NOTE: Method intended for derived classes only
+     *
+     * @param numSpecies integer number of species within the derived class model
+     * @param numTimeSteps integer number of timesteps for simulation to load results to
+     * 
+     * @returns
+     */
+
+    std::vector<std::vector<double>> results_matrix(numTimeSteps, std::vector<double>(numSpecies));
+
+    return results_matrix;
+
+}

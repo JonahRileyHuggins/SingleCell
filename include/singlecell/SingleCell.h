@@ -28,16 +28,20 @@ class SingleCell {
         std::unique_ptr<DeterministicModule> deterministicModule;
 
     protected:
+        virtual void _simulationPrep(
+            double start, 
+            double stop, 
+            double step
+        ) = 0;
+
         virtual std::vector<double> runStep(
             const std::vector<double>& state_vector
         ) = 0;    
 
-        virtual std::vector<std::vector<double>> createResultsMatrix(
+        std::vector<std::vector<double>> createResultsMatrix(
             int numSpecies,
-            double start, 
-            double stop,
-            double step
-        ) = 0; 
+            int numTimeSteps
+        ); 
 
         virtual void exchangeData();
 
@@ -47,10 +51,15 @@ class SingleCell {
             double step
         );
 
+        virtual void recordTimeStep(
+            const std::vector<double>& state_vector, 
+            int timepoint
+        ) = 0;
+
     public:
         SingleCell(
-            std::string stochastic_sbml_path,
-            std::string deterministic_sbml_path
+            std::string stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
+            std::string deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
         ); //Ctor
 
         virtual ~SingleCell(); //Dtor

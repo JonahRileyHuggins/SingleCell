@@ -30,6 +30,12 @@ class StochasticModule : public SingleCell {
 
         ~StochasticModule() override = default; //Destructor, dtor
 
+        void _simulationPrep(
+            double start,
+            double stop, 
+            double step
+        );
+
         std::vector<double> runStep(
             const std::vector<double>& state_vector
         ) override;
@@ -40,18 +46,12 @@ class StochasticModule : public SingleCell {
 
         void exchangeData() override;
 
-            
-        std::vector<std::vector<double>> createResultsMatrix(
-            int numSpecies,
-            double start, 
-            double stop,
-            double step
-        ) override;
 
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
+        std::vector<std::vector<double>> results_matrix;
 
         
         std::vector<double> computeReactions(
@@ -72,6 +72,12 @@ class StochasticModule : public SingleCell {
 
         std::vector<double> samplePoisson(
             std::vector<double> initial_reaction_vector
+        );
+
+        protected:
+        void recordTimeStep(
+            const std::vector<double>& state_vector,
+            int timepoint
         );
 
 };

@@ -30,7 +30,8 @@
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
     const std::string& sbml_path
-) : sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
+) : SingleCell(),
+    sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
  {
     // Retrieve the stoichiometric matrix from the sbml document.
     stoichmat = sbmlHandler->getStoichiometricMatrix();
@@ -194,6 +195,29 @@ std::vector<double> StochasticModule::samplePoisson(std::vector<double> initial_
     return stochastic_array;
 }
 
+void StochasticModule::_simulationPrep(
+    double start, 
+    double stop, 
+    double step
+) {
+    /**
+     * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
+     *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
+     * 
+     * @param None
+     * 
+     * @returns None
+     */
+    
+     int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
+     
+     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
+
+     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); //<- @TODO: I need to extract number of species and timesteps
+     
+
+}
+
 void StochasticModule::setModelState(const std::vector<double>& state) {
     /**
      * @brief public method for updating the simulation states at every timestep. 
@@ -249,22 +273,4 @@ void StochasticModule::exchangeData() {
      * 
      * @returns
      */
-}
-
-std::vector<std::vector<double>> StochasticModule::createResultsMatrix(
-    int numSpecies,
-    double step
-) {
-    /**
-     * @brief creates a matrix of 
-     *
-     * @param step delta_t timestep for calculating the number of total timesteps taken during simulation.
-     * @param 
-     * @param 
-     * 
-     * @returns
-     */
-
-
-
 }
