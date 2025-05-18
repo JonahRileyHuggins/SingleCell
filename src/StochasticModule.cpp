@@ -15,6 +15,7 @@
 #include <random>
 #include <memory>
 #include <fstream>
+#include <optional>
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
@@ -196,26 +197,27 @@ std::vector<double> StochasticModule::samplePoisson(std::vector<double> initial_
 }
 
 void StochasticModule::_simulationPrep(
+    const std::optional<std::vector<double>>& initial_state,
     double start, 
     double stop, 
     double step
 ) {
-    /**
-     * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
-     *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
-     * 
-     * @param None
-     * 
-     * @returns None
-     */
+     const std::vector<double>& stoch_states = 
+     initial_state.has_value() ? initial_state.value() 
+                                   : this->sbmlHandler->getInitialState();
+
     
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
      std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
      this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); //<- @TODO: I need to extract number of species and timesteps
+ 
+     StochasticModule::recordStepResult(
+        stoch_states, 
+        0
+    );
      
-
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -273,4 +275,15 @@ void StochasticModule::exchangeData() {
      * 
      * @returns
      */
+}
+
+void StochasticModule::recordStepResult(
+    const std::vector<double>& state_vector,
+    int timepoint
+) {
+    this->results_matrix[timepoint] = state_vector;
+}
+
+std::vector<double> StochasticModule::getInitialState() const {
+    return sbmlHandler->getInitialState();
 }
