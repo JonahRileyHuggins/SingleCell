@@ -19,6 +19,7 @@
 #include <optional>
 
 //Internal Libraries
+#include "sbml/SBMLReader.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 
@@ -64,8 +65,6 @@ class SingleCell {
             int numTimeSteps
         ); 
 
-        virtual void exchangeData();
-
         /**
          * @brief calculates number of simulation steps, aka timepoints
          *
@@ -96,6 +95,17 @@ class SingleCell {
         virtual std::vector<double> getLastStepResult(
             int timepoint
         ) = 0;
+
+
+        virtual void updateParameters(
+            const Model* alternate_model
+        );
+
+        std::vector<std::string> findOverlappingIds(
+            const std::vector<std::string>& ids1,
+            const std::vector<std::string>& ids2
+        );
+
 
     public:
         SingleCell(

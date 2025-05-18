@@ -65,7 +65,9 @@ class StochasticModule : public SingleCell {
             const std::vector<double>& state
         );
 
-        void exchangeData() override;
+        void updateParameters(
+            const Model* alternate_model
+        );
 
         virtual std::vector<double> getInitialState() const override;
 

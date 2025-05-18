@@ -10,6 +10,7 @@
 // --------------------------Library Import--------------------------------//
 #include <vector>
 #include <string>
+#include <unordered_set>
 
 
 // Internal Libraries
@@ -94,4 +95,20 @@ std::vector<std::vector<double>> SingleCell::createResultsMatrix(
 
     return results_matrix;
 
+}
+
+std::vector<std::string> SingleCell::findOverlappingIds(
+    const std::vector<std::string>& ids1,
+    const std::vector<std::string>& ids2
+) {
+    std::vector<std::string> overlaps;
+    std::unordered_set<std::string> lookup(ids2.begin(), ids2.end());
+
+    for (const auto& id : ids1) {
+        if (lookup.count(id)) {
+            overlaps.push_back(id);
+        }
+    }
+
+    return overlaps;
 }

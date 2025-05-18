@@ -53,7 +53,9 @@ class DeterministicModule : public SingleCell {
             int step
         ) override;
 
-        void exchangeData() override;
+        void updateParameters(
+            const Model* alternate_model
+        );
 
         virtual std::vector<double> getInitialState() const override;
 

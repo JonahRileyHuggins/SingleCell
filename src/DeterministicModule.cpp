@@ -167,3 +167,35 @@ std::vector<double> DeterministicModule::getLastStepResult(
 
     return state_vector;
 }
+
+void DeterministicModule::updateParameters(
+    const Model* alternate_model
+) {
+    // Instantiate a blank map:
+    std::unordered_map<std::string, double> new_param_vals; 
+
+    std::vector<std::string> alt_species_ids;
+
+    int numSpecies = alternate_model->getNumSpecies();
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        const Species* species = alternate_model->getSpecies(i);
+
+        alt_species_ids.push_back(species->getId());
+    }
+
+    std::vector<std::string> param_ids = sbmlHandler->getParameterIds();
+    
+    std::vector<std::string> overlapping_params = SingleCell::findOverlappingIds(
+        param_ids, 
+        alt_species_ids
+    );
+
+    // put species values from alternate_model into new_param_vals as value@species
+
+
+    // or just reset parameters directly, I think you've got all the components needed 
+    // to do it in one formula
+
+}

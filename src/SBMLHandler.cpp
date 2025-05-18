@@ -199,3 +199,20 @@ std::vector<double> SBMLHandler::getInitialState() {
         initial_state[i] = state;
      }
 }
+
+std::vector<std::string> SBMLHandler::getParameterIds() {
+    std::vector<std::string> parameter_ids;
+    Model* model = this->model;
+
+    if (!model) return parameter_ids;
+
+    unsigned int numParams = model->getNumParameters();
+    for (unsigned int i = 0; i < numParams; ++i) {
+        const Parameter* param = model->getParameter(i);
+        if (param) {
+            parameter_ids.push_back(param->getId());
+        }
+    }
+
+    return parameter_ids;
+}
