@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <memory>
+#include <optional>
 
 //Internal Libraries
 #include "singlecell/StochasticModule.h"
@@ -29,14 +30,22 @@ class SingleCell {
 
     protected:
         virtual void _simulationPrep(
-            const std::vector<double>& initial_state,
+            const std::optional<std::vector<double>>& initial_state,
             double start, 
             double stop, 
             double step
         ) = 0;
 
-        virtual std::vector<double> runStep(
-            const std::vector<double>& state_vector
+
+        /**
+         * @brief Class method for enforcing an iteration step by simulation formalism
+         * 
+         * @param step current step of the simulation
+         * 
+         * @returns None (new_state t+1 values for module step.)
+        */
+        virtual void runStep(
+            int step
         ) = 0;    
 
         virtual std::vector<double> getInitialState() const = 0; //derived class implement only
@@ -77,13 +86,24 @@ class SingleCell {
             int timepoint
         ) = 0;
 
+        /**
+         * @brief Getter method for last recorded value in results matrix
+         * 
+         * @param timepoint position in results matrix being returned
+         * 
+         * @returns state_vector vector of species states recorded in results_matrix object
+         */
+        virtual std::vector<double> getLastStepResult(
+            int timepoint
+        ) = 0;
+
     public:
         SingleCell(
             std::string stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
             std::string deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
         ); //Ctor
 
-        virtual ~SingleCell(); //Dtor
+        virtual ~SingleCell() = default; //Dtor
 
         std::vector<std::vector<double>> simulate(
             const std::vector<double>& det_states, //deterministic starting species values (nM)

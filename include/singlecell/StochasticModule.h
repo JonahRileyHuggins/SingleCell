@@ -50,8 +50,15 @@ class StochasticModule : public SingleCell {
         ) override;
 
         
-        std::vector<double> runStep(
-            const std::vector<double>& state_vector
+        /**
+         * @brief Calculates a single timestep for the stochastic module
+         * 
+         * @param step current step of the simulation
+         * 
+         * @returns new_state t+1 values for stochastic step.
+        */
+        void runStep(
+            int step
         ) override;
 
         void setModelState(
@@ -86,13 +93,25 @@ class StochasticModule : public SingleCell {
         );
 
         std::vector<double> samplePoisson(
-            std::vector<double> initial_reaction_vector
+            std::vector<double> initial_reaction_vector,
+            int step
         );
 
         protected:
         void recordStepResult(
             const std::vector<double>& state_vector,
             int timepoint
+        ) override;
+
+        /**
+         * @brief Getter method for last recorded value in results matrix
+         * 
+         * @param timepoint position in results matrix being returned
+         * 
+         * @returns state_vector vector of species states recorded in results_matrix object
+         */
+        std::vector<double> getLastStepResult(
+            int timestep
         ) override;
 
 };

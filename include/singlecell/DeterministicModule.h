@@ -35,21 +35,22 @@ class DeterministicModule : public SingleCell {
         ~DeterministicModule() override = default; //Dtor
 
         void _simulationPrep(
-            const std::vector<double>& initial_state,
+            const std::optional<std::vector<double>>& initial_state,
             double start,
             double stop, 
             double step
         ) override;
 
-            /**
-             * @brief
-             * @TODO: return to this and finish
-             * @param state_vector
-             * 
-             * @returns
-             */
-        std::vector<double> runStep(
-            const std::vector<double>& state_vector
+
+        /**
+         * @brief Calculates a single timestep for the deterministic module
+         * 
+         * @param step current step of the simulation
+         * 
+         * @returns None (new state vector of t+1 values for deterministic step)
+        */
+        void runStep(
+            int step
         ) override;
 
         void exchangeData() override;
@@ -69,15 +70,29 @@ class DeterministicModule : public SingleCell {
             std::vector<double> update_states
         );
 
-        std::vector<double> getLastValues(
+        std::vector<double> getNewStepResult(
             const amici::ReturnData &rdata
         );
+
+
 
     protected:
         void recordStepResult(
             const std::vector<double>& state_vector,
             int timepoint
         ) override;
+
+        /**
+         * @brief Getter method for last recorded value in results matrix
+         * 
+         * @param timepoint position in results matrix being returned
+         * 
+         * @returns state_vector vector of species states recorded in results_matrix object
+         */
+        std::vector<double> getLastStepResult(
+            int timestep
+        ) override;
+
 };
 
 #endif

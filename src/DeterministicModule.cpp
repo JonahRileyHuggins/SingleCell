@@ -48,10 +48,25 @@ DeterministicModule::DeterministicModule(
 
 }
 
-std::vector<double> DeterministicModule::runStep(
-            const std::vector<double>& state_vector
-        ) {
+void DeterministicModule::runStep(int step) {
+    // Get the (step - 1)th result
+    std::vector<double> last_record = this->getLastStepResult(step);
 
+    // Set the single timepoint to simulate
+    std::vector<double> step_forward = {0.0, static_cast<double>(step)};
+    model->setTimepoints(step_forward);
+
+    // Set initial state based on last record
+    model->setInitialStates(last_record);
+
+    // Run the simulation
+    std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
+
+    // Extract results (assuming you want the final state)
+    std::vector<double> last_vals = this->getNewStepResult(*rdata);
+
+    // Record values to results matrix
+    this->recordStepResult(last_vals, step);
 }
 
 std::vector<double> DeterministicModule::setAllSpeciesValues(
@@ -78,7 +93,9 @@ std::vector<double> DeterministicModule::setAllSpeciesValues(
 
 }
 
-std::vector<double> getLastValues(const amici::ReturnData &rdata) {
+std::vector<double> DeterministicModule::getNewStepResult(
+    const amici::ReturnData &rdata
+) {
 
     int n_species = rdata.nx; // number of species
     int n_timepoints = rdata.nt; 
@@ -112,9 +129,11 @@ void DeterministicModule::_simulationPrep(
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
      std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
-
+     
+     // populate results_matrix member with proper size
      this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); 
      
+     // record initial state as first vector in results_matrix member 
      DeterministicModule::recordStepResult(
         det_states, 
         0
@@ -136,4 +155,15 @@ void DeterministicModule::recordStepResult(
 
 std::vector<double> DeterministicModule::getInitialState() const {
     return sbmlHandler->getInitialState();
+}
+
+std::vector<double> DeterministicModule::getLastStepResult(
+    int timestep
+) {
+        //set states vector based on last iteration's final values:
+        std::vector<double> state_vector = this->results_matrix[
+            (timestep > 0) ? timestep - 1 : timestep
+        ];
+
+    return state_vector;
 }

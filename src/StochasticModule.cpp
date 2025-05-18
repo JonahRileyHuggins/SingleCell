@@ -173,7 +173,10 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
     return tokens;
 }
 
-std::vector<double> StochasticModule::samplePoisson(std::vector<double> initial_reaction_vector) {
+std::vector<double> StochasticModule::samplePoisson(
+    std::vector<double> initial_reaction_vector,
+    int step
+) {
     /** 
      * @brief Update stoichiometric values by setting as the mean for a poission distribution
      * 
@@ -189,7 +192,7 @@ std::vector<double> StochasticModule::samplePoisson(std::vector<double> initial_
 
     for (size_t i = 0; i < initial_reaction_vector.size(); ++i) { // NEEDS WORK HERE!
 
-        std::poisson_distribution<int> d((initial_reaction_vector[i] * this->step));
+        std::poisson_distribution<int> d((initial_reaction_vector[i] * step));
 
         stochastic_array[i] = d(mrand);
     }
@@ -205,13 +208,12 @@ void StochasticModule::_simulationPrep(
      const std::vector<double>& stoch_states = 
      initial_state.has_value() ? initial_state.value() 
                                    : this->sbmlHandler->getInitialState();
-
     
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
      std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
-     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); //<- @TODO: I need to extract number of species and timesteps
+     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size());
  
      StochasticModule::recordStepResult(
         stoch_states, 
@@ -236,33 +238,30 @@ void StochasticModule::setModelState(const std::vector<double>& state) {
     }
 }
 
-std::vector<double> StochasticModule::runStep(
-    const std::vector<double>& state_vector
+void StochasticModule::runStep(
+    int step
 ) {
-    /**
-     * @brief Calculates a single timestep for the stochastic module
-     * 
-     * @param state_vector The current state vector of the sbml model.
-     * 
-     * @returns new_state t+1 values for stochastic step.
-    */
+    // get (step minus 1) position in results_matrix member
+    std::vector<double> last_record = StochasticModule::getLastStepResult(step);
 
     // Calculate v = formula where v is a vector of left hand reaction values
-    std::vector<double> v = computeReactions(state_vector);
+    std::vector<double> v = computeReactions(last_record);
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> r = samplePoisson(v);
+    std::vector<double> r = samplePoisson(v, step);
 
     // Update the stochastic state vector: new_state = max((old_state * ))
-    std::vector<double> new_state(state_vector.size());
-    for (size_t i = 0; i < state_vector.size(); ++i) {
+    std::vector<double> new_state(last_record.size());
+    for (size_t i = 0; i < last_record.size(); ++i) {
         double delta = 0.0;
         for (size_t j = 0; j < r.size(); ++j) {
             delta += stoichmat[i][j] * r[j];
         }
-        new_state[i] = std::max(state_vector[i] + delta, 0.0);
+        new_state[i] = std::max(last_record[i] + delta, 0.0);
     }
-    return new_state;
+    
+    //Record iteration's result
+    this->recordStepResult(new_state, step);
 }
 
 void StochasticModule::exchangeData() {
@@ -286,4 +285,15 @@ void StochasticModule::recordStepResult(
 
 std::vector<double> StochasticModule::getInitialState() const {
     return sbmlHandler->getInitialState();
+}
+
+std::vector<double> StochasticModule::getLastStepResult(
+    int timestep
+) {
+        //set states vector based on last iteration's final values:
+        std::vector<double> state_vector = this->results_matrix[
+            (timestep > 0) ? timestep - 1 : timestep
+        ];
+
+    return state_vector;
 }

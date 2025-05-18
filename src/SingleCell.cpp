@@ -59,9 +59,18 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
-    
-}
+    // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
+    for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
 
+        //Run Module Simulations
+        stochMod->runStep(timestep);
+        detMod->runStep(timestep);
+
+        // exchange data
+
+    }
+    // concatentate results matrices
+}
 std::vector<double> SingleCell::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;
