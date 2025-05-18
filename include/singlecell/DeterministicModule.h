@@ -16,6 +16,7 @@
 // --------------------------Library Import-----------------------------------//
 #include <vector>
 #include <memory>
+#include <optional>
 
 //Internal Libraries
 #include "SingleCell.h"
@@ -34,17 +35,26 @@ class DeterministicModule : public SingleCell {
         ~DeterministicModule() override = default; //Dtor
 
         void _simulationPrep(
+            const std::vector<double>& initial_state,
             double start,
             double stop, 
             double step
-        );
+        ) override;
 
+            /**
+             * @brief
+             * @TODO: return to this and finish
+             * @param state_vector
+             * 
+             * @returns
+             */
         std::vector<double> runStep(
             const std::vector<double>& state_vector
         ) override;
 
         void exchangeData() override;
 
+        virtual std::vector<double> getInitialState() const override;
 
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
@@ -64,10 +74,10 @@ class DeterministicModule : public SingleCell {
         );
 
     protected:
-        void recordTimeStep(
+        void recordStepResult(
             const std::vector<double>& state_vector,
             int timepoint
-        );
+        ) override;
 };
 
 #endif

@@ -29,6 +29,7 @@ class SingleCell {
 
     protected:
         virtual void _simulationPrep(
+            const std::vector<double>& initial_state,
             double start, 
             double stop, 
             double step
@@ -38,6 +39,17 @@ class SingleCell {
             const std::vector<double>& state_vector
         ) = 0;    
 
+        virtual std::vector<double> getInitialState() const = 0; //derived class implement only
+        
+        /**
+         * @brief creates a matrix of results to be implemented within a derived class
+         *      @NOTE: Method intended for derived classes only
+         *
+         * @param numSpecies integer number of species within the derived class model
+         * @param numTimeSteps integer number of timesteps for simulation to load results to
+         * 
+         * @returns
+         */
         std::vector<std::vector<double>> createResultsMatrix(
             int numSpecies,
             int numTimeSteps
@@ -45,13 +57,22 @@ class SingleCell {
 
         virtual void exchangeData();
 
+        /**
+         * @brief calculates number of simulation steps, aka timepoints
+         *
+         * @param start
+         * @param stop
+         * @param step
+         * 
+         * @returns timepoints vector of float values 
+         */
         std::vector<double> setTimeSteps(
             double start, 
             double stop, 
             double step
         );
 
-        virtual void recordTimeStep(
+        virtual void recordStepResult(
             const std::vector<double>& state_vector, 
             int timepoint
         ) = 0;

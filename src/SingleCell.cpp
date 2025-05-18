@@ -54,8 +54,8 @@ std::vector<std::vector<double>> SingleCell::simulate(
     std::unique_ptr<DeterministicModule> detMod = std::make_unique<DeterministicModule>();
 
     // Add simulation time steps, results matrix, 
-    stochMod->_simulationPrep(start, stop, step);
-    detMod->_simulationPrep(start, stop, step);
+    stochMod->_simulationPrep(stoch_states, start, stop, step);
+    detMod->_simulationPrep(det_states, start, stop, step);
 
     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
@@ -63,15 +63,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
 }
 
 std::vector<double> SingleCell::setTimeSteps(double start, double stop, double step) {
-    /**
-     * @brief calculates number of simulation steps, aka timepoints
-     *
-     * @param start
-     * @param stop
-     * @param step
-     * 
-     * @returns timepoints vector of float values 
-     */
      // Initialized array to be returned:
     std::vector<double> timepoints;
 
@@ -89,15 +80,6 @@ std::vector<std::vector<double>> SingleCell::createResultsMatrix(
     int numSpecies,
     int numTimeSteps
 ) {
-    /**
-     * @brief creates a matrix of results to be implemented within a derived class
-     *      @NOTE: Method intended for derived classes only
-     *
-     * @param numSpecies integer number of species within the derived class model
-     * @param numTimeSteps integer number of timesteps for simulation to load results to
-     * 
-     * @returns
-     */
 
     std::vector<std::vector<double>> results_matrix(numTimeSteps, std::vector<double>(numSpecies));
 

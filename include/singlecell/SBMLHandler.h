@@ -42,6 +42,8 @@ class SBMLHandler {
 
         std::vector<std::string> getSpeciesIds();
 
+        std::vector<double> getInitialState();
+
     private:
         SBMLDocument* doc = nullptr; 
         Model* model = nullptr; 

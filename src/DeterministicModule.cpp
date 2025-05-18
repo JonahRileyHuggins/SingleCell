@@ -15,6 +15,7 @@
 #include <random>
 #include <memory>
 #include <fstream>
+#include <optional>
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
@@ -50,13 +51,6 @@ DeterministicModule::DeterministicModule(
 std::vector<double> DeterministicModule::runStep(
             const std::vector<double>& state_vector
         ) {
-    /**
-     * @brief
-     * @TODO: return to this and finish
-     * @param state_vector
-     * 
-     * @returns
-     */
 
 }
 
@@ -105,28 +99,41 @@ std::vector<double> getLastValues(const amici::ReturnData &rdata) {
 }
 
 void DeterministicModule::_simulationPrep(
+    const std::optional<std::vector<double>>& initial_state,
     double start, 
     double stop, 
     double step
 ) {
-    /**
-     * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
-     *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
-     * 
-     * @param None
-     * 
-     * @returns None
-     */
-    
+     const std::vector<double>& det_states = 
+     initial_state.has_value() ? initial_state.value() 
+                                   : this->sbmlHandler->getInitialState();
+
+   
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
      std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
 
-     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); //<- @TODO: I need to extract number of species and timesteps
- 
-    // Assign solver settings
-    solver->setAbsoluteTolerance(1e-10);
-    solver->setRelativeTolerance(1e-10);
-    solver->setMaxSteps(10000);
+     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); 
+     
+     DeterministicModule::recordStepResult(
+        det_states, 
+        0
+    );
+     
+     // Assign solver settings
+     solver->setAbsoluteTolerance(1e-10);
+     solver->setRelativeTolerance(1e-10);
+     solver->setMaxSteps(10000);
 
+}
+
+void DeterministicModule::recordStepResult(
+    const std::vector<double>& state_vector,
+    int timepoint
+) {
+    this->results_matrix[timepoint] = state_vector;
+}
+
+std::vector<double> DeterministicModule::getInitialState() const {
+    return sbmlHandler->getInitialState();
 }

@@ -181,3 +181,21 @@ std::vector<std::string> SBMLHandler::getSpeciesIds() {
     return species_ids;
 }
 
+std::vector<double> SBMLHandler::getInitialState() {
+    /**
+     * @brief getter method for obtaining SBML intial state values
+     * 
+     * @param None
+     * 
+     * @returns initial_state vector of double initial model states for every species
+     */
+     int numSpecies = SBMLHandler::getModel()->getNumSpecies();
+
+     std::vector<double> initial_state(numSpecies);
+
+     for (unsigned int i = 0; i < numSpecies; i++) {
+        double state = SBMLHandler::getModel()->getSpecies(i)->getInitialConcentration();
+        
+        initial_state[i] = state;
+     }
+}

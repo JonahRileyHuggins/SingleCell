@@ -15,6 +15,7 @@
 // --------------------------Library Import--------------------------------//
 #include <vector>
 #include <memory>
+#include <optional>
 #include <unordered_map>
 
 // Internal libraries
@@ -30,12 +31,25 @@ class StochasticModule : public SingleCell {
 
         ~StochasticModule() override = default; //Destructor, dtor
 
+        /**
+         * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
+         *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
+         * 
+         * @param initial_state
+         * @param start
+         * @param stop
+         * @param step
+         * 
+         * @returns None
+         */
         void _simulationPrep(
+            const std::optional<std::vector<double>>& initial_state,
             double start,
             double stop, 
             double step
-        );
+        ) override;
 
+        
         std::vector<double> runStep(
             const std::vector<double>& state_vector
         ) override;
@@ -46,6 +60,7 @@ class StochasticModule : public SingleCell {
 
         void exchangeData() override;
 
+        virtual std::vector<double> getInitialState() const override;
 
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
@@ -75,10 +90,10 @@ class StochasticModule : public SingleCell {
         );
 
         protected:
-        void recordTimeStep(
+        void recordStepResult(
             const std::vector<double>& state_vector,
             int timepoint
-        );
+        ) override;
 
 };
 
