@@ -26,7 +26,7 @@
 class StochasticModule : public Simulation {
     public:
         StochasticModule( //Constructor. ctor
-            const std::string& sbml_path
+            Model* StochasticModel
         );
 
         ~StochasticModule() override = default; //Destructor, dtor

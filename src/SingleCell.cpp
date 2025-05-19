@@ -15,18 +15,19 @@
 
 // Internal Libraries
 #include "singlecell/SingleCell.h"
+#include "singlecell/Simulation.h"
+#include "singlecell/SBMLHandler.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 //-----------------------------Class Details-------------------------------//
 SingleCell::SingleCell(
     std::string stochastic_sbml_path,
     std::string deterministic_sbml_path
-)
-    : stochasticModule(std::make_unique<StochasticModule>(stochastic_sbml_path)),
-      deterministicModule(std::make_unique<DeterministicModule>(deterministic_sbml_path))
-{
+) : StochasticModel(std::make_unique<SBMLHandler>()),
+    DeterministicModel(std::make_unique<SBMLHandler>()) 
+    {
 
-}
+    }
 
 SingleCell::~SingleCell() {
 
@@ -51,14 +52,15 @@ std::vector<std::vector<double>> SingleCell::simulate(
      * @returns matrix of global states for both models
      */
     //Create instances of internal simulation modules: dynamic allocation
-    std::unique_ptr<StochasticModule> stochMod = std::make_unique<StochasticModule>();
-    std::unique_ptr<DeterministicModule> detMod = std::make_unique<DeterministicModule>();
+
+    std::unique_ptr<StochasticModule> stochMod = ;
+    std::unique_ptr<DeterministicModule> detMod = ;
 
     // Add simulation time steps, results matrix, 
     stochMod->_simulationPrep(stoch_states, start, stop, step);
     detMod->_simulationPrep(det_states, start, stop, step);
 
-    std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
+    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
     // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
     for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
@@ -72,13 +74,14 @@ std::vector<std::vector<double>> SingleCell::simulate(
         detMod->updateParameters(detMod->sbml);
 
     }
+    
     // concatentate results matrices
-    std::vector<std::vector<double>> results_matrix = SingleCell::concatenateMatrixRows(
+    std::vector<std::vector<double>> results_matrix = Simulation::concatenateMatrixRows(
         stochMod->results_matrix,
         detMod->results_matrix
     );
 }
-std::vector<double> SingleCell::setTimeSteps(double start, double stop, double step) {
+std::vector<double> Simulation::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;
 
@@ -92,7 +95,7 @@ std::vector<double> SingleCell::setTimeSteps(double start, double stop, double s
     return timepoints;
 }
 
-std::vector<std::vector<double>> SingleCell::createResultsMatrix(
+std::vector<std::vector<double>> Simulation::createResultsMatrix(
     int numSpecies,
     int numTimeSteps
 ) {
@@ -103,7 +106,7 @@ std::vector<std::vector<double>> SingleCell::createResultsMatrix(
 
 }
 
-std::vector<std::string> SingleCell::findOverlappingIds(
+std::vector<std::string> Simulation::findOverlappingIds(
     const std::vector<std::string>& ids1,
     const std::vector<std::string>& ids2
 ) {
@@ -119,7 +122,7 @@ std::vector<std::string> SingleCell::findOverlappingIds(
     return overlaps;
 }
 
-std::vector<std::vector<double>> SingleCell::concatenateMatrixRows(
+std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
     std::vector<std::vector<double>> matrix1, 
     std::vector<std::vector<double>> matrix2
 ) {

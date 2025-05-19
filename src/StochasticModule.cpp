@@ -30,10 +30,8 @@
 //-----------------------------Method Details-----------------------------//
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
-    const std::string& sbml_path
-) : Simulation(),
-    sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
- {
+    Model* StochasticModel
+) {
     // Retrieve the stoichiometric matrix from the sbml document.
     stoichmat = sbmlHandler->getStoichiometricMatrix();
 
@@ -41,7 +39,7 @@ StochasticModule::StochasticModule(
     formulas_vector = sbmlHandler->getReactionExpressions();
 
     //Instantiate SBML model
-    this->sbml = sbmlHandler->getModel();
+    this->sbml = std::move(StochasticModel);
 
  }
 

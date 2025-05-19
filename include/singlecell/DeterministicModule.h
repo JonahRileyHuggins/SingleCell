@@ -29,7 +29,7 @@
 class DeterministicModule : public Simulation {
     public:
         DeterministicModule(
-            const std::string& sbml_path
+            Model* DeterministicModel
         ); //Ctor
 
         ~DeterministicModule() override = default; //Dtor

@@ -4,25 +4,26 @@
  * @brief Combines instances of Deterministic and Stochastic Modules into singular simulation framework
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
- * @date 15-05-2025
+ * @date 19-05-2025
  */
 
 // --------------------------Library Import--------------------------------//
 #include <vector>
 #include <string>
+#include <memory>
 #include <unordered_set>
 
 
 // Internal Libraries
 #include "singlecell/Simulation.h"
+#include "singlecell/SBMLHandler.h"
 //-----------------------------Class Details-------------------------------//
 Simulation::Simulation(
-    std::string stochastic_sbml_path,
-    std::string deterministic_sbml_path
-)
-
-{
-
+    std::unique_ptr<SBMLHandler> stochMod,
+    std::unique_ptr<SBMLHandler> detMod
+) {
+    this->StochasticModel = std::move(stochMod);
+    this->DeterministicModel = std::move(detMod);
 }
 
 Simulation::~Simulation() {

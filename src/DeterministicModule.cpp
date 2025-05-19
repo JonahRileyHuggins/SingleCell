@@ -30,10 +30,8 @@
 
 //-----------------------------Method Details-----------------------------//
 DeterministicModule::DeterministicModule(
-    const std::string& sbml_path
-) : Simulation(),
-    sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
- {
+    Model* DeterministicModel
+ ) {
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = sbmlHandler->getStoichiometricMatrix();
 
@@ -47,7 +45,7 @@ DeterministicModule::DeterministicModule(
     this->solver = model->getSolver();
 
     //Instantiate SBML model
-    this->sbml = sbmlHandler->getModel();
+    this->sbml = std::move(DeterministicModel);
 
 }
 
