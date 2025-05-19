@@ -68,9 +68,15 @@ std::vector<std::vector<double>> SingleCell::simulate(
         detMod->runStep(timestep);
 
         // exchange data
+        stochMod->updateParameters(detMod->sbml);
+        detMod->updateParameters(detMod->sbml);
 
     }
     // concatentate results matrices
+    std::vector<std::vector<double>> results_matrix = SingleCell::concatenateMatrixRows(
+        stochMod->results_matrix,
+        detMod->results_matrix
+    );
 }
 std::vector<double> SingleCell::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
@@ -111,4 +117,15 @@ std::vector<std::string> SingleCell::findOverlappingIds(
     }
 
     return overlaps;
+}
+
+std::vector<std::vector<double>> SingleCell::concatenateMatrixRows(
+    std::vector<std::vector<double>> matrix1, 
+    std::vector<std::vector<double>> matrix2
+) {
+    std::vector<std::vector<double>> combined_matrix = matrix1;
+
+    combined_matrix.insert(combined_matrix.end(), matrix2.begin(), matrix2.end());
+
+    return combined_matrix;
 }

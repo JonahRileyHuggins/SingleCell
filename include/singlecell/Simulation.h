@@ -1,16 +1,16 @@
 /**
- * @file: SingleCell.h
+ * @file: Simulation.h
  * 
  * @authors  Jonah R. Huggins, Marc R. Birtwistle
- * @date 15-05-2025
+ * @date 19-05-2025
  * 
  * @brief Class Creator For Single Cell Model.
  */
 //----------------------header file definition-----------------------------//
 #pragma once
 
-#ifndef SINGLECELL_h
-#define SINGLECELL_h
+#ifndef SIMULATION_h
+#define SIMULATION_h
 
 // --------------------------Library Import--------------------------------//
 
@@ -20,15 +20,10 @@
 
 //Internal Libraries
 #include "sbml/SBMLReader.h"
-#include "singlecell/Simulation.h"
-#include "singlecell/StochasticModule.h"
-#include "singlecell/DeterministicModule.h"
 
 //--------------------------Class Declaration-----------------------------//
-class SingleCell {
-    private:
-        std::unique_ptr<StochasticModule> stochasticModule;
-        std::unique_ptr<DeterministicModule> deterministicModule;
+class Simulation {
+private:
 
         /**
          * @brief Concatenates matrix 2 to the bottom rows of matrix 1
@@ -123,12 +118,12 @@ class SingleCell {
 
 
     public:
-        SingleCell(
+        Simulation(
             std::string stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
             std::string deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
         ); //Ctor
 
-        virtual ~SingleCell() = default; //Dtor
+        virtual ~Simulation() = default; //Dtor
 
         std::vector<std::vector<double>> simulate(
             const std::vector<double>& det_states, //deterministic starting species values (nM)
@@ -140,4 +135,5 @@ class SingleCell {
 
 };
 
-#endif // SINGLECELL_H
+#endif // SIMULATION_H
+    

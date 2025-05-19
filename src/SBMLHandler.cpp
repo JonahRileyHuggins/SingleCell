@@ -16,7 +16,6 @@
 
 // Internal Libraries
 #include "singlecell/SBMLHandler.h"
-//--------------------------Constants Declarations---------------------------//
 
 //--------------------------Class Declaration-------------------------------//
 SBMLHandler::SBMLHandler(const std::string& filename) { // Constructor method

@@ -31,7 +31,7 @@
 //-----------------------------Method Details-----------------------------//
 DeterministicModule::DeterministicModule(
     const std::string& sbml_path
-) : SingleCell(),
+) : Simulation(),
     sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
  {
     // Retrieve the stoichiometric matrix from the sbml document.
@@ -45,6 +45,9 @@ DeterministicModule::DeterministicModule(
 
     // Create an instance of the solver class
     this->solver = model->getSolver();
+
+    //Instantiate SBML model
+    this->sbml = sbmlHandler->getModel();
 
 }
 
@@ -128,10 +131,10 @@ void DeterministicModule::_simulationPrep(
    
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
-     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
+     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
      
      // populate results_matrix member with proper size
-     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size()); 
+     this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
      
      // record initial state as first vector in results_matrix member 
      DeterministicModule::recordStepResult(
@@ -187,15 +190,16 @@ void DeterministicModule::updateParameters(
 
     std::vector<std::string> param_ids = sbmlHandler->getParameterIds();
     
-    std::vector<std::string> overlapping_params = SingleCell::findOverlappingIds(
+    std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
         param_ids, 
         alt_species_ids
     );
 
-    // put species values from alternate_model into new_param_vals as value@species
+    for (int i = 0; i < overlapping_params.size(); i++) {
+        
+        Parameter* parameter = sbmlHandler->getModel()->getParameter(overlapping_params[i]);
 
-
-    // or just reset parameters directly, I think you've got all the components needed 
-    // to do it in one formula
+        parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+    }
 
 }

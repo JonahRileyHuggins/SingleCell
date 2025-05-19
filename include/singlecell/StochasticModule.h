@@ -4,7 +4,7 @@
  * @authors  Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
  * 
- * @brief Class Creator For Single Cell Model, Stochastic Module Instance.
+ * @brief Class Creator For derived class StochasticModule (from Simulator).
  */
 //----------------------header file definition-----------------------------//
 #pragma once
@@ -19,17 +19,19 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "SingleCell.h"
+#include "Simulation.h"
 #include "SBMLHandler.h"
 
 //--------------------------Class Declaration-----------------------------//
-class StochasticModule : public SingleCell {
+class StochasticModule : public Simulation {
     public:
         StochasticModule( //Constructor. ctor
             const std::string& sbml_path
         );
 
         ~StochasticModule() override = default; //Destructor, dtor
+
+        std::vector<std::vector<double>> results_matrix;
 
         /**
          * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
@@ -71,12 +73,12 @@ class StochasticModule : public SingleCell {
 
         virtual std::vector<double> getInitialState() const override;
 
+        Model* sbml;
+
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
-        std::vector<std::vector<double>> results_matrix;
-
         
         std::vector<double> computeReactions(
             const std::vector<double>& state

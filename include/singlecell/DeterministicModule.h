@@ -19,20 +19,22 @@
 #include <optional>
 
 //Internal Libraries
-#include "SingleCell.h"
+#include "Simulation.h"
 #include "SBMLHandler.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
 
 //--------------------------Class Declaration-----------------------------//
-class DeterministicModule : public SingleCell {
+class DeterministicModule : public Simulation {
     public:
         DeterministicModule(
             const std::string& sbml_path
         ); //Ctor
 
         ~DeterministicModule() override = default; //Dtor
+
+        std::vector<std::vector<double>> results_matrix;
 
         void _simulationPrep(
             const std::optional<std::vector<double>>& initial_state,
@@ -59,13 +61,14 @@ class DeterministicModule : public SingleCell {
 
         virtual std::vector<double> getInitialState() const override;
 
+        Model* sbml;
+
     private:
         std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
         std::unique_ptr<amici::Model> model;
         std::unique_ptr<amici::Solver> solver;
-        std::vector<std::vector<double>> results_matrix;
 
         std::vector<double> setAllSpeciesValues(
             std::vector<double> current_states,

@@ -31,7 +31,7 @@
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
     const std::string& sbml_path
-) : SingleCell(),
+) : Simulation(),
     sbmlHandler(std::make_unique<SBMLHandler>(sbml_path))
  {
     // Retrieve the stoichiometric matrix from the sbml document.
@@ -39,6 +39,9 @@ StochasticModule::StochasticModule(
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
     formulas_vector = sbmlHandler->getReactionExpressions();
+
+    //Instantiate SBML model
+    this->sbml = sbmlHandler->getModel();
 
  }
 
@@ -211,9 +214,9 @@ void StochasticModule::_simulationPrep(
     
      int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
      
-     std::vector<double> timeSteps = SingleCell::setTimeSteps(start, stop, step);
+     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
-     this->results_matrix = SingleCell::createResultsMatrix(numSpecies, timeSteps.size());
+     this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
  
      StochasticModule::recordStepResult(
         stoch_states, 
@@ -264,16 +267,37 @@ void StochasticModule::runStep(
     this->recordStepResult(new_state, step);
 }
 
-void StochasticModule::exchangeData() {
-    /**
-     * @brief 
-     *
-     * @param 
-     * @param 
-     * @param 
-     * 
-     * @returns
-     */
+void StochasticModule::updateParameters(
+    const Model* alternate_model
+) {
+    // Instantiate a blank map:
+    std::unordered_map<std::string, double> new_param_vals; 
+
+    std::vector<std::string> alt_species_ids;
+
+    int numSpecies = alternate_model->getNumSpecies();
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        const Species* species = alternate_model->getSpecies(i);
+
+        alt_species_ids.push_back(species->getId());
+    }
+
+    std::vector<std::string> param_ids = sbmlHandler->getParameterIds();
+    
+    std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
+        param_ids, 
+        alt_species_ids
+    );
+
+    for (int i = 0; i < overlapping_params.size(); i++) {
+        
+        Parameter* parameter = sbmlHandler->getModel()->getParameter(overlapping_params[i]);
+
+        parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+    }
+
 }
 
 void StochasticModule::recordStepResult(
