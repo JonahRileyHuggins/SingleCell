@@ -53,9 +53,12 @@ class CreateModel:
 
         self.model_files = FileLoader(args.yaml_path).model_files
 
-        # Dont forget to write params file.
-        # I'm just not for now... Later...
-        
+    def __get_component(self) -> None:
+        return NotImplementedError("method `_get_component()` must be implemented in child class.")
+    
+    def __reduce_rxns(self) ->  None:
+        return NotImplementedError("method `__reduce_rxnx()` must be implemented by child class")
+
     def _convert_antimony_to_sbml(self):
         """Load antimony doc into an SBML object"""
 
@@ -139,6 +142,8 @@ class DeterministicModel(CreateModel):
         # Place here the updated model files
         self._get_components()
 
+        self.__reduce_rxns()
+
         AntimonyFile(self.model_files, self.model_name, self.parameters)
 
         sbml_file_path = self._convert_antimony_to_sbml()
@@ -171,20 +176,57 @@ class DeterministicModel(CreateModel):
             self.model_files.species['solver'].str.lower().str.strip() == 'deterministic'
         ]
     
-    def _make_AMICI_model(self, sbml_file_path):
-        # Create an SbmlImporter instance for our SBML model
+    def __reduce_rxns(self) -> None:
+        """removes reactions containing stochastic components. Deciding method by whether
+          species is either reactant or product in deterministic model.
+        """
 
+        # Collector list for species to drop
+        drop_indices = []
+
+        deterministic_speciesIds = set(self.model_files.species.index.to_list())
+
+        for reactionId, row in self.model_files.ratelaws.iterrows():
+
+            rxn = row.get('r ; p')
+
+            if pd.isna(rxn) or not isinstance(rxn, str):
+                logger.debug("Reaction entry is NaN or not a string: %s", rxn)
+                continue
+
+            reactants_str, products_str = (rxn.split(';') + [''])[:2]
+            logger.debug("Parsed reaction string: reactants='%s', products='%s'", reactants_str, products_str)
+
+            reactants = [r.strip() for r in reactants_str.split('+') if r.strip()]
+            products = [p.strip() for p in products_str.split('+') if p.strip()]
+
+            reaction_parts = reactants + products
+
+            for species in reaction_parts:
+                if species not in set(deterministic_speciesIds):
+
+                    logger.debug("Dropping reaction %s due to stochastic species: %s", reactionId, species)
+                    drop_indices.append(reactionId)
+                    break  # no need to check more species for this reaction
+
+        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
+
+
+    def _make_AMICI_model(self, sbml_file_path):
+        """Generates an AMICI model from the SBML files pre-generated within the class
+
+        Args:
+            sbml_file_path (_type_): _description_
+        """
+        # Create an SbmlImporter instance for our SBML model
 
         amici_model_output_path = f'../amici_models/{self.model_name}'
     
         _make_output_dir(amici_model_output_path)
 
-
         sbml_importer = amici.SbmlImporter(sbml_file_path)
 
         constantParameters = [params.getId() for params in self.sbml_model.getListOfParameters()]
-
-
 
         # The actual compilation step by AMICI, takes a while to complete for large models
         sbml_importer.sbml2amici(self.model_name,
@@ -199,6 +241,8 @@ class StochasticModel(CreateModel):
         super().__init__(model_name, args, **kwargs)
 
         self._get_components()
+
+        self.__reduce_rxns()
 
         AntimonyFile(self.model_files, self.model_name, self.parameters)
 
@@ -224,6 +268,41 @@ class StochasticModel(CreateModel):
         self.model_files.species = self.model_files.species[
             self.model_files.species['solver'].str.lower().str.strip() == 'stochastic'
         ]
+
+    def __reduce_rxns(self) -> None:
+        """removes reactions containing deterministic components. Deciding method by whether
+          species is either reactant or product in stochastic model.
+        """
+
+        # Collector list for species to drop
+        drop_indices = []
+
+        stochastic_speciesIds = set(self.model_files.species.index.to_list())
+
+        for reactionId, row in self.model_files.ratelaws.iterrows():
+
+            rxn = row.get('r ; p')
+
+            if pd.isna(rxn) or not isinstance(rxn, str):
+                logger.debug("Reaction entry is NaN or not a string: %s", rxn)
+                continue
+
+            reactants_str, products_str = (rxn.split(';') + [''])[:2]
+            logger.debug("Parsed reaction string: reactants='%s', products='%s'", reactants_str, products_str)
+
+            reactants = [r.strip() for r in reactants_str.split('+') if r.strip()]
+            products = [p.strip() for p in products_str.split('+') if p.strip()]
+
+            reaction_parts = reactants + products
+
+            for species in reaction_parts:
+                if species not in set(stochastic_speciesIds):
+
+                    logger.debug("Dropping reaction %s due to deterministic species: %s", reactionId, species)
+                    drop_indices.append(reactionId)
+                    break  # no need to check more species for this reaction
+
+        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
@@ -306,7 +385,7 @@ class AntimonyFile:
 
         for ratelaw_id, ratelaw_vals in ratelaws_df.iterrows():
 
-            ratelaw_info = Ratelaw.from_series(ratelaw_id, ratelaw_vals) # Cell 13, all the ridiculous reassigning lists.
+            ratelaw_info = Ratelaw(ratelaw_id, ratelaw_vals) # Cell 13, all the ridiculous reassigning lists.
 
             if ratelaw_info.reactants == [] and ratelaw_info.products == []:
                 continue
@@ -317,8 +396,6 @@ class AntimonyFile:
                 + f"({ratelaw_info.formula})*{ratelaw_info.compartment};\n"
             )
             logger.info("Formula %s for Ratelaw %s written to antimony document." % (ratelaw_info.formula, ratelaw_id))
-
-            self.parameters = pd.concat([self.parameters, pd.DataFrame(ratelaw_info.parameters)])
 
     def __assign_compartment_initial_concentrations(self): # Cell 20
         """Write compartmental initial concentrations to antimony document"""
@@ -349,6 +426,20 @@ class AntimonyFile:
 
             logger.info("Assigning Species %s equal to %.6e;\n" % ((species_name, np.double(species_vals['initialConcentration']))))
 
+    def __update_parameters(self) -> None:
+        """getter method for making parameters object, intended only for use by antimonyModel
+
+        Returns:
+            None: assigns parameters table values to self.parameters object.
+        """
+        params_include_df = self.model_files.parameters[['parameterId', 'nominalValue']].copy()
+
+        params_include_df.rename(columns={'nominalValue':"value"}, inplace = True)
+
+        self.parameters = pd.concat([self.parameters, params_include_df])
+
+        return None
+
     def __assign_parameter_initial_concentrations(self): # Cell 22
         """Write the parameters of every reaction to antimony document"""
 
@@ -356,6 +447,8 @@ class AntimonyFile:
 
         # Write parameter ICs
         self.antimony_file.write("\n  # Parameter initializations:\n")
+
+        self.__update_parameters()
 
         for idx, param_vals in self.parameters.iterrows():
 
@@ -409,6 +502,11 @@ class Ratelaw:
 
         self.__get_reactants_products()
 
+        self.__get_rxn_formula()
+
+        del self.reactionId
+        del self.ratelaw
+
     def __get_reactants_products(self):
         """Parses reactants and products from 'r ; p' string in ratelaw row."""
         rxn = self.ratelaw.get('r ; p', '')
@@ -425,83 +523,10 @@ class Ratelaw:
 
         logger.debug("Final parsed lists: reactants=%s, products=%s", self.reactants, self.products)
 
-    def __build_rxn_formula(self):
-        """extracts the formula """
-        raise NotImplementedError("Method is required for subclass.")
-
-    @classmethod
-    def from_series(cls, reactionId: str, ratelaw:pd.Series):
-        """Factory method for auto determining the type of reaction at hand"""
-        formula = ratelaw.get('ratelaw', None)
-
-        if isinstance(formula, (float, int)): # this would be changed with new tables
-            return MassAction(reactionId, ratelaw)
-        return NthOrder(reactionId, ratelaw)
-
-
-class MassAction(Ratelaw):
-    """For setting up mass action formulas"""
-
-    def __init__(self, reactionId, ratelaw):
-        super().__init__(reactionId, ratelaw)
-
-        self.__build_rxn_formula()
-
-        del self.ratelaw
-        del self.reactionId
-
-    def __build_rxn_formula(self):
-        """First order ratelaws don't have a formula in the column, only an float64 value."""
-        self.formula = "k"+str(self.reactionId)+'_1'
-
-        self.parameters['parameterId'].append(self.formula)
-        self.parameters['value'].append(self.ratelaw['ratelaw'])
-
-
-class NthOrder(Ratelaw):
-    """For setting up ratelaws of First through Nth order. Determined in Ratelaw."""
-
-    def __init__(self, reactionId, ratelaw):
-        super().__init__(reactionId, ratelaw)
-
-        self.__build_rxn_formula()
-
-        del self.ratelaw
-        del self.reactionId
-
-    def __build_rxn_formula(self):
+    def __get_rxn_formula(self):
         """builds formula for non-mass-action ratelaws."""
 
         self.formula = self.ratelaw['ratelaw']
-
-        parameter_prefix = f'k{self.reactionId[1:]}_'
-
-        parameter_columns = self.ratelaw.loc['parameter1':]
-
-        parameter_columns = parameter_columns[parameter_columns.notna()].index.tolist()
-        
-        j = 1
-
-        for parameter in parameter_columns:
-
-            value = self.ratelaw[parameter]
-
-            pattern = parameter_prefix+str(j)
-
-            match = re.search(pattern, self.formula)
-
-            if match:
-
-                self.parameters['parameterId'].append(pattern)
-                self.parameters['value'].append(value)
-
-                logger.info('Parameter %s assigned value %s' % (pattern, value))
-
-            else:
-                logger.debug('Parameter %s not found despite %s number of parameter values. Inspect Ratelaw Table at %s' % (
-                    pattern, len(parameter_columns), self.reactionId 
-                ))
-            j +=1
 
 
 @staticmethod
@@ -509,6 +534,7 @@ def _make_output_dir(amici_model_path: str | os.PathLike) -> None:
     """ Provide a path and this returns a directory. Separating from Classes for operability."""
     if not os.path.exists(amici_model_path):
         os.mkdir(path=amici_model_path)
+
 
 @staticmethod
 def parse_kwargs(arg_list: list)-> dict:

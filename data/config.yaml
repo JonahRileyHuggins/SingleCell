@@ -14,4 +14,4 @@ compilation:
       compartments: "Compartments.tsv"
       ratelaws: "Ratelaws.tsv"
       species: "Species.tsv"
-    parameters_path: "."
+      parameters: "Parameters.tsv"

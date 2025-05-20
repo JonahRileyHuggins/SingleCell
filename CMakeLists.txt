@@ -24,7 +24,7 @@ add_subdirectory(ThirdParty/libsbml-5.20.2)
 add_subdirectory(ThirdParty/muparser)
 
 # Pre-baked Pybind Make:
-pybind11_add_module(SingleCell src/SingleCell.cpp)
+pybind11_add_module(SingleCell src/bindings.cpp)
 
 # Include headers (*.h are in include/singlecell)
 target_include_directories(SingleCell PRIVATE

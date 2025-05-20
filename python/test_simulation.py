@@ -49,23 +49,22 @@ class SingleCell:
     def __init__(self):
 
         # A cell needs a Genome!
+        self.stochastic_path = os.path.join(SBML_DIR, 'Stochastic.sbml')
         self.stochastic_model = self._load_stochastic_sbml()
 
         # A Cell also needs proteins!
+        self.deterministic_path = os.path.join(SBML_DIR, 'Deterministic.sbml')
         self.deterministic_model = self._load_deterministic_sbml()
 
     def _load_stochastic_sbml(self) -> Optional[_SBMLHandler]:
         """Loads the stochastic SBML file containing Cell Genome."""
-        stochastic_path = os.path.join(SBML_DIR, 'Stochastic.sbml')
 
-        return _SBMLHandler(stochastic_path)
+        return _SBMLHandler(self.stochastic_path)
     
     def _load_deterministic_sbml(self) -> Optional[_SBMLHandler]:
         """Loads the Protein-Protein Interactions SBML file."""
 
-        deterministic_path = os.path.join(SBML_DIR, 'Deterministic.sbml')
-
-        return _SBMLHandler(deterministic_path)
+        return _SBMLHandler(self.deterministic_path)
     
     
     def simulate(self, args, **kwargs):
@@ -102,7 +101,9 @@ class SingleCell:
                                                              stochastic_species_names, 
                                                              target) 
 
-        results_array = scs.simulate(updated_ode_states, updated_stoch_states, 
+        single_cell = scs.SingleCell(self.stochastic_path, self.deterministic_path)
+
+        results_array = single_cell.simulate(updated_ode_states, updated_stoch_states, 
                                      args.start, args.stop, args.step)
 
         results_df = pd.DataFrame(results_array, columns=deterministic_species_names.extend(stochastic_species_names))

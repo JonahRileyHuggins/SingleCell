@@ -32,8 +32,8 @@ class SingleCell {
 
     public:
         SingleCell(
-            std::string stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
-            std::string deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
+            const std::string& stochastic_sbml_path = "../sbml_files/Stochastic.sbml",
+            const std::string& deterministic_sbml_path = "../sbml_files/Deterministic.sbml"
         ); //Ctor
 
         virtual ~SingleCell() = default; //Dtor

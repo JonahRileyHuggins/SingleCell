@@ -21,8 +21,8 @@
 #include "singlecell/DeterministicModule.h"
 //-----------------------------Class Details-------------------------------//
 SingleCell::SingleCell(
-    std::string stochastic_sbml_path,
-    std::string deterministic_sbml_path
+    const std::string& stochastic_sbml_path,
+    const std::string& deterministic_sbml_path
 )
     {
 

@@ -47,7 +47,4 @@ class FileLoader:
 
             setattr(model_files, key, pd.read_csv(file_path, sep = '\t', index_col=0, header=0))
 
-        params_path = os.path.join(data_dir, yaml_dict['compilation'].get('parameters_path', ''))
-        model_files.parameters_output = params_path
-
         return model_files
