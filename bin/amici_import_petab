@@ -1,8 +1,0 @@
-#!/home/jonah/Desktop/SingleCellSimulator/bin/python3
-# -*- coding: utf-8 -*-
-import re
-import sys
-from amici.petab.cli.import_petab import _main
-if __name__ == '__main__':
-    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
-    sys.exit(_main())

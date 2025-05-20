@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Paths
-set(Amici_DIR "${CMAKE_SOURCE_DIR}/libs/AMICI-master/build")
+set(Amici_DIR "${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-master/build")
 
-set(AMICI_DIR "${CMAKE_SOURCE_DIR}/libs/AMICI-master")
+set(AMICI_DIR "${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-master")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
 
@@ -15,13 +15,13 @@ set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
 # AMICI
 add_subdirectory(amici_models/Deterministic)
 # Pybind11
-add_subdirectory(libs/pybind11)
+add_subdirectory(ThirdParty/pybind11)
 # libXML2
-add_subdirectory(libs/libxml2)
+add_subdirectory(ThirdParty/libxml2)
 # libSBML
-add_subdirectory(libs/libsbml-5.20.2)
+add_subdirectory(ThirdParty/libsbml-5.20.2)
 # muparser
-add_subdirectory(libs/muparser)
+add_subdirectory(ThirdParty/muparser)
 
 # Pre-baked Pybind Make:
 pybind11_add_module(SingleCell src/SingleCell.cpp)
