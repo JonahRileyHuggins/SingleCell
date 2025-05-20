@@ -1,6 +1,6 @@
 #!/bin/env python3 
 """
-script name: RunSPARCED.py
+script name: SingleCell.py
 Created on Thurs. 2025-04-12 20:29:00
 Author: Jonah R. Huggins
 
@@ -22,13 +22,9 @@ from types import SimpleNamespace
 from typing import Optional
 import json
 
-import RunSPARCED
 from _sbml_handler import _SBMLHandler
-import SingleCellSimulator as scs
+import SingleCell as scs
 
-import time
-import libsbml
-import numpy as np
 import pandas as pd
 
 
@@ -45,7 +41,6 @@ args = parser.parse_args()
 
 #-----------------------------Static Variables-----------------------------------------#
 SBML_DIR = '../sbml_files/'
-
 
 #-------------------Class Definition-----------------------------------------#
 class SingleCell:
@@ -103,7 +98,7 @@ class SingleCell:
                                                              deterministic_species_names, 
                                                              target) # <--- Add in model attribute update function here
         
-        updated_stoch_states = _SBMLHandler.set_species_values(initial_ode_states, # <--- Add in model attribute update function here
+        updated_stoch_states = _SBMLHandler.set_species_values(initial_stochastic_states, # <--- Add in model attribute update function here
                                                              stochastic_species_names, 
                                                              target) 
 
