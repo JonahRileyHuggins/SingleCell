@@ -19,6 +19,9 @@
 #include <optional>
 
 //Internal Libraries
+#include "singlecell/SBMLHandler.h"
+
+//Third Party Libraries
 #include "sbml/SBMLReader.h"
 
 //--------------------------Class Declaration-----------------------------//

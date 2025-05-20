@@ -46,8 +46,9 @@ class SingleCell {
             double step = 30.0 //seconds
         );
 
-        std::unique_ptr<SBMLHandler> StochasticModel;
-        std::unique_ptr<SBMLHandler> DeterministicModel;
+        // @TODO: need to change pointer to Model
+        Model* StochasticModel;
+        Model* DeterministicModel;
        
 
 };

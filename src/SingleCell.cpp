@@ -23,15 +23,16 @@
 SingleCell::SingleCell(
     std::string stochastic_sbml_path,
     std::string deterministic_sbml_path
-) : StochasticModel(std::make_unique<SBMLHandler>()),
-    DeterministicModel(std::make_unique<SBMLHandler>()) 
+)
     {
 
+        std::unique_ptr<SBMLHandler> stochastic_sbml = std::make_unique<SBMLHandler>(stochastic_sbml_path);
+        std::unique_ptr<SBMLHandler> deterministic_sbml = std::make_unique<SBMLHandler>(deterministic_sbml_path);
+    
+        this->StochasticModel = stochastic_sbml->getModel();
+        this->DeterministicModel = deterministic_sbml->getModel();
+
     }
-
-SingleCell::~SingleCell() {
-
-}
 
 std::vector<std::vector<double>> SingleCell::simulate(
     const std::vector<double>& det_states, 
@@ -52,9 +53,8 @@ std::vector<std::vector<double>> SingleCell::simulate(
      * @returns matrix of global states for both models
      */
     //Create instances of internal simulation modules: dynamic allocation
-
-    std::unique_ptr<StochasticModule> stochMod = ;
-    std::unique_ptr<DeterministicModule> detMod = ;
+    std::unique_ptr<StochasticModule> stochMod = std::make_unique<StochasticModule>(StochasticModel);
+    std::unique_ptr<DeterministicModule> detMod = std::make_unique<DeterministicModule>(DeterministicModel);
 
     // Add simulation time steps, results matrix, 
     stochMod->_simulationPrep(stoch_states, start, stop, step);
@@ -80,7 +80,10 @@ std::vector<std::vector<double>> SingleCell::simulate(
         stochMod->results_matrix,
         detMod->results_matrix
     );
+
+    return results_matrix;
 }
+
 std::vector<double> Simulation::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;
