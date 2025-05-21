@@ -23,13 +23,9 @@
 SingleCell::SingleCell(
     const std::string& stochastic_sbml_path,
     const std::string& deterministic_sbml_path
-)
-    {
-
-        this->StochasticModel = SBMLHandler(stochastic_sbml_path);
-        this->DeterministicModel = SBMLHandler(deterministic_sbml_path);
-
-    }
+) : StochasticModel(stochastic_sbml_path),
+    DeterministicModel(deterministic_sbml_path)
+    { }
 
 std::vector<std::vector<double>> SingleCell::simulate(
     const std::vector<double>& det_states, 
