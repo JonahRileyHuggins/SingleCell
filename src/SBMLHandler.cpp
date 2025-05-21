@@ -28,19 +28,20 @@ SBMLHandler::SBMLHandler(const std::string& filename) { // Constructor method
      */    
     SBMLReader reader;
     doc = reader.readSBML(filename.c_str());
-    if (!doc || doc->getNumErrors() > 0) {
-        std::cerr << "Error Loading SBML File: " << filename << "\n";
-        model = nullptr;
-    
-    } else {
-        model = doc->getModel(); 
+
+    model = doc->getModel(); 
     }
 
-}
-
 SBMLHandler::~SBMLHandler() { // Destructor Method
-    delete doc; 
-    delete model;
+    if (doc != nullptr) {
+        delete doc;
+        doc = nullptr;
+    }
+
+    if (model != nullptr) {
+        delete model;
+         model = nullptr;
+    }
 }
 
 Model* SBMLHandler::getModel() { // Provides direct access to the loaded model.
@@ -48,14 +49,6 @@ Model* SBMLHandler::getModel() { // Provides direct access to the loaded model.
 }
 
 std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
-    /**
-     * @brief The stoichiometric matrix is a N x M matrix composed of N-number of species
-     * by M-number of reactions. 
-     * 
-     * @param None
-     * 
-     * @returns stoichmat A stochiometric matrix 
-     * */
 
     Model* sbml_model = this->model; 
 
@@ -197,6 +190,8 @@ std::vector<double> SBMLHandler::getInitialState() {
         
         initial_state[i] = state;
      }
+
+     return initial_state;
 }
 
 std::vector<std::string> SBMLHandler::getParameterIds() {

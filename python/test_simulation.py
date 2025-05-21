@@ -43,7 +43,7 @@ args = parser.parse_args()
 SBML_DIR = '../sbml_files/'
 
 #-------------------Class Definition-----------------------------------------#
-class SingleCell:
+class TestSim:
     """Primary instance of the single cell for simulation."""
 
     def __init__(self):
@@ -121,4 +121,4 @@ def parse_dict_arg(arg_string):
 if __name__ == '__main__':
     args = parser.parse_args()
 
-    SingleCell().simulate(args)
+    TestSim().simulate(args)

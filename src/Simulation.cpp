@@ -26,10 +26,6 @@ Simulation::Simulation(
     this->DeterministicModel = std::move(detMod);
 }
 
-Simulation::~Simulation() {
-
-}
-
 std::vector<double> Simulation::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;

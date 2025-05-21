@@ -32,6 +32,14 @@ class SBMLHandler {
 
         Model* getModel(); // Provides direct access to the loaded model.
 
+        /**
+        * @brief The stoichiometric matrix is a N x M matrix composed of N-number of species
+        * by M-number of reactions. 
+        * 
+        * @param None
+        * 
+        * @returns stoichmat A stochiometric matrix 
+        * */
         std::vector<std::vector<double>> getStoichiometricMatrix();
 
         std::unordered_map<std::string, unsigned int> speciesMap(

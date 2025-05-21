@@ -100,6 +100,7 @@ double StochasticModule::computeReaction(std::string formula_str) {
     }
     catch (mu::Parser::exception_type &e) {
         std::cout << "Error while parsing: " << e.GetMsg() << "\n";
+        return std::numeric_limits<double>::quiet_NaN();
     }
 }
 
