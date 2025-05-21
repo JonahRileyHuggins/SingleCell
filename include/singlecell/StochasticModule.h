@@ -26,7 +26,7 @@
 class StochasticModule : public Simulation {
     public:
         StochasticModule( //Constructor. ctor
-            Model* StochasticModel
+            SBMLHandler StochasticModel
         );
 
         ~StochasticModule() override = default; //Destructor, dtor
@@ -76,7 +76,6 @@ class StochasticModule : public Simulation {
         Model* sbml;
 
     private:
-        std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
         

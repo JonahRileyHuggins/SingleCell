@@ -1,0 +1,17 @@
+# LR-Model
+# Last update: TBD
+
+
+# General infos
+name: "LR Model"
+header: "Under Construction"
+location: "LR-data"
+
+# Compilation
+compilation:
+    directory: "."
+    files:
+      compartments: "Compartments.tsv"
+      ratelaws: "Ratelaws.tsv"
+      species: "Species.tsv"
+      parameters: "Parameters.tsv"

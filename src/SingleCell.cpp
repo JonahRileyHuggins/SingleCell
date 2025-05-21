@@ -26,11 +26,8 @@ SingleCell::SingleCell(
 )
     {
 
-        std::unique_ptr<SBMLHandler> stochastic_sbml = std::make_unique<SBMLHandler>(stochastic_sbml_path);
-        std::unique_ptr<SBMLHandler> deterministic_sbml = std::make_unique<SBMLHandler>(deterministic_sbml_path);
-    
-        this->StochasticModel = stochastic_sbml->getModel();
-        this->DeterministicModel = deterministic_sbml->getModel();
+        this->StochasticModel = SBMLHandler(stochastic_sbml_path);
+        this->DeterministicModel = SBMLHandler(deterministic_sbml_path);
 
     }
 
@@ -41,24 +38,14 @@ std::vector<std::vector<double>> SingleCell::simulate(
     double stop,
     double step
 ) {
-    /**
-     * @brief public method for users to interface with the SingleCell Simulator. 
-     * 
-     * @param det_states are the initial species values for the deterministic AMICI model
-     * @param stoch_states are the initial species values for the stochastic SBML model
-     * @param start is the simulation start time
-     * @param stop is the simulation stop time, in seconds
-     * @param step is the delta_t step between simulation updates in seconds
-     * 
-     * @returns matrix of global states for both models
-     */
+
     //Create instances of internal simulation modules: dynamic allocation
-    std::unique_ptr<StochasticModule> stochMod = std::make_unique<StochasticModule>(StochasticModel);
-    std::unique_ptr<DeterministicModule> detMod = std::make_unique<DeterministicModule>(DeterministicModel);
+    StochasticModule stochMod = StochasticModule(StochasticModel);
+    DeterministicModule detMod = DeterministicModule(DeterministicModel);
 
     // Add simulation time steps, results matrix, 
-    stochMod->_simulationPrep(stoch_states, start, stop, step);
-    detMod->_simulationPrep(det_states, start, stop, step);
+    stochMod._simulationPrep(stoch_states, start, stop, step);
+    detMod._simulationPrep(det_states, start, stop, step);
 
     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
@@ -66,19 +53,19 @@ std::vector<std::vector<double>> SingleCell::simulate(
     for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
 
         //Run Module Simulations
-        stochMod->runStep(timestep);
-        detMod->runStep(timestep);
+        stochMod.runStep(timestep);
+        detMod.runStep(timestep);
 
         // exchange data
-        stochMod->updateParameters(detMod->sbml);
-        detMod->updateParameters(detMod->sbml);
+        stochMod.updateParameters(detMod.sbml);
+        detMod.updateParameters(detMod.sbml);
 
     }
     
     // concatentate results matrices
     std::vector<std::vector<double>> results_matrix = Simulation::concatenateMatrixRows(
-        stochMod->results_matrix,
-        detMod->results_matrix
+        stochMod.results_matrix,
+        detMod.results_matrix
     );
 
     return results_matrix;

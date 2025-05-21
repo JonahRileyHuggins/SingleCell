@@ -49,7 +49,7 @@ target_link_libraries(SingleCell PRIVATE
 add_custom_command(TARGET SingleCell POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
         $<TARGET_FILE:SingleCell>
-        ${CMAKE_SOURCE_DIR}/python/
+        ${CMAKE_SOURCE_DIR}/src/
 )
 
 # === Pybind11 module ===

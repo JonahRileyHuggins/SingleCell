@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by libAntimony version v2.12.0 with libSBML version 5.18.1. -->
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model metaid="Stochastic" id="Stochastic" substanceUnits="substance" timeUnits="time_unit" volumeUnits="volume">
+    <listOfUnitDefinitions>
+      <unitDefinition id="volume">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time_unit">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-9" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="nM">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-9" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="Cytoplasm" spatialDimensions="3" size="3000" units="volume" constant="true"/>
+      <compartment id="Nucleus" spatialDimensions="3" size="1000" units="volume" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="nuc_gene_a__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="kGac1_1" value="0.0005" constant="true"/>
+      <parameter id="kGac2_1" value="0.0005" constant="true"/>
+      <parameter id="kGin1_1" value="0.005" constant="true"/>
+      <parameter id="kGin2_1" value="0.005" constant="true"/>
+      <parameter id="kTC1_1" value="5e-06" constant="true"/>
+      <parameter id="kTC2_1" value="5e-06" constant="true"/>
+      <parameter id="kTCd1_1" value="5e-05" constant="true"/>
+      <parameter id="kTCd2_1" value="5e-05" constant="true"/>
+      <parameter id="cyt_prot__LIGAND_" value="20" constant="true"/>
+      <parameter id="cyt_prot__RECEPTOR_" value="100" constant="true"/>
+      <parameter id="cyt_prot__LIGAND__RECEPTOR_" value="0" constant="true"/>
+      <parameter id="kTL1_1" value="1" constant="true"/>
+      <parameter id="kTL2_1" value="1" constant="true"/>
+      <parameter id="kLR1_1" value="0.01" constant="true"/>
+      <parameter id="kLR2_1" value="0.01" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="vGac1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac1_1 </ci>
+              <ci> nuc_gene_i__LIGAND_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac2_1 </ci>
+              <ci> nuc_gene_i__RECEPTOR_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin1_1 </ci>
+              <ci> nuc_gene_a__LIGAND_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin2_1 </ci>
+              <ci> nuc_gene_a__RECEPTOR_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC1" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC1_1 </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC2" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC2_1 </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd1" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd1_1 </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd2_1 </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

@@ -1,0 +1,13 @@
+reactionId	solver	compartment	r ; p	ratelaw
+vGac1	Stochastic	Nucleus	nuc_gene_i__LIGAND_ ; nuc_gene_a__LIGAND_	kGac1_1*nuc_gene_i__LIGAND_
+vGac2	Stochastic	Nucleus	nuc_gene_i__RECEPTOR_ ; nuc_gene_a__RECEPTOR_	kGac2_1*nuc_gene_i__RECEPTOR_
+vGin1	Stochastic	Nucleus	nuc_gene_a__LIGAND_ ; nuc_gene_i__LIGAND_	kGin1_1*nuc_gene_a__LIGAND_
+vGin2	Stochastic	Nucleus	nuc_gene_a__RECEPTOR_ ; nuc_gene_i__RECEPTOR_	kGin2_1*nuc_gene_a__RECEPTOR_
+vTC1	Stochastic	Nucleus	 ; cyt_mrna__LIGAND_	kTC1_1
+vTC2	Stochastic	Nucleus	 ; cyt_mrna__RECEPTOR_	kTC2_1
+vTCd1	Stochastic	Nucleus	cyt_mrna__LIGAND_ ; 	kTCd1_1
+vTCd2	Stochastic	Cytoplasm	cyt_mrna__RECEPTOR_ ;	kTCd2_1
+vTL1	Deterministic	Cytoplasm	 ; cyt_prot__LIGAND_	kTL1_1*cyt_mrna__LIGAND_
+vTL2	Deterministic	Cytoplasm	 ; cyt_prot__RECEPTOR_	kTL2_1*cyt_mrna__RECEPTOR_
+vLR1	Deterministic	Cytoplasm	cyt_prot__LIGAND_ + cyt_prot__RECEPTOR_ ; cyt_prot__LIGAND__RECEPTOR_	kLR1_1*cyt_prot__LIGAND_ * cyt_prot__RECEPTOR_
+vLR2	Deterministic	Cytoplasm	cyt_prot__LIGAND__RECEPTOR_ ; cyt_prot__LIGAND_ + cyt_prot__RECEPTOR_	kLR2_1 * cyt_prot__LIGAND__RECEPTOR_

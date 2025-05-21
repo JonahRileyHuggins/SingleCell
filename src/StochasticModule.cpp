@@ -30,16 +30,16 @@
 //-----------------------------Method Details-----------------------------//
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
-    Model* StochasticModel
+    SBMLHandler StochasticModel
 ) {
     // Retrieve the stoichiometric matrix from the sbml document.
-    stoichmat = sbmlHandler->getStoichiometricMatrix();
+    stoichmat = StochasticModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    formulas_vector = sbmlHandler->getReactionExpressions();
+    formulas_vector = StochasticModel.getReactionExpressions();
 
     //Instantiate SBML model
-    this->sbml = std::move(StochasticModel);
+    this->sbml = StochasticModel.model;
 
  }
 
@@ -52,9 +52,7 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
      * @returns v vector of state values after initial stochiometric calculations 
     */
     
-    Model* sbml_model = sbmlHandler->getModel();
-
-    unsigned int numReactions = sbml_model->getNumReactions();
+    unsigned int numReactions = sbml->getNumReactions();
 
     std::vector<double> v(numReactions);
 
@@ -117,8 +115,6 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
 
     std::unordered_map<std::string, double> component_value_map;
 
-    Model* sbml_model = sbmlHandler->getModel();
-
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
@@ -127,14 +123,14 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
         const std::string component = components_vector[i];
 
         // Check if in SBML as Parameter || Species || Compartment;
-        if (sbml_model->getParameter(component)!= nullptr) {
-            double value = sbml_model->getParameter(component)->getValue();
+        if (sbml->getParameter(component)!= nullptr) {
+            double value = sbml->getParameter(component)->getValue();
             component_value_map[component] = value;
-        } else if (sbml_model->getSpecies(component) != nullptr) {
-            double value = sbml_model->getSpecies(component)->getInitialConcentration();
+        } else if (sbml->getSpecies(component) != nullptr) {
+            double value = sbml->getSpecies(component)->getInitialConcentration();
             component_value_map[component] = value;
-        } else if (sbml_model->getCompartment(component)!= nullptr) {
-            double value = sbml_model->getCompartment(component)->getVolume();
+        } else if (sbml->getCompartment(component)!= nullptr) {
+            double value = sbml->getCompartment(component)->getVolume();
             component_value_map[component] = value;
         } 
     }
@@ -209,9 +205,9 @@ void StochasticModule::_simulationPrep(
 ) {
      const std::vector<double>& stoch_states = 
      initial_state.has_value() ? initial_state.value() 
-                                   : this->sbmlHandler->getInitialState();
+                                   : this->StochasticModel->getInitialState();
     
-     int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
+     int numSpecies = this->sbml->getNumSpecies();
      
      std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
@@ -233,9 +229,9 @@ void StochasticModule::setModelState(const std::vector<double>& state) {
      * 
      * @returns None
      */
-    auto speciesIds = sbmlHandler->getSpeciesIds();
+    auto speciesIds = StochasticModel->getSpeciesIds();
     for (size_t i = 0; i < speciesIds.size(); ++i) {
-        Species* s = sbmlHandler->getModel()->getSpecies(speciesIds[i]);
+        Species* s = sbml->getSpecies(speciesIds[i]);
         s->setInitialConcentration(state[i]);
     }
 }
@@ -283,7 +279,7 @@ void StochasticModule::updateParameters(
         alt_species_ids.push_back(species->getId());
     }
 
-    std::vector<std::string> param_ids = sbmlHandler->getParameterIds();
+    std::vector<std::string> param_ids = StochasticModel->getParameterIds();
     
     std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
         param_ids, 
@@ -292,7 +288,7 @@ void StochasticModule::updateParameters(
 
     for (int i = 0; i < overlapping_params.size(); i++) {
         
-        Parameter* parameter = sbmlHandler->getModel()->getParameter(overlapping_params[i]);
+        Parameter* parameter = sbml->getParameter(overlapping_params[i]);
 
         parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
     }
@@ -307,7 +303,7 @@ void StochasticModule::recordStepResult(
 }
 
 std::vector<double> StochasticModule::getInitialState() const {
-    return sbmlHandler->getInitialState();
+    return StochasticModel->getInitialState();
 }
 
 std::vector<double> StochasticModule::getLastStepResult(

@@ -29,7 +29,7 @@
 class DeterministicModule : public Simulation {
     public:
         DeterministicModule(
-            Model* DeterministicModel
+            SBMLHandler DeterministicModel
         ); //Ctor
 
         ~DeterministicModule() override = default; //Dtor
@@ -64,7 +64,6 @@ class DeterministicModule : public Simulation {
         Model* sbml;
 
     private:
-        std::unique_ptr<SBMLHandler> sbmlHandler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
         std::unique_ptr<amici::Model> model;

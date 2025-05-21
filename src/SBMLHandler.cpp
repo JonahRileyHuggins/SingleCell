@@ -18,7 +18,9 @@
 #include "singlecell/SBMLHandler.h"
 
 //--------------------------Class Declaration-------------------------------//
-SBMLHandler::SBMLHandler(const std::string& filename) { // Constructor method
+SBMLHandler::SBMLHandler(
+    const std::string& filename
+) { // Constructor method
     /**
      *  @brief Class instance call
      * 
@@ -34,27 +36,21 @@ SBMLHandler::SBMLHandler(const std::string& filename) { // Constructor method
 
 SBMLHandler::~SBMLHandler() { // Destructor Method
     if (doc != nullptr) {
-        delete doc;
         doc = nullptr;
+        delete doc;
     }
 
     if (model != nullptr) {
+        model = nullptr;
         delete model;
-         model = nullptr;
     }
-}
-
-Model* SBMLHandler::getModel() { // Provides direct access to the loaded model.
-    return model;
 }
 
 std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
 
-    Model* sbml_model = this->model; 
+    unsigned int numSpecies = this->model->getNumSpecies();
 
-    unsigned int numSpecies = sbml_model->getNumSpecies();
-
-    unsigned int numReactions = sbml_model->getNumReactions();
+    unsigned int numReactions = this->model->getNumReactions();
 
     // make map of species indices
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
@@ -65,7 +61,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
         //Reaction getter
-        const Reaction* reaction = sbml_model->getReaction(i);
+        const Reaction* reaction = this->model->getReaction(i);
         
         // Find Reactants
         const ListOfSpeciesReferences* reactants = reaction->getListOfReactants();
@@ -96,36 +92,20 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
 }
 
 std::unordered_map<std::string, unsigned int> SBMLHandler::speciesMap(const int& numSpecies) {
-    /**
-     * @brief creates a map of species identifiers to thier corresponding index
-     * 
-     * @param numSpecies integer count of species in the SBML model
-     * 
-     * @returns speciesIndexMap map of species identifiers and the corresponding index
-     */
-    std::unordered_map<std::string, unsigned int> speciesIndexMap;
 
-    Model* sbml_model = this->model; 
+    std::unordered_map<std::string, unsigned int> speciesIndexMap;
 
     for (unsigned int i = 0; i < numSpecies; ++i) {
 
-        speciesIndexMap[sbml_model->getSpecies(i)->getId()] = i;
+        speciesIndexMap[this->model->getSpecies(i)->getId()] = i;
     }
 
     return speciesIndexMap;
 }
 
 std::vector<std::string> SBMLHandler::getReactionExpressions() {
-    /** 
-     * @brief Gets vector of formulas as strings
-     * 
-     * @param None
-     * 
-     * @returns formulas_vector: a vector of reaction formulas in string format.
-    */
-    Model* sbml_model = this->model;
 
-    unsigned int numReactions = sbml_model->getNumReactions();
+    unsigned int numReactions = this->model->getNumReactions();
 
     double v_i(numReactions);
 
@@ -135,33 +115,22 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
         //Reaction getter
-        const Reaction* reaction = sbml_model->getReaction(i);
+        const Reaction* reaction = this->model->getReaction(i);
 
         const KineticLaw* ratelaw = reaction->getKineticLaw();
 
-        if (ratelaw != nullptr) {
         const ASTNode* ast_node = ratelaw->getMath();
 
         formulas_vector[i] = SBML_formulaToL3String(ast_node);
-        } else {
-            formulas_vector[i] = nullptr;
-        }
+
     }
+    
     return formulas_vector;
 }
 
 std::vector<std::string> SBMLHandler::getSpeciesIds() {
-    /**
-     * @brief getter method for returning all model ids as a vector
-     * 
-     * @param None
-     * 
-     * @returns species_ids vector of species identifiers in SBML model
-     */
 
-    Model* model = this->model;
-
-    unsigned int num_species = model->getNumSpecies();
+    unsigned int num_species = this->model->getNumSpecies();
 
     std::vector<std::string> species_ids(num_species);
 
@@ -174,19 +143,14 @@ std::vector<std::string> SBMLHandler::getSpeciesIds() {
 }
 
 std::vector<double> SBMLHandler::getInitialState() {
-    /**
-     * @brief getter method for obtaining SBML intial state values
-     * 
-     * @param None
-     * 
-     * @returns initial_state vector of double initial model states for every species
-     */
-     int numSpecies = SBMLHandler::getModel()->getNumSpecies();
+
+     int numSpecies = this->model->getNumSpecies();
 
      std::vector<double> initial_state(numSpecies);
 
      for (unsigned int i = 0; i < numSpecies; i++) {
-        double state = SBMLHandler::getModel()->getSpecies(i)->getInitialConcentration();
+
+        double state = this->model->getSpecies(i)->getInitialConcentration();
         
         initial_state[i] = state;
      }
@@ -196,13 +160,12 @@ std::vector<double> SBMLHandler::getInitialState() {
 
 std::vector<std::string> SBMLHandler::getParameterIds() {
     std::vector<std::string> parameter_ids;
-    Model* model = this->model;
 
     if (!model) return parameter_ids;
 
-    unsigned int numParams = model->getNumParameters();
+    unsigned int numParams = this->model->getNumParameters();
     for (unsigned int i = 0; i < numParams; ++i) {
-        const Parameter* param = model->getParameter(i);
+        const Parameter* param = this->model->getParameter(i);
         if (param) {
             parameter_ids.push_back(param->getId());
         }

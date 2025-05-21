@@ -30,7 +30,7 @@ class SBMLHandler {
 
         ~SBMLHandler(); // Destructor Method
 
-        Model* getModel(); // Provides direct access to the loaded model.
+        Model* model; 
 
         /**
         * @brief The stoichiometric matrix is a N x M matrix composed of N-number of species
@@ -42,21 +42,48 @@ class SBMLHandler {
         * */
         std::vector<std::vector<double>> getStoichiometricMatrix();
 
+        /**
+         * @brief creates a map of species identifiers to thier corresponding index
+         * 
+         * @param numSpecies integer count of species in the SBML model
+         * 
+         * @returns speciesIndexMap map of species identifiers and the corresponding index
+         */
         std::unordered_map<std::string, unsigned int> speciesMap(
             const int& numSpecies
         );
 
+        /** 
+         * @brief Gets vector of formulas as strings
+         * 
+         * @param None
+         * 
+         * @returns formulas_vector: a vector of reaction formulas in string format.
+        */
         std::vector<std::string> getReactionExpressions();
 
+        /**
+         * @brief getter method for returning all model ids as a vector
+         * 
+         * @param None
+         * 
+         * @returns species_ids vector of species identifiers in SBML model
+         */
         std::vector<std::string> getSpeciesIds();
 
+        /**
+         * @brief getter method for obtaining SBML intial state values
+         * 
+         * @param None
+         * 
+         * @returns initial_state vector of double initial model states for every species
+         */
         std::vector<double> getInitialState();
 
         std::vector<std::string> getParameterIds();
 
     private:
-        SBMLDocument* doc = nullptr; 
-        Model* model = nullptr; 
+        SBMLDocument* doc; 
 
 };
 

@@ -38,6 +38,17 @@ class SingleCell {
 
         virtual ~SingleCell() = default; //Dtor
 
+        /**
+         * @brief public method for users to interface with the SingleCell Simulator. 
+         * 
+         * @param det_states are the initial species values for the deterministic AMICI model
+         * @param stoch_states are the initial species values for the stochastic SBML model
+         * @param start is the simulation start time
+         * @param stop is the simulation stop time, in seconds
+         * @param step is the delta_t step between simulation updates in seconds
+         * 
+         * @returns matrix of global states for both models
+         */
         std::vector<std::vector<double>> simulate(
             const std::vector<double>& det_states, //deterministic starting species values (nM)
             const std::vector<double>& stoch_states, //stochastic starting species values (nM)
@@ -47,8 +58,8 @@ class SingleCell {
         );
 
         // @TODO: need to change pointer to Model
-        Model* StochasticModel;
-        Model* DeterministicModel;
+        SBMLHandler StochasticModel;
+        SBMLHandler DeterministicModel;
        
 
 };

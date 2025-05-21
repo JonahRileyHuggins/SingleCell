@@ -23,10 +23,11 @@ import antimony as sb
 parser = argparse.ArgumentParser(prog='swap_name')
 parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
                                                                         which files to inspect for name changes.')
+parser.add_argument('--name', '-n', default = 'SingleCell', help = "String-type name of model")
 parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
-parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose"
-)
+parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
+parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -34,22 +35,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 class CreateModel:
     """Class for creating instances of an SBML model. Since there's going to be quite a bit of redundancy
     Between the two, this simplifies operation."""
 
-    def __init__(self, model_name, args, **kwargs):
+    def __init__(self, args, **kwargs):
 
-        logger.info('Starting build process for model %s ...', model_name)
+        logger.info('Starting build process for model %s ...', args.name)
 
-        self.model_name = model_name
+        self.model_name = args.name
 
         self.sbml_doc = None
     
         self.sbml_model = None
 
         self.parameters = None
+
+        self.output_path = args.output
 
         self.model_files = FileLoader(args.yaml_path).model_files
 
@@ -62,8 +64,8 @@ class CreateModel:
     def _convert_antimony_to_sbml(self):
         """Load antimony doc into an SBML object"""
 
-        antimony_file_path = f'../sbml_files/antimony_{self.model_name}.txt'
-        sbml_file_path = f'../sbml_files/{self.model_name}.sbml'
+        antimony_file_path = f'{self.output_path}/antimony_{self.model_name}.txt'
+        sbml_file_path = f'{self.output_path}{self.model_name}.sbml'
 
         if sb.loadFile(str(antimony_file_path)) == -1:
             logger.debug(sb.getLastError())
@@ -126,25 +128,25 @@ class CreateModel:
         writer.writeSBML(self.sbml_doc, self.sbml_file)
 
     @classmethod # Table, need method to build file handler.
-    def factory_model_handler(self, model_name, args, **kwargs): 
+    def factory_model_handler(self, args, **kwargs): 
         """Factory method for auto determining the type of model being built"""
-        if model_name == 'Deterministic':
-            DeterministicModel(model_name, args, **kwargs)
+        if args.name != 'Stochastic':
+            DeterministicModel(args, **kwargs)
         else:
-            StochasticModel(model_name, args, **kwargs)
+            StochasticModel(args, **kwargs)
             
 
 class DeterministicModel(CreateModel):
     """Handles making the SBML and AMICI models from parent class CreateModel"""
-    def __init__(self, model_name, args, **kwargs):
-        super().__init__(model_name, args, **kwargs)
+    def __init__(self, args, **kwargs):
+        super().__init__(args, **kwargs)
 
         # Place here the updated model files
         self._get_components()
 
         self.__reduce_rxns()
 
-        AntimonyFile(self.model_files, self.model_name, self.parameters)
+        AntimonyFile(self)
 
         sbml_file_path = self._convert_antimony_to_sbml()
 
@@ -229,7 +231,7 @@ class DeterministicModel(CreateModel):
         constantParameters = [params.getId() for params in self.sbml_model.getListOfParameters()]
 
         # The actual compilation step by AMICI, takes a while to complete for large models
-        sbml_importer.sbml2amici(self.model_name,
+        sbml_importer.sbml2amici('SingleCell',
                                 amici_model_output_path,
                                 verbose=args.verbose,
                                 constant_parameters=constantParameters)
@@ -237,14 +239,14 @@ class DeterministicModel(CreateModel):
 
 class StochasticModel(CreateModel):
     """Handles making the SBML from parent class CreateModel"""
-    def __init__(self, model_name, args, **kwargs):
-        super().__init__(model_name, args, **kwargs)
+    def __init__(self, args, **kwargs):
+        super().__init__(args, **kwargs)
 
         self._get_components()
 
         self.__reduce_rxns()
 
-        AntimonyFile(self.model_files, self.model_name, self.parameters)
+        AntimonyFile(self)
 
         sbml_file_path = self._convert_antimony_to_sbml()
 
@@ -306,11 +308,12 @@ class StochasticModel(CreateModel):
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, model_files: SimpleNamespace, model_name: str, parameters: pd.Series):
-        self.model_files = model_files
-        self.model_name = model_name
+    def __init__(self, parent_model_type: SimpleNamespace):
+        self.model_files = parent_model_type.model_files
+        self.model_name = parent_model_type.model_name
         ## Include other operations here. 
-        self.parameters = parameters
+        self.parameters = parent_model_type.parameters
+        self.output = parent_model_type.output_path
 
         self.antimony_file = self.__create_antimony_file()
 
@@ -339,7 +342,7 @@ class AntimonyFile:
     def __create_antimony_file(self): #step 1, handled in cell 4
         """Creates a variable to store the antimony file document. Header started, 
         returned during init stage fore OOP process. """
-        fileModel = open(f'../sbml_files/antimony_{self.model_name}.txt', encoding='utf-8', mode='w')
+        fileModel = open(f'{self.output}/antimony_{self.model_name}.txt', encoding='utf-8', mode='w')
         logger.info('storing %s in ../sbml_files/antimony_%s' % (self.model_name, self.model_name))
 
         fileModel.write(f'# Genome-Complete {self.model_name} Model \n')
@@ -563,11 +566,8 @@ if __name__ == '__main__':
 
     kwargs = parse_kwargs(args.catchall) if args.catchall else {}
 
+    CreateModel.factory_model_handler(args, **kwargs)
 
-    deterministic_model_name = 'Deterministic'
-    stochastic_model_name = 'Stochastic'
-
-    CreateModel.factory_model_handler(deterministic_model_name, args, **kwargs)
-
-    CreateModel.factory_model_handler(stochastic_model_name, args, **kwargs)
+    args.name = 'Stochastic'
+    CreateModel.factory_model_handler(args, **kwargs)
 

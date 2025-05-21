@@ -30,13 +30,13 @@
 
 //-----------------------------Method Details-----------------------------//
 DeterministicModule::DeterministicModule(
-    Model* DeterministicModel
+    SBMLHandler DeterministicModel
  ) {
     // Retrieve the stoichiometric matrix from the sbml document.
-    this->stoichmat = sbmlHandler->getStoichiometricMatrix();
+    this->stoichmat = DeterministicModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    this->formulas_vector = sbmlHandler->getReactionExpressions();
+    this->formulas_vector = DeterministicModel.getReactionExpressions();
 
      // Import AMICI Model from 'bin/AMICI_MODELS/model
     this->model = amici::generic_model::getModel();
@@ -45,7 +45,7 @@ DeterministicModule::DeterministicModule(
     this->solver = model->getSolver();
 
     //Instantiate SBML model
-    this->sbml = std::move(DeterministicModel);
+    this->sbml = DeterministicModel.model;
 
 }
 
@@ -124,10 +124,10 @@ void DeterministicModule::_simulationPrep(
 ) {
      const std::vector<double>& det_states = 
      initial_state.has_value() ? initial_state.value() 
-                                   : this->sbmlHandler->getInitialState();
+                                   : this->DeterministicModel->getInitialState();
 
    
-     int numSpecies = this->sbmlHandler->getModel()->getNumSpecies();
+     int numSpecies = this->sbml->getNumSpecies();
      
      std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
      
@@ -155,7 +155,7 @@ void DeterministicModule::recordStepResult(
 }
 
 std::vector<double> DeterministicModule::getInitialState() const {
-    return sbmlHandler->getInitialState();
+    return DeterministicModel->getInitialState();
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
@@ -186,7 +186,7 @@ void DeterministicModule::updateParameters(
         alt_species_ids.push_back(species->getId());
     }
 
-    std::vector<std::string> param_ids = sbmlHandler->getParameterIds();
+    std::vector<std::string> param_ids = DeterministicModel->getParameterIds();
     
     std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
         param_ids, 
@@ -195,7 +195,7 @@ void DeterministicModule::updateParameters(
 
     for (int i = 0; i < overlapping_params.size(); i++) {
         
-        Parameter* parameter = sbmlHandler->getModel()->getParameter(overlapping_params[i]);
+        Parameter* parameter = this->sbml->getParameter(overlapping_params[i]);
 
         parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
     }

@@ -1,0 +1,67 @@
+# Genome-Complete Stochastic Model 
+model Stochastic()
+
+  # Compartments and Species:
+  Compartment Cytoplasm;
+  Compartment Nucleus;
+
+
+  Species nuc_gene_a__LIGAND_ in Nucleus;
+  Species nuc_gene_i__LIGAND_ in Nucleus;
+  Species nuc_gene_a__RECEPTOR_ in Nucleus;
+  Species nuc_gene_i__RECEPTOR_ in Nucleus;
+  Species cyt_mrna__LIGAND_ in Cytoplasm;
+  Species cyt_mrna__RECEPTOR_ in Cytoplasm;
+
+
+ # Reactions:
+  vGac1: nuc_gene_i__LIGAND_ => nuc_gene_a__LIGAND_; (kGac1_1*nuc_gene_i__LIGAND_)*Nucleus;
+  vGac2: nuc_gene_i__RECEPTOR_ => nuc_gene_a__RECEPTOR_; (kGac2_1*nuc_gene_i__RECEPTOR_)*Nucleus;
+  vGin1: nuc_gene_a__LIGAND_ => nuc_gene_i__LIGAND_; (kGin1_1*nuc_gene_a__LIGAND_)*Nucleus;
+  vGin2: nuc_gene_a__RECEPTOR_ => nuc_gene_i__RECEPTOR_; (kGin2_1*nuc_gene_a__RECEPTOR_)*Nucleus;
+  vTC1:  => cyt_mrna__LIGAND_; (kTC1_1)*Nucleus;
+  vTC2:  => cyt_mrna__RECEPTOR_; (kTC2_1)*Nucleus;
+  vTCd1: cyt_mrna__LIGAND_ => ; (kTCd1_1)*Nucleus;
+  vTCd2: cyt_mrna__RECEPTOR_ => ; (kTCd2_1)*Cytoplasm;
+
+  # Compartment initializations:
+  Cytoplasm = 3.000000e+03;
+  Cytoplasm has volume;
+  Nucleus = 1.000000e+03;
+  Nucleus has volume;
+
+  # Species initializations:
+  nuc_gene_a__LIGAND_ = 1.000000e+00;
+  nuc_gene_i__LIGAND_ = 1.000000e+00;
+  nuc_gene_a__RECEPTOR_ = 1.000000e+00;
+  nuc_gene_i__RECEPTOR_ = 1.000000e+00;
+  cyt_mrna__LIGAND_ = 0.000000e+00;
+  cyt_mrna__RECEPTOR_ = 0.000000e+00;
+
+  # Parameter initializations:
+  cyt_prot__LIGAND_ = 2.000000e+01;
+  cyt_prot__RECEPTOR_ = 1.000000e+02;
+  cyt_prot__LIGAND__RECEPTOR_ = 0.000000e+00;
+  kGac1_1 = 5.000000e-04;
+  kGac2_1 = 5.000000e-04;
+  kGin1_1 = 5.000000e-03;
+  kGin2_1 = 5.000000e-03;
+  kTC1_1 = 5.000000e-06;
+  kTC2_1 = 5.000000e-06;
+  kTCd1_1 = 5.000000e-05;
+  kTCd2_1 = 5.000000e-05;
+  kTL1_1 = 1.000000e+00;
+  kTL2_1 = 1.000000e+00;
+  kLR1_1 = 1.000000e-02;
+  kLR2_1 = 1.000000e-02;
+
+  # Other declarations:
+  const Cytoplasm,Nucleus;
+
+  # Unit definitions:
+  unit time_unit = second;
+  unit volume = litre;
+  unit substance = 1e-9 mole;
+  unit nM = 1e-9 mole / litre;
+
+end
