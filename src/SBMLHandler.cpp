@@ -151,7 +151,7 @@ std::vector<double> SBMLHandler::getInitialState() {
      for (unsigned int i = 0; i < numSpecies; i++) {
 
         double state = this->model->getSpecies(i)->getInitialConcentration();
-        
+
         initial_state[i] = state;
      }
 

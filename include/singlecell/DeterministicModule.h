@@ -59,8 +59,6 @@ class DeterministicModule : public Simulation {
             const Model* alternate_model
         );
 
-        virtual std::vector<double> getInitialState() override;
-
         Model* sbml;
 
     private:

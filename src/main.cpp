@@ -8,6 +8,7 @@
  */
 
  // --------------------------Library Import--------------------------------//
+#include <stdio.h>
 #include <vector>
 #include <string>
 #include <memory>
@@ -34,13 +35,14 @@ void save_results(
 
     std::ofstream outFile(outfile);
 
+    outFile << "Results Matrix: \n";
+
     int numRows = results_matrix.size();
 
     int numCols = results_matrix[0].size();
 
     for (size_t i = 0; i < numRows; i++) {
         for (size_t j = 0; j < numCols; j++) {
-
             outFile << results_matrix[i][j] << "\t";
 
             if (j == (numCols-1)) {

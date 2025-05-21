@@ -9,6 +9,7 @@
 
 // --------------------------Library Import-----------------------------------//
 
+#include <stdio.h>
 #include <ctime>
 #include <vector>
 #include <string>
@@ -206,7 +207,7 @@ void StochasticModule::_simulationPrep(
 ) {
      const std::vector<double>& stoch_states = 
      initial_state.has_value() ? initial_state.value() 
-                                   : this->StochasticModel->getInitialState();
+                                   : handler.getInitialState();
     
      int numSpecies = this->sbml->getNumSpecies();
      
@@ -298,10 +299,9 @@ void StochasticModule::recordStepResult(
     int timepoint
 ) {
     this->results_matrix[timepoint] = state_vector;
-}
 
-std::vector<double> StochasticModule::getInitialState() {
-    return handler.getInitialState();
+    printf("results matrix input @ index[%d]: %f", timepoint, state_vector);
+    printf("\n");
 }
 
 std::vector<double> StochasticModule::getLastStepResult(
