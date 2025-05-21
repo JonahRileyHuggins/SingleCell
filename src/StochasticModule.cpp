@@ -118,7 +118,7 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
-    for (unsigned int i; components_vector.size(); i++) {
+    for ( int i = 0; i < components_vector.size(); i++) {
 
         const std::string component = components_vector[i];
 
