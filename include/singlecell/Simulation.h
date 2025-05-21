@@ -49,7 +49,7 @@ protected:
         int step
     ) = 0;    
 
-    virtual std::vector<double> getInitialState() const = 0; //derived class implement only
+    virtual std::vector<double> getInitialState() = 0; //derived class implement only
     
     /**
      * @brief creates a matrix of results to be implemented within a derived class

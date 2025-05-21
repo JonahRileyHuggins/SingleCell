@@ -48,9 +48,9 @@ SBMLHandler::~SBMLHandler() { // Destructor Method
 
 std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
 
-    unsigned int numSpecies = this->model->getNumSpecies();
+    int numSpecies = this->model->getNumSpecies();
 
-    unsigned int numReactions = this->model->getNumReactions();
+    int numReactions = this->model->getNumReactions();
 
     // make map of species indices
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
@@ -59,7 +59,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     std::vector<std::vector<double>> stoichmat(numSpecies, std::vector<double>(numReactions, 0.0));
 
     // Populate the matrix:
-    for (unsigned int i = 0; i < numReactions; i++) {
+    for (int i = 0; i < numReactions; i++) {
         //Reaction getter
         const Reaction* reaction = this->model->getReaction(i);
         
@@ -161,14 +161,11 @@ std::vector<double> SBMLHandler::getInitialState() {
 std::vector<std::string> SBMLHandler::getParameterIds() {
     std::vector<std::string> parameter_ids;
 
-    if (!model) return parameter_ids;
-
-    unsigned int numParams = this->model->getNumParameters();
-    for (unsigned int i = 0; i < numParams; ++i) {
+    int numParams = this->model->getNumParameters();
+    for (int i = 0; i < numParams; ++i) {
         const Parameter* param = this->model->getParameter(i);
-        if (param) {
+
             parameter_ids.push_back(param->getId());
-        }
     }
 
     return parameter_ids;

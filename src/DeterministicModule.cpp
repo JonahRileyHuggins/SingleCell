@@ -31,7 +31,8 @@
 //-----------------------------Method Details-----------------------------//
 DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
- ) {
+ ) : handler(DeterministicModel)
+ {
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = DeterministicModel.getStoichiometricMatrix();
 
@@ -124,7 +125,7 @@ void DeterministicModule::_simulationPrep(
 ) {
      const std::vector<double>& det_states = 
      initial_state.has_value() ? initial_state.value() 
-                                   : this->DeterministicModel->getInitialState();
+                                   : DeterministicModule::getInitialState(); // Explicit reference for readability
 
    
      int numSpecies = this->sbml->getNumSpecies();
@@ -135,7 +136,7 @@ void DeterministicModule::_simulationPrep(
      this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
      
      // record initial state as first vector in results_matrix member 
-     DeterministicModule::recordStepResult(
+     recordStepResult(
         det_states, 
         0
     );
@@ -154,8 +155,8 @@ void DeterministicModule::recordStepResult(
     this->results_matrix[timepoint] = state_vector;
 }
 
-std::vector<double> DeterministicModule::getInitialState() const {
-    return DeterministicModel->getInitialState();
+std::vector<double> DeterministicModule::getInitialState() {
+    return handler.getInitialState();
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
@@ -186,7 +187,7 @@ void DeterministicModule::updateParameters(
         alt_species_ids.push_back(species->getId());
     }
 
-    std::vector<std::string> param_ids = DeterministicModel->getParameterIds();
+    std::vector<std::string> param_ids = handler.getParameterIds();
     
     std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
         param_ids, 

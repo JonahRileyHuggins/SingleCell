@@ -71,11 +71,12 @@ class StochasticModule : public Simulation {
             const Model* alternate_model
         );
 
-        virtual std::vector<double> getInitialState() const override;
+        virtual std::vector<double> getInitialState() override;
 
         Model* sbml;
 
     private:
+        SBMLHandler handler;
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
         

@@ -31,12 +31,13 @@
 //Constructor: initialize sbmlHandler with a new SBMLHandler instance
 StochasticModule::StochasticModule(
     SBMLHandler StochasticModel
-) {
+) : handler(StochasticModel)
+{
     // Retrieve the stoichiometric matrix from the sbml document.
-    stoichmat = StochasticModel.getStoichiometricMatrix();
+    this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    formulas_vector = StochasticModel.getReactionExpressions();
+    this->formulas_vector = StochasticModel.getReactionExpressions();
 
     //Instantiate SBML model
     this->sbml = StochasticModel.model;
@@ -80,7 +81,7 @@ double StochasticModule::computeReaction(std::string formula_str) {
     mu::Parser parser;
 
     // get variables in formula
-    std::unordered_map<std::string, double> components = StochasticModule::mapComponentsToValues(formula_str);
+    std::unordered_map<std::string, double> components = mapComponentsToValues(formula_str);
     //Persistent copy of component values:
     std::unordered_map<std::string, double> component_values;
 
@@ -213,7 +214,7 @@ void StochasticModule::_simulationPrep(
 
      this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
  
-     StochasticModule::recordStepResult(
+    recordStepResult(
         stoch_states, 
         0
     );
@@ -229,7 +230,7 @@ void StochasticModule::setModelState(const std::vector<double>& state) {
      * 
      * @returns None
      */
-    auto speciesIds = StochasticModel->getSpeciesIds();
+    std::vector<std::string> speciesIds = handler.getSpeciesIds();
     for (size_t i = 0; i < speciesIds.size(); ++i) {
         Species* s = sbml->getSpecies(speciesIds[i]);
         s->setInitialConcentration(state[i]);
@@ -240,7 +241,7 @@ void StochasticModule::runStep(
     int step
 ) {
     // get (step minus 1) position in results_matrix member
-    std::vector<double> last_record = StochasticModule::getLastStepResult(step);
+    std::vector<double> last_record = getLastStepResult(step);
 
     // Calculate v = formula where v is a vector of left hand reaction values
     std::vector<double> v = computeReactions(last_record);
@@ -265,9 +266,6 @@ void StochasticModule::runStep(
 void StochasticModule::updateParameters(
     const Model* alternate_model
 ) {
-    // Instantiate a blank map:
-    std::unordered_map<std::string, double> new_param_vals; 
-
     std::vector<std::string> alt_species_ids;
 
     int numSpecies = alternate_model->getNumSpecies();
@@ -279,7 +277,7 @@ void StochasticModule::updateParameters(
         alt_species_ids.push_back(species->getId());
     }
 
-    std::vector<std::string> param_ids = StochasticModel->getParameterIds();
+    std::vector<std::string> param_ids = handler.getParameterIds();
     
     std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
         param_ids, 
@@ -302,8 +300,8 @@ void StochasticModule::recordStepResult(
     this->results_matrix[timepoint] = state_vector;
 }
 
-std::vector<double> StochasticModule::getInitialState() const {
-    return StochasticModel->getInitialState();
+std::vector<double> StochasticModule::getInitialState() {
+    return handler.getInitialState();
 }
 
 std::vector<double> StochasticModule::getLastStepResult(

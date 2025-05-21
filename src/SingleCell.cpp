@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <unordered_set>
+#include <stdio.h>
 
 
 // Internal Libraries
@@ -54,7 +55,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
         // exchange data
         stochMod.updateParameters(detMod.sbml);
-        detMod.updateParameters(detMod.sbml);
+        detMod.updateParameters(stochMod.sbml);
 
     }
     
