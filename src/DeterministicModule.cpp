@@ -118,19 +118,19 @@ std::vector<double> DeterministicModule::getNewStepResult(
 }
 
 void DeterministicModule::_simulationPrep(
-    const std::optional<std::vector<double>>& initial_state,
+    const std::vector<double>& initial_state,
     double start, 
     double stop, 
     double step
 ) {
-     const std::vector<double>& det_states = 
-     initial_state ? *initial_state
-                                   : handler.getInitialState();
 
-     std::cout << "Initial Determ. States: " << "\n";
-     for (int i = 0; i < det_states.size(); i++) {
-        std::cout << det_states[i] << "\n";
-     }
+    std::vector<double> det_states;
+
+    if (initial_state.size() > 0) {
+        det_states = initial_state;  // copy
+    } else {
+        det_states = handler.getInitialState();  // copy
+    }
 
      int numSpecies = this->sbml->getNumSpecies();
      
@@ -157,9 +157,6 @@ void DeterministicModule::recordStepResult(
     int timepoint
 ) {
     this->results_matrix[timepoint] = state_vector;
-
-    // printf("results matrix input @ index[%d]: %f", timepoint, state_vector);
-    // printf("\n");
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(

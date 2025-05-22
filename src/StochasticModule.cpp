@@ -37,7 +37,7 @@ StochasticModule::StochasticModule(
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
-    // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
+    // List of formula strings to be parsed. 
     this->formulas_vector = StochasticModel.getReactionExpressions();
 
     //Instantiate SBML model
@@ -200,15 +200,20 @@ std::vector<double> StochasticModule::samplePoisson(
 }
 
 void StochasticModule::_simulationPrep(
-    const std::optional<std::vector<double>>& initial_state,
+    const std::vector<double>& initial_state,
     double start, 
     double stop, 
     double step
 ) {
-     const std::vector<double>& stoch_states = 
-     initial_state.has_value() ? initial_state.value() 
-                                   : handler.getInitialState();
-    
+
+    std::vector<double> stoch_states;
+
+    if (initial_state.size() > 0) {
+        stoch_states = initial_state;  // copy
+    } else {
+        stoch_states = handler.getInitialState();  // copy
+    }
+
      int numSpecies = this->sbml->getNumSpecies();
      
      std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
@@ -299,9 +304,6 @@ void StochasticModule::recordStepResult(
     int timepoint
 ) {
     this->results_matrix[timepoint] = state_vector;
-
-    printf("results matrix input @ index[%d]: %f", timepoint, state_vector);
-    printf("\n");
 }
 
 std::vector<double> StochasticModule::getLastStepResult(

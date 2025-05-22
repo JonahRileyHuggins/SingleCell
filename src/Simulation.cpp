@@ -45,7 +45,7 @@ std::vector<std::vector<double>> Simulation::createResultsMatrix(
     int numTimeSteps
 ) {
 
-    std::vector<std::vector<double>> results_matrix(numTimeSteps, std::vector<double>(numSpecies));
+    std::vector<std::vector<double>> results_matrix(numSpecies, std::vector<double>(numTimeSteps));
 
     return results_matrix;
 

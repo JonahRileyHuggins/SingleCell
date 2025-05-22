@@ -31,7 +31,7 @@ private:
 
 protected:
     virtual void _simulationPrep(
-        const std::optional<std::vector<double>>& initial_state,
+        const std::vector<double>& initial_state,
         double start, 
         double stop, 
         double step

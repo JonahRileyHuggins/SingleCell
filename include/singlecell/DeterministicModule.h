@@ -37,7 +37,7 @@ class DeterministicModule : public Simulation {
         std::vector<std::vector<double>> results_matrix;
 
         void _simulationPrep(
-            const std::optional<std::vector<double>>& initial_state,
+            const std::vector<double>& initial_state,
             double start,
             double stop, 
             double step
