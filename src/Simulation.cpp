@@ -7,7 +7,8 @@
  * @date 19-05-2025
  */
 
-// --------------------------Library Import--------------------------------//
+//===========================Library Import=================================//
+//Std Libraries
 #include <vector>
 #include <string>
 #include <memory>
@@ -17,14 +18,10 @@
 // Internal Libraries
 #include "singlecell/Simulation.h"
 #include "singlecell/SBMLHandler.h"
-//-----------------------------Class Details-------------------------------//
+//=============================Class Details================================//
 Simulation::Simulation(
-    std::unique_ptr<SBMLHandler> stochMod,
-    std::unique_ptr<SBMLHandler> detMod
-) {
-    this->StochasticModel = std::move(stochMod);
-    this->DeterministicModel = std::move(detMod);
-}
+    SBMLHandler Module
+) : handler(Module) {}
 
 std::vector<double> Simulation::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
@@ -47,8 +44,20 @@ std::vector<std::vector<double>> Simulation::createResultsMatrix(
 
     std::vector<std::vector<double>> results_matrix(numSpecies, std::vector<double>(numTimeSteps));
 
+    printf("Matrix @ creation: dimensions: [%lu, %lu]", results_matrix.size(), results_matrix[0].size());
+    printf("\n");
+
     return results_matrix;
 
+}
+
+void Simulation::recordStepResult(
+    const std::vector<double>& state_vector,
+    int timepoint
+) {
+    for (int i = 0; i < state_vector.size(); i++) {
+        results_matrix[i][timepoint] = state_vector[i];
+    }
 }
 
 std::vector<std::string> Simulation::findOverlappingIds(
@@ -72,6 +81,11 @@ std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
     std::vector<std::vector<double>> matrix2
 ) {
     std::vector<std::vector<double>> combined_matrix = matrix1;
+
+    printf("Matrix 1 dimensions: [%lu, %lu]", matrix1.size(), matrix1[0].size());
+    printf("\n");
+    printf("Matrix 2 dimensions: [%lu, %lu]", matrix2.size(), matrix2[0].size());
+    printf("\n");
 
     combined_matrix.insert(combined_matrix.end(), matrix2.begin(), matrix2.end());
 

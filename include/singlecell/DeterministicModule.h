@@ -7,13 +7,14 @@
  * @brief Class Creator For Deterministic Module Using AMICI
  */
 
-//--------------helper function definition------------------------------------//
+//========================header file definition============================//
 #pragma once
 
 #ifndef DETERMINISTICMODULE_h
 #define DETERMINISTICMODULE_h
 
-// --------------------------Library Import-----------------------------------//
+//===========================Library Import=================================//
+//Std Libraries
 #include <vector>
 #include <memory>
 #include <optional>
@@ -25,16 +26,15 @@
 // Third Party Libraries
 #include "amici/amici.h"
 
-//--------------------------Class Declaration-----------------------------//
+//==========================Class Declaration===============================//
 class DeterministicModule : public Simulation {
     public:
+    //----------------------------Methods-----------------------------------//
         DeterministicModule(
             SBMLHandler DeterministicModel
         ); //Ctor
 
         ~DeterministicModule() override = default; //Dtor
-
-        std::vector<std::vector<double>> results_matrix;
 
         void _simulationPrep(
             const std::vector<double>& initial_state,
@@ -58,11 +58,11 @@ class DeterministicModule : public Simulation {
         void updateParameters(
             const Model* alternate_model
         );
+    //-------------------------------Members--------------------------------//
 
-        Model* sbml;
 
     private:
-        SBMLHandler handler;
+    // ---------------------------Methods-----------------------------------//
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
         std::unique_ptr<amici::Model> model;
@@ -76,15 +76,12 @@ class DeterministicModule : public Simulation {
         std::vector<double> getNewStepResult(
             const amici::ReturnData &rdata
         );
-
+        
+    //-------------------------------Members--------------------------------//
 
 
     protected:
-        void recordStepResult(
-            const std::vector<double>& state_vector,
-            int timepoint
-        ) override;
-
+    // ---------------------------Methods-----------------------------------//
         /**
          * @brief Getter method for last recorded value in results matrix
          * 
@@ -95,6 +92,9 @@ class DeterministicModule : public Simulation {
         std::vector<double> getLastStepResult(
             int timestep
         ) override;
+
+    //-------------------------------Members--------------------------------//
+
 
 };
 

@@ -7,8 +7,8 @@
  * @brief Definitions for StochasticModule operations
 */
 
-// --------------------------Library Import-----------------------------------//
-
+//===========================Library Import=================================//
+//Std Libraries
 #include <stdio.h>
 #include <ctime>
 #include <vector>
@@ -28,12 +28,11 @@
 // Third Party Libraries
 #include "muParser.h"
 
-//-----------------------------Method Details-----------------------------//
-//Constructor: initialize sbmlHandler with a new SBMLHandler instance
+//=============================Class Details================================//
 StochasticModule::StochasticModule(
     SBMLHandler StochasticModel
-) : handler(StochasticModel)
-{
+) : Simulation(StochasticModel) {
+
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
@@ -142,13 +141,7 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
 }
 
 std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
-    /**
-     * @brief Creates a list of strings based on formula contents
-     * 
-     * @param formula_str string type reaction formula
-     * 
-     * @returns tokens a list of components from the formula, without operators
-     */
+
     std::vector<std::string> tokens;
 
     std::string current_token_bin;
@@ -209,9 +202,9 @@ void StochasticModule::_simulationPrep(
     std::vector<double> stoch_states;
 
     if (initial_state.size() > 0) {
-        stoch_states = initial_state;  // copy
+        stoch_states = initial_state;  
     } else {
-        stoch_states = handler.getInitialState();  // copy
+        stoch_states = handler.getInitialState();
     }
 
      int numSpecies = this->sbml->getNumSpecies();
@@ -220,11 +213,10 @@ void StochasticModule::_simulationPrep(
 
      this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
  
-    recordStepResult(
+    Simulation::recordStepResult(
         stoch_states, 
         0
     );
-     
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -266,7 +258,7 @@ void StochasticModule::runStep(
     }
     
     //Record iteration's result
-    this->recordStepResult(new_state, step);
+    Simulation::recordStepResult(new_state, step);
 }
 
 void StochasticModule::updateParameters(
@@ -299,20 +291,18 @@ void StochasticModule::updateParameters(
 
 }
 
-void StochasticModule::recordStepResult(
-    const std::vector<double>& state_vector,
-    int timepoint
-) {
-    this->results_matrix[timepoint] = state_vector;
-}
-
 std::vector<double> StochasticModule::getLastStepResult(
     int timestep
 ) {
+
+    std::vector<double> state_vector(this->results_matrix.size());
+
+    for (int i = 0; i < this->results_matrix.size(); i++) {
         //set states vector based on last iteration's final values:
-        std::vector<double> state_vector = this->results_matrix[
+        state_vector[i] = this->results_matrix[i][
             (timestep > 0) ? timestep - 1 : timestep
         ];
+    }
 
     return state_vector;
 }

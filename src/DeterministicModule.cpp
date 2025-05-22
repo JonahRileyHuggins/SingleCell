@@ -7,8 +7,8 @@
  * @brief Definitions for DeterministicModule operations
 */
 
-// --------------------------Library Import-----------------------------------//
-
+//===========================Library Import=================================//
+//Std Libraries
 #include <ctime>
 #include <vector>
 #include <string>
@@ -28,10 +28,10 @@
 #include "amici/amici.h"
 #include "../amici_models/Deterministic/wrapfunctions.h"
 
-//-----------------------------Method Details-----------------------------//
+//=============================Class Details================================//
 DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
- ) : handler(DeterministicModel)
+ ) : Simulation(DeterministicModel)
  {
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = DeterministicModel.getStoichiometricMatrix();
@@ -56,10 +56,17 @@ void DeterministicModule::runStep(int step) {
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, static_cast<double>(step)};
+
+    printf("Number of Model States: %lu", model->getInitialStates().size());
+    printf("\n");
+
+    printf("Size of last record: %lu", last_record.size());
+    printf("\n");
+
     model->setTimepoints(step_forward);
 
     // Set initial state based on last record
-    model->setInitialStates(last_record);
+    // model->setInitialStates(last_record);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
@@ -68,7 +75,7 @@ void DeterministicModule::runStep(int step) {
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
     // Record values to results matrix
-    this->recordStepResult(last_vals, step);
+    Simulation::recordStepResult(last_vals, step);
 }
 
 std::vector<double> DeterministicModule::setAllSpeciesValues(
@@ -133,14 +140,14 @@ void DeterministicModule::_simulationPrep(
     }
 
      int numSpecies = this->sbml->getNumSpecies();
-     
+          
      std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
-     
+
      // populate results_matrix member with proper size
      this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
      
      // record initial state as first vector in results_matrix member 
-     recordStepResult(
+     Simulation::recordStepResult(
         det_states, 
         0
     );
@@ -149,23 +156,20 @@ void DeterministicModule::_simulationPrep(
      solver->setAbsoluteTolerance(1e-10);
      solver->setRelativeTolerance(1e-10);
      solver->setMaxSteps(10000);
-
-}
-
-void DeterministicModule::recordStepResult(
-    const std::vector<double>& state_vector,
-    int timepoint
-) {
-    this->results_matrix[timepoint] = state_vector;
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
     int timestep
 ) {
+
+    std::vector<double> state_vector(this->results_matrix.size());
+
+    for (int i = 0; i < this->results_matrix.size(); i++) {
         //set states vector based on last iteration's final values:
-        std::vector<double> state_vector = this->results_matrix[
+        state_vector[i] = this->results_matrix[i][
             (timestep > 0) ? timestep - 1 : timestep
         ];
+    }
 
     return state_vector;
 }

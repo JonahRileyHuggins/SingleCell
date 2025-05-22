@@ -6,13 +6,14 @@
  * 
  * @brief Class Creator For derived class StochasticModule (from Simulator).
  */
-//----------------------header file definition-----------------------------//
+//========================header file definition============================//
 #pragma once
 
 #ifndef STOCHASTICMODULE_h
 #define STOCHASTICMODULE_h
 
-// --------------------------Library Import--------------------------------//
+//===========================Library Import=================================//
+//Std Libaries
 #include <vector>
 #include <memory>
 #include <optional>
@@ -22,16 +23,15 @@
 #include "Simulation.h"
 #include "SBMLHandler.h"
 
-//--------------------------Class Declaration-----------------------------//
+//==========================Class Declaration===============================//
 class StochasticModule : public Simulation {
     public:
+    // -------------------------Methods-----------------------------------//
         StochasticModule( //Constructor. ctor
             SBMLHandler StochasticModel
         );
 
         ~StochasticModule() override = default; //Destructor, dtor
-
-        std::vector<std::vector<double>> results_matrix;
 
         /**
          * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
@@ -70,14 +70,11 @@ class StochasticModule : public Simulation {
         void updateParameters(
             const Model* alternate_model
         );
+    //---------------------------Members----------------------------------//
 
-        Model* sbml;
 
     private:
-        SBMLHandler handler;
-        std::vector<std::vector<double>> stoichmat;
-        std::vector<std::string> formulas_vector;
-        
+    // -------------------------Methods-----------------------------------//
         std::vector<double> computeReactions(
             const std::vector<double>& state
         );
@@ -90,6 +87,13 @@ class StochasticModule : public Simulation {
             const std::string& formula_str
         );
         
+        /**
+         * @brief Creates a list of strings based on formula contents
+         * 
+         * @param formula_str string type reaction formula
+         * 
+         * @returns tokens a list of components from the formula, without operators
+         */
         std::vector<std::string> tokenizeFormula(
             const std::string& formula_str
         );
@@ -98,13 +102,13 @@ class StochasticModule : public Simulation {
             std::vector<double> initial_reaction_vector,
             int step
         );
+        //---------------------------Members----------------------------------//
+        std::vector<std::vector<double>> stoichmat;
+        std::vector<std::string> formulas_vector;
+
 
         protected:
-        void recordStepResult(
-            const std::vector<double>& state_vector,
-            int timepoint
-        ) override;
-
+        // -------------------------Methods-----------------------------------//
         /**
          * @brief Getter method for last recorded value in results matrix
          * 
@@ -115,6 +119,9 @@ class StochasticModule : public Simulation {
         std::vector<double> getLastStepResult(
             int timestep
         ) override;
+
+        //---------------------------Members----------------------------------//
+        
 
 };
 

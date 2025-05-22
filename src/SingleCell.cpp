@@ -7,11 +7,11 @@
  * @date 15-05-2025
  */
 
-// --------------------------Library Import--------------------------------//
+//===========================Library Import=================================//
+//Std Libraries
 #include <vector>
 #include <string>
 #include <unordered_set>
-#include <stdio.h>
 
 
 // Internal Libraries
@@ -20,7 +20,8 @@
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
-//-----------------------------Class Details-------------------------------//
+
+//=============================Class Details================================//
 SingleCell::SingleCell(
     const std::string& stochastic_sbml_path,
     const std::string& deterministic_sbml_path
@@ -64,6 +65,12 @@ std::vector<std::vector<double>> SingleCell::simulate(
         stochMod.results_matrix,
         detMod.results_matrix
     );
+
+    printf("Final Matrix dimensions: [%lu, %lu]", results_matrix.size(), results_matrix[0].size());
+    printf("\n");
+
+    printf("Simulation Complete");
+    printf("\n");
 
     return results_matrix;
 }
