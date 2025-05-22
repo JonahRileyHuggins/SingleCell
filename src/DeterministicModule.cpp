@@ -26,7 +26,7 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
-#include "../amici_models/Deterministic/wrapfunctions.h"
+#include "../amici_models/SingleCell/wrapfunctions.h"
 
 //=============================Class Details================================//
 DeterministicModule::DeterministicModule(
@@ -56,12 +56,6 @@ void DeterministicModule::runStep(int step) {
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, static_cast<double>(step)};
-
-    printf("Number of Model States: %lu", model->getInitialStates().size());
-    printf("\n");
-
-    printf("Size of last record: %lu", last_record.size());
-    printf("\n");
 
     model->setTimepoints(step_forward);
 
@@ -154,8 +148,8 @@ void DeterministicModule::_simulationPrep(
      
      // Assign solver settings
      solver->setAbsoluteTolerance(1e-10);
-     solver->setRelativeTolerance(1e-10);
-     solver->setMaxSteps(10000);
+     solver->setRelativeTolerance(1e-6);
+     solver->setMaxSteps(100000);
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
@@ -164,12 +158,9 @@ std::vector<double> DeterministicModule::getLastStepResult(
 
     std::vector<double> state_vector(this->results_matrix.size());
 
-    for (int i = 0; i < this->results_matrix.size(); i++) {
-        //set states vector based on last iteration's final values:
-        state_vector[i] = this->results_matrix[i][
-            (timestep > 0) ? timestep - 1 : timestep
-        ];
-    }
+    state_vector = this->results_matrix[
+        (timestep > 0) ? timestep - 1 : timestep
+    ];
 
     return state_vector;
 }

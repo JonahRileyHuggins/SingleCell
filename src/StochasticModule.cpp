@@ -222,7 +222,6 @@ void StochasticModule::_simulationPrep(
 void StochasticModule::setModelState(const std::vector<double>& state) {
     /**
      * @brief public method for updating the simulation states at every timestep. 
-     *      TODO: Still need to assign updated parameter values from the deterministic model. 
      * 
      * @param state vector of timestep values to be calculated. 
      * 
@@ -297,12 +296,9 @@ std::vector<double> StochasticModule::getLastStepResult(
 
     std::vector<double> state_vector(this->results_matrix.size());
 
-    for (int i = 0; i < this->results_matrix.size(); i++) {
-        //set states vector based on last iteration's final values:
-        state_vector[i] = this->results_matrix[i][
-            (timestep > 0) ? timestep - 1 : timestep
-        ];
-    }
+    state_vector = this->results_matrix[
+        (timestep > 0) ? timestep - 1 : timestep
+    ];
 
     return state_vector;
 }

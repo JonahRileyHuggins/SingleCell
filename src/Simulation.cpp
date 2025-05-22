@@ -42,10 +42,7 @@ std::vector<std::vector<double>> Simulation::createResultsMatrix(
     int numTimeSteps
 ) {
 
-    std::vector<std::vector<double>> results_matrix(numSpecies, std::vector<double>(numTimeSteps));
-
-    printf("Matrix @ creation: dimensions: [%lu, %lu]", results_matrix.size(), results_matrix[0].size());
-    printf("\n");
+    std::vector<std::vector<double>> results_matrix(numTimeSteps, std::vector<double>(numSpecies));
 
     return results_matrix;
 
@@ -55,9 +52,7 @@ void Simulation::recordStepResult(
     const std::vector<double>& state_vector,
     int timepoint
 ) {
-    for (int i = 0; i < state_vector.size(); i++) {
-        results_matrix[i][timepoint] = state_vector[i];
-    }
+    results_matrix[timepoint] = state_vector;
 }
 
 std::vector<std::string> Simulation::findOverlappingIds(
@@ -80,14 +75,8 @@ std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
     std::vector<std::vector<double>> matrix1, 
     std::vector<std::vector<double>> matrix2
 ) {
-    std::vector<std::vector<double>> combined_matrix = matrix1;
-
-    printf("Matrix 1 dimensions: [%lu, %lu]", matrix1.size(), matrix1[0].size());
-    printf("\n");
-    printf("Matrix 2 dimensions: [%lu, %lu]", matrix2.size(), matrix2[0].size());
-    printf("\n");
-
-    combined_matrix.insert(combined_matrix.end(), matrix2.begin(), matrix2.end());
-
-    return combined_matrix;
+    for (size_t i = 0; i < matrix1.size(); ++i) {
+        matrix1[i].insert(matrix1[i].end(), matrix2[i].begin(), matrix2[i].end());
+    }
+    return matrix1;
 }

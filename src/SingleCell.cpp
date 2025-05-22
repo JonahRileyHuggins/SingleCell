@@ -11,6 +11,7 @@
 //Std Libraries
 #include <vector>
 #include <string>
+#include <chrono>
 #include <unordered_set>
 
 
@@ -36,6 +37,9 @@ std::vector<std::vector<double>> SingleCell::simulate(
     double stop,
     double step
 ) {
+    auto start_t = std::chrono::high_resolution_clock::now();
+    printf("Starting Simulation for %f seconds.", stop);
+    printf("\n");
 
     //Create instances of internal simulation modules: dynamic allocation
     StochasticModule stochMod = StochasticModule(StochasticModel);
@@ -58,6 +62,13 @@ std::vector<std::vector<double>> SingleCell::simulate(
         stochMod.updateParameters(detMod.sbml);
         detMod.updateParameters(stochMod.sbml);
 
+        auto iter_t = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> iter_time = iter_t - start_t;
+        printf("Iteration [%i / %i] Time: %f", 
+                            (int)(timestep + 1), 
+                            (int)(timeSteps.size()), 
+                            iter_time.count());
+        printf("\n");
     }
     
     // concatentate results matrices
@@ -66,10 +77,11 @@ std::vector<std::vector<double>> SingleCell::simulate(
         detMod.results_matrix
     );
 
-    printf("Final Matrix dimensions: [%lu, %lu]", results_matrix.size(), results_matrix[0].size());
-    printf("\n");
+    auto stop_t = std::chrono::high_resolution_clock::now();
 
-    printf("Simulation Complete");
+    std::chrono::duration<double> duration = stop_t - start_t;
+
+    printf("Simulation Completed in %f seconds.", static_cast<double>(duration.count()));
     printf("\n");
 
     return results_matrix;
