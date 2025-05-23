@@ -26,7 +26,7 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
-#include "../amici_models/SingleCell/wrapfunctions.h"
+#include "../amici_models/Deterministic/wrapfunctions.h"
 
 //=============================Class Details================================//
 DeterministicModule::DeterministicModule(

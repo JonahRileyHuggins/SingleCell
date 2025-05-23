@@ -23,11 +23,11 @@ import antimony as sb
 parser = argparse.ArgumentParser(prog='swap_name')
 parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
                                                                         which files to inspect for name changes.')
-parser.add_argument('--name', '-n', default = 'SingleCell', help = "String-type name of model")
+parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
 parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
 parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
+parser.add_argument('--output', '-o', default = "../sbml_files/", help  = "path to which you want output files stored")
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -222,7 +222,7 @@ class DeterministicModel(CreateModel):
         """
         # Create an SbmlImporter instance for our SBML model
 
-        amici_model_output_path = f'../amici_models/{self.model_name}'
+        amici_model_output_path = f'../amici_models/Deterministic'
     
         _make_output_dir(amici_model_output_path)
 
@@ -231,7 +231,7 @@ class DeterministicModel(CreateModel):
         constantParameters = [params.getId() for params in self.sbml_model.getListOfParameters()]
 
         # The actual compilation step by AMICI, takes a while to complete for large models
-        sbml_importer.sbml2amici('SingleCell',
+        sbml_importer.sbml2amici('Deterministic',
                                 amici_model_output_path,
                                 verbose=args.verbose,
                                 constant_parameters=constantParameters)
