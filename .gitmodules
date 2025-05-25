@@ -6,3 +6,6 @@
 	path = ThirdParty/pybind11
 	url = https://github.com/pybind/pybind11
 	branch = stable
+[submodule "ThirdParty/swig"]
+	path = ThirdParty/swig
+	url = https://github.com/swig/swig.git

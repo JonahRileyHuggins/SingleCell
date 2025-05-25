@@ -9,6 +9,8 @@ set(Amici_DIR "${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-master/build")
 set(AMICI_DIR "${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-master")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
+set(LIBXML_LIBRARY "${AMICI_DIR}/ThirdParty/libxml2")
+set(LIBXML_INCLUDE_DIR "${LIBXML_LIBRARY}/include")
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
@@ -38,10 +40,10 @@ target_include_directories(SingleCell PRIVATE
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
     Deterministic
+    xml2              # if using libxml2
     sbml
     muparser
     pybind11::module  # or appropriate target exported by pybind11
-    xml2              # if using libxml2
 )
 
 
