@@ -23,6 +23,7 @@ set(SINGLECELL_SRC_LIST
 
 # === External dependencies ===
 add_subdirectory(amici_models/Deterministic)
+add_subdirectory(ThirdParty/swig)
 add_subdirectory(ThirdParty/pybind11)
 add_subdirectory(ThirdParty/libxml2)
 add_subdirectory(ThirdParty/libsbml-5.20.2)
@@ -40,6 +41,7 @@ target_include_directories(SingleCell PRIVATE
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
     Deterministic
+    swig
     xml2              # if using libxml2
     sbml
     muparser
