@@ -1,5 +1,5 @@
 amici==0.31.1
-antimony==2.15.0
+antimony==2.12.0.2
 asttokens==3.0.0
 cmake==4.0.0
 cmake-build-extension==0.6.0
