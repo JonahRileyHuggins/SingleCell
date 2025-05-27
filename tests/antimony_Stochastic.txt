@@ -35,8 +35,8 @@ model Stochastic()
   nuc_gene_i__LIGAND_ = 1.000000e+00;
   nuc_gene_a__RECEPTOR_ = 1.000000e+00;
   nuc_gene_i__RECEPTOR_ = 1.000000e+00;
-  cyt_mrna__LIGAND_ = 0.000000e+00;
-  cyt_mrna__RECEPTOR_ = 0.000000e+00;
+  cyt_mrna__LIGAND_ = 1.000000e+01;
+  cyt_mrna__RECEPTOR_ = 1.000000e+01;
 
   # Parameter initializations:
   cyt_prot__LIGAND_ = 2.000000e+01;

@@ -34,8 +34,8 @@
       <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="10" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="10" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kGac1_1" value="0.0005" constant="true"/>

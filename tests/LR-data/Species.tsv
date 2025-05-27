@@ -6,5 +6,5 @@ nuc_gene_a__LIGAND_	Nucleus	1	Stochastic
 nuc_gene_i__LIGAND_	Nucleus	1	Stochastic
 nuc_gene_a__RECEPTOR_	Nucleus	1	Stochastic
 nuc_gene_i__RECEPTOR_	Nucleus	1	Stochastic
-cyt_mrna__LIGAND_	Cytoplasm	0	Stochastic
-cyt_mrna__RECEPTOR_	Cytoplasm	0	Stochastic
+cyt_mrna__LIGAND_	Cytoplasm	10	Stochastic
+cyt_mrna__RECEPTOR_	Cytoplasm	10	Stochastic
