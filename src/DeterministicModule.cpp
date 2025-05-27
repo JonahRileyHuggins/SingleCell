@@ -33,7 +33,7 @@ DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
  ) : Simulation(DeterministicModel)
  {
-    // Retrieve the stoichiometric matrix from the sbml document.
+    // Retrieve the Deterministic matrix from the sbml document.
     this->stoichmat = DeterministicModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.

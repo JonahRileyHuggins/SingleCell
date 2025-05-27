@@ -221,5 +221,6 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 
+amici_models/Deterministic/*
 
 src/results.txt

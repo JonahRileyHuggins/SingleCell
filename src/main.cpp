@@ -117,7 +117,7 @@ int main(
     double stop = 60.0; 
     double step = 30.0;
     std::string stochastic_sbml = "../tests/Stochastic.sbml";
-    std::string deterministic_sbml = "../tests/SingleCell.sbml";
+    std::string deterministic_sbml = "../tests/Deterministic.sbml";
 
     start = parseTimeArgs(argc, argv, 1, start, "start");
     stop = parseTimeArgs(argc, argv, 2, stop, "stop");
@@ -135,10 +135,6 @@ int main(
                                                                     start, stop, step);
 
 
-    printf("Results Matrix of size [%i, %i]", 
-        (int)(results_matrix.size()), 
-        (int)(results_matrix[0].size())
-    );
     printf("\n");
 
     save_results(results_matrix);

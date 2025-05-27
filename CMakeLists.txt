@@ -10,8 +10,8 @@ set(Amici_DIR "${THIRD_PARTY_DIR}/AMICI-0.32.0/build")
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI-0.32.0")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
-set(LIBXML_LIBRARY "${THIRD_PARTY_DIR}/libxml2")
-set(LIBXML_INCLUDE_DIR "${LIBXML_LIBRARY}/include")
+# set(LIBXML_LIBRARY "${THIRD_PARTY_DIR}/libxml2-2.14.3")
+# set(LIBXML_INCLUDE_DIR "${LIBXML_LIBRARY}/include")
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
@@ -25,25 +25,12 @@ set(SINGLECELL_SRC_LIST
 # === External dependencies ===
 add_subdirectory(amici_models/Deterministic)
 add_subdirectory(ThirdParty/pybind11)
-add_subdirectory(ThirdParty/libxml2)
+add_subdirectory(ThirdParty/libxml2-2.14.3)
 add_subdirectory(ThirdParty/muparser)
 add_subdirectory(ThirdParty/libsbml-5.20.2)
 
-add_custom_target(install_libxml2 ALL
-    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target install_libxml2
-)
-
-add_custom_target(install_libsbml ALL
-    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target install_libsbml
-)
-
-add_dependencies(install_libsbml install_libxml2)
-
 # === Executable target ===
 add_executable(${PROJECT_NAME} ${SINGLECELL_SRC_LIST})
-
-include_directories(ThirdParty/libxml2/include)
-include_directories(ThirdParty/libsbml/include)
 
 target_include_directories(SingleCell PRIVATE
     ${CMAKE_SOURCE_DIR}/include

@@ -42,8 +42,6 @@ models/model_robertson/build/*
 !models/model_calvetti
 models/model_calvetti/build/*
 
-amici_models/
-
 simulate_model_*_hdf.m
 simulate_model_*.m
 
