@@ -185,7 +185,7 @@ std::vector<double> StochasticModule::samplePoisson(
 
     for (size_t i = 0; i < initial_reaction_vector.size(); ++i) { // NEEDS WORK HERE!
 
-        std::poisson_distribution<int> d((initial_reaction_vector[i] * step));
+        std::poisson_distribution<int> d((initial_reaction_vector[i] * step)); // @TODO: This needs to be delta_t, not current timestep
 
         stochastic_array[i] = d(mrand);
     }
