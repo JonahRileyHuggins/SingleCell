@@ -6,13 +6,13 @@
  * 
  * @brief Class Creator For Single Cell Model.
  */
-//----------------------header file definition-----------------------------//
+//========================header file definition============================//
 #pragma once
 
 #ifndef SINGLECELL_h
 #define SINGLECELL_h
 
-// --------------------------Library Import--------------------------------//
+//===========================Library Import=================================//
 
 #include <vector>
 #include <memory>
@@ -24,7 +24,7 @@
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 
-//--------------------------Class Declaration-----------------------------//
+//==========================Class Declaration===============================//
 class SingleCell {
     private:
 

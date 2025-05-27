@@ -63,6 +63,13 @@ class StochasticModule : public Simulation {
             int step
         ) override;
 
+        /**
+         * @brief public method for updating the simulation states at every timestep. 
+         * 
+         * @param state vector of timestep values to be calculated. 
+         * 
+         * @returns None
+         */
         void setModelState(
             const std::vector<double>& state
         );
@@ -79,10 +86,27 @@ class StochasticModule : public Simulation {
             const std::vector<double>& state
         );
 
+
+        /**
+        * @brief class instance to calculate a reaction formula using the muParser object
+        * 
+        * @param formula_str reaction formula to be calculated
+        * 
+        * @return v_i reaction i's left hand result
+        */
         double computeReaction(
             std::string formula_str
         );
 
+        /**
+         * @brief Finds all species in the formula string 
+         *      NOTE: species must be initialConcentration only. 
+         *      TODO: make compatible with Species initialAmount
+         * 
+         * @param formula_str string form of the reaction formula
+         * 
+         * @returns Map of component IDs to their numerical value
+         */
         std::unordered_map<std::string,double> mapComponentsToValues(
             const std::string& formula_str
         );
@@ -98,13 +122,20 @@ class StochasticModule : public Simulation {
             const std::string& formula_str
         );
 
-        std::vector<double> samplePoisson(
-            std::vector<double> initial_reaction_vector,
-            int step
+        /** 
+         * @brief Update stoichiometric values by setting as the mean for a poission distribution
+         * 
+         * @param initial_reaction_vector is the calculated result of computeReactions methodacosf128
+         * 
+         * @returns stochastic_array vector of Poisson-dist updated values
+        */
+        std::vector<int> samplePoisson(
+            std::vector<double> initial_reaction_vector
         );
         //---------------------------Members----------------------------------//
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;
+        double delta_t; 
 
 
         protected:

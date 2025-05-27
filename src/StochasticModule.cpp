@@ -69,13 +69,6 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
 }
     
 double StochasticModule::computeReaction(std::string formula_str) {
-    /**
-    * @brief class instance to calculate a reaction formula using the muParser object
-    * 
-    * @param formula_str reaction formula to be calculated
-    * 
-    * @return v_i reaction i's left hand result
-    */
 
     // Create instance of Parser object
     mu::Parser parser;
@@ -104,15 +97,6 @@ double StochasticModule::computeReaction(std::string formula_str) {
 }
 
 std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(const std::string& formula_str) {
-    /**
-     * @brief Finds all species in the formula string 
-     *      NOTE: species must be initialConcentration only. 
-     *      TODO: make compatible with Species initialAmount
-     * 
-     * @param formula_str string form of the reaction formula
-     * 
-     * @returns Map of component IDs to their numerical value
-     */
 
     std::unordered_map<std::string, double> component_value_map;
 
@@ -166,28 +150,18 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
     return tokens;
 }
 
-std::vector<double> StochasticModule::samplePoisson(
-    std::vector<double> initial_reaction_vector,
-    int step
+std::vector<int> StochasticModule::samplePoisson(
+    std::vector<double> initial_reaction_vector
 ) {
-    /** 
-     * @brief Update stoichiometric values by setting as the mean for a poission distribution
-     * 
-     * @param initial_reaction_vector is the calculated result of computeReactions methodacosf128
-     * 
-     * @returns stochastic_array vector of Poisson-dist updated values
-    */
 
-    // Global Mersenne Twister generator seeded with current time
-    static std::mt19937 mrand(static_cast<unsigned int>(std::time(nullptr)));
+    std::default_random_engine generator;
 
-    std::vector<double> stochastic_array(initial_reaction_vector.size()); 
+    std::vector<int> stochastic_array(initial_reaction_vector.size()); 
 
-    for (size_t i = 0; i < initial_reaction_vector.size(); ++i) { // NEEDS WORK HERE!
+    for (size_t i = 0; i < initial_reaction_vector.size(); ++i) {
 
-        std::poisson_distribution<int> d((initial_reaction_vector[i] * step)); // @TODO: This needs to be delta_t, not current timestep
-
-        stochastic_array[i] = d(mrand);
+        std::poisson_distribution<int> dist((initial_reaction_vector[i] * this->delta_t)); 
+        stochastic_array[i] = dist(generator);
     }
     return stochastic_array;
 }
@@ -217,16 +191,12 @@ void StochasticModule::_simulationPrep(
         stoch_states, 
         0
     );
+
+    this->delta_t = step;
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
-    /**
-     * @brief public method for updating the simulation states at every timestep. 
-     * 
-     * @param state vector of timestep values to be calculated. 
-     * 
-     * @returns None
-     */
+
     std::vector<std::string> speciesIds = handler.getSpeciesIds();
     for (size_t i = 0; i < speciesIds.size(); ++i) {
         Species* s = sbml->getSpecies(speciesIds[i]);
@@ -244,7 +214,7 @@ void StochasticModule::runStep(
     std::vector<double> v = computeReactions(last_record);
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> r = samplePoisson(v, step);
+    std::vector<int> r = samplePoisson(v);
 
     // Update the stochastic state vector: new_state = max((old_state * ))
     std::vector<double> new_state(last_record.size());

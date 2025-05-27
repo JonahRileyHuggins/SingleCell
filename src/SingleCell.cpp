@@ -84,10 +84,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
     printf("Simulation Completed in %f seconds.", static_cast<double>(duration.count()));
     printf("\n");
 
-    printf("Species Order: \n");
-    
-    // for (int  ) {}
-
     return results_matrix;
 }
 
