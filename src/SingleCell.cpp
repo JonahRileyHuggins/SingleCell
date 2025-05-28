@@ -45,6 +45,9 @@ std::vector<std::vector<double>> SingleCell::simulate(
     StochasticModule stochMod = StochasticModule(StochasticModel);
     DeterministicModule detMod = DeterministicModule(DeterministicModel);
 
+    // @TODO remove this, printing stoichiometric matrix:
+
+
     // Add simulation time steps, results matrix, 
     stochMod._simulationPrep(stoch_states, start, stop, step);
     detMod._simulationPrep(det_states, start, stop, step);

@@ -154,7 +154,8 @@ std::vector<int> StochasticModule::samplePoisson(
     std::vector<double> initial_reaction_vector
 ) {
 
-    std::default_random_engine generator;
+    std::random_device rd;
+    std::mt19937 generator(rd());
 
     std::vector<int> stochastic_array(initial_reaction_vector.size()); 
 
@@ -162,6 +163,7 @@ std::vector<int> StochasticModule::samplePoisson(
 
         std::poisson_distribution<int> dist((initial_reaction_vector[i] * this->delta_t)); 
         stochastic_array[i] = dist(generator);
+
     }
     return stochastic_array;
 }

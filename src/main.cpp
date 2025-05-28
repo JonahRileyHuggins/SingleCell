@@ -16,44 +16,11 @@
 #include <iostream>
 
 // Internal Libraries
+#include "singlecell/utils.h"
 #include "singlecell/SingleCell.h"
 
 //--------------------------Function Definitions----------------------------//
-/**
- * @brief Saves results matrix from class SingleCell method Simulate
- * 
- * @param results_matrix matrix of species states by time in simulation function
- * 
- * @returns none
- */
-void save_results(
-    std::vector<std::vector<double>> results_matrix
-) {
 
-    // Results file:
-    std::string outfile = "results.txt";
-
-    std::ofstream outFile(outfile);
-
-    int numRows = results_matrix.size();
-
-    int numCols = results_matrix[0].size();
-
-    for (size_t i = 0; i < numRows; i++) {
-        for (size_t j = 0; j < numCols; j++) {
-            outFile << results_matrix[i][j] << "\t";
-
-            if (j == (numCols-1)) {
-                outFile << "\n";
-            }
-
-        }
-
-    }
-
-    outFile.close();
-
-}
 double parseTimeArgs(
     int argc, 
     char* argv[], 
@@ -135,9 +102,8 @@ int main(
                                                                     start, stop, step);
 
 
-    printf("\n");
 
-    save_results(results_matrix);
+    matrix_utils::save_matrix(results_matrix);
 
     return 0;
 }
