@@ -212,13 +212,13 @@ void StochasticModule::runStep(
     // get (step minus 1) position in results_matrix member
     std::vector<double> last_record = getLastStepResult(step);
 
-    // Calculate v = formula where v is a vector of left hand reaction values
+    // Calculate v = formula where v is a vector of left hand reaction results
     std::vector<double> v = computeReactions(last_record);
 
     // Sample stochastic answer from Poisson distribution
     std::vector<int> r = samplePoisson(v);
 
-    // Update the stochastic state vector: new_state = max((old_state * ))
+    // Update the stochastic state vector: new_state = max((old_state * v), 0)
     std::vector<double> new_state(last_record.size());
     for (size_t i = 0; i < last_record.size(); ++i) {
         double delta = 0.0;

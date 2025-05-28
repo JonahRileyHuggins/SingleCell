@@ -16,6 +16,7 @@
 
 
 // Internal Libraries
+#include "singlecell/utils.h"
 #include "singlecell/SingleCell.h"
 #include "singlecell/Simulation.h"
 #include "singlecell/SBMLHandler.h"
@@ -44,9 +45,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
     //Create instances of internal simulation modules: dynamic allocation
     StochasticModule stochMod = StochasticModule(StochasticModel);
     DeterministicModule detMod = DeterministicModule(DeterministicModel);
-
-    // @TODO remove this, printing stoichiometric matrix:
-
 
     // Add simulation time steps, results matrix, 
     stochMod._simulationPrep(stoch_states, start, stop, step);

@@ -246,7 +246,7 @@ class StochasticModel(CreateModel):
 
         self.__reduce_rxns()
 
-        AntimonyFile(self)
+        AntimonyFile(self, correction=False, stochastic=True)
 
         sbml_file_path = self._convert_antimony_to_sbml()
 
@@ -308,7 +308,7 @@ class StochasticModel(CreateModel):
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, parent_model_type: SimpleNamespace):
+    def __init__(self, parent_model_type: SimpleNamespace, correction = True, stochastic = False):
         self.model_files = parent_model_type.model_files
         self.model_name = parent_model_type.model_name
         ## Include other operations here. 
@@ -321,7 +321,7 @@ class AntimonyFile:
 
         self.__write_species()
 
-        self.__write_reactions()
+        self.__write_reactions(correction=correction)
 
         self.__assign_compartment_initial_concentrations()
 
@@ -331,7 +331,7 @@ class AntimonyFile:
 
         self.__make_compartments_constant()
 
-        self.__assign_units()
+        self.__assign_units(stochastic=stochastic)
 
         self.__end_antimony_file()
 
@@ -378,7 +378,7 @@ class AntimonyFile:
 
             logger.info("Species '%s' in compartment '%s' writen to antimony document" % (speciesid, species_compartment))
 
-    def __write_reactions(self): #handled in cells 12 & 13
+    def __write_reactions(self, correction = True): #handled in cells 12 & 13
         """Writes given reactions to antimony file."""
         logger.info("Writing ratelaws to antimony document %s", self.model_name)
 
@@ -396,8 +396,19 @@ class AntimonyFile:
             self.antimony_file.write( # bottom of Cell 13
                 f"  {ratelaw_id}: "
                 + f"{' + '.join(ratelaw_info.reactants)} => {' + '.join(ratelaw_info.products)}; "
-                + f"({ratelaw_info.formula})*{ratelaw_info.compartment};\n"
+                + f"({ratelaw_info.formula})"
             )
+
+            if correction == False:
+                self.antimony_file.write(
+                    "\n"
+                )
+
+            else:
+                self.antimony_file.write(
+                    f"*{ratelaw_info.compartment};\n"
+                )
+
             logger.info("Formula %s for Ratelaw %s written to antimony document." % (ratelaw_info.formula, ratelaw_id))
 
     def __assign_compartment_initial_concentrations(self): # Cell 20
@@ -470,7 +481,7 @@ class AntimonyFile:
         compartment_line = ",".join(const_compartments) + ";\n"
         self.antimony_file.write(compartment_line)
 
-    def __assign_units(self):
+    def __assign_units(self, stochastic = False):
         """Writing Model Units"""
 
         # Write unit definitions
@@ -478,7 +489,10 @@ class AntimonyFile:
         self.antimony_file.write("\n  unit time_unit = second;")
         self.antimony_file.write("\n  unit volume = litre;")
         self.antimony_file.write("\n  unit substance = 1e-9 mole;")
-        self.antimony_file.write("\n  unit nM = 1e-9 mole / litre;")
+        if stochastic == True:
+            self.antimony_file.write("\n  unit mpc = 6.022e-23 mole;")
+        else:
+            self.antimony_file.write("\n  unit nM = 1e-9 mole / litre;")
         self.antimony_file.write("\n")
 
     def __end_antimony_file(self):
