@@ -20,6 +20,7 @@ set(SINGLECELL_SRC_LIST
     src/DeterministicModule.cpp
     src/StochasticModule.cpp
     src/SingleCell.cpp
+    src/utils.cpp
     src/main.cpp)
 
 # === External dependencies ===
