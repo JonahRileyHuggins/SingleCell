@@ -175,14 +175,14 @@ std::vector<double> StochasticModule::constrainTau(
     std::vector<double> xhat_tn
 ) {
 
-    std::vector<double> mhat_actual; // results storage vector
+    std::vector<double> mhat_actual(m_i.size()); // results storage vector
 
    for (int i = 0; i < this->stoichmat[0].size(); i++) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
         std::vector<double> S_i = matrix_utils::getColumn(this->stoichmat, i);
 
-        std::vector<double> Rhat_i; // double for storing each reaction product
+        std::vector<double> Rhat_i(xhat_tn.size()); // double for storing each reaction product
 
         for (int j = 0; j < xhat_tn.size(); j++) {
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
@@ -190,27 +190,37 @@ std::vector<double> StochasticModule::constrainTau(
 
         std::vector<double> negative_Rhat_vals; 
 
+//         // <-- Possible cause of segfault, check else as fixed, was one-line operator previously
         for (const auto& reactant : Rhat_i) { // drop reactants = negative (-) or 0: i.e. not rate-limiting
+            // double reactant = Rhat_i[i];
             if (reactant <= 0) {
                 negative_Rhat_vals.push_back(reactant);
             }
         }
 
-        //get the smallest reactant (i.e. most rate-limiting):
-        auto R_mi = std::abs(
-            *std::min_element(
-            negative_Rhat_vals.begin(), 
-            negative_Rhat_vals.end(),
-            [](double a, double b) {
-                return std::abs(a) < std::abs(b);
-                }
-            )
-        );
+        double R_mi; // populates with value during if statement
+
+        if (negative_Rhat_vals.empty()){
+
+            R_mi = 0.0;
+
+        } else {
+            //get the smallest reactant (i.e. most rate-limiting):
+            R_mi = std::abs(
+                *std::min_element(
+                negative_Rhat_vals.begin(), 
+                negative_Rhat_vals.end(),
+                [](double a, double b) {
+                    return std::abs(a) < std::abs(b);
+                    }
+                )
+            );
+        }
 
         // compare between predicted and actual:
         mhat_actual[i] = std::min(m_i[i], R_mi); 
     }
-    
+
     return mhat_actual;
 }
 
@@ -274,7 +284,7 @@ void StochasticModule::runStep(
         for (size_t j = 0; j < mhat_actual.size(); ++j) {
             delta += stoichmat[i][j] * mhat_actual[j];
         }
-        new_state[i] = std::max(last_record[i] + delta, 0.0);
+        new_state[i] = last_record[i] + delta;
     }
     
     //Record iteration's result8
