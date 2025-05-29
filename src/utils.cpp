@@ -45,4 +45,17 @@ namespace matrix_utils {
         outFile.close();
 
     }
+
+    std::vector<double> getColumn(
+        const std::vector<std::vector<double>>& matrix, 
+        size_t indexCol
+    ) {
+        std::vector<double>column;
+
+        for (const auto& row : matrix) {
+            column.push_back(row[indexCol]);
+        }
+
+        return column;
+    }
 }

@@ -125,13 +125,27 @@ class StochasticModule : public Simulation {
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
          * 
-         * @param initial_reaction_vector is the calculated result of computeReactions methodacosf128
+         * @param mu the rate vector calculated from each reaction, per second time unit
          * 
-         * @returns stochastic_array vector of Poisson-dist updated values
+         * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
-        std::vector<int> samplePoisson(
-            std::vector<double> initial_reaction_vector
+        std::vector<double> samplePoisson(
+            std::vector<double> mu
         );
+
+        /**
+         * @brief constrains Tau leap against negative values that result from low copy numbers
+         * 
+         * @param xhat_tn current poisson-sample vector
+         * 
+         * @returns  m_actual minimum choice between negative reactants per reaction
+        */
+        std::vector<double> constrainTau(
+            std::vector<double> m_i,
+            std::vector<double> xhat_tn
+        ); 
+
+        
         //---------------------------Members----------------------------------//
         std::vector<std::vector<double>> stoichmat;
         std::vector<std::string> formulas_vector;

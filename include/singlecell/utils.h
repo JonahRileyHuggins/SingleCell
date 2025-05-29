@@ -35,6 +35,19 @@ namespace matrix_utils {
         std::string name = "results.tsv",
         std::string output = "../src/"
         );
+
+    /**
+     * @brief Extracts a column based on index from a matrix of nested vectors
+     * 
+     * @param matrix the matrix to extract from
+     * @param colIndex the index to extract from said matrix
+     * 
+     * @returns matrix-column @ colIndex
+     */
+    std::vector<double> getColumn(
+        const std::vector<std::vector<double>>& matrix, 
+        size_t colIndex
+    );
 }
 
 #endif

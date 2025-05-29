@@ -9,8 +9,8 @@
 
 //===========================Library Import=================================//
 //Std Libraries
-#include <stdio.h>
 #include <ctime>
+#include <cmath>
 #include <vector>
 #include <string>
 #include <random>
@@ -22,6 +22,7 @@
 #include <unordered_map>
 
 // Internal libraries
+#include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/StochasticModule.h"
 
@@ -150,22 +151,67 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
     return tokens;
 }
 
-std::vector<int> StochasticModule::samplePoisson(
-    std::vector<double> initial_reaction_vector
+std::vector<double> StochasticModule::samplePoisson(
+    std::vector<double> mu
 ) {
 
     std::random_device rd;
     std::mt19937 generator(rd());
 
-    std::vector<int> stochastic_array(initial_reaction_vector.size()); 
+    // realization vector for storing random poisson samples
+    std::vector<double> m_i(mu.size()); 
 
-    for (size_t i = 0; i < initial_reaction_vector.size(); ++i) {
+    for (size_t i = 0; i < mu.size(); ++i) {
 
-        std::poisson_distribution<int> dist((initial_reaction_vector[i] * this->delta_t)); 
-        stochastic_array[i] = dist(generator);
+        std::poisson_distribution<int> dist((mu[i] * this->delta_t)); 
+        m_i[i] = dist(generator);
 
     }
-    return stochastic_array;
+    return m_i;
+}
+
+std::vector<double> StochasticModule::constrainTau(
+    std::vector<double> m_i,
+    std::vector<double> xhat_tn
+) {
+
+    std::vector<double> mhat_actual; // results storage vector
+
+   for (int i = 0; i < this->stoichmat[0].size(); i++) {
+
+        // Vector for current ratelaw stoichiometries per species (i.e. column of S)
+        std::vector<double> S_i = matrix_utils::getColumn(this->stoichmat, i);
+
+        std::vector<double> Rhat_i; // double for storing each reaction product
+
+        for (int j = 0; j < xhat_tn.size(); j++) {
+            Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
+        }
+
+        std::vector<double> negative_Rhat_vals; 
+
+        for (const auto& reactant : Rhat_i) { // drop reactants = negative (-) or 0: i.e. not rate-limiting
+            if (reactant <= 0) {
+                negative_Rhat_vals.push_back(reactant);
+            }
+        }
+
+        //get the smallest reactant (i.e. most rate-limiting):
+        auto R_mi = std::abs(
+            *std::min_element(
+            negative_Rhat_vals.begin(), 
+            negative_Rhat_vals.end(),
+            [](double a, double b) {
+                return std::abs(a) < std::abs(b);
+                }
+            )
+        );
+
+        // compare between predicted and actual:
+        mhat_actual[i] = std::min(m_i[i], R_mi); 
+    }
+    
+    return mhat_actual;
 }
 
 void StochasticModule::_simulationPrep(
@@ -213,22 +259,25 @@ void StochasticModule::runStep(
     std::vector<double> last_record = getLastStepResult(step);
 
     // Calculate v = formula where v is a vector of left hand reaction results
-    std::vector<double> v = computeReactions(last_record);
+    std::vector<double> mu = computeReactions(last_record);
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<int> r = samplePoisson(v);
+    std::vector<double> m_i = samplePoisson(mu);
+
+    // Constrain Tau-leap algorithm to only positive integers:
+    std::vector<double> mhat_actual = constrainTau(m_i, last_record);
 
     // Update the stochastic state vector: new_state = max((old_state * v), 0)
     std::vector<double> new_state(last_record.size());
     for (size_t i = 0; i < last_record.size(); ++i) {
         double delta = 0.0;
-        for (size_t j = 0; j < r.size(); ++j) {
-            delta += stoichmat[i][j] * r[j];
+        for (size_t j = 0; j < mhat_actual.size(); ++j) {
+            delta += stoichmat[i][j] * mhat_actual[j];
         }
         new_state[i] = std::max(last_record[i] + delta, 0.0);
     }
     
-    //Record iteration's result
+    //Record iteration's result8
     Simulation::recordStepResult(new_state, step);
 }
 
