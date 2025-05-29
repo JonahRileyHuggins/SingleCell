@@ -18,11 +18,8 @@
           <unit kind="mole" exponent="1" scale="-9" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
-      <unitDefinition id="mpc">
-        <listOfUnits>
-          <unit kind="mole" exponent="1" scale="-23" multiplier="6.022"/>
-        </listOfUnits>
-      </unitDefinition>
+      <unitDefinition id="mpc"/>
+      <unitDefinition id="molecule"/>
     </listOfUnitDefinitions>
     <listOfCompartments>
       <compartment id="Cytoplasm" spatialDimensions="3" size="3000" units="volume" constant="true"/>
@@ -52,6 +49,9 @@
       <parameter id="kTL2_1" value="1" constant="true"/>
       <parameter id="kLR1_1" value="0.01" constant="true"/>
       <parameter id="kLR2_1" value="0.01" constant="true"/>
+      <parameter id="kLR3_1" value="0.009" constant="true"/>
+      <parameter id="kLR4_1" value="0.009" constant="true"/>
+      <parameter id="nuc_gene_i__LIGAND" constant="true"/>
     </listOfParameters>
     <listOfReactions>
       <reaction id="vGac1" reversible="false" fast="false">
@@ -67,6 +67,23 @@
               <times/>
               <ci> kGac1_1 </ci>
               <ci> nuc_gene_i__LIGAND_ </ci>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <or/>
+                  <apply>
+                    <divide/>
+                    <ci> nuc_gene_i__LIGAND_ </ci>
+                    <apply>
+                      <plus/>
+                      <ci> nuc_gene_a__LIGAND_ </ci>
+                      <ci> nuc_gene_i__LIGAND </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -84,6 +101,23 @@
               <times/>
               <ci> kGac2_1 </ci>
               <ci> nuc_gene_i__RECEPTOR_ </ci>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <or/>
+                  <apply>
+                    <divide/>
+                    <ci> nuc_gene_i__RECEPTOR_ </ci>
+                    <apply>
+                      <plus/>
+                      <ci> nuc_gene_a__RECEPTOR_ </ci>
+                      <ci> nuc_gene_i__RECEPTOR_ </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -101,6 +135,23 @@
               <times/>
               <ci> kGin1_1 </ci>
               <ci> nuc_gene_a__LIGAND_ </ci>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <or/>
+                  <apply>
+                    <divide/>
+                    <ci> nuc_gene_a__LIGAND_ </ci>
+                    <apply>
+                      <plus/>
+                      <ci> nuc_gene_a__LIGAND_ </ci>
+                      <ci> nuc_gene_i__LIGAND </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -118,6 +169,23 @@
               <times/>
               <ci> kGin2_1 </ci>
               <ci> nuc_gene_a__RECEPTOR_ </ci>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <or/>
+                  <apply>
+                    <divide/>
+                    <ci> nuc_gene_i__RECEPTOR_ </ci>
+                    <apply>
+                      <plus/>
+                      <ci> nuc_gene_a__RECEPTOR_ </ci>
+                      <ci> nuc_gene_i__RECEPTOR_ </ci>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 0 </cn>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>

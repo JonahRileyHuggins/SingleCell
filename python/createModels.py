@@ -446,6 +446,8 @@ class AntimonyFile:
         Returns:
             None: assigns parameters table values to self.parameters object.
         """
+        self.model_files.parameters = self.model_files.parameters.reset_index()
+
         params_include_df = self.model_files.parameters[['parameterId', 'nominalValue']].copy()
 
         params_include_df.rename(columns={'nominalValue':"value"}, inplace = True)
@@ -490,7 +492,7 @@ class AntimonyFile:
         self.antimony_file.write("\n  unit volume = litre;")
         self.antimony_file.write("\n  unit substance = 1e-9 mole;")
         if stochastic == True:
-            self.antimony_file.write("\n  unit mpc = 6.022e-23 mole;")
+            self.antimony_file.write("\n  unit mpc = 1 molecule;")
         else:
             self.antimony_file.write("\n  unit nM = 1e-9 mole / litre;")
         self.antimony_file.write("\n")

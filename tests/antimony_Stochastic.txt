@@ -15,10 +15,10 @@ model Stochastic()
 
 
  # Reactions:
-  vGac1: nuc_gene_i__LIGAND_ => nuc_gene_a__LIGAND_; (kGac1_1*nuc_gene_i__LIGAND_)
-  vGac2: nuc_gene_i__RECEPTOR_ => nuc_gene_a__RECEPTOR_; (kGac2_1*nuc_gene_i__RECEPTOR_)
-  vGin1: nuc_gene_a__LIGAND_ => nuc_gene_i__LIGAND_; (kGin1_1*nuc_gene_a__LIGAND_)
-  vGin2: nuc_gene_a__RECEPTOR_ => nuc_gene_i__RECEPTOR_; (kGin2_1*nuc_gene_a__RECEPTOR_)
+  vGac1: nuc_gene_i__LIGAND_ => nuc_gene_a__LIGAND_; (kGac1_1 * (nuc_gene_i__LIGAND_ * (1 - ((nuc_gene_i__LIGAND_ / (nuc_gene_a__LIGAND_ + nuc_gene_i__LIGAND)) || 0))))
+  vGac2: nuc_gene_i__RECEPTOR_ => nuc_gene_a__RECEPTOR_; (kGac2_1 * (nuc_gene_i__RECEPTOR_  * (1 - ((nuc_gene_i__RECEPTOR_ / (nuc_gene_a__RECEPTOR_ + nuc_gene_i__RECEPTOR_)) || 0))))
+  vGin1: nuc_gene_a__LIGAND_ => nuc_gene_i__LIGAND_; (kGin1_1 * (nuc_gene_a__LIGAND_  * (1 - ((nuc_gene_a__LIGAND_ / (nuc_gene_a__LIGAND_ + nuc_gene_i__LIGAND)) || 0))))
+  vGin2: nuc_gene_a__RECEPTOR_ => nuc_gene_i__RECEPTOR_; (kGin2_1* (nuc_gene_a__RECEPTOR_  * (1 - ((nuc_gene_i__RECEPTOR_ / (nuc_gene_a__RECEPTOR_ + nuc_gene_i__RECEPTOR_)) || 0))))
   vTC1:  => cyt_mrna__LIGAND_; (kTC1_1)
   vTC2:  => cyt_mrna__RECEPTOR_; (kTC2_1)
   vTCd1: cyt_mrna__LIGAND_ => ; (kTCd1_1)
@@ -54,6 +54,8 @@ model Stochastic()
   kTL2_1 = 1.000000e+00;
   kLR1_1 = 1.000000e-02;
   kLR2_1 = 1.000000e-02;
+  kLR3_1 = 9.000000e-03;
+  kLR4_1 = 9.000000e-03;
 
   # Other declarations:
   const Cytoplasm,Nucleus;
@@ -62,6 +64,6 @@ model Stochastic()
   unit time_unit = second;
   unit volume = litre;
   unit substance = 1e-9 mole;
-  unit mpc = 6.022e-23 mole;
+  unit mpc = 1 molecule;
 
 end

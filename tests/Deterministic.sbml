@@ -41,6 +41,8 @@
       <parameter id="cyt_mrna__RECEPTOR_" value="10" constant="true"/>
       <parameter id="kLR1_1" value="0.01" constant="true"/>
       <parameter id="kLR2_1" value="0.01" constant="true"/>
+      <parameter id="kLR3_1" value="0.009" constant="true"/>
+      <parameter id="kLR4_1" value="0.009" constant="true"/>
       <parameter id="nuc_gene_a__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_i__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_a__RECEPTOR_" value="1" constant="true"/>
@@ -119,6 +121,36 @@
               <times/>
               <ci> kLR2_1 </ci>
               <ci> cyt_prot__LIGAND__RECEPTOR_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vLR3" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_prot__LIGAND_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kLR3_1 </ci>
+              <ci> cyt_prot__LIGAND_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vLR4" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_prot__RECEPTOR_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kLR4_1 </ci>
+              <ci> cyt_prot__RECEPTOR_ </ci>
               <ci> Cytoplasm </ci>
             </apply>
           </math>
