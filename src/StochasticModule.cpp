@@ -190,10 +190,8 @@ std::vector<double> StochasticModule::constrainTau(
 
         std::vector<double> negative_Rhat_vals; 
 
-//         // <-- Possible cause of segfault, check else as fixed, was one-line operator previously
-        for (const auto& reactant : Rhat_i) { // drop reactants = negative (-) or 0: i.e. not rate-limiting
-            // double reactant = Rhat_i[i];
-            if (reactant <= 0) {
+        for (const auto& reactant : Rhat_i) { // drop reactants != negative (-): i.e. not rate-limiting
+            if (reactant < 0) {
                 negative_Rhat_vals.push_back(reactant);
             }
         }
