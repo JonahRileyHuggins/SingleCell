@@ -188,6 +188,16 @@ std::vector<double> StochasticModule::constrainTau(
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
 
+        /**
+        * @todo: turn lines 194 : 219 into a single line iteration, something like the following:
+        * double R_mi = 0.0;
+        * for (const auto& reactant : Rhat_i) {
+        *     if (reactant < R_mi) {
+        *        R_mi = reactant;
+        *     }
+        * R_mi = std::abs(R_mi);
+        * }
+        */
         std::vector<double> negative_Rhat_vals; 
 
         for (const auto& reactant : Rhat_i) { // drop reactants != negative (-): i.e. not rate-limiting
