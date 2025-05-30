@@ -91,8 +91,10 @@ class ArgParsing {
          * @returns None updates cli_map class-member
          */
         double parseDoubleArgs(
-            std::string key, 
-            std::any value
+            const std::string& key, 
+            const std::any value, 
+            double def, 
+            const char* arg_name
         );
 
         /**
@@ -112,7 +114,7 @@ class ArgParsing {
          * 
          * @returns None Updates class-member cli_map
          */
-        void ArgParsing::parseKeyValuePairs(
+        void parseKeyValuePairs(
             std::string arg
         );
 
@@ -121,4 +123,4 @@ class ArgParsing {
 
 };
 
-#endif // ARGPARSING_H
+#endif // ARGPARSING_h

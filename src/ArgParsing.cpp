@@ -38,22 +38,20 @@ ArgParsing::ArgParsing(int argc, char* argv[]) {
 
     if (cli_map.count("--stop")) {
         std::string v = std::any_cast<std::string>(cli_map["--stop"]);
-        cli_map["--stop"] = parseDoubleArgs("--stop", v, 0.0, "--stop");
+        cli_map["--stop"] = parseDoubleArgs("--stop", v, 60.0, "--stop");
     }
 
     if (cli_map.count("--step")) {
         std::string v = std::any_cast<std::string>(cli_map["--step"]);
-        cli_map["--step"] = parseDoubleArgs("--step", v, 0.0, "--step");
+        cli_map["--step"] = parseDoubleArgs("--step", v, 1.0, "--step");
     }
 
     // Parse key-value pair updates (e.g., --update "x=0.1")
     if (cli_map.count("-u") || cli_map.count("--update")) {
         std::string kv_string = std::any_cast<std::string>(cli_map["--update"]);
-        parseKeyValuePairs(kv_string); // Assumes this accepts a string
+        parseKeyValuePairs(kv_string); 
     }
 }
-
-ArgParsing::~ArgParsing(){}
 
 std::unordered_map<std::string, std::any> ArgParsing::cliToMap(
     int argc, 
@@ -96,15 +94,15 @@ void ArgParsing::printUsage() {
             "    ./SingleCell --<option> <opt_parameter>\n";
 }
 
-
-double parseDoubleArgs(
+double ArgParsing::parseDoubleArgs(
     const std::string& key, 
-    const std::string& value, 
-    double def, const char* arg_name
+    const std::any value, 
+    double def, 
+    const char* arg_name
 ) {
     char* end = nullptr; // make end point
 
-    std::string v_init = std::any_cast<std::string>(this->cli_map[key]);
+    std::string v_init = std::any_cast<std::string>(value);
 
     double v = std::strtod(v_init.c_str(), &end); 
 
@@ -124,8 +122,21 @@ void ArgParsing::parseKeyValuePairs(
 
     }
 
-    std::string key = arg.substr(0, pos);
-    std::string value = arg.substr(1, pos);
+    std::any new_value;
 
-    this->cli_map[key] = value;
+    std::string key = arg.substr(0, pos);
+    std::string temp_value = arg.substr(1, pos);
+
+    //quick attempt to convert numerics to proper type before passing
+    try {
+        char* end = nullptr;
+
+        new_value = std::strtod(temp_value.c_str(), &end);
+    }
+    catch(...) {
+        new_value = temp_value;
+    }
+
+
+    this->cli_map[key] = new_value;
 }

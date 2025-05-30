@@ -21,6 +21,7 @@ set(SINGLECELL_SRC_LIST
     src/StochasticModule.cpp
     src/SingleCell.cpp
     src/utils.cpp
+    src/ArgParsing.cpp
     src/main.cpp)
 
 # === External dependencies ===

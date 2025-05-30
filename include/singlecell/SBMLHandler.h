@@ -80,7 +80,24 @@ class SBMLHandler {
          */
         std::vector<double> getInitialState();
 
+        /**
+         * @todo add method docstring
+         */
         std::vector<std::string> getParameterIds();
+
+        /**
+         * @brief Method for modifying model entity species || parameter|| compartment
+         * 
+         * @param entity_id model entity string or parameter to index for change
+         * @param new_value updating value for model
+         * 
+         * @returns None updates model SBML object
+         */
+
+         void setModelEntityValue(
+            std::string entity_id, 
+            double new_value
+         );
 
     private:
         SBMLDocument* doc; 

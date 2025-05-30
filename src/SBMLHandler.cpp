@@ -170,3 +170,23 @@ std::vector<std::string> SBMLHandler::getParameterIds() {
 
     return parameter_ids;
 }
+
+void SBMLHandler::setModelEntityValue(
+    std::string entity_id, 
+    double new_value
+) {
+    // Check if in SBML as Parameter || Species || Compartment;
+    if (this->model->getParameter(entity_id)!= nullptr) {
+
+        this->model->getParameter(entity_id)->setValue(new_value);
+        
+    } else if (this->model->getSpecies(entity_id) != nullptr) {
+
+        this->model->getSpecies(entity_id)->setInitialConcentration(new_value);
+
+    } else if (this->model->getCompartment(new_value)!= nullptr) {
+
+        this->model->getCompartment(entity_id)->setVolume(new_value);
+
+    } 
+}
