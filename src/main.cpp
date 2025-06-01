@@ -54,7 +54,16 @@ int main(
         stochastic_sbml,
         deterministic_sbml
     );
-
+    std::cout << "Entity Map:\n";
+    for (const auto& [key, value] : argparser->cli_map) {
+        std::cout << "  " << key << " => ";
+        try {
+            std::cout << std::any_cast<std::string>(value);
+        } catch (std::bad_any_cast) {
+            std::cout << std::any_cast<double>(value);
+        } 
+        std::cout << '\n';
+    }
     std::vector<std::vector<double>> results_matrix = singleCell->simulate(
         argparser->entity_map,
         start, 

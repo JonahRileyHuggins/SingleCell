@@ -179,7 +179,7 @@ void SBMLHandler::setModelEntityValue(
     if (this->model->getParameter(entity_id)!= nullptr) {
 
         this->model->getParameter(entity_id)->setValue(new_value);
-        
+
     } else if (this->model->getSpecies(entity_id) != nullptr) {
 
         this->model->getSpecies(entity_id)->setInitialConcentration(new_value);
@@ -188,5 +188,9 @@ void SBMLHandler::setModelEntityValue(
 
         this->model->getCompartment(entity_id)->setVolume(new_value);
 
-    } 
+    }else {
+        printf("Entity {%s} Not Found In Model", entity_id.c_str());
+
+        std::exit(EXIT_FAILURE);
+    }
 }

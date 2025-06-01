@@ -67,6 +67,7 @@ std::unordered_map<std::string, std::any> ArgParsing::cliToMap(
                 i++;
             }
 
+
             try {
 
                 if (key == "--start" || key == "--stop" || key == "--step") {
@@ -75,9 +76,14 @@ std::unordered_map<std::string, std::any> ArgParsing::cliToMap(
 
                     double value_d = std::strtod(value.c_str(), &end); 
                     args[key] = value_d;
+
+                } else {
+                    args[key] = value;
                 }
+
             } catch (...) {
-                std::cout << "value is of type: " << typeid(value).name();
+
+                std::cout << "Key {" << key << "}:" << "value is of type: " << typeid(value).name();
 
                 args[key] = value;
             }

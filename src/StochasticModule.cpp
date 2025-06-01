@@ -242,6 +242,7 @@ void StochasticModule::_simulationPrep(
         std::vector<double> init_states;
 
     if (entity_map.empty()) {
+        printf("Using default model state for simulation.\n");
         init_states = handler.getInitialState();
     } else { 
         for (const auto& [key, value] : entity_map) {
