@@ -180,9 +180,15 @@ void SBMLHandler::setModelEntityValue(
 
         this->model->getParameter(entity_id)->setValue(new_value);
 
+            std::cout << "Parameter: " << static_cast<std::string>(this->model->getParameter(entity_id)->getId());
+            std::cout << " set value: " << static_cast<double>(this->model->getParameter(entity_id)->getValue()) << "\n";
+
     } else if (this->model->getSpecies(entity_id) != nullptr) {
 
         this->model->getSpecies(entity_id)->setInitialConcentration(new_value);
+
+        std::cout << "Species: " << static_cast<std::string>(this->model->getSpecies(entity_id)->getId());
+        std::cout << " set value: " << static_cast<double>(this->model->getSpecies(entity_id)->getInitialConcentration()) << "\n";
 
     } else if (this->model->getCompartment(new_value)!= nullptr) {
 
