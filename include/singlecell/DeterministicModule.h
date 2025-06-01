@@ -37,7 +37,7 @@ class DeterministicModule : public Simulation {
         ~DeterministicModule() override = default; //Dtor
 
         void _simulationPrep(
-            const std::vector<double>& initial_state,
+            std::unordered_map<std::string, double>entity_map,
             double start,
             double stop, 
             double step

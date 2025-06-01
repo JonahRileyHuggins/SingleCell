@@ -119,18 +119,25 @@ std::vector<double> DeterministicModule::getNewStepResult(
 }
 
 void DeterministicModule::_simulationPrep(
-    const std::vector<double>& initial_state,
+    std::unordered_map<std::string, double>entity_map,
     double start, 
     double stop, 
     double step
 ) {
 
-    std::vector<double> det_states;
+    std::vector<double> init_states;
 
-    if (initial_state.size() > 0) {
-        det_states = initial_state;  // copy
-    } else {
-        det_states = handler.getInitialState();  // copy
+    if (entity_map.empty()) {
+        init_states = handler.getInitialState();
+    } else { 
+        for (const auto& [key, value] : entity_map) {
+            this->handler.setModelEntityValue(
+                key, 
+                value
+            );
+
+            init_states = handler.getInitialState();
+        }
     }
 
      int numSpecies = this->sbml->getNumSpecies();
@@ -142,7 +149,7 @@ void DeterministicModule::_simulationPrep(
      
      // record initial state as first vector in results_matrix member 
      Simulation::recordStepResult(
-        det_states, 
+        init_states, 
         0
     );
      

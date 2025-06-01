@@ -50,8 +50,7 @@ class SingleCell {
          * @returns matrix of global states for both models
          */
         std::vector<std::vector<double>> simulate(
-            const std::vector<double>& det_states, //deterministic starting species values (nM)
-            const std::vector<double>& stoch_states, //stochastic starting species values (nM)
+            std::unordered_map<std::string, double> entity_map,
             double start = 0.0, //seconds
             double stop = 60.0, //seconds
             double step = 30.0 //seconds

@@ -32,8 +32,7 @@ SingleCell::SingleCell(
     { }
 
 std::vector<std::vector<double>> SingleCell::simulate(
-    const std::vector<double>& det_states, 
-    const std::vector<double>& stoch_states,
+    std::unordered_map<std::string, double> entity_map,
     double start, 
     double stop,
     double step
@@ -47,8 +46,8 @@ std::vector<std::vector<double>> SingleCell::simulate(
     DeterministicModule detMod = DeterministicModule(DeterministicModel);
 
     // Add simulation time steps, results matrix, 
-    stochMod._simulationPrep(stoch_states, start, stop, step);
-    detMod._simulationPrep(det_states, start, stop, step);
+    stochMod._simulationPrep(entity_map, start, stop, step);
+    detMod._simulationPrep(entity_map, start, stop, step);
 
     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 

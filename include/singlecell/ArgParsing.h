@@ -32,10 +32,11 @@ class ArgParsing {
             char* argv[]
         );
 
-        ~ArgParsing();
+        ~ArgParsing() = default; //Destructor, dtor
 
         //---------------------------Members----------------------------------//
         std::unordered_map<std::string, std::any> cli_map;
+        std::unordered_map<std::string, double> entity_map;
 
 
         private:
@@ -80,24 +81,6 @@ class ArgParsing {
         );
 
         /**
-         * @brief Examine a float-64 double thats a timepoint parameter and return as kvp
-         * 
-         * @param argc
-         * @param argv
-         * @param index
-         * @param def
-         * @param arg_name 
-         * 
-         * @returns None updates cli_map class-member
-         */
-        double parseDoubleArgs(
-            const std::string& key, 
-            const std::any value, 
-            double def, 
-            const char* arg_name
-        );
-
-        /**
          * @brief basic print help statement, used for informing users
          * 
          * @param None
@@ -117,6 +100,15 @@ class ArgParsing {
         void parseKeyValuePairs(
             std::string arg
         );
+
+        /**
+         * @brief populates the ArgParser class object with default parameters
+         * 
+         * @param None
+         * 
+         * @returns args_map map of default-args for simulator.
+         */
+        std::unordered_map<std::string, std::any>  setDefaults();
 
         //---------------------------Members----------------------------------//
         

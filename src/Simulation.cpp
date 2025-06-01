@@ -80,3 +80,14 @@ std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
     }
     return matrix1;
 }
+
+void Simulation::modifyModelEntity(
+    std::string entity_id, 
+    double new_value
+) {
+    try {
+        this->handler.setModelEntityValue(entity_id, new_value);
+    } catch (...) {
+        
+    }
+}

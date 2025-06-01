@@ -32,22 +32,22 @@
  * @returns None
  */
 int main(
-    int argc, // OS-defined parameter for CLI-argument count
-    char* argv[] //OS-defined parameter for CLI-arguements as a vector of char*, representing individual CLI args.
+    int argc, 
+    char* argv[]
 ) {
 
-    double start = 0.0;
-    double stop = 60.0; 
-    double step = 30.0;
-    std::string stochastic_sbml = "../tests/Stochastic.sbml";
-    std::string deterministic_sbml = "../tests/Deterministic.sbml";
+    std::unique_ptr<ArgParsing> argparser = std::make_unique<ArgParsing>(
+        argc, argv
+    );
 
-    std::
-    start = parseDoubleArgs(argc, argv, 1, start, "start");
-    stop = parseTimeArgs(argc, argv, 2, stop, "stop");
-    step = parseTimeArgs(argc, argv, 3, step, "step");
-    stochastic_sbml = parsePathArgs(argc, argv, 4, stochastic_sbml, "stochastic sbml path");
-    deterministic_sbml = parsePathArgs(argc, argv, 4, deterministic_sbml, "deterministic sbml path");
+    std::unordered_map<std::string, std::any> cli_map = argparser->cli_map;
+
+    double start = std::any_cast<double>(argparser->cli_map["--start"]);
+    double stop = std::any_cast<double>(argparser->cli_map["--stop"]);
+    double step = std::any_cast<double>(argparser->cli_map["--step"]);
+
+    std::string stochastic_sbml = std::any_cast<std::string>(argparser->cli_map["--stochastic_model"]);
+    std::string deterministic_sbml = std::any_cast<std::string>(argparser->cli_map["--deterministic_model"]);
 
     //Load instance of SingleCell
     std::unique_ptr<SingleCell> singleCell = std::make_unique<SingleCell>(
@@ -55,9 +55,12 @@ int main(
         deterministic_sbml
     );
 
-    std::vector<std::vector<double>> results_matrix = singleCell->simulate({}, {}, 
-                                                                    start, stop, step);
-
+    std::vector<std::vector<double>> results_matrix = singleCell->simulate(
+        argparser->entity_map,
+        start, 
+        stop, 
+        step
+    );
 
 
     matrix_utils::save_matrix(results_matrix);

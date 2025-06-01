@@ -17,6 +17,7 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include <unordered_map>
 
 //Internal Libraries
 #include "singlecell/SBMLHandler.h"
@@ -36,7 +37,7 @@ class Simulation {
     protected:
     //---------------------------------methods------------------------------//
         virtual void _simulationPrep(
-            const std::vector<double>& initial_state,
+            std::unordered_map<std::string, double>entity_map,
             double start, 
             double stop, 
             double step
@@ -146,6 +147,11 @@ class Simulation {
             
             std::vector<std::vector<double>> matrix1, 
             std::vector<std::vector<double>> matrix2
+        );
+
+        void modifyModelEntity(
+            std::string entity_id, 
+            double new_value
         );
         
     //-------------------------------Members--------------------------------//

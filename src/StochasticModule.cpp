@@ -233,18 +233,25 @@ std::vector<double> StochasticModule::constrainTau(
 }
 
 void StochasticModule::_simulationPrep(
-    const std::vector<double>& initial_state,
+    std::unordered_map<std::string, double>entity_map,
     double start, 
     double stop, 
     double step
 ) {
 
-    std::vector<double> stoch_states;
+        std::vector<double> init_states;
 
-    if (initial_state.size() > 0) {
-        stoch_states = initial_state;  
-    } else {
-        stoch_states = handler.getInitialState();
+    if (entity_map.empty()) {
+        init_states = handler.getInitialState();
+    } else { 
+        for (const auto& [key, value] : entity_map) {
+            this->handler.setModelEntityValue(
+                key, 
+                value
+            );
+
+            init_states = handler.getInitialState();
+        }
     }
 
      int numSpecies = this->sbml->getNumSpecies();
@@ -254,7 +261,7 @@ void StochasticModule::_simulationPrep(
      this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
  
     Simulation::recordStepResult(
-        stoch_states, 
+        init_states, 
         0
     );
 

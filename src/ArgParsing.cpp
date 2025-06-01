@@ -14,6 +14,7 @@
 #include <memory>
 #include <iostream>
 #include <optional>
+#include <typeinfo>
 #include <unordered_map>
 
 //Internal Libraries
@@ -27,29 +28,18 @@ ArgParsing::ArgParsing(int argc, char* argv[]) {
     // Help flag
     if (cli_map.count("-h") || cli_map.count("--help")) {
         printUsage();
-        return;  // Optional: early return after help
+        return;
     }
 
-    // Parse numeric arguments
-    if (cli_map.count("--start")) {
-        std::string v = std::any_cast<std::string>(cli_map["--start"]);
-        cli_map["--start"] = parseDoubleArgs("--start", v, 0.0, "--start");
-    }
-
-    if (cli_map.count("--stop")) {
-        std::string v = std::any_cast<std::string>(cli_map["--stop"]);
-        cli_map["--stop"] = parseDoubleArgs("--stop", v, 60.0, "--stop");
-    }
-
-    if (cli_map.count("--step")) {
-        std::string v = std::any_cast<std::string>(cli_map["--step"]);
-        cli_map["--step"] = parseDoubleArgs("--step", v, 1.0, "--step");
-    }
-
-    // Parse key-value pair updates (e.g., --update "x=0.1")
-    if (cli_map.count("-u") || cli_map.count("--update")) {
-        std::string kv_string = std::any_cast<std::string>(cli_map["--update"]);
-        parseKeyValuePairs(kv_string); 
+    // Parse key-value pair updates
+    if (cli_map.count("-m") || cli_map.count("--modify")) {
+        try {
+            std::string kv_string = std::any_cast<std::string>(cli_map["--modify"]);
+            parseKeyValuePairs(kv_string);
+        } catch (const std::bad_any_cast&) {
+            std::cerr << "Error: --modify must be followed by a string like 'x=1.0'\n";
+            std::exit(EXIT_FAILURE);
+        }
     }
 }
 
@@ -58,8 +48,8 @@ std::unordered_map<std::string, std::any> ArgParsing::cliToMap(
     char* argv[]
 ) {
 
-    // empty map for storing CLI args
-    std::unordered_map<std::string, std::any> args;
+    // Populate with defaults for simulator args
+    std::unordered_map<std::string, std::any>args = setDefaults();
 
     for (int i = 0; i < argc; i++) {
 
@@ -77,36 +67,57 @@ std::unordered_map<std::string, std::any> ArgParsing::cliToMap(
                 i++;
             }
 
-            args[key] = value;
-        }
+            try {
 
+                if (key == "--start" || key == "--stop" || key == "--step") {
+
+                    char* end = nullptr; // make end point, req' of strtod
+
+                    double value_d = std::strtod(value.c_str(), &end); 
+                    args[key] = value_d;
+                }
+            } catch (...) {
+                std::cout << "value is of type: " << typeid(value).name();
+
+                args[key] = value;
+            }
+        }
     }
 
     return args;
 
 }
 
-void ArgParsing::printUsage() {
+std::unordered_map<std::string, std::any> ArgParsing::setDefaults() {
 
-    std::cout << "SingleCell: A Simulatable Model of Stochastic Single Cell Dyanmics\n"
-            "\n"
-            "Example usage:\n"
-            "    ./SingleCell --<option> <opt_parameter>\n";
+    // empty map for storing Default values
+    std::unordered_map<std::string, std::any> args_map;
+
+    //defaults for current simulator:
+    args_map["--start"] = 0.0;
+    args_map["--stop"] = 60.0;
+    args_map["--step"] = 1.0;
+    args_map["--stochastic_model"] = std::string("../tests/Stochastic.sbml");
+    args_map["--deterministic_model"] = std::string("../tests/Deterministic.sbml");
+
+    return args_map;
 }
 
-double ArgParsing::parseDoubleArgs(
-    const std::string& key, 
-    const std::any value, 
-    double def, 
-    const char* arg_name
-) {
-    char* end = nullptr; // make end point
+void ArgParsing::printUsage() {
 
-    std::string v_init = std::any_cast<std::string>(value);
+    std::cout << "SingleCell: A Simulatable Model of Stochastic Single Cell Dynamics\n"
+            "\n"
+            "Example usage:\n"
+            "    ./SingleCell --<option> <opt_parameter>\n"
+            "===================flags======================\n"
+            "     --start <Double> {[Optional] Default:0.0}\n"
+            "     --stop <Double> {[Optional] Default: 60.0}\n"
+            "     --step <Double> {[Optional] Default:1.0}\n"
+            "     --stochastic_model <std::string> {[Optional] Default:  ../tests/Stochastic.sbml}\n"
+            "     --deterministic_model <std::string> {[Optional] Default:  ../tests/Deterministic.sbml}\n"
+            "     --modify <SpeciesId || ParameterId || CompartmentId>=<Double> {[Optional]}\n";
 
-    double v = std::strtod(v_init.c_str(), &end); 
-
-    return v;
+            std::exit(EXIT_SUCCESS);
 }
 
 void ArgParsing::parseKeyValuePairs(
@@ -122,21 +133,12 @@ void ArgParsing::parseKeyValuePairs(
 
     }
 
-    std::any new_value;
-
     std::string key = arg.substr(0, pos);
-    std::string temp_value = arg.substr(1, pos);
+    std::string temp_value = arg.substr(pos+1);
 
-    //quick attempt to convert numerics to proper type before passing
-    try {
-        char* end = nullptr;
+    char* end = nullptr;
 
-        new_value = std::strtod(temp_value.c_str(), &end);
-    }
-    catch(...) {
-        new_value = temp_value;
-    }
+    double new_value = std::strtod(temp_value.c_str(), &end);
 
-
-    this->cli_map[key] = new_value;
+    this->entity_map[key] = new_value;
 }
