@@ -53,6 +53,13 @@ void Simulation::recordStepResult(
     int timepoint
 ) {
     results_matrix[timepoint] = state_vector;
+
+    //send updated Species info to sbml:
+    for (int i = 0; i < this->sbml->getNumSpecies(); i++) {
+
+        this->sbml->getSpecies(i)->setInitialConcentration(state_vector[i]);
+
+    }
 }
 
 std::vector<std::string> Simulation::findOverlappingIds(

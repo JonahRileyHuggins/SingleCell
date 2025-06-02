@@ -56,12 +56,6 @@ void DeterministicModule::runStep(int step) {
     // Set initial state based on last record
     model->setInitialStates(last_record);
 
-    for (int i = 0; i < this->sbml->getNumParameters(); i++) {
-
-        std::cout << "Parameter {" << this->sbml->getParameter(i)->getId()
-        << "} has value: " << this->sbml->getParameter(i)->getValue() << "\n";
-    }
-
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
@@ -202,8 +196,6 @@ void DeterministicModule::updateParameters(
 
     for (int i = 0; i < overlapping_params.size(); i++) {
 
-        std::cout << "alt model param: " << alternate_model->getSpecies(overlapping_params[i])->getId()
-        << "val: " << alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration() << "\n";
         // Deterministic model needs both AMICI and SBML set:
         //AMICI
         this->model->setFixedParameterById(overlapping_params[i], alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
