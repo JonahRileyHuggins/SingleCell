@@ -39,12 +39,6 @@ DeterministicModule::DeterministicModule(
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
     this->formulas_vector = DeterministicModel.getReactionExpressions();
 
-     // Import AMICI Model from 'bin/AMICI_MODELS/model
-    this->model = amici::generic_model::getModel();
-
-    // Create an instance of the solver class
-    this->solver = model->getSolver();
-
     //Instantiate SBML model
     this->sbml = DeterministicModel.model;
 
@@ -60,7 +54,13 @@ void DeterministicModule::runStep(int step) {
     model->setTimepoints(step_forward);
 
     // Set initial state based on last record
-    // model->setInitialStates(last_record);
+    model->setInitialStates(last_record);
+
+    for (int i = 0; i < this->sbml->getNumParameters(); i++) {
+
+        std::cout << "Parameter {" << this->sbml->getParameter(i)->getId()
+        << "} has value: " << this->sbml->getParameter(i)->getValue() << "\n";
+    }
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
@@ -124,7 +124,7 @@ void DeterministicModule::_simulationPrep(
     double stop, 
     double step
 ) {
-
+    // modify sbml model prior to AMICI-model assignment
     std::vector<double> init_states;
 
     if (entity_map.empty()) {
@@ -140,6 +140,12 @@ void DeterministicModule::_simulationPrep(
             init_states = handler.getInitialState();
         }
     }
+
+     // Import AMICI Model from 'bin/AMICI_MODELS/model
+    this->model = amici::generic_model::getModel();
+
+    // Create an instance of the solver class
+    this->solver = model->getSolver();
 
      int numSpecies = this->sbml->getNumSpecies();
           
@@ -176,9 +182,6 @@ std::vector<double> DeterministicModule::getLastStepResult(
 void DeterministicModule::updateParameters(
     const Model* alternate_model
 ) {
-    // Instantiate a blank map:
-    std::unordered_map<std::string, double> new_param_vals; 
-
     std::vector<std::string> alt_species_ids;
 
     int numSpecies = alternate_model->getNumSpecies();
@@ -198,10 +201,14 @@ void DeterministicModule::updateParameters(
     );
 
     for (int i = 0; i < overlapping_params.size(); i++) {
-        
-        Parameter* parameter = this->sbml->getParameter(overlapping_params[i]);
 
-        parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+        std::cout << "alt model param: " << alternate_model->getSpecies(overlapping_params[i])->getId()
+        << "val: " << alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration() << "\n";
+        // Deterministic model needs both AMICI and SBML set:
+        //AMICI
+        this->model->setFixedParameterById(overlapping_params[i], alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+        //SBML
+        this->sbml->getParameter(overlapping_params[i])->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
     }
 
 }

@@ -36,13 +36,13 @@
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kTL1_1" value="1" constant="true"/>
-      <parameter id="cyt_mrna__LIGAND_" value="10" constant="true"/>
+      <parameter id="cyt_mrna__LIGAND_" value="0" constant="true"/>
       <parameter id="kTL2_1" value="1" constant="true"/>
-      <parameter id="cyt_mrna__RECEPTOR_" value="10" constant="true"/>
+      <parameter id="cyt_mrna__RECEPTOR_" value="0" constant="true"/>
       <parameter id="kLR1_1" value="0.01" constant="true"/>
       <parameter id="kLR2_1" value="0.01" constant="true"/>
-      <parameter id="kLR3_1" value="0.009" constant="true"/>
-      <parameter id="kLR4_1" value="0.009" constant="true"/>
+      <parameter id="kLR3_1" value="0.01" constant="true"/>
+      <parameter id="kLR4_1" value="0.01" constant="true"/>
       <parameter id="nuc_gene_a__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_i__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_a__RECEPTOR_" value="1" constant="true"/>
