@@ -198,36 +198,6 @@ std::vector<double> StochasticModule::constrainTau(
         R_mi = std::abs(R_mi);
 
         // compare between predicted and actual:
-        // mhat_actual[i] = std::min(m_i[i], R_mi); 
-    
-        // std::vector<double> negative_Rhat_vals; 
-
-        // for (const auto& reactant : Rhat_i) { // drop reactants != negative (-): i.e. not rate-limiting
-        //     if (reactant < 0) {
-        //         negative_Rhat_vals.push_back(reactant);
-        //     }
-        // }
-
-        // double R_mi; // populates with value during if statement
-
-        // if (negative_Rhat_vals.empty()){
-
-        //     R_mi = m_i[i]; // was 0.0
-
-        // } else {
-        //     //get the smallest reactant (i.e. most rate-limiting):
-        //     R_mi = std::abs(
-        //         *std::min_element(
-        //         negative_Rhat_vals.begin(), 
-        //         negative_Rhat_vals.end(),
-        //         [](double a, double b) {
-        //             return std::abs(a) < std::abs(b);
-        //             }
-        //         )
-            // );
-        // }
-
-        // compare between predicted and actual:
         mhat_actual[i] = std::min(m_i[i], R_mi); 
 
     }
