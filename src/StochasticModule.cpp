@@ -37,6 +37,8 @@ StochasticModule::StochasticModule(
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
+    matrix_utils::save_matrix(this->stoichmat, "../src/stoichmat.tsv");
+
     // List of formula strings to be parsed. 
     this->formulas_vector = StochasticModel.getReactionExpressions();
 
@@ -191,16 +193,32 @@ std::vector<double> StochasticModule::constrainTau(
         double R_mi = m_i[i]; // was set 0.0
         for (const auto& reactant : Rhat_i) {
 
-            if (reactant < R_mi) { // drop reactants != negative (-): i.e. not rate-limiting
+            if (reactant < 0) { // drop reactants != negative (-): i.e. not rate-limiting
                 R_mi = reactant;
             } 
         }
-        R_mi = std::abs(R_mi);
+        double R_mi_u = std::abs(R_mi);
 
         // compare between predicted and actual:
-        mhat_actual[i] = std::min(m_i[i], R_mi); 
-
+        mhat_actual[i] = std::min(m_i[i], R_mi_u); 
     }
+
+
+        printf( "Predicted v rates: \n");
+        for (int j  = 0; j < m_i.size(); j++) {
+
+        std::cout << m_i[j] << "\t";
+        }
+        printf("\n");
+
+        printf("Assigned v rates: \n");
+        for (int j  = 0; j < m_i.size(); j++) {
+
+        std::cout << mhat_actual[j] << "\t";
+        }
+        printf("\n");
+
+
 
     return mhat_actual;
 }
@@ -273,7 +291,7 @@ void StochasticModule::runStep(
         for (size_t j = 0; j < mhat_actual.size(); ++j) {
             delta += stoichmat[i][j] * mhat_actual[j];
         }
-        new_state[i] = std::max(last_record[i] + delta, 0.0);
+        new_state[i] = last_record[i] + delta, 0.0;
     }
     
     //Record iteration's result

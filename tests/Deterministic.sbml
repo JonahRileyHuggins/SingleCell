@@ -30,19 +30,19 @@
       <compartment id="Nucleus" spatialDimensions="3" size="1000" units="volume" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="cyt_prot__LIGAND_" compartment="Cytoplasm" initialConcentration="20" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_prot__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="cyt_prot__RECEPTOR_" compartment="Cytoplasm" initialConcentration="100" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
       <species id="cyt_prot__LIGAND__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kTL1_1" value="1" constant="true"/>
-      <parameter id="cyt_mrna__LIGAND_" value="0" constant="true"/>
+      <parameter id="cyt_mrna__LIGAND_" value="5" constant="true"/>
       <parameter id="kTL2_1" value="1" constant="true"/>
-      <parameter id="cyt_mrna__RECEPTOR_" value="0" constant="true"/>
-      <parameter id="kLR1_1" value="0.01" constant="true"/>
-      <parameter id="kLR2_1" value="0.01" constant="true"/>
-      <parameter id="kLR3_1" value="0.01" constant="true"/>
-      <parameter id="kLR4_1" value="0.01" constant="true"/>
+      <parameter id="cyt_mrna__RECEPTOR_" value="5" constant="true"/>
+      <parameter id="kLR1_1" value="0.001" constant="true"/>
+      <parameter id="kLR2_1" value="0.001" constant="true"/>
+      <parameter id="kLR3_1" value="0.005" constant="true"/>
+      <parameter id="kLR4_1" value="0.005" constant="true"/>
       <parameter id="nuc_gene_a__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_i__LIGAND_" value="1" constant="true"/>
       <parameter id="nuc_gene_a__RECEPTOR_" value="1" constant="true"/>

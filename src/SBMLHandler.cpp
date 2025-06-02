@@ -55,6 +55,9 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     // make map of species indices
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
 
+    for (auto it = species_map.begin(); it != species_map.end(); ++it) {
+        std::cout << it->first << ": " << it->second << std::endl;    
+    }
     // build a blank stoichiometric matrix of zeros
     std::vector<std::vector<double>> stoichmat(numSpecies, std::vector<double>(numReactions, 0.0));
 
