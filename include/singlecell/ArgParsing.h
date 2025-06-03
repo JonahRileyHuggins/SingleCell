@@ -91,6 +91,18 @@ class ArgParsing {
         void printUsage();
         
         /**
+         * @brief convert string form perturbation list to dictionary
+         * 
+         * @param None
+         * 
+         * @returns None entity-mapped reference for perturbation events, 
+         * stored in class member entity_map
+         */
+        void parseDict(
+            std::string arg
+        );
+
+        /**
          * @brief Converts key-value pair options, separated by '=', into dictionary entries
          * 
          * @param args CLI argument separated by parenthesis

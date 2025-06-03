@@ -51,8 +51,8 @@
       <parameter id="kGac2_1" value="0.0005" constant="true"/>
       <parameter id="kGin1_1" value="0.005" constant="true"/>
       <parameter id="kGin2_1" value="0.005" constant="true"/>
-      <parameter id="kTC1_1" value="5e-06" constant="true"/>
-      <parameter id="kTC2_1" value="5e-06" constant="true"/>
+      <parameter id="kTC1_1" value="0.005" constant="true"/>
+      <parameter id="kTC2_1" value="0.005" constant="true"/>
       <parameter id="kTCd1_1" value="5e-05" constant="true"/>
       <parameter id="kTCd2_1" value="5e-05" constant="true"/>
     </listOfParameters>

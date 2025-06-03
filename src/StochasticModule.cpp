@@ -203,23 +203,6 @@ std::vector<double> StochasticModule::constrainTau(
         mhat_actual[i] = std::min(m_i[i], R_mi_u); 
     }
 
-
-        printf( "Predicted v rates: \n");
-        for (int j  = 0; j < m_i.size(); j++) {
-
-        std::cout << m_i[j] << "\t";
-        }
-        printf("\n");
-
-        printf("Assigned v rates: \n");
-        for (int j  = 0; j < m_i.size(); j++) {
-
-        std::cout << mhat_actual[j] << "\t";
-        }
-        printf("\n");
-
-
-
     return mhat_actual;
 }
 

@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <sstream>
 #include <iostream>
 #include <optional>
 #include <typeinfo>
@@ -35,7 +36,8 @@ ArgParsing::ArgParsing(int argc, char* argv[]) {
     if (cli_map.count("-m") || cli_map.count("--modify")) {
         try {
             std::string kv_string = std::any_cast<std::string>(cli_map["--modify"]);
-            parseKeyValuePairs(kv_string);
+            // implement a method to restructure the input from '{}', and comma-separated
+            parseDict(kv_string);
         } catch (const std::bad_any_cast&) {
             std::cerr << "Error: --modify must be followed by a string like 'x=1.0'\n";
             std::exit(EXIT_FAILURE);
@@ -124,6 +126,48 @@ void ArgParsing::printUsage() {
             "     --modify <SpeciesId || ParameterId || CompartmentId>=<Double> {[Optional]}\n";
 
             std::exit(EXIT_SUCCESS);
+}
+
+void ArgParsing::parseDict(
+    std::string arg
+) {
+
+    size_t start = arg.find('{');
+    size_t end = arg.find('}');
+    
+    if (start == std::string::npos || end == std::string::npos) {
+
+        std::cerr << "Bad modifier format, must specify '{ }' to start perturbations list." << "\n";
+        std::exit(EXIT_FAILURE);
+
+    }
+
+
+    // std::vector<int> comma_pos_list;
+
+
+    // size_t pos = arg.find(',', start);
+
+    // while (pos != std::string::npos && pos < end) {
+
+    //     comma_pos_list.push_back(pos);
+
+    //     pos = arg.find(',', pos+1);
+
+    // }
+
+    std::string content = arg.substr(start + 1, end - start - 1);
+
+    std::stringstream ss(content);
+
+    std::string kv_pair;
+
+    while (std::getline(ss, kv_pair, ',')) {
+
+        parseKeyValuePairs(kv_pair);
+
+    }
+
 }
 
 void ArgParsing::parseKeyValuePairs(
