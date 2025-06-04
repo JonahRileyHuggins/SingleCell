@@ -125,9 +125,16 @@
         <listOfProducts>
           <speciesReference species="cyt_mrna__LIGAND_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__LIGAND_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> kTC1_1 </ci>
+            <apply>
+              <times/>
+              <ci> kTC1_1 </ci>
+              <ci> nuc_gene_a__LIGAND_ </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>
@@ -135,9 +142,16 @@
         <listOfProducts>
           <speciesReference species="cyt_mrna__RECEPTOR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__RECEPTOR_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> kTC2_1 </ci>
+            <apply>
+              <times/>
+              <ci> kTC2_1 </ci>
+              <ci> nuc_gene_a__RECEPTOR_ </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>
@@ -147,7 +161,11 @@
         </listOfReactants>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> kTCd1_1 </ci>
+            <apply>
+              <times/>
+              <ci> kTCd1_1 </ci>
+              <ci> cyt_mrna__LIGAND_ </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>
@@ -157,7 +175,11 @@
         </listOfReactants>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> kTCd2_1 </ci>
+            <apply>
+              <times/>
+              <ci> kTCd2_1 </ci>
+              <ci> cyt_mrna__RECEPTOR_ </ci>
+            </apply>
           </math>
         </kineticLaw>
       </reaction>

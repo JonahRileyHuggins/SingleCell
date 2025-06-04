@@ -203,3 +203,40 @@ void SBMLHandler::setModelEntityValue(
         std::exit(EXIT_FAILURE);
     }
 }
+
+std::vector<std::string> SBMLHandler::getReactionIds() {
+
+    unsigned int numReactions = this->model->getNumReactions();
+
+    // Results storage list
+    std::vector<std::string> reactionIds(numReactions);
+
+    for (int i = 0; i < numReactions; i++) {
+
+        reactionIds[i] = this->model->getReaction(i)->getId();
+
+    }
+    return reactionIds;
+}
+
+std::vector<double> SBMLHandler::getGlobalSpeciesCompartmentVals( 
+
+) {
+
+
+    unsigned int numSpecies = this->model->getNumSpecies();
+
+    // Results vector for list of compartment values per species
+    std::vector<double> cell_volumes(numSpecies);
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        std::string comp_i = this->model->getSpecies(i)->getCompartment();
+
+        cell_volumes[i] = this->model->getCompartment(comp_i)->getVolume();
+
+    }
+
+    return cell_volumes;
+
+}

@@ -78,7 +78,9 @@ class StochasticModule : public Simulation {
             const Model* alternate_model
         );
     //---------------------------Members----------------------------------//
-
+        //@TODO: Using to debug, remove later:
+    std::vector<std::vector<double>> mhat_matrix;
+    
 
     private:
     // -------------------------Methods-----------------------------------//
@@ -166,7 +168,7 @@ class StochasticModule : public Simulation {
         ) override;
 
         //---------------------------Members----------------------------------//
-        
+
 
 };
 

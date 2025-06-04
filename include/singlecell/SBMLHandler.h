@@ -93,11 +93,29 @@ class SBMLHandler {
          * 
          * @returns None updates model SBML object
          */
-
          void setModelEntityValue(
             std::string entity_id, 
             double new_value
          );
+
+         /**
+          * @brief gets list of reactionId strings
+          * 
+          * @param None
+          * 
+          * @returns reactionIds list of reaction identifiers
+          */
+         std::vector<std::string> getReactionIds();
+
+         /**
+          * @brief getter method for retrieving species-specific compartmental volumes
+          * 
+          * @param None
+          * 
+          * @returns cell_volumes vector list of compartmental volumes, as defined in
+          * class member this->model
+          */
+         std::vector<double> getGlobalSpeciesCompartmentVals();
 
     private:
         SBMLDocument* doc; 

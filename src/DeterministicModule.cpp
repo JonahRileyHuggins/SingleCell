@@ -21,6 +21,7 @@
 #include <unordered_map>
 
 // Internal libraries
+#include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/DeterministicModule.h"
 
@@ -42,6 +43,13 @@ DeterministicModule::DeterministicModule(
     //Instantiate SBML model
     this->sbml = DeterministicModel.model;
 
+    // List of every species comparmental volume
+    this->cell_volumes = DeterministicModel.getGlobalSpeciesCompartmentVals();
+
+    // conversion factors list:
+    this->conversion_factors = unit_conversions::nanomolar2mpc(
+        cell_volumes
+    );
 }
 
 void DeterministicModule::runStep(int step) {
@@ -130,9 +138,9 @@ void DeterministicModule::_simulationPrep(
                 key, 
                 value
             );
-
-            init_states = handler.getInitialState();
         }
+        init_states = handler.getInitialState();
+        
     }
 
      // Import AMICI Model from 'bin/AMICI_MODELS/model
@@ -141,15 +149,15 @@ void DeterministicModule::_simulationPrep(
     // Create an instance of the solver class
     this->solver = model->getSolver();
 
-     int numSpecies = this->sbml->getNumSpecies();
-          
-     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
+    int numSpecies = this->sbml->getNumSpecies();
+        
+    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
-     // populate results_matrix member with proper size
-     this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
-     
-     // record initial state as first vector in results_matrix member 
-     Simulation::recordStepResult(
+    // populate results_matrix member with proper size
+    this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
+    
+    // record initial state as first vector in results_matrix member 
+    Simulation::recordStepResult(
         init_states, 
         0
     );
@@ -198,9 +206,15 @@ void DeterministicModule::updateParameters(
 
         // Deterministic model needs both AMICI and SBML set:
         //AMICI
-        this->model->setFixedParameterById(overlapping_params[i], alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+        this->model->setFixedParameterById(
+            overlapping_params[i], 
+            alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration()
+        );
+
         //SBML
-        this->sbml->getParameter(overlapping_params[i])->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+        this->sbml->getParameter(overlapping_params[i])->setValue(
+            alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration()
+        );
     }
 
 }

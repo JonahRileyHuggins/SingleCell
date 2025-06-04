@@ -8,6 +8,8 @@
 */
 //===========================Library Import=================================//
 // Standard Libraries
+#include <string>
+#include <vector>
 #include <fstream>
 #include <iostream>
 
@@ -18,7 +20,9 @@ namespace matrix_utils {
     void save_matrix(
         std::vector<std::vector<double>> results_matrix,
             std::string name,
-            std::string output
+            std::string output,
+            std::vector<std::string> row_labels,
+            std::vector<std::string> col_labels
     ) {
 
         // Results path
@@ -28,10 +32,21 @@ namespace matrix_utils {
 
         int numRows = results_matrix.size();
 
-        int numCols = results_matrix[0].size();
+        int numCols = (numRows > 0) ? results_matrix[0].size() : 0;
 
-        for (size_t i = 0; i < numRows; i++) {
-            for (size_t j = 0; j < numCols; j++) {
+        if (!col_labels.empty()) {
+            outFile << "\t";
+            for (const auto& label : col_labels) {
+                outFile << label << "\t";
+            }
+            outFile << "\n";
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            if (!row_labels.empty()) {
+                outFile << row_labels[i] << "\t";
+            }
+            for (int j = 0; j < numCols; j++) {
                 outFile << results_matrix[i][j] << "\t";
 
                 if (j == (numCols-1)) {
@@ -57,5 +72,61 @@ namespace matrix_utils {
         }
 
         return column;
+    }
+}
+
+namespace unit_conversions {
+    std::vector<double> nanomolar2mpc(
+        std::vector<double> cell_volumes
+    ) {
+
+        const double nm2Molar = 0.000000001;
+
+        const double avagadros = 6.022e23;
+
+        std::vector<double> mpc_vec(cell_volumes.size());
+
+        for (int i = 0; i < cell_volumes.size(); i++) {
+
+            mpc_vec[i] = (1.0 / nm2Molar) * (1.0 / cell_volumes[i]) * avagadros;
+
+        }
+
+        return mpc_vec;
+
+    }
+
+    std::vector<double> mpc2nanomolar(
+        std::vector<double> cell_volumes
+    ) {
+
+        const double avagadros = 6.022e23;
+
+        const double molar2nM = 1.0e9;
+
+        std::vector<double> nanomolar_vec(cell_volumes.size());
+
+        for (int i = 0; i < cell_volumes.size(); i++) {
+
+            nanomolar_vec[i] = (1.0 / avagadros) * (1.0 / cell_volumes[i]) * molar2nM;
+
+        }
+
+        return nanomolar_vec;
+    }
+
+    std::vector<double> convert(
+        std::vector<double> prior_values,
+        std::vector<double> conversion_factors
+    ) {
+
+        std::vector<double> converted_vals(prior_values.size());
+
+        for (int i = 0; i < conversion_factors.size(); i++) {
+
+            converted_vals[i] = prior_values[i] * conversion_factors[i];
+
+        }
+        return converted_vals;
     }
 }

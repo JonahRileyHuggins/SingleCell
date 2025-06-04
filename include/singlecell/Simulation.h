@@ -110,7 +110,8 @@ class Simulation {
             const std::vector<std::string>& ids2
         );
     //-------------------------------Members--------------------------------//
-
+        std::vector<double> cell_volumes;
+        std::vector<double> conversion_factors;
 
     public:
     //---------------------------methods------------------------------------//

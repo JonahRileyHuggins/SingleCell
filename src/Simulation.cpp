@@ -57,7 +57,9 @@ void Simulation::recordStepResult(
     //send updated Species info to sbml:
     for (int i = 0; i < this->sbml->getNumSpecies(); i++) {
 
-        this->sbml->getSpecies(i)->setInitialConcentration(state_vector[i]);
+        double mpc2target_unit = state_vector[i] * this->conversion_factors[i];
+
+        this->sbml->getSpecies(i)->setInitialConcentration(mpc2target_unit);
 
     }
 }

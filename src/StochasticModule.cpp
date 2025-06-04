@@ -37,13 +37,19 @@ StochasticModule::StochasticModule(
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
-    matrix_utils::save_matrix(this->stoichmat, "../src/stoichmat.tsv");
-
     // List of formula strings to be parsed. 
     this->formulas_vector = StochasticModel.getReactionExpressions();
 
     //Instantiate SBML model
     this->sbml = StochasticModel.model;
+
+    // List of every species comparmental volume
+    this->cell_volumes = StochasticModel.getGlobalSpeciesCompartmentVals();
+
+    // conversion factors list:
+    this->conversion_factors = unit_conversions::mpc2nanomolar(
+        cell_volumes
+    );
 
  }
 
@@ -179,7 +185,7 @@ std::vector<double> StochasticModule::constrainTau(
 
     std::vector<double> mhat_actual(m_i.size()); // results storage vector
 
-   for (int i = 0; i < this->stoichmat[0].size(); i++) {
+    for (int i = 0; i < this->stoichmat[0].size(); i++) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
         std::vector<double> S_i = matrix_utils::getColumn(this->stoichmat, i);
@@ -197,10 +203,11 @@ std::vector<double> StochasticModule::constrainTau(
                 R_mi = reactant;
             } 
         }
-        double R_mi_u = std::abs(R_mi);
+        
+        R_mi = std::abs(R_mi);
 
         // compare between predicted and actual:
-        mhat_actual[i] = std::min(m_i[i], R_mi_u); 
+        mhat_actual[i] = std::min(m_i[i], R_mi); 
     }
 
     return mhat_actual;
@@ -225,15 +232,15 @@ void StochasticModule::_simulationPrep(
                 value
             );
 
-            init_states = handler.getInitialState();
         }
+        init_states = handler.getInitialState();
     }
 
-     int numSpecies = this->sbml->getNumSpecies();
-     
-     std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
+    int numSpecies = this->sbml->getNumSpecies();
+    
+    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
 
-     this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
+    this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
  
     Simulation::recordStepResult(
         init_states, 
@@ -241,6 +248,13 @@ void StochasticModule::_simulationPrep(
     );
 
     this->delta_t = step;
+
+    // REMOVE BELOW LATER:
+    this->mhat_matrix = std::vector<std::vector<double>>(
+        timeSteps.size(), 
+        std::vector<double>(this->stoichmat[0].size())
+    );
+    // REMOVE ABOVE LATER
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -266,6 +280,10 @@ void StochasticModule::runStep(
 
     // Constrain Tau-leap algorithm to only positive integers:
     std::vector<double> mhat_actual = constrainTau(m_i, last_record);
+
+    for (int z = 0; z < mhat_actual.size(); z++) {
+        this->mhat_matrix[step][z] = mhat_actual[z];
+    }
 
     // Update the stochastic state vector: new_state = max((old_state * v), 0)
     std::vector<double> new_state(last_record.size());
