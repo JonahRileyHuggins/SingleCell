@@ -15,6 +15,7 @@
 #include <sbml/SBMLReader.h>
 
 // Internal Libraries
+#include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
 
 //--------------------------Class Declaration-------------------------------//
@@ -31,8 +32,11 @@ SBMLHandler::SBMLHandler(
     SBMLReader reader;
     doc = reader.readSBML(filename.c_str());
 
-    model = doc->getModel(); 
-    }
+    model = doc->getModel();
+
+    // List of every species comparmental volume
+    this->species_volumes = getGlobalSpeciesCompartmentVals();
+}
 
 SBMLHandler::~SBMLHandler() { // Destructor Method
     if (doc != nullptr) {
@@ -238,5 +242,37 @@ std::vector<double> SBMLHandler::getGlobalSpeciesCompartmentVals(
     }
 
     return cell_volumes;
+
+}
+
+void SBMLHandler::convertSpeciesUnits(
+    std::vector<double> conversion_factors
+) {
+
+    unsigned int numSpecies = this->model->getNumSpecies();
+
+    std::vector<double> current_val = getInitialState();
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        double convert2unit = current_val[i] * conversion_factors[i];
+
+        this->model->getSpecies(i)->setInitialConcentration(convert2unit);
+
+    }
+
+}
+
+void SBMLHandler::setState(
+    std::vector<double> new_state
+) {
+
+    unsigned int numSpecies = this->model->getNumSpecies();
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        this->model->getSpecies(i)->setInitialConcentration(new_state[i]);
+
+    }
 
 }

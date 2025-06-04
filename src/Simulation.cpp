@@ -57,27 +57,40 @@ void Simulation::recordStepResult(
     //send updated Species info to sbml:
     for (int i = 0; i < this->sbml->getNumSpecies(); i++) {
 
-        double mpc2target_unit = state_vector[i] * this->conversion_factors[i];
-
-        this->sbml->getSpecies(i)->setInitialConcentration(mpc2target_unit);
+        this->sbml->getSpecies(i)->setInitialConcentration(state_vector[i]);
 
     }
 }
 
-std::vector<std::string> Simulation::findOverlappingIds(
-    const std::vector<std::string>& ids1,
-    const std::vector<std::string>& ids2
+void Simulation::findOverlappingIds(
+    const Model* alternate_model
 ) {
-    std::vector<std::string> overlaps;
-    std::unordered_set<std::string> lookup(ids2.begin(), ids2.end());
 
-    for (const auto& id : ids1) {
+    std::vector<std::string> alt_species_ids;
+
+    int numSpecies = alternate_model->getNumSpecies();
+
+    for (int i = 0; i < numSpecies; i++) {
+
+        const Species* species = alternate_model->getSpecies(i);
+
+        alt_species_ids.push_back(species->getId());
+    }
+
+    std::vector<std::string> param_ids = handler.getParameterIds();
+    
+
+
+    std::vector<std::string> overlaps;
+    std::unordered_set<std::string> lookup(alt_species_ids.begin(), alt_species_ids.end());
+
+    for (const auto& id : param_ids) {
         if (lookup.count(id)) {
             overlaps.push_back(id);
         }
     }
 
-    return overlaps;
+    this->overlapping_params = overlaps;
 }
 
 std::vector<std::vector<double>> Simulation::concatenateMatrixRows(

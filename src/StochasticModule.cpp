@@ -43,14 +43,6 @@ StochasticModule::StochasticModule(
     //Instantiate SBML model
     this->sbml = StochasticModel.model;
 
-    // List of every species comparmental volume
-    this->cell_volumes = StochasticModel.getGlobalSpeciesCompartmentVals();
-
-    // conversion factors list:
-    this->conversion_factors = unit_conversions::mpc2nanomolar(
-        cell_volumes
-    );
-
  }
 
 std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
@@ -272,6 +264,9 @@ void StochasticModule::runStep(
     // get (step minus 1) position in results_matrix member
     std::vector<double> last_record = getLastStepResult(step);
 
+    //reset SBML species values:
+    this->handler.setState(last_record);
+
     // Calculate v = formula where v is a vector of left hand reaction results
     std::vector<double> mu = computeReactions(last_record);
 
@@ -300,31 +295,18 @@ void StochasticModule::runStep(
 }
 
 void StochasticModule::updateParameters(
-    const Model* alternate_model
+    SBMLHandler alternate_model
 ) {
-    std::vector<std::string> alt_species_ids;
-
-    int numSpecies = alternate_model->getNumSpecies();
-
-    for (int i = 0; i < numSpecies; i++) {
-
-        const Species* species = alternate_model->getSpecies(i);
-
-        alt_species_ids.push_back(species->getId());
-    }
-
-    std::vector<std::string> param_ids = handler.getParameterIds();
-    
-    std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
-        param_ids, 
-        alt_species_ids
-    );
-
-    for (int i = 0; i < overlapping_params.size(); i++) {
         
-        Parameter* parameter = sbml->getParameter(overlapping_params[i]);
+    //call conversion method here:
+    std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
+    alternate_model.convertSpeciesUnits(unit2mpc);
 
-        parameter->setValue(alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration());
+    for (int i = 0; i < this->overlapping_params.size(); i++) {
+        
+        Parameter* parameter = sbml->getParameter(this->overlapping_params[i]);
+
+        parameter->setValue(alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration());
     }
 
 }

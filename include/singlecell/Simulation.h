@@ -102,16 +102,11 @@ class Simulation {
          * @returns None updates internal models.
          */
         virtual void updateParameters(
-            const Model* alternate_model
+            SBMLHandler alternate_model
         ) = 0;
 
-        std::vector<std::string> findOverlappingIds(
-            const std::vector<std::string>& ids1,
-            const std::vector<std::string>& ids2
-        );
     //-------------------------------Members--------------------------------//
-        std::vector<double> cell_volumes;
-        std::vector<double> conversion_factors;
+
 
     public:
     //---------------------------methods------------------------------------//
@@ -155,11 +150,21 @@ class Simulation {
             double new_value
         );
         
+
+        void findOverlappingIds(
+            const Model* alternate_model
+        );
+
     //-------------------------------Members--------------------------------//
         SBMLHandler handler;
-
         Model* sbml;
+
+        std::vector<std::vector<double>> stoichmat;
+        std::vector<std::string> formulas_vector;
+
         std::vector<std::vector<double>> results_matrix;
+
+        std::vector<std::string> overlapping_params;
 
 };
 

@@ -26,8 +26,8 @@
       </unitDefinition>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment id="Cytoplasm" spatialDimensions="3" size="3000" units="volume" constant="true"/>
-      <compartment id="Nucleus" spatialDimensions="3" size="1000" units="volume" constant="true"/>
+      <compartment id="Cytoplasm" spatialDimensions="3" size="5.25e-12" units="volume" constant="true"/>
+      <compartment id="Nucleus" spatialDimensions="3" size="1.75e-12" units="volume" constant="true"/>
     </listOfCompartments>
     <listOfSpecies>
       <species id="cyt_prot__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>

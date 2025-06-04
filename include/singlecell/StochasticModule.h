@@ -75,7 +75,7 @@ class StochasticModule : public Simulation {
         );
 
         void updateParameters(
-            const Model* alternate_model
+            SBMLHandler alternate_model
         );
     //---------------------------Members----------------------------------//
         //@TODO: Using to debug, remove later:
@@ -149,8 +149,6 @@ class StochasticModule : public Simulation {
 
         
         //---------------------------Members----------------------------------//
-        std::vector<std::vector<double>> stoichmat;
-        std::vector<std::string> formulas_vector;
         double delta_t; 
 
 

@@ -56,15 +56,13 @@ class DeterministicModule : public Simulation {
         ) override;
 
         void updateParameters(
-            const Model* alternate_model
+            SBMLHandler alternate_model
         );
     //-------------------------------Members--------------------------------//
 
 
     private:
     // ---------------------------Methods-----------------------------------//
-        std::vector<std::vector<double>> stoichmat;
-        std::vector<std::string> formulas_vector;
         std::unique_ptr<amici::Model> model;
         std::unique_ptr<amici::Solver> solver;
 

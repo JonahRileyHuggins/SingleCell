@@ -42,19 +42,14 @@ DeterministicModule::DeterministicModule(
 
     //Instantiate SBML model
     this->sbml = DeterministicModel.model;
-
-    // List of every species comparmental volume
-    this->cell_volumes = DeterministicModel.getGlobalSpeciesCompartmentVals();
-
-    // conversion factors list:
-    this->conversion_factors = unit_conversions::nanomolar2mpc(
-        cell_volumes
-    );
 }
 
 void DeterministicModule::runStep(int step) {
     // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);
+
+    //reset SBML species values:
+    this->handler.setState(last_record);
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, static_cast<double>(step)};
@@ -182,38 +177,25 @@ std::vector<double> DeterministicModule::getLastStepResult(
 }
 
 void DeterministicModule::updateParameters(
-    const Model* alternate_model
+    SBMLHandler alternate_model
 ) {
-    std::vector<std::string> alt_species_ids;
-
-    int numSpecies = alternate_model->getNumSpecies();
-
-    for (int i = 0; i < numSpecies; i++) {
-
-        const Species* species = alternate_model->getSpecies(i);
-
-        alt_species_ids.push_back(species->getId());
-    }
-
-    std::vector<std::string> param_ids = handler.getParameterIds();
     
-    std::vector<std::string> overlapping_params = Simulation::findOverlappingIds(
-        param_ids, 
-        alt_species_ids
-    );
+    //call conversion method here:
+    std::vector<double> unit2nM = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
+    alternate_model.convertSpeciesUnits(unit2nM);
 
-    for (int i = 0; i < overlapping_params.size(); i++) {
+    for (int i = 0; i < this->overlapping_params.size(); i++) {
 
         // Deterministic model needs both AMICI and SBML set:
         //AMICI
         this->model->setFixedParameterById(
-            overlapping_params[i], 
-            alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration()
+            this->overlapping_params[i], 
+            alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
         );
 
         //SBML
-        this->sbml->getParameter(overlapping_params[i])->setValue(
-            alternate_model->getSpecies(overlapping_params[i])->getInitialConcentration()
+        this->sbml->getParameter(this->overlapping_params[i])->setValue(
+            alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
         );
     }
 

@@ -45,6 +45,10 @@ std::vector<std::vector<double>> SingleCell::simulate(
     StochasticModule stochMod = StochasticModule(StochasticModel);
     DeterministicModule detMod = DeterministicModule(DeterministicModel);
 
+    // Assign Target Overlaps per Module:
+    stochMod.findOverlappingIds(detMod.sbml);
+    detMod.findOverlappingIds(stochMod.sbml);
+
     // Add simulation time steps, results matrix, 
     stochMod._simulationPrep(entity_map, start, stop, step);
     detMod._simulationPrep(entity_map, start, stop, step);
@@ -59,8 +63,8 @@ std::vector<std::vector<double>> SingleCell::simulate(
         detMod.runStep(timestep);
 
         // exchange data
-        stochMod.updateParameters(detMod.sbml);
-        detMod.updateParameters(stochMod.sbml);
+        stochMod.updateParameters(detMod.handler);
+        detMod.updateParameters(stochMod.handler);
 
         auto iter_t = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> iter_time = iter_t - start_t;

@@ -93,31 +93,57 @@ class SBMLHandler {
          * 
          * @returns None updates model SBML object
          */
-         void setModelEntityValue(
-            std::string entity_id, 
-            double new_value
-         );
+        void setModelEntityValue(
+        std::string entity_id, 
+        double new_value
+        );
 
-         /**
-          * @brief gets list of reactionId strings
-          * 
-          * @param None
-          * 
-          * @returns reactionIds list of reaction identifiers
-          */
-         std::vector<std::string> getReactionIds();
+        /**
+         * @brief gets list of reactionId strings
+         * 
+         * @param None
+         * 
+         * @returns reactionIds list of reaction identifiers
+         */
+        std::vector<std::string> getReactionIds();
 
-         /**
-          * @brief getter method for retrieving species-specific compartmental volumes
-          * 
-          * @param None
-          * 
-          * @returns cell_volumes vector list of compartmental volumes, as defined in
-          * class member this->model
-          */
-         std::vector<double> getGlobalSpeciesCompartmentVals();
+        /**
+         * @brief getter method for retrieving species-specific compartmental volumes
+         * 
+         * @param None
+         * 
+         * @returns cell_volumes vector list of compartmental volumes, as defined in
+         * class member this->model
+         */
+        std::vector<double> getGlobalSpeciesCompartmentVals();
+
+        /**
+         * @brief add method docstring
+         */
+        void convertSpeciesUnits(
+            std::vector<double> conversion_factor
+        );
+
+        /**
+         * @brief assigns new state to SBML model
+         * 
+         * @param new_state list of new values, 
+         * length must match number of species in model
+         * 
+         * @returns None updates SBML model species globally
+         */
+        void setState(
+            std::vector<double> new_state
+        );
+
+    //----------------------------members-----------------------------------//
+        std::vector<double> species_volumes;
+
 
     private:
+    //---------------------------------methods------------------------------//
+
+    //-------------------------------members--------------------------------//
         SBMLDocument* doc; 
 
 };

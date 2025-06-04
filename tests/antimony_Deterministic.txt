@@ -20,9 +20,9 @@ model Deterministic()
   vLR4: cyt_prot__RECEPTOR_ => ; (kLR4_1*cyt_prot__RECEPTOR_)*Cytoplasm;
 
   # Compartment initializations:
-  Cytoplasm = 3.000000e+03;
+  Cytoplasm = 5.250000e-12;
   Cytoplasm has volume;
-  Nucleus = 1.000000e+03;
+  Nucleus = 1.750000e-12;
   Nucleus has volume;
 
   # Species initializations:
