@@ -13,3 +13,4 @@ vLR1	Deterministic	Cytoplasm	cyt_prot__LIGAND_ + cyt_prot__RECEPTOR_ ; cyt_prot_
 vLR2	Deterministic	Cytoplasm	cyt_prot__LIGAND__RECEPTOR_ ; cyt_prot__LIGAND_ + cyt_prot__RECEPTOR_	kLR2_1 * cyt_prot__LIGAND__RECEPTOR_
 vLR3	Deterministic	Cytoplasm	cyt_prot__LIGAND_ ; 	kLR3_1 * cyt_prot__LIGAND_
 vLR4	Deterministic	Cytoplasm	cyt_prot__RECEPTOR_ ; 	kLR4_1*cyt_prot__RECEPTOR_
+vLR5	Deterministic	Cytoplasm	cyt_prot__LIGAND__RECEPTOR_  ; 	kLR5_1 * cyt_prot__LIGAND__RECEPTOR_

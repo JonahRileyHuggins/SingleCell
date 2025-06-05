@@ -54,8 +54,9 @@ model Stochastic()
   kTL2_1 = 1.000000e+00;
   kLR1_1 = 1.000000e-03;
   kLR2_1 = 1.000000e-03;
-  kLR3_1 = 5.000000e-03;
-  kLR4_1 = 5.000000e-03;
+  kLR3_1 = 5.000000e-05;
+  kLR4_1 = 5.000000e-05;
+  kLR5_1 = 5.000000e-05;
 
   # Other declarations:
   const Cytoplasm,Nucleus;

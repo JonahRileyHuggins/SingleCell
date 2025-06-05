@@ -18,6 +18,7 @@ model Deterministic()
   vLR2: cyt_prot__LIGAND__RECEPTOR_ => cyt_prot__LIGAND_ + cyt_prot__RECEPTOR_; (kLR2_1 * cyt_prot__LIGAND__RECEPTOR_)*Cytoplasm;
   vLR3: cyt_prot__LIGAND_ => ; (kLR3_1 * cyt_prot__LIGAND_)*Cytoplasm;
   vLR4: cyt_prot__RECEPTOR_ => ; (kLR4_1*cyt_prot__RECEPTOR_)*Cytoplasm;
+  vLR5: cyt_prot__LIGAND__RECEPTOR_ => ; (kLR5_1 * cyt_prot__LIGAND__RECEPTOR_)*Cytoplasm;
 
   # Compartment initializations:
   Cytoplasm = 5.250000e-12;
@@ -49,8 +50,9 @@ model Deterministic()
   kTL2_1 = 1.000000e+00;
   kLR1_1 = 1.000000e-03;
   kLR2_1 = 1.000000e-03;
-  kLR3_1 = 5.000000e-03;
-  kLR4_1 = 5.000000e-03;
+  kLR3_1 = 5.000000e-05;
+  kLR4_1 = 5.000000e-05;
+  kLR5_1 = 5.000000e-05;
 
   # Other declarations:
   const Cytoplasm,Nucleus;

@@ -49,8 +49,9 @@
       <parameter id="kTL2_1" value="1" constant="true"/>
       <parameter id="kLR1_1" value="0.001" constant="true"/>
       <parameter id="kLR2_1" value="0.001" constant="true"/>
-      <parameter id="kLR3_1" value="0.005" constant="true"/>
-      <parameter id="kLR4_1" value="0.005" constant="true"/>
+      <parameter id="kLR3_1" value="5e-05" constant="true"/>
+      <parameter id="kLR4_1" value="5e-05" constant="true"/>
+      <parameter id="kLR5_1" value="5e-05" constant="true"/>
     </listOfParameters>
     <listOfReactions>
       <reaction id="vGac1" reversible="false" fast="false">
