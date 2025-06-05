@@ -32,8 +32,7 @@ namespace matrix_utils {
      */
     void save_matrix(
         std::vector<std::vector<double>> results_matrix,
-        std::string name = "results.tsv",
-        std::string output = "../src/",
+        std::string output,
         std::vector<std::string> row_labels = {},
         std::vector<std::string> col_labels = {}
         );

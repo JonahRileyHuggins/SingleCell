@@ -19,23 +19,19 @@
 namespace matrix_utils {
     void save_matrix(
         std::vector<std::vector<double>> results_matrix,
-            std::string name,
             std::string output,
             std::vector<std::string> row_labels,
             std::vector<std::string> col_labels
     ) {
 
-        // Results path
-        std::string outfile = output + name;
-
-        std::ofstream outFile(outfile);
+        std::ofstream outFile(output);
 
         int numRows = results_matrix.size();
 
         int numCols = (numRows > 0) ? results_matrix[0].size() : 0;
 
         if (!col_labels.empty()) {
-            outFile << "\t";
+            outFile << "index" <<"\t";
             for (const auto& label : col_labels) {
                 outFile << label << "\t";
             }
@@ -49,11 +45,9 @@ namespace matrix_utils {
             for (int j = 0; j < numCols; j++) {
                 outFile << results_matrix[i][j] << "\t";
 
-                if (j == (numCols-1)) {
-                    outFile << "\n";
-                }
-
             }
+
+            outFile << "\n";
 
         }
 

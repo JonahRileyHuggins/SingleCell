@@ -81,18 +81,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
         detMod.results_matrix
     );
 
-    std::vector<std::string> timestep_str;
-    std::transform(timeSteps.begin(), timeSteps.end(), std::back_inserter(timestep_str), 
-        [](double val) { return std::to_string(val); });
-
-    matrix_utils::save_matrix(
-        stochMod.mhat_matrix,
-        "step_rate.tsv",
-        "../src/",
-        timestep_str,
-        stochMod.handler.getReactionIds()
-    );
-
     auto stop_t = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> duration = stop_t - start_t;
@@ -103,3 +91,13 @@ std::vector<std::vector<double>> SingleCell::simulate(
     return results_matrix;
 }
 
+std::vector<std::string> SingleCell::getGlobalSpeciesIds() {
+
+    std::vector<std::string> global_ids = this->StochasticModel.getSpeciesIds();
+
+    std::vector<std::string> deterministic_ids = this->DeterministicModel.getSpeciesIds();
+
+    global_ids.insert(global_ids.end(), deterministic_ids.begin(), deterministic_ids.end());
+
+    return global_ids;
+}

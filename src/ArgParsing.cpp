@@ -107,6 +107,7 @@ std::unordered_map<std::string, std::any> ArgParsing::setDefaults() {
     args_map["--step"] = 1.0;
     args_map["--stochastic_model"] = std::string("../tests/Stochastic.sbml");
     args_map["--deterministic_model"] = std::string("../tests/Deterministic.sbml");
+    args_map["--output"] = std::string("../src/results.tsv");
 
     return args_map;
 }
@@ -123,7 +124,8 @@ void ArgParsing::printUsage() {
             "     --step <Double> {[Optional] Default:1.0}\n"
             "     --stochastic_model <std::string> {[Optional] Default:  ../tests/Stochastic.sbml}\n"
             "     --deterministic_model <std::string> {[Optional] Default:  ../tests/Deterministic.sbml}\n"
-            "     --modify <SpeciesId || ParameterId || CompartmentId>=<Double> {[Optional]}\n";
+            "     --modify <SpeciesId || ParameterId || CompartmentId>=<Double> {[Optional]}\n"
+            "     --output <std::string>{[Optional] Default: ../src/results.tsv}\n";
 
             std::exit(EXIT_SUCCESS);
 }
@@ -141,20 +143,6 @@ void ArgParsing::parseDict(
         std::exit(EXIT_FAILURE);
 
     }
-
-
-    // std::vector<int> comma_pos_list;
-
-
-    // size_t pos = arg.find(',', start);
-
-    // while (pos != std::string::npos && pos < end) {
-
-    //     comma_pos_list.push_back(pos);
-
-    //     pos = arg.find(',', pos+1);
-
-    // }
 
     std::string content = arg.substr(start + 1, end - start - 1);
 

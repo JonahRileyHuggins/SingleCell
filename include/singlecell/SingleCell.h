@@ -31,6 +31,8 @@ class SingleCell {
     protected:
 
     public:
+    //---------------------------methods----------------------------------//
+        
         SingleCell(
             const std::string& stochastic_sbml_path,
             const std::string& deterministic_sbml_path
@@ -41,8 +43,7 @@ class SingleCell {
         /**
          * @brief public method for users to interface with the SingleCell Simulator. 
          * 
-         * @param det_states are the initial species values for the deterministic AMICI model
-         * @param stoch_states are the initial species values for the stochastic SBML model
+         * @param entity_map map of species to be modified, with corresponding values
          * @param start is the simulation start time
          * @param stop is the simulation stop time, in seconds
          * @param step is the delta_t step between simulation updates in seconds
@@ -56,7 +57,18 @@ class SingleCell {
             double step = 30.0 //seconds
         );
 
-        // @TODO: need to change pointer to Model
+        /**
+         * @brief getter method for retrieving all speciesIds from all associated submodels
+         * uses each model's SBMLHandler->getSpeciesIds() method.
+         * 
+         * @param None non-static, uses class-members
+         * 
+         * @returns global_ids string vector of all species identifiers from all models
+         * in parent class SingleCell
+         */
+        std::vector<std::string> getGlobalSpeciesIds();
+
+        //---------------------------members--------------------------------//
         SBMLHandler StochasticModel;
         SBMLHandler DeterministicModel;
        

@@ -50,7 +50,7 @@ int main(
     std::string deterministic_sbml = std::any_cast<std::string>(argparser->cli_map["--deterministic_model"]);
 
     //Load instance of SingleCell
-    std::unique_ptr<SingleCell> singleCell = std::make_unique<SingleCell>(
+    std::unique_ptr<SingleCell> single_cell = std::make_unique<SingleCell>(
         stochastic_sbml,
         deterministic_sbml
     );
@@ -64,15 +64,31 @@ int main(
         } 
         std::cout << '\n';
     }
-    std::vector<std::vector<double>> results_matrix = singleCell->simulate(
+    std::vector<std::vector<double>> results_matrix = single_cell->simulate(
         argparser->entity_map,
         start, 
         stop, 
         step
     );
 
+    std::vector<std::string> timesteps(results_matrix.size());
 
-    matrix_utils::save_matrix(results_matrix);
+    for (int i = 0; i < results_matrix.size(); i++) {
+
+        double time_i = i * step;
+
+        timesteps[i] = std::to_string(time_i);
+
+    }
+
+    std::vector<std::string> global_species_ids = single_cell->getGlobalSpeciesIds();
+
+    matrix_utils::save_matrix(
+        results_matrix,
+        std::any_cast<std::string>(argparser->cli_map["--output"]),
+        timesteps,
+        global_species_ids
+    );
 
     return 0;
 }
