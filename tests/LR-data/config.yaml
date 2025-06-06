@@ -13,5 +13,5 @@ compilation:
     files:
       compartments: "Compartments.tsv"
       ratelaws: "LR Model - Ratelaws.tsv"
-      species: "Species.tsv"
+      species: "LR Model - Species.tsv"
       parameters: "LR Model - Parameters.tsv"
