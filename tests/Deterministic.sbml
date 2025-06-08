@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by libAntimony version v2.12.0 with libSBML version 5.18.1. -->
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
   <model metaid="Deterministic" id="Deterministic" substanceUnits="substance" timeUnits="time_unit" volumeUnits="volume">
     <listOfUnitDefinitions>
@@ -26,13 +25,23 @@
       </unitDefinition>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment id="Cytoplasm" spatialDimensions="3" size="5.25e-12" units="volume" constant="true"/>
-      <compartment id="Nucleus" spatialDimensions="3" size="1.75e-12" units="volume" constant="true"/>
+      <compartment id="Cytoplasm" spatialDimensions="3" size="5.25e-12" units="volume" constant="true">
+        <annotation>GO:0005737</annotation>
+      </compartment>
+      <compartment id="Nucleus" spatialDimensions="3" size="1.75e-12" units="volume" constant="true">
+        <annotation>GO:0005634</annotation>
+      </compartment>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="cyt_prot__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_prot__RECEPTOR_" compartment="Cytoplasm" initialConcentration="100" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_prot__LIGAND__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="cyt_prot__LIGAND_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 0 Deterministic</annotation>
+      </species>
+      <species id="cyt_prot__RECEPTOR_" compartment="Cytoplasm" initialConcentration="100" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 100 Deterministic</annotation>
+      </species>
+      <species id="cyt_prot__LIGAND__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 0 Deterministic</annotation>
+      </species>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kTL1_1" value="1" constant="true"/>

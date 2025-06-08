@@ -24,12 +24,33 @@
 #include "singlecell/DeterministicModule.h"
 
 //=============================Class Details================================//
-SingleCell::SingleCell(
-    const std::string& stochastic_sbml_path,
-    const std::string& deterministic_sbml_path
-) : StochasticModel(stochastic_sbml_path),
-    DeterministicModel(deterministic_sbml_path)
-    { }
+std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
+    { "Deterministic", [](SBMLHandler handler) { return std::make_unique<DeterministicModule>(handler); } },
+    { "Stochastic", [](SBMLHandler handler) { return std::make_unique<StochasticModule>(handler); } }
+};
+
+void SingleCell::loadSimulationModules() {
+
+    for (const SBMLHandler& handler : handlers) {
+
+        const std::string id = handler.model->getId();
+
+        auto matched_module = this->moduleFactory.find(id);
+
+        if (matched_module != moduleFactory.end()) {
+
+            // Call the factory function with the SBMLHandler
+            std::unique_ptr<BaseModule> base_mod = matched_module->second(handler);
+
+            // Move the pointer into the list of modules
+            this->modules.push_back(std::move(base_mod));
+        } else {
+            // Fallback if no match
+            std::unique_ptr<BaseModule> base_mod = std::make_unique<DeterministicModule>(handler);
+            this->modules.push_back(std::move(base_mod));
+        }
+    }
+}
 
 std::vector<std::vector<double>> SingleCell::simulate(
     std::unordered_map<std::string, double> entity_map,

@@ -23,6 +23,8 @@ BaseModule::BaseModule(
     SBMLHandler Module
 ) : handler(Module) {}
 
+std::string BaseModule::getModuleId() { return this->algorithm_id; }
+
 std::vector<double> BaseModule::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;

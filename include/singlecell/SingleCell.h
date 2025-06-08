@@ -13,30 +13,79 @@
 #define SINGLECELL_h
 
 //===========================Library Import=================================//
-
+#include <map>
 #include <vector>
 #include <memory>
 #include <optional>
+#include <type_traits>
+#include <functional>
 
 //Internal Libraries
-#include "sbml/SBMLReader.h"
+#include "singlecell/SBMLHandler.h"
 #include "singlecell/BaseModule.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 
+// Third Party Libraries
+#include "sbml/SBMLReader.h"
+
 //==========================Class Declaration===============================//
 class SingleCell {
     private:
+    //---------------------------methods----------------------------------//
+        /**
+         * @brief loads all typenamem sbml_paths into public class member handlers
+         * 
+         * @param sbml_paths strings of paths to SBML model files.ADD_FILTERED_PLIST
+         * 
+         * @returns loaded_sbmls list of SBMLHandler objects
+         */
+        template <typename... Paths>
+        std::vector<SBMLHandler> loadSBMLModels(
+            const Paths&... paths
+        ) {
+            std::vector<std::string> sbml_path_strings = { std::string(paths)... };
+            std::vector<SBMLHandler> hander_list;
+
+            for (const auto& path : sbml_path_strings) {
+                handler_list.emplace_back(path);
+            }
+
+            return handler_list;
+
+        }
+
+    
+    //---------------------------members--------------------------------//
+        static std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> moduleFactory;
 
     protected:
+    //---------------------------methods----------------------------------//
+        /**
+         * @brief Factory method for loading BaseModules based on SBML details
+         * 
+         * @par Parameters
+         * None. Loads N-instances of simulation Modules stored in class member handlers
+         */
+        void loadSimulationModules();
+
+    //------------------------------members---------------------------------//
+        std::vector<std::unique_ptr<BaseModule>> modules;
+
 
     public:
-    //---------------------------methods----------------------------------//
-        
+    //---------------------------methods------------------------------------//
+        template <typename... SBML_Paths>
         SingleCell(
-            const std::string& stochastic_sbml_path,
-            const std::string& deterministic_sbml_path
-        ); //Ctor
+            SBML_Paths... sbml_paths
+        ) {
+
+            static_assert(std::conjunction_v<std::is_convertible<sbml_paths, std::string>,
+                        "All sbml paths to SingleCell must be convertible to std::string");
+
+            this->handlers = loadSBMLModels(const SBML_Paths&... sbml_paths);
+
+         } //Ctor
 
         virtual ~SingleCell() = default; //Dtor
 
@@ -69,8 +118,7 @@ class SingleCell {
         std::vector<std::string> getGlobalSpeciesIds();
 
         //---------------------------members--------------------------------//
-        SBMLHandler StochasticModel;
-        SBMLHandler DeterministicModel;
+        std::vector<SBMLHandler> handlers;
        
 
 };

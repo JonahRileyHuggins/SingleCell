@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by libAntimony version v2.12.0 with libSBML version 5.18.1. -->
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
   <model metaid="Stochastic" id="Stochastic" substanceUnits="substance" timeUnits="time_unit" volumeUnits="volume">
     <listOfUnitDefinitions>
@@ -22,16 +21,32 @@
       <unitDefinition id="molecule"/>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment id="Cytoplasm" spatialDimensions="3" size="5.25e-12" units="volume" constant="true"/>
-      <compartment id="Nucleus" spatialDimensions="3" size="1.75e-12" units="volume" constant="true"/>
+      <compartment id="Cytoplasm" spatialDimensions="3" size="5.25e-12" units="volume" constant="true">
+        <annotation>GO:0005737</annotation>
+      </compartment>
+      <compartment id="Nucleus" spatialDimensions="3" size="1.75e-12" units="volume" constant="true">
+        <annotation>GO:0005634</annotation>
+      </compartment>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="nuc_gene_a__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
-      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="nuc_gene_a__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 1 Stochastic</annotation>
+      </species>
+      <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 1 Stochastic</annotation>
+      </species>
+      <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 1 Stochastic</annotation>
+      </species>
+      <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 1 Stochastic</annotation>
+      </species>
+      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 5 Stochastic</annotation>
+      </species>
+      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 5 Stochastic</annotation>
+      </species>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kGac1_1" value="0.0005" constant="true"/>

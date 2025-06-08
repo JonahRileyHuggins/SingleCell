@@ -59,6 +59,7 @@ class DeterministicModule : public BaseModule {
             SBMLHandler alternate_model
         );
     //-------------------------------Members--------------------------------//
+        std::string algorithm_id = "Deterministic";
 
 
     private:

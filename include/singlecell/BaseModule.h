@@ -37,13 +37,20 @@ class BaseModule {
 
     protected:
     //---------------------------------methods------------------------------//
+        /**
+         * @brief retrieves private member algorithm_id for determining which simulation
+         * method to use
+         *  
+         * @returns algorithm_id string identifier for algorithm default
+         */
+        std::string getModuleId();
+    
         virtual void _simulationPrep(
             std::unordered_map<std::string, double>entity_map,
             double start, 
             double stop, 
             double step
         ) = 0;
-
 
         /**
          * @brief Class method for enforcing an iteration step by simulation formalism
@@ -107,6 +114,7 @@ class BaseModule {
         ) = 0;
 
     //-------------------------------Members--------------------------------//
+        std::string algorithm_id = "Deterministic";
 
 
     public:
@@ -166,6 +174,7 @@ class BaseModule {
         std::vector<std::vector<double>> results_matrix;
 
         std::vector<std::string> overlapping_params;
+
 
 };
 

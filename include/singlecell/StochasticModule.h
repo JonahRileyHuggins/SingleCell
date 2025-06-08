@@ -78,9 +78,8 @@ class StochasticModule : public BaseModule{
             SBMLHandler alternate_model
         );
     //---------------------------Members----------------------------------//
-        //@TODO: Using to debug, remove later:
-    std::vector<std::vector<double>> mhat_matrix;
-    
+        std::string algorithm_id = "Stochastic";    
+
 
     private:
     // -------------------------Methods-----------------------------------//

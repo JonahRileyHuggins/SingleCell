@@ -27,7 +27,7 @@ parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-ty
 parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
 parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = "../sbml_files/", help  = "path to which you want output files stored")
+parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -65,7 +65,7 @@ class CreateModel:
         """Load antimony doc into an SBML object"""
 
         antimony_file_path = f'{self.output_path}/antimony_{self.model_name}.txt'
-        sbml_file_path = f'{self.output_path}{self.model_name}.sbml'
+        sbml_file_path = f'{self.output_path}/{self.model_name}.sbml'
 
         if sb.loadFile(str(antimony_file_path)) == -1:
             logger.debug(sb.getLastError())
@@ -93,7 +93,7 @@ class CreateModel:
 
     def _load_sbml(self, sbml_file_path: str | os.PathLike):
         """Import the instance of our model."""
-        logger.info('Loading SBML model %s')
+        logger.info('Loading SBML model %s', self.model_name+'.sbml')
 
         # create interaction components
         sbml_reader = libsbml.SBMLReader()
@@ -123,9 +123,14 @@ class CreateModel:
             if not pd.isna(annotation):
                 self.sbml_model.getCompartment(compartmentId).setAnnotation(str(annotation).strip())
 
+        self._write_sbml()
+
     def _write_sbml(self):
         writer = libsbml.SBMLWriter()
-        writer.writeSBML(self.sbml_doc, self.sbml_file)
+
+        sbml_output_path = f'{self.output_path}/{self.model_name}.sbml'
+
+        writer.writeSBML(self.sbml_doc, sbml_output_path)
 
     @classmethod # Table, need method to build file handler.
     def factory_model_handler(self, args, **kwargs): 
