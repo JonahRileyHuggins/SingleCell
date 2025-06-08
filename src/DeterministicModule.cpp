@@ -32,7 +32,7 @@
 //=============================Class Details================================//
 DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
- ) : Simulation(DeterministicModel)
+ ) : BaseModule(DeterministicModel)
  {
     // Retrieve the Deterministic matrix from the sbml document.
     this->stoichmat = DeterministicModel.getStoichiometricMatrix();
@@ -66,7 +66,7 @@ void DeterministicModule::runStep(int step) {
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
     // Record values to results matrix
-    Simulation::recordStepResult(last_vals, step);
+    BaseModule::recordStepResult(last_vals, step);
 }
 
 std::vector<double> DeterministicModule::setAllSpeciesValues(
@@ -146,13 +146,13 @@ void DeterministicModule::_simulationPrep(
 
     int numSpecies = this->sbml->getNumSpecies();
         
-    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
+    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
     // populate results_matrix member with proper size
-    this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size()); 
+    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timeSteps.size()); 
     
     // record initial state as first vector in results_matrix member 
-    Simulation::recordStepResult(
+    BaseModule::recordStepResult(
         init_states, 
         0
     );

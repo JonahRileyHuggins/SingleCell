@@ -1,7 +1,7 @@
 /**
- * @file Simulation.cpp
+ * @file BaseModule.cpp
  * 
- * @brief Combines instances of Deterministic and Stochastic Modules into singular simulation framework
+ * @brief Combines instances of Simulation Modules into singular simulation framework
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 19-05-2025
@@ -16,14 +16,14 @@
 
 
 // Internal Libraries
-#include "singlecell/Simulation.h"
+#include "singlecell/BaseModule.h"
 #include "singlecell/SBMLHandler.h"
 //=============================Class Details================================//
-Simulation::Simulation(
+BaseModule::BaseModule(
     SBMLHandler Module
 ) : handler(Module) {}
 
-std::vector<double> Simulation::setTimeSteps(double start, double stop, double step) {
+std::vector<double> BaseModule::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;
 
@@ -37,7 +37,7 @@ std::vector<double> Simulation::setTimeSteps(double start, double stop, double s
     return timepoints;
 }
 
-std::vector<std::vector<double>> Simulation::createResultsMatrix(
+std::vector<std::vector<double>> BaseModule::createResultsMatrix(
     int numSpecies,
     int numTimeSteps
 ) {
@@ -48,7 +48,7 @@ std::vector<std::vector<double>> Simulation::createResultsMatrix(
 
 }
 
-void Simulation::recordStepResult(
+void BaseModule::recordStepResult(
     const std::vector<double>& state_vector,
     int timepoint
 ) {
@@ -62,7 +62,7 @@ void Simulation::recordStepResult(
     }
 }
 
-void Simulation::findOverlappingIds(
+void BaseModule::findOverlappingIds(
     const Model* alternate_model
 ) {
 
@@ -93,7 +93,7 @@ void Simulation::findOverlappingIds(
     this->overlapping_params = overlaps;
 }
 
-std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
+std::vector<std::vector<double>> BaseModule::concatenateMatrixRows(
     std::vector<std::vector<double>> matrix1, 
     std::vector<std::vector<double>> matrix2
 ) {
@@ -103,7 +103,7 @@ std::vector<std::vector<double>> Simulation::concatenateMatrixRows(
     return matrix1;
 }
 
-void Simulation::modifyModelEntity(
+void BaseModule::modifyModelEntity(
     std::string entity_id, 
     double new_value
 ) {

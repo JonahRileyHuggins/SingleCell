@@ -20,14 +20,14 @@
 #include <optional>
 
 //Internal Libraries
-#include "Simulation.h"
+#include "BaseModule.h"
 #include "SBMLHandler.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
 
 //==========================Class Declaration===============================//
-class DeterministicModule : public Simulation {
+class DeterministicModule : public BaseModule {
     public:
     //----------------------------Methods-----------------------------------//
         DeterministicModule(

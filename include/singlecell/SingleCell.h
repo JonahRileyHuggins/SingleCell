@@ -20,7 +20,7 @@
 
 //Internal Libraries
 #include "sbml/SBMLReader.h"
-#include "singlecell/Simulation.h"
+#include "singlecell/BaseModule.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 

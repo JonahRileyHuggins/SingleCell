@@ -1,16 +1,17 @@
 /**
- * @file: Simulation.h
+ * @file: BASEMODULE.h
  * 
  * @authors  Jonah R. Huggins, Marc R. Birtwistle
  * @date 19-05-2025
  * 
- * @brief Class Creator For Single Cell Model.
+ * @brief Base-Class Creator For individual simulation modules. New Simulation 
+ * formalisms should become derived classes
  */
 //========================header file definition============================//
 #pragma once
 
-#ifndef SIMULATION_h
-#define SIMULATION_h
+#ifndef BASEMODULE_h
+#define BASEMODULE_h
 
 //===========================Library Import=================================//
 //Std Libraries
@@ -26,7 +27,7 @@
 #include "sbml/SBMLReader.h"
 
 //==========================Class Declaration===============================//
-class Simulation {
+class BaseModule {
     private:
     //---------------------------------methods------------------------------//
 
@@ -110,11 +111,11 @@ class Simulation {
 
     public:
     //---------------------------methods------------------------------------//
-        Simulation(
+        BaseModule(
             SBMLHandler Module
         ); //Ctor
 
-        virtual ~Simulation() = default; //Dtor
+        virtual ~BaseModule() = default; //Dtor
 
         /**
          * @brief calculates number of simulation steps, aka timepoints
@@ -168,5 +169,5 @@ class Simulation {
 
 };
 
-#endif // SIMULATION_H
+#endif // BASEMODULE_H
     

@@ -18,7 +18,7 @@
 // Internal Libraries
 #include "singlecell/utils.h"
 #include "singlecell/SingleCell.h"
-#include "singlecell/Simulation.h"
+#include "singlecell/BaseModule.h"
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
@@ -53,7 +53,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
     stochMod._simulationPrep(entity_map, start, stop, step);
     detMod._simulationPrep(entity_map, start, stop, step);
 
-    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
+    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
     // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
     for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
@@ -76,7 +76,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
     }
     
     // concatentate results matrices
-    std::vector<std::vector<double>> results_matrix = Simulation::concatenateMatrixRows(
+    std::vector<std::vector<double>> results_matrix = BaseModule::concatenateMatrixRows(
         stochMod.results_matrix,
         detMod.results_matrix
     );

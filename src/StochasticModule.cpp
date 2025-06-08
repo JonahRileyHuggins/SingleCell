@@ -32,7 +32,7 @@
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
     SBMLHandler StochasticModel
-) : Simulation(StochasticModel) {
+) : BaseModule(StochasticModel) {
 
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
@@ -230,11 +230,11 @@ void StochasticModule::_simulationPrep(
 
     int numSpecies = this->sbml->getNumSpecies();
     
-    std::vector<double> timeSteps = Simulation::setTimeSteps(start, stop, step);
+    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
-    this->results_matrix = Simulation::createResultsMatrix(numSpecies, timeSteps.size());
+    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timeSteps.size());
  
-    Simulation::recordStepResult(
+    BaseModule::recordStepResult(
         init_states, 
         0
     );
@@ -291,7 +291,7 @@ void StochasticModule::runStep(
     }
     
     //Record iteration's result
-    Simulation::recordStepResult(new_state, step);
+    BaseModule::recordStepResult(new_state, step);
 }
 
 void StochasticModule::updateParameters(

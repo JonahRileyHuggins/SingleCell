@@ -4,7 +4,7 @@
  * @authors  Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
  * 
- * @brief Class Creator For derived class StochasticModule (from Simulator).
+ * @brief Class Creator For derived class StochasticModule (from BaseModule).
  */
 //========================header file definition============================//
 #pragma once
@@ -20,11 +20,11 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "Simulation.h"
+#include "BaseModule.h"
 #include "SBMLHandler.h"
 
 //==========================Class Declaration===============================//
-class StochasticModule : public Simulation {
+class StochasticModule : public BaseModule{
     public:
     // -------------------------Methods-----------------------------------//
         StochasticModule( //Constructor. ctor

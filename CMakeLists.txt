@@ -16,7 +16,7 @@ set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
     src/SBMLHandler.cpp
-    src/Simulation.cpp
+    src/BaseModule.cpp
     src/DeterministicModule.cpp
     src/StochasticModule.cpp
     src/SingleCell.cpp
