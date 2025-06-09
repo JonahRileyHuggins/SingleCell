@@ -36,6 +36,14 @@ class DeterministicModule : public BaseModule {
 
         ~DeterministicModule() override = default; //Dtor
 
+        /**
+         * @brief retrieves private member algorithm_id for determining which simulation
+         * method to use
+         *  
+         * @returns algorithm_id string identifier for algorithm default
+         */
+        std::string getModuleId() override;  
+
         void setSimulationSettings(
             std::unordered_map<std::string, double>entity_map,
             double start,

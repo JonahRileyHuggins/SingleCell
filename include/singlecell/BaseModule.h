@@ -93,7 +93,7 @@ class BaseModule {
          *  
          * @returns algorithm_id string identifier for algorithm default
          */
-        std::string getModuleId();   
+        virtual std::string getModuleId() = 0;   
 
         /**
          * @brief finds targets for module to send information to.ADD_FILTERED_PLIST

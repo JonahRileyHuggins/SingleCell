@@ -101,8 +101,17 @@ class SingleCell {
         /**
          * @brief creates combined results matrix for every module in 
          * class member this->modules
+         * 
+         * @param timesteps vector of timepoints, specifying how long 
+         * results matrix should be.ADD_FILTERED_PLIST
+         * 
+         * @returns results_matrix combined matrix of results for all modules, 
+         * basically just adds each module implementation of BaseModule.results_matrix
+         * class member to finalized results matrix.
          */
-        std::vector<std::vector<double>> makeResultsMatrix();
+        std::vector<std::vector<double>> makeResultsMatrix(
+            int timesteps
+        );
 
         /**
          * @brief Concatenates matrix 2 to the bottom rows of matrix 1

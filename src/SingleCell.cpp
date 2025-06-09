@@ -25,8 +25,8 @@
 
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
-    { "Deterministic", [](SBMLHandler handler) { return std::make_unique<DeterministicModule>(handler); } },
-    { "Stochastic", [](SBMLHandler handler) { return std::make_unique<StochasticModule>(handler); } }
+    { "Deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
+    { "Stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } }
 };
 
 void SingleCell::loadSimulationModules() {
@@ -34,20 +34,16 @@ void SingleCell::loadSimulationModules() {
     for (const SBMLHandler& handler : handlers) {
 
         const std::string id = handler.model->getId();
-        std::cout << "Handler: " << id << std::endl;
+        
         auto matched_module = this->moduleFactory.find(id);
 
         if (matched_module != moduleFactory.end()) {
-
+            
             // Call the factory function with the SBMLHandler
             std::unique_ptr<BaseModule> base_mod = matched_module->second(handler); // <--This seems like your problem line
 
             // if module is empty; there's no need to add overhead:
             if (!base_mod->handler.getSpeciesIds().empty()) {
-
-
-                std::cout << "handler passed: " << base_mod->getModuleId() << std::endl;
-
 
                 // Move the pointer into the list of modules
                 this->modules.push_back(std::move(base_mod));
@@ -107,6 +103,15 @@ void SingleCell::runGlobalStep(
 
         mod->runStep(timestep);
 
+        std::cout << "Module: " << mod->getModuleId() << "\n";
+
+        for (int i = 0; i < mod->results_matrix[0].size(); i++) {
+
+            std::cout << "\t" << mod->results_matrix[timestep][i];
+
+        }
+
+        printf("\n");
     }
 
 }
@@ -131,18 +136,34 @@ std::vector<std::vector<double>> SingleCell::concatenateMatrixRows(
     return matrix1;
 }
 
-std::vector<std::vector<double>> SingleCell::makeResultsMatrix() {
+std::vector<std::vector<double>> SingleCell::makeResultsMatrix(
+    int timesteps
+) {
 
-    std::vector<std::vector<double>> results_matrix;
+    int numSpecies = this->getGlobalSpeciesIds().size();
 
-    for (const auto& mod : this->modules) {
+    std::vector<std::vector<double>> final_matrix;
 
-        results_matrix = concatenateMatrixRows(results_matrix, mod->results_matrix);
+    for (size_t m = 0; m < this->modules.size(); m++) {
 
+        if (m == 0) {
+
+            final_matrix = this->modules[m]->results_matrix;
+        } else {
+
+            std::vector<std::vector<double>> mod_matrix = this->modules[m]->results_matrix;
+
+            for (size_t t = 0; t < mod_matrix.size(); t++) {
+
+                final_matrix[t].insert(
+                    final_matrix[t].end(),
+                    mod_matrix[t].begin(),
+                    mod_matrix[t].end()
+                );
+            }
+        }
     }
-
-    return results_matrix;
-
+    return final_matrix;
 }
 
 std::vector<std::vector<double>> SingleCell::simulate(
@@ -193,7 +214,9 @@ std::vector<std::vector<double>> SingleCell::simulate(
     }
     
     // concatentate results matrices
-    std::vector<std::vector<double>> results_matrix = makeResultsMatrix();
+    std::vector<std::vector<double>> results_matrix = makeResultsMatrix(
+        timeSteps.size()
+    );
 
     auto stop_t = std::chrono::high_resolution_clock::now();
 

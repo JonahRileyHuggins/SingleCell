@@ -47,17 +47,16 @@ StochasticModule::StochasticModule(
 
  }
 
+std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
 void StochasticModule::loadTargetModule(
     const std::vector<std::unique_ptr<BaseModule>>& module_list
 ) {
     for (const auto& mod : module_list) {
-        std::cout << "Main Algorithm: " << mod->getModuleId() << std::endl;
 
         if (mod->getModuleId() == this->target_id) {
 
             this->targets.push_back(mod.get());
-            std::cout << "target algorithm: " << mod->getModuleId() <<std::endl;
         }
 
     }
@@ -299,27 +298,20 @@ void StochasticModule::runStep(
     
     //Record iteration's result
     BaseModule::recordStepResult(new_state, step);
+
 }
 
 void StochasticModule::updateParameters() {
 
-    std::cout << "New Loop" << std::endl;
-
     for (const auto& alt_model : this->targets) {
 
         SBMLHandler alternate_model = alt_model->handler;
-
-        std::cout << alternate_model.model->getId() << std::endl;
 
         //call conversion method here:
         std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2mpc);
 
         std::vector<std::string> species_list = alternate_model.getSpeciesIds();
-
-        for (int i = 0; i < alternate_model.getSpeciesIds().size(); i++) {
-                std::cout << "alt_species: " << alternate_model.model->getSpecies(i)->getId() << std::endl;
-        }
 
         for (int i = 0; i < this->overlapping_params.size(); ++i) {
             const std::string& id = this->overlapping_params[i];

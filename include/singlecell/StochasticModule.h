@@ -34,6 +34,14 @@ class StochasticModule : public BaseModule{
         ~StochasticModule() override = default; //Destructor, dtor
 
         /**
+         * @brief retrieves private member algorithm_id for determining which simulation
+         * method to use
+         *  
+         * @returns algorithm_id string identifier for algorithm default
+         */
+        std::string getModuleId() override;  
+
+        /**
          * @brief loads pre-simulation materials: results matrix, [Fill in here Jonah]
          *      @TODO: Are we adding results matrix to the object? If so, create a fill in holder.computeReaction
          * 
