@@ -47,6 +47,22 @@ StochasticModule::StochasticModule(
 
  }
 
+
+void StochasticModule::loadTargetModule(
+    const std::vector<std::unique_ptr<BaseModule>>& module_list
+) {
+    for (const auto& mod : module_list) {
+        std::cout << "Main Algorithm: " << mod->getModuleId() << std::endl;
+
+        if (mod->getModuleId() == this->target_id) {
+
+            this->targets.push_back(mod.get());
+            std::cout << "target algorithm: " << mod->getModuleId() <<std::endl;
+        }
+
+    }
+}
+
 std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
     /** 
      * @brief Computes all reactions in the SBML model
@@ -287,20 +303,42 @@ void StochasticModule::runStep(
 
 void StochasticModule::updateParameters() {
 
-    for (const auto& model : this->targets) {
+    std::cout << "New Loop" << std::endl;
 
-        SBMLHandler alternate_model = model->handler;
+    for (const auto& alt_model : this->targets) {
+
+        SBMLHandler alternate_model = alt_model->handler;
+
+        std::cout << alternate_model.model->getId() << std::endl;
 
         //call conversion method here:
         std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2mpc);
 
-        for (int i = 0; i < this->overlapping_params.size(); i++) {
-            
-            Parameter* parameter = sbml->getParameter(this->overlapping_params[i]);
+        std::vector<std::string> species_list = alternate_model.getSpeciesIds();
 
-            parameter->setValue(alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration());
-        
+        for (int i = 0; i < alternate_model.getSpeciesIds().size(); i++) {
+                std::cout << "alt_species: " << alternate_model.model->getSpecies(i)->getId() << std::endl;
+        }
+
+        for (int i = 0; i < this->overlapping_params.size(); ++i) {
+            const std::string& id = this->overlapping_params[i];
+            
+            Parameter* parameter = sbml->getParameter(id);
+
+            Species* species = alternate_model.model->getSpecies(id);
+
+            if (species == nullptr) {
+                std::cerr << "[Warning] Species with ID '" << id << "' not found in alternate model.\n";
+                continue; // skip to next iteration
+            }
+
+            if (parameter == nullptr) {
+                std::cerr << "[Warning] Parameter with ID '" << id << "' not found in sbml.\n";
+                continue;
+            }
+
+            parameter->setValue(species->getInitialConcentration());
         }
     }
 }

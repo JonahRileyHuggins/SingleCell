@@ -46,6 +46,21 @@ DeterministicModule::DeterministicModule(
     this->target_id = "Stochastic";
 }
 
+void DeterministicModule::loadTargetModule(
+    const std::vector<std::unique_ptr<BaseModule>>& module_list
+) {
+    for (const auto& mod : module_list) {
+        std::cout << "Main Algorithm: " << mod->getModuleId() << std::endl;
+
+        if (mod->getModuleId() == this->target_id) {
+
+            this->targets.push_back(mod.get());
+            std::cout << "target algorithm: " << mod->getModuleId() <<std::endl;
+        }
+
+    }
+}
+
 void DeterministicModule::runStep(int step) {
     // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);

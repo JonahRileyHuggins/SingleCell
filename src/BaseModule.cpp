@@ -25,20 +25,6 @@ BaseModule::BaseModule(
 
 std::string BaseModule::getModuleId() { return this->algorithm_id; }
 
-void BaseModule::loadTargetModule(
-    const std::vector<std::unique_ptr<BaseModule>>& module_list
-) {
-    for (const auto& mod : module_list) {
-
-        if (mod->algorithm_id == this->target_id) {
-
-            this->targets.push_back(mod.get());
-
-        }
-
-    }
-}
-
 std::vector<double> BaseModule::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;

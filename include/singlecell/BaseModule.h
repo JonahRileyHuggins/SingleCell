@@ -36,15 +36,7 @@ class BaseModule {
 
 
     protected:
-    //---------------------------------methods------------------------------//
-        /**
-         * @brief retrieves private member algorithm_id for determining which simulation
-         * method to use
-         *  
-         * @returns algorithm_id string identifier for algorithm default
-         */
-        std::string getModuleId();   
-    
+    //---------------------------------methods------------------------------//    
         /**
          * @brief creates a matrix of results to be implemented within a derived class
          *
@@ -83,7 +75,7 @@ class BaseModule {
         ) = 0;
 
     //-------------------------------Members--------------------------------//
-        std::string algorithm_id = "Deterministic";
+        std::string algorithm_id = "";
         std::string target_id = "";
 
 
@@ -96,12 +88,20 @@ class BaseModule {
         virtual ~BaseModule() = default; //Dtor
 
         /**
+         * @brief retrieves private member algorithm_id for determining which simulation
+         * method to use
+         *  
+         * @returns algorithm_id string identifier for algorithm default
+         */
+        std::string getModuleId();   
+
+        /**
          * @brief finds targets for module to send information to.ADD_FILTERED_PLIST
          * 
          */
-        void loadTargetModule(
+        virtual void loadTargetModule(
             const std::vector<std::unique_ptr<BaseModule>>& module_list
-        ); 
+        ) = 0; 
 
         /**
          * @brief calculates number of simulation steps, aka timepoints

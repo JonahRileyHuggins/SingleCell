@@ -34,16 +34,20 @@ void SingleCell::loadSimulationModules() {
     for (const SBMLHandler& handler : handlers) {
 
         const std::string id = handler.model->getId();
-
+        std::cout << "Handler: " << id << std::endl;
         auto matched_module = this->moduleFactory.find(id);
 
         if (matched_module != moduleFactory.end()) {
 
             // Call the factory function with the SBMLHandler
-            std::unique_ptr<BaseModule> base_mod = matched_module->second(handler);
+            std::unique_ptr<BaseModule> base_mod = matched_module->second(handler); // <--This seems like your problem line
 
             // if module is empty; there's no need to add overhead:
             if (!base_mod->handler.getSpeciesIds().empty()) {
+
+
+                std::cout << "handler passed: " << base_mod->getModuleId() << std::endl;
+
 
                 // Move the pointer into the list of modules
                 this->modules.push_back(std::move(base_mod));
