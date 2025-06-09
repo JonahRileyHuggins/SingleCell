@@ -42,14 +42,103 @@ void SingleCell::loadSimulationModules() {
             // Call the factory function with the SBMLHandler
             std::unique_ptr<BaseModule> base_mod = matched_module->second(handler);
 
-            // Move the pointer into the list of modules
-            this->modules.push_back(std::move(base_mod));
+            // if module is empty; there's no need to add overhead:
+            if (!base_mod->handler.getSpeciesIds().empty()) {
+
+                // Move the pointer into the list of modules
+                this->modules.push_back(std::move(base_mod));
+
+            }
         } else {
             // Fallback if no match
             std::unique_ptr<BaseModule> base_mod = std::make_unique<DeterministicModule>(handler);
             this->modules.push_back(std::move(base_mod));
         }
     }
+}
+
+void SingleCell::assignGlobalTargets() {
+
+    for (const auto& mod : this->modules) {
+
+        mod->loadTargetModule(this->modules);
+
+    }
+}
+
+void SingleCell::findModuleOverlaps() {
+
+    for (const auto& mod : this->modules) {
+
+        for (const auto& target : mod->targets) {
+
+            mod->findOverlappingIds(target->sbml);
+        
+        }
+    }
+}
+
+void SingleCell::setGlobalSimulationSettings(
+    std::unordered_map<std::string, double>entity_map,
+    double start, 
+    double stop, 
+    double step
+) {
+    for (const auto& mod : this->modules) {
+
+        mod->setSimulationSettings(
+            entity_map,
+            start,
+            stop,
+            step
+        );
+    }
+}
+
+void SingleCell::runGlobalStep(
+    int timestep
+) {
+
+    for (const auto& mod : this->modules) {
+
+        mod->runStep(timestep);
+
+    }
+
+}
+
+void SingleCell::updateGlobalParameters() {
+
+    for (const auto& mod : this->modules) {
+
+        mod->updateParameters();
+
+    }
+
+}
+
+std::vector<std::vector<double>> SingleCell::concatenateMatrixRows(
+    std::vector<std::vector<double>> matrix1, 
+    std::vector<std::vector<double>> matrix2
+) {
+    for (size_t i = 0; i < matrix1.size(); ++i) {
+        matrix1[i].insert(matrix1[i].end(), matrix2[i].begin(), matrix2[i].end());
+    }
+    return matrix1;
+}
+
+std::vector<std::vector<double>> SingleCell::makeResultsMatrix() {
+
+    std::vector<std::vector<double>> results_matrix;
+
+    for (const auto& mod : this->modules) {
+
+        results_matrix = concatenateMatrixRows(results_matrix, mod->results_matrix);
+
+    }
+
+    return results_matrix;
+
 }
 
 std::vector<std::vector<double>> SingleCell::simulate(
@@ -63,16 +152,21 @@ std::vector<std::vector<double>> SingleCell::simulate(
     printf("\n");
 
     //Create instances of internal simulation modules: dynamic allocation
-    StochasticModule stochMod = StochasticModule(StochasticModel);
-    DeterministicModule detMod = DeterministicModule(DeterministicModel);
+    this->loadSimulationModules();
 
-    // Assign Target Overlaps per Module:
-    stochMod.findOverlappingIds(detMod.sbml);
-    detMod.findOverlappingIds(stochMod.sbml);
+    // Assign Target per Module
+    this->assignGlobalTargets();
 
-    // Add simulation time steps, results matrix, 
-    stochMod._simulationPrep(entity_map, start, stop, step);
-    detMod._simulationPrep(entity_map, start, stop, step);
+    // Identify all module overlaps between targets
+    this->findModuleOverlaps();
+
+    // Add simulation time steps, results matrix
+    this->setGlobalSimulationSettings(
+        entity_map,
+        start,
+        stop,
+        step
+    );
 
     std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
@@ -80,12 +174,10 @@ std::vector<std::vector<double>> SingleCell::simulate(
     for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
 
         //Run Module Simulations
-        stochMod.runStep(timestep);
-        detMod.runStep(timestep);
+        this->runGlobalStep(timestep);
 
         // exchange data
-        stochMod.updateParameters(detMod.handler);
-        detMod.updateParameters(stochMod.handler);
+        this->updateGlobalParameters();
 
         auto iter_t = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> iter_time = iter_t - start_t;
@@ -97,10 +189,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
     }
     
     // concatentate results matrices
-    std::vector<std::vector<double>> results_matrix = BaseModule::concatenateMatrixRows(
-        stochMod.results_matrix,
-        detMod.results_matrix
-    );
+    std::vector<std::vector<double>> results_matrix = makeResultsMatrix();
 
     auto stop_t = std::chrono::high_resolution_clock::now();
 
@@ -114,11 +203,18 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
 std::vector<std::string> SingleCell::getGlobalSpeciesIds() {
 
-    std::vector<std::string> global_ids = this->StochasticModel.getSpeciesIds();
+    std::vector<std::string> global_ids;
 
-    std::vector<std::string> deterministic_ids = this->DeterministicModel.getSpeciesIds();
+    for (const auto& mod : this->modules) {
 
-    global_ids.insert(global_ids.end(), deterministic_ids.begin(), deterministic_ids.end());
+        std::vector<std::string> mod_species_ids = mod->handler.getSpeciesIds();
+
+        for (const auto& specie : mod_species_ids) {
+
+            global_ids.push_back(specie);
+
+        }
+    }
 
     return global_ids;
 }

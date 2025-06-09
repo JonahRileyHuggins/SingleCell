@@ -44,7 +44,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns None
          */
-        void _simulationPrep(
+        void setSimulationSettings(
             std::unordered_map<std::string, double>entity_map,
             double start,
             double stop, 
@@ -74,9 +74,12 @@ class StochasticModule : public BaseModule{
             const std::vector<double>& state
         );
 
-        void updateParameters(
-            SBMLHandler alternate_model
-        );
+        /**
+         * @brief Override class for BaseModule, exchanges data with target
+         * modules at each timestep
+         */
+        void updateParameters();
+        
     //---------------------------Members----------------------------------//
         std::string algorithm_id = "Stochastic";    
 

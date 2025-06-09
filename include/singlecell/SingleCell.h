@@ -17,8 +17,9 @@
 #include <vector>
 #include <memory>
 #include <optional>
-#include <type_traits>
 #include <functional>
+#include <type_traits>
+#include <unordered_map>
 
 //Internal Libraries
 #include "singlecell/SBMLHandler.h"
@@ -45,7 +46,7 @@ class SingleCell {
             const Paths&... paths
         ) {
             std::vector<std::string> sbml_path_strings = { std::string(paths)... };
-            std::vector<SBMLHandler> hander_list;
+            std::vector<SBMLHandler> handler_list;
 
             for (const auto& path : sbml_path_strings) {
                 handler_list.emplace_back(path);
@@ -55,9 +56,9 @@ class SingleCell {
 
         }
 
-    
     //---------------------------members--------------------------------//
         static std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> moduleFactory;
+
 
     protected:
     //---------------------------methods----------------------------------//
@@ -69,23 +70,64 @@ class SingleCell {
          */
         void loadSimulationModules();
 
+        /**
+         * @brief Iterates over stored class member modules, assigns targets 
+         * to modules
+         */
+        void assignGlobalTargets();
+
+        /**
+         * @brief Iterates over stored class member modules, identifies target entities
+         * 
+         */
+        void findModuleOverlaps();
+
+        /**
+         * @brief modifies intial states for each module stored in class member modules
+         */
+        void setGlobalSimulationSettings(
+            std::unordered_map<std::string, double>entity_map,
+            double start, 
+            double stop, 
+            double step
+        );
+
+        void runGlobalStep(
+            int timestep
+        );
+
+        void updateGlobalParameters();
+
+        /**
+         * @brief creates combined results matrix for every module in 
+         * class member this->modules
+         */
+        std::vector<std::vector<double>> makeResultsMatrix();
+
+        /**
+         * @brief Concatenates matrix 2 to the bottom rows of matrix 1
+         * 
+         * @param matrix1 nested vector of doubles matrix to be appended to
+         * @param matrix2 nested vector of doubles matrix to be appended
+         * 
+         * @returns combined_matrix matrix of (matrix1 row count + matrix2 row count)
+         */
+        static std::vector<std::vector<double>> concatenateMatrixRows(
+            
+            std::vector<std::vector<double>> matrix1, 
+            std::vector<std::vector<double>> matrix2
+        );
+
     //------------------------------members---------------------------------//
         std::vector<std::unique_ptr<BaseModule>> modules;
 
 
     public:
     //---------------------------methods------------------------------------//
-        template <typename... SBML_Paths>
-        SingleCell(
-            SBML_Paths... sbml_paths
-        ) {
-
-            static_assert(std::conjunction_v<std::is_convertible<sbml_paths, std::string>,
-                        "All sbml paths to SingleCell must be convertible to std::string");
-
-            this->handlers = loadSBMLModels(const SBML_Paths&... sbml_paths);
-
-         } //Ctor
+        template<typename... SBML_Paths>
+        SingleCell(SBML_Paths&&... sbml_paths) {
+            this->handlers = loadSBMLModels(std::forward<SBML_Paths>(sbml_paths)...);
+        } //Ctor
 
         virtual ~SingleCell() = default; //Dtor
 

@@ -25,6 +25,20 @@ BaseModule::BaseModule(
 
 std::string BaseModule::getModuleId() { return this->algorithm_id; }
 
+void BaseModule::loadTargetModule(
+    const std::vector<std::unique_ptr<BaseModule>>& module_list
+) {
+    for (const auto& mod : module_list) {
+
+        if (mod->algorithm_id == this->target_id) {
+
+            this->targets.push_back(mod.get());
+
+        }
+
+    }
+}
+
 std::vector<double> BaseModule::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;
@@ -80,29 +94,14 @@ void BaseModule::findOverlappingIds(
     }
 
     std::vector<std::string> param_ids = handler.getParameterIds();
-    
 
-
-    std::vector<std::string> overlaps;
     std::unordered_set<std::string> lookup(alt_species_ids.begin(), alt_species_ids.end());
 
     for (const auto& id : param_ids) {
         if (lookup.count(id)) {
-            overlaps.push_back(id);
+            this->overlapping_params.push_back(id);
         }
     }
-
-    this->overlapping_params = overlaps;
-}
-
-std::vector<std::vector<double>> BaseModule::concatenateMatrixRows(
-    std::vector<std::vector<double>> matrix1, 
-    std::vector<std::vector<double>> matrix2
-) {
-    for (size_t i = 0; i < matrix1.size(); ++i) {
-        matrix1[i].insert(matrix1[i].end(), matrix2[i].begin(), matrix2[i].end());
-    }
-    return matrix1;
 }
 
 void BaseModule::modifyModelEntity(

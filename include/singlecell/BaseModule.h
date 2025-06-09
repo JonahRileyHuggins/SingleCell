@@ -43,25 +43,7 @@ class BaseModule {
          *  
          * @returns algorithm_id string identifier for algorithm default
          */
-        std::string getModuleId();
-    
-        virtual void _simulationPrep(
-            std::unordered_map<std::string, double>entity_map,
-            double start, 
-            double stop, 
-            double step
-        ) = 0;
-
-        /**
-         * @brief Class method for enforcing an iteration step by simulation formalism
-         * 
-         * @param step current step of the simulation
-         * 
-         * @returns None (new_state t+1 values for module step.)
-        */
-        virtual void runStep(
-            int step
-        ) = 0;    
+        std::string getModuleId();   
     
         /**
          * @brief creates a matrix of results to be implemented within a derived class
@@ -100,21 +82,9 @@ class BaseModule {
             int timepoint
         ) = 0;
 
-        /**
-         * @brief Exchange method for swapping parameters with species values in modules
-         *  @NOTE: required method in Stochastic- & Deterministic- Modules
-         * 
-         * @param alternate_model the model for which species values correspond to 
-         * parameter values in this-> model
-         * 
-         * @returns None updates internal models.
-         */
-        virtual void updateParameters(
-            SBMLHandler alternate_model
-        ) = 0;
-
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "Deterministic";
+        std::string target_id = "";
 
 
     public:
@@ -124,6 +94,14 @@ class BaseModule {
         ); //Ctor
 
         virtual ~BaseModule() = default; //Dtor
+
+        /**
+         * @brief finds targets for module to send information to.ADD_FILTERED_PLIST
+         * 
+         */
+        void loadTargetModule(
+            const std::vector<std::unique_ptr<BaseModule>>& module_list
+        ); 
 
         /**
          * @brief calculates number of simulation steps, aka timepoints
@@ -141,18 +119,15 @@ class BaseModule {
         );
 
         /**
-         * @brief Concatenates matrix 2 to the bottom rows of matrix 1
+         * @brief Class method for enforcing an iteration step by simulation formalism
          * 
-         * @param matrix1 nested vector of doubles matrix to be appended to
-         * @param matrix2 nested vector of doubles matrix to be appended
+         * @param step current step of the simulation
          * 
-         * @returns combined_matrix matrix of (matrix1 row count + matrix2 row count)
-         */
-        static std::vector<std::vector<double>> concatenateMatrixRows(
-            
-            std::vector<std::vector<double>> matrix1, 
-            std::vector<std::vector<double>> matrix2
-        );
+         * @returns None (new_state t+1 values for module step.)
+        */
+        virtual void runStep(
+            int step
+        ) = 0; 
 
         void modifyModelEntity(
             std::string entity_id, 
@@ -163,17 +138,35 @@ class BaseModule {
         void findOverlappingIds(
             const Model* alternate_model
         );
+    
+        virtual void setSimulationSettings(
+            std::unordered_map<std::string, double>entity_map,
+            double start, 
+            double stop, 
+            double step
+        ) = 0;
+
+        /**
+         * @brief Exchange method for swapping parameters with species values in modules
+         *  @NOTE: required method in Stochastic- & Deterministic- Modules
+         * 
+         * @returns None updates internal models.
+         */
+        virtual void updateParameters() = 0;
 
     //-------------------------------Members--------------------------------//
         SBMLHandler handler;
         Model* sbml;
 
         std::vector<std::vector<double>> stoichmat;
+
         std::vector<std::string> formulas_vector;
 
         std::vector<std::vector<double>> results_matrix;
 
         std::vector<std::string> overlapping_params;
+
+        std::vector<BaseModule*> targets;
 
 
 };

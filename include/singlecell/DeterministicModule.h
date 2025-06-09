@@ -36,13 +36,12 @@ class DeterministicModule : public BaseModule {
 
         ~DeterministicModule() override = default; //Dtor
 
-        void _simulationPrep(
+        void setSimulationSettings(
             std::unordered_map<std::string, double>entity_map,
             double start,
             double stop, 
             double step
         ) override;
-
 
         /**
          * @brief Calculates a single timestep for the deterministic module
@@ -55,9 +54,12 @@ class DeterministicModule : public BaseModule {
             int step
         ) override;
 
-        void updateParameters(
-            SBMLHandler alternate_model
-        );
+        /**
+         * @brief exchanges parameter-to-species values with target-modules
+         * 
+         */
+        void updateParameters();
+        
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "Deterministic";
 

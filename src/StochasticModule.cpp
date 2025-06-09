@@ -43,6 +43,8 @@ StochasticModule::StochasticModule(
     //Instantiate SBML model
     this->sbml = StochasticModel.model;
 
+    this->target_id = "Deterministic";
+
  }
 
 std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
@@ -205,7 +207,7 @@ std::vector<double> StochasticModule::constrainTau(
     return mhat_actual;
 }
 
-void StochasticModule::_simulationPrep(
+void StochasticModule::setSimulationSettings(
     std::unordered_map<std::string, double>entity_map,
     double start, 
     double stop, 
@@ -240,13 +242,6 @@ void StochasticModule::_simulationPrep(
     );
 
     this->delta_t = step;
-
-    // REMOVE BELOW LATER:
-    this->mhat_matrix = std::vector<std::vector<double>>(
-        timeSteps.size(), 
-        std::vector<double>(this->stoichmat[0].size())
-    );
-    // REMOVE ABOVE LATER
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -276,10 +271,6 @@ void StochasticModule::runStep(
     // Constrain Tau-leap algorithm to only positive integers:
     std::vector<double> mhat_actual = constrainTau(m_i, last_record);
 
-    for (int z = 0; z < mhat_actual.size(); z++) {
-        this->mhat_matrix[step][z] = mhat_actual[z];
-    }
-
     // Update the stochastic state vector: new_state = max((old_state * v), 0)
     std::vector<double> new_state(last_record.size());
     for (size_t i = 0; i < last_record.size(); ++i) {
@@ -294,21 +285,24 @@ void StochasticModule::runStep(
     BaseModule::recordStepResult(new_state, step);
 }
 
-void StochasticModule::updateParameters(
-    SBMLHandler alternate_model
-) {
-        
-    //call conversion method here:
-    std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
-    alternate_model.convertSpeciesUnits(unit2mpc);
+void StochasticModule::updateParameters() {
 
-    for (int i = 0; i < this->overlapping_params.size(); i++) {
-        
-        Parameter* parameter = sbml->getParameter(this->overlapping_params[i]);
+    for (const auto& model : this->targets) {
 
-        parameter->setValue(alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration());
+        SBMLHandler alternate_model = model->handler;
+
+        //call conversion method here:
+        std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
+        alternate_model.convertSpeciesUnits(unit2mpc);
+
+        for (int i = 0; i < this->overlapping_params.size(); i++) {
+            
+            Parameter* parameter = sbml->getParameter(this->overlapping_params[i]);
+
+            parameter->setValue(alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration());
+        
+        }
     }
-
 }
 
 std::vector<double> StochasticModule::getLastStepResult(
