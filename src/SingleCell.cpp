@@ -103,15 +103,6 @@ void SingleCell::runGlobalStep(
 
         mod->runStep(timestep);
 
-        std::cout << "Module: " << mod->getModuleId() << "\n";
-
-        for (int i = 0; i < mod->results_matrix[0].size(); i++) {
-
-            std::cout << "\t" << mod->results_matrix[timestep][i];
-
-        }
-
-        printf("\n");
     }
 
 }

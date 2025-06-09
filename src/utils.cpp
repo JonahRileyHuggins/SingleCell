@@ -31,19 +31,19 @@ namespace matrix_utils {
         int numCols = (numRows > 0) ? results_matrix[0].size() : 0;
 
         if (!col_labels.empty()) {
-            outFile << "index" <<"\t";
+            outFile << "index";
             for (const auto& label : col_labels) {
-                outFile << label << "\t";
+                outFile << "\t" << label;
             }
             outFile << "\n";
         }
 
         for (int i = 0; i < numRows; i++) {
             if (!row_labels.empty()) {
-                outFile << row_labels[i] << "\t";
+                outFile << row_labels[i];
             }
             for (int j = 0; j < numCols; j++) {
-                outFile << results_matrix[i][j] << "\t";
+                outFile << "\t" << results_matrix[i][j];
 
             }
 
