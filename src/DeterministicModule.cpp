@@ -120,6 +120,7 @@ std::vector<double> DeterministicModule::getNewStepResult(
     
     const std::vector<double>& all_species = rdata.x; // species trajectories flat array length n_species * n_timepoints
 
+    // this makes the start value of  our for-loop at rdata.x[-1, starting_column] in python terms
     int last_idx = (n_timepoints-1) * n_species;
 
     std::vector<double> last_species_values;
@@ -196,9 +197,9 @@ std::vector<double> DeterministicModule::getLastStepResult(
 
 void DeterministicModule::updateParameters() {
     
-    for (const auto& model : this->targets) {
+    for (const auto& module : this->targets) {
 
-        SBMLHandler alternate_model = model->handler;
+        SBMLHandler alternate_model = module->handler;
 
         //call conversion method here:
         std::vector<double> unit2nM = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);

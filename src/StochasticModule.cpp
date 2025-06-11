@@ -303,9 +303,9 @@ void StochasticModule::runStep(
 
 void StochasticModule::updateParameters() {
 
-    for (const auto& alt_model : this->targets) {
+    for (const auto& alt_module : this->targets) {
 
-        SBMLHandler alternate_model = alt_model->handler;
+        SBMLHandler alternate_model = alt_module->handler;
 
         //call conversion method here:
         std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);

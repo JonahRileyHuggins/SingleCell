@@ -20,7 +20,7 @@ import libsbml
 import amici
 import antimony as sb
 
-parser = argparse.ArgumentParser(prog='swap_name')
+parser = argparse.ArgumentParser(prog='ModelsCreator')
 parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
                                                                         which files to inspect for name changes.')
 parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
@@ -313,7 +313,7 @@ class StochasticModel(CreateModel):
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, parent_model_type: SimpleNamespace, correction = False, stochastic = False):
+    def __init__(self, parent_model_type: SimpleNamespace, correction = True, stochastic = False):
         self.model_files = parent_model_type.model_files
         self.model_name = parent_model_type.model_name
         ## Include other operations here. 
@@ -383,7 +383,7 @@ class AntimonyFile:
 
             logger.info("Species '%s' in compartment '%s' writen to antimony document" % (speciesid, species_compartment))
 
-    def __write_reactions(self, correction = False): #handled in cells 12 & 13
+    def __write_reactions(self, correction = True): #handled in cells 12 & 13
         """Writes given reactions to antimony file."""
         logger.info("Writing ratelaws to antimony document %s", self.model_name)
 

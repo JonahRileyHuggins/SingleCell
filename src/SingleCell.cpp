@@ -117,16 +117,6 @@ void SingleCell::updateGlobalParameters() {
 
 }
 
-std::vector<std::vector<double>> SingleCell::concatenateMatrixRows(
-    std::vector<std::vector<double>> matrix1, 
-    std::vector<std::vector<double>> matrix2
-) {
-    for (size_t i = 0; i < matrix1.size(); ++i) {
-        matrix1[i].insert(matrix1[i].end(), matrix2[i].begin(), matrix2[i].end());
-    }
-    return matrix1;
-}
-
 std::vector<std::vector<double>> SingleCell::makeResultsMatrix(
     int timesteps
 ) {

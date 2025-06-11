@@ -74,7 +74,7 @@ namespace unit_conversions {
         std::vector<double> cell_volumes
     ) {
 
-        const double nm2Molar = 0.000000001;
+        const double nm2Molar = 1e9;
 
         const double avagadros = 6.022e23;
 
@@ -82,7 +82,7 @@ namespace unit_conversions {
 
         for (int i = 0; i < cell_volumes.size(); i++) {
 
-            mpc_vec[i] = (1.0 / nm2Molar) * (1.0 / cell_volumes[i]) * avagadros;
+            mpc_vec[i] = (1.0 / nm2Molar) * (avagadros / 1.0) * (cell_volumes[i] / 1.0);
 
         }
 
@@ -102,7 +102,7 @@ namespace unit_conversions {
 
         for (int i = 0; i < cell_volumes.size(); i++) {
 
-            nanomolar_vec[i] = (1.0 / avagadros) * (1.0 / cell_volumes[i]) * molar2nM;
+            nanomolar_vec[i] = (1.0 / cell_volumes[i]) * (1.0 / avagadros) * molar2nM;
 
         }
 

@@ -11,7 +11,7 @@ location: "LR-data"
 compilation:
     directory: "."
     files:
-      compartments: "Compartments.tsv"
+      compartments: "LR Model - Compartments.tsv"
       ratelaws: "LR Model - Ratelaws.tsv"
       species: "LR Model - Species.tsv"
       parameters: "LR Model - Parameters.tsv"
