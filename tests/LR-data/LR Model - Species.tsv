@@ -2,9 +2,9 @@ speciesId	compartment	initialConcentration	solver
 cyt_prot__LIGAND_	Cytoplasm	0	Deterministic
 cyt_prot__RECEPTOR_	Cytoplasm	100	Deterministic
 cyt_prot__LIGAND__RECEPTOR_	Cytoplasm	0	Deterministic
-nuc_gene_a__LIGAND_	Nucleus	0.0009489016463443563	Deterministic
-nuc_gene_i__LIGAND_	Nucleus	0.0009489016463443563	Deterministic
-nuc_gene_a__RECEPTOR_	Nucleus	0.0009489016463443563	Deterministic
-nuc_gene_i__RECEPTOR_	Nucleus	0.0009489016463443563	Deterministic
-cyt_mrna__LIGAND_	Cytoplasm	0.0015815027439072607	Deterministic
-cyt_mrna__RECEPTOR_	Cytoplasm	0.0015815027439072607	Deterministic
+nuc_gene_a__LIGAND_	Nucleus	1	Stochastic
+nuc_gene_i__LIGAND_	Nucleus	1	Stochastic
+nuc_gene_a__RECEPTOR_	Nucleus	1	Stochastic
+nuc_gene_i__RECEPTOR_	Nucleus	1	Stochastic
+cyt_mrna__LIGAND_	Cytoplasm	5	Stochastic
+cyt_mrna__RECEPTOR_	Cytoplasm	5	Stochastic

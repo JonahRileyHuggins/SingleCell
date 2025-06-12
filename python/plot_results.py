@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import seaborn as sns
 import matplotlib as mpl
+mpl.use('TkAgg')
 import numpy as np
 from matplotlib.lines import Line2D
 
@@ -25,12 +26,12 @@ headers = [
     'cyt_prot__LIGAND__RECEPTOR_'
 ]
 
-data[headers[0]] = nanomolar2mpc(data[headers[0]], 1.75e-12)
-data[headers[1]] = nanomolar2mpc(data[headers[1]], 1.75e-12)
-data[headers[2]] = nanomolar2mpc(data[headers[2]], 1.75e-12)
-data[headers[3]] = nanomolar2mpc(data[headers[3]], 1.75e-12)
-data[headers[4]] = nanomolar2mpc(data[headers[4]], 1.75e-12)
-data[headers[5]] = nanomolar2mpc(data[headers[5]], 1.75e-12)
+# data[headers[0]] = nanomolar2mpc(data[headers[0]], 1.75e-12)
+# data[headers[1]] = nanomolar2mpc(data[headers[1]], 1.75e-12)
+# data[headers[2]] = nanomolar2mpc(data[headers[2]], 1.75e-12)
+# data[headers[3]] = nanomolar2mpc(data[headers[3]], 1.75e-12)
+# data[headers[4]] = nanomolar2mpc(data[headers[4]], 1.75e-12)
+# data[headers[5]] = nanomolar2mpc(data[headers[5]], 1.75e-12)
 
 
 fig = plt.figure(figsize=(15, 10))
@@ -57,9 +58,9 @@ cyt_prot_receptor_init = data[headers[7]][0]
 # === Top row (Bar plots comparing pairs) ===
 ax1_0 = fig.add_subplot(gs[0, 0])
 # ax1_0.plot(time[::100]/3600, data[headers[0]][::100], color='orange', label=headers[0])
-ax1_0.plot(time[::100], data[headers[0]][::100], color='orange', label=headers[0])
+# ax1_0.bar(time, data[headers[0]], color='orange', label=headers[0])
 
-# ax1_0.bar(time[::100]/3600, data[headers[1]][::100], color='blue', alpha=0.6, label=headers[1], width=0.5)
+ax1_0.bar(time[::100]/3600, data[headers[0]][::100], color='orange', alpha=0.6, label=headers[0], width=0.5)
 ax1_0.set_title("Ligand")
 ax1_0.set_ylabel("Gene (mpc)")
 ax1_0.set_xlabel('Time (hr.)')
@@ -67,9 +68,9 @@ ax1_0.set_xlabel('Time (hr.)')
 
 ax1_1 = fig.add_subplot(gs[0, 1])
 # ax1_1.plot(time[::100]/3600, data[headers[2]][::100], color='cyan', label=headers[2])
-ax1_1.plot(time[::100], data[headers[2]][::100], color='cyan', label=headers[2])
+# ax1_1.bar(time, data[headers[2]], color='cyan', label=headers[2])
 
-# ax1_1.bar(time[::100]/3600, data[headers[3]][::100], color='blue', alpha=0.6, label=headers[3], width=0.5)
+ax1_1.bar(time[::100]/3600, data[headers[2]][::100], color='cyan', alpha=0.6, label=headers[2], width=0.5)
 ax1_1.set_title("Receptor")
 ax1_1.set_ylabel("Gene (mpc)")
 ax1_1.set_xlabel('Time (hr.)')
@@ -144,3 +145,4 @@ sns.despine(fig)
 plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.savefig(fname = "LR-Model.png", dpi = 300)
 plt.show()
+print("finished plotting")
