@@ -119,15 +119,24 @@ class BaseModule {
         );
 
         /**
-         * @brief Class method for enforcing an iteration step by simulation formalism
+         * @brief Enforces an iterative, step-wise simulation method in derived classes
          * 
          * @param step current step of the simulation
          * 
          * @returns None (new_state t+1 values for module step.)
         */
-        virtual void runStep(
+        virtual void step(
             int step
         ) = 0; 
+
+        /**
+         * @brief Enforces a method for simulating without stop in derived classes
+         * 
+         * @param timepoints vector of timepoints for the simulation
+         */
+        virtual void run(
+            std::vector<double> timepoints
+        ) = 0;
 
         void modifyModelEntity(
             std::string entity_id, 

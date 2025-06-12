@@ -29,6 +29,43 @@ std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandle
     { "Stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } }
 };
 
+std::vector<std::vector<double>> SingleCell::simulate(
+    std::unordered_map<std::string, double> entity_map,
+    double start, 
+    double stop,
+    double step
+) {
+
+    //Create instances of internal simulation modules: dynamic allocation
+    this->loadSimulationModules();
+
+    // Assign Target per Module
+    this->assignGlobalTargets();
+
+    // Identify all module overlaps between targets
+    this->findModuleOverlaps();
+
+    // Add simulation time steps, results matrix
+    this->setGlobalSimulationSettings(
+        entity_map,
+        start,
+        stop,
+        step
+    );
+
+    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
+    
+    // run simulation:
+    this->runGlobal(timeSteps);
+
+    // combine each module's results matrix together
+    std::vector<std::vector<double>> results_matrix = combineResultsMatrix(
+        timeSteps.size()
+    );
+
+    return results_matrix;
+}
+
 void SingleCell::loadSimulationModules() {
 
     for (const SBMLHandler& handler : handlers) {
@@ -95,13 +132,60 @@ void SingleCell::setGlobalSimulationSettings(
     }
 }
 
-void SingleCell::runGlobalStep(
+void SingleCell::runGlobal(
+    std::vector<double> timesteps
+) { 
+    auto start_t = std::chrono::high_resolution_clock::now();
+    printf("Starting Simulation for %lu seconds.", timesteps.size());
+    printf("\n");
+
+
+    if (this->modules.size() == 1) {
+
+        for (const auto& mod : this->modules) {
+
+            mod->run(timesteps);
+
+        }
+
+    } else {
+
+        // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
+        for (int step = 0; step < timesteps.size(); step++) {
+
+            //Run Module Simulations
+            this->stepGlobal(step);
+
+            // exchange data
+            this->updateGlobalParameters();
+
+            auto iter_t = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> iter_time = iter_t - start_t;
+            printf("Iteration [%i / %i] Time: %f", 
+                                (int)(step + 1), 
+                                (int)(timesteps.size()), 
+                                iter_time.count());
+            printf("\n");
+        }
+    }
+
+
+    auto stop_t = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> duration = stop_t - start_t;
+
+    printf("Simulation Completed in %f seconds.", static_cast<double>(duration.count()));
+    printf("\n");
+
+}
+
+void SingleCell::stepGlobal(
     int timestep
 ) {
 
     for (const auto& mod : this->modules) {
 
-        mod->runStep(timestep);
+        mod->step(timestep);
 
     }
 
@@ -117,7 +201,7 @@ void SingleCell::updateGlobalParameters() {
 
 }
 
-std::vector<std::vector<double>> SingleCell::makeResultsMatrix(
+std::vector<std::vector<double>> SingleCell::combineResultsMatrix(
     int timesteps
 ) {
 
@@ -145,68 +229,6 @@ std::vector<std::vector<double>> SingleCell::makeResultsMatrix(
         }
     }
     return final_matrix;
-}
-
-std::vector<std::vector<double>> SingleCell::simulate(
-    std::unordered_map<std::string, double> entity_map,
-    double start, 
-    double stop,
-    double step
-) {
-    auto start_t = std::chrono::high_resolution_clock::now();
-    printf("Starting Simulation for %f seconds.", stop);
-    printf("\n");
-
-    //Create instances of internal simulation modules: dynamic allocation
-    this->loadSimulationModules();
-
-    // Assign Target per Module
-    this->assignGlobalTargets();
-
-    // Identify all module overlaps between targets
-    this->findModuleOverlaps();
-
-    // Add simulation time steps, results matrix
-    this->setGlobalSimulationSettings(
-        entity_map,
-        start,
-        stop,
-        step
-    );
-
-    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
-
-    // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
-    for (int timestep = 0; timestep < timeSteps.size(); timestep++) {
-
-        //Run Module Simulations
-        this->runGlobalStep(timestep);
-
-        // exchange data
-        this->updateGlobalParameters();
-
-        auto iter_t = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> iter_time = iter_t - start_t;
-        printf("Iteration [%i / %i] Time: %f", 
-                            (int)(timestep + 1), 
-                            (int)(timeSteps.size()), 
-                            iter_time.count());
-        printf("\n");
-    }
-    
-    // concatentate results matrices
-    std::vector<std::vector<double>> results_matrix = makeResultsMatrix(
-        timeSteps.size()
-    );
-
-    auto stop_t = std::chrono::high_resolution_clock::now();
-
-    std::chrono::duration<double> duration = stop_t - start_t;
-
-    printf("Simulation Completed in %f seconds.", static_cast<double>(duration.count()));
-    printf("\n");
-
-    return results_matrix;
 }
 
 std::vector<std::string> SingleCell::getGlobalSpeciesIds() {

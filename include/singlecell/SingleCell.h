@@ -84,6 +84,11 @@ class SingleCell {
 
         /**
          * @brief modifies intial states for each module stored in class member modules
+         * 
+         * @param entity_map dictionary of species mapped to double values users want to change
+         * @param start double start time for simulation
+         * @param stop double end timepoint for simulation
+         * @param step double iteration size delta-t
          */
         void setGlobalSimulationSettings(
             std::unordered_map<std::string, double>entity_map,
@@ -92,8 +97,23 @@ class SingleCell {
             double step
         );
 
-        void runGlobalStep(
-            int timestep
+
+        /**
+         * @brief class method to run modules, stepwise
+         * 
+         * @param timesteps vector of double steps to length of simulation
+         */
+        void runGlobal(
+            std::vector<double> timesteps
+        );
+
+        /**
+         * @brief class method to run individual simulation step
+         * 
+         * @param step double value of current step iteration
+         */
+        void stepGlobal(
+            int step
         );
 
         void updateGlobalParameters();
@@ -102,29 +122,15 @@ class SingleCell {
          * @brief creates combined results matrix for every module in 
          * class member this->modules
          * 
-         * @param timesteps vector of timepoints, specifying how long 
-         * results matrix should be.ADD_FILTERED_PLIST
+         * @param numTimesteps integer number of timepoints, specifying how long 
+         * results matrix should be
          * 
          * @returns results_matrix combined matrix of results for all modules, 
          * basically just adds each module implementation of BaseModule.results_matrix
          * class member to finalized results matrix.
          */
-        std::vector<std::vector<double>> makeResultsMatrix(
-            int timesteps
-        );
-
-        /**
-         * @brief Concatenates matrix 2 to the bottom rows of matrix 1
-         * 
-         * @param matrix1 nested vector of doubles matrix to be appended to
-         * @param matrix2 nested vector of doubles matrix to be appended
-         * 
-         * @returns combined_matrix matrix of (matrix1 row count + matrix2 row count)
-         */
-        static std::vector<std::vector<double>> concatenateMatrixRows(
-            
-            std::vector<std::vector<double>> matrix1, 
-            std::vector<std::vector<double>> matrix2
+        std::vector<std::vector<double>> combineResultsMatrix(
+            int numTimesteps
         );
 
     //------------------------------members---------------------------------//

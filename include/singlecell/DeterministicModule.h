@@ -58,8 +58,17 @@ class DeterministicModule : public BaseModule {
          * 
          * @returns None (new state vector of t+1 values for deterministic step)
         */
-        void runStep(
+        void step(
             int step
+        ) override;
+
+        /**
+         * @brief Calculates every timestep for the deterministic module before returning call
+         * 
+         * @param timepoints vector of timepoints for the simulation
+         */
+        void run(
+            std::vector<double> timepoints
         ) override;
 
         /**

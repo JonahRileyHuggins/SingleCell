@@ -61,7 +61,7 @@ void DeterministicModule::loadTargetModule(
     }
 }
 
-void DeterministicModule::runStep(int step) {
+void DeterministicModule::step(int step) {
     // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);
 
@@ -85,6 +85,38 @@ void DeterministicModule::runStep(int step) {
     // Record values to results matrix
     BaseModule::recordStepResult(last_vals, step);
 
+}
+
+void DeterministicModule::run(
+    std::vector<double> timepoints
+) {
+
+    // Starting vector for simulation
+    std::vector<double> initial_state = this->getLastStepResult(0);
+
+    //reset SBML species values:
+    this->handler.setState(initial_state);
+
+    // Set the all timepoints for total runtime
+    model->setTimepoints(timepoints);
+
+    // Set initial state
+    model->setInitialStates(initial_state);
+
+    // Run the simulation
+    std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
+
+    int n_species = rdata->nx; // number of species
+    int n_timepoints = rdata->nt; //timepoints
+
+    for (int i = 0; i < n_timepoints; i++) {
+        for (int j = 0; j < n_species; j++) {
+
+            this->results_matrix[i][j] = rdata->x[i * n_species + j];
+
+        }
+
+    }
 }
 
 std::vector<double> DeterministicModule::setAllSpeciesValues(
@@ -127,6 +159,7 @@ std::vector<double> DeterministicModule::getNewStepResult(
     
     // convert each species value from amici::realtype to double
     for (int i = last_idx; i < last_idx + n_species; ++i) {
+
         last_species_values.push_back(static_cast<double>(all_species[i]));
     
     }

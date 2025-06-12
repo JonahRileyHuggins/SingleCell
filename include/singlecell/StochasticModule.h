@@ -61,14 +61,23 @@ class StochasticModule : public BaseModule{
 
         
         /**
-         * @brief Calculates a single timestep for the stochastic module
+         * @brief Calculates a single timestep for the stochastic module, returning to call
          * 
          * @param step current step of the simulation
          * 
          * @returns new_state t+1 values for stochastic step.
         */
-        void runStep(
+        void step(
             int step
+        ) override;
+
+        /**
+         * @brief Calculates every timestep for the stochastic module before returning call
+         * 
+         * @param timepoints vector of timepoints for the simulation
+         */
+        void run(
+            std::vector<double> timepoints
         ) override;
 
         /**

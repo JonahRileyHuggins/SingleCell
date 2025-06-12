@@ -268,7 +268,7 @@ void StochasticModule::setModelState(const std::vector<double>& state) {
     }
 }
 
-void StochasticModule::runStep(
+void StochasticModule::step(
     int step
 ) {
     // get (step minus 1) position in results_matrix member
@@ -299,6 +299,16 @@ void StochasticModule::runStep(
     //Record iteration's result
     BaseModule::recordStepResult(new_state, step);
 
+}
+
+void StochasticModule::run(
+    std::vector<double> timesteps
+) {
+    for (int t = 0; t < timesteps.size(); t++) {
+
+        this->step(t);
+
+    }
 }
 
 void StochasticModule::updateParameters() {
