@@ -210,9 +210,9 @@ void DeterministicModule::setSimulationSettings(
     );
      
      // Assign solver settings
-     solver->setAbsoluteTolerance(1e-10);
-     solver->setRelativeTolerance(1e-6);
-     solver->setMaxSteps(100000);
+     solver->setAbsoluteTolerance(1e-10); // <-- Problem?
+     solver->setRelativeTolerance(1e-6); // <-- Problem?
+     solver->setMaxSteps(100000); // <-- Problem?
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(

@@ -28,9 +28,9 @@ std::vector<double> BaseModule::setTimeSteps(double start, double stop, double s
     std::vector<double> timepoints;
 
     // For loop for calculation
-    for (int i = 0; i <= static_cast<int>((stop - start) / step); ++i) {
+    for (double val = start; val < stop; val +=step) {
 
-        timepoints.push_back(static_cast<double>(i));
+        timepoints.push_back(val);
     }
 
     // NSteps equivalent in SPARCED:

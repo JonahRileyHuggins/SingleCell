@@ -54,7 +54,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
     );
 
     std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
-    
+
     // run simulation:
     this->runGlobal(timeSteps);
 
@@ -110,15 +110,15 @@ void SingleCell::findModuleOverlaps() {
         for (const auto& target : mod->targets) {
 
             mod->findOverlappingIds(target->sbml);
-        
+
         }
     }
 }
 
 void SingleCell::setGlobalSimulationSettings(
     std::unordered_map<std::string, double>entity_map,
-    double start, 
-    double stop, 
+    double start,
+    double stop,
     double step
 ) {
     for (const auto& mod : this->modules) {
@@ -136,13 +136,14 @@ void SingleCell::runGlobal(
     std::vector<double> timesteps
 ) { 
     auto start_t = std::chrono::high_resolution_clock::now();
-    printf("Starting Simulation for %lu seconds.", timesteps.size());
+    printf("Running Simulation for %lu steps.", timesteps.size());
     printf("\n");
-
 
     if (this->modules.size() == 1) {
 
         for (const auto& mod : this->modules) {
+
+            std::cout << "Simulating fully " << mod->getModuleId() << "\n";
 
             mod->run(timesteps);
 
@@ -184,7 +185,7 @@ void SingleCell::stepGlobal(
 ) {
 
     for (const auto& mod : this->modules) {
-
+        
         mod->step(timestep);
 
     }
