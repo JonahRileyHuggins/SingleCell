@@ -152,7 +152,7 @@ void SingleCell::runGlobal(
     } else {
 
         // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
-        for (int step = 0; step < timesteps.size(); step++) {
+        for (int step = 1; step < timesteps.size(); step++) {
 
             //Run Module Simulations
             this->stepGlobal(step);

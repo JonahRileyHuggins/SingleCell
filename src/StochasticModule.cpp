@@ -210,15 +210,14 @@ std::vector<double> StochasticModule::constrainTau(
 
             if (reactant < 0) { // drop reactants != negative (-): i.e. not rate-limiting
                 R_mi = reactant;
-            } 
+            }
         }
-        
+
         R_mi = std::abs(R_mi);
 
         // compare between predicted and actual:
-        mhat_actual[i] = std::min(m_i[i], R_mi); 
+        mhat_actual[i] = std::min(m_i[i], R_mi);
     }
-
     return mhat_actual;
 }
 
@@ -229,7 +228,7 @@ void StochasticModule::setSimulationSettings(
     double step
 ) {
 
-        std::vector<double> init_states;
+    std::vector<double> init_states;
 
     if (entity_map.empty()) {
         printf("Using default model state for simulation.\n");
@@ -242,7 +241,7 @@ void StochasticModule::setSimulationSettings(
             );
 
         }
-        init_states = handler.getInitialState();
+    init_states = handler.getInitialState();
     }
 
     int numSpecies = this->sbml->getNumSpecies();
@@ -293,7 +292,7 @@ void StochasticModule::step(
         for (size_t j = 0; j < mhat_actual.size(); ++j) {
             delta += stoichmat[i][j] * mhat_actual[j];
         }
-        new_state[i] = last_record[i] + delta, 0.0;
+        new_state[i] = std::max((last_record[i] + delta), 0.0);
     }
     
     //Record iteration's result
@@ -304,7 +303,7 @@ void StochasticModule::step(
 void StochasticModule::run(
     std::vector<double> timesteps
 ) {
-    for (int t = 0; t < timesteps.size(); t++) {
+    for (int t = 1; t < timesteps.size(); t++) {
 
         this->step(t);
 
@@ -325,7 +324,7 @@ void StochasticModule::updateParameters() {
 
         for (int i = 0; i < this->overlapping_params.size(); ++i) {
             const std::string& id = this->overlapping_params[i];
-            
+
             Parameter* parameter = sbml->getParameter(id);
 
             Species* species = alternate_model.model->getSpecies(id);
