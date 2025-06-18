@@ -77,6 +77,7 @@ class BaseModule {
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "";
         std::string target_id = "";
+        double delta_t;
 
 
     public:
@@ -176,6 +177,8 @@ class BaseModule {
         std::vector<std::string> overlapping_params;
 
         std::vector<BaseModule*> targets;
+
+        std::vector<double> timesteps;
 
 
 };

@@ -83,9 +83,6 @@ class DeterministicModule : public BaseModule {
 
     private:
     // ---------------------------Methods-----------------------------------//
-        std::unique_ptr<amici::Model> model;
-        std::unique_ptr<amici::Solver> solver;
-
         std::vector<double> setAllSpeciesValues(
             std::vector<double> current_states,
             std::vector<double> update_states
@@ -96,6 +93,8 @@ class DeterministicModule : public BaseModule {
         );
         
     //-------------------------------Members--------------------------------//
+        std::unique_ptr<amici::Model> model;
+        std::unique_ptr<amici::Solver> solver;
 
 
     protected:

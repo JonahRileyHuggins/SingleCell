@@ -153,7 +153,6 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
             if (!current_token_bin.empty()) {
                 tokens.push_back(current_token_bin);
             } 
-            // tokens.push_back(std::string(1, c));
             current_token_bin.clear();
         } else if (c != ' ') {
             current_token_bin += c;
@@ -194,6 +193,12 @@ std::vector<double> StochasticModule::constrainTau(
 
     std::vector<double> mhat_actual(m_i.size()); // results storage vector
 
+    // printf("Poisson-Predicted");
+    // for (const auto& rxn : m_i) {
+    //     std::cout << "\t" << rxn;
+    // }
+    // printf("\n");
+
     for (int i = 0; i < this->stoichmat[0].size(); i++) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
@@ -205,19 +210,33 @@ std::vector<double> StochasticModule::constrainTau(
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
 
-        double R_mi = m_i[i]; // was set 0.0
-        for (const auto& reactant : Rhat_i) {
+        //vvv new starts here
+        std::vector<double> abs_r;
+        abs_r.reserve(Rhat_i.size());
 
-            if (reactant < 0) { // drop reactants != negative (-): i.e. not rate-limiting
+        for (const auto& rct : Rhat_i) {
+            double abs_val = std::abs(rct);
+            if (abs_val > 0)
+                abs_r.push_back(abs_val);
+        }
+        //^^^ new ends here
+
+        double R_mi = m_i[i]; // was set 0.0
+        for (const auto& reactant : abs_r) {
+
+            if (reactant < R_mi) { // drop reactants != negative (-): i.e. not rate-limiting
                 R_mi = reactant;
             }
         }
 
-        R_mi = std::abs(R_mi);
-
-        // compare between predicted and actual:
-        mhat_actual[i] = std::min(m_i[i], R_mi);
+        mhat_actual[i] = R_mi;
     }
+
+    // printf("Final: ");
+    // for (const auto& rxn : mhat_actual) {
+    //     std::cout << "\t" << rxn;
+    // }
+    // printf("\n");
     return mhat_actual;
 }
 
@@ -246,9 +265,9 @@ void StochasticModule::setSimulationSettings(
 
     int numSpecies = this->sbml->getNumSpecies();
     
-    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
+    this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
-    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timeSteps.size());
+    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size());
  
     BaseModule::recordStepResult(
         init_states, 
@@ -292,7 +311,8 @@ void StochasticModule::step(
         for (size_t j = 0; j < mhat_actual.size(); ++j) {
             delta += stoichmat[i][j] * mhat_actual[j];
         }
-        new_state[i] = std::max((last_record[i] + delta), 0.0);
+        // new_state[i] = std::max((last_record[i] + delta), 0.0);
+        new_state[i] = (last_record[i] + delta);
     }
     
     //Record iteration's result
@@ -303,7 +323,7 @@ void StochasticModule::step(
 void StochasticModule::run(
     std::vector<double> timesteps
 ) {
-    for (int t = 1; t < timesteps.size(); t++) {
+    for (int t = 0; t < timesteps.size(); t++) {
 
         this->step(t);
 
@@ -314,11 +334,22 @@ void StochasticModule::updateParameters() {
 
     for (const auto& alt_module : this->targets) {
 
+	
         SBMLHandler alternate_model = alt_module->handler;
-
+	printf("Stochastic Params: \n");
+	for (int j = 0; j < alternate_model.model->getNumSpecies(); j++) {
+		std::cout << "Param: \t" << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
+	}
+	printf("\n");
         //call conversion method here:
         std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2mpc);
+        
+	printf("After: \n");
+        for (int j = 0; j < alternate_model.model->getNumSpecies(); j++) {
+                std::cout << "Param: \t" << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
+        }
+        printf("\n");
 
         std::vector<std::string> species_list = alternate_model.getSpeciesIds();
 

@@ -166,27 +166,25 @@ class StochasticModule : public BaseModule{
             std::vector<double> xhat_tn
         ); 
 
-        
         //---------------------------Members----------------------------------//
-        double delta_t; 
 
 
-        protected:
+    protected:
         // -------------------------Methods-----------------------------------//
-            /**
-             * @brief Getter method for last recorded value in results matrix
-             * 
-             * @param timepoint position in results matrix being returned
-             * 
-             * @returns state_vector vector of species states recorded in results_matrix object
-             */
-            std::vector<double> getLastStepResult(
-                int timestep
-            ) override;
+        /**
+         * @brief Getter method for last recorded value in results matrix
+         * 
+         * @param timepoint position in results matrix being returned
+         * 
+         * @returns state_vector vector of species states recorded in results_matrix object
+         */
+        std::vector<double> getLastStepResult(
+            int timestep
+        ) override;
 
-            void loadTargetModule(
-            const std::vector<std::unique_ptr<BaseModule>>& module_list
-            ) override;
+        void loadTargetModule(
+        const std::vector<std::unique_ptr<BaseModule>>& module_list
+        ) override;
 
         //---------------------------Members----------------------------------//
 

@@ -34,7 +34,7 @@ def nanomolar2mpc(nanomolar_value: float, compartment_volume: float) -> float:
     Returns:
     - mpc_value (float): discrete number of molecules per cell volume
     """
-    return (nanomolar_value * (1 / 1e9) * (compartment_volume / 1.0 ) * AVOGADRO)
+    return (nanomolar_value * (1.0 / 1.0e9) * (compartment_volume / 1.0 ) * AVOGADRO)
 
 
 

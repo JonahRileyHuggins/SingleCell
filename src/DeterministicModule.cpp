@@ -69,7 +69,7 @@ void DeterministicModule::step(int step) {
     this->handler.setState(last_record);
 
     // Set the single timepoint to simulate
-    std::vector<double> step_forward = {0.0, static_cast<double>(step)};
+    std::vector<double> step_forward = {0.0, this->delta_t};
 
     model->setTimepoints(step_forward);
 
@@ -198,16 +198,18 @@ void DeterministicModule::setSimulationSettings(
 
     int numSpecies = this->sbml->getNumSpecies();
         
-    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
+    this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
     // populate results_matrix member with proper size
-    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timeSteps.size()); 
+    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size()); 
     
     // record initial state as first vector in results_matrix member 
     BaseModule::recordStepResult(
         init_states, 
         0
     );
+
+    this->delta_t = step;
      
      // Assign solver settings
      solver->setAbsoluteTolerance(1e-10); // <-- Problem?
@@ -234,12 +236,27 @@ void DeterministicModule::updateParameters() {
 
         SBMLHandler alternate_model = module->handler;
 
+        printf("Deterministic Params Before: ");
+        for (int j = 0; j < alternate_model.model->getNumSpecies(); j ++) {
+
+            std::cout << "\t" << "Param: " << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
+
+        }
+        printf("\n");
         //call conversion method here:
         std::vector<double> unit2nM = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2nM);
 
+        printf("After: ");
+        for (int j = 0; j < alternate_model.model->getNumSpecies(); j ++) {
+
+            std::cout << "\t" << "Param: " << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
+
+        }
+        printf("\n");
+
             for (int i = 0; i < this->overlapping_params.size(); i++) {
-                
+
                 // Deterministic model needs both AMICI and SBML set:
                 //AMICI
                 this->model->setFixedParameterById(
