@@ -1,9 +1,9 @@
 /**
  * @file StochasticModule.h
- * 
+ *
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
- * 
+ *
  * @brief Definitions for StochasticModule operations
 */
 
@@ -37,7 +37,7 @@ StochasticModule::StochasticModule(
     // Retrieve the stoichiometric matrix from the sbml document.
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
-    // List of formula strings to be parsed. 
+    // List of formula strings to be parsed.
     this->formulas_vector = StochasticModel.getReactionExpressions();
 
     //Instantiate SBML model
@@ -68,7 +68,7 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
      * 
      * @param state the initial states of all species in the SBML model
      * 
-     * @returns v vector of state values after initial stochiometric calculations 
+     * @returns v vector of state values after initial stochiometric calculations
     */
     
     unsigned int numReactions = sbml->getNumReactions();
@@ -193,12 +193,6 @@ std::vector<double> StochasticModule::constrainTau(
 
     std::vector<double> mhat_actual(m_i.size()); // results storage vector
 
-    // printf("Poisson-Predicted");
-    // for (const auto& rxn : m_i) {
-    //     std::cout << "\t" << rxn;
-    // }
-    // printf("\n");
-
     for (int i = 0; i < this->stoichmat[0].size(); i++) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
@@ -232,11 +226,6 @@ std::vector<double> StochasticModule::constrainTau(
         mhat_actual[i] = R_mi;
     }
 
-    // printf("Final: ");
-    // for (const auto& rxn : mhat_actual) {
-    //     std::cout << "\t" << rxn;
-    // }
-    // printf("\n");
     return mhat_actual;
 }
 
@@ -301,20 +290,20 @@ void StochasticModule::step(
     // Sample stochastic answer from Poisson distribution
     std::vector<double> m_i = samplePoisson(mu);
 
-    // Constrain Tau-leap algorithm to only positive integers:
+    // Constrain Tau-leap algorithm for conservation of mass
     std::vector<double> mhat_actual = constrainTau(m_i, last_record);
 
-    // Update the stochastic state vector: new_state = max((old_state * v), 0)
+    // Update the stochastic state vector: new_state = old_state * v
     std::vector<double> new_state(last_record.size());
     for (size_t i = 0; i < last_record.size(); ++i) {
         double delta = 0.0;
         for (size_t j = 0; j < mhat_actual.size(); ++j) {
             delta += stoichmat[i][j] * mhat_actual[j];
         }
-        // new_state[i] = std::max((last_record[i] + delta), 0.0);
+
         new_state[i] = (last_record[i] + delta);
     }
-    
+
     //Record iteration's result
     BaseModule::recordStepResult(new_state, step);
 
@@ -334,22 +323,11 @@ void StochasticModule::updateParameters() {
 
     for (const auto& alt_module : this->targets) {
 
-	
         SBMLHandler alternate_model = alt_module->handler;
-	printf("Stochastic Params: \n");
-	for (int j = 0; j < alternate_model.model->getNumSpecies(); j++) {
-		std::cout << "Param: \t" << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
-	}
-	printf("\n");
+
         //call conversion method here:
         std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2mpc);
-        
-	printf("After: \n");
-        for (int j = 0; j < alternate_model.model->getNumSpecies(); j++) {
-                std::cout << "Param: \t" << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
-        }
-        printf("\n");
 
         std::vector<std::string> species_list = alternate_model.getSpeciesIds();
 

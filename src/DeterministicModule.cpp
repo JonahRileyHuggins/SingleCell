@@ -236,38 +236,23 @@ void DeterministicModule::updateParameters() {
 
         SBMLHandler alternate_model = module->handler;
 
-        printf("Deterministic Params Before: ");
-        for (int j = 0; j < alternate_model.model->getNumSpecies(); j ++) {
-
-            std::cout << "\t" << "Param: " << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
-
-        }
-        printf("\n");
         //call conversion method here:
         std::vector<double> unit2nM = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
         alternate_model.convertSpeciesUnits(unit2nM);
 
-        printf("After: ");
-        for (int j = 0; j < alternate_model.model->getNumSpecies(); j ++) {
+        for (int i = 0; i < this->overlapping_params.size(); i++) {
 
-            std::cout << "\t" << "Param: " << alternate_model.model->getSpecies(j)->getId() << " " << alternate_model.model->getSpecies(j)->getInitialConcentration();
+            // Deterministic model needs both AMICI and SBML set:
+            //AMICI
+            this->model->setFixedParameterById(
+                this->overlapping_params[i], 
+                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
+            );
 
+            //SBML
+            this->sbml->getParameter(this->overlapping_params[i])->setValue(
+                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
+            );
         }
-        printf("\n");
-
-            for (int i = 0; i < this->overlapping_params.size(); i++) {
-
-                // Deterministic model needs both AMICI and SBML set:
-                //AMICI
-                this->model->setFixedParameterById(
-                    this->overlapping_params[i], 
-                    alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-                );
-
-                //SBML
-                this->sbml->getParameter(this->overlapping_params[i])->setValue(
-                    alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-                );
-            }
     }
 }
