@@ -6,23 +6,9 @@ model Stochastic()
   Compartment Nucleus;
 
 
-  Species nuc_gene_a__LIGAND_ in Nucleus;
-  Species nuc_gene_i__LIGAND_ in Nucleus;
-  Species nuc_gene_a__RECEPTOR_ in Nucleus;
-  Species nuc_gene_i__RECEPTOR_ in Nucleus;
-  Species cyt_mrna__LIGAND_ in Cytoplasm;
-  Species cyt_mrna__RECEPTOR_ in Cytoplasm;
 
 
  # Reactions:
-  vGac1: nuc_gene_i__LIGAND_ => nuc_gene_a__LIGAND_; (kGac1_1*nuc_gene_i__LIGAND_)
-  vGac2: nuc_gene_i__RECEPTOR_ => nuc_gene_a__RECEPTOR_; (kGac2_1*nuc_gene_i__RECEPTOR_)
-  vGin1: nuc_gene_a__LIGAND_ => nuc_gene_i__LIGAND_; (kGin1_1*nuc_gene_a__LIGAND_)
-  vGin2: nuc_gene_a__RECEPTOR_ => nuc_gene_i__RECEPTOR_; (kGin2_1*nuc_gene_a__RECEPTOR_)
-  vTC1:  => cyt_mrna__LIGAND_; (kTC1_1 * nuc_gene_a__LIGAND_)
-  vTC2:  => cyt_mrna__RECEPTOR_; (kTC2_1 * nuc_gene_a__RECEPTOR_)
-  vTCd1: cyt_mrna__LIGAND_ => ; (kTCd1_1 * cyt_mrna__LIGAND_)
-  vTCd2: cyt_mrna__RECEPTOR_ => ; (kTCd2_1 * cyt_mrna__RECEPTOR_)
 
   # Compartment initializations:
   Cytoplasm = 5.250000e-12;
@@ -31,17 +17,17 @@ model Stochastic()
   Nucleus has volume;
 
   # Species initializations:
-  nuc_gene_a__LIGAND_ = 1.000000e+00;
-  nuc_gene_i__LIGAND_ = 1.000000e+00;
-  nuc_gene_a__RECEPTOR_ = 1.000000e+00;
-  nuc_gene_i__RECEPTOR_ = 1.000000e+00;
-  cyt_mrna__LIGAND_ = 5.000000e+00;
-  cyt_mrna__RECEPTOR_ = 5.000000e+00;
 
   # Parameter initializations:
   cyt_prot__LIGAND_ = 0.000000e+00;
   cyt_prot__RECEPTOR_ = 1.000000e+02;
   cyt_prot__LIGAND__RECEPTOR_ = 0.000000e+00;
+  nuc_gene_a__LIGAND_ = 9.489016e-04;
+  nuc_gene_i__LIGAND_ = 9.489016e-04;
+  nuc_gene_a__RECEPTOR_ = 9.489016e-04;
+  nuc_gene_i__RECEPTOR_ = 9.489016e-04;
+  cyt_mrna__LIGAND_ = 1.581503e-03;
+  cyt_mrna__RECEPTOR_ = 1.581503e-03;
   kGac1_1 = 5.000000e-04;
   kGac2_1 = 5.000000e-04;
   kGin1_1 = 5.000000e-03;
