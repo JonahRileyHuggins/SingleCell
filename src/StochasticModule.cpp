@@ -249,21 +249,23 @@ void StochasticModule::setSimulationSettings(
             );
 
         }
-    init_states = handler.getInitialState();
+    	init_states = handler.getInitialState();
     }
 
+    this->delta_t = step;
+
     int numSpecies = this->sbml->getNumSpecies();
-    
+
     this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
     this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size());
- 
+
     BaseModule::recordStepResult(
         init_states, 
         0
     );
 
-    this->delta_t = step;
+    this->updateParameters();
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -334,7 +336,7 @@ void StochasticModule::updateParameters() {
         for (int i = 0; i < this->overlapping_params.size(); ++i) {
             const std::string& id = this->overlapping_params[i];
 
-            Parameter* parameter = sbml->getParameter(id);
+            Parameter* parameter = this->sbml->getParameter(id);
 
             Species* species = alternate_model.model->getSpecies(id);
 
@@ -350,6 +352,10 @@ void StochasticModule::updateParameters() {
 
             parameter->setValue(species->getInitialConcentration());
         }
+
+	std::vector<double> back2unit = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
+        alternate_model.convertSpeciesUnits(back2unit);
+
     }
 }
 

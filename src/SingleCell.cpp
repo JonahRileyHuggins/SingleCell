@@ -66,18 +66,19 @@ std::vector<std::vector<double>> SingleCell::simulate(
     return results_matrix;
 }
 
+
 void SingleCell::loadSimulationModules() {
 
     for (const SBMLHandler& handler : handlers) {
 
         const std::string id = handler.model->getId();
-        
+
         auto matched_module = this->moduleFactory.find(id);
 
         if (matched_module != moduleFactory.end()) {
-            
+
             // Call the factory function with the SBMLHandler
-            std::unique_ptr<BaseModule> base_mod = matched_module->second(handler); // <--This seems like your problem line
+            std::unique_ptr<BaseModule> base_mod = matched_module->second(handler);
 
             // if module is empty; there's no need to add overhead:
             if (!base_mod->handler.getSpeciesIds().empty()) {

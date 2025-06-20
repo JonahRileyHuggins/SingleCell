@@ -187,8 +187,9 @@ void DeterministicModule::setSimulationSettings(
             );
         }
         init_states = handler.getInitialState();
-        
     }
+
+    this->delta_t = step;
 
      // Import AMICI Model from 'bin/AMICI_MODELS/model
     this->model = amici::generic_model::getModel();
@@ -197,24 +198,24 @@ void DeterministicModule::setSimulationSettings(
     this->solver = model->getSolver();
 
     int numSpecies = this->sbml->getNumSpecies();
-        
+
     this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
     // populate results_matrix member with proper size
-    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size()); 
-    
-    // record initial state as first vector in results_matrix member 
+    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size());
+
+    // record initial state as first vector in results_matrix member
     BaseModule::recordStepResult(
-        init_states, 
+        init_states,
         0
     );
 
-    this->delta_t = step;
-     
      // Assign solver settings
-     solver->setAbsoluteTolerance(1e-10); // <-- Problem?
-     solver->setRelativeTolerance(1e-6); // <-- Problem?
-     solver->setMaxSteps(100000); // <-- Problem?
+     solver->setAbsoluteTolerance(1e-10);
+     solver->setRelativeTolerance(1e-6);
+     solver->setMaxSteps(100000);
+
+     this->updateParameters();
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
@@ -254,5 +255,9 @@ void DeterministicModule::updateParameters() {
                 alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
             );
         }
+
+        std::vector<double> back2unit = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
+        alternate_model.convertSpeciesUnits(back2unit);
+
     }
 }
