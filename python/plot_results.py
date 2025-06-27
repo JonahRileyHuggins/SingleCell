@@ -26,14 +26,6 @@ headers = [
     'cyt_prot__LIGAND__RECEPTOR_'
 ]
 
-# data[headers[0]] = nanomolar2mpc(data[headers[0]], 1.75e-12)
-# data[headers[1]] = nanomolar2mpc(data[headers[1]], 1.75e-12)
-# data[headers[2]] = nanomolar2mpc(data[headers[2]], 1.75e-12)
-# data[headers[3]] = nanomolar2mpc(data[headers[3]], 1.75e-12)
-# data[headers[4]] = nanomolar2mpc(data[headers[4]], 1.75e-12)
-# data[headers[5]] = nanomolar2mpc(data[headers[5]], 1.75e-12)
-
-
 fig = plt.figure(figsize=(15, 10))
 gs = gridspec.GridSpec(3, 3, figure=fig, hspace=0.6, wspace=0.4)
 
@@ -43,11 +35,11 @@ mpl.rcParams['axes.labelweight'] = 'bold'
 mpl.rcParams['lines.linewidth'] = 3
 
 
-stop = len(data.index)* 30.0
+stop = data["index"].iloc[-1]
 step = stop / len(data.index)
+start = data["index"].iloc[0]
+time = np.arange(start, stop, step)
 
-time = np.arange(0.0, stop, step)
-start = time[0]
 cyt_gene_a__ligand_init = data[headers[0]]
 cyt_gene_a__receptor_init = data[headers[2]]
 cyt_mrna_ligand_init = data[headers[4]][0]
@@ -57,33 +49,25 @@ cyt_prot_receptor_init = data[headers[7]][0]
 
 # === Top row (Bar plots comparing pairs) ===
 ax1_0 = fig.add_subplot(gs[0, 0])
-# ax1_0.plot(time[::100]/3600, data[headers[0]][::100], color='orange', label=headers[0])
-# ax1_0.bar(time, data[headers[0]], color='orange', label=headers[0])
-
-ax1_0.bar(time[::100]/3600, data[headers[0]][::100], color='orange', alpha=0.6, label=headers[0], width=0.5)
+ax1_0.plot(time[::100]/3600, nanomolar2mpc(data[headers[0]][::100], 1.75e-12), color='orange', label=headers[0])
 ax1_0.set_title("Ligand")
 ax1_0.set_ylabel("Gene (mpc)")
 ax1_0.set_xlabel('Time (hr.)')
-# ax1_0.legend(frameon = False)
 
 ax1_1 = fig.add_subplot(gs[0, 1])
-# ax1_1.plot(time[::100]/3600, data[headers[2]][::100], color='cyan', label=headers[2])
-# ax1_1.bar(time, data[headers[2]], color='cyan', label=headers[2])
-
-ax1_1.bar(time[::100]/3600, data[headers[2]][::100], color='cyan', alpha=0.6, label=headers[2], width=0.5)
+ax1_1.plot(time[::100]/3600, nanomolar2mpc(data[headers[2]][::100],1.75e-12), color='cyan', label=headers[2])
 ax1_1.set_title("Receptor")
 ax1_1.set_ylabel("Gene (mpc)")
 ax1_1.set_xlabel('Time (hr.)')
-# ax1_1.legend(frameon = False, )
 
 # === Middle row (Single line plots) ===
 ax2_0 = fig.add_subplot(gs[1, 0])
-ax2_0.plot(time/3600, data[headers[4]], color='orange')
+ax2_0.plot(time/3600, nanomolar2mpc(data[headers[4]], 5.25e-12), color='orange')
 ax2_0.set_ylabel("mRNA (mpc)")
 ax2_0.set_xlabel('Time (hr.)')
 
 ax2_1 = fig.add_subplot(gs[1, 1])
-ax2_1.plot(time/3600, data[headers[5]], color='cyan')
+ax2_1.plot(time/3600, nanomolar2mpc(data[headers[5]], 5.25e-12), color='cyan')
 ax2_1.set_ylabel("mRNA (mpc)")
 ax2_1.set_xlabel('Time (hr.)')
 
@@ -106,7 +90,7 @@ ax1_2 = fig.add_subplot(gs[0:2, 2])
 ax1_2.text(-0.2, 1.0, "Simulation Settings: ", fontsize = 10)
 ax1_2.text(0.0, 0.975, f"Start Time: {start} s", fontsize =7.5)
 ax1_2.text(0.0, 0.95,f"Stop Time: {stop} s", fontsize = 7.5)
-ax1_2.text(0.0, 0.925,f"Step Size: {step} s", fontsize = 7.5)
+ax1_2.text(0.0, 0.925,f"Step Size: {round(step)} s", fontsize = 7.5)
 
 ax1_2.text(-0.2, 0.875, "Initial Conditions:", fontsize=7.5)
 ax1_2.text(0.0, 0.85,f"cyt_mrna__LIGAND_: {cyt_mrna_ligand_init} (mpc)", fontsize = 7.5)
@@ -127,8 +111,6 @@ ax1_2.axis('off')
 
 # Custom legend elements
 legend_elements = [
-    # Line2D([0], [0], marker='o', color='w', label='active', markerfacecolor='red', markersize=10),
-    # Line2D([0], [0], marker='o', color='w', label='inactive', markerfacecolor='blue', markersize=10),
     Line2D([0], [0], marker='o', color='w', label='ligand', markerfacecolor='orange', markersize=10),
     Line2D([0], [0], marker='o', color='w', label='receptor', markerfacecolor='cyan', markersize=10),
     Line2D([0], [0], marker='o', color='w', label='L : R-Complex', markerfacecolor='#15b01a', markersize=10)
@@ -141,7 +123,6 @@ ax1_2.legend(handles=legend_elements, loc='lower left', bbox_to_anchor=(0, 0.10)
 sns.despine(fig)
 
 # Final touches
-# fig.suptitle("Gene Expression and Interaction Overview", fontsize=16, y=0.95)
 plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.savefig(fname = "LR-Model.png", dpi = 300)
 plt.show()

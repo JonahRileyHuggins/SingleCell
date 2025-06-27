@@ -166,8 +166,25 @@ class StochasticModule : public BaseModule{
             std::vector<double> xhat_tn
         ); 
 
-        //---------------------------Members----------------------------------//
+        /**
+         * @brief calculates the updated state by adding to the prior state
+         *  the new rates (Schilling and Palsson, 1998)
+         * 
+         * @param state_t the vector of states (in molecules) of the prior timestep
+         * @param real_vec vector of propensity realizations, sampled from a poisson dist. 
+         * and constrained to perserve moiety
+         * 
+         * @returns new_state vector of doubles equal to X_t = X_{t-1} + delta
+         */
+        std::vector<double> computeNewState(
+        std::vector<double> state_t,
+        std::vector<double> real_vec
+        );
 
+        //---------------------------Members----------------------------------//
+        std::vector<double> molecules2nM_conversion_factors;
+        std::vector<double> nM2mpv_conversion_factors;
+ 
 
     protected:
         // -------------------------Methods-----------------------------------//

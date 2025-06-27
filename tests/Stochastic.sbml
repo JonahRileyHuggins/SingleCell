@@ -29,23 +29,23 @@
       </compartment>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="nuc_gene_a__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Nucleus 1 Stochastic</annotation>
+      <species id="nuc_gene_a__LIGAND_" compartment="Nucleus" initialConcentration="0.0009489016" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 0.0009489016463443 Stochastic</annotation>
       </species>
-      <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Nucleus 1 Stochastic</annotation>
+      <species id="nuc_gene_i__LIGAND_" compartment="Nucleus" initialConcentration="0.0009489016" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 0.0009489016463443 Stochastic</annotation>
       </species>
-      <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Nucleus 1 Stochastic</annotation>
+      <species id="nuc_gene_a__RECEPTOR_" compartment="Nucleus" initialConcentration="0.0009489016" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 0.0009489016463443 Stochastic</annotation>
       </species>
-      <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Nucleus 1 Stochastic</annotation>
+      <species id="nuc_gene_i__RECEPTOR_" compartment="Nucleus" initialConcentration="0.0009489016" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Nucleus 0.0009489016463443 Stochastic</annotation>
       </species>
-      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Cytoplasm 5 Stochastic</annotation>
+      <species id="cyt_mrna__LIGAND_" compartment="Cytoplasm" initialConcentration="0.001581503" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 0.0015815027439072 Stochastic</annotation>
       </species>
-      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="5" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
-        <annotation>Cytoplasm 5 Stochastic</annotation>
+      <species id="cyt_mrna__RECEPTOR_" compartment="Cytoplasm" initialConcentration="0.001581503" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>Cytoplasm 0.0015815027439072 Stochastic</annotation>
       </species>
     </listOfSpecies>
     <listOfParameters>
@@ -82,6 +82,7 @@
               <times/>
               <ci> kGac1_1 </ci>
               <ci> nuc_gene_i__LIGAND_ </ci>
+              <ci> Nucleus </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -99,6 +100,7 @@
               <times/>
               <ci> kGac2_1 </ci>
               <ci> nuc_gene_i__RECEPTOR_ </ci>
+              <ci> Nucleus </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -116,6 +118,7 @@
               <times/>
               <ci> kGin1_1 </ci>
               <ci> nuc_gene_a__LIGAND_ </ci>
+              <ci> Nucleus </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -133,6 +136,7 @@
               <times/>
               <ci> kGin2_1 </ci>
               <ci> nuc_gene_a__RECEPTOR_ </ci>
+              <ci> Nucleus </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -150,6 +154,7 @@
               <times/>
               <ci> kTC1_1 </ci>
               <ci> nuc_gene_a__LIGAND_ </ci>
+              <ci> Cytoplasm </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -167,6 +172,7 @@
               <times/>
               <ci> kTC2_1 </ci>
               <ci> nuc_gene_a__RECEPTOR_ </ci>
+              <ci> Cytoplasm </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -181,6 +187,7 @@
               <times/>
               <ci> kTCd1_1 </ci>
               <ci> cyt_mrna__LIGAND_ </ci>
+              <ci> Cytoplasm </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -195,6 +202,7 @@
               <times/>
               <ci> kTCd2_1 </ci>
               <ci> cyt_mrna__RECEPTOR_ </ci>
+              <ci> Cytoplasm </ci>
             </apply>
           </math>
         </kineticLaw>

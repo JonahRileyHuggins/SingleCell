@@ -251,7 +251,7 @@ class StochasticModel(CreateModel):
 
         self.__reduce_rxns()
 
-        AntimonyFile(self, correction=False, stochastic=True)
+        AntimonyFile(self, stochastic=True)
 
         sbml_file_path = self._convert_antimony_to_sbml()
 
@@ -313,7 +313,7 @@ class StochasticModel(CreateModel):
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, parent_model_type: SimpleNamespace, correction = True, stochastic = False):
+    def __init__(self, parent_model_type: SimpleNamespace, stochastic = False):
         self.model_files = parent_model_type.model_files
         self.model_name = parent_model_type.model_name
         ## Include other operations here. 
@@ -326,7 +326,7 @@ class AntimonyFile:
 
         self.__write_species()
 
-        self.__write_reactions(correction=correction)
+        self.__write_reactions()
 
         self.__assign_compartment_initial_concentrations()
 
@@ -383,7 +383,7 @@ class AntimonyFile:
 
             logger.info("Species '%s' in compartment '%s' writen to antimony document" % (speciesid, species_compartment))
 
-    def __write_reactions(self, correction = True): #handled in cells 12 & 13
+    def __write_reactions(self): #handled in cells 12 & 13
         """Writes given reactions to antimony file."""
         logger.info("Writing ratelaws to antimony document %s", self.model_name)
 
@@ -403,16 +403,9 @@ class AntimonyFile:
                 + f"{' + '.join(ratelaw_info.reactants)} => {' + '.join(ratelaw_info.products)}; "
                 + f"({ratelaw_info.formula})"
             )
-
-            if correction == False:
-                self.antimony_file.write(
-                    "\n"
-                )
-
-            else:
-                self.antimony_file.write(
-                    f"*{ratelaw_info.compartment};\n"
-                )
+            self.antimony_file.write(
+                f"*{ratelaw_info.compartment};\n"
+            )
 
             logger.info("Formula %s for Ratelaw %s written to antimony document." % (ratelaw_info.formula, ratelaw_id))
 

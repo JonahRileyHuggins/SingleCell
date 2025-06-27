@@ -52,16 +52,8 @@ void BaseModule::recordStepResult(
     const std::vector<double>& state_vector,
     int timepoint
 ) {
-    results_matrix[timepoint] = state_vector;
+    this->results_matrix[timepoint] = state_vector;
 
-    this->handler.setState(state_vector);
-
-    //send updated Species info to sbml:
-//    for (int i = 0; i < this->sbml->getNumSpecies(); i++) {
-
-//        this->sbml->getSpecies(i)->setInitialConcentration(state_vector[i]);
-//
-//    }
 }
 
 void BaseModule::findOverlappingIds(

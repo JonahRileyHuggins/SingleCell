@@ -43,6 +43,10 @@ StochasticModule::StochasticModule(
     //Instantiate SBML model
     this->sbml = StochasticModel.model;
 
+    //call conversion method here:
+    this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
+    this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
+
     this->target_id = "Deterministic";
 
  }
@@ -204,7 +208,6 @@ std::vector<double> StochasticModule::constrainTau(
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
 
-        //vvv new starts here
         std::vector<double> abs_r;
         abs_r.reserve(Rhat_i.size());
 
@@ -213,7 +216,6 @@ std::vector<double> StochasticModule::constrainTau(
             if (abs_val > 0)
                 abs_r.push_back(abs_val);
         }
-        //^^^ new ends here
 
         double R_mi = m_i[i]; // was set 0.0
         for (const auto& reactant : abs_r) {
@@ -227,6 +229,26 @@ std::vector<double> StochasticModule::constrainTau(
     }
 
     return mhat_actual;
+}
+
+std::vector<double> StochasticModule::computeNewState(
+    std::vector<double> state_t,
+    std::vector<double> real_vec
+) {
+
+        // Update the stochastic state vector: new_state = old_state * v
+    std::vector<double> new_state(state_t.size());
+    
+    for (size_t i = 0; i < state_t.size(); ++i) {
+        double delta = 0.0;
+        for (size_t j = 0; j < real_vec.size(); ++j) {
+            delta += stoichmat[i][j] * real_vec[j];
+        }
+
+        new_state[i] = std::round(state_t[i] + delta);
+    }
+
+    return new_state;
 }
 
 void StochasticModule::setSimulationSettings(
@@ -265,7 +287,6 @@ void StochasticModule::setSimulationSettings(
         0
     );
 
-    this->updateParameters();
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
@@ -281,33 +302,39 @@ void StochasticModule::step(
     int step
 ) {
     // get (step minus 1) position in results_matrix member
-    std::vector<double> last_record = getLastStepResult(step);
+    std::vector<double> last_state_nM = getLastStepResult(step);  // nM
 
     //reset SBML species values:
-    this->handler.setState(last_record);
+    this->handler.setState(last_state_nM); // nM 
 
-    // Calculate v = formula where v is a vector of left hand reaction results
-    std::vector<double> mu = computeReactions(last_record);
+    //convert from nanomolar to mpc:
+    this->handler.convertSpeciesUnits(this->nM2mpv_conversion_factors); // molecules per volume
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> m_i = samplePoisson(mu);
+    std::vector<double> realizations = samplePoisson(computeReactions(this->handler.getInitialState()));
+
+    //reassign molecules per volume to just molecules:
+    this->handler.convertSpeciesUnits(this->handler.species_volumes);
 
     // Constrain Tau-leap algorithm for conservation of mass
-    std::vector<double> mhat_actual = constrainTau(m_i, last_record);
+    std::vector<double> constrained_realizations = constrainTau(
+        realizations, 
+        this->handler.getInitialState()
+    );
+    
+    // Calculate the updated state for current step:
+    std::vector<double> new_state = computeNewState(
+        this->handler.getInitialState(),
+        constrained_realizations
+    );
 
-    // Update the stochastic state vector: new_state = old_state * v
-    std::vector<double> new_state(last_record.size());
-    for (size_t i = 0; i < last_record.size(); ++i) {
-        double delta = 0.0;
-        for (size_t j = 0; j < mhat_actual.size(); ++j) {
-            delta += stoichmat[i][j] * mhat_actual[j];
-        }
+    this->handler.setState(new_state);
 
-        new_state[i] = (last_record[i] + delta);
-    }
+    // Convert back into nanomolar
+    this->handler.convertSpeciesUnits(this->molecules2nM_conversion_factors);
 
     //Record iteration's result
-    BaseModule::recordStepResult(new_state, step);
+    BaseModule::recordStepResult(this->handler.getInitialState(), step);
 
 }
 
@@ -326,10 +353,6 @@ void StochasticModule::updateParameters() {
     for (const auto& alt_module : this->targets) {
 
         SBMLHandler alternate_model = alt_module->handler;
-
-        //call conversion method here:
-        std::vector<double> unit2mpc = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
-        alternate_model.convertSpeciesUnits(unit2mpc);
 
         std::vector<std::string> species_list = alternate_model.getSpeciesIds();
 
@@ -352,9 +375,6 @@ void StochasticModule::updateParameters() {
 
             parameter->setValue(species->getInitialConcentration());
         }
-
-	std::vector<double> back2unit = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
-        alternate_model.convertSpeciesUnits(back2unit);
 
     }
 }

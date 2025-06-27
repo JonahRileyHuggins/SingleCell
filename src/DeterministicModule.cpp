@@ -82,6 +82,8 @@ void DeterministicModule::step(int step) {
     // Extract results (assuming you want the final state)
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
+    this->handler.setState(last_vals);
+
     // Record values to results matrix
     BaseModule::recordStepResult(last_vals, step);
 
@@ -237,10 +239,6 @@ void DeterministicModule::updateParameters() {
 
         SBMLHandler alternate_model = module->handler;
 
-        //call conversion method here:
-        std::vector<double> unit2nM = unit_conversions::mpc2nanomolar(alternate_model.species_volumes);
-        alternate_model.convertSpeciesUnits(unit2nM);
-
         for (int i = 0; i < this->overlapping_params.size(); i++) {
 
             // Deterministic model needs both AMICI and SBML set:
@@ -255,9 +253,6 @@ void DeterministicModule::updateParameters() {
                 alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
             );
         }
-
-        std::vector<double> back2unit = unit_conversions::nanomolar2mpc(alternate_model.species_volumes);
-        alternate_model.convertSpeciesUnits(back2unit);
 
     }
 }

@@ -141,7 +141,6 @@ void SingleCell::runGlobal(
     printf("\n");
 
     if (this->modules.size() == 1) {
-
         for (const auto& mod : this->modules) {
 
             std::cout << "Simulating fully " << mod->getModuleId() << "\n";
@@ -151,7 +150,6 @@ void SingleCell::runGlobal(
         }
 
     } else {
-
         // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
         for (int step = 1; step < timesteps.size(); step++) {
 

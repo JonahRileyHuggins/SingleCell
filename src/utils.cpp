@@ -70,7 +70,7 @@ namespace matrix_utils {
 }
 
 namespace unit_conversions {
-    std::vector<double> nanomolar2mpc(
+    std::vector<double> nanomolar2mpv(
         std::vector<double> cell_volumes
     ) {
 
@@ -78,19 +78,19 @@ namespace unit_conversions {
 
         const double avagadros = 6.022e23;
 
-        std::vector<double> mpc_vec(cell_volumes.size());
+        std::vector<double> mpv_vec(cell_volumes.size());
 
         for (int i = 0; i < cell_volumes.size(); i++) {
 
-            mpc_vec[i] = (1.0 / nm2Molar) * (avagadros / 1.0) * (cell_volumes[i] / 1.0);
+            mpv_vec[i] = (1.0 / nm2Molar) * (avagadros / 1.0);
 
         }
 
-        return mpc_vec;
+        return mpv_vec;
 
     }
 
-    std::vector<double> mpc2nanomolar(
+    std::vector<double> molecules2nanomolar(
         std::vector<double> cell_volumes
     ) {
 

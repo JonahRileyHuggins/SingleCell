@@ -61,7 +61,7 @@ namespace unit_conversions {
      * @return mpc_vec list of static conversion factors 
      * from unit  units nanomolar to molecules per cell
      */
-    std::vector<double> nanomolar2mpc(
+    std::vector<double> nanomolar2mpv(
         std::vector<double> cell_volumes
     );
 
@@ -74,7 +74,7 @@ namespace unit_conversions {
      * @return nanomolar_vec list of static conversion factors 
      * from unit molecules per cell to units nanomolar
      */
-    std::vector<double> mpc2nanomolar(
+    std::vector<double> molecules2nanomolar(
         std::vector<double> cell_volumes
     );
 
