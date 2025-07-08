@@ -173,8 +173,8 @@ class DeterministicModel(CreateModel):
         logger.info('>>>>>>> immediate parameters dataframe: %s' % (stochastic_params))
 
         # Create new DataFrame with desired columns
-        self.parameters = stochastic_params[['speciesId', 'initialConcentration']].rename(
-            columns={'speciesId': 'parameterId', 'initialConcentration': 'value'}
+        self.parameters = stochastic_params[['speciesId', 'initialConcentration (nM)']].rename(
+            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
         )
 
         logger.info('>>>>>>>> params dataframe after column name: %s' % (self.parameters))
@@ -268,8 +268,8 @@ class StochasticModel(CreateModel):
         ].reset_index()
 
         # Create new DataFrame with desired columns
-        self.parameters = deterministic_params[['speciesId', 'initialConcentration']].rename(
-            columns={'speciesId': 'parameterId', 'initialConcentration': 'value'}
+        self.parameters = deterministic_params[['speciesId', 'initialConcentration (nM)']].rename(
+            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
         )
 
         self.model_files.species = self.model_files.species[
@@ -434,9 +434,9 @@ class AntimonyFile:
 
         for index, (species_name, species_vals) in enumerate(species_df.iterrows()):
 
-            self.antimony_file.write("  %s = %.6e;\n" % (species_name, np.double(species_vals['initialConcentration'])))
+            self.antimony_file.write("  %s = %.6e;\n" % (species_name, np.double(species_vals['initialConcentration (nM)'])))
 
-            logger.info("Assigning Species %s equal to %.6e;\n" % ((species_name, np.double(species_vals['initialConcentration']))))
+            logger.info("Assigning Species %s equal to %.6e;\n" % ((species_name, np.double(species_vals['initialConcentration (nM)']))))
 
     def __update_parameters(self) -> None:
         """getter method for making parameters object, intended only for use by antimonyModel

@@ -4,8 +4,8 @@ nuc_prot_i__TP53_	Nucleus	296.618651	Deterministic	P04637
 nuc_prot_a__TP53_	Nucleus	6.24613433	Deterministic	P04637												
 nuc_prot__MDM2_	Nucleus	205.6185213	Deterministic	Q00987												
 nuc_prot__PPM1D_	Nucleus	2.230730408	Deterministic	O15297												
-nuc_prot__p_ATM_	Nucleus	0.00E+00	Deterministic	Q13315												
-nuc_prot_a__ATR_	Nucleus	0.00E+00	Deterministic	Q13535												
+nuc_prot__p_ATM_	Nucleus	0	Deterministic	Q13315												
+nuc_prot_a__ATR_	Nucleus	0	Deterministic	Q13535												
 nuc_imp__MDM2delay1_	Nucleus	6.24613433	Deterministic	Q00987												
 nuc_imp__MDM2delay2_	Nucleus	6.24613433	Deterministic	Q00987												
 nuc_imp__MDM2delay3_	Nucleus	6.24613433	Deterministic	Q00987												
@@ -30,7 +30,7 @@ nuc_prot__BRCA2_	Nucleus	0.8217966444	Deterministic	P51587
 nuc_prot__MSH6_	Nucleus	45.50365668	Deterministic	P52701												
 nuc_prot__MGMT_	Nucleus	120.2551816	Deterministic	P16455												
 nuc_imp__DNADoubleStrandBreak_	Nucleus	0.0002439506892	Deterministic	CHEMBL454708												
-nuc_imp__DNASingleStrandBreak_	Nucleus	6.05E-06	Deterministic													
+nuc_imp__DNASingleStrandBreak_	Nucleus	0.00000605	Deterministic													
 nuc_prot__p_p_AKT__MDM2_	Nucleus	0	Deterministic	P31749	Q00987	P31751										
 nuc_prot__p_MDM2_	Nucleus	0	Deterministic	Q00987												
 nuc_prot__CDKN2A_	Nucleus	0	Deterministic	Q8N726												
@@ -82,14 +82,14 @@ nuc_prot__CCND__CDK4__CDKN1A_	Nucleus	0.4826389818	Deterministic	P24385	P30279	P
 nuc_prot__CCNE__CDK2__CDKN1A_	Nucleus	0.2293282558	Deterministic	P24864	O96020	P46527	P38936									
 nuc_prot__CCNA__CDK2__CDKN1A_	Nucleus	0.2622714049	Deterministic	P20248	P24941	P38936										
 nuc_prot__CCNB__CDK1__CDKN1A_	Nucleus	0.01713970232	Deterministic	P14635	P06493	P38936										
-ext_prot__TNFSF10_	Extracellular	2.21E-17	Deterministic	P50591												
+ext_prot__TNFSF10_	Extracellular	0	Deterministic	P50591												
 cyt_prot__TNFRSF10_	Cytoplasm	8.031117651	Deterministic	O00220	O14763											
-cyt_prot__TNFSF10__TNFRSF10_	Cytoplasm	2.24E-16	Deterministic	P50591	O00220	O14763										
-cyt_prot_a__TNFRSF10_	Cytoplasm	7.56E-20	Deterministic	O00220	O14763											
+cyt_prot__TNFSF10__TNFRSF10_	Cytoplasm	0	Deterministic	P50591	O00220	O14763										
+cyt_prot_a__TNFRSF10_	Cytoplasm	0	Deterministic	O00220	O14763											
 cyt_prot__CFLAR_	Cytoplasm	0.5259203514	Deterministic	O15519												
-cyt_prot_a__TNFRSF10__CFLAR_	Cytoplasm	1.05E-19	Deterministic	O00220	O14763	O15519										
+cyt_prot_a__TNFRSF10__CFLAR_	Cytoplasm	0	Deterministic	O00220	O14763	O15519										
 cyt_prot__p_CASP8_	Cytoplasm	26.5263809	Deterministic	Q14790	Q92851											
-cyt_prot_a__TNFRSF10__p_CASP8_	Cytoplasm	6.34E-21	Deterministic	O00220	O14763	Q14790	Q92851									
+cyt_prot_a__TNFRSF10__p_CASP8_	Cytoplasm	0	Deterministic	O00220	O14763	Q14790	Q92851									
 cyt_prot_i__CASP8_	Cytoplasm	0.0005051866364	Deterministic	Q14790	Q92851											
 cyt_prot__BFAR_	Cytoplasm	0.8411539614	Deterministic	Q9NZS9												
 cyt_prot__CASP8__BFAR_	Cytoplasm	0.001306372322	Deterministic	Q14790	Q92851	Q9NZS9										
@@ -97,31 +97,31 @@ cyt_prot__p_CASP3_	Cytoplasm	79.9328682	Deterministic	P42574	P55210
 cyt_prot__CASP8__p_CASP3_	Cytoplasm	0.006376929866	Deterministic	Q14790	Q92851	P42574	P55210									
 cyt_prot__CASP3_	Cytoplasm	0.0002025657987	Deterministic	P42574	P55210											
 cyt_prot__p_CASP6_	Cytoplasm	47.67662922	Deterministic	P55212												
-cyt_prot__CASP3__CASP6_	Cytoplasm	3.05E-08	Deterministic	P42574	P55210	P55212										
+cyt_prot__CASP3__CASP6_	Cytoplasm	0.0000000305	Deterministic	P42574	P55210	P55212										
 cyt_prot__CASP6_	Cytoplasm	0.0005733205948	Deterministic	P55212												
-cyt_prot__CASP6__CASP8_	Cytoplasm	1.44E-07	Deterministic	P55212	Q14790	Q92851										
+cyt_prot__CASP6__CASP8_	Cytoplasm	0.000000144	Deterministic	P55212	Q14790	Q92851										
 cyt_prot__XIAP_	Cytoplasm	5.269689424	Deterministic	P98170												
-cyt_prot__CASP3__XIAP_	Cytoplasm	6.68E-05	Deterministic	P42574	P55210	P98170										
+cyt_prot__CASP3__XIAP_	Cytoplasm	0.0000668	Deterministic	P42574	P55210	P98170										
 cyt_prot__PARP1_	Cytoplasm	639.6157705	Deterministic	P09874												
-cyt_prot__CASP3__PARP1_	Cytoplasm	4.06E-06	Deterministic	P42574	P55210	P09874										
+cyt_prot__CASP3__PARP1_	Cytoplasm	0.00000406	Deterministic	P42574	P55210	P09874										
 cyt_prot_cl__PARP1_	Cytoplasm	1.619665788	Deterministic	P09874												
 cyt_prot__BID_	Cytoplasm	50.47541201	Deterministic	P55957												
-cyt_prot__CASP8__BID_	Cytoplasm	7.31E-05	Deterministic	Q14790	Q92851	P55957										
-cyt_prot_cl__BID_	Cytoplasm	1.60E-06	Deterministic	P55957												
+cyt_prot__CASP8__BID_	Cytoplasm	0.0000731	Deterministic	Q14790	Q92851	P55957										
+cyt_prot_cl__BID_	Cytoplasm	0.0000016	Deterministic	P55957												
 cyt_prot__BCL2_	Cytoplasm	12.4806229	Deterministic	P10415	Q07817	Q07820										
-cyt_prot_cl__BID__BCL2_	Cytoplasm	5.62E-05	Deterministic	P55957	P10415	Q07817	Q07820									
+cyt_prot_cl__BID__BCL2_	Cytoplasm	0.0000562	Deterministic	P55957	P10415	Q07817	Q07820									
 cyt_prot_i__BAX_	Cytoplasm	88.22685878	Deterministic	Q07812												
-cyt_prot_a_cl__BID__BAX_	Cytoplasm	4.46E-08	Deterministic	P55957	Q07812											
+cyt_prot_a_cl__BID__BAX_	Cytoplasm	0.0000000446	Deterministic	P55957	Q07812											
 cyt_prot_a__BAX_	Cytoplasm	0.0001441807424	Deterministic	Q07812												
 mit_prot_a__BAX_	Mitochondria	0.001926774373	Deterministic	Q07812												
 mit_prot__BCL2_	Mitochondria	1.780761749	Deterministic	P10415	Q07817	Q07820										
 mit_prot__BAX__BCL2_	Mitochondria	0.009670088024	Deterministic	Q07812	P10415	Q07817	Q07820									
 mit_prot_a__BAX__BAX_	Mitochondria	0.0001173834856	Deterministic	Q07812												
 mit_prot_a__BAX__BAX__BCL2_	Mitochondria	0.0005891237988	Deterministic	Q07812	P10415	Q07817	Q07820									
-mit_prot_a__BAX__BAX__BAX__BAX_	Mitochondria	4.36E-07	Deterministic	Q07812												
-mit_prot_a__BAX__BAX__BAX__BAX__BCL2_	Mitochondria	2.19E-06	Deterministic	Q07812	P10415	Q07817	Q07820									
+mit_prot_a__BAX__BAX__BAX__BAX_	Mitochondria	0.000000436	Deterministic	Q07812												
+mit_prot_a__BAX__BAX__BAX__BAX__BCL2_	Mitochondria	0.00000219	Deterministic	Q07812	P10415	Q07817	Q07820									
 mit_imp__Membrane_	Mitochondria	2259.969091	Deterministic	GO:0005739												
-mit_mixed_a__BAX__BAX__BAX__BAX__Membrane_	Mitochondria	3.11E-06	Deterministic	GO:0005739	Q07812											
+mit_mixed_a__BAX__BAX__BAX__BAX__Membrane_	Mitochondria	0.00000311	Deterministic	GO:0005739	Q07812											
 mit_imp_a__Membrane_	Mitochondria	0.0003110284153	Deterministic	GO:0005739												
 mit_mixed__CYC1__Membrane_	Mitochondria	15542.58969	Deterministic	GO:0005739	P08574											
 mit_prot_a__Membrane__CYC1_	Mitochondria	0.02779283998	Deterministic	GO:0005739	P08574											
@@ -131,7 +131,7 @@ mit_mixed_a__Membrane__DIABLO_	Mitochondria	0.002594531676	Deterministic	GO:0005
 mit_prot__DIABLO_	Mitochondria	0.02083931858	Deterministic	Q9NR28												
 cyt_prot__CYC1_	Cytoplasm	0.01944728057	Deterministic	P08574												
 cyt_prot_i__APAF1_	Cytoplasm	0.09689042078	Deterministic	O14727												
-cyt_prot__CYC1__APAF1_	Cytoplasm	2.98E-06	Deterministic	P08574	O14727											
+cyt_prot__CYC1__APAF1_	Cytoplasm	0.00000298	Deterministic	P08574	O14727											
 cyt_prot_a__APAF1_	Cytoplasm	0.01099338724	Deterministic	O14727												
 cyt_prot_i__PCSK9_	Cytoplasm	3.457423761	Deterministic	Q8NBP7												
 cyt_prot_a__APAF1__PCSK9_	Cytoplasm	0.003099873576	Deterministic	O14727	Q8NBP7											
@@ -147,28 +147,28 @@ cyt_prot__BCL2__BAD_	Cytoplasm	3.344393378	Deterministic	P10415	Q07817	Q07820	Q9
 cyt_prot__BCL2__BBC3_	Cytoplasm	1.023550054	Deterministic	P10415	Q07817	Q07820	Q9BXH1									
 cyt_prot__BCL2__PMAIP1_	Cytoplasm	0.1943622176	Deterministic	P10415	Q07817	Q07820	Q13794									
 cyt_prot__BCL2L11_	Cytoplasm	0.06038534651	Deterministic	O43521												
-cyt_prot_a__BCL2L11__BAX_	Cytoplasm	8.41E-08	Deterministic	O43521	Q07812											
+cyt_prot_a__BCL2L11__BAX_	Cytoplasm	0.0000000841	Deterministic	O43521	Q07812											
 cyt_prot__BCL2__BCL2L11_	Cytoplasm	2.124034525	Deterministic	P10415	Q07817	Q07820	O43521									
 cyt_prot__pT202_pY204_MAPK__BCL2L11_	Cytoplasm	0.0005970032356	Deterministic	P28482	P27361	P27361	O43521									
 cyt_prot__p_BCL2L11_	Cytoplasm	0.1058178115	Deterministic	O43521												
-cyt_prot__p_p_AKT__BAD_	Cytoplasm	3.36E-05	Deterministic	P31749	P31751	Q9Y243	Q92934									
+cyt_prot__p_p_AKT__BAD_	Cytoplasm	0.0000336	Deterministic	P31749	P31751	Q9Y243	Q92934									
 cyt_prot__p_BAD_	Cytoplasm	0.8912808864	Deterministic	Q92934												
 cyt_prot__pT202_pY204_MAPK__BAD_	Cytoplasm	0.0009400569297	Deterministic	P28482	P27361	P27361	Q92934									
-ext_prot__EGF_	Extracellular	8.40E-17	Deterministic	P01133												
-ext_prot__NRG1_	Extracellular	9.33E-15	Deterministic	Q02297												
-ext_prot__HGF_	Extracellular	2.30E-15	Deterministic	P14210												
-ext_prot__PDGFB_	Extracellular	2.86E-19	Deterministic	P01127												
-ext_prot__FGF_	Extracellular	4.13E-16	Deterministic	P05230	P09038											
-ext_prot__IGF_	Extracellular	1.26E-18	Deterministic	P05019	P01344											
-ext_prot__INS_	Extracellular	8.95E-15	Deterministic	P01308												
+ext_prot__EGF_	Extracellular	0	Deterministic	P01133												
+ext_prot__NRG1_	Extracellular	0	Deterministic	Q02297												
+ext_prot__HGF_	Extracellular	0	Deterministic	P14210												
+ext_prot__PDGFB_	Extracellular	0	Deterministic	P01127												
+ext_prot__FGF_	Extracellular	0	Deterministic	P05230	P09038											
+ext_prot__IGF_	Extracellular	0	Deterministic	P05019	P01344											
+ext_prot__INS_	Extracellular	0	Deterministic	P01308												
 cyt_prot__EGFR_	Cytoplasm	50.1219597	Deterministic	P00533												
 cyt_prot__pT693_EGFR_	Cytoplasm	4.954806943	Deterministic	P00533												
 cyt_prot__ERBB2_	Cytoplasm	3.805080167	Deterministic	P04626												
 cyt_prot__pT701_ERBB2_	Cytoplasm	0.3761707462	Deterministic	P04626												
 cyt_prot__ERBB3_	Cytoplasm	1.739750707	Deterministic	P21860												
-cyt_prot__ERBB4_	Cytoplasm	7.27E-28	Deterministic	Q15303												
-cyt_prot__pT699_ERBB4_	Cytoplasm	7.18E-29	Deterministic	Q15303												
-cyt_prot__EGFRvIII_	Cytoplasm	4.65E-11	Deterministic	VAR_066493												
+cyt_prot__ERBB4_	Cytoplasm	0	Deterministic	Q15303												
+cyt_prot__pT699_ERBB4_	Cytoplasm	0	Deterministic	Q15303												
+cyt_prot__EGFRvIII_	Cytoplasm	0	Deterministic	VAR_066493												
 cyt_prot__MET_	Cytoplasm	8.573223223	Deterministic	P08581												
 cyt_prot__PDGFRB_	Cytoplasm	0.2296760081	Deterministic	P09619												
 cyt_prot__FGFR_	Cytoplasm	0.1867129635	Deterministic	P11362	P21802											
@@ -177,470 +177,470 @@ cyt_prot__INSR_	Cytoplasm	0.02979621395	Deterministic	P06213
 cyt_prot__EGFR__EGFR_	Cytoplasm	2.512172788	Deterministic	P00533												
 cyt_prot__EGFR__ERBB2_	Cytoplasm	0.1907151857	Deterministic	P00533	P04626											
 cyt_prot__EGFR__ERBB3_	Cytoplasm	0.08719839388	Deterministic	P00533	P21860											
-cyt_prot__EGFR__ERBB4_	Cytoplasm	4.11E-19	Deterministic	P00533	Q15303											
+cyt_prot__EGFR__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q15303											
 cyt_prot__ERBB2__ERBB2_	Cytoplasm	0.01447848456	Deterministic	P04626												
 cyt_prot__ERBB2__ERBB3_	Cytoplasm	0.006619809285	Deterministic	P04626	P21860											
-cyt_prot__ERBB2__ERBB4_	Cytoplasm	3.12E-20	Deterministic	P04626	Q15303											
-cyt_prot__ERBB3__ERBB4_	Cytoplasm	1.43E-20	Deterministic	P21860	Q15303											
-cyt_prot__ERBB4__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q15303												
+cyt_prot__ERBB2__ERBB4_	Cytoplasm	0	Deterministic	P04626	Q15303											
+cyt_prot__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	P21860	Q15303											
+cyt_prot__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	Q15303												
 cyt_prot__MET__MET_	Cytoplasm	0.07349967525	Deterministic	P08581												
-cyt_prot__FGFR__FGFR_	Cytoplasm	3.49E-05	Deterministic	P11362	P21802											
+cyt_prot__FGFR__FGFR_	Cytoplasm	0.0000349	Deterministic	P11362	P21802											
 cyt_prot__IGF1R__IGF1R_	Cytoplasm	0.7268990861	Deterministic	P08069												
 cyt_prot__INSR__INSR_	Cytoplasm	0.3089398557	Deterministic	P06213												
-cyt_prot__EGF__EGFR_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533											
-cyt_prot__NRG1__ERBB3_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860											
-cyt_prot__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q02297	Q15303											
-cyt_prot__HGF__MET_	Cytoplasm	0.00E+00	Deterministic	P14210	P08581											
-cyt_prot__PDGFB__PDGFRB_	Cytoplasm	0.00E+00	Deterministic	P01127	P09619	P01133										
-cyt_prot__FGF__FGFR_	Cytoplasm	0.00E+00	Deterministic	P05230	P09038	P11362	P21802									
-cyt_prot__EGF__EGFR__ERBB2_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	P04626										
-cyt_prot__EGF__EGFR__EGFRvIII_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	VAR_066493										
-cyt_prot__EGF__EGFR__EGFR_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533											
-cyt_prot__EGF__EGFR__ERBB3_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	P21860										
-cyt_prot__EGF__EGFR__ERBB4_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	Q15303										
-cyt_prot__ERBB2__NRG1__ERBB3_	Cytoplasm	0.00E+00	Deterministic	P04626	Q02297	P21860										
-cyt_prot__EGFR__NRG1__ERBB3_	Cytoplasm	0.00E+00	Deterministic	P00533	Q02297	P21860										
-cyt_prot__NRG1__ERBB3__ERBB3_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860											
-cyt_prot__NRG1__ERBB3__EGFRvIII_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860	VAR_066493										
-cyt_prot__NRG1__ERBB3__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860	Q15303										
-cyt_prot__ERBB2__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	P04626	Q02297	Q15303										
-cyt_prot__NRG1__ERBB4__EGFRvIII_	Cytoplasm	0.00E+00	Deterministic	Q02297	Q15303	VAR_066493										
-cyt_prot__EGFR__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	P00533	Q02297	Q15303										
-cyt_prot__ERBB3__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	P21860	Q02297	Q15303										
-cyt_prot__NRG1__ERBB4__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q02297	Q15303											
-cyt_prot__HGF__MET__MET_	Cytoplasm	0.00E+00	Deterministic	P14210	P08581											
-cyt_prot__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0.00E+00	Deterministic	P01127	P09619											
-cyt_prot__FGF__FGFR__FGFR_	Cytoplasm	0.00E+00	Deterministic	P05230	P09038	P21802	P11362									
-cyt_prot__IGF__IGF1R__IGF1R_	Cytoplasm	0.00E+00	Deterministic	P05019	P01344	P08069										
-cyt_prot__INS__INSR__INSR_	Cytoplasm	0.00E+00	Deterministic	P01308	P06213											
-cyt_prot__EGF__EGFR__EGF__EGFR_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533											
-cyt_prot__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	Q02297	P21860									
-cyt_prot__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	P01133	P00533	Q02297	Q15303									
-cyt_prot__NRG1__ERBB3__NRG1__ERBB3_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860											
-cyt_prot__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q02297	P21860	Q15303										
-cyt_prot__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0.00E+00	Deterministic	Q02297	Q15303											
-cyt_prot__HGF__MET__HGF__MET_	Cytoplasm	0.00E+00	Deterministic	P08581	P14210											
-cyt_prot__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0.00E+00	Deterministic	P01127	P09619											
-cyt_prot__FGF__FGFR__FGF__FGFR_	Cytoplasm	0.00E+00	Deterministic	P05230	P09038	P21802	P11362									
-cyt_prot__IGF__IGF1R__IGF__IGF1R_	Cytoplasm	0.00E+00	Deterministic	P05019	P01344	P08069										
-cyt_prot__INS__INSR__INS__INSR_	Cytoplasm	0.00E+00	Deterministic	P01308	P06213											
+cyt_prot__EGF__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot__NRG1__ERBB3_	Cytoplasm	0	Deterministic	Q02297	P21860											
+cyt_prot__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot__HGF__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619	P01133										
+cyt_prot__FGF__FGFR_	Cytoplasm	0	Deterministic	P05230	P09038	P11362	P21802									
+cyt_prot__EGF__EGFR__ERBB2_	Cytoplasm	0	Deterministic	P01133	P00533	P04626										
+cyt_prot__EGF__EGFR__EGFRvIII_	Cytoplasm	0	Deterministic	P01133	P00533	VAR_066493										
+cyt_prot__EGF__EGFR__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot__EGF__EGFR__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	P21860										
+cyt_prot__EGF__EGFR__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q15303										
+cyt_prot__ERBB2__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860										
+cyt_prot__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860										
+cyt_prot__NRG1__ERBB3__ERBB3_	Cytoplasm	0	Deterministic	Q02297	P21860											
+cyt_prot__NRG1__ERBB3__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	P21860	VAR_066493										
+cyt_prot__NRG1__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot__ERBB2__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P04626	Q02297	Q15303										
+cyt_prot__NRG1__ERBB4__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	Q15303	VAR_066493										
+cyt_prot__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303										
+cyt_prot__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303										
+cyt_prot__NRG1__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot__HGF__MET__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot__FGF__FGFR__FGFR_	Cytoplasm	0	Deterministic	P05230	P09038	P21802	P11362									
+cyt_prot__IGF__IGF1R__IGF1R_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot__INS__INSR__INSR_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot__EGF__EGFR__EGF__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860									
+cyt_prot__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	Q15303									
+cyt_prot__NRG1__ERBB3__NRG1__ERBB3_	Cytoplasm	0	Deterministic	Q02297	P21860											
+cyt_prot__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot__HGF__MET__HGF__MET_	Cytoplasm	0	Deterministic	P08581	P14210											
+cyt_prot__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot__FGF__FGFR__FGF__FGFR_	Cytoplasm	0	Deterministic	P05230	P09038	P21802	P11362									
+cyt_prot__IGF__IGF1R__IGF__IGF1R_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot__INS__INSR__INS__INSR_	Cytoplasm	0	Deterministic	P01308	P06213											
 cyt_prot__EGFR__pT202_pY204_MAPK_	Cytoplasm	0.4955557535	Deterministic	P00533	P28482	P27361										
 cyt_prot__ERBB2__pT202_pY204_MAPK_	Cytoplasm	0.03762098543	Deterministic	P04626	P28482	P27361										
-cyt_prot__ERBB4__pT202_pY204_MAPK_	Cytoplasm	7.18E-30	Deterministic	Q15303	P28482	P27361										
-cyt_prot__p_EGF__EGFR__ERBB2_	Cytoplasm	1.71E-16	Deterministic	P01133	P00533	P04626										
-cyt_prot__p_EGF__EGFR__EGFRvIII_	Cytoplasm	6.29E-28	Deterministic	P01133	P00533	VAR_066493										
-cyt_prot__p_EGF__EGFR__EGFR_	Cytoplasm	4.24E-16	Deterministic	P01133	P00533											
-cyt_prot__p_EGF__EGFR__EGF__EGFR_	Cytoplasm	9.94E-34	Deterministic	P01133	P00533											
-cyt_prot__p_EGF__EGFR__ERBB3_	Cytoplasm	7.74E-17	Deterministic	P01133	P00533	P21860										
-cyt_prot__p_EGF__EGFR__NRG1__ERBB3_	Cytoplasm	4.02E-32	Deterministic	P01133	P00533	Q02297	P21860									
-cyt_prot__p_EGF__EGFR__ERBB4_	Cytoplasm	9.28E-45	Deterministic	P01133	P00533	Q15303										
-cyt_prot__p_EGF__EGFR__NRG1__ERBB4_	Cytoplasm	1.00E-59	Deterministic	P01133	P00533	Q02297	Q15303									
-cyt_prot__pT701_ERBB2__NRG1__ERBB3_	Cytoplasm	5.37E-16	Deterministic	P04626	Q02297	P21860										
-cyt_prot__p_NRG1__ERBB3__EGFRvIII_	Cytoplasm	7.15E-27	Deterministic	Q02297	P21860	VAR_066493										
-cyt_prot__pT693_EGFR__NRG1__ERBB3_	Cytoplasm	6.23E-15	Deterministic	P00533	Q02297	P21860										
-cyt_prot__p_NRG1__ERBB3__ERBB4_	Cytoplasm	1.12E-43	Deterministic	Q02297	P21860	Q15303										
-cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	7.00E-59	Deterministic	Q02297	P21860	Q15303										
-cyt_prot__pT701_ERBB2__NRG1__ERBB4_	Cytoplasm	2.25E-43	Deterministic	P04626	Q15303	Q02297										
-cyt_prot__p_NRG1__ERBB4__EGFRvIII_	Cytoplasm	3.00E-54	Deterministic	Q02297	Q15303	VAR_066493										
-cyt_prot__pT693_EGFR__NRG1__ERBB4_	Cytoplasm	2.61E-42	Deterministic	P00533	Q02297	Q15303										
-cyt_prot__p_ERBB3__NRG1__ERBB4_	Cytoplasm	1.04E-43	Deterministic	P21860	Q02297	Q15303										
-cyt_prot__p_NRG1__ERBB4__ERBB4_	Cytoplasm	4.35E-71	Deterministic	Q02297	Q15303											
-cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	1.49E-86	Deterministic	Q02297	Q15303											
-cyt_prot__p_HGF__MET__MET_	Cytoplasm	5.22E-13	Deterministic	P14210	P08581											
-cyt_prot__p_HGF__MET__HGF__MET_	Cytoplasm	8.31E-27	Deterministic	P14210	P08581											
-cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	2.15E-41	Deterministic	P01127	P09619											
-cyt_prot__p_PDGFB__PDGFRB__PDGFRB_	Cytoplasm	3.21E-38	Deterministic	P01127	P09619											
-cyt_prot__p_FGF__FGFR__FGF__FGFR_	Cytoplasm	2.17E-31	Deterministic	P21802	P11362	P05230	P09038									
-cyt_prot__p_FGF__FGFR__FGFR_	Cytoplasm	4.93E-16	Deterministic	P05230	P09038	P21802	P11362									
-cyt_prot__p_IGF__IGF1R__IGF1R_	Cytoplasm	5.14E-19	Deterministic	P05019	P01344	P08069										
-cyt_prot__p_INS__INSR__INSR_	Cytoplasm	6.86E-17	Deterministic	P01308	P06213											
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF_	Cytoplasm	6.08E-38	Deterministic	P05019	P01344	P08069										
-cyt_prot__p_INS__INSR__INSR__INS_	Cytoplasm	3.16E-34	Deterministic	P01308	P06213											
-cyt_prot__p_IGF__IGF1R__IGF1R__IRS_	Cytoplasm	3.75E-19	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
-cyt_prot__p_INS__INSR__INSR__IRS_	Cytoplasm	4.96E-17	Deterministic	P01308	P06213	P35568	Q9Y4H2									
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS_	Cytoplasm	4.43E-38	Deterministic	P08069	Q9Y4H2	P05019	P35568	P01344								
-cyt_prot__p_INS__INSR__INSR__INS__IRS_	Cytoplasm	2.28E-34	Deterministic	P01308	P06213	P35568	Q9Y4H2									
-cyt_prot__SPRY2__EGF__EGFR__ERBB2_	Cytoplasm	2.83E-18	Deterministic	O43597	P01133	P00533	P04626									
-cyt_prot__SPRY2__EGF__EGFR__EGFRvIII_	Cytoplasm	1.04E-29	Deterministic	O43597	P01133	P00533	VAR_066493									
-cyt_prot__SPRY2__EGF__EGFR__EGFR_	Cytoplasm	7.09E-18	Deterministic	O43597	P01133	P00533										
-cyt_prot__SPRY2__EGF__EGFR__EGF__EGFR_	Cytoplasm	1.66E-35	Deterministic	O43597	P01133	P00533										
-cyt_prot__SPRY2__EGF__EGFR__ERBB3_	Cytoplasm	1.28E-18	Deterministic	O43597	P01133	P00533	P21860									
-cyt_prot__SPRY2__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	6.66E-34	Deterministic	O43597	P01133	P00533	Q02297	P21860								
-cyt_prot__SPRY2__EGF__EGFR__ERBB4_	Cytoplasm	1.54E-46	Deterministic	O43597	P01133	P00533	Q15303									
-cyt_prot__SPRY2__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	1.66E-61	Deterministic	P00533	Q15303	O43597	P01133	Q02297								
-cyt_prot__SPRY2__ERBB2__NRG1__ERBB3_	Cytoplasm	8.87E-18	Deterministic	P21860	O43597	P04626	Q02297									
-cyt_prot__SPRY2__NRG1__ERBB3__EGFRvIII_	Cytoplasm	1.18E-28	Deterministic	O43597	Q02297	P21860	VAR_066493									
-cyt_prot__SPRY2__EGFR__NRG1__ERBB3_	Cytoplasm	1.03E-16	Deterministic	O43597	P00533	Q02297	P21860									
-cyt_prot__SPRY2__NRG1__ERBB3__ERBB4_	Cytoplasm	1.84E-45	Deterministic	O43597	Q02297	P21860	Q15303									
-cyt_prot__SPRY2__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	1.16E-60	Deterministic	O43597	Q02297	P21860	Q15303									
-cyt_prot__SPRY2__ERBB2__NRG1__ERBB4_	Cytoplasm	3.71E-45	Deterministic	O43597	P04626	Q02297	Q15303									
-cyt_prot__SPRY2__NRG1__ERBB4__EGFRvIII_	Cytoplasm	4.96E-56	Deterministic	Q02997	Q15303	O43597	VAR_066493									
-cyt_prot__SPRY2__EGFR__NRG1__ERBB4_	Cytoplasm	4.32E-44	Deterministic	O43597	P00533	Q02297	Q15303									
-cyt_prot__SPRY2__ERBB3__NRG1__ERBB4_	Cytoplasm	1.71E-45	Deterministic	O43597	P21860	Q02297	Q15303									
-cyt_prot__SPRY2__NRG1__ERBB4__ERBB4_	Cytoplasm	7.20E-73	Deterministic	O43597	Q02297	Q15303										
-cyt_prot__SPRY2__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	2.46E-88	Deterministic	O43597	Q02297	Q15303										
-cyt_prot__SPRY2__HGF__MET__MET_	Cytoplasm	8.62E-15	Deterministic	O43597	P14210	P08581										
-cyt_prot__SPRY2__HGF__MET__HGF__MET_	Cytoplasm	1.37E-28	Deterministic	O43597	P14210	P08581										
-cyt_prot__SPRY2__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	3.55E-43	Deterministic	O43597	P01127	P09619										
-cyt_prot__SPRY2__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	5.30E-40	Deterministic	O43597	P01127	P09619										
-cyt_prot__SPRY2__FGF__FGFR__FGF__FGFR_	Cytoplasm	3.59E-33	Deterministic	O43597	P21802	P11362	P05230	P09038								
-cyt_prot__SPRY2__FGF__FGFR__FGFR_	Cytoplasm	8.14E-18	Deterministic	O43597	P21802	P11362	P05230	P09038								
-cyt_prot__SPRY2__IGF__IGF1R__IGF1R_	Cytoplasm	8.49E-21	Deterministic	P08069	O43597	P01344	P05019									
-cyt_prot__SPRY2__INS__INSR__INSR_	Cytoplasm	1.13E-18	Deterministic	O43597	P01308	P06213										
-cyt_prot__SPRY2__IGF__IGF1R__IGF1R__IGF_	Cytoplasm	1.00E-39	Deterministic	P08069	O43597	P01344	P05019									
-cyt_prot__SPRY2__INS__INSR__INSR__INS_	Cytoplasm	5.22E-36	Deterministic	O43597	P01308	P06213										
-cyt_prot_in__EGF__EGFR__ERBB2_	Cytoplasm	6.12E-16	Deterministic	P01133	P00533	P04626										
-cyt_prot_in__EGF__EGFR__EGFRvIII_	Cytoplasm	2.25E-27	Deterministic	P01133	P00533	VAR_066493										
-cyt_prot_in__EGF__EGFR__EGFR_	Cytoplasm	2.12E-15	Deterministic	P01133	P00533											
-cyt_prot_in__EGF__EGFR__EGF__EGFR_	Cytoplasm	4.96E-33	Deterministic	P01133	P00533											
-cyt_prot_in__EGF__EGFR__ERBB3_	Cytoplasm	2.78E-16	Deterministic	P01133	P00533	P21860										
-cyt_prot_in__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	1.44E-31	Deterministic	P01133	P00533	Q02297	P21860									
-cyt_prot_in__EGF__EGFR__ERBB4_	Cytoplasm	3.33E-44	Deterministic	P01133	P00533	Q15303										
-cyt_prot_in__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	3.59E-59	Deterministic	P01133	P00533	Q02297	Q15303									
-cyt_prot_in__ERBB2__NRG1__ERBB3_	Cytoplasm	2.08E-16	Deterministic	P04626	Q02297	P21860										
-cyt_prot_in__NRG1__ERBB3__EGFRvIII_	Cytoplasm	2.76E-27	Deterministic	Q02297	P21860	VAR_066493										
-cyt_prot_in__EGFR__NRG1__ERBB3_	Cytoplasm	2.23E-14	Deterministic	P00533	Q02297	P21860										
-cyt_prot_in__NRG1__ERBB3__ERBB4_	Cytoplasm	4.32E-44	Deterministic	Q02297	P21860	Q15303										
-cyt_prot_in__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	2.71E-59	Deterministic	Q02297	P21860	Q15303										
-cyt_prot_in__ERBB2__NRG1__ERBB4_	Cytoplasm	8.70E-44	Deterministic	P04626	Q02297	Q15303										
-cyt_prot_in__NRG1__ERBB4__EGFRvIII_	Cytoplasm	1.16E-54	Deterministic	Q02297	Q15303	VAR_066493										
-cyt_prot_in__EGFR__NRG1__ERBB4_	Cytoplasm	9.36E-42	Deterministic	P00533	Q02297	Q15303										
-cyt_prot_in__ERBB3__NRG1__ERBB4_	Cytoplasm	4.01E-44	Deterministic	P21860	Q02297	Q15303										
-cyt_prot_in__NRG1__ERBB4__ERBB4_	Cytoplasm	1.68E-71	Deterministic	Q02297	Q15303											
-cyt_prot_in__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	5.77E-87	Deterministic	Q02297	Q15303											
-cyt_prot_in__HGF__MET__MET_	Cytoplasm	2.02E-13	Deterministic	P08581	P14210											
-cyt_prot_in__HGF__MET__HGF__MET_	Cytoplasm	3.21E-27	Deterministic	P08581	P14210											
-cyt_prot_in__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	8.30E-42	Deterministic	P01127	P09619											
-cyt_prot_in__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	1.24E-38	Deterministic	P01127	P09619											
-cyt_prot_in__FGF__FGFR__FGF__FGFR_	Cytoplasm	8.40E-32	Deterministic	P05230	P09038	P21802	P11362									
-cyt_prot_in__FGF__FGFR__FGFR_	Cytoplasm	1.91E-16	Deterministic	P21802	P11362	P05230	P09038									
-cyt_prot_in__IGF__IGF1R__IGF1R_	Cytoplasm	8.08E-19	Deterministic	P05019	P01344	P08069										
-cyt_prot_in__INS__INSR__INSR_	Cytoplasm	1.54E-16	Deterministic	P01308	P06213											
-cyt_prot_in__IGF__IGF1R__IGF1R__IGF_	Cytoplasm	9.56E-38	Deterministic	P05019	P01344	P08069										
-cyt_prot_in__INS__INSR__INSR__INS_	Cytoplasm	7.09E-34	Deterministic	P01308	P06213											
-cyt_prot_in__p_EGF__EGFR__ERBB2_	Cytoplasm	6.13E-16	Deterministic	P01133	P00533	P04626										
-cyt_prot_in__p_EGF__EGFR__EGFRvIII_	Cytoplasm	2.26E-27	Deterministic	P01133	P00533	VAR_066493										
-cyt_prot_in__p_EGF__EGFR__EGFR_	Cytoplasm	2.12E-15	Deterministic	P01133	P00533											
-cyt_prot_in__p_EGF__EGFR__EGF__EGFR_	Cytoplasm	4.97E-33	Deterministic	P01133	P00533											
-cyt_prot_in__p_EGF__EGFR__ERBB3_	Cytoplasm	2.78E-16	Deterministic	P01133	P00533	P21860										
-cyt_prot_in__p_EGF__EGFR__NRG1__ERBB3_	Cytoplasm	1.44E-31	Deterministic	P01133	P00533	Q02297	P21860									
-cyt_prot_in__p_EGF__EGFR__ERBB4_	Cytoplasm	3.33E-44	Deterministic	Q15303	P00533	P01133										
-cyt_prot_in__p_EGF__EGFR__NRG1__ERBB4_	Cytoplasm	3.59E-59	Deterministic	Q02297	P00533	P01133	Q15303									
-cyt_prot_in__pT701_ERBB2__NRG1__ERBB3_	Cytoplasm	2.08E-16	Deterministic	P04626	Q02297	P21860										
-cyt_prot_in__p_NRG1__ERBB3__EGFRvIII_	Cytoplasm	2.77E-27	Deterministic	Q02297	P21860	VAR_066493										
-cyt_prot_in__pT693_EGFR__NRG1__ERBB3_	Cytoplasm	2.24E-14	Deterministic	P21860	Q02297	P00533										
-cyt_prot_in__p_NRG1__ERBB3__ERBB4_	Cytoplasm	4.32E-44	Deterministic	Q02297	P21860	Q15303										
-cyt_prot_in__p_NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	2.71E-59	Deterministic	Q02297	P21860	Q15303										
-cyt_prot_in__pT701_ERBB2__NRG1__ERBB4_	Cytoplasm	8.71E-44	Deterministic	P04626	Q02297	Q15303										
-cyt_prot_in__p_NRG1__ERBB4__EGFRvIII_	Cytoplasm	1.16E-54	Deterministic	Q02297	Q15303	VAR_066493										
-cyt_prot_in__pT693_EGFR__NRG1__ERBB4_	Cytoplasm	9.37E-42	Deterministic	P00533	Q02297	Q15303										
-cyt_prot_in__p_ERBB3__NRG1__ERBB4_	Cytoplasm	4.01E-44	Deterministic	P21860	Q02297	Q15303										
-cyt_prot_in__p_NRG1__ERBB4__ERBB4_	Cytoplasm	1.69E-71	Deterministic	Q02297	Q15303											
-cyt_prot_in__p_NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	5.78E-87	Deterministic	Q02297	Q15303											
-cyt_prot_in__p_HGF__MET__MET_	Cytoplasm	2.02E-13	Deterministic	P14210	P08581											
-cyt_prot_in__p_HGF__MET__HGF__MET_	Cytoplasm	3.22E-27	Deterministic	P14210	P08581											
-cyt_prot_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	8.32E-42	Deterministic	P01127	P09619											
-cyt_prot_in__p_PDGFB__PDGFRB__PDGFRB_	Cytoplasm	1.24E-38	Deterministic	P01127	P09619											
-cyt_prot_in__p_FGF__FGFR__FGF__FGFR_	Cytoplasm	8.41E-32	Deterministic	P21802	P11362	P05230	P09038									
-cyt_prot_in__p_FGF__FGFR__FGFR_	Cytoplasm	1.91E-16	Deterministic	P21802	P11362	P05230	P09038									
-cyt_prot_in__p_IGF__IGF1R__IGF1R_	Cytoplasm	8.09E-19	Deterministic	P05019	P01344	P08069										
-cyt_prot_in__p_INS__INSR__INSR_	Cytoplasm	1.54E-16	Deterministic	P01308	P06213											
-cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF_	Cytoplasm	9.56E-38	Deterministic	P05019	P01344	P08069										
-cyt_prot_in__p_INS__INSR__INSR__INS_	Cytoplasm	7.10E-34	Deterministic	P01308	P06213											
-cyt_prot_in__p_IGF__IGF1R__IGF1R__IRS_	Cytoplasm	6.00E-19	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
-cyt_prot_in__p_INS__INSR__INSR__IRS_	Cytoplasm	1.14E-16	Deterministic	Q9Y4H2	P06213	P35568	P01308									
-cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF__IRS_	Cytoplasm	7.09E-38	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
-cyt_prot_in__p_INS__INSR__INSR__INS__IRS_	Cytoplasm	5.26E-34	Deterministic	P35568	P06213	Q9Y4H2	P01308									
-cyt_prot__p_EGF__EGFR__ERBB2__GRB2__SOS1_	Cytoplasm	1.66E-19	Deterministic	P01133	P00533	P04626	P62993	Q07889								
-cyt_prot__p_EGF__EGFR__EGFRvIII__GRB2__SOS1_	Cytoplasm	6.79E-31	Deterministic	P01133	P00533	VAR_066493	P62993	Q07889								
-cyt_prot__p_EGF__EGFR__EGFR__GRB2__SOS1_	Cytoplasm	4.59E-19	Deterministic	P01133	P00533	P62993	Q07889									
-cyt_prot__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1_	Cytoplasm	1.07E-36	Deterministic	P01133	P00533	P62993	Q07889									
-cyt_prot__p_EGF__EGFR__ERBB3__GRB2__SOS1_	Cytoplasm	6.69E-20	Deterministic	P01133	P00533	P21860	P62993	Q07889								
-cyt_prot__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	3.47E-35	Deterministic	P01133	P00533	Q02297	P21860	P62993	Q07889							
-cyt_prot__p_EGF__EGFR__ERBB4__GRB2__SOS1_	Cytoplasm	1.10E-47	Deterministic	P01133	P00533	Q15303	P62993	Q07889								
-cyt_prot__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	1.19E-62	Deterministic	P01133	P00533	Q02297	Q15303	P62993	Q07889							
-cyt_prot__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	4.07E-19	Deterministic	P04626	Q02297	P21860	P62993	Q07889								
-cyt_prot__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1_	Cytoplasm	6.18E-30	Deterministic	Q02297	P21860	VAR_066493	P62993	Q07889								
-cyt_prot__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	5.39E-18	Deterministic	P00533	Q02297	P21860	P62993	Q07889								
-cyt_prot__p_NRG1__ERBB3__ERBB4__GRB2__SOS1_	Cytoplasm	1.09E-46	Deterministic	Q02297	P21860	Q15303	P62993	Q07889								
-cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	6.80E-62	Deterministic	Q02297	P21860	Q15303	P62993	Q07889								
-cyt_prot__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	2.43E-46	Deterministic	P04626	Q02297	Q15303	P62993	Q07889								
-cyt_prot__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1_	Cytoplasm	3.57E-57	Deterministic	Q02297	Q15303	P62993	Q07889	VAR_066493								
-cyt_prot__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	3.10E-45	Deterministic	P00533	Q02297	Q15303	P62993	Q07889								
-cyt_prot__p_ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	1.01E-46	Deterministic	P21860	Q02297	Q15303	P62993	Q07889								
-cyt_prot__p_NRG1__ERBB4__ERBB4__GRB2__SOS1_	Cytoplasm	5.65E-74	Deterministic	Q02297	Q15303	P62993	Q07889									
-cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	1.93E-89	Deterministic	Q02297	Q15303	P62993	Q07889									
-cyt_prot__p_HGF__MET__MET__GRB2__SOS1_	Cytoplasm	1.13E-16	Deterministic	P14210	P08581	P62993	Q07889									
-cyt_prot__p_HGF__MET__HGF__MET__GRB2__SOS1_	Cytoplasm	1.80E-30	Deterministic	P14210	P08581	P62993	Q07889									
-cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1_	Cytoplasm	2.32E-45	Deterministic	P09619	Q07889	P01127	P62993									
-cyt_prot__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1_	Cytoplasm	3.47E-42	Deterministic	P09619	Q07889	P01127	P62993									
-cyt_prot__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1_	Cytoplasm	1.88E-34	Deterministic	P21802	P11362	Q07889	P05230	P62993	P09038							
-cyt_prot__p_FGF__FGFR__FGFR__GRB2__SOS1_	Cytoplasm	4.26E-19	Deterministic	P21802	P11362	Q07889	P05230	P62993	P09038							
-cyt_prot__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1_	Cytoplasm	2.03E-22	Deterministic	P08069	Q07889	Q9Y4H2	P05019	P35568	P62993	P01344						
-cyt_prot__p_INS__INSR__INSR__IRS__GRB2__SOS1_	Cytoplasm	3.75E-20	Deterministic	P35568	Q07889	Q9Y4H2	P06213	P01308	P62993							
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1_	Cytoplasm	2.39E-41	Deterministic	P08069	Q07889	Q9Y4H2	P05019	P35568	P62993	P01344						
-cyt_prot__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1_	Cytoplasm	1.73E-37	Deterministic	P35568	Q07889	Q9Y4H2	P06213	P01308	P62993							
-cyt_prot_in__p_EGF__EGFR__ERBB2__GRB2__SOS1_	Cytoplasm	5.96E-19	Deterministic	P00533	P62993	P04626	Q07889	P01133								
-cyt_prot_in__p_EGF__EGFR__EGFRvIII__GRB2__SOS1_	Cytoplasm	2.44E-30	Deterministic	Q07889	P00533	P62993	P01133	VAR_066493								
-cyt_prot_in__p_EGF__EGFR__EGFR__GRB2__SOS1_	Cytoplasm	2.29E-18	Deterministic	Q07889	P00533	P62993	P01133									
-cyt_prot_in__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1_	Cytoplasm	5.36E-36	Deterministic	Q07889	P00533	P62993	P01133									
-cyt_prot_in__p_EGF__EGFR__ERBB3__GRB2__SOS1_	Cytoplasm	2.40E-19	Deterministic	Q07889	P21860	P62993	P01133	P00533								
-cyt_prot_in__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	1.25E-34	Deterministic	Q07889	Q02297	P62993	P01133	P21860	P00533							
-cyt_prot_in__p_EGF__EGFR__ERBB4__GRB2__SOS1_	Cytoplasm	3.96E-47	Deterministic	Q07889	Q15303	P62993	P01133	P00533								
-cyt_prot_in__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	4.27E-62	Deterministic	Q07889	Q02297	P62993	P01133	Q15303								
-cyt_prot_in__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	1.57E-19	Deterministic	Q07889	Q02297	P62993	P21860	P21860								
-cyt_prot_in__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1_	Cytoplasm	2.39E-30	Deterministic	Q07889	Q02297	P62993	P21860	VAR_066493								
-cyt_prot_in__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	1.93E-17	Deterministic	Q07889	Q02297	P62993	P21860	P00533								
-cyt_prot_in__p_NRG1__ERBB3__ERBB4__GRB2__SOS1_	Cytoplasm	4.21E-47	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
-cyt_prot_in__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	2.64E-62	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
-cyt_prot_in__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	9.41E-47	Deterministic	Q07889	Q02297	P62993	Q15303	P04626								
-cyt_prot_in__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1_	Cytoplasm	1.38E-57	Deterministic	Q07889	Q02297	P62993	Q15303	VAR_066493								
-cyt_prot_in__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	1.11E-44	Deterministic	Q07889	Q02297	P62993	Q15303	P00533								
-cyt_prot_in__p_ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	3.90E-47	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
-cyt_prot_in__p_NRG1__ERBB4__ERBB4__GRB2__SOS1_	Cytoplasm	2.19E-74	Deterministic	Q07889	Q02297	P62993	Q15303									
-cyt_prot_in__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	7.49E-90	Deterministic	Q07889	Q02297	P62993	Q15303									
-cyt_prot_in__p_HGF__MET__MET__GRB2__SOS1_	Cytoplasm	4.37E-17	Deterministic	Q07889	P08581	P62993	P14210									
-cyt_prot_in__p_HGF__MET__HGF__MET__GRB2__SOS1_	Cytoplasm	6.95E-31	Deterministic	Q07889	P08581	P62993	P14210									
-cyt_prot_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1_	Cytoplasm	8.99E-46	Deterministic	P62993	P09619	Q07889	P01127									
-cyt_prot_in__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1_	Cytoplasm	1.34E-42	Deterministic	P62993	P09619	Q07889	P01127									
-cyt_prot_in__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1_	Cytoplasm	7.27E-35	Deterministic	P09038	P05230	P21802	P62993	Q07889	P11362							
-cyt_prot_in__p_FGF__FGFR__FGFR__GRB2__SOS1_	Cytoplasm	1.65E-19	Deterministic	P09038	P05230	P21802	P62993	Q07889	P11362							
-cyt_prot_in__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1_	Cytoplasm	3.24E-22	Deterministic	Q9Y4H2	P62993	P35568	P08069	Q07889	P05019	P01344						
-cyt_prot_in__p_INS__INSR__INSR__IRS__GRB2__SOS1_	Cytoplasm	8.65E-20	Deterministic	Q9Y4H2	P62993	P35568	Q07889	P06213	P01308							
-cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1_	Cytoplasm	3.83E-41	Deterministic	Q9Y4H2	P62993	P35568	P08069	Q07889	P05019	P01344						
-cyt_prot_in__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1_	Cytoplasm	3.98E-37	Deterministic	Q9Y4H2	P62993	P35568	Q07889	P06213	P01308							
-cyt_prot__p_EGF__EGFR__ERBB2__PLCG_	Cytoplasm	2.96E-18	Deterministic	P01133	P00533	P04626	P19174	P16885								
-cyt_prot__p_EGF__EGFR__EGFRvIII__PLCG_	Cytoplasm	1.09E-29	Deterministic	P01133	P00533	P19174	P16885	VAR_066493								
-cyt_prot__p_EGF__EGFR__EGFR__PLCG_	Cytoplasm	7.37E-18	Deterministic	P01133	P00533	P19174	P16885									
-cyt_prot__p_EGF__EGFR__EGF__EGFR__PLCG_	Cytoplasm	1.73E-35	Deterministic	P01133	P00533	P19174	P16885									
-cyt_prot__p_EGF__EGFR__ERBB3__PLCG_	Cytoplasm	1.01E-18	Deterministic	P01133	P00533	P21860	P19174	P16885								
-cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PLCG_	Cytoplasm	5.23E-34	Deterministic	P01133	P00533	Q02297	P21860	P19174	P16885							
-cyt_prot__p_EGF__EGFR__ERBB4__PLCG_	Cytoplasm	1.21E-46	Deterministic	P16885	P01133	P19174	Q15303	P00533								
-cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PLCG_	Cytoplasm	1.30E-61	Deterministic	P01133	P00533	Q02297	Q15303	P19174	P16885							
-cyt_prot__pT701_ERBB2__NRG1__ERBB3__PLCG_	Cytoplasm	7.00E-18	Deterministic	P04626	Q02297	P21860	P19174	P16885								
-cyt_prot__p_NRG1__ERBB3__EGFRvIII__PLCG_	Cytoplasm	9.31E-29	Deterministic	Q02297	P21860	P19174	P16885	VAR_066493								
-cyt_prot__pT693_EGFR__NRG1__ERBB3__PLCG_	Cytoplasm	8.12E-17	Deterministic	P00533	Q02297	P21860	P19174	P16885								
-cyt_prot__p_NRG1__ERBB3__ERBB4__PLCG_	Cytoplasm	9.69E-46	Deterministic	Q02297	P21860	Q15303	P19174	P16885								
-cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PLCG_	Cytoplasm	6.07E-61	Deterministic	Q02297	P21860	Q15303	P19174	P16885								
-cyt_prot__pT701_ERBB2__NRG1__ERBB4__PLCG_	Cytoplasm	2.93E-45	Deterministic	P04626	Q02297	Q15303	P19174	P16885								
-cyt_prot__p_NRG1__ERBB4__EGFRvIII__PLCG_	Cytoplasm	3.91E-56	Deterministic	Q02297	Q15303	P19174	P16885	VAR_066493								
-cyt_prot__pT693_EGFR__NRG1__ERBB4__PLCG_	Cytoplasm	3.39E-44	Deterministic	P00533	Q02297	Q15303	P19174	P16885								
-cyt_prot__p_ERBB3__NRG1__ERBB4__PLCG_	Cytoplasm	8.99E-46	Deterministic	P21860	Q02297	Q15303	P19174	P19885								
-cyt_prot__p_NRG1__ERBB4__ERBB4__PLCG_	Cytoplasm	3.78E-73	Deterministic	Q02297	Q15303	P19174	P16885									
-cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PLCG_	Cytoplasm	1.29E-88	Deterministic	Q02297	Q15303	P19174	P16885									
-cyt_prot__p_HGF__MET__MET__PLCG_	Cytoplasm	9.07E-15	Deterministic	P19885	P19174	P08581	P14210									
-cyt_prot__p_HGF__MET__HGF__MET__PLCG_	Cytoplasm	1.44E-28	Deterministic	P19885	P19174	P08581	P14210									
-cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PLCG_	Cytoplasm	4.66E-43	Deterministic	P19174	P09619	P01127	P16885									
-cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PLCG_	Cytoplasm	6.95E-40	Deterministic	P19174	P09619	P01127	P16885									
-cyt_prot__p_FGF__FGFR__FGF__FGFR__PLCG_	Cytoplasm	1.89E-33	Deterministic	P16885	P21802	P11362	P05230	P19174	P09038							
-cyt_prot__p_FGF__FGFR__FGFR__PLCG_	Cytoplasm	1.28E-17	Deterministic	P16885	P21802	P11362	P05230	P19174	P09038							
-cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PLCG_	Cytoplasm	2.44E-21	Deterministic	P08069	P19174	Q9Y4H2	P05019	P35568	P16885	P01344						
-cyt_prot__p_INS__INSR__INSR__IRS__PLCG_	Cytoplasm	7.53E-19	Deterministic	P35568	P06213	Q9Y4H2	P01308	P19174	P16885							
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PLCG_	Cytoplasm	2.88E-40	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P19174	P16885						
-cyt_prot__p_INS__INSR__INSR__INS__IRS__PLCG_	Cytoplasm	3.47E-36	Deterministic	P35568	P06213	Q9Y4H2	P01308	P19174	P16885							
-cyt_prot__p_EGF__EGFR__ERBB2__PIK3C__PIK3R_	Cytoplasm	1.96E-17	Deterministic	P04626	P01133	P00533	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_EGF__EGFR__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	3.60E-29	Deterministic	P00533	P01133	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_EGF__EGFR__EGFR__PIK3C__PIK3R_	Cytoplasm	2.43E-17	Deterministic	P00533	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_EGF__EGFR__EGF__EGFR__PIK3C__PIK3R_	Cytoplasm	5.70E-35	Deterministic	P00533	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_EGF__EGFR__ERBB3__PIK3C__PIK3R_	Cytoplasm	2.22E-17	Deterministic	P00533	P01133	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	1.15E-32	Deterministic	P00533	Q02297	P21860	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__p_EGF__EGFR__ERBB4__PIK3C__PIK3R_	Cytoplasm	1.06E-45	Deterministic	P00533	P01133	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	1.15E-60	Deterministic	P00533	Q02297	Q15303	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__pT701_ERBB2__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	1.85E-16	Deterministic	Q02297	P04626	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_NRG1__ERBB3__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	2.05E-27	Deterministic	P21860	Q02297	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__pT693_EGFR__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	1.79E-15	Deterministic	Q02297	P00533	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_NRG1__ERBB3__ERBB4__PIK3C__PIK3R_	Cytoplasm	3.84E-44	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	2.41E-59	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__pT701_ERBB2__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	3.87E-44	Deterministic	Q02297	P04626	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_NRG1__ERBB4__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	3.45E-55	Deterministic	Q15303	Q02297	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__pT693_EGFR__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	2.99E-43	Deterministic	Q02297	P00533	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_ERBB3__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	3.56E-44	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
-cyt_prot__p_NRG1__ERBB4__ERBB4__PIK3C__PIK3R_	Cytoplasm	7.50E-72	Deterministic	Q15303	Q02297	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	2.57E-87	Deterministic	Q15303	Q02297	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_HGF__MET__MET__PIK3C__PIK3R_	Cytoplasm	8.99E-14	Deterministic	P14210	P08581	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_HGF__MET__HGF__MET__PIK3C__PIK3R_	Cytoplasm	1.43E-27	Deterministic	P14210	P08581	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C__PIK3R_	Cytoplasm	3.67E-42	Deterministic	P09619	P01127	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PIK3C__PIK3R_	Cytoplasm	5.47E-39	Deterministic	P09619	P01127	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
-cyt_prot__p_FGF__FGFR__FGF__FGFR__PIK3C__PIK3R_	Cytoplasm	8.73E-32	Deterministic	P21802	P11362	P05230	P09038	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__p_FGF__FGFR__FGFR__PIK3C__PIK3R_	Cytoplasm	2.26E-16	Deterministic	P21802	P11362	P05230	P09038	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PIK3C__PIK3R_	Cytoplasm	1.12E-19	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570
-cyt_prot__p_INS__INSR__INSR__IRS__PIK3C__PIK3R_	Cytoplasm	2.05E-17	Deterministic	P35568	P06213	Q9Y4H2	P01308	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C__PIK3R_	Cytoplasm	1.32E-38	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570
-cyt_prot__p_INS__INSR__INSR__INS__IRS__PIK3C__PIK3R_	Cytoplasm	9.43E-35	Deterministic	P35568	P06213	Q9Y4H2	P01308	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
-cyt_prot__p_EGF__EGFR__ERBB2__PIK3C2A_	Cytoplasm	1.68E-17	Deterministic	P04626	P01133	P00533	O00443									
-cyt_prot__p_EGF__EGFR__EGFRvIII__PIK3C2A_	Cytoplasm	3.09E-29	Deterministic	P00533	P01133	VAR_066493	O00443									
-cyt_prot__p_EGF__EGFR__EGFR__PIK3C2A_	Cytoplasm	2.09E-17	Deterministic	P00533	P01133	O00443										
-cyt_prot__p_EGF__EGFR__EGF__EGFR__PIK3C2A_	Cytoplasm	4.89E-35	Deterministic	P00533	P01133	O00443										
-cyt_prot__p_EGF__EGFR__ERBB3__PIK3C2A_	Cytoplasm	1.91E-17	Deterministic	P00533	P01133	P21860	O00443									
-cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PIK3C2A_	Cytoplasm	9.89E-33	Deterministic	P00533	Q02297	P21860	P01133	O00443								
-cyt_prot__p_EGF__EGFR__ERBB4__PIK3C2A_	Cytoplasm	9.13E-46	Deterministic	P00533	P01133	Q15303	O00443									
-cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PIK3C2A_	Cytoplasm	9.85E-61	Deterministic	P00533	Q02297	Q15303	P01133	O00443								
-cyt_prot__pT701_ERBB2__NRG1__ERBB3__PIK3C2A_	Cytoplasm	1.59E-16	Deterministic	Q02297	P04626	P21860	O00443									
-cyt_prot__p_NRG1__ERBB3__EGFRvIII__PIK3C2A_	Cytoplasm	1.76E-27	Deterministic	P21860	Q02297	VAR_066493	O00443									
-cyt_prot__pT693_EGFR__NRG1__ERBB3__PIK3C2A_	Cytoplasm	1.53E-15	Deterministic	Q02297	P00533	P21860	O00443									
-cyt_prot__p_NRG1__ERBB3__ERBB4__PIK3C2A_	Cytoplasm	3.30E-44	Deterministic	Q02297	P21860	Q15303	O00443									
-cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C2A_	Cytoplasm	2.07E-59	Deterministic	Q02297	P21860	Q15303	O00443									
-cyt_prot__pT701_ERBB2__NRG1__ERBB4__PIK3C2A_	Cytoplasm	3.32E-44	Deterministic	Q02297	P04626	Q15303	O00443									
-cyt_prot__p_NRG1__ERBB4__EGFRvIII__PIK3C2A_	Cytoplasm	2.95E-55	Deterministic	Q15303	Q02297	VAR_066493	O00443									
-cyt_prot__pT693_EGFR__NRG1__ERBB4__PIK3C2A_	Cytoplasm	2.57E-43	Deterministic	Q02297	P00533	Q15303	O00443									
-cyt_prot__p_ERBB3__NRG1__ERBB4__PIK3C2A_	Cytoplasm	3.06E-44	Deterministic	Q02297	P21860	Q15303	O00443									
-cyt_prot__p_NRG1__ERBB4__ERBB4__PIK3C2A_	Cytoplasm	6.43E-72	Deterministic	Q15303	Q02297	O00443										
-cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C2A_	Cytoplasm	2.20E-87	Deterministic	Q15303	Q02297	O00443										
-cyt_prot__p_HGF__MET__MET__PIK3C2A_	Cytoplasm	7.72E-14	Deterministic	P14210	P08581	O00443										
-cyt_prot__p_HGF__MET__HGF__MET__PIK3C2A_	Cytoplasm	1.23E-27	Deterministic	P14210	P08581	O00443										
-cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C2A_	Cytoplasm	3.17E-42	Deterministic	P09619	P01127	O00443										
-cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PIK3C2A_	Cytoplasm	4.73E-39	Deterministic	P09619	P01127	O00443										
-cyt_prot__p_FGF__FGFR__FGF__FGFR__PIK3C2A_	Cytoplasm	7.49E-32	Deterministic	P21802	P11362	P05230	P09038	O00443								
-cyt_prot__p_FGF__FGFR__FGFR__PIK3C2A_	Cytoplasm	1.94E-16	Deterministic	P21802	P11362		P05230	P09038	O00443							
-cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PIK3C2A_	Cytoplasm	9.68E-20	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	O00443							
-cyt_prot__p_INS__INSR__INSR__IRS__PIK3C2A_	Cytoplasm	1.77E-17	Deterministic	P35568	P06213	Q9Y4H2	P01308	O00443								
-cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C2A_	Cytoplasm	1.14E-38	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	O00443							
-cyt_prot__p_INS__INSR__INSR__INS__IRS__PIK3C2A_	Cytoplasm	8.15E-35	Deterministic	P35568	P06213	Q9Y4H2	P01308	O00443								
-cyt_prot_in__p_EGF__EGFR__ERBB2__GRB2__SOS1__RAS_	Cytoplasm	9.51E-20	Deterministic	P01133	P00533	P04626	P62993	Q07889	P01111	P01116	P01112					
-cyt_mixed_in__p_EGF__EGFR__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.89E-31	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	VAR_066493				
-cyt_mixed_in__p_EGF__EGFR__EGFR__GRB2__SOS1__RAS_	Cytoplasm	3.65E-19	Deterministic	Q07889	P00533	P62993	P01133	P01111	P01116	P01112						
-cyt_mixed_in__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	8.56E-37	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993					
-cyt_mixed_in__p_EGF__EGFR__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.83E-20	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P21860	P62993	P00533				
-cyt_mixed_in__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.99E-35	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889	P62993	P00533	P01133	P21860			
-cyt_mixed_in__p_EGF__EGFR__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.33E-48	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	Q15303				
-cyt_mixed_in__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.82E-63	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	Q15303			
-cyt_mixed_in__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.51E-20	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.82E-31	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.09E-18	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB3__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.71E-48	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	4.21E-63	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.50E-47	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.21E-58	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.78E-45	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.23E-48	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB4__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.49E-75	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.20E-90	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_HGF__MET__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.98E-18	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
-cyt_mixed_in__p_HGF__MET__HGF__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.11E-31	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
-cyt_mixed_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.43E-46	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.14E-43	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
-cyt_mixed_in__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.16E-35	Deterministic	P01111	P01116	P09038	P05230	CHEBI:17552	P01112	Q07889						
-cyt_mixed_in__p_FGF__FGFR__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.63E-20	Deterministic	P01111	P01116	P09038	P05230	CHEBI:17552	P01112	Q07889						
-cyt_mixed_in__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	5.18E-23	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
-cyt_mixed_in__p_INS__INSR__INSR__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.38E-20	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
-cyt_mixed_in__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.12E-42	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
-cyt_mixed_in__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	6.36E-38	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
-cyt_mixed__p_EGF__EGFR__ERBB2__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.34E-18	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	5.48E-30	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.70E-18	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	8.67E-36	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	5.40E-19	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.80E-34	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_EGF__EGFR__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	8.89E-47	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	9.59E-62	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.28E-18	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	4.98E-29	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	4.35E-17	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB3__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	8.76E-46	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	5.49E-61	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.96E-45	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.88E-56	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.50E-44	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	8.13E-46	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB4__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	4.55E-73	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.56E-88	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_HGF__MET__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	9.11E-16	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
-cyt_mixed__p_HGF__MET__HGF__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.45E-29	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
-cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.87E-44	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	2.79E-41	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
-cyt_mixed__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.52E-33	Deterministic	P01111	CHEBI:17552	Q07889	P01116	P09038	P05230	P01112						
-cyt_mixed__p_FGF__FGFR__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.44E-18	Deterministic	P01111	CHEBI:17552	Q07889	P01116	P09038	P05230	P01112						
-cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.63E-21	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
-cyt_mixed__p_INS__INSR__INSR__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	3.03E-19	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
-cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.93E-40	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
-cyt_mixed__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	1.39E-36	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
-cyt_mixed__p_EGF__EGFR__ERBB2__PLCG__PIP2_	Cytoplasm	2.69E-17	Deterministic	P00533	CHEBI:18348	P04626	P01133									
-cyt_mixed__p_EGF__EGFR__EGFRvIII__PLCG__PIP2_	Cytoplasm	9.92E-29	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__EGFR__PLCG__PIP2_	Cytoplasm	6.69E-17	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__EGF__EGFR__PLCG__PIP2_	Cytoplasm	1.57E-34	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__ERBB3__PLCG__PIP2_	Cytoplasm	9.16E-18	Deterministic	P00533	CHEBI:18348	P21860	P01133									
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	4.75E-33	Deterministic	Q02297	CHEBI:18348	P21860	P01133									
-cyt_mixed__p_EGF__EGFR__ERBB4__PLCG__PIP2_	Cytoplasm	1.10E-45	Deterministic	P00533	CHEBI:18348	Q15303	P01133									
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	1.18E-60	Deterministic	Q02297	Q15303	CHEBI:18348	P01133									
-cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	6.36E-17	Deterministic	Q02297	P04626	CHEBI:18348	P21860									
-cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PLCG__PIP2_	Cytoplasm	8.46E-28	Deterministic	Q02297	CHEBI:18348	P21860										
-cyt_mixed__pT693_EGFR__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	7.38E-16	Deterministic	P00533	Q02297	CHEBI:18348	P21860									
-cyt_mixed__p_NRG1__ERBB3__ERBB4__PLCG__PIP2_	Cytoplasm	8.81E-45	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	5.52E-60	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	2.66E-44	Deterministic	Q02297	CHEBI:18348	P04626	Q15303									
-cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PLCG__PIP2_	Cytoplasm	3.55E-55	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__pT693_EGFR__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	3.09E-43	Deterministic	P00533	Q02297	CHEBI:18348	Q15303									
-cyt_mixed__p_ERBB3__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	8.17E-45	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__p_NRG1__ERBB4__ERBB4__PLCG__PIP2_	Cytoplasm	3.43E-72	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	1.18E-87	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__p_HGF__MET__MET__PLCG__PIP2_	Cytoplasm	8.24E-14	Deterministic	CHEBI:18348	P14210	P08581										
-cyt_mixed__p_HGF__MET__HGF__MET__PLCG__PIP2_	Cytoplasm	1.31E-27	Deterministic	CHEBI:18348	P14210	P08581										
-cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PLCG__PIP2_	Cytoplasm	4.23E-42	Deterministic	P09619	CHEBI:18348	P01133										
-cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__PLCG__PIP2_	Cytoplasm	6.32E-39	Deterministic	P09619	CHEBI:18348	P01133										
-cyt_mixed__p_FGF__FGFR__FGF__FGFR__PLCG__PIP2_	Cytoplasm	1.71E-32	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
-cyt_mixed__p_FGF__FGFR__FGFR__PLCG__PIP2_	Cytoplasm	1.17E-16	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
-cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PLCG__PIP2_	Cytoplasm	2.22E-20	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
-cyt_mixed__p_INS__INSR__INSR__IRS__PLCG__PIP2_	Cytoplasm	6.84E-18	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
-cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PLCG__PIP2_	Cytoplasm	2.62E-39	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
-cyt_mixed__p_INS__INSR__INSR__INS__IRS__PLCG__PIP2_	Cytoplasm	3.15E-35	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
-cyt_mixed__p_EGF__EGFR__ERBB2__PIK3C__PIK3R__PIP2_	Cytoplasm	1.94E-16	Deterministic	P00533	CHEBI:18348	P04626	P01133									
-cyt_mixed__p_EGF__EGFR__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	3.57E-28	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__EGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	2.41E-16	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__EGF__EGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	5.64E-34	Deterministic	P00533	CHEBI:18348	P01133										
-cyt_mixed__p_EGF__EGFR__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	2.20E-16	Deterministic	P00533	CHEBI:18348	P21860	P01133									
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	1.14E-31	Deterministic	Q02297	CHEBI:18348	P21860	P01133									
-cyt_mixed__p_EGF__EGFR__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	1.05E-44	Deterministic	P00533	CHEBI:18348	Q15303	P01133									
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	1.13E-59	Deterministic	Q02297	Q15303	CHEBI:18348	P01133									
-cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	1.83E-15	Deterministic	Q02297	P04626	CHEBI:18348	P21860									
-cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	2.03E-26	Deterministic	Q02297	CHEBI:18348	P21860										
-cyt_mixed__pT693_EGFR__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	1.77E-14	Deterministic	P00533	Q02297	CHEBI:18348	P21860									
-cyt_mixed__p_NRG1__ERBB3__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	3.80E-43	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	2.38E-58	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	3.83E-43	Deterministic	Q02297	CHEBI:18348	P04626	Q15303									
-cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	3.41E-54	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__pT693_EGFR__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	2.96E-42	Deterministic	P00533	Q02297	CHEBI:18348	Q15303									
-cyt_mixed__p_ERBB3__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	3.53E-43	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
-cyt_mixed__p_NRG1__ERBB4__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	7.42E-71	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	2.54E-86	Deterministic	Q02297	CHEBI:18348	Q15303										
-cyt_mixed__p_HGF__MET__MET__PIK3C__PIK3R__PIP2_	Cytoplasm	8.90E-13	Deterministic	CHEBI:18348	P14210	P08581										
-cyt_mixed__p_HGF__MET__HGF__MET__PIK3C__PIK3R__PIP2_	Cytoplasm	1.42E-26	Deterministic	CHEBI:18348	P14210	P08581										
-cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C__PIK3R__PIP2_	Cytoplasm	3.63E-41	Deterministic	P09619	CHEBI:18348	P01133										
-cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__PIK3C__PIK3R__PIP2_	Cytoplasm	5.42E-38	Deterministic	P09619	CHEBI:18348	P01133										
-cyt_mixed__p_FGF__FGFR__FGF__FGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	8.64E-31	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
-cyt_mixed__p_FGF__FGFR__FGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	2.24E-15	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
-cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	1.11E-18	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
-cyt_mixed__p_INS__INSR__INSR__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	2.03E-16	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
-cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	1.31E-37	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
-cyt_mixed__p_INS__INSR__INSR__INS__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	9.33E-34	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
-cyt_mixed__p_EGF__EGFR__ERBB2__PIK3C2A__PIP_	Cytoplasm	1.55E-181	Deterministic	P04626	P01133	P00533										
-cyt_mixed__p_EGF__EGFR__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	2.85E-193	Deterministic	P00533	P01133	VAR_066493										
-cyt_mixed__p_EGF__EGFR__EGFR__PIK3C2A__PIP_	Cytoplasm	1.92E-181	Deterministic	P00533	P01133											
-cyt_mixed__p_EGF__EGFR__EGF__EGFR__PIK3C2A__PIP_	Cytoplasm	4.50E-199	Deterministic	P00533	P01133											
-cyt_mixed__p_EGF__EGFR__ERBB3__PIK3C2A__PIP_	Cytoplasm	1.75E-181	Deterministic	P00533	P01133	P21860										
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	9.09E-197	Deterministic	P00533	Q02297	P21860	P01133									
-cyt_mixed__p_EGF__EGFR__ERBB4__PIK3C2A__PIP_	Cytoplasm	8.40E-210	Deterministic	P00533	P01133	Q15303										
-cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	9.06E-225	Deterministic	P00533	Q02297	Q15303	P01133									
-cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	1.46E-180	Deterministic	Q02297	P04626	P21860										
-cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	1.62E-191	Deterministic	P21860	Q02297											
-cyt_mixed__pT693_EGFR__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	1.41E-179	Deterministic	Q02297	P00533	P21860										
-cyt_mixed__p_NRG1__ERBB3__ERBB4__PIK3C2A__PIP_	Cytoplasm	3.03E-208	Deterministic	Q02297	P21860	Q15303										
-cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	1.90E-223	Deterministic	Q02297	P21860	Q15303										
-cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	3.05E-208	Deterministic	Q02297	P04626	Q15303										
-cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	2.72E-219	Deterministic	Q15303	Q02297											
-cyt_mixed__pT693_EGFR__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	2.36E-207	Deterministic	Q02297	P00533	Q15303										
-cyt_mixed__p_ERBB3__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	2.81E-208	Deterministic	Q02297	P21860	Q15303										
-cyt_mixed__p_NRG1__ERBB4__ERBB4__PIK3C2A__PIP_	Cytoplasm	5.91E-236	Deterministic	Q15303	Q02297											
-cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	2.02E-251	Deterministic	Q15303	Q02297											
-cyt_mixed__p_HGF__MET__MET__PIK3C2A__PIP_	Cytoplasm	7.10E-178	Deterministic	P14210	P08581											
-cyt_mixed__p_HGF__MET__HGF__MET__PIK3C2A__PIP_	Cytoplasm	1.13E-191	Deterministic	P14210	P08581											
-cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C2A__PIP_	Cytoplasm	2.92E-206	Deterministic	P09619	P01133											
-cyt_mixed__p_PDGFRB__PDGFRB__PDGFRB__PIK3C2A__PIP_	Cytoplasm	4.35E-203	Deterministic	P09619	P01127											
-cyt_mixed__p_FGF__FGFR__FGF__FGFR__PIK3C2A__PIP_	Cytoplasm	6.89E-196	Deterministic	P21802	P11362	P05230	P09038									
-cyt_mixed__p_FGF__FGFR__FGFR__PIK3C2A__PIP_	Cytoplasm	1.79E-180	Deterministic	P21802	P11362	P05230	P09038									
-cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PIK3C2A__PIP_	Cytoplasm	8.90E-184	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
-cyt_mixed__p_INS__INSR__INSR__IRS__PIK3C2A__PIP_	Cytoplasm	1.63E-181	Deterministic	P35568	P06213	Q9Y4H2	P01308									
-cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C2A__PIP_	Cytoplasm	1.05E-202	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
-cyt_mixed__p_INS__INSR__INSR__INS__IRS__PIK3C2A__PIP_	Cytoplasm	7.49E-199	Deterministic	P35568	P06213	Q9Y4H2	P01308									
+cyt_prot__ERBB4__pT202_pY204_MAPK_	Cytoplasm	0	Deterministic	Q15303	P28482	P27361										
+cyt_prot__p_EGF__EGFR__ERBB2_	Cytoplasm	0	Deterministic	P01133	P00533	P04626										
+cyt_prot__p_EGF__EGFR__EGFRvIII_	Cytoplasm	0	Deterministic	P01133	P00533	VAR_066493										
+cyt_prot__p_EGF__EGFR__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot__p_EGF__EGFR__EGF__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot__p_EGF__EGFR__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	P21860										
+cyt_prot__p_EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860									
+cyt_prot__p_EGF__EGFR__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q15303										
+cyt_prot__p_EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	Q15303									
+cyt_prot__pT701_ERBB2__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860										
+cyt_prot__p_NRG1__ERBB3__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	P21860	VAR_066493										
+cyt_prot__pT693_EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860										
+cyt_prot__p_NRG1__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot__pT701_ERBB2__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P04626	Q15303	Q02297										
+cyt_prot__p_NRG1__ERBB4__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	Q15303	VAR_066493										
+cyt_prot__pT693_EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303										
+cyt_prot__p_ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303										
+cyt_prot__p_NRG1__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot__p_HGF__MET__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot__p_HGF__MET__HGF__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot__p_PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot__p_FGF__FGFR__FGF__FGFR_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_prot__p_FGF__FGFR__FGFR_	Cytoplasm	0	Deterministic	P05230	P09038	P21802	P11362									
+cyt_prot__p_IGF__IGF1R__IGF1R_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot__p_INS__INSR__INSR_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot__p_INS__INSR__INSR__INS_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot__p_IGF__IGF1R__IGF1R__IRS_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
+cyt_prot__p_INS__INSR__INSR__IRS_	Cytoplasm	0	Deterministic	P01308	P06213	P35568	Q9Y4H2									
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS_	Cytoplasm	0	Deterministic	P08069	Q9Y4H2	P05019	P35568	P01344								
+cyt_prot__p_INS__INSR__INSR__INS__IRS_	Cytoplasm	0	Deterministic	P01308	P06213	P35568	Q9Y4H2									
+cyt_prot__SPRY2__EGF__EGFR__ERBB2_	Cytoplasm	0	Deterministic	O43597	P01133	P00533	P04626									
+cyt_prot__SPRY2__EGF__EGFR__EGFRvIII_	Cytoplasm	0	Deterministic	O43597	P01133	P00533	VAR_066493									
+cyt_prot__SPRY2__EGF__EGFR__EGFR_	Cytoplasm	0	Deterministic	O43597	P01133	P00533										
+cyt_prot__SPRY2__EGF__EGFR__EGF__EGFR_	Cytoplasm	0	Deterministic	O43597	P01133	P00533										
+cyt_prot__SPRY2__EGF__EGFR__ERBB3_	Cytoplasm	0	Deterministic	O43597	P01133	P00533	P21860									
+cyt_prot__SPRY2__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	O43597	P01133	P00533	Q02297	P21860								
+cyt_prot__SPRY2__EGF__EGFR__ERBB4_	Cytoplasm	0	Deterministic	O43597	P01133	P00533	Q15303									
+cyt_prot__SPRY2__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q15303	O43597	P01133	Q02297								
+cyt_prot__SPRY2__ERBB2__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P21860	O43597	P04626	Q02297									
+cyt_prot__SPRY2__NRG1__ERBB3__EGFRvIII_	Cytoplasm	0	Deterministic	O43597	Q02297	P21860	VAR_066493									
+cyt_prot__SPRY2__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	O43597	P00533	Q02297	P21860									
+cyt_prot__SPRY2__NRG1__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	O43597	Q02297	P21860	Q15303									
+cyt_prot__SPRY2__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	O43597	Q02297	P21860	Q15303									
+cyt_prot__SPRY2__ERBB2__NRG1__ERBB4_	Cytoplasm	0	Deterministic	O43597	P04626	Q02297	Q15303									
+cyt_prot__SPRY2__NRG1__ERBB4__EGFRvIII_	Cytoplasm	0	Deterministic	Q02997	Q15303	O43597	VAR_066493									
+cyt_prot__SPRY2__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	O43597	P00533	Q02297	Q15303									
+cyt_prot__SPRY2__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	O43597	P21860	Q02297	Q15303									
+cyt_prot__SPRY2__NRG1__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	O43597	Q02297	Q15303										
+cyt_prot__SPRY2__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0	Deterministic	O43597	Q02297	Q15303										
+cyt_prot__SPRY2__HGF__MET__MET_	Cytoplasm	0	Deterministic	O43597	P14210	P08581										
+cyt_prot__SPRY2__HGF__MET__HGF__MET_	Cytoplasm	0	Deterministic	O43597	P14210	P08581										
+cyt_prot__SPRY2__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	O43597	P01127	P09619										
+cyt_prot__SPRY2__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0	Deterministic	O43597	P01127	P09619										
+cyt_prot__SPRY2__FGF__FGFR__FGF__FGFR_	Cytoplasm	0	Deterministic	O43597	P21802	P11362	P05230	P09038								
+cyt_prot__SPRY2__FGF__FGFR__FGFR_	Cytoplasm	0	Deterministic	O43597	P21802	P11362	P05230	P09038								
+cyt_prot__SPRY2__IGF__IGF1R__IGF1R_	Cytoplasm	0	Deterministic	P08069	O43597	P01344	P05019									
+cyt_prot__SPRY2__INS__INSR__INSR_	Cytoplasm	0	Deterministic	O43597	P01308	P06213										
+cyt_prot__SPRY2__IGF__IGF1R__IGF1R__IGF_	Cytoplasm	0	Deterministic	P08069	O43597	P01344	P05019									
+cyt_prot__SPRY2__INS__INSR__INSR__INS_	Cytoplasm	0	Deterministic	O43597	P01308	P06213										
+cyt_prot_in__EGF__EGFR__ERBB2_	Cytoplasm	0	Deterministic	P01133	P00533	P04626										
+cyt_prot_in__EGF__EGFR__EGFRvIII_	Cytoplasm	0	Deterministic	P01133	P00533	VAR_066493										
+cyt_prot_in__EGF__EGFR__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot_in__EGF__EGFR__EGF__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot_in__EGF__EGFR__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	P21860										
+cyt_prot_in__EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860									
+cyt_prot_in__EGF__EGFR__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q15303										
+cyt_prot_in__EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	Q15303									
+cyt_prot_in__ERBB2__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860										
+cyt_prot_in__NRG1__ERBB3__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	P21860	VAR_066493										
+cyt_prot_in__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860										
+cyt_prot_in__NRG1__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot_in__NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot_in__ERBB2__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P04626	Q02297	Q15303										
+cyt_prot_in__NRG1__ERBB4__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	Q15303	VAR_066493										
+cyt_prot_in__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303										
+cyt_prot_in__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303										
+cyt_prot_in__NRG1__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot_in__NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot_in__HGF__MET__MET_	Cytoplasm	0	Deterministic	P08581	P14210											
+cyt_prot_in__HGF__MET__HGF__MET_	Cytoplasm	0	Deterministic	P08581	P14210											
+cyt_prot_in__PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot_in__PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot_in__FGF__FGFR__FGF__FGFR_	Cytoplasm	0	Deterministic	P05230	P09038	P21802	P11362									
+cyt_prot_in__FGF__FGFR__FGFR_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_prot_in__IGF__IGF1R__IGF1R_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot_in__INS__INSR__INSR_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot_in__IGF__IGF1R__IGF1R__IGF_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot_in__INS__INSR__INSR__INS_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot_in__p_EGF__EGFR__ERBB2_	Cytoplasm	0	Deterministic	P01133	P00533	P04626										
+cyt_prot_in__p_EGF__EGFR__EGFRvIII_	Cytoplasm	0	Deterministic	P01133	P00533	VAR_066493										
+cyt_prot_in__p_EGF__EGFR__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot_in__p_EGF__EGFR__EGF__EGFR_	Cytoplasm	0	Deterministic	P01133	P00533											
+cyt_prot_in__p_EGF__EGFR__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	P21860										
+cyt_prot_in__p_EGF__EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860									
+cyt_prot_in__p_EGF__EGFR__ERBB4_	Cytoplasm	0	Deterministic	Q15303	P00533	P01133										
+cyt_prot_in__p_EGF__EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P00533	P01133	Q15303									
+cyt_prot_in__pT701_ERBB2__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860										
+cyt_prot_in__p_NRG1__ERBB3__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	P21860	VAR_066493										
+cyt_prot_in__pT693_EGFR__NRG1__ERBB3_	Cytoplasm	0	Deterministic	P21860	Q02297	P00533										
+cyt_prot_in__p_NRG1__ERBB3__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot_in__p_NRG1__ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_prot_in__pT701_ERBB2__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P04626	Q02297	Q15303										
+cyt_prot_in__p_NRG1__ERBB4__EGFRvIII_	Cytoplasm	0	Deterministic	Q02297	Q15303	VAR_066493										
+cyt_prot_in__pT693_EGFR__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303										
+cyt_prot_in__p_ERBB3__NRG1__ERBB4_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303										
+cyt_prot_in__p_NRG1__ERBB4__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot_in__p_NRG1__ERBB4__NRG1__ERBB4_	Cytoplasm	0	Deterministic	Q02297	Q15303											
+cyt_prot_in__p_HGF__MET__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot_in__p_HGF__MET__HGF__MET_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_prot_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot_in__p_PDGFB__PDGFRB__PDGFRB_	Cytoplasm	0	Deterministic	P01127	P09619											
+cyt_prot_in__p_FGF__FGFR__FGF__FGFR_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_prot_in__p_FGF__FGFR__FGFR_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_prot_in__p_IGF__IGF1R__IGF1R_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot_in__p_INS__INSR__INSR_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF_	Cytoplasm	0	Deterministic	P05019	P01344	P08069										
+cyt_prot_in__p_INS__INSR__INSR__INS_	Cytoplasm	0	Deterministic	P01308	P06213											
+cyt_prot_in__p_IGF__IGF1R__IGF1R__IRS_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
+cyt_prot_in__p_INS__INSR__INSR__IRS_	Cytoplasm	0	Deterministic	Q9Y4H2	P06213	P35568	P01308									
+cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF__IRS_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
+cyt_prot_in__p_INS__INSR__INSR__INS__IRS_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308									
+cyt_prot__p_EGF__EGFR__ERBB2__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	P04626	P62993	Q07889								
+cyt_prot__p_EGF__EGFR__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	VAR_066493	P62993	Q07889								
+cyt_prot__p_EGF__EGFR__EGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	P62993	Q07889									
+cyt_prot__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	P62993	Q07889									
+cyt_prot__p_EGF__EGFR__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	P21860	P62993	Q07889								
+cyt_prot__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860	P62993	Q07889							
+cyt_prot__p_EGF__EGFR__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	Q15303	P62993	Q07889								
+cyt_prot__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	Q15303	P62993	Q07889							
+cyt_prot__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860	P62993	Q07889								
+cyt_prot__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	P21860	VAR_066493	P62993	Q07889								
+cyt_prot__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860	P62993	Q07889								
+cyt_prot__p_NRG1__ERBB3__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P62993	Q07889								
+cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P62993	Q07889								
+cyt_prot__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	P04626	Q02297	Q15303	P62993	Q07889								
+cyt_prot__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	Q15303	P62993	Q07889	VAR_066493								
+cyt_prot__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303	P62993	Q07889								
+cyt_prot__p_ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303	P62993	Q07889								
+cyt_prot__p_NRG1__ERBB4__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	Q15303	P62993	Q07889									
+cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q02297	Q15303	P62993	Q07889									
+cyt_prot__p_HGF__MET__MET__GRB2__SOS1_	Cytoplasm	0	Deterministic	P14210	P08581	P62993	Q07889									
+cyt_prot__p_HGF__MET__HGF__MET__GRB2__SOS1_	Cytoplasm	0	Deterministic	P14210	P08581	P62993	Q07889									
+cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1_	Cytoplasm	0	Deterministic	P09619	Q07889	P01127	P62993									
+cyt_prot__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1_	Cytoplasm	0	Deterministic	P09619	Q07889	P01127	P62993									
+cyt_prot__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P21802	P11362	Q07889	P05230	P62993	P09038							
+cyt_prot__p_FGF__FGFR__FGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P21802	P11362	Q07889	P05230	P62993	P09038							
+cyt_prot__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	P08069	Q07889	Q9Y4H2	P05019	P35568	P62993	P01344						
+cyt_prot__p_INS__INSR__INSR__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	P35568	Q07889	Q9Y4H2	P06213	P01308	P62993							
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	P08069	Q07889	Q9Y4H2	P05019	P35568	P62993	P01344						
+cyt_prot__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	P35568	Q07889	Q9Y4H2	P06213	P01308	P62993							
+cyt_prot_in__p_EGF__EGFR__ERBB2__GRB2__SOS1_	Cytoplasm	0	Deterministic	P00533	P62993	P04626	Q07889	P01133								
+cyt_prot_in__p_EGF__EGFR__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P00533	P62993	P01133	VAR_066493								
+cyt_prot_in__p_EGF__EGFR__EGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P00533	P62993	P01133									
+cyt_prot_in__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P00533	P62993	P01133									
+cyt_prot_in__p_EGF__EGFR__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P21860	P62993	P01133	P00533								
+cyt_prot_in__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	P01133	P21860	P00533							
+cyt_prot_in__p_EGF__EGFR__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q15303	P62993	P01133	P00533								
+cyt_prot_in__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	P01133	Q15303								
+cyt_prot_in__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	P21860	P21860								
+cyt_prot_in__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	P21860	VAR_066493								
+cyt_prot_in__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	P21860	P00533								
+cyt_prot_in__p_NRG1__ERBB3__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
+cyt_prot_in__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
+cyt_prot_in__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	P04626								
+cyt_prot_in__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	VAR_066493								
+cyt_prot_in__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	P00533								
+cyt_prot_in__p_ERBB3__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303	P21860								
+cyt_prot_in__p_NRG1__ERBB4__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303									
+cyt_prot_in__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	Q02297	P62993	Q15303									
+cyt_prot_in__p_HGF__MET__MET__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P08581	P62993	P14210									
+cyt_prot_in__p_HGF__MET__HGF__MET__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q07889	P08581	P62993	P14210									
+cyt_prot_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1_	Cytoplasm	0	Deterministic	P62993	P09619	Q07889	P01127									
+cyt_prot_in__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1_	Cytoplasm	0	Deterministic	P62993	P09619	Q07889	P01127									
+cyt_prot_in__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P09038	P05230	P21802	P62993	Q07889	P11362							
+cyt_prot_in__p_FGF__FGFR__FGFR__GRB2__SOS1_	Cytoplasm	0	Deterministic	P09038	P05230	P21802	P62993	Q07889	P11362							
+cyt_prot_in__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q9Y4H2	P62993	P35568	P08069	Q07889	P05019	P01344						
+cyt_prot_in__p_INS__INSR__INSR__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q9Y4H2	P62993	P35568	Q07889	P06213	P01308							
+cyt_prot_in__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q9Y4H2	P62993	P35568	P08069	Q07889	P05019	P01344						
+cyt_prot_in__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1_	Cytoplasm	0	Deterministic	Q9Y4H2	P62993	P35568	Q07889	P06213	P01308							
+cyt_prot__p_EGF__EGFR__ERBB2__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	P04626	P19174	P16885								
+cyt_prot__p_EGF__EGFR__EGFRvIII__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	P19174	P16885	VAR_066493								
+cyt_prot__p_EGF__EGFR__EGFR__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	P19174	P16885									
+cyt_prot__p_EGF__EGFR__EGF__EGFR__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	P19174	P16885									
+cyt_prot__p_EGF__EGFR__ERBB3__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	P21860	P19174	P16885								
+cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	P21860	P19174	P16885							
+cyt_prot__p_EGF__EGFR__ERBB4__PLCG_	Cytoplasm	0	Deterministic	P16885	P01133	P19174	Q15303	P00533								
+cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	P01133	P00533	Q02297	Q15303	P19174	P16885							
+cyt_prot__pT701_ERBB2__NRG1__ERBB3__PLCG_	Cytoplasm	0	Deterministic	P04626	Q02297	P21860	P19174	P16885								
+cyt_prot__p_NRG1__ERBB3__EGFRvIII__PLCG_	Cytoplasm	0	Deterministic	Q02297	P21860	P19174	P16885	VAR_066493								
+cyt_prot__pT693_EGFR__NRG1__ERBB3__PLCG_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860	P19174	P16885								
+cyt_prot__p_NRG1__ERBB3__ERBB4__PLCG_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P19174	P16885								
+cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P19174	P16885								
+cyt_prot__pT701_ERBB2__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	P04626	Q02297	Q15303	P19174	P16885								
+cyt_prot__p_NRG1__ERBB4__EGFRvIII__PLCG_	Cytoplasm	0	Deterministic	Q02297	Q15303	P19174	P16885	VAR_066493								
+cyt_prot__pT693_EGFR__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303	P19174	P16885								
+cyt_prot__p_ERBB3__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	P21860	Q02297	Q15303	P19174	P19885								
+cyt_prot__p_NRG1__ERBB4__ERBB4__PLCG_	Cytoplasm	0	Deterministic	Q02297	Q15303	P19174	P16885									
+cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PLCG_	Cytoplasm	0	Deterministic	Q02297	Q15303	P19174	P16885									
+cyt_prot__p_HGF__MET__MET__PLCG_	Cytoplasm	0	Deterministic	P19885	P19174	P08581	P14210									
+cyt_prot__p_HGF__MET__HGF__MET__PLCG_	Cytoplasm	0	Deterministic	P19885	P19174	P08581	P14210									
+cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PLCG_	Cytoplasm	0	Deterministic	P19174	P09619	P01127	P16885									
+cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PLCG_	Cytoplasm	0	Deterministic	P19174	P09619	P01127	P16885									
+cyt_prot__p_FGF__FGFR__FGF__FGFR__PLCG_	Cytoplasm	0	Deterministic	P16885	P21802	P11362	P05230	P19174	P09038							
+cyt_prot__p_FGF__FGFR__FGFR__PLCG_	Cytoplasm	0	Deterministic	P16885	P21802	P11362	P05230	P19174	P09038							
+cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PLCG_	Cytoplasm	0	Deterministic	P08069	P19174	Q9Y4H2	P05019	P35568	P16885	P01344						
+cyt_prot__p_INS__INSR__INSR__IRS__PLCG_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	P19174	P16885							
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PLCG_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P19174	P16885						
+cyt_prot__p_INS__INSR__INSR__INS__IRS__PLCG_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	P19174	P16885							
+cyt_prot__p_EGF__EGFR__ERBB2__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P04626	P01133	P00533	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_EGF__EGFR__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	P01133	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_EGF__EGFR__EGFR__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_EGF__EGFR__EGF__EGFR__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_EGF__EGFR__ERBB3__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	P01133	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__p_EGF__EGFR__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	P01133	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303	P01133	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__pT701_ERBB2__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P04626	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_NRG1__ERBB3__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P21860	Q02297	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__pT693_EGFR__NRG1__ERBB3__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P00533	P21860	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_NRG1__ERBB3__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__pT701_ERBB2__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P04626	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_NRG1__ERBB4__EGFRvIII__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q15303	Q02297	VAR_066493	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__pT693_EGFR__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P00533	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_ERBB3__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570		
+cyt_prot__p_NRG1__ERBB4__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q15303	Q02297	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	Q15303	Q02297	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_HGF__MET__MET__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P14210	P08581	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_HGF__MET__HGF__MET__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P14210	P08581	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P09619	P01127	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P09619	P01127	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570			
+cyt_prot__p_FGF__FGFR__FGF__FGFR__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__p_FGF__FGFR__FGFR__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570
+cyt_prot__p_INS__INSR__INSR__IRS__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570
+cyt_prot__p_INS__INSR__INSR__INS__IRS__PIK3C__PIK3R_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	
+cyt_prot__p_EGF__EGFR__ERBB2__PIK3C2A_	Cytoplasm	0	Deterministic	P04626	P01133	P00533	O00443									
+cyt_prot__p_EGF__EGFR__EGFRvIII__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	P01133	VAR_066493	O00443									
+cyt_prot__p_EGF__EGFR__EGFR__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	P01133	O00443										
+cyt_prot__p_EGF__EGFR__EGF__EGFR__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	P01133	O00443										
+cyt_prot__p_EGF__EGFR__ERBB3__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	P01133	P21860	O00443									
+cyt_prot__p_EGF__EGFR__NRG1__ERBB3__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860	P01133	O00443								
+cyt_prot__p_EGF__EGFR__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	P01133	Q15303	O00443									
+cyt_prot__p_EGF__EGFR__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303	P01133	O00443								
+cyt_prot__pT701_ERBB2__NRG1__ERBB3__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P04626	P21860	O00443									
+cyt_prot__p_NRG1__ERBB3__EGFRvIII__PIK3C2A_	Cytoplasm	0	Deterministic	P21860	Q02297	VAR_066493	O00443									
+cyt_prot__pT693_EGFR__NRG1__ERBB3__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P00533	P21860	O00443									
+cyt_prot__p_NRG1__ERBB3__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	O00443									
+cyt_prot__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	O00443									
+cyt_prot__pT701_ERBB2__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P04626	Q15303	O00443									
+cyt_prot__p_NRG1__ERBB4__EGFRvIII__PIK3C2A_	Cytoplasm	0	Deterministic	Q15303	Q02297	VAR_066493	O00443									
+cyt_prot__pT693_EGFR__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P00533	Q15303	O00443									
+cyt_prot__p_ERBB3__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303	O00443									
+cyt_prot__p_NRG1__ERBB4__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q15303	Q02297	O00443										
+cyt_prot__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C2A_	Cytoplasm	0	Deterministic	Q15303	Q02297	O00443										
+cyt_prot__p_HGF__MET__MET__PIK3C2A_	Cytoplasm	0	Deterministic	P14210	P08581	O00443										
+cyt_prot__p_HGF__MET__HGF__MET__PIK3C2A_	Cytoplasm	0	Deterministic	P14210	P08581	O00443										
+cyt_prot__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C2A_	Cytoplasm	0	Deterministic	P09619	P01127	O00443										
+cyt_prot__p_PDGFB__PDGFRB__PDGFRB__PIK3C2A_	Cytoplasm	0	Deterministic	P09619	P01127	O00443										
+cyt_prot__p_FGF__FGFR__FGF__FGFR__PIK3C2A_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	O00443								
+cyt_prot__p_FGF__FGFR__FGFR__PIK3C2A_	Cytoplasm	0	Deterministic	P21802	P11362		P05230	P09038	O00443							
+cyt_prot__p_IGF__IGF1R__IGF1R__IRS__PIK3C2A_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	O00443							
+cyt_prot__p_INS__INSR__INSR__IRS__PIK3C2A_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	O00443								
+cyt_prot__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C2A_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069	O00443							
+cyt_prot__p_INS__INSR__INSR__INS__IRS__PIK3C2A_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308	O00443								
+cyt_prot_in__p_EGF__EGFR__ERBB2__GRB2__SOS1__RAS_	Cytoplasm	0	Deterministic	P01133	P00533	P04626	P62993	Q07889	P01111	P01116	P01112					
+cyt_mixed_in__p_EGF__EGFR__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	VAR_066493				
+cyt_mixed_in__p_EGF__EGFR__EGFR__GRB2__SOS1__RAS_	Cytoplasm	0	Deterministic	Q07889	P00533	P62993	P01133	P01111	P01116	P01112						
+cyt_mixed_in__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993					
+cyt_mixed_in__p_EGF__EGFR__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P21860	P62993	P00533				
+cyt_mixed_in__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889	P62993	P00533	P01133	P21860			
+cyt_mixed_in__p_EGF__EGFR__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	Q15303				
+cyt_mixed_in__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889	P01133	P00533	P62993	Q15303			
+cyt_mixed_in__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB3__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB4__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_HGF__MET__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
+cyt_mixed_in__p_HGF__MET__HGF__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
+cyt_mixed_in__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
+cyt_mixed_in__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09038	P05230	CHEBI:17552	P01112	Q07889						
+cyt_mixed_in__p_FGF__FGFR__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09038	P05230	CHEBI:17552	P01112	Q07889						
+cyt_mixed_in__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
+cyt_mixed_in__p_INS__INSR__INSR__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
+cyt_mixed_in__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
+cyt_mixed_in__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
+cyt_mixed__p_EGF__EGFR__ERBB2__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__EGF__EGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_EGF__EGFR__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P01133							
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__pT701_ERBB2__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB3__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__pT693_EGFR__NRG1__ERBB3__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB3__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__pT701_ERBB2__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB4__EGFRvIII__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__pT693_EGFR__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_ERBB3__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB4__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	Q02297	P01116	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_HGF__MET__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
+cyt_mixed__p_HGF__MET__HGF__MET__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q07889	P14210							
+cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	P01116	P09619	P01112	CHEBI:17552	Q07889							
+cyt_mixed__p_FGF__FGFR__FGF__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	CHEBI:17552	Q07889	P01116	P09038	P05230	P01112						
+cyt_mixed__p_FGF__FGFR__FGFR__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	P01111	CHEBI:17552	Q07889	P01116	P09038	P05230	P01112						
+cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
+cyt_mixed__p_INS__INSR__INSR__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
+cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P08069						
+cyt_mixed__p_INS__INSR__INSR__INS__IRS__GRB2__SOS1__RAS__GDP_	Cytoplasm	0	Deterministic	Q9Y4H2	P01111	P01116	P35568	CHEBI:17552	P01112	P06213						
+cyt_mixed__p_EGF__EGFR__ERBB2__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P04626	P01133									
+cyt_mixed__p_EGF__EGFR__EGFRvIII__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__EGFR__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__EGF__EGFR__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__ERBB3__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P21860	P01133									
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	P01133									
+cyt_mixed__p_EGF__EGFR__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	Q15303	P01133									
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	Q15303	CHEBI:18348	P01133									
+cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	P04626	CHEBI:18348	P21860									
+cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860										
+cyt_mixed__pT693_EGFR__NRG1__ERBB3__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	Q02297	CHEBI:18348	P21860									
+cyt_mixed__p_NRG1__ERBB3__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P04626	Q15303									
+cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__pT693_EGFR__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	P00533	Q02297	CHEBI:18348	Q15303									
+cyt_mixed__p_ERBB3__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__p_NRG1__ERBB4__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__p_HGF__MET__MET__PLCG__PIP2_	Cytoplasm	0	Deterministic	CHEBI:18348	P14210	P08581										
+cyt_mixed__p_HGF__MET__HGF__MET__PLCG__PIP2_	Cytoplasm	0	Deterministic	CHEBI:18348	P14210	P08581										
+cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PLCG__PIP2_	Cytoplasm	0	Deterministic	P09619	CHEBI:18348	P01133										
+cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__PLCG__PIP2_	Cytoplasm	0	Deterministic	P09619	CHEBI:18348	P01133										
+cyt_mixed__p_FGF__FGFR__FGF__FGFR__PLCG__PIP2_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
+cyt_mixed__p_FGF__FGFR__FGFR__PLCG__PIP2_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
+cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
+cyt_mixed__p_INS__INSR__INSR__IRS__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
+cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
+cyt_mixed__p_INS__INSR__INSR__INS__IRS__PLCG__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
+cyt_mixed__p_EGF__EGFR__ERBB2__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P04626	P01133									
+cyt_mixed__p_EGF__EGFR__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__EGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__EGF__EGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P01133										
+cyt_mixed__p_EGF__EGFR__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	P21860	P01133									
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	P01133									
+cyt_mixed__p_EGF__EGFR__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	CHEBI:18348	Q15303	P01133									
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	Q15303	CHEBI:18348	P01133									
+cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	P04626	CHEBI:18348	P21860									
+cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860										
+cyt_mixed__pT693_EGFR__NRG1__ERBB3__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	Q02297	CHEBI:18348	P21860									
+cyt_mixed__p_NRG1__ERBB3__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P04626	Q15303									
+cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__pT693_EGFR__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P00533	Q02297	CHEBI:18348	Q15303									
+cyt_mixed__p_ERBB3__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	P21860	Q15303									
+cyt_mixed__p_NRG1__ERBB4__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q02297	CHEBI:18348	Q15303										
+cyt_mixed__p_HGF__MET__MET__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	CHEBI:18348	P14210	P08581										
+cyt_mixed__p_HGF__MET__HGF__MET__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	CHEBI:18348	P14210	P08581										
+cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P09619	CHEBI:18348	P01133										
+cyt_mixed__p_PDGFB__PDGFRB__PDGFRB__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P09619	CHEBI:18348	P01133										
+cyt_mixed__p_FGF__FGFR__FGF__FGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
+cyt_mixed__p_FGF__FGFR__FGFR__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038	CHEBI:18348								
+cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
+cyt_mixed__p_INS__INSR__INSR__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
+cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	P01344	CHEBI:18348	P35568	P05019	P08069							
+cyt_mixed__p_INS__INSR__INSR__INS__IRS__PIK3C__PIK3R__PIP2_	Cytoplasm	0	Deterministic	Q9Y4H2	CHEBI:18348	P06213	P35568	P01308								
+cyt_mixed__p_EGF__EGFR__ERBB2__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P04626	P01133	P00533										
+cyt_mixed__p_EGF__EGFR__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	P01133	VAR_066493										
+cyt_mixed__p_EGF__EGFR__EGFR__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	P01133											
+cyt_mixed__p_EGF__EGFR__EGF__EGFR__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	P01133											
+cyt_mixed__p_EGF__EGFR__ERBB3__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	P01133	P21860										
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	Q02297	P21860	P01133									
+cyt_mixed__p_EGF__EGFR__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	P01133	Q15303										
+cyt_mixed__p_EGF__EGFR__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P00533	Q02297	Q15303	P01133									
+cyt_mixed__pT701_ERBB2__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P04626	P21860										
+cyt_mixed__p_NRG1__ERBB3__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P21860	Q02297											
+cyt_mixed__pT693_EGFR__NRG1__ERBB3__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P00533	P21860										
+cyt_mixed__p_NRG1__ERBB3__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_mixed__p_NRG1__ERBB3__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_mixed__pT701_ERBB2__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P04626	Q15303										
+cyt_mixed__p_NRG1__ERBB4__EGFRvIII__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q15303	Q02297											
+cyt_mixed__pT693_EGFR__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P00533	Q15303										
+cyt_mixed__p_ERBB3__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q02297	P21860	Q15303										
+cyt_mixed__p_NRG1__ERBB4__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q15303	Q02297											
+cyt_mixed__p_NRG1__ERBB4__NRG1__ERBB4__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	Q15303	Q02297											
+cyt_mixed__p_HGF__MET__MET__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_mixed__p_HGF__MET__HGF__MET__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P14210	P08581											
+cyt_mixed__p_PDGFB__PDGFRB__PDGFB__PDGFRB__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P09619	P01133											
+cyt_mixed__p_PDGFRB__PDGFRB__PDGFRB__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P09619	P01127											
+cyt_mixed__p_FGF__FGFR__FGF__FGFR__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_mixed__p_FGF__FGFR__FGFR__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P21802	P11362	P05230	P09038									
+cyt_mixed__p_IGF__IGF1R__IGF1R__IRS__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
+cyt_mixed__p_INS__INSR__INSR__IRS__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308									
+cyt_mixed__p_IGF__IGF1R__IGF1R__IGF__IRS__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P35568	P01344	P05019	Q9Y4H2	P08069								
+cyt_mixed__p_INS__INSR__INSR__INS__IRS__PIK3C2A__PIP_	Cytoplasm	0	Deterministic	P35568	P06213	Q9Y4H2	P01308									
 cyt_prot__IRS_	Cytoplasm	0.9354614267	Deterministic	P35568	Q9Y4H2											
 cyt_prot__SPRY2_	Cytoplasm	0.01808573061	Deterministic	O43597												
 cyt_prot__CBL_	Cytoplasm	5.299368504	Deterministic	P22681												
@@ -655,11 +655,11 @@ cyt_prot__p_PIK3C__PIK3R_	Cytoplasm	0.3385135811	Deterministic	P42336	P42338	P48
 cyt_prot__PIK3C2A_	Cytoplasm	1.723235633	Deterministic	O00443												
 cyt_prot__MTORC1_	Cytoplasm	2.742881957	Deterministic	P42345	Q8N122											
 cyt_prot_a__MTORC1_	Cytoplasm	0.1860980378	Deterministic	P42345	Q8N122											
-cyt_lipid__PIP_	Cytoplasm	9.29E-162	Deterministic	CHEBI:26036												
-cyt_lipid__PtdIns3P_	Cytoplasm	7.28E-175	Deterministic	CHEBI:26034												
-cyt_prot__DAG1_	Cytoplasm	7.73E-12	Deterministic	Q14118												
+cyt_lipid__PIP_	Cytoplasm	0	Deterministic	CHEBI:26036												
+cyt_lipid__PtdIns3P_	Cytoplasm	0	Deterministic	CHEBI:26034												
+cyt_prot__DAG1_	Cytoplasm	0	Deterministic	Q14118												
 cyt_prot__GRP_	Cytoplasm	9.676785567	Deterministic	P07492												
-cyt_prot__DAG1__GRP_	Cytoplasm	7.48E-13	Deterministic	Q14118	P07492											
+cyt_prot__DAG1__GRP_	Cytoplasm	0	Deterministic	Q14118	P07492											
 cyt_mixed__RAS__GTP_	Cytoplasm	2.800104908	Deterministic	P01111	CHEBI:15996	P01116	P01112									
 cyt_mixed__RAS__GDP_	Cytoplasm	161.2777085	Deterministic	P01111	P01116	CHEBI:17552	P01112									
 cyt_prot__NF1_	Cytoplasm	0.7812814321	Deterministic	P21359												
@@ -688,7 +688,7 @@ nuc_prot__MYC_	Nucleus	45.43934455	Deterministic	P01106
 nuc_prot__CTNNB1_	Nucleus	35.4866998	Deterministic	P35222												
 cyt_prot__CTNNB1_	Cytoplasm	17.75651187	Deterministic	P35222												
 cyt_prot__p_CTNNB1_	Cytoplasm	179.7919173	Deterministic	P35222												
-cyt_prot__ITPK_	Cytoplasm	1.03E-12	Deterministic	P23677	P27987	Q96DU7										
+cyt_prot__ITPK_	Cytoplasm	0	Deterministic	P23677	P27987	Q96DU7										
 cyt_lipid__PIP2_	Cytoplasm	9998.269998	Deterministic	CHEBI:18348												
 cyt_lipid__PIP3_	Cytoplasm	1.607259025	Deterministic	CHEBI:16618												
 cyt_prot__PTEN_	Cytoplasm	2.315664435	Deterministic	P60484												
@@ -710,8 +710,8 @@ cyt_prot__TSC2_	Cytoplasm	0.3487556372	Deterministic	P49815
 cyt_prot__p_TSC2_	Cytoplasm	0.08680177471	Deterministic	P49815												
 cyt_prot__TSC1__TSC2_	Cytoplasm	0.1965771486	Deterministic	Q92574	P49815											
 cyt_prot__PRKC_	Cytoplasm	20.15290048	Deterministic	P17252	P05771	P05129	Q05655									
-cyt_prot__DAG1__PRKC_	Cytoplasm	1.56E-12	Deterministic	Q14118	P17252	P05771	P05129	Q05655								
-cyt_prot__p_PEBP1_	Cytoplasm	1.47E-09	Deterministic	P30086												
+cyt_prot__DAG1__PRKC_	Cytoplasm	0	Deterministic	Q14118	P17252	P05771	P05129	Q05655								
+cyt_prot__p_PEBP1_	Cytoplasm	0.00000000147	Deterministic	P30086												
 cyt_prot__PEBP1_	Cytoplasm	1039.045014	Deterministic	P30086												
 cyt_prot__PEBP1__RAF1_	Cytoplasm	0	Deterministic	P30086	P04049											
 cyt_prot__MAPK_	Cytoplasm	220.5970742	Deterministic	P28482	P27361											
@@ -729,7 +729,7 @@ cyt_prot__p_EIF4EBP1_	Cytoplasm	1.099698471	Deterministic	Q13541
 cyt_prot__SOS1_	Cytoplasm	0.0005650214536	Deterministic	Q07889												
 cyt_prot__GRB2__SOS1__pT202_pY204_MAPK_	Cytoplasm	0.002778458518	Deterministic	P62993	Q07889	P28482	P27361									
 cyt_prot__RAF1__pT202_pY204_MAPK_	Cytoplasm	0.03226741766	Deterministic	P04049	P28482	P27361										
-cyt_mixed__RAS__GDP__DAG1__GRP_	Cytoplasm	1.10E-13	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q14118	P07492							
+cyt_mixed__RAS__GDP__DAG1__GRP_	Cytoplasm	0	Deterministic	P01111	P01116	P01112	CHEBI:17552	Q14118	P07492							
 cyt_mixed__RAS__GTP__NF1_	Cytoplasm	0.003646114536	Deterministic	P01111	CHEBI:15996	P01116	P01112	P21359								
 cyt_prot__NF1__pT202_pY204_MAPK_	Cytoplasm	0	Deterministic	P21359	P28482	P27361										
 cyt_mixed__MAP2K__RAS__GTP__RAF1__BRAF_	Cytoplasm	0.2200407289	Deterministic	Q02750	P36507	CHEBI:15996	P15056	P04049								
@@ -737,11 +737,11 @@ cyt_mixed__pS222_MAP2K__RAS__GTP__RAF1__BRAF_	Cytoplasm	0.02880792928	Determinis
 cyt_prot__MAPK__pS222_pS226_MAP2K_	Cytoplasm	2.358343832	Deterministic	P27361	P28482	Q02750	P36507									
 cyt_prot__pT202_MAPK__pS222_pS226_MAP2K_	Cytoplasm	0.2393166493	Deterministic	P27362	P28483	Q02751	P36508									
 cyt_prot__RPS6KA__pT202_pY204_MAPK_	Cytoplasm	0.6886479027	Deterministic	Q15418	Q15349	P51812	O75676	P27361	P28482							
-nuc_prot__p_RPS6KA__DUSP1_	Nucleus	3.25E-06	Deterministic	Q15418	Q15349	P51812	O75676	P28562								
-nuc_prot__pT202_pY204_MAPK__DUSP1_	Nucleus	1.34E-05	Deterministic	P27361	P28482	P28562										
+nuc_prot__p_RPS6KA__DUSP1_	Nucleus	0.00000325	Deterministic	Q15418	Q15349	P51812	O75676	P28562								
+nuc_prot__pT202_pY204_MAPK__DUSP1_	Nucleus	0.0000134	Deterministic	P27361	P28482	P28562										
 nuc_prot__FOS__p_RPS6KA_	Nucleus	0.004741987248	Deterministic	P01100	Q15418	Q15349	P51812	O75676								
 nuc_prot__FOS__pT202_pY204_MAPK_	Nucleus	0.0194696072	Deterministic	P01100	P27361	P28482										
-cyt_prot__PEBP1__DAG1__PRKC_	Cytoplasm	1.47E-12	Deterministic	P30086	Q14118	P17252	P05771	P05129	Q05655							
+cyt_prot__PEBP1__DAG1__PRKC_	Cytoplasm	0	Deterministic	P30086	Q14118	P17252	P05771	P05129	Q05655							
 cyt_mixed__PIP3__PTEN_	Cytoplasm	0.003383520066	Deterministic	CHEBI:16618	P60484											
 cyt_mixed__PIP3__AKT__PIP3__PDK1_	Cytoplasm	0.0004531593108	Deterministic	CHEBI:16618	P31751	P31749	O15530	Q9Y243								
 cyt_mixed__PIP3__p_AKT__MTORC2_	Cytoplasm	0.0003899231479	Deterministic	P31749	Q9Y243	CHEBI:16618	P31751									
@@ -753,7 +753,7 @@ cyt_prot_a__EIF4EBP1__MTORC1_	Cytoplasm	0.001103027667	Deterministic	Q13541	P423
 cyt_prot_a__RPS6KB1__MTORC1_	Cytoplasm	0.003115521642	Deterministic	P23443	P42345	Q8N122										
 cyt_prot__FOXO3__p_p_AKT_	Cytoplasm	0.0005328652799	Deterministic	P31749	P31751	Q9Y243										
 cyt_prot_a__PIK3C__PIK3R__MTORC1_	Cytoplasm	0.0003401418026	Deterministic	P42336	P42338	P48736	O00329	P27986	O00459	Q92569	Q99570	P42345	Q8N122			
-cyt_prot__pT202_MAPK__DUSP6_	Cytoplasm	4.04E-05	Deterministic	P28482	P27361	Q16828										
+cyt_prot__pT202_MAPK__DUSP6_	Cytoplasm	0.0000404	Deterministic	P28482	P27361	Q16828										
 cyt_prot__pT202_pY204_MAPK__DUSP6_	Cytoplasm	0	Deterministic	P28482	P27361	Q16828										
 cyt_prot__pT202_pY204_MAPK__p_DUSP1_	Cytoplasm	0.0001027622895	Deterministic	P28482	P27361	P28562										
 cyt_mixed__RAS__GTP__BRAF_	Cytoplasm	0.1161464233	Deterministic	P01111	CHEBI:15996	P01116	P01112	P15056								

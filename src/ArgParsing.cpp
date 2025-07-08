@@ -105,8 +105,8 @@ std::unordered_map<std::string, std::any> ArgParsing::setDefaults() {
     args_map["--start"] = 0.0;
     args_map["--stop"] = 60.0;
     args_map["--step"] = 1.0;
-    args_map["--stochastic_model"] = std::string("../tests/Stochastic.sbml");
-    args_map["--deterministic_model"] = std::string("../tests/Deterministic.sbml");
+    args_map["--stochastic_model"] = std::string("../sbml_files/Stochastic.sbml");
+    args_map["--deterministic_model"] = std::string("../sbml_files/Deterministic.sbml");
     args_map["--output"] = std::string("../src/results.tsv");
 
     return args_map;
