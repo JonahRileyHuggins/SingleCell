@@ -53,6 +53,11 @@ def main(config_path: os.PathLike, **kwargs) -> None:
     logger.debug("Loaded configuration successfully")
 
 
+    
+    project_root = "./../" # Single cell root directory
+    config_base = os.path.join(project_root, config.get("location", ""))
+
+
     name_map = handle_mapping(config, **kwargs)
     logger.info("Name mapping constructed with %d entries", len(name_map))
 
@@ -68,7 +73,9 @@ def main(config_path: os.PathLike, **kwargs) -> None:
         logger.info("Processing file [%d/%d]: %s", index + 1, len(file_paths), file)
 
 
-        update_me = Config.file_loader(file, **kwargs)
+        update_path = os.path.join(config_base, file)
+
+        update_me = Config.file_loader(update_path, **kwargs)
         logger.debug("Loaded file successfully: %s", file)
 
 

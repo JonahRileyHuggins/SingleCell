@@ -1,17 +1,42 @@
 # Genome Complete MCF10A Model
-# Last update: TBD
-
 
 # General infos
 name: "MCF10A Model"
 header: "Under Construction"
 location: "data"
+version: "1.0"
+description: "Configuration for loading reference and swappable input files"
+author: "Jonah R. Huggins"
 
 # Compilation
 compilation:
     directory: "."
     files:
-      compartments: "Compartments.tsv"
-      ratelaws: "Ratelaws.tsv"
-      species: "Species.tsv"
-      parameters: "Parameters.tsv"
+      compartments: "SPARCED - Compartments.tsv"
+      ratelaws: "SPARCED - Ratelaws.tsv"
+      species: "SPARCED - Species.tsv"
+      parameters: "SPARCED - Parameters.tsv"
+
+swap_files:
+  old: 
+    filename: "reference.tsv" # The primary reference file(s)
+    column: "old"
+    datatype: "string"
+  new: 
+    filename: "reference.tsv" # The primary reference file(s)
+    column: "new"
+    datatype: "string"
+  update:
+    - file1:
+      filename: "SPARCED - Ratelaws.tsv"  # List of files to be swapped in place of reference
+      output: "Ratelaws_updated.tsv"
+
+inspector:
+  inspect:
+    file:
+      path: "SPARCED - Ratelaws.tsv"
+      column: "r ; p"
+      column2: "ratelaw"
+  reference:
+    filepath: "SPARCED - Species.tsv"
+    column: "speciesId"
