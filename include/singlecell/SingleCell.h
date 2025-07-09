@@ -85,13 +85,11 @@ class SingleCell {
         /**
          * @brief modifies intial states for each module stored in class member modules
          * 
-         * @param entity_map dictionary of species mapped to double values users want to change
          * @param start double start time for simulation
          * @param stop double end timepoint for simulation
          * @param step double iteration size delta-t
          */
         void setGlobalSimulationSettings(
-            std::unordered_map<std::string, double>entity_map,
             double start, 
             double stop, 
             double step
@@ -149,7 +147,6 @@ class SingleCell {
         /**
          * @brief public method for users to interface with the SingleCell Simulator. 
          * 
-         * @param entity_map map of species to be modified, with corresponding values
          * @param start is the simulation start time
          * @param stop is the simulation stop time, in seconds
          * @param step is the delta_t step between simulation updates in seconds
@@ -157,10 +154,20 @@ class SingleCell {
          * @returns matrix of global states for both models
          */
         std::vector<std::vector<double>> simulate(
-            std::unordered_map<std::string, double> entity_map,
             double start = 0.0, //seconds
             double stop = 60.0, //seconds
             double step = 30.0 //seconds
+        );
+
+        /**
+         * @brief assignment method to update model attributes 
+         * 
+         * @param entity_id SBML identifier of entity (parameter || species || compartment) to be updated
+         * @param value updating value, for now; float only
+         */
+        void modify(
+            std::string entity_id, 
+            double value
         );
 
         /**

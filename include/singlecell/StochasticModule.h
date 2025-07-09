@@ -53,7 +53,6 @@ class StochasticModule : public BaseModule{
          * @returns None
          */
         void setSimulationSettings(
-            std::unordered_map<std::string, double>entity_map,
             double start,
             double stop, 
             double step

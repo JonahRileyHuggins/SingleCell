@@ -54,18 +54,33 @@ int main(
         stochastic_sbml,
         deterministic_sbml
     );
-    std::cout << "Entity Map:\n";
+    std::cout << "Simulation Details:\n";
     for (const auto& [key, value] : argparser->cli_map) {
         std::cout << "  " << key << " => ";
         try {
             std::cout << std::any_cast<std::string>(value);
+            
         } catch (std::bad_any_cast) {
             std::cout << std::any_cast<double>(value);
         } 
         std::cout << '\n';
     }
+
+        // modify sbml model prior to AMICI-model assignment
+    std::vector<double> init_states;
+
+    if (argparser->entity_map.empty()) {
+        printf("Using default model states for simulation.\n");
+    } else { 
+        for (const auto& [key, value] : argparser->entity_map) {
+            single_cell->modify(
+                key, 
+                value
+            );
+        }
+    }
+
     std::vector<std::vector<double>> results_matrix = single_cell->simulate(
-        argparser->entity_map,
         start, 
         stop, 
         step

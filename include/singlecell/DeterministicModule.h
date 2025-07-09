@@ -45,7 +45,6 @@ class DeterministicModule : public BaseModule {
         std::string getModuleId() override;  
 
         void setSimulationSettings(
-            std::unordered_map<std::string, double>entity_map,
             double start,
             double stop, 
             double step

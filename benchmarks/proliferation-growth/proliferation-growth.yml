@@ -1,0 +1,15 @@
+format_version: 1 
+parameter_file: ../../SPARCED/models/SPARCED_standard/data/model/output_parameters.txt
+problems: 
+  - condition_files: 
+    - conditions.tsv
+    measurement_files:
+    - measurements.tsv
+    observable_files:
+    - observables.tsv
+    sbml_files:
+    - ../../SPARCED/models/SPARCED_standard/sbml_SPARCED_standard.xml
+    model_specifications:
+      hybrid: False
+      cell_number: 1
+      heterogenize_time: nan

@@ -1,0 +1,6 @@
+plotId	plotName	plotTypeSimulation	datasetId	xValues	yValues	xLabel	xScale	yLabel	yScale	Color	legendEntry
+plot4	ppERK levels	LinePlot	average_sim	time	ERK_total	Time (hours)	lin	ERK (nM)	lin	purple	
+plot3	MAPK 1 and 3 mRNA activation	LinePlot	average_sim	time	MAPK1_mRNA	Time (hours)	lin	mRNA	lin	blue	
+plot3	MAPK 1 and 3 mRNA activation	LinePlot	average_sim	time	MAPK3_mRNA	Time (hours)	lin	ERK (nM)	lin	red	
+plot2	MAPK3 gene activation	LinePlot	average_sim	time	MAPK3ac	Time (hours)	lin	MAPK3 g*	lin	red	
+plot1	MAPK1 gene activation	LinePlot	average_sim	time	MAPK1ac	Time (hours)	lin	MAPK1 g*	lin	blue	

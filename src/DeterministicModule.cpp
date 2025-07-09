@@ -43,6 +43,9 @@ DeterministicModule::DeterministicModule(
     //Instantiate SBML model
     this->sbml = DeterministicModel.model;
 
+    // Import AMICI Model from 'bin/AMICI_MODELS/model
+    this->model = amici::generic_model::getModel();
+
     this->target_id = "Stochastic";
 }
 
@@ -102,7 +105,7 @@ void DeterministicModule::run(
     // Set the all timepoints for total runtime
     model->setTimepoints(timepoints);
 
-    // Set initial state
+    // Set AMICI object initial state
     model->setInitialStates(initial_state);
 
     // Run the simulation
@@ -170,34 +173,15 @@ std::vector<double> DeterministicModule::getNewStepResult(
 }
 
 void DeterministicModule::setSimulationSettings(
-    std::unordered_map<std::string, double>entity_map,
     double start, 
     double stop, 
     double step
 ) {
-    // modify sbml model prior to AMICI-model assignment
-    std::vector<double> init_states;
-
-    if (entity_map.empty()) {
-        printf("Using default model state for simulation.\n");
-        init_states = handler.getInitialState();
-    } else { 
-        for (const auto& [key, value] : entity_map) {
-            this->handler.setModelEntityValue(
-                key, 
-                value
-            );
-        }
-        init_states = handler.getInitialState();
-    }
 
     this->delta_t = step;
 
-     // Import AMICI Model from 'bin/AMICI_MODELS/model
-    this->model = amici::generic_model::getModel();
-
     // Create an instance of the solver class
-    this->solver = model->getSolver();
+    this->solver = this->model->getSolver();
 
     int numSpecies = this->sbml->getNumSpecies();
 
@@ -208,16 +192,16 @@ void DeterministicModule::setSimulationSettings(
 
     // record initial state as first vector in results_matrix member
     BaseModule::recordStepResult(
-        init_states,
+        this->handler.getInitialState(),
         0
     );
 
-     // Assign solver settings
-     solver->setAbsoluteTolerance(1e-10);
-     solver->setRelativeTolerance(1e-6);
-     solver->setMaxSteps(100000);
+    // Assign solver settings
+    solver->setAbsoluteTolerance(1e-10);
+    solver->setRelativeTolerance(1e-6);
+    solver->setMaxSteps(100000);
 
-     this->updateParameters();
+    this->updateParameters();
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(

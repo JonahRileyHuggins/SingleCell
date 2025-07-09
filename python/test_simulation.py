@@ -23,15 +23,16 @@ from typing import Optional
 import json
 
 from _sbml_handler import _SBMLHandler
-import SingleCell as scs
 
 import pandas as pd
 
+from pySingleCell import SingleCell
 
 # Arguement Parsing (Internal For Now)
 parser = argparse.ArgumentParser(description='')
 
-parser.add_argument('--target', '-t', metavar = 'target', help='species to modify', default = {})
+parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
+                    help='Species to modify in key=value format', default=[])
 parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
 parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
 parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
@@ -77,38 +78,27 @@ class TestSim:
             - results_dataframe (pd.DataFrame): finalized results of simulation. 
         """
 
-        ode_sbml = self.deterministic_model.sbml_model
+        # Need to add entity map for deterministic simulations:
 
-        stochastic_sbml = self.stochastic_model.sbml_model
+        single_cell = SingleCell(self.stochastic_path, self.deterministic_path)
 
-        deterministic_species_names = [ode_sbml.getSpecies(i).getId() \
-                     for i in range(ode_sbml.getNumSpecies())]
+        for pair in args.modify:
+            if '=' in pair:
+                key, val = pair.split('=', 1)
+                print("Setting %s to value %d", key, float(val))
+                single_cell.modify(key, float(val))
 
-        stochastic_species_names = [stochastic_sbml.getSpecies(i).getId() \
-                     for i in range(stochastic_sbml.getNumSpecies())]
+        results_array = single_cell.simulate(
+            args.start,
+            args.stop, 
+            args.step
+            )
 
-        initial_ode_states = self.deterministic_model._get_initial_model_states()
+        speciesIds = single_cell.getGlobalSpeciesIds()
 
-        initial_stochastic_states = self.deterministic_model._get_initial_model_states()
+        results_df = pd.DataFrame(results_array, columns=speciesIds)
 
-        target = parse_dict_arg(args.target)
-
-        updated_ode_states = _SBMLHandler.set_species_values(initial_ode_states, 
-                                                             deterministic_species_names, 
-                                                             target) # <--- Add in model attribute update function here
-        
-        updated_stoch_states = _SBMLHandler.set_species_values(initial_stochastic_states, # <--- Add in model attribute update function here
-                                                             stochastic_species_names, 
-                                                             target) 
-
-        single_cell = scs.SingleCell(self.stochastic_path, self.deterministic_path)
-
-        results_array = single_cell.simulate(updated_ode_states, updated_stoch_states, 
-                                     args.start, args.stop, args.step)
-
-        results_df = pd.DataFrame(results_array, columns=deterministic_species_names.extend(stochastic_species_names))
-
-        results_df.to_csv(args.output)
+        results_df.to_csv(args.output, sep = '\t', index = False)
 
 
 def parse_dict_arg(arg_string):

@@ -30,7 +30,6 @@ std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandle
 };
 
 std::vector<std::vector<double>> SingleCell::simulate(
-    std::unordered_map<std::string, double> entity_map,
     double start, 
     double stop,
     double step
@@ -47,7 +46,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
     // Add simulation time steps, results matrix
     this->setGlobalSimulationSettings(
-        entity_map,
         start,
         stop,
         step
@@ -66,6 +64,17 @@ std::vector<std::vector<double>> SingleCell::simulate(
     return results_matrix;
 }
 
+void SingleCell::modify(
+    std::string entity_id,
+    double value
+) {
+    for ( auto& handler : this->handlers) {
+        handler.setModelEntityValue(
+            entity_id, 
+            value
+            );
+    }
+}
 
 void SingleCell::loadSimulationModules() {
 
@@ -117,7 +126,6 @@ void SingleCell::findModuleOverlaps() {
 }
 
 void SingleCell::setGlobalSimulationSettings(
-    std::unordered_map<std::string, double>entity_map,
     double start,
     double stop,
     double step
@@ -125,7 +133,6 @@ void SingleCell::setGlobalSimulationSettings(
     for (const auto& mod : this->modules) {
 
         mod->setSimulationSettings(
-            entity_map,
             start,
             stop,
             step

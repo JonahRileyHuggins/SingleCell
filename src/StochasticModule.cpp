@@ -252,27 +252,10 @@ std::vector<double> StochasticModule::computeNewState(
 }
 
 void StochasticModule::setSimulationSettings(
-    std::unordered_map<std::string, double>entity_map,
     double start, 
     double stop, 
     double step
 ) {
-
-    std::vector<double> init_states;
-
-    if (entity_map.empty()) {
-        printf("Using default model state for simulation.\n");
-        init_states = handler.getInitialState();
-    } else { 
-        for (const auto& [key, value] : entity_map) {
-            this->handler.setModelEntityValue(
-                key, 
-                value
-            );
-
-        }
-    	init_states = handler.getInitialState();
-    }
 
     this->delta_t = step;
 
@@ -283,7 +266,7 @@ void StochasticModule::setSimulationSettings(
     this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size());
 
     BaseModule::recordStepResult(
-        init_states, 
+        this->handler.getInitialState(), 
         0
     );
 

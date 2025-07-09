@@ -137,20 +137,13 @@ class BaseModule {
          */
         virtual void run(
             std::vector<double> timepoints
-        ) = 0;
-
-        void modifyModelEntity(
-            std::string entity_id, 
-            double new_value
-        );
-        
+        ) = 0;        
 
         void findOverlappingIds(
             const Model* alternate_model
         );
     
         virtual void setSimulationSettings(
-            std::unordered_map<std::string, double>entity_map,
             double start, 
             double stop, 
             double step
