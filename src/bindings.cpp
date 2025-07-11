@@ -22,7 +22,7 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(pySingleCell, m) {
-    py::class_<SingleCell>(m, "SingleCell")
+    py::class_<SingleCell, std::shared_ptr<SingleCell>>(m, "SingleCell")
         .def(py::init<const std::string&, const std::string&>())  // Constructor
         .def("simulate", &SingleCell::simulate, 
         py::arg("start") = 0.0,

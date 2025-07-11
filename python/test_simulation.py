@@ -16,16 +16,16 @@ Output:
 """
 # -----------------------Package Import & Defined Arguements-------------------#
 
-import os 
+import os
+import sys
 import argparse
 from types import SimpleNamespace
 from typing import Optional
 import json
 
-from _sbml_handler import _SBMLHandler
-
 import pandas as pd
 
+sys.path.append("../build/")
 from pySingleCell import SingleCell
 
 # Arguement Parsing (Internal For Now)
@@ -49,24 +49,9 @@ class TestSim:
 
     def __init__(self):
 
-        # A cell needs a Genome!
         self.stochastic_path = os.path.join(SBML_DIR, 'Stochastic.sbml')
-        self.stochastic_model = self._load_stochastic_sbml()
 
-        # A Cell also needs proteins!
         self.deterministic_path = os.path.join(SBML_DIR, 'Deterministic.sbml')
-        self.deterministic_model = self._load_deterministic_sbml()
-
-    def _load_stochastic_sbml(self) -> Optional[_SBMLHandler]:
-        """Loads the stochastic SBML file containing Cell Genome."""
-
-        return _SBMLHandler(self.stochastic_path)
-    
-    def _load_deterministic_sbml(self) -> Optional[_SBMLHandler]:
-        """Loads the Protein-Protein Interactions SBML file."""
-
-        return _SBMLHandler(self.deterministic_path)
-    
     
     def simulate(self, args, **kwargs):
         """Primary simulation function using hybrid stochastic-deterministic method

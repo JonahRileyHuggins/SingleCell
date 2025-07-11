@@ -77,5 +77,5 @@ target_link_libraries(pySingleCell PRIVATE
 
 # Output directory for .so / .pyd
 set_target_properties(pySingleCell PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/python
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )

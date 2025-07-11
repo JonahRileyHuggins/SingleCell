@@ -11,5 +11,5 @@ problems:
     - ../../SPARCED/models/SPARCED_standard/sbml_SPARCED_standard.xml
     model_specifications:
       hybrid: True
-      cell_number: 20
+      population_size: 20
       heterogenize_time: 172800.0

@@ -1,6 +1,6 @@
 format_version: 1 
-parameter_file: ../../SPARCED/models/SPARCED_standard/data/model/output_parameters.txt
-problems: 
+parameter_file: ../../data/SPARCED - Parameters.tsv
+problems:
   - condition_files: 
     - conditions.tsv
     measurement_files:
@@ -8,8 +8,6 @@ problems:
     observable_files:
     - observables.tsv
     sbml_files:
-    - ../../SPARCED/models/SPARCED_standard/sbml_SPARCED_standard.xml
-    model_specifications:
-      hybrid: True
-      cell_number: 25
-      heterogenize_time: 86400.0
+    - ../../sbml_files/Deterministic.sbml
+    - ../../sbml_files/Stochastic.sbml
+    cell_count: 25

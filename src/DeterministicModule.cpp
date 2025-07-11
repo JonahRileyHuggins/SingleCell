@@ -44,7 +44,9 @@ DeterministicModule::DeterministicModule(
     this->sbml = DeterministicModel.model;
 
     // Import AMICI Model from 'bin/AMICI_MODELS/model
-    this->model = amici::generic_model::getModel();
+    std::unique_ptr<amici::Model> new_model = amici::generic_model::getModel();
+    this->model = std::move(new_model);
+
 
     this->target_id = "Stochastic";
 }
