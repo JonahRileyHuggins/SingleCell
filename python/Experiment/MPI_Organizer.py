@@ -20,7 +20,6 @@ import pandas as pd
 import mpi4py.MPI as MPI
 
 import shared_utils.file_loader as l
-import shared_utils.utils as utils
 
 class Organizer:
 
@@ -86,7 +85,7 @@ def task_organization(
 
     measurements_df = pd.read_csv(details.problems.measurement_files[0], sep = '\t')
 
-    cell_count = 1 if "cell_count" not in details.problems else details.problems.cell_count
+    cell_count = 1 if "cell_count" not in details.problems[0] else details.problems[0].cell_count
 
     list_of_jobs = total_tasks(measurements_df, cell_count)
 
@@ -272,16 +271,16 @@ def aggregate_other_rank_results(
         round_i: int - the current round
         total_jobs: int - the total number of jobs
 
-        Output:
-            results_dict: dict - the results dictionary"""
+    Output:
+        results_dict: dict - the results dictionary"""
 
     # Determine the number of tasks to be completed this round, subtract 1
     # to account for the root rank saving results prior.
-    tasks_this_round = utils.tasks_this_round(size, total_jobs, round_i) - 1
+    round_i_tasks = tasks_this_round(size, total_jobs, round_i) - 1
 
     completed_tasks = 0
 
-    while completed_tasks < tasks_this_round:
+    while completed_tasks < round_i_tasks:
 
         results = communicator.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG)
 
@@ -289,10 +288,39 @@ def aggregate_other_rank_results(
 
         completed_tasks += 1
 
-        if completed_tasks == tasks_this_round:
+        if completed_tasks == round_i_tasks:
             break
 
     return results_dict
+
+def tasks_this_round(size, total_jobs, round_number):
+    """Calculate the number of tasks for the current round
+    input:
+        size: int - the total number of processes assigned
+        total_jobs: int - the total number of tasks
+
+    output:
+        returns the number of tasks for the current round
+    """
+    number_of_rounds = -(-total_jobs // size)
+
+    tasks_per_round = size
+    remainder = total_jobs % size
+
+    # This accounts for pythonic indexing starting at 0
+    round_number += 1
+
+    if round_number < number_of_rounds:
+        tasks_this_round = tasks_per_round
+    elif round_number == number_of_rounds and remainder != 0:
+        tasks_this_round = remainder
+    elif round_number == number_of_rounds and remainder == 0:
+        tasks_this_round = tasks_per_round
+    else:
+        # provide an error and message exit
+        raise ValueError("Round number exceeds the number of rounds")
+
+    return tasks_this_round
 
 def store_results(individual_parcel: dict, results_dict: dict) -> dict:
     """This function stores the results in the results dictionary

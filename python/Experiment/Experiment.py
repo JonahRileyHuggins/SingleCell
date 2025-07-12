@@ -9,21 +9,31 @@ description: Primary class object of an experiment
 
 import os
 import sys
-import json
 import logging
-from concurrent.futures import ProcessPoolExecutor, as_completed
 
-import yaml
-import numpy as np
 import pandas as pd
 import pickle as pkl
+
+sys.path.append("../")
 
 from shared_utils.file_loader import Config
 import shared_utils.utils as utils
 import MPI_Organizer as org
 
-sys.path.append("../../../build/")
+sys.path.append("../../build/")
 from pySingleCell import SingleCell
+
+import argparse
+
+parser = argparse.ArgumentParser(prog='ModelsCreator')
+parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                        which files to inspect for name changes.')
+parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
+parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
+                    help="Catch-all arguments passed as key=value pairs")
+parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
+parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
+
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -42,10 +52,6 @@ class Experiment:
         - 
         """
 
-        if self.rank == 0:
-            logger.info(f"Starting MPI process across {self.size} number of cores.")
-
-            logger.info("Loading Experiment %s details from %s", (self.name, petab_yaml))
 
         try:
             petab_yaml = os.path.abspath(petab_yaml)
@@ -62,10 +68,15 @@ class Experiment:
 
         self.communicator, self.rank, self.size = org.mpi_communicator()
 
+        if self.rank == 0:
+            logger.info(f"Starting MPI process across {self.size} number of cores.")
+
+            logger.info("Loading Experiment %s details from %s", (self.name, petab_yaml))
+
         self.loader = org.broadcast_files(
             self.rank, 
             self.communicator, 
-            self.yaml_file
+            petab_yaml
         )
 
         sbml_list = self.__sbml_getter()
@@ -132,7 +143,7 @@ class Experiment:
 
             # Get results of any preequilibration condition:
             #TODO: add results getter method for preequilibrations
-            precondition_results = self.__results_lookup(condition_id)
+            precondition_results = self.__extract_preequilibration_results(condition_id)
 
             if precondition_results:
                 # Assign preequilibration final results to current model state.
@@ -158,24 +169,25 @@ class Experiment:
             if self.rank == 0:
 
                 # Store rank 0's results prior to storing other ranks
-                self.results_dictionary = org.store_results(
-                    results_dict=self.results_dictionary, individual_parcel=parcel
+                self.results_dict = org.store_results(
+                    results_dict=self.results_dict, 
+                    individual_parcel=parcel
                 )
 
-                # Define the total number of jobs for the results aggregation stage
-                total_jobs = org.total_tasks(self.conditions_df, self.measurement_df)
-
                 # Collect results from other ranks and store in results dictionary
-                self.results_dictionary = org.aggregate_other_rank_results(
+                self.results_dict = org.aggregate_other_rank_results(
                     size=self.size,
                     communicator=self.communicator,
-                    results_dict=self.results_dictionary,
+                    results_dict=self.results_dict,
                     round_i=round_i,
-                    total_jobs=len(total_jobs),
+                    total_jobs=len(self.results_dict.keys()),
                 )
             else:
                 # All non-root ranks send results to rank 0
                 self.communicator.send(parcel, dest=0, tag=round_i)
+
+            # Lastly, make sure every rank gets a copy of the results dict, to lookup dependency results:
+            self.results_dict = self.communicator.bcast(self.results_dict, root=0)
 
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
@@ -199,8 +211,9 @@ class Experiment:
                      for condition {condition_id}")
 
         # iterate over results_dict to find last results
+        precondition_results = self.__results_lookup(precondition_id)
 
-        
+        return precondition_results
 
     def __results_dictionary(self):
         """Create an empty dictionary for storing results
@@ -287,3 +300,15 @@ class Experiment:
         logger.debug(f"Simulating Condition {condition['conditionId']} for {time} seconds")
 
         return time
+    
+
+if __name__ == '__main__':
+
+    args = parser.parse_args()
+   
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
+    experiment = Experiment(args.yaml_path)
+
+    experiment.run()
