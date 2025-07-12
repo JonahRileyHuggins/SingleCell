@@ -14,6 +14,7 @@ import logging
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import yaml
+import numpy as np
 import pandas as pd
 import pickle as pkl
 
@@ -61,17 +62,28 @@ class Experiment:
 
         self.communicator, self.rank, self.size = org.mpi_communicator()
 
-        self.loader = org.broadcast_petab_files(
+        self.loader = org.broadcast_files(
             self.rank, 
             self.communicator, 
             self.yaml_file
         )
+
+        sbml_list = self.__sbml_getter()
+
+        # Load an instance of SingleCell on every core
+        self.single_cell = SingleCell(*sbml_list)
+
         # Pause to allow for the broadcast to complete
         self.communicator.Barrier()
 
         # Catalogue each rank's list of tasks at root (rank 0)
         # Results dictionary is initialized prior to simulation for convenience
-        self.results_dictionary = self.__results_dictionary()
+        if self.rank == 0:
+            self.results_dict = self.__results_dictionary()
+        else:
+            self.results_dict = None
+
+        self.results_dict = self.communicator.bcast(self.results_dict, root=0)
 
 
     def run(self) -> dict:
@@ -113,8 +125,59 @@ class Experiment:
             )
 
             logger.info(f"Rank {self.rank} is running {condition_id} for cell {cell}")
+            
+            # Get species identifiers
+            state_ids = self.single_cell.getGlobalSpeciesIds()
+            logger.debug(f"List of species names: {state_ids}")
 
+            # Get results of any preequilibration condition:
+            #TODO: add results getter method for preequilibrations
+            precondition_results = self.__results_lookup(condition_id)
 
+            if precondition_results:
+                # Assign preequilibration final results to current model state.
+                self.__setModelState(state_ids, precondition_results)
+
+            # Assign current condition to model state
+            self.__setModelState(condition.keys(), condition.values())
+
+            # Extract simulation time from condition in measurement_df
+            stop_time = self.__get_simulation_time(condition)
+
+            # run simulation
+            results_array = self.single_cell.simulate(0.0, stop_time, 30.0) # <-- default start and step times
+            results = pd.DataFrame(results_array, columns=state_ids)
+
+            # Results are packaged into a single object to reduce the number of items sent via MPI
+            parcel = org.package_results(
+                results=results,
+                condition_id=condition_id,
+                cell=cell,
+            )
+
+            if self.rank == 0:
+
+                # Store rank 0's results prior to storing other ranks
+                self.results_dictionary = org.store_results(
+                    results_dict=self.results_dictionary, individual_parcel=parcel
+                )
+
+                # Define the total number of jobs for the results aggregation stage
+                total_jobs = org.total_tasks(self.conditions_df, self.measurement_df)
+
+                # Collect results from other ranks and store in results dictionary
+                self.results_dictionary = org.aggregate_other_rank_results(
+                    size=self.size,
+                    communicator=self.communicator,
+                    results_dict=self.results_dictionary,
+                    round_i=round_i,
+                    total_jobs=len(total_jobs),
+                )
+            else:
+                # All non-root ranks send results to rank 0
+                self.communicator.send(parcel, dest=0, tag=round_i)
+
+            logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
         return 
 
@@ -124,6 +187,18 @@ class Experiment:
         Find if a given condition has a preequilibration. Pulls from results dictionary
         final timepoint array. Assigns to 
         """
+
+        # For now, only supporting one problem per file
+        measurement_df = self.loader.problems[0].measurement_files[0]
+
+        # match condition to any preequilibration:
+        precondition_id = measurement_df['preequilibrationConditionId'][
+            measurement_df['simulationConditionId'] == condition_id
+            ][0]
+        logger.debug(f"Extracting preequilibration condition {precondition_id} \
+                     for condition {condition_id}")
+
+        # iterate over results_dict to find last results
 
         
 
@@ -137,10 +212,9 @@ class Experiment:
         """
 
         #for now, only supporting one problem per file
-        problem = self.loader.problems[0].condition_files[0]
+        problem = self.loader.problems[0]
         conditions_df = problem.condition_files[0]
         measurement_df = problem.measurement_files[0]
-
 
         results = {}
 
@@ -162,3 +236,54 @@ class Experiment:
                 }
 
         return results
+    
+
+    def __results_lookup(self, condition_id: str) -> list:
+        """Indexes results dictionary on condition id, returns last array of condition results"""
+
+        # Iterate over entries
+        for key in self.results_dict.keys():
+            if self.results_dict[key]['conditionId'] == condition_id:
+                final_results = self.results_dict[key]['results'].iloc[-1].to_list()
+
+                pass
+
+            else: 
+                final_results = list()
+
+            return final_results
+
+    def __sbml_getter(self) -> list:
+        """Retrieves all sbml files defined in PEtab configuration file"""
+        sbml_file_list = [
+            fp
+            for problem in self.loader.problems
+            if hasattr(problem, "sbml_files")
+            for fp in problem.sbml_files
+        ]
+
+        return sbml_file_list
+
+    def __setModelState(self, names: list, state: list) -> None:
+        """Set model state with list of floats"""
+        for index, name in enumerate(names):
+
+            if name in ('conditionId', 'conditionName'):
+                continue
+
+            self.single_cell.modify(name, state[index])
+
+        logger.debug("Updated model state")
+
+    def __get_simulation_time(self, condition: pd.Series) -> float:
+        """Retrieves simulation duration from measurements dataframe given a condition"""
+
+        measurement_df = self.loader.problems[0].measurement_files[0]
+
+        time  = measurement_df["time"][
+            measurement_df["simulationConditionId"].isin(condition)
+        ].max()
+
+        logger.debug(f"Simulating Condition {condition['conditionId']} for {time} seconds")
+
+        return time

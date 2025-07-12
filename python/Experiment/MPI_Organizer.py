@@ -227,6 +227,8 @@ def condition_cell_id(rank_task, conditions_df):
         if condition["conditionId"] == condition_id
     ][0]
 
+
+
     return condition, cell, condition_id
 
 def package_results(
