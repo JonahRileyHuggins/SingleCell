@@ -337,8 +337,9 @@ def store_results(individual_parcel: dict, results_dict: dict) -> dict:
     # Find the matching entry in results_dict using `.get()`
     for _, value in results_dict.items():
 
+        print(condition_id, cell)
         if value.get("conditionId") == condition_id and value.get("cell") == cell:
-
+            print("it'sa me; results-o")
             for column in individual_parcel["results"].columns:
 
                 value[column] = individual_parcel["results"][column]

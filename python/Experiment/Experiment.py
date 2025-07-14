@@ -10,20 +10,23 @@ description: Primary class object of an experiment
 import os
 import sys
 import logging
+import argparse
 
 import pandas as pd
 import pickle as pkl
+from datetime import date
 
 sys.path.append("../")
 
 from shared_utils.file_loader import Config
 import shared_utils.utils as utils
 import MPI_Organizer as org
+import ObservableCalculator as obs
+from Visualizer import Visualizer
 
 sys.path.append("../../build/")
 from pySingleCell import SingleCell
 
-import argparse
 
 parser = argparse.ArgumentParser(prog='ModelsCreator')
 parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
@@ -32,7 +35,7 @@ parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-ty
 parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
 parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
+parser.add_argument('--output', '-o', default = ".", help  = "path to which you want output files stored")
 
 
 logging.basicConfig(
@@ -54,17 +57,17 @@ class Experiment:
 
 
         try:
-            petab_yaml = os.path.abspath(petab_yaml)
+            self.petab_yaml = os.path.abspath(petab_yaml)
 
-            assert os.path.exists(petab_yaml)
+            assert os.path.exists(self.petab_yaml)
 
         except AssertionError:
-            raise FileNotFoundError(f"{petab_yaml} is not a valid benchmark")
+            raise FileNotFoundError(f"{self.petab_yaml} is not a valid benchmark")
 
         # Load the details of the experiment
-        self.details = Config.file_loader(petab_yaml)
+        self.details = Config.file_loader(self.petab_yaml)
 
-        self.name = 'None' if self.details.problems[0].name else self.details.problems[0].name
+        self.name = None if self.details.problems[0].name else self.details.problems[0].name
 
         self.cell_count = 1 if "cell_count" not in self.details.problems[0] \
             else self.details.problems[0].cell_count
@@ -74,12 +77,12 @@ class Experiment:
         if self.rank == 0:
             logger.info(f"Starting MPI process across {self.size} number of cores.")
 
-            logger.info("Loading Experiment %s details from %s", self.name, petab_yaml)
+            logger.info("Loading Experiment %s details from %s", self.name, self.petab_yaml)
 
         self.loader = org.broadcast_files(
             self.rank, 
             self.communicator, 
-            petab_yaml
+            self.petab_yaml
         )
 
         sbml_list = self.__sbml_getter()
@@ -171,7 +174,6 @@ class Experiment:
             )
 
             if self.rank == 0:
-
                 # Store rank 0's results prior to storing other ranks
                 self.results_dict = org.store_results(
                     results_dict=self.results_dict, 
@@ -308,6 +310,64 @@ class Experiment:
         return time
     
 
+    def save_results(self, args):
+        """Save the results of the simulation to a file
+        input:
+            results: dict - the results of the simulation
+            name: str - the name of the file to save the results
+        output:
+            returns the saved results as a nested dictionary within
+            a pickle file
+        """
+
+        # Benchmark results are stored within the specified model directory
+
+        results_directory = os.path.join(os.path.dirname(self.petab_yaml), "results")
+
+        if 'output' in args:
+
+            results_directory = args.output
+
+        if not os.path.exists(results_directory):
+            os.makedirs(results_directory)
+
+        # Final output is saved in pickle format
+        results_path = os.path.join(results_directory, f"{date.today()}.pkl")
+
+        if self.name is not None:
+            results_path = os.path.join(results_directory, f"{self.name}.pkl")
+
+        print(self.results_dict)
+
+        with open(results_path, "wb") as f:
+            pkl.dump(self.results_dict, f)
+
+
+    def observable_calculation(self, *args) -> dict:
+        """Calculate the observables and compare to the experimental data.
+        input:
+            results: dict - results of the SPARCED model unit test simulation
+        output:
+            returns the results of the SPARCED model unit test simulation
+        """
+
+        # if self.rank == 0 and self.observable == 1:
+        if self.rank == 0:
+            self.results_dict = obs.ObservableCalculator(self).run()
+
+            self.save_results(self, args)
+
+            return # Proceeds to next command provided in launchers.py
+
+        # if self.rank == 0 and self.observable == 0:
+        #     self.save_results(self)
+        #     return # Proceeds to next command provided in launchers.py
+
+        if self.rank != 0:
+            return None
+
+
+
 if __name__ == '__main__':
 
     args = parser.parse_args()
@@ -318,3 +378,9 @@ if __name__ == '__main__':
     experiment = Experiment(args.yaml_path)
 
     experiment.run()
+
+    experiment.save_results(args)
+
+    experiment.observable_calculation()
+
+    
