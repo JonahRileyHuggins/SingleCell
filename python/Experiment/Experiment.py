@@ -12,6 +12,7 @@ import sys
 import logging
 import argparse
 
+import numpy as np
 import pandas as pd
 import pickle as pkl
 from datetime import date
@@ -164,7 +165,9 @@ class Experiment:
 
             # run simulation
             results_array = self.single_cell.simulate(0.0, stop_time, 30.0) # <-- default start and step times
+
             results = pd.DataFrame(results_array, columns=state_ids)
+            results['time'] = np.arange(0, 86400, 30)
 
             # Results are packaged into a single object to reduce the number of items sent via MPI
             parcel = org.package_results(
@@ -173,12 +176,16 @@ class Experiment:
                 cell=cell,
             )
 
+            print(parcel)
+
             if self.rank == 0:
                 # Store rank 0's results prior to storing other ranks
                 self.results_dict = org.store_results(
                     results_dict=self.results_dict, 
                     individual_parcel=parcel
                 )
+
+                print(self.results_dict)
 
                 # Collect results from other ranks and store in results dictionary
                 self.results_dict = org.aggregate_other_rank_results(
@@ -194,7 +201,7 @@ class Experiment:
 
             # Lastly, make sure every rank gets a copy of the results dict, to lookup dependency results:
             self.results_dict = self.communicator.bcast(self.results_dict, root=0)
-
+            print(self.results_dict)
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
         return 
@@ -244,7 +251,7 @@ class Experiment:
             condition_id = condition["conditionId"]
             num_cells = self.details.cell_count if self.details.cell_count else 1
 
-            for cell in range(num_cells):
+            for cell in range(1, num_cells+1):
                 if "datasetId" in measurement_df.columns:
                     identifier = measurement_df["datasetId"]\
                         [measurement_df["simulationConditionId"] == condition_id].values[0]
@@ -337,7 +344,6 @@ class Experiment:
         if self.name is not None:
             results_path = os.path.join(results_directory, f"{self.name}.pkl")
 
-        print(self.results_dict)
 
         with open(results_path, "wb") as f:
             pkl.dump(self.results_dict, f)
@@ -355,7 +361,7 @@ class Experiment:
         if self.rank == 0:
             self.results_dict = obs.ObservableCalculator(self).run()
 
-            self.save_results(self, args)
+            self.save_results(args)
 
             return # Proceeds to next command provided in launchers.py
 
@@ -381,6 +387,6 @@ if __name__ == '__main__':
 
     experiment.save_results(args)
 
-    experiment.observable_calculation()
+    experiment.observable_calculation(args)
 
     
