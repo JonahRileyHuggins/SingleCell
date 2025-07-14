@@ -8,10 +8,15 @@ Description: Creates an instance of two sbml models for the genome-compelete MCF
 
 import os
 import re
+import sys
+import shutil
 import logging
 import argparse
 from types import SimpleNamespace
-from python.shared_utils.file_loader import FileLoader
+
+sys.path.append("../")
+
+from shared_utils.file_loader import FileLoader
 
 import pandas as pd
 import numpy as np
@@ -53,7 +58,8 @@ class CreateModel:
 
         self.output_path = args.output
 
-        self.model_files = FileLoader(args.yaml_path).model_files
+        loader = FileLoader(args.yaml_path)
+        self.model_files = loader._extract_model_build_files()
 
     def __get_component(self) -> None:
         return NotImplementedError("method `_get_component()` must be implemented in child class.")
@@ -147,7 +153,7 @@ class DeterministicModel(CreateModel):
         super().__init__(args, **kwargs)
 
         # Place here the updated model files
-        self._get_components()
+        self._get_components(args.deterministic_only)
 
         self.__reduce_rxns()
 
@@ -162,13 +168,17 @@ class DeterministicModel(CreateModel):
         self._make_AMICI_model(sbml_file_path)
 
 
-    def _get_components(self):
+    def _get_components(self, deterministic_only = False):
         """Gets deterministic components only"""
 
         # Filter species for stochastic solver
+
         stochastic_params = self.model_files.species[
             self.model_files.species['solver'].str.lower().str.strip() == 'stochastic'
         ].reset_index()
+
+        if deterministic_only:
+            stochastic_params = pd.DataFrame([], columns=['speciesId', 'initialConcentration (nM)'])
 
         logger.info('>>>>>>> immediate parameters dataframe: %s' % (stochastic_params))
 
@@ -227,7 +237,7 @@ class DeterministicModel(CreateModel):
         """
         # Create an SbmlImporter instance for our SBML model
 
-        amici_model_output_path = f'../amici_models/Deterministic'
+        amici_model_output_path = f'../../amici_models/{args.name}'
     
         _make_output_dir(amici_model_output_path)
 
@@ -236,7 +246,7 @@ class DeterministicModel(CreateModel):
         constantParameters = [params.getId() for params in self.sbml_model.getListOfParameters()]
 
         # The actual compilation step by AMICI, takes a while to complete for large models
-        sbml_importer.sbml2amici('Deterministic',
+        sbml_importer.sbml2amici(args.name,
                                 amici_model_output_path,
                                 verbose=args.verbose,
                                 constant_parameters=constantParameters)
@@ -580,8 +590,17 @@ if __name__ == '__main__':
 
     kwargs = parse_kwargs(args.catchall) if args.catchall else {}
 
+    args.deterministic_only = False
+
+    args.name = 'Hybrid'
     CreateModel.factory_model_handler(args, **kwargs)
 
     args.name = 'Stochastic'
     CreateModel.factory_model_handler(args, **kwargs)
+    shutil.copyfile('../../sbml_files/Hybrid.sbml','../../amici_models/Hybrid/Hybrid.sbml')
+    shutil.copyfile('../../sbml_files/Stochastic.sbml','../../amici_models/Hybrid/Stochastic.sbml')
 
+    args.deterministic_only = True
+    args.name = 'Deterministic'
+    CreateModel.factory_model_handler(args, **kwargs)
+    shutil.copyfile('../../sbml_files/Deterministic.sbml','../../amici_models/Hybrid/Deterministic.sbml')
