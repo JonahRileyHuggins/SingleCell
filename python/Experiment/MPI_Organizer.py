@@ -61,7 +61,7 @@ def broadcast_files(
     if rank == 0:
         loader = l.FileLoader(yaml_file)
 
-        loader.__petab_files()
+        loader._petab_files()
 
     else:
         loader = None
@@ -72,7 +72,8 @@ def broadcast_files(
 
 def task_organization(
     size: int,
-    details: dict
+    measurement_df: pd.DataFrame, 
+    cell_count: int
 ) -> dict:
     """Assigns tasks to each rank
     Input:
@@ -83,11 +84,7 @@ def task_organization(
         task_list: list - the list of tasks assigned to the rank
     """
 
-    measurements_df = pd.read_csv(details.problems.measurement_files[0], sep = '\t')
-
-    cell_count = 1 if "cell_count" not in details.problems[0] else details.problems[0].cell_count
-
-    list_of_jobs = total_tasks(measurements_df, cell_count)
+    list_of_jobs = total_tasks(measurement_df, cell_count)
 
     rank_jobs_directory = {}
 
@@ -153,7 +150,10 @@ def total_tasks(measurements_df, cell_count):
         returns the total number of tasks
     """
 
-    ordered_conditions = topo_sort_conditions(measurements_df)
+    if 'preequilibrationConditionId' in measurements_df.columns:
+        ordered_conditions = topo_sort_conditions(measurements_df)
+    else:
+        ordered_conditions = measurements_df['simulationConditionId'].unique().tolist()
 
     list_of_jobs = []
     for cond in ordered_conditions:
@@ -220,13 +220,12 @@ def condition_cell_id(rank_task, conditions_df):
 
     condition_id = rank_task.split("+")[0]
 
-    condition = [
-        condition
-        for condition in conditions_df
-        if condition["conditionId"] == condition_id
-    ][0]
+    matches = conditions_df.loc[conditions_df["conditionId"] == condition_id]
 
+    if matches.empty:
+        raise ValueError(f"Condition ID '{condition_id}' not found in conditions_df")
 
+    condition = matches.iloc[0]
 
     return condition, cell, condition_id
 

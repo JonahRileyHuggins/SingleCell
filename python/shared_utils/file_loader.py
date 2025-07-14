@@ -26,7 +26,7 @@ class FileLoader:
         self.problems = []
         self.parameter_file = None
 
-    def __petab_files(self) -> SimpleNamespace:
+    def _petab_files(self) -> SimpleNamespace:
         """Loads petab files for an experiment into memory"""
         yaml_dir = os.path.dirname(self.config_path)
 
@@ -65,7 +65,7 @@ class FileLoader:
         # 4) clean up
         del self.config_path
 
-    def __extract_model_build_files(self) -> SimpleNamespace:
+    def _extract_model_build_files(self) -> SimpleNamespace:
         """returns input files as pandas dataframes, contained in an object for easy reference."""
 
         model_files = SimpleNamespace()

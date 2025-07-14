@@ -1,5 +1,5 @@
 format_version: 1 
-parameter_file: ../../data/SPARCED - Parameters.txt
+parameter_file: ../../data/SPARCED - Parameters.tsv
 problems: 
   - name: "ribosome-doubling-rate"
     condition_files: 

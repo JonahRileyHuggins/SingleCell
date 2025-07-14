@@ -64,14 +64,17 @@ class Experiment:
         # Load the details of the experiment
         self.details = Config.file_loader(petab_yaml)
 
-        self.name = 'None' if self.details.name else self.details.name
+        self.name = 'None' if self.details.problems[0].name else self.details.problems[0].name
+
+        self.cell_count = 1 if "cell_count" not in self.details.problems[0] \
+            else self.details.problems[0].cell_count
 
         self.communicator, self.rank, self.size = org.mpi_communicator()
 
         if self.rank == 0:
             logger.info(f"Starting MPI process across {self.size} number of cores.")
 
-            logger.info("Loading Experiment %s details from %s", (self.name, petab_yaml))
+            logger.info("Loading Experiment %s details from %s", self.name, petab_yaml)
 
         self.loader = org.broadcast_files(
             self.rank, 
@@ -109,7 +112,8 @@ class Experiment:
         # Determine the number of rounds and the directory of tasks for each rank
         rounds_to_complete, rank_jobs_directory = org.task_organization(
             self.size,
-            self.details
+            self.loader.problems[0].measurement_files[0],
+            self.cell_count
         )
 
         # For every cell and condition, run the simulation based on the number of rounds
@@ -132,7 +136,7 @@ class Experiment:
 
             condition, cell, condition_id = org.condition_cell_id(
                 rank_task=task, 
-                conditions_df=self.conditions_df
+                conditions_df=self.loader.problems[0].condition_files[0]
             )
 
             logger.info(f"Rank {self.rank} is running {condition_id} for cell {cell}")
@@ -150,7 +154,7 @@ class Experiment:
                 self.__setModelState(state_ids, precondition_results)
 
             # Assign current condition to model state
-            self.__setModelState(condition.keys(), condition.values())
+            self.__setModelState(condition.keys(), condition)
 
             # Extract simulation time from condition in measurement_df
             stop_time = self.__get_simulation_time(condition)
@@ -202,16 +206,18 @@ class Experiment:
 
         # For now, only supporting one problem per file
         measurement_df = self.loader.problems[0].measurement_files[0]
+        if 'preequilibrationConditionId' in measurement_df.columns:
+            # match condition to any preequilibration:
+            precondition_id = measurement_df['preequilibrationConditionId'][
+                measurement_df['simulationConditionId'] == condition_id
+                ][0]
+            logger.debug(f"Extracting preequilibration condition {precondition_id} \
+                        for condition {condition_id}")
 
-        # match condition to any preequilibration:
-        precondition_id = measurement_df['preequilibrationConditionId'][
-            measurement_df['simulationConditionId'] == condition_id
-            ][0]
-        logger.debug(f"Extracting preequilibration condition {precondition_id} \
-                     for condition {condition_id}")
-
-        # iterate over results_dict to find last results
-        precondition_results = self.__results_lookup(precondition_id)
+            # iterate over results_dict to find last results
+            precondition_results = self.__results_lookup(precondition_id)
+        else: 
+            precondition_results = None
 
         return precondition_results
 
@@ -231,7 +237,7 @@ class Experiment:
 
         results = {}
 
-        for condition in conditions_df:
+        for idx, condition in conditions_df.iterrows():
 
             condition_id = condition["conditionId"]
             num_cells = self.details.cell_count if self.details.cell_count else 1
@@ -284,7 +290,7 @@ class Experiment:
             if name in ('conditionId', 'conditionName'):
                 continue
 
-            self.single_cell.modify(name, state[index])
+            self.single_cell.modify(name, state.iloc[index])
 
         logger.debug("Updated model state")
 

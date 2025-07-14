@@ -242,9 +242,9 @@ std::vector<std::string> SingleCell::getGlobalSpeciesIds() {
 
     std::vector<std::string> global_ids;
 
-    for (const auto& mod : this->modules) {
+    for (auto& handler : this->handlers) {
 
-        std::vector<std::string> mod_species_ids = mod->handler.getSpeciesIds();
+        std::vector<std::string> mod_species_ids = handler.getSpeciesIds();
 
         for (const auto& specie : mod_species_ids) {
 
@@ -252,6 +252,5 @@ std::vector<std::string> SingleCell::getGlobalSpeciesIds() {
 
         }
     }
-
     return global_ids;
 }
