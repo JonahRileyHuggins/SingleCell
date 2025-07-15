@@ -1,10 +1,10 @@
 /**
- * @file DeterministicModule.h
+ * @file HybridModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
  * 
- * @brief Definitions for DeterministicModule operations
+ * @brief Definitions for HybridModule operations
 */
 
 //===========================Library Import=================================//
@@ -23,39 +23,37 @@
 // Internal libraries
 #include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
-#include "singlecell/DeterministicModule.h"
+#include "singlecell/HybridModule.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
-// #include "../amici_models/Deterministic/wrapfunctions.h"
-#include "../amici_models/Deterministic/Deterministic.h"
+#include "../amici_models/Hybrid/Hybrid.h"
 
 //=============================Class Details================================//
-DeterministicModule::DeterministicModule(
-    SBMLHandler DeterministicModel
- ) : BaseModule(DeterministicModel)
+HybridModule::HybridModule(
+    SBMLHandler HybridModel
+ ) : BaseModule(HybridModel)
  {
-    // Retrieve the Deterministic matrix from the sbml document.
-    this->stoichmat = DeterministicModel.getStoichiometricMatrix();
+    // Retrieve the Hybrid matrix from the sbml document.
+    this->stoichmat = HybridModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    this->formulas_vector = DeterministicModel.getReactionExpressions();
+    this->formulas_vector = HybridModel.getReactionExpressions();
 
     //Instantiate SBML model
-    this->sbml = DeterministicModel.model;
+    this->sbml = HybridModel.model;
 
-    // Import AMICI Model from 'amici_models/$modelname
-    // std::unique_ptr<amici::Model> new_model = amici::generic_model::getModel();
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
+    // Import AMICI Model from 'bin/AMICI_MODELS/model
+    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
     this->model = std::move(new_model);
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";
 }
 
-std::string DeterministicModule::getModuleId() { return this->algorithm_id; }
+std::string HybridModule::getModuleId() { return this->algorithm_id; }
 
-void DeterministicModule::loadTargetModule(
+void HybridModule::loadTargetModule(
     const std::vector<std::unique_ptr<BaseModule>>& module_list
 ) {
     for (const auto& mod : module_list) {
@@ -68,7 +66,7 @@ void DeterministicModule::loadTargetModule(
     }
 }
 
-void DeterministicModule::step(int step) {
+void HybridModule::step(int step) {
     // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);
 
@@ -96,7 +94,7 @@ void DeterministicModule::step(int step) {
 
 }
 
-void DeterministicModule::run(
+void HybridModule::run(
     std::vector<double> timepoints
 ) {
 
@@ -128,7 +126,7 @@ void DeterministicModule::run(
     }
 }
 
-std::vector<double> DeterministicModule::setAllSpeciesValues(
+std::vector<double> HybridModule::setAllSpeciesValues(
                                         std::vector<double> current_states,
                                         std::vector<double> update_states
                                         ) {
@@ -152,7 +150,7 @@ std::vector<double> DeterministicModule::setAllSpeciesValues(
 
 }
 
-std::vector<double> DeterministicModule::getNewStepResult(
+std::vector<double> HybridModule::getNewStepResult(
     const amici::ReturnData &rdata
 ) {
 
@@ -176,7 +174,7 @@ std::vector<double> DeterministicModule::getNewStepResult(
     return last_species_values;
 }
 
-void DeterministicModule::setSimulationSettings(
+void HybridModule::setSimulationSettings(
     double start, 
     double stop, 
     double step
@@ -208,7 +206,7 @@ void DeterministicModule::setSimulationSettings(
     this->updateParameters();
 }
 
-std::vector<double> DeterministicModule::getLastStepResult(
+std::vector<double> HybridModule::getLastStepResult(
     int timestep
 ) {
 
@@ -221,7 +219,7 @@ std::vector<double> DeterministicModule::getLastStepResult(
     return state_vector;
 }
 
-void DeterministicModule::updateParameters() {
+void HybridModule::updateParameters() {
     
     for (const auto& module : this->targets) {
 
@@ -229,7 +227,7 @@ void DeterministicModule::updateParameters() {
 
         for (int i = 0; i < this->overlapping_params.size(); i++) {
 
-            // Deterministic model needs both AMICI and SBML set:
+            // Hybrid model needs both AMICI and SBML set:
             //AMICI
             this->model->setFixedParameterById(
                 this->overlapping_params[i], 

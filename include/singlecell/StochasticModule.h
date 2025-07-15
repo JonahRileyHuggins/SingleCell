@@ -97,7 +97,7 @@ class StochasticModule : public BaseModule{
         void updateParameters();
         
     //---------------------------Members----------------------------------//
-        std::string algorithm_id = "Stochastic";    
+        std::string algorithm_id;    
 
 
     private:

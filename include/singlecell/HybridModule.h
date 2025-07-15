@@ -1,5 +1,5 @@
 /**
- * @file: DeterministicModule.h
+ * @file: HybridModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 14-05-2025
@@ -10,8 +10,8 @@
 //========================header file definition============================//
 #pragma once
 
-#ifndef DETERMINISTICMODULE_h
-#define DETERMINISTICMODULE_h
+#ifndef HYBRIDMODULE_h
+#define HYBRIDMODULE_h
 
 //===========================Library Import=================================//
 //Std Libraries
@@ -27,14 +27,14 @@
 #include "amici/amici.h"
 
 //==========================Class Declaration===============================//
-class DeterministicModule : public BaseModule {
+class HybridModule : public BaseModule {
     public:
     //----------------------------Methods-----------------------------------//
-        DeterministicModule(
-            SBMLHandler DeterministicModel
+        HybridModule(
+            SBMLHandler HybridModel
         ); //Ctor
 
-        ~DeterministicModule() override = default; //Dtor
+        ~HybridModule() override = default; //Dtor
 
         /**
          * @brief retrieves private member algorithm_id for determining which simulation
@@ -51,18 +51,18 @@ class DeterministicModule : public BaseModule {
         ) override;
 
         /**
-         * @brief Calculates a single timestep for the deterministic module
+         * @brief Calculates a single timestep for the Hybrid module
          * 
          * @param step current step of the simulation
          * 
-         * @returns None (new state vector of t+1 values for deterministic step)
+         * @returns None (new state vector of t+1 values for Hybrid step)
         */
         void step(
             int step
         ) override;
 
         /**
-         * @brief Calculates every timestep for the deterministic module before returning call
+         * @brief Calculates every timestep for the Hybrid module before returning call
          * 
          * @param timepoints vector of timepoints for the simulation
          */

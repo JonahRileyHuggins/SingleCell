@@ -32,7 +32,10 @@ SBMLHandler::SBMLHandler(
     SBMLReader reader;
     doc = reader.readSBML(filename.c_str());
 
-    model = doc->getModel();
+    this->model = doc->getModel();
+
+    // used for determinining AMICI model
+    this->name = this->model->getId();
 
     // List of every species comparmental volume
     this->species_volumes = getGlobalSpeciesCompartmentVals();

@@ -138,6 +138,7 @@ class SBMLHandler {
 
     //----------------------------members-----------------------------------//
         std::vector<double> species_volumes;
+        std::string name;
 
 
     private:

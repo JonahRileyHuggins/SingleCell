@@ -47,7 +47,9 @@ StochasticModule::StochasticModule(
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
 
-    this->target_id = "Deterministic";
+
+    this->algorithm_id = this->sbml->getId();
+    this->target_id = "Hybrid";
 
  }
 

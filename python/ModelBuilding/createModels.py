@@ -15,6 +15,7 @@ import argparse
 from types import SimpleNamespace
 
 sys.path.append("../")
+sys.path.append("../../")
 
 from shared_utils.file_loader import FileLoader
 
@@ -32,7 +33,7 @@ parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-ty
 parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
 parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = "../sbml_files", help  = "path to which you want output files stored")
+parser.add_argument('--output', '-o', default = "../../sbml_files", help  = "path to which you want output files stored")
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -189,9 +190,14 @@ class DeterministicModel(CreateModel):
 
         logger.info('>>>>>>>> params dataframe after column name: %s' % (self.parameters))
 
-        self.model_files.species = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() == 'deterministic'
-        ]
+        if deterministic_only ==  False:
+
+            self.model_files.species = self.model_files.species[
+                self.model_files.species['solver'].str.lower().str.strip() == 'deterministic'
+            ]
+
+        elif deterministic_only == True:
+            self.model_files.species = self.model_files.species
     
     def __reduce_rxns(self) -> None:
         """removes reactions containing stochastic components. Deciding method by whether
@@ -597,6 +603,7 @@ if __name__ == '__main__':
 
     args.name = 'Stochastic'
     CreateModel.factory_model_handler(args, **kwargs)
+    print(os.getcwd())
     shutil.copyfile('../../sbml_files/Hybrid.sbml','../../amici_models/Hybrid/Hybrid.sbml')
     shutil.copyfile('../../sbml_files/Stochastic.sbml','../../amici_models/Hybrid/Stochastic.sbml')
 
