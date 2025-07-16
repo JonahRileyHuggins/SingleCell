@@ -12,6 +12,7 @@ import sys
 import shutil
 import logging
 import argparse
+import subprocess
 from types import SimpleNamespace
 
 sys.path.append("../")
@@ -256,6 +257,16 @@ class DeterministicModel(CreateModel):
                                 amici_model_output_path,
                                 verbose=args.verbose,
                                 constant_parameters=constantParameters)
+        
+
+        # makeshift band-aid for global variable problems in multi-amici-model CMakeLists.txt:
+        if args.name == 'Hybrid':
+            result = subprocess.run(
+                ['sed', '-i', '/add_custom_target(install-python/,/)/d', 'amici_models/Hybrid/swig/CMakeLists.txt'],
+                capture_output=True,
+                text=True,
+                check=True
+            )
         
 
 class StochasticModel(CreateModel):
@@ -603,11 +614,7 @@ if __name__ == '__main__':
 
     args.name = 'Stochastic'
     CreateModel.factory_model_handler(args, **kwargs)
-    print(os.getcwd())
-    shutil.copyfile('../../sbml_files/Hybrid.sbml','../../amici_models/Hybrid/Hybrid.sbml')
-    shutil.copyfile('../../sbml_files/Stochastic.sbml','../../amici_models/Hybrid/Stochastic.sbml')
 
     args.deterministic_only = True
     args.name = 'Deterministic'
     CreateModel.factory_model_handler(args, **kwargs)
-    shutil.copyfile('../../sbml_files/Deterministic.sbml','../../amici_models/Hybrid/Deterministic.sbml')

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.10)
 project(SingleCell)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -27,35 +27,12 @@ set(SINGLECELL_SRC_LIST
     src/main.cpp)
 
 # === External dependencies ===
-# add_subdirectory(ThirdParty/AMICI-0.32.0)
 add_subdirectory(amici_models/Deterministic)
 add_subdirectory(amici_models/Hybrid)
 add_subdirectory(ThirdParty/pybind11)
 add_subdirectory(ThirdParty/libxml2-2.14.3)
 add_subdirectory(ThirdParty/muparser)
 add_subdirectory(ThirdParty/libsbml-5.20.2)
-
-# ExternalProject_Add(DeterministicMod
-#   SOURCE_DIR ${CMAKE_SOURCE_DIR}/amici_models/Deterministic/
-#   CMAKE_ARGS
-#     -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/Deterministic
-#     -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-#     -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-#     -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
-#     -DAmici_DIR=${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-0.32.0/build
-#   BUILD_BYPRODUCTS ${CMAKE_BINARY_DIR}/Deterministic/lib/python*/site-packages/amici
-# )
-
-# ExternalProject_Add(HybridMod
-#   SOURCE_DIR ${CMAKE_SOURCE_DIR}/amici_models/Hybrid/
-#   CMAKE_ARGS
-#     -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/Hybrid
-#     -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-#     -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-#     -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
-#     -DAmici_DIR=${CMAKE_SOURCE_DIR}/ThirdParty/AMICI-0.32.0/build
-#   BUILD_BYPRODUCTS ${CMAKE_BINARY_DIR}/Hybrid/lib/python*/site-packages/amici
-# )
 
 # === Executable target ===
 add_executable(${PROJECT_NAME} ${SINGLECELL_SRC_LIST})
@@ -64,15 +41,10 @@ target_include_directories(SingleCell PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
     ${AMICI_INCLUDE_DIR}
-    # ${AMICI_DIR}/ThirdParty/sundials/build/include
-    # ${AMICI_DIR}/ThirdParty/gsl
-    # ${AMICI_DIR}/ThirdParty/SuiteSparse/build
 )
 
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
-    # ${AMICI_DIR}/ThirdParty/sundials/build/lib/libsundials_core.a
-    # ${AMICI_DIR}/ThirdParty/sundials/build/lib/libsundials_nvecserial.a
     Deterministic
     Hybrid
     xml2
@@ -96,15 +68,10 @@ target_include_directories(pySingleCell PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
     ${AMICI_INCLUDE_DIR}
-    # ${AMICI_DIR}/ThirdParty/sundials/build/include
-    # ${AMICI_DIR}/ThirdParty/gsl
-    # ${AMICI_DIR}/ThirdParty/SuiteSparse/build
 )
 
 target_link_libraries(pySingleCell PRIVATE
     ${AMICI_LIB}
-    # ${AMICI_DIR}/ThirdParty/sundials/build/lib/libsundials_core.a
-    # ${AMICI_DIR}/ThirdParty/sundials/build/lib/libsundials_nvecserial.a
     Deterministic
     Hybrid
     xml2
