@@ -1,6 +1,6 @@
 observableId	observableFormula	noiseFormula
 MAPK1ac	nuc_gene_a__MAPK1_	1
-MAPK3ac	ag_MAPK3	1
-MAPK1_mRNA	cyt_mrna__MAPK1_*(1/((1.0*(10**9))/((5.2500*(10**-12))*(6.023*(10**23)))))	1
-MAPK3_mRNA	cyt_mrna__MAPK3_*(1/((1.0*(10**9))/((5.2500*(10**-12))*(6.023*(10**23)))))	1
+MAPK3ac	nuc_gene_a__MAPK3_	1
+MAPK1_mRNA	cyt_mrna__MAPK1_201_*(1/((1.0*(10**9))/((5.2500*(10**-12))*(6.023*(10**23)))))	1
+MAPK3_mRNA	cyt_mrna__MAPK3_201_*(1/((1.0*(10**9))/((5.2500*(10**-12))*(6.023*(10**23)))))	1
 ERK_total	cyt_prot__pT202_pY204_MAPK__BCL2L11_*1+cyt_prot__pT202_pY204_MAPK__BAD_*1+cyt_prot__EGFR__pT202_pY204_MAPK_*1+cyt_prot__ERBB2__pT202_pY204_MAPK_*1+cyt_prot__ERBB4__pT202_pY204_MAPK_*1+nuc_prot__MAPK_*1+nuc_prot__pT202_pY204_MAPK_*1+cyt_prot__MAPK_*1+cyt_prot__pT202_MAPK_*1+cyt_prot__pT202_pY204_MAPK_*1+cyt_prot__GRB2__SOS1__pT202_pY204_MAPK_*1+cyt_prot__RAF1__pT202_pY204_MAPK_*1+cyt_prot__NF1__pT202_pY204_MAPK_*1+cyt_prot__MAPK__pS222_pS226_MAP2K_*1+cyt_prot__pT202_MAPK__pS222_pS226_MAP2K_*1+cyt_prot__RPS6KA__pT202_pY204_MAPK_*1+nuc_prot__pT202_pY204_MAPK__DUSP1_*1+nuc_prot__FOS__pT202_pY204_MAPK_*1+cyt_prot__pT202_MAPK__DUSP6_*1+cyt_prot__pT202_pY204_MAPK__DUSP6_*1+cyt_prot__pT202_pY204_MAPK__p_DUSP1_*1	1

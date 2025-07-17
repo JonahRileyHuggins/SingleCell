@@ -1,5 +1,5 @@
 observableId	observableFormula	noiseFormula
-Cd_total	Md*1.0	1
-Ce_total	Me*1.0	1
-Ca_total	Ma*1.0	1
-Cb_total	Mb*1.0	1
+Cd_total	nuc_prot__CCND__CDK4_	1
+Ce_total	nuc_prot__CCNE__CDK2_	1
+Ca_total	nuc_prot_CCNA__CDK2_	1
+Cb_total	nuc_prot_CCNB__CDK1_	1

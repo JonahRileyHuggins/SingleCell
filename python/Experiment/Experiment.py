@@ -37,6 +37,11 @@ parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
                     help="Catch-all arguments passed as key=value pairs")
 parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
 parser.add_argument('--output', '-o', default = ".", help  = "path to which you want output files stored")
+parser.add_argument(
+    '--observables',
+    action='store_false',
+    help='Enable downsampling of data'
+)
 
 
 logging.basicConfig(
@@ -126,6 +131,10 @@ class Experiment:
             if self.rank == 0:
                 logger.info(f"Round {round_i+1} of {rounds_to_complete}")
 
+            # Ensure every rank has the most recent copy of the results dict, to lookup dependency results:
+            self.results_dict = self.communicator.bcast(self.results_dict, root=0)
+
+            # Lines 133:139 Assign every rank its task for the current round. 
             task = org.task_assignment(
                 rank=self.rank,
                 size=self.size,
@@ -167,7 +176,7 @@ class Experiment:
             results_array = self.single_cell.simulate(0.0, stop_time, 30.0) # <-- default start and step times
 
             results = pd.DataFrame(results_array, columns=state_ids)
-            results['time'] = np.arange(0, 86400, 30)
+            results['time'] = np.arange(0, stop_time, 30)
 
             # Results are packaged into a single object to reduce the number of items sent via MPI
             parcel = org.package_results(
@@ -175,7 +184,6 @@ class Experiment:
                 condition_id=condition_id,
                 cell=cell,
             )
-
 
             if self.rank == 0:
                 # Store rank 0's results prior to storing other ranks
@@ -195,9 +203,8 @@ class Experiment:
             else:
                 # All non-root ranks send results to rank 0
                 self.communicator.send(parcel, dest=0, tag=round_i)
+                print(f'Sending rank {self.rank} results to root')
 
-            # Lastly, make sure every rank gets a copy of the results dict, to lookup dependency results:
-            self.results_dict = self.communicator.bcast(self.results_dict, root=0)
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
         return 
@@ -352,21 +359,12 @@ class Experiment:
         output:
             returns the results of the SPARCED model unit test simulation
         """
+        self.results_dict = obs.ObservableCalculator(self).run()
 
-        # if self.rank == 0 and self.observable == 1:
-        if self.rank == 0:
-            self.results_dict = obs.ObservableCalculator(self).run()
+        self.save_results(args)
 
-            self.save_results(args)
+        return # Proceeds to next command provided in launchers.py
 
-            return # Proceeds to next command provided in launchers.py
-
-        # if self.rank == 0 and self.observable == 0:
-        #     self.save_results(self)
-        #     return # Proceeds to next command provided in launchers.py
-
-        if self.rank != 0:
-            return None
 
 
 
@@ -383,13 +381,12 @@ if __name__ == '__main__':
 
     logger.debug("Closed simulation method successfully.")
 
-    experiment.save_results(args)
+    if experiment.rank == 0 and args.observables == False:
+        experiment.save_results(args)
+        logger.debug("Saved Results successfully.")
 
-    logger.debug("Saved Results successfully.")
-
-    experiment.observable_calculation(args)
-
-
-    logger.debug("Ran observableCalc. methods successfully")
+    elif experiment.rank == 0:
+        experiment.observable_calculation(args)
+        logger.debug("Ran observableCalc. methods successfully")
 
     
