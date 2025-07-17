@@ -61,7 +61,6 @@ class Experiment:
         - 
         """
 
-
         try:
             self.petab_yaml = os.path.abspath(petab_yaml)
 
@@ -85,12 +84,14 @@ class Experiment:
 
             logger.info("Loading Experiment %s details from %s", self.name, self.petab_yaml)
 
+        # !DotDict Notation! Loader contains configuration file and PEtab files.
         self.loader = org.broadcast_files(
             self.rank, 
             self.communicator, 
             self.petab_yaml
         )
 
+        # SingleCell() constructor is variadic, supply multiple SBML files!
         sbml_list = self.__sbml_getter()
 
         # Load an instance of SingleCell on every core
@@ -109,21 +110,23 @@ class Experiment:
         self.results_dict = self.communicator.bcast(self.results_dict, root=0)
 
 
-    def run(self) -> dict:
+    def run(self) -> None:
         """
         Primary method to run a Simultion experiment. 
 
         Returns:
         - results (pickle file | dict): dictionary of results by observation (a.k.a 'Observables')
         """
-        # Setup simulation
-        
+
         # Determine the number of rounds and the directory of tasks for each rank
         rounds_to_complete, rank_jobs_directory = org.task_organization(
             self.size,
             self.loader.problems[0].measurement_files[0],
             self.cell_count
         )
+
+        # Get total number of simulation tasks
+        total_jobs = len(org.total_tasks(self.loader.problems[0].measurement_files[0], self.cell_count))
 
         # For every cell and condition, run the simulation based on the number of rounds
         for round_i in range(rounds_to_complete):
@@ -156,10 +159,11 @@ class Experiment:
             
             # Get species identifiers
             state_ids = self.single_cell.getGlobalSpeciesIds()
-            logger.debug(f"List of species names: {state_ids}")
+
+            # ---VVV--- Excessive print for big models, uncomment at your own risk!
+            # logger.debug(f"List of species names: {state_ids}") 
 
             # Get results of any preequilibration condition:
-            #TODO: add results getter method for preequilibrations
             precondition_results = self.__extract_preequilibration_results(condition_id)
 
             if precondition_results:
@@ -198,7 +202,7 @@ class Experiment:
                     communicator=self.communicator,
                     results_dict=self.results_dict,
                     round_i=round_i,
-                    total_jobs=len(self.results_dict.keys()),
+                    total_jobs=total_jobs,
                 )
             else:
                 # All non-root ranks send results to rank 0
@@ -207,7 +211,7 @@ class Experiment:
 
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
-        return 
+        return #Stores results dictionary in class object.
 
 
     def __extract_preequilibration_results(self, condition_id) -> list:
@@ -218,6 +222,9 @@ class Experiment:
 
         # For now, only supporting one problem per file
         measurement_df = self.loader.problems[0].measurement_files[0]
+
+        precondition_results = []
+        
         if 'preequilibrationConditionId' in measurement_df.columns:
             # match condition to any preequilibration:
             precondition_id = measurement_df['preequilibrationConditionId'][
@@ -228,12 +235,10 @@ class Experiment:
 
             # iterate over results_dict to find last results
             precondition_results = self.__results_lookup(precondition_id)
-        else: 
-            precondition_results = None
 
         return precondition_results
 
-    def __results_dictionary(self):
+    def __results_dictionary(self) -> dict:
         """Create an empty dictionary for storing results
         input:
             filtered_conditions: pd.DataFrame - filtered conditions dataframe
@@ -272,15 +277,19 @@ class Experiment:
     def __results_lookup(self, condition_id: str) -> list:
         """Indexes results dictionary on condition id, returns last array of condition results"""
 
-        # Iterate over entries
+        # final results list to store individual species results in:
+        final_results = []
+
+        # list for excluding non-species keys in results_dict:
+        nonspecies_keys = ['conditionId', 'cell']
+
+        # results keys should all be species names paired with single numpy arrays. 
         for key in self.results_dict.keys():
             if self.results_dict[key]['conditionId'] == condition_id:
-                final_results = self.results_dict[key]['results'].iloc[-1].to_list()
 
-                pass
-
-            else: 
-                final_results = list()
+                for species in self.results_dict[key].keys():
+                    if species not in nonspecies_keys:
+                        final_results.append(self.results_dict[key][species][-1])
 
             return final_results
 
@@ -307,24 +316,27 @@ class Experiment:
         logger.debug("Updated model state")
 
     def __get_simulation_time(self, condition: pd.Series) -> float:
-        """Retrieves simulation duration from measurements dataframe given a condition"""
-
+        """
+        Returns the simulation time for a condition. Raises an error if time is undefined.
+        """
+        #Only supporting one problem per config file at the moment
         measurement_df = self.loader.problems[0].measurement_files[0]
+        matching_times = measurement_df.loc[
+            measurement_df["simulationConditionId"].isin(condition), "time"
+        ]
 
-        time  = measurement_df["time"][
-            measurement_df["simulationConditionId"].isin(condition)
-        ].max()
+        if matching_times.empty:
+            raise ValueError(
+                f"No simulation time defined for condition {condition['conditionId']}"
+            )
 
-        logger.debug(f"Simulating Condition {condition['conditionId']} for {time} seconds")
+        return matching_times.max()
 
-        return time
-    
 
-    def save_results(self, args):
+    def save_results(self, args) -> None:
         """Save the results of the simulation to a file
         input:
-            results: dict - the results of the simulation
-            name: str - the name of the file to save the results
+            None
         output:
             returns the saved results as a nested dictionary within
             a pickle file
@@ -352,7 +364,7 @@ class Experiment:
             pkl.dump(self.results_dict, f)
 
 
-    def observable_calculation(self, *args) -> dict:
+    def observable_calculation(self, *args) -> None:
         """Calculate the observables and compare to the experimental data.
         input:
             results: dict - results of the SPARCED model unit test simulation

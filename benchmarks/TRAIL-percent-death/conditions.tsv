@@ -1,4 +1,5 @@
-conditionId	conditionName	L	E	H	HGF	P	F	I	INS
+conditionId	conditionName	ext_prot__TNFSF10_	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_
+Heterogenize	precondition for obtaining heterogenous population of cells	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 serum_fed_equilibrium	serum fed pre-condition	2.21E-17	3.3	100	100	100	100	100	1721
 L_0p0385	TRAIL, 0.0385nM	0.0385	3.3	100	100	100	100	100	1721
 L_0p1925	TRAIL, 0.1925nM	0.1925	3.3	100	100	100	100	100	1721

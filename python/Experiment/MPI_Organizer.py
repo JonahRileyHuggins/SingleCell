@@ -140,7 +140,6 @@ def topo_sort_conditions(measurements_df):
     
     return ordered
 
-@staticmethod
 def total_tasks(measurements_df, cell_count):
     """Calculate the total number of tasks
     input:

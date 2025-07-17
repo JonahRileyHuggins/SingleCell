@@ -1,5 +1,6 @@
 observableId	preequilibrationConditionId	simulationConditionId	measurement	time
-cPARP_total	serum_fed_equilibrium	serum_fed_equilibrium		86400
+blank		Heterogenize	None	86400
+blank	Heterogenize	serum_fed_equilibrium	None	86400
 cPARP_total	serum_fed_equilibrium	L_0p0385	89.79	18000
 cPARP_total	serum_fed_equilibrium	L_0p1925	93.53	18000
 cPARP_total	serum_fed_equilibrium	L_0p385	88.4	18000

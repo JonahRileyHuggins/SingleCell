@@ -1,3 +1,4 @@
 observableId	observableFormula	noiseFormula
-cPARP_total	cPARP*1	1
-PARP_total	PARP*1	1
+blank	0	1
+cPARP_total	cyt_prot_cl__PARP1_*1	1
+PARP_total	cyt_prot__PARP1_*1	1
