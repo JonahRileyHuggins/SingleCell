@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/jonah/Desktop/SingleCellSimulator/libs/muparser
-BuildDirectory: /home/jonah/Desktop/SingleCellSimulator/libs/muparser
+SourceDirectory: /home/jonah/Desktop/SingleCell/ThirdParty/muparser
+BuildDirectory: /home/jonah/Desktop/SingleCell/ThirdParty/muparser
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: jonahs-laptop
+Site: jonah-VirtualBox
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -27,8 +27,8 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/home/jonah/Desktop/SingleCellSimulator/lib/python3.12/site-packages/cmake/data/bin/cmake" "/home/jonah/Desktop/SingleCellSimulator/libs/muparser"
-MakeCommand: /home/jonah/Desktop/SingleCellSimulator/lib/python3.12/site-packages/cmake/data/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
+ConfigureCommand: "/home/jonah/Desktop/SingleCell/.venv/lib/python3.12/site-packages/cmake/data/bin/cmake" "/home/jonah/Desktop/SingleCell/ThirdParty/muparser"
+MakeCommand: /home/jonah/Desktop/SingleCell/.venv/lib/python3.12/site-packages/cmake/data/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -76,7 +76,7 @@ CudaSanitizerCommand:
 CudaSanitizerCommandOptions: 
 MemoryCheckType: 
 MemoryCheckSanitizerOptions: 
-MemoryCheckCommand: MEMORYCHECK_COMMAND-NOTFOUND
+MemoryCheckCommand: /usr/bin/valgrind
 MemoryCheckCommandOptions: 
 MemoryCheckSuppressionFile: 
 

@@ -50,13 +50,13 @@ unset(_cmake_expected_targets)
 add_library(muparser::muparser SHARED IMPORTED)
 
 set_target_properties(muparser::muparser PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/home/jonah/Desktop/SingleCellSimulator/libs/muparser/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/home/jonah/Desktop/SingleCell/ThirdParty/muparser/include"
 )
 
 # Import target "muparser::muparser" for configuration "Release"
 set_property(TARGET muparser::muparser APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(muparser::muparser PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/home/jonah/Desktop/SingleCellSimulator/libs/muparser/libmuparser.so.2.3.5"
+  IMPORTED_LOCATION_RELEASE "/home/jonah/Desktop/SingleCell/ThirdParty/muparser/libmuparser.so.2.3.5"
   IMPORTED_SONAME_RELEASE "libmuparser.so.2"
   )
 

@@ -63,6 +63,8 @@ std::vector<std::vector<double>> SingleCell::simulate(
         timeSteps.size()
     );
 
+    this->modules.clear();
+
     return results_matrix;
 }
 

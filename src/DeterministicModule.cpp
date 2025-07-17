@@ -27,7 +27,6 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
-// #include "../amici_models/Deterministic/wrapfunctions.h"
 #include "../amici_models/Deterministic/Deterministic.h"
 
 //=============================Class Details================================//
@@ -45,9 +44,7 @@ DeterministicModule::DeterministicModule(
     this->sbml = DeterministicModel.model;
 
     // Import AMICI Model from 'amici_models/$modelname
-    // std::unique_ptr<amici::Model> new_model = amici::generic_model::getModel();
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
-    this->model = std::move(new_model);
+    this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";

@@ -176,7 +176,6 @@ class Experiment:
                 cell=cell,
             )
 
-            print(parcel)
 
             if self.rank == 0:
                 # Store rank 0's results prior to storing other ranks
@@ -184,8 +183,6 @@ class Experiment:
                     results_dict=self.results_dict, 
                     individual_parcel=parcel
                 )
-
-                print(self.results_dict)
 
                 # Collect results from other ranks and store in results dictionary
                 self.results_dict = org.aggregate_other_rank_results(
@@ -201,7 +198,6 @@ class Experiment:
 
             # Lastly, make sure every rank gets a copy of the results dict, to lookup dependency results:
             self.results_dict = self.communicator.bcast(self.results_dict, root=0)
-            print(self.results_dict)
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
         return 
@@ -385,8 +381,15 @@ if __name__ == '__main__':
 
     experiment.run()
 
+    logger.debug("Closed simulation method successfully.")
+
     experiment.save_results(args)
 
+    logger.debug("Saved Results successfully.")
+
     experiment.observable_calculation(args)
+
+
+    logger.debug("Ran observableCalc. methods successfully")
 
     

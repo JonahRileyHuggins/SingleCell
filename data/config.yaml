@@ -19,17 +19,17 @@ compilation:
 
 swap_files:
   old: 
-    filename: "reference.tsv" # The primary reference file(s)
+    filename: "../benchmarks/stochastic-expression/swap-reference.tsv" # The primary reference file(s)
     column: "old"
     datatype: "string"
   new: 
-    filename: "reference.tsv" # The primary reference file(s)
+    filename: "../benchmarks/stochastic-expression/swap-reference.tsv" # The primary reference file(s)
     column: "new"
     datatype: "string"
   update:
     - file1:
-      filename: "SPARCED - Ratelaws.tsv"  # List of files to be swapped in place of reference
-      output: "Ratelaws_updated.tsv"
+      filename: "../benchmarks/stochastic-expression/observables.tsv"  # List of files to be swapped in place of reference
+      output: "../benchmarks/stochastic-expression/observables-r.tsv"
 
 inspector:
   inspect:

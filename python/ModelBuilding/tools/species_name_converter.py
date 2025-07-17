@@ -16,11 +16,12 @@ in a yaml file and swaps the names from old to species conforming.
 
 import os
 import re
+import sys
 import logging
 import argparse
 
-
-from python.shared_utils.file_loader import Config
+sys.path.append('../../')
+from shared_utils.file_loader import FileLoader, Config
 
 
 logging.basicConfig(
@@ -48,21 +49,19 @@ def main(config_path: os.PathLike, **kwargs) -> None:
     """
     logger.info("Starting name swap process using config: %s", config_path)
 
-
-    config = Config.file_loader(config_path)
+    loader = FileLoader(config_path)
     logger.debug("Loaded configuration successfully")
 
-
     
-    project_root = "./../" # Single cell root directory
-    config_base = os.path.join(project_root, config.get("location", ""))
+    project_root = "./../../../" # Single cell root directory
+    config_base = os.path.join(project_root, loader.config.get("location", ""))
 
 
-    name_map = handle_mapping(config, **kwargs)
+    name_map = handle_mapping(loader, **kwargs)
     logger.info("Name mapping constructed with %d entries", len(name_map))
 
 
-    files_to_update = config.get("swap_files", {}).get("update", {})
+    files_to_update = loader.config.get("swap_files", {}).get("update", {})
     file_paths = [file_key["filename"] for file_key in files_to_update]
 
 
@@ -71,7 +70,6 @@ def main(config_path: os.PathLike, **kwargs) -> None:
 
     for index, file in enumerate(file_paths):
         logger.info("Processing file [%d/%d]: %s", index + 1, len(file_paths), file)
-
 
         update_path = os.path.join(config_base, file)
 
@@ -83,7 +81,10 @@ def main(config_path: os.PathLike, **kwargs) -> None:
         logger.debug("Replaced species names in file: %s", file)
 
 
-        output_path = files_to_update[index]['output']
+        output_path = os.path.join(
+            config_base,
+            files_to_update[index]['output']
+        )
         updated.to_csv(output_path, **kwargs)
         logger.info("Saved updated file to: %s", output_path)
 
@@ -91,16 +92,33 @@ def main(config_path: os.PathLike, **kwargs) -> None:
     logger.info("All files processed successfully.")
 
 
-def handle_mapping(config: dict, **kwargs) -> dict:
+def handle_mapping(loader: dict, **kwargs) -> dict:
     """Takes the config file and returns dictionary with properly formatted key-value pairs"""
-    logger.debug("Loading old names from: %s", config.swap_files.old.filename)
-    old_file = Config.file_loader(config.swap_files.old.filename, **kwargs)
-    old_names = old_file[config.swap_files.old.column].dropna()
+    
+    config_path = os.path.join(os.getcwd(), os.path.dirname(loader.config_path))
 
+    logger.debug("Loading old names from: %s", loader.config.swap_files.old.filename)
+    old_file = Config.file_loader(
+        os.path.join(
+            config_path, 
+            loader.config.swap_files.old.filename
+        ), 
+        **kwargs
+    )
 
-    logger.debug("Loading new names from: %s", config.swap_files.new.filename)
-    new_file = Config.file_loader(config.swap_files.new.filename, **kwargs)
-    new_names = new_file[config.swap_files.new.column][:len(old_names)]
+    old_names = old_file[loader.config.swap_files.old.column].dropna()
+
+    logger.debug("Loading new names from: %s", loader.config.swap_files.new.filename)
+
+    new_file = Config.file_loader(
+        os.path.join(
+            config_path,
+            loader.config.swap_files.new.filename
+        ), 
+        **kwargs
+    )
+    
+    new_names = new_file[loader.config.swap_files.new.column][:len(old_names)]
 
 
     name_map = dict(zip(list(old_names), list(new_names)))

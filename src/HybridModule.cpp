@@ -43,9 +43,8 @@ HybridModule::HybridModule(
     //Instantiate SBML model
     this->sbml = HybridModel.model;
 
-    // Import AMICI Model from 'bin/AMICI_MODELS/model
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
-    this->model = std::move(new_model);
+    // // Import AMICI Model from 'bin/AMICI_MODELS/model
+    this->model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";

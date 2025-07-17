@@ -92,8 +92,8 @@ class Config:
         ext = os.path.splitext(file_path)[1].lower()
 
         loader_class = {
-            '.yml': Yaml, 
-            '.yaml': Yaml, 
+            '.yml': YAML, 
+            '.yaml': YAML, 
             '.json': JSON, 
             '.csv': CSV, 
             '.tsv': CSV, 
@@ -121,7 +121,7 @@ class File:
         """parent loader function"""
         raise NotImplementedError("Subclasses must implement this method")
     
-class Yaml(File):
+class YAML(File):
 
     def __init__(self, file_path):
         super().__init__(file_path)
