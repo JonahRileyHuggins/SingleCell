@@ -11,4 +11,4 @@ problems:
     sbml_files:
     - ../../sbml_files/Hybrid.sbml
     - ../../sbml_files/Stochastic.sbml
-    cell_count: 1
+    cell_count: 10

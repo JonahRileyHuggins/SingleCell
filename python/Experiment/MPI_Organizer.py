@@ -83,7 +83,6 @@ def task_organization(
     Output:
         task_list: list - the list of tasks assigned to the rank
     """
-
     list_of_jobs = total_tasks(measurement_df, cell_count, size)
 
     rank_jobs_directory = {}
@@ -151,17 +150,19 @@ def __delay_post_conditions(
     to delay conditions with pre-conditional dependency simulations"""
     
     pre_conds = measurement_df['preequilibrationConditionId'].drop_duplicates().dropna().to_list()
-
     # Since this is only called after topological sorting via Khan's alg., all 0-order conditions 
     # are first; the task_list is already ordered!
 
     for idx, job in enumerate(task_list):
 
+        if job == None:
+            continue
+
         cond_id = job.split("+")[0]
 
         if cond_id in pre_conds:
 
-            pause_ranks = size - cell_count
+            pause_ranks = max((size - cell_count), 0)
 
             while pause_ranks:
 
@@ -186,14 +187,17 @@ def total_tasks(measurements_df: pd.DataFrame, cell_count: int, size: int) -> li
     for cond in ordered_conditions:
         for cell in range(1, cell_count + 1):
             list_of_jobs.append(f"{cond}+{cell}")
-    
-    # Add delays for dependent conditions & cells; requires cell number in job ID
-    proper_spaced_conditions = __delay_post_conditions(measurements_df, 
-                                                        list_of_jobs, 
-                                                        cell_count, 
-                                                        size)
 
-    return proper_spaced_conditions
+    if 'preequilibrationConditionId' in measurements_df.columns: 
+        # Add delays for dependent conditions & cells; requires cell number in job ID
+        list_of_jobs = __delay_post_conditions(
+            measurements_df,
+            list_of_jobs, 
+            cell_count, 
+            size
+            )
+
+    return list_of_jobs
 
 def assign_tasks(rank: int, total_jobs: int, size: int) -> list:
     """
@@ -290,69 +294,41 @@ def package_results(
     return rank_results
 
 def aggregate_other_rank_results(
-    size: int, communicator, results_dict: dict, round_i: int, total_jobs: int
+        communicator: MPI.Intracomm,
+        results_dict: dict,
+        size: int
 ) -> dict:
     """This function aggregates the results from the ranks and
     stores them in the final simulation results dictionary
 
     Input:
-        size: int - the number of MPI processes
         communicator: MPI communicator - the MPI communicator
         results: dict - the results dictionary
-        results: dict - the results dictionary
-        round_i: int - the current round
-        total_jobs: int - the total number of jobs
+        size: integer of number of ranks performing jobs
 
     Output:
         results_dict: dict - the results dictionary"""
+    
+    #  Add 1 to account for the root rank saving results prior.
+    completed_tasks = 1
 
-    # Determine the number of tasks to be completed this round, subtract 1
-    # to account for the root rank saving results prior.
-    round_i_tasks = tasks_this_round(size, total_jobs, round_i) - 1
+    task_counter =  size
 
-    completed_tasks = 0
-
-    while completed_tasks < round_i_tasks:
+    while completed_tasks < task_counter: 
 
         results = communicator.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG)
 
-        results_dict = store_results(results, results_dict)
+        if results is None:
+            task_counter -= 1
+        
+        else:
+            results_dict = store_results(results, results_dict)
+            completed_tasks += 1
 
-        completed_tasks += 1
-
-        if completed_tasks == round_i_tasks:
+        if completed_tasks == task_counter:
             break
 
     return results_dict
-
-def tasks_this_round(size, total_jobs, round_number):
-    """Calculate the number of tasks for the current round
-    input:
-        size: int - the total number of processes assigned
-        total_jobs: int - the total number of tasks
-
-    output:
-        returns the number of tasks for the current round
-    """
-    number_of_rounds = -(-total_jobs // size)
-
-    tasks_per_round = size
-    remainder = total_jobs % size
-
-    # This accounts for pythonic indexing starting at 0
-    round_number += 1
-
-    if round_number < number_of_rounds:
-        tasks_this_round = tasks_per_round
-    elif round_number == number_of_rounds and remainder != 0:
-        tasks_this_round = remainder
-    elif round_number == number_of_rounds and remainder == 0:
-        tasks_this_round = tasks_per_round
-    else:
-        # provide an error and message exit
-        raise ValueError("Round number exceeds the number of rounds")
-
-    return tasks_this_round
 
 def store_results(individual_parcel: dict, results_dict: dict) -> dict:
     """This function stores the results in the results dictionary

@@ -80,7 +80,7 @@ class Experiment:
         self.communicator, self.rank, self.size = org.mpi_communicator()
 
         if self.rank == 0:
-            logger.info(f"Starting MPI process across {self.size} number of cores.")
+            logger.info(f"Starting MPI process across {self.size} cores.")
 
             logger.info("Loading Experiment %s details from %s", self.name, self.petab_yaml)
 
@@ -117,17 +117,12 @@ class Experiment:
         Returns:
         - results (pickle file | dict): dictionary of results by observation (a.k.a 'Observables')
         """
-
         # Determine the number of rounds and the directory of tasks for each rank
         rounds_to_complete, rank_jobs_directory = org.task_organization(
             self.size,
             self.loader.problems[0].measurement_files[0],
             self.cell_count
         )
-        print(rank_jobs_directory)
-
-        # Get total number of simulation tasks
-        total_jobs = len(org.total_tasks(self.loader.problems[0].measurement_files[0], self.cell_count, self.size))
 
         # For every cell and condition, run the simulation based on the number of rounds
         for round_i in range(rounds_to_complete):
@@ -152,14 +147,17 @@ class Experiment:
                 
                 # Collect results from other ranks and store in results dictionary
                 self.results_dict = org.aggregate_other_rank_results(
-                    size=self.size,
                     communicator=self.communicator,
                     results_dict=self.results_dict,
-                    round_i=round_i,
-                    total_jobs=total_jobs,
+                    size=self.size
                 )
+                continue
+
             elif task is None:
                 logger.debug(f"Rank {self.rank} has no tasks to complete")
+                results = None
+                # All non-root ranks send results to rank 0
+                self.communicator.send(results, dest=0, tag=round_i)
                 continue
 
             condition, cell, condition_id = org.condition_cell_id(
@@ -172,9 +170,6 @@ class Experiment:
             # Get species identifiers
             state_ids = self.single_cell.getGlobalSpeciesIds()
 
-            # ---VVV--- Excessive print for big models, uncomment at your own risk!
-            # logger.debug(f"List of species names: {state_ids}") 
-
             # Get results of any preequilibration condition:
             precondition_results = self.__extract_preequilibration_results(condition_id)
 
@@ -183,7 +178,7 @@ class Experiment:
                 self.__setModelState(state_ids, precondition_results)
 
             # Assign current condition to model state
-            self.__setModelState(condition.keys(), condition)
+            self.__setModelState(condition.keys(), condition.values.tolist())
 
             # Extract simulation time from condition in measurement_df
             stop_time = self.__get_simulation_time(condition)
@@ -210,16 +205,14 @@ class Experiment:
 
                 # Collect results from other ranks and store in results dictionary
                 self.results_dict = org.aggregate_other_rank_results(
-                    size=self.size,
                     communicator=self.communicator,
                     results_dict=self.results_dict,
-                    round_i=round_i,
-                    total_jobs=total_jobs,
+                    size=self.size
                 )
             else:
                 # All non-root ranks send results to rank 0
                 self.communicator.send(parcel, dest=0, tag=round_i)
-                print(f'Sending rank {self.rank} results to root')
+                logger.info('Sending rank {self.rank} results to root')
 
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
 
@@ -307,9 +300,9 @@ class Experiment:
 
                 for species in self.results_dict[key].keys():
                     if species not in nonspecies_keys:
-                        final_results.append(self.results_dict[key][species][-1])
+                        final_results.append(self.results_dict[key][species].iloc[-1])
 
-            return final_results
+        return final_results
 
     def __sbml_getter(self) -> list:
         """Retrieves all sbml files defined in PEtab configuration file"""
@@ -329,7 +322,7 @@ class Experiment:
             if name in ('conditionId', 'conditionName'):
                 continue
 
-            self.single_cell.modify(name, state.iloc[index])
+            self.single_cell.modify(name, state[index])
 
         logger.debug("Updated model state")
 
