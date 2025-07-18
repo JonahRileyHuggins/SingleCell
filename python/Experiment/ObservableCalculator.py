@@ -13,6 +13,7 @@ Output: dictionary containing the observables of interest
 """
 # -----------------------Package Import & Defined Arguements-------------------#
 import re
+import math
 from typing import List, Hashable
 
 import numpy as np
@@ -141,8 +142,15 @@ class ObservableCalculator:
         """Takes a formula string and returns the results of the intended mathematical
         expression."""
 
-        species = self._get_valid_species(formula)
+        # List of values considered to mean "empty" or "skip"
+        acceptable_nulls = ['', None, 0, float('nan'), np.nan]
 
+        # Check if formula is in the null-like set
+        if formula in acceptable_nulls or (
+            isinstance(formula, float) and math.isnan(formula)
+        ):
+            return None
+        
         for variable in species:
             # At each iteration, the formula updates with each species array
             formula = self.swap_species_for_array(

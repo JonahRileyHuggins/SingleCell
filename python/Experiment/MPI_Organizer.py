@@ -84,7 +84,7 @@ def task_organization(
         task_list: list - the list of tasks assigned to the rank
     """
 
-    list_of_jobs = total_tasks(measurement_df, cell_count)
+    list_of_jobs = total_tasks(measurement_df, cell_count, size)
 
     rank_jobs_directory = {}
 
@@ -101,7 +101,7 @@ def task_organization(
 
     return rounds_to_complete, rank_jobs_directory
 
-def topo_sort_conditions(measurements_df):
+def topo_sort_conditions(measurements_df: pd.DataFrame) -> list:
     """
     Given a DataFrame with columns
       - 'simulationConditionId'
@@ -140,17 +140,45 @@ def topo_sort_conditions(measurements_df):
     
     return ordered
 
-def total_tasks(measurements_df, cell_count):
-    """Calculate the total number of tasks
-    input:
-        conditions_df: pd.DataFrame - conditions dataframe
+def __delay_post_conditions(
+        measurement_df: pd.DataFrame, 
+        task_list: list, 
+        cell_count: int, 
+        size: int
+    ) -> list:
+    
+    """Inserts into topologically sorted task list (with cells) `None` values 
+    to delay conditions with pre-conditional dependency simulations"""
+    
+    pre_conds = measurement_df['preequilibrationConditionId'].drop_duplicates().dropna().to_list()
 
-    output:
-        returns the total number of tasks
-    """
+    # Since this is only called after topological sorting via Khan's alg., all 0-order conditions 
+    # are first; the task_list is already ordered!
+
+    for idx, job in enumerate(task_list):
+
+        cond_id = job.split("+")[0]
+
+        if cond_id in pre_conds:
+
+            pause_ranks = size - cell_count
+
+            while pause_ranks:
+
+                task_list.insert(idx+1, None)
+
+                pause_ranks -= 1
+
+    return task_list
+
+
+def total_tasks(measurements_df: pd.DataFrame, cell_count: int, size: int) -> list:
+    """Calculate the total number of tasks from the measurement dataframe"""
 
     if 'preequilibrationConditionId' in measurements_df.columns:
+        # Reorder conditions with 0-order dependencies first:
         ordered_conditions = topo_sort_conditions(measurements_df)
+
     else:
         ordered_conditions = measurements_df['simulationConditionId'].unique().tolist()
 
@@ -159,9 +187,15 @@ def total_tasks(measurements_df, cell_count):
         for cell in range(1, cell_count + 1):
             list_of_jobs.append(f"{cond}+{cell}")
     
-    return list_of_jobs
+    # Add delays for dependent conditions & cells; requires cell number in job ID
+    proper_spaced_conditions = __delay_post_conditions(measurements_df, 
+                                                        list_of_jobs, 
+                                                        cell_count, 
+                                                        size)
 
-def assign_tasks(rank: int, total_jobs: int, size: int):
+    return proper_spaced_conditions
+
+def assign_tasks(rank: int, total_jobs: int, size: int) -> list:
     """
     Assign tasks to a given rank in round-robin fashion, including those that are part
     of sequential chains. Ensures layering of job dependencies, avoids

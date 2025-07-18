@@ -124,9 +124,10 @@ class Experiment:
             self.loader.problems[0].measurement_files[0],
             self.cell_count
         )
+        print(rank_jobs_directory)
 
         # Get total number of simulation tasks
-        total_jobs = len(org.total_tasks(self.loader.problems[0].measurement_files[0], self.cell_count))
+        total_jobs = len(org.total_tasks(self.loader.problems[0].measurement_files[0], self.cell_count, self.size))
 
         # For every cell and condition, run the simulation based on the number of rounds
         for round_i in range(rounds_to_complete):
@@ -146,7 +147,18 @@ class Experiment:
                 round_i=round_i
             )
 
-            if task is None:
+            if task is None and self.rank == 0:
+                logger.debug(f"Rank {self.rank} has no task: opening broadcast for results-parcel")
+                
+                # Collect results from other ranks and store in results dictionary
+                self.results_dict = org.aggregate_other_rank_results(
+                    size=self.size,
+                    communicator=self.communicator,
+                    results_dict=self.results_dict,
+                    round_i=round_i,
+                    total_jobs=total_jobs,
+                )
+            elif task is None:
                 logger.debug(f"Rank {self.rank} has no tasks to complete")
                 continue
 
@@ -214,29 +226,35 @@ class Experiment:
         return #Stores results dictionary in class object.
 
 
-    def __extract_preequilibration_results(self, condition_id) -> list:
+    def __extract_preequilibration_results(self, condition_id: str) -> list:
         """
         Find if a given condition has a preequilibration. Pulls from results dictionary
-        final timepoint array. Assigns to 
+        final timepoint array.
         """
 
         # For now, only supporting one problem per file
         measurement_df = self.loader.problems[0].measurement_files[0]
-
         precondition_results = []
-        
-        if 'preequilibrationConditionId' in measurement_df.columns:
-            # match condition to any preequilibration:
-            precondition_id = measurement_df['preequilibrationConditionId'][
-                measurement_df['simulationConditionId'] == condition_id
-                ][0]
-            logger.debug(f"Extracting preequilibration condition {precondition_id} \
-                        for condition {condition_id}")
 
-            # iterate over results_dict to find last results
-            precondition_results = self.__results_lookup(precondition_id)
+        if 'preequilibrationConditionId' in measurement_df.columns:
+            # Filter matching simulationConditionId
+            precondition_matches = measurement_df[
+                measurement_df['simulationConditionId'] == condition_id
+            ]
+
+            if not precondition_matches.empty:
+                # Use iloc[0] to safely get the first preequilibrationConditionId
+                precondition_id = precondition_matches['preequilibrationConditionId'].iloc[0]
+                
+                logger.debug((
+                    f"Extracting preequilibration condition {precondition_id}",
+                    f"for condition {condition_id}"
+                ))
+
+                precondition_results = self.__results_lookup(precondition_id)
 
         return precondition_results
+
 
     def __results_dictionary(self) -> dict:
         """Create an empty dictionary for storing results
