@@ -76,7 +76,7 @@ class Experiment:
 
         self.cell_count = 1 if "cell_count" not in self.details.problems[0] \
             else self.details.problems[0].cell_count
-
+        
         self.communicator, self.rank, self.size = org.mpi_communicator()
 
         if self.rank == 0:
@@ -268,9 +268,8 @@ class Experiment:
         for idx, condition in conditions_df.iterrows():
 
             condition_id = condition["conditionId"]
-            num_cells = self.details.cell_count if self.details.cell_count else 1
 
-            for cell in range(1, num_cells+1):
+            for cell in range(1, self.cell_count+1):
                 if "datasetId" in measurement_df.columns:
                     identifier = measurement_df["datasetId"]\
                         [measurement_df["simulationConditionId"] == condition_id].values[0]

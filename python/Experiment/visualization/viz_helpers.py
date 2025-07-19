@@ -87,6 +87,9 @@ class CellDeathMetrics:
 
         time_of_death = {}
         for entry in self.data:
+            # Safety check for if observable isn't in particular entry:
+            if self.observable_name not in list(self.data[entry].keys()):
+                continue
             time_of_death[entry] = {}
             time_of_death[entry]['value'] = []
 
