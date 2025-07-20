@@ -54,7 +54,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
     );
 
     std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
-
+    printf("Assigns timesteps");
     // run simulation:
     this->runGlobal(timeSteps);
 
@@ -148,10 +148,12 @@ void SingleCell::runGlobal(
     std::vector<double> timesteps
 ) { 
     auto start_t = std::chrono::high_resolution_clock::now();
-    printf("Running Simulation for %lu steps.", timesteps.size());
-    printf("\n");
+    printf("Running Simulation for %lu steps.\n", timesteps.size());
+
+
 
     if (this->modules.size() == 1) {
+        printf("Mod count: 1");
         for (const auto& mod : this->modules) {
 
             std::cout << "Simulating fully " << mod->getModuleId() << "\n";
@@ -161,9 +163,10 @@ void SingleCell::runGlobal(
         }
 
     } else {
+        printf("mod count: 1+");
         // Main iterating for-loop: we're going to stop it and update vals every second until total time reached.
         for (int step = 1; step < timesteps.size(); step++) {
-
+            printf("Makes it to step section");
             //Run Module Simulations
             this->stepGlobal(step);
 

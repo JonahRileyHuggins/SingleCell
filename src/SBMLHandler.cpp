@@ -11,12 +11,15 @@
 #include <string>
 #include <iostream>
 #include <unordered_map>
-#include <sbml/SBMLTypes.h>
-#include <sbml/SBMLReader.h>
 
 // Internal Libraries
 #include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
+
+// Third Party Libraries
+#include <Eigen/Dense>
+#include <sbml/SBMLTypes.h>
+#include <sbml/SBMLReader.h>
 
 //--------------------------Class Declaration-------------------------------//
 SBMLHandler::SBMLHandler(
@@ -53,7 +56,7 @@ SBMLHandler::~SBMLHandler() { // Destructor Method
     }
 }
 
-std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
+Eigen::MatrixXd SBMLHandler::getStoichiometricMatrix() {
 
     int numSpecies = this->model->getNumSpecies();
 
@@ -63,23 +66,24 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
 
     // build a blank stoichiometric matrix of zeros
-    std::vector<std::vector<double>> stoichmat(numSpecies, std::vector<double>(numReactions, 0.0));
+
+    Eigen::MatrixXd stoichmat = Eigen::MatrixXd::Constant(numSpecies, numReactions, 0.0);
 
     // Populate the matrix:
-    for (int i = 0; i < numReactions; i++) {
+    for (size_t i = 0; i < numReactions; i++) {
         //Reaction getter
         const Reaction* reaction = this->model->getReaction(i);
         
         // Find Reactants
         const ListOfSpeciesReferences* reactants = reaction->getListOfReactants();
 
-        for (unsigned int r = 0; r < reactants->size(); r++) {
+        for (size_t r = 0; r < reactants->size(); r++) {
             const SimpleSpeciesReference* reactant_ref = reactants->get(r);
             const SpeciesReference* reactant = dynamic_cast<const SpeciesReference*>(reactant_ref);
             const std::string speciesId = reactant->getSpecies();
             double coeff = reactant->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] -= coeff;
+            stoichmat(speciesIndex, i) -= coeff;
         }
 
         const ListOfSpeciesReferences* products = reaction->getListOfProducts();
@@ -91,7 +95,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
             const std::string speciesId = product->getSpecies();
             double coeff = product->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] += coeff;
+            stoichmat(speciesIndex, i) += coeff;
         }
     }
 

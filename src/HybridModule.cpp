@@ -205,19 +205,6 @@ void HybridModule::setSimulationSettings(
     this->updateParameters();
 }
 
-std::vector<double> HybridModule::getLastStepResult(
-    int timestep
-) {
-
-    std::vector<double> state_vector(this->results_matrix.size());
-
-    state_vector = this->results_matrix[
-        (timestep > 0) ? timestep - 1 : timestep
-    ];
-
-    return state_vector;
-}
-
 void HybridModule::updateParameters() {
     
     for (const auto& module : this->targets) {

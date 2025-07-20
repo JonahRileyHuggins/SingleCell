@@ -26,6 +26,7 @@
 #include "singlecell/DeterministicModule.h"
 
 // Third Party Libraries
+#include <Eigen/Dense>
 #include "amici/amici.h"
 #include "../amici_models/Deterministic/Deterministic.h"
 
@@ -203,19 +204,6 @@ void DeterministicModule::setSimulationSettings(
     solver->setMaxSteps(100000);
 
     this->updateParameters();
-}
-
-std::vector<double> DeterministicModule::getLastStepResult(
-    int timestep
-) {
-
-    std::vector<double> state_vector(this->results_matrix.size());
-
-    state_vector = this->results_matrix[
-        (timestep > 0) ? timestep - 1 : timestep
-    ];
-
-    return state_vector;
 }
 
 void DeterministicModule::updateParameters() {

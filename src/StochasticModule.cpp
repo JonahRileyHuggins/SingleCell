@@ -28,6 +28,7 @@
 
 // Third Party Libraries
 #include "muParser.h"
+#include <Eigen/Dense>
 
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
@@ -68,7 +69,9 @@ void StochasticModule::loadTargetModule(
     }
 }
 
-std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
+Eigen::VectorXd StochasticModule::computeReactions(
+    Eigen::VectorXd state
+) {
     /** 
      * @brief Computes all reactions in the SBML model
      * 
@@ -79,20 +82,22 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
     
     unsigned int numReactions = sbml->getNumReactions();
 
-    std::vector<double> v(numReactions);
+    Eigen::VectorXd v(numReactions);
 
     // Populate the matrix:
-    for (unsigned int i = 0; i < numReactions; i++) {
+    for (size_t i = 0; i < numReactions; i++) {
         //Reaction getter
-        std::string formula_i = formulas_vector[i];
+        std::string formula_i = this->formulas_vector[i];
 
-        v[i] = computeReaction(formula_i);
+        v(i) = computeReaction(formula_i);
     }
     
     return v;
 }
     
-double StochasticModule::computeReaction(std::string formula_str) {
+double StochasticModule::computeReaction(
+    std::string formula_str
+) {
 
     // Create instance of Parser object
     mu::Parser parser;
@@ -148,7 +153,9 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
         
 }
 
-std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
+std::vector<std::string> StochasticModule::tokenizeFormula(
+    const std::string& formula_str
+) {
 
     std::vector<std::string> tokens;
 
@@ -173,53 +180,47 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
     return tokens;
 }
 
-std::vector<double> StochasticModule::samplePoisson(
-    std::vector<double> mu
+Eigen::VectorXd StochasticModule::samplePoisson(
+    Eigen::VectorXd mu
 ) {
 
     std::random_device rd;
     std::mt19937 generator(rd());
 
     // realization vector for storing random poisson samples
-    std::vector<double> m_i(mu.size()); 
+    Eigen::VectorXd m_i(mu.size()); 
 
     for (size_t i = 0; i < mu.size(); ++i) {
 
-        std::poisson_distribution<int> dist((mu[i] * this->delta_t)); 
-        m_i[i] = dist(generator);
+        std::poisson_distribution<int> dist((mu(i) * this->delta_t)); 
+        m_i(i) = dist(generator);
 
     }
     return m_i;
 }
 
-std::vector<double> StochasticModule::constrainTau(
-    std::vector<double> m_i,
-    std::vector<double> xhat_tn
+Eigen::VectorXd StochasticModule::constrainTau(
+    Eigen::VectorXd m_i,
+    Eigen::VectorXd xhat_tn
 ) {
 
-    std::vector<double> mhat_actual(m_i.size()); // results storage vector
+    Eigen::VectorXd mhat_actual(m_i.size()); // results storage vector
 
-    for (int i = 0; i < this->stoichmat[0].size(); i++) {
+    for (size_t j = 0; j < this->stoichmat.cols(); j++) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
-        std::vector<double> S_i = matrix_utils::getColumn(this->stoichmat, i);
+        Eigen::VectorXd S_j = this->stoichmat.col(j);
 
-        std::vector<double> Rhat_i(xhat_tn.size()); // double for storing each reaction product
+        Eigen::VectorXd Rhat_i(xhat_tn.size()); // double for storing each reaction product
 
-        for (int j = 0; j < xhat_tn.size(); j++) {
-            Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
-        }
+        Rhat_i = xhat_tn.array() * S_j.array(); // calculate coefficient products of current state
 
-        std::vector<double> abs_r;
-        abs_r.reserve(Rhat_i.size());
+        Eigen::VectorXd abs_r(Rhat_i.size());
 
-        for (const auto& rct : Rhat_i) {
-            double abs_val = std::abs(rct);
-            if (abs_val > 0)
-                abs_r.push_back(abs_val);
-        }
+        // Sifts out leq(0) values via masking with bool function
+        abs_r = Rhat_i.array().abs() * (Rhat_i.array().abs() > 0).cast<double>();
 
-        double R_mi = m_i[i]; // was set 0.0
+        double R_mi = m_i(j);
         for (const auto& reactant : abs_r) {
 
             if (reactant < R_mi) { // drop reactants != negative (-): i.e. not rate-limiting
@@ -227,28 +228,21 @@ std::vector<double> StochasticModule::constrainTau(
             }
         }
 
-        mhat_actual[i] = R_mi;
+        mhat_actual(j) = R_mi;
     }
 
     return mhat_actual;
 }
 
-std::vector<double> StochasticModule::computeNewState(
-    std::vector<double> state_t,
-    std::vector<double> real_vec
+Eigen::VectorXd StochasticModule::computeNewState(
+    Eigen::VectorXd state_t,
+    Eigen::VectorXd real_vec
 ) {
 
-        // Update the stochastic state vector: new_state = old_state * v
-    std::vector<double> new_state(state_t.size());
-    
-    for (size_t i = 0; i < state_t.size(); ++i) {
-        double delta = 0.0;
-        for (size_t j = 0; j < real_vec.size(); ++j) {
-            delta += stoichmat[i][j] * real_vec[j];
-        }
+    // Update the stochastic state vector: new_state = old_state * v
+    Eigen::VectorXd delta = this->stoichmat * real_vec;
 
-        new_state[i] = std::round(state_t[i] + delta);
-    }
+    Eigen::VectorXd new_state = (state_t + delta).array().round();
 
     return new_state;
 }
@@ -295,22 +289,32 @@ void StochasticModule::step(
     //convert from nanomolar to mpc:
     this->handler.convertSpeciesUnits(this->nM2mpv_conversion_factors); // molecules per volume
 
+    Eigen::VectorXd initial_state = Eigen::Map<Eigen::VectorXd>(
+        this->handler.getInitialState().data(),
+        this->handler.getInitialState().size()
+    );
+
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> realizations = samplePoisson(computeReactions(this->handler.getInitialState()));
+    Eigen::VectorXd realizations = samplePoisson(initial_state);
 
     //reassign molecules per volume to just molecules:
     this->handler.convertSpeciesUnits(this->handler.species_volumes);
 
     // Constrain Tau-leap algorithm for conservation of mass
-    std::vector<double> constrained_realizations = constrainTau(
-        realizations, 
-        this->handler.getInitialState()
+    Eigen::VectorXd constrained_realizations = constrainTau(
+        realizations,
+        initial_state
     );
-    
+
     // Calculate the updated state for current step:
-    std::vector<double> new_state = computeNewState(
-        this->handler.getInitialState(),
+    Eigen::VectorXd new_vector = computeNewState(
+        initial_state,
         constrained_realizations
+    );
+
+    std::vector<double> new_state(
+        new_vector.data(), 
+        new_vector.data() + new_vector.size()
     );
 
     this->handler.setState(new_state);
@@ -362,17 +366,4 @@ void StochasticModule::updateParameters() {
         }
 
     }
-}
-
-std::vector<double> StochasticModule::getLastStepResult(
-    int timestep
-) {
-
-    std::vector<double> state_vector(this->results_matrix.size());
-
-    state_vector = this->results_matrix[
-        (timestep > 0) ? timestep - 1 : timestep
-    ];
-
-    return state_vector;
 }
