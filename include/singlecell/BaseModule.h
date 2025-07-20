@@ -23,7 +23,8 @@
 //Internal Libraries
 #include "singlecell/SBMLHandler.h"
 
-//Third Party Libraries
+// Third Party Libraries
+#include <Eigen/Dense>
 #include "sbml/SBMLReader.h"
 
 //==========================Class Declaration===============================//
@@ -70,9 +71,9 @@ class BaseModule {
          * 
          * @returns state_vector vector of species states recorded in results_matrix object
          */
-        virtual std::vector<double> getLastStepResult(
+        std::vector<double> getLastStepResult(
             int timepoint
-        ) = 0;
+        );
 
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "";
@@ -161,7 +162,7 @@ class BaseModule {
         SBMLHandler handler;
         Model* sbml;
 
-        std::vector<std::vector<double>> stoichmat;
+        Eigen::MatrixXd stoichmat;
 
         std::vector<std::string> formulas_vector;
 

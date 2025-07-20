@@ -17,6 +17,9 @@
 #include <string>
 #include <memory>
 #include <unordered_map>
+
+// Third Party Libraries
+#include <Eigen/Dense>
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
 //--------------------------Constants Declarations---------------------------//
@@ -40,7 +43,7 @@ class SBMLHandler {
         * 
         * @returns stoichmat A stochiometric matrix 
         * */
-        std::vector<std::vector<double>> getStoichiometricMatrix();
+        Eigen::MatrixXd getStoichiometricMatrix();
 
         /**
          * @brief creates a map of species identifiers to thier corresponding index

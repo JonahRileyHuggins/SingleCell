@@ -20,6 +20,7 @@
 #include <unordered_map>
 
 // Internal libraries
+#include <Eigen/Dense>
 #include "BaseModule.h"
 #include "SBMLHandler.h"
 
@@ -102,8 +103,8 @@ class StochasticModule : public BaseModule{
 
     private:
     // -------------------------Methods-----------------------------------//
-        std::vector<double> computeReactions(
-            const std::vector<double>& state
+        Eigen::VectorXd computeReactions(
+            Eigen::VectorXd state
         );
 
 
@@ -149,8 +150,8 @@ class StochasticModule : public BaseModule{
          * 
          * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
-        std::vector<double> samplePoisson(
-            std::vector<double> mu
+        Eigen::VectorXd samplePoisson(
+            Eigen::VectorXd mu
         );
 
         /**
@@ -160,9 +161,9 @@ class StochasticModule : public BaseModule{
          * 
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
-        std::vector<double> constrainTau(
-            std::vector<double> m_i,
-            std::vector<double> xhat_tn
+        Eigen::VectorXd constrainTau(
+            Eigen::VectorXd m_i,
+            Eigen::VectorXd xhat_tn
         ); 
 
         /**
@@ -175,9 +176,9 @@ class StochasticModule : public BaseModule{
          * 
          * @returns new_state vector of doubles equal to X_t = X_{t-1} + delta
          */
-        std::vector<double> computeNewState(
-        std::vector<double> state_t,
-        std::vector<double> real_vec
+        Eigen::VectorXd computeNewState(
+        Eigen::VectorXd state_t,
+        Eigen::VectorXd real_vec
         );
 
         //---------------------------Members----------------------------------//
@@ -187,17 +188,6 @@ class StochasticModule : public BaseModule{
 
     protected:
         // -------------------------Methods-----------------------------------//
-        /**
-         * @brief Getter method for last recorded value in results matrix
-         * 
-         * @param timepoint position in results matrix being returned
-         * 
-         * @returns state_vector vector of species states recorded in results_matrix object
-         */
-        std::vector<double> getLastStepResult(
-            int timestep
-        ) override;
-
         void loadTargetModule(
         const std::vector<std::unique_ptr<BaseModule>>& module_list
         ) override;

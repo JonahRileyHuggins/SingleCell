@@ -48,11 +48,10 @@ StochasticModule::StochasticModule(
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
 
-
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Hybrid";
 
- }
+}
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
@@ -86,8 +85,10 @@ Eigen::VectorXd StochasticModule::computeReactions(
 
     // Populate the matrix:
     for (size_t i = 0; i < numReactions; i++) {
+        
         //Reaction getter
         std::string formula_i = this->formulas_vector[i];
+
 
         v(i) = computeReaction(formula_i);
     }
@@ -104,11 +105,13 @@ double StochasticModule::computeReaction(
 
     // get variables in formula
     std::unordered_map<std::string, double> components = mapComponentsToValues(formula_str);
+
     //Persistent copy of component values:
     std::unordered_map<std::string, double> component_values;
 
     try {
     for (const auto& [name, value] : components) {
+
         component_values[name] = value;
         parser.DefineVar(name, &component_values[name]);
     }
@@ -119,6 +122,7 @@ double StochasticModule::computeReaction(
     return v_i;
 
     }
+    
     catch (mu::Parser::exception_type &e) {
         std::cout << "Error while parsing: " << e.GetMsg() << "\n";
         return std::numeric_limits<double>::quiet_NaN();
@@ -294,21 +298,26 @@ void StochasticModule::step(
         this->handler.getInitialState().size()
     );
 
+
     // Sample stochastic answer from Poisson distribution
-    Eigen::VectorXd realizations = samplePoisson(initial_state);
+    Eigen::VectorXd realizations = samplePoisson(computeReactions(initial_state));
 
     //reassign molecules per volume to just molecules:
     this->handler.convertSpeciesUnits(this->handler.species_volumes);
 
+    Eigen::VectorXd mol_state = Eigen::Map<Eigen::VectorXd>(
+        this->handler.getInitialState().data(),
+        this->handler.getInitialState().size()
+    );
     // Constrain Tau-leap algorithm for conservation of mass
     Eigen::VectorXd constrained_realizations = constrainTau(
         realizations,
-        initial_state
+        mol_state
     );
 
     // Calculate the updated state for current step:
     Eigen::VectorXd new_vector = computeNewState(
-        initial_state,
+        mol_state,
         constrained_realizations
     );
 
