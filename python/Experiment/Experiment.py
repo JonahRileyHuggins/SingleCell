@@ -230,9 +230,13 @@ class Experiment:
                     f"for condition {condition_id}"
                 ))
 
-                precondition_df = self.__results_lookup(precondition_id, cell).drop("time", axis = 1)
+                precondition_df = self.__results_lookup(precondition_id, cell)
+                
+                if precondition_df is not None:
+                    if "time" in precondition_df.columns: 
+                        precondition_df = precondition_df.drop("time", axis = 1)
 
-                precondition_results = precondition_df.iloc[:, -1]
+                    precondition_results = precondition_df.iloc[:, -1]
 
         return precondition_results
 

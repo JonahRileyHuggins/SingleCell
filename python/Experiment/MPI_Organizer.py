@@ -290,69 +290,6 @@ def package_results(
 
     return rank_results
 
-def aggregate_other_rank_results(
-        communicator: MPI.Intracomm,
-        results_dict: dict,
-        size: int
-) -> dict:
-    """This function aggregates the results from the ranks and
-    stores them in the final simulation results dictionary
-
-    Input:
-        communicator: MPI communicator - the MPI communicator
-        results: dict - the results dictionary
-        size: integer of number of ranks performing jobs
-
-    Output:
-        results_dict: dict - the results dictionary"""
-    
-    #  Add 1 to account for the root rank saving results prior.
-    completed_tasks = 1
-
-    task_counter =  size
-
-    while completed_tasks < task_counter: 
-
-        results = communicator.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG)
-
-        if results is None:
-            task_counter -= 1
-        
-        else:
-            results_dict = store_results(results, results_dict)
-            completed_tasks += 1
-
-        if completed_tasks == task_counter:
-            break
-
-    return results_dict
-
-def store_results(individual_parcel: dict, results_dict: dict) -> dict:
-    """This function stores the results in the results dictionary
-
-    Input:
-        individual_parcel: dict - individual simulation results
-        results_dict: dict - the results dictionary
-
-    Output:
-        results_dict: dict - the results dictionary"""
-
-    condition_id = individual_parcel["conditionId"]
-    cell = individual_parcel["cell"]
-
-    # Find the matching entry in results_dict using `.get()`
-    for _, value in results_dict.items():
-
-        if value.get("conditionId") == condition_id and value.get("cell") == cell:
-
-            for column in individual_parcel["results"].columns:
-
-                value[column] = individual_parcel["results"][column]
-                
-            break  # Stop searching once we find the match
-
-    return results_dict
-
 
 class ResultCache:
 
