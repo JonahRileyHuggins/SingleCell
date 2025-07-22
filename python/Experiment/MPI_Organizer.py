@@ -12,7 +12,9 @@ Output: MPI tasks for each rank, MPI task assignment, and MPI results aggregatio
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
-
+import os
+import pickle
+import shutil
 from types import SimpleNamespace
 from collections import defaultdict, deque
 
@@ -20,11 +22,6 @@ import pandas as pd
 import mpi4py.MPI as MPI
 
 import shared_utils.file_loader as l
-
-class Organizer:
-
-    def __init__(self):
-        pass
 
 
 def mpi_communicator() -> MPI.Comm:
@@ -270,7 +267,7 @@ def package_results(
     results: pd.DataFrame,
     condition_id: str,
     cell: str,
-) -> None:
+) -> dict:
     """
     This function gathers all of the results from the simulation into a single
     dictionary to simplify the process of sending the results to the root rank
@@ -356,3 +353,35 @@ def store_results(individual_parcel: dict, results_dict: dict) -> dict:
 
     return results_dict
 
+
+class ResultCache:
+
+    def __init__(self, cach_dir: str = './.cache_') -> None:
+        self.cache_dir = cach_dir
+
+        os.makedirs(self.cache_dir, exist_ok=True)
+
+    def _key_to_path(self, key: str) -> str:
+        """Convert a dictionary key to a safe file path"""
+
+        return os.path.join(self.cache_dir, f"{key}.pkl")
+
+    def save(self, key: str, df: pd.DataFrame) -> None:
+        """Save a single DataFrame under a key"""
+
+        path = self._key_to_path(key)
+
+        with open(path, 'wb') as f:
+            pickle.dump(df, f)
+
+    def load(self, key: str) -> pd.DataFrame:
+        """Load a single DataFrame by key"""
+
+        path = self._key_to_path(key)
+
+        with open(path, 'rb') as f:
+            return pickle.load(f)
+
+    def delete_cache(self) -> None:
+        """Removes cache directory after results have been saved."""
+        shutil.rmtree(self.cache_dir, ignore_errors=False)

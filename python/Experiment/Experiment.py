@@ -8,6 +8,7 @@ description: Primary class object of an experiment
 """
 
 import os
+import gc
 import sys
 import logging
 import argparse
@@ -61,6 +62,8 @@ class Experiment:
         - 
         """
 
+        self.cache = org.ResultCache()
+
         try:
             self.petab_yaml = os.path.abspath(petab_yaml)
 
@@ -92,10 +95,9 @@ class Experiment:
         )
 
         # SingleCell() constructor is variadic, supply multiple SBML files!
-        sbml_list = self.__sbml_getter()
-
-        # Load an instance of SingleCell on every core
-        self.single_cell = SingleCell(*sbml_list)
+        self.sbml_list = self.__sbml_getter()
+        # creating blank placeholder to be populated across ranks and simulation instances
+        self.single_cell = None
 
         # Pause to allow for the broadcast to complete
         self.communicator.Barrier()
@@ -127,11 +129,12 @@ class Experiment:
         # For every cell and condition, run the simulation based on the number of rounds
         for round_i in range(rounds_to_complete):
 
+            # Load an instance of SingleCell on every core for every experiment.
+            self.single_cell = SingleCell(*self.sbml_list)
+
             if self.rank == 0:
                 logger.info(f"Round {round_i+1} of {rounds_to_complete}")
 
-                # Ensure every rank has the most recent copy of the results dict, to lookup dependency results:
-                self.results_dict = self.communicator.bcast(self.results_dict, root=0)
 
             # Lines 133:139 Assign every rank its task for the current round. 
             task = org.task_assignment(
@@ -142,22 +145,9 @@ class Experiment:
                 round_i=round_i
             )
 
-            if task is None and self.rank == 0:
-                logger.debug(f"Rank {self.rank} has no task: opening broadcast for results-parcel")
-                
-                # Collect results from other ranks and store in results dictionary
-                self.results_dict = org.aggregate_other_rank_results(
-                    communicator=self.communicator,
-                    results_dict=self.results_dict,
-                    size=self.size
-                )
-                continue
-
-            elif task is None:
+            if task is None:
                 logger.debug(f"Rank {self.rank} has no tasks to complete")
-                results = None
-                # All non-root ranks send results to rank 0
-                self.communicator.send(results, dest=0, tag=round_i)
+
                 continue
 
             condition, cell, condition_id = org.condition_cell_id(
@@ -171,7 +161,7 @@ class Experiment:
             state_ids = self.single_cell.getGlobalSpeciesIds()
 
             # Get results of any preequilibration condition:
-            precondition_results = self.__extract_preequilibration_results(condition_id)
+            precondition_results = self.__extract_preequilibration_results(condition_id, cell)
 
             if precondition_results:
                 # Assign preequilibration final results to current model state.
@@ -196,30 +186,26 @@ class Experiment:
                 cell=cell,
             )
 
-            if self.rank == 0:
-                # Store rank 0's results prior to storing other ranks
-                self.results_dict = org.store_results(
-                    results_dict=self.results_dict, 
-                    individual_parcel=parcel
-                )
+            self.__cache_results(parcel)
 
-                # Collect results from other ranks and store in results dictionary
-                self.results_dict = org.aggregate_other_rank_results(
-                    communicator=self.communicator,
-                    results_dict=self.results_dict,
-                    size=self.size
-                )
-            else:
-                # All non-root ranks send results to rank 0
-                self.communicator.send(parcel, dest=0, tag=round_i)
-                logger.info('Sending rank {self.rank} results to root')
+            # Reset rank internal model after simulation and take out the garbage
+            self.single_cell = None
+            gc.collect()
 
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
+
+        # Have root store final results of all sims and cleanup cache
+        if self.rank == 0:
+            self.__store_final_results()
 
         return #Stores results dictionary in class object.
 
 
-    def __extract_preequilibration_results(self, condition_id: str) -> list:
+    def __extract_preequilibration_results(
+            self, 
+            condition_id: str, 
+            cell: int
+            ) -> list:
         """
         Find if a given condition has a preequilibration. Pulls from results dictionary
         final timepoint array.
@@ -244,7 +230,9 @@ class Experiment:
                     f"for condition {condition_id}"
                 ))
 
-                precondition_results = self.__results_lookup(precondition_id)
+                precondition_df = self.__results_lookup(precondition_id, cell).drop("time", axis = 1)
+
+                precondition_results = precondition_df.iloc[:, -1]
 
         return precondition_results
 
@@ -283,25 +271,15 @@ class Experiment:
 
         return results
     
-
-    def __results_lookup(self, condition_id: str) -> list:
-        """Indexes results dictionary on condition id, returns last array of condition results"""
-
-        # final results list to store individual species results in:
-        final_results = []
-
-        # list for excluding non-species keys in results_dict:
-        nonspecies_keys = ['conditionId', 'cell']
-
+    def __results_lookup(self, condition_id: str, cell: int) -> pd.DataFrame:
+        """Indexes results dictionary on condition id, returns results"""
         # results keys should all be species names paired with single numpy arrays. 
         for key in self.results_dict.keys():
-            if self.results_dict[key]['conditionId'] == condition_id:
+            if self.results_dict[key]['conditionId'] == condition_id\
+                and self.results_dict[key]['cell'] == cell:
+                
 
-                for species in self.results_dict[key].keys():
-                    if species not in nonspecies_keys:
-                        final_results.append(self.results_dict[key][species].iloc[-1])
-
-        return final_results
+                return self.cache.load(key)
 
     def __sbml_getter(self) -> list:
         """Retrieves all sbml files defined in PEtab configuration file"""
@@ -342,6 +320,37 @@ class Experiment:
 
         return matching_times.max()
 
+    def __cache_results(self, parcel: dict) -> None:
+        """Saves simulation results to cache directory"""
+
+        condition_id = parcel['conditionId']
+        cell = parcel["cell"]
+        results = parcel['results']
+
+        for key in self.results_dict.keys():
+
+            if self.results_dict[key]['conditionId'] == condition_id \
+                and self.results_dict[key]['cell'] == cell:
+
+                self.cache.save(key=key, df=results)
+
+        return # Saves individual simulation data in cache directory
+
+    def __store_final_results(self) -> None:
+        """Stores all simulation results stored in cache into Rank 0 self.results_dict object"""
+
+        for key in self.results_dict.keys(): 
+            
+            condition_id = self.results_dict[key]['conditionId']
+            cell = self.results_dict[key]['cell']
+
+            df = self.__results_lookup(condition_id, cell)
+
+            for column in df.columns:
+
+                self.results_dict[key][column] = df[column]
+                
+        return # saves results to results_dict class member
 
     def save_results(self, args) -> None:
         """Save the results of the simulation to a file
@@ -356,7 +365,7 @@ class Experiment:
 
         results_directory = os.path.join(os.path.dirname(self.petab_yaml), "results")
 
-        if 'output' in args:
+        if args is not None and 'output' in args:
 
             results_directory = args.output
 
@@ -369,9 +378,10 @@ class Experiment:
         if self.name is not None:
             results_path = os.path.join(results_directory, f"{self.name}.pkl")
 
-
         with open(results_path, "wb") as f:
             pkl.dump(self.results_dict, f)
+
+        self.cache.delete_cache()
 
 
     def observable_calculation(self, *args) -> None:
