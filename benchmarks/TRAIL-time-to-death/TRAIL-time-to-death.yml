@@ -10,4 +10,4 @@ problems:
     - observables.tsv
     sbml_files:
     - ../../sbml_files/Deterministic.sbml
-    cell_number: 1
+    cell_count: 1

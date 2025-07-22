@@ -44,7 +44,14 @@ HybridModule::HybridModule(
     this->sbml = HybridModel.model;
 
     // // Import AMICI Model from 'bin/AMICI_MODELS/model
-    this->model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
+    // this->model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
+    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
+    this->model = std::move(new_model);
+
+    std::cout << "AMICI Params: " << this->model->getParameters().size() << "\n";
+    std::cout << "SBML Params: " << this->sbml->getNumParameters() << "\n";
+    //Update AMICI model for any modifications present in SBML:
+    this->model->setFixedParameters(HybridModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";

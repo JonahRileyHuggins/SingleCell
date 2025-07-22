@@ -261,12 +261,15 @@ class DeterministicModel(CreateModel):
 
         # makeshift band-aid for global variable problems in multi-amici-model CMakeLists.txt:
         if args.name == 'Hybrid':
-            result = subprocess.run(
-                ['sed', '-i', '/add_custom_target(install-python/,/)/d', 'amici_models/Hybrid/swig/CMakeLists.txt'],
+            result = subprocess.run([
+                "sed", "-i",
+                r"/add_custom_target(install-python/,/)/d",
+                "../../amici_models/Hybrid/swig/CMakeLists.txt"
+                ], 
                 capture_output=True,
                 text=True,
                 check=True
-            )
+                )
         
 
 class StochasticModel(CreateModel):

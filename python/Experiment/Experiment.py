@@ -130,8 +130,8 @@ class Experiment:
             if self.rank == 0:
                 logger.info(f"Round {round_i+1} of {rounds_to_complete}")
 
-            # Ensure every rank has the most recent copy of the results dict, to lookup dependency results:
-            self.results_dict = self.communicator.bcast(self.results_dict, root=0)
+                # Ensure every rank has the most recent copy of the results dict, to lookup dependency results:
+                self.results_dict = self.communicator.bcast(self.results_dict, root=0)
 
             # Lines 133:139 Assign every rank its task for the current round. 
             task = org.task_assignment(

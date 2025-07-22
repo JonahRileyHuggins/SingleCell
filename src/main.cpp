@@ -51,7 +51,7 @@ int main(
 
     //Load instance of SingleCell
     std::unique_ptr<SingleCell> single_cell = std::make_unique<SingleCell>(
-        stochastic_sbml,
+        // stochastic_sbml,
         deterministic_sbml
     );
     std::cout << "Simulation Details:\n";

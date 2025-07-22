@@ -44,7 +44,12 @@ DeterministicModule::DeterministicModule(
     this->sbml = DeterministicModel.model;
 
     // Import AMICI Model from 'amici_models/$modelname
-    this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
+    // this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
+    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
+    this->model = std::move(new_model);
+    
+    //Update AMICI model for any modifications present in SBML:
+    this->model->setFixedParameters(DeterministicModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";

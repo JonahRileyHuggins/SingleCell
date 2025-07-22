@@ -136,6 +136,12 @@ class SBMLHandler {
             std::vector<double> new_state
         );
 
+        /**
+         * @brief returns a vector of all parameter values within the 
+         * sbml model
+         */
+        std::vector<double> getParameterValues();
+
     //----------------------------members-----------------------------------//
         std::vector<double> species_volumes;
         std::string name;
