@@ -1,0 +1,132 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%files
+    ### Modify line 6, columns 9:14 to local SingleCell directory
+    /path/to/SingleCell /SingleCell ### Change This Line
+    #^^^^^^^^changeme -->#^^^^^^^^Don't Delete Me :'(
+
+%post
+ 
+    # Set shell and environment
+    export DEBIAN_FRONTEND=noninteractive
+    export SHELL=/bin/bash
+
+    # Export variables for the build process
+    export BLAS_LIBS=-lopenblas
+    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+
+    # Update and install basic dependencies
+    apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        libssl-dev \
+        libmunge-dev \
+        libmunge2 \
+        munge \
+        bash \
+        wget \
+        python3-pip \
+        python3-venv \
+        python3-dev \
+        libopenblas-dev \
+        gcc \
+        g++ \
+        git \
+        gfortran \
+        cmake \
+        make \
+        file \
+        libgfortran5 \
+        libatomic1 \
+        swig \
+        libhdf5-dev \
+        libsbml-dev \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    # Installing packages for OpenMPI
+    echo "Installing Open MPI"
+    export OMPI_DIR=/opt/ompi
+    ### Inspect host MPI version and change line 49
+    export OMPI_VERSION=5.0.1 ### Change This Line to Your Host System OpenMPI version
+    # Using string manipulation
+    export VAR_VERSION="${OMPI_VERSION%.*}"  # Remove everything after the last dot
+
+    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v$VAR_VERSION/openmpi-$OMPI_VERSION.tar.bz2"
+    mkdir -p /tmp/ompi
+    mkdir -p /opt
+    # Download
+    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
+    # Compile and install
+    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
+    # Set env variables so we can compile our application
+    export PATH=$OMPI_DIR/bin:$PATH
+    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
+    export MANPATH=$OMPI_DIR/share/man:$MANPATH
+
+    # Ensure owner permissions for /SingleCell
+    chmod -R 777 /SingleCell
+    chown -R root:root /SingleCell
+
+    # Installing ThirdParty dependencies
+    ## muParser
+    cd /SingleCell/ThirdParty/muParser
+    cmake .
+    make 
+    make install
+
+    ## libXML2
+    cd /SingleCell/ThirdParty/libxml2-2.14.3/
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    cmake --build build
+    cmake --install build
+
+    ## libSBML
+    cd /SingleCell/ThirdParty/libsbml-5.20.2/
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    cmake --build build
+
+    ## AMICI
+    cd /SingleCell/ThirdParty/AMICI-0.32.0/scripts/
+    ./buildSuiteSparse.sh
+    ./buildSundials.sh
+    ./buildAmici.sh
+
+    ## SingleCell:
+    cd /SingleCell/
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    cmake --build build
+
+    # Ubuntu 22.04 doesn't symlink python to python3 by default:
+    ln -s /usr/bin/python3 /usr/bin/python
+
+    # Set pip install locations to path
+    pip install --upgrade pip
+    pip install dist/SingleCell-1.0-py3-none-any.whl --verbose --no-cache-dir
+
+%environment
+    # Set up runtime environment variables
+    export PMIX_MCA_psec=^munge
+    export PATH=/root/.local/bin:$PATH
+    export BLAS_LIBS=-lopenblas
+    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+
+    # Setup varaibles for OpenMPI support within the container
+    export OMPI_DIR=/opt/ompi
+    export SINGULARITY_OMPI_DIR=$OMPI_DIR
+    export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
+    export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
+
+    # Ensures the container is bound to the local instance of SingleCell for cross operation.
+    export SINGULARITY_BINDPATH="./SingleCell:/SingleCell:rw"
+
+%runscript
+    # Default command for the container
+    exec SingleCell "$@"
+
+%startscript
+    exec "$@"
+
+%help
+    This container enables cross-platform installation of SingleCell tools.
+    Concerns and questions should be posted directly on our project
+    Repository page at TO BE FILLED IN LATER.
