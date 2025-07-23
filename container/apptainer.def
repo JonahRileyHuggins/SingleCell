@@ -101,7 +101,7 @@ From: ubuntu:22.04
 
     # Set pip install locations to path
     pip install --upgrade pip
-    pip install dist/SingleCell-1.0-py3-none-any.whl --verbose --no-cache-dir
+    pip install dist/singlecell-0.1-py3-none-any.whl --verbose --no-cache-dir
 
 %environment
     # Set up runtime environment variables
