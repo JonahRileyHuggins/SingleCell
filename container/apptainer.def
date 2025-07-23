@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: ubuntu:22.04
+From: ubuntu:24.04
 
 %files
     ### Modify line 6, columns 9:14 to local SingleCell directory
@@ -19,6 +19,7 @@ From: ubuntu:22.04
     # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
+        curl \
         libssl-dev \
         libmunge-dev \
         libmunge2 \
@@ -69,10 +70,9 @@ From: ubuntu:22.04
 
     # Installing ThirdParty dependencies
     ## muParser
-    cd /SingleCell/ThirdParty/muParser
+    cd /SingleCell/ThirdParty/muparser/
     cmake .
     make 
-    make install
 
     ## libXML2
     cd /SingleCell/ThirdParty/libxml2-2.14.3/

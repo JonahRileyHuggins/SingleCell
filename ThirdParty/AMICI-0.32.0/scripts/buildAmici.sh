@@ -57,6 +57,7 @@ ${cmake} \
   -DCMAKE_BUILD_TYPE=$build_type \
   -DCMAKE_PREFIX_PATH="${CMAKE_PREFIX_PATH};${suitesparse_root}/install" \
   -DPython3_EXECUTABLE="$(command -v python3)" \
+  -DBUILD_TESTS=OFF \
    ..
 
 # build, with or without sonarcloud wrapper
