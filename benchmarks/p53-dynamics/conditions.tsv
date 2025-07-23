@@ -1,5 +1,6 @@
-conditionId	conditionName	k487	k489	damageDSB
-DamageDSB_1	DNA damage perturbation at 1 nM	0	0	1
-DamageDSB_4	DNA damage perturbation at 4 nM	0	0	4
-DamageDSB_10	DNA damage perturbation at 10 nM	0	0	10
-DamageDSB_25	DNA damage perturbation at 25 nM	0	0	25
+conditionId	conditionName	kA67_1	kA69_1	nuc_imp__DNADoubleStrandBreak_	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_
+heterogenize	precondition for obtaining heterogenous population of cells	6.324150e-03	2.213452e-02	0	0	0	0	0	0	0	0
+DamageDSB_1	DNA damage perturbation at 1 nM	0	0	1	0	0	0	0	0	0	0
+DamageDSB_4	DNA damage perturbation at 4 nM	0	0	4	0	0	0	0	0	0	0
+DamageDSB_10	DNA damage perturbation at 10 nM	0	0	10	0	0	0	0	0	0	0
+DamageDSB_25	DNA damage perturbation at 25 nM	0	0	25	0	0	0	0	0	0	0

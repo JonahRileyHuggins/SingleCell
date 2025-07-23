@@ -1,2 +1,3 @@
 observableId	observableFormula	noiseFormula
-p53_pulse	p53ac*1.0	1
+p53_pulse	nuc_prot_a__TP53_*1.0	1
+blank	0	1
