@@ -222,4 +222,4 @@ CMakeUserPresets.json
 
 amici_models/Deterministic/*
 
-src/results.txt
+results.txt
