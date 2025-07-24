@@ -41,8 +41,25 @@ From: ubuntu:24.04
         libatomic1 \
         swig \
         libhdf5-dev \
-        libsbml-dev \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+    # Ensure owner permissions for /SingleCell
+    chmod -R 777 /SingleCell
+    chown -R root:root /SingleCell
+
+    # Ubuntu 22.04 doesn't symlink python to python3 by default:
+    ln -s /usr/bin/python3 /usr/bin/python
+
+    # Install Python Dependencies
+    cd /SingleCell
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+
+    # Build links to models inside container
+    cd /SingleCell/python/ModelBuilding/
+    python createModels.py -p ../../data/config.yaml
 
     # Installing packages for OpenMPI
     echo "Installing Open MPI"
@@ -63,18 +80,6 @@ From: ubuntu:24.04
     export PATH=$OMPI_DIR/bin:$PATH
     export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
     export MANPATH=$OMPI_DIR/share/man:$MANPATH
-
-    # Ensure owner permissions for /SingleCell
-    chmod -R 777 /SingleCell
-    chown -R root:root /SingleCell
-
-    # Ubuntu 22.04 doesn't symlink python to python3 by default:
-    ln -s /usr/bin/python3 /usr/bin/python
-
-    # Install Python Dependencies
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
 
     # Installing ThirdParty dependencies
     ## muParser
