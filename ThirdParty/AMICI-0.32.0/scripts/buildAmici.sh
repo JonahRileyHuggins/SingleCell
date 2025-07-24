@@ -60,15 +60,15 @@ ${cmake} \
   -DBUILD_TESTS=OFF \
    ..
 
-# build, with or without sonarcloud wrapper
-if [ "${CI_SONARCLOUD:-}" = "TRUE" ]; then
-  build-wrapper-linux-x86-64 \
-    --out-dir "${amici_path}/bw-output" \
-    cmake --build . --parallel
-elif [ "${GITHUB_ACTIONS:-}" = "true" ]; then
-  cmake --build .
-  ${make} python-sdist
-else
-  cmake --build . --parallel
-  ${make} python-sdist
-fi
+# # build, with or without sonarcloud wrapper
+# if [ "${CI_SONARCLOUD:-}" = "TRUE" ]; then
+#   build-wrapper-linux-x86-64 \
+#     --out-dir "${amici_path}/bw-output" \
+#     cmake --build . --parallel
+# elif [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+#   cmake --build .
+#   ${make} python-sdist
+# else
+#   cmake --build . --parallel
+#   ${make} python-sdist
+# fi

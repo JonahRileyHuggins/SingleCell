@@ -68,6 +68,13 @@ From: ubuntu:24.04
     chmod -R 777 /SingleCell
     chown -R root:root /SingleCell
 
+    # Ubuntu 22.04 doesn't symlink python to python3 by default:
+    ln -s /usr/bin/python3 /usr/bin/python
+
+    # Install Python Dependencies
+    pip install --upgrade pip
+    pip install dist/singlecell-0.1-py3-none-any.whl --verbose --no-cache-dir
+
     # Installing ThirdParty dependencies
     ## muParser
     cd /SingleCell/ThirdParty/muparser/
@@ -96,12 +103,6 @@ From: ubuntu:24.04
     cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
     cmake --build build
 
-    # Ubuntu 22.04 doesn't symlink python to python3 by default:
-    ln -s /usr/bin/python3 /usr/bin/python
-
-    # Set pip install locations to path
-    pip install --upgrade pip
-    pip install dist/singlecell-0.1-py3-none-any.whl --verbose --no-cache-dir
 
 %environment
     # Set up runtime environment variables
