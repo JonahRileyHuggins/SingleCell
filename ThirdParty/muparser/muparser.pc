@@ -1,4 +1,4 @@
-prefix=/home/jonah/Desktop/SingleCell/ThirdParty/muparser/install
+prefix=/usr/local
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include

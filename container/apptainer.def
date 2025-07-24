@@ -72,8 +72,9 @@ From: ubuntu:24.04
     ln -s /usr/bin/python3 /usr/bin/python
 
     # Install Python Dependencies
-    pip install --upgrade pip
-    pip install dist/singlecell-0.1-py3-none-any.whl --verbose --no-cache-dir
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
     # Installing ThirdParty dependencies
     ## muParser

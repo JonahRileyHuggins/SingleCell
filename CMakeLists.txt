@@ -6,8 +6,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # === Paths ===
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/ThirdParty")
-set(Amici_DIR "${THIRD_PARTY_DIR}/AMICI-0.32.0/build")
-set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI-0.32.0")
+set(Amici_DIR "${THIRD_PARTY_DIR}/AMICI/build")
+set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
 
