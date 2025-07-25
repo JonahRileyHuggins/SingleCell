@@ -1,3 +1,6 @@
 [submodule "ThirdParty/pybind11"]
 	path = ThirdParty/pybind11
 	url = https://github.com/pybind/pybind11
+[submodule "ThirdParty/AMICI"]
+	path = ThirdParty/AMICI
+	url = https://github.com/AMICI-dev/AMICI.git
