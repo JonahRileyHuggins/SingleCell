@@ -43,7 +43,6 @@ From: ubuntu:24.04
         libhdf5-dev \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
     # Ensure owner permissions for /SingleCell
     chmod -R 777 /SingleCell
     chown -R root:root /SingleCell
@@ -57,9 +56,29 @@ From: ubuntu:24.04
     source .venv/bin/activate
     pip install -r requirements.txt
 
-    # Build links to models inside container
-    cd /SingleCell/python/ModelBuilding/
-    python createModels.py -p ../../data/config.yaml
+    # Installing ThirdParty dependencies
+    ## muParser
+    cd /SingleCell/ThirdParty/muparser/
+    cmake .
+    make 
+
+    ## libXML2
+    cd /SingleCell/ThirdParty/libxml2-2.14.3/
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    cmake --build build
+    cmake --install build
+
+    ## libSBML
+    cd /SingleCell/ThirdParty/libsbml-5.20.2/
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    cmake --build build
+    cmake --install build
+
+    ## AMICI
+    cd /SingleCell/ThirdParty/AMICI/scripts/
+    ./buildSuiteSparse.sh
+    ./buildSundials.sh
+    ./buildAmici.sh
 
     # Installing packages for OpenMPI
     echo "Installing Open MPI"
@@ -81,28 +100,9 @@ From: ubuntu:24.04
     export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
     export MANPATH=$OMPI_DIR/share/man:$MANPATH
 
-    # Installing ThirdParty dependencies
-    ## muParser
-    cd /SingleCell/ThirdParty/muparser/
-    cmake .
-    make 
-
-    ## libXML2
-    cd /SingleCell/ThirdParty/libxml2-2.14.3/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    cmake --build build
-    cmake --install build
-
-    ## libSBML
-    cd /SingleCell/ThirdParty/libsbml-5.20.2/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    cmake --build build
-
-    ## AMICI
-    cd /SingleCell/ThirdParty/AMICI-0.32.0/scripts/
-    ./buildSuiteSparse.sh
-    ./buildSundials.sh
-    ./buildAmici.sh
+    # Build links to models inside container
+    cd /SingleCell/python/ModelBuilding/
+    python3 createModels.py -p ../../data/config.yaml
 
     ## SingleCell:
     cd /SingleCell/
