@@ -193,9 +193,10 @@ class Experiment:
             gc.collect()
 
             logger.info(f"Rank {self.rank} has completed {condition_id} for cell {cell}")
-
+            
         # Have root store final results of all sims and cleanup cache
         if self.rank == 0:
+            self.communicator.Ibarrier()
             self.__store_final_results()
 
         return #Stores results dictionary in class object.
