@@ -13,7 +13,6 @@ Description: This script generates an Observable formula for a given species in 
 # -----------------------Package Import & Defined Arguements-------------------#
 import os
 import re
-import libsbml
 import argparse
 import yaml
 import pandas as pd
@@ -21,7 +20,8 @@ import pandas as pd
 # Parse the command line arguments
 parser = argparse.ArgumentParser(description='Generate the observable formula for a given observable')
 parser.add_argument('--input', '-i', type=str, nargs='+', required=True, help='The input species or annotation number')
-parser.add_argument('--yaml', '-y', type=str, required=True, help='The path to the YAML configuration file')
+parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                        which files to inspect for name changes.')
 args = parser.parse_args()
 
 
@@ -29,6 +29,10 @@ class SpeciesRules:
     """
     Defines the rules for species strings based on components.
     """
+
+    species_regex = re.compile(
+    r"^[a-z]{3}_(prot_|lipid_|mrna_|gene_|mixed_|imp_)(([a-zA-Z]+)_)*(((_[a-z]{1}[A-Z]?[0-9]*)+)*(_[a-zA-Z0-9]+_([0-9_]*)))+$"
+    )
 
     COMPARTMENTS = {
         '_cyt_': ['Cytoplasm', 'cyt_', 'Cytosol'],
@@ -401,6 +405,6 @@ class ObservableBuilder:
 
 
 if __name__ == '__main__':
-    observable = ObservableBuilder(args.input, args.yaml)
+    observable = ObservableBuilder(args.input, args.yaml_path)
     print(observable())
     

@@ -10,6 +10,8 @@ set(Amici_DIR "${THIRD_PARTY_DIR}/AMICI/build")
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
+set(BLA_VENDOR OpenBLAS)
+find_package(BLAS REQUIRED)
 
 # === includes ===
 # include(ExternalProject)

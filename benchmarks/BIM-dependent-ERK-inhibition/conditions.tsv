@@ -1,3 +1,4 @@
-conditionId	conditionName	E	INS	H	HGF	P	F	I	k1827	k1830	k1823	k1786
+conditionId	conditionName	ext_prot__EGF_	ext_prot__INS_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	kPA5_1	kPA8_1	kPA1_1	kP158_1
+serum_starve	serum starved condition	0	0	0	0	0	0	0	0.001	0.001	0.001	0.005
 BAD_total	Transcription rates turned off for BAD production	3.3	1721	0	0	0	0	0	0	0	0.001	0.005
 BIM_total	Transcription rates turned off for BIM production	3.3	1721	0	0	0	0	0	0.001	0.001	0	0
