@@ -1,10 +1,8 @@
 observableId	preequilibrationConditionId	simulationConditionId	measurement	time
-blank	heterogenize	E_0_INS_0_preequilibrate	None	86400
-blank	heterogenize	E_3.3_INS_1721_preequilibrate	None	86400
-blank	E_0_INS_0_preequilibrate	E_0_INS_0_k316_3	None	86400
-blank	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_k316_3	None	86400
-cPARP_100plus	E_0_INS_0_preequilibrate	E_0_INS_0_k316_3	12.3866666666667	86400
-cPARP_100plus	E_0_INS_0_preequilibrate	E_0_INS_0_k316_3	15.6133333333333	259200
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_k316_3	34.0035666666667	86400
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_k316_3	52.3225333333333	172800
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_k316_3	62.6129	259200
+blank		heterogenize		86400
+blank	heterogenize	E_3.3_INS_1721_preequilibrate		259200
+cPARP_100plus	heterogenize	E_0_INS_0_etop	12.38666667	86400
+cPARP_100plus	heterogenize	E_0_INS_0_etop	15.61333333	172800
+cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	34.00356667	86400
+cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	52.32253333	172800
+cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	62.6129	259200
