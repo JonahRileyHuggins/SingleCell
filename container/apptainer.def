@@ -14,11 +14,12 @@ From: ubuntu:24.04
 
     # Export variables for the build process
     export BLAS_LIBS=-lopenblas
-    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
     # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
+        apt-utils \
         curl \
         libssl-dev \
         libmunge-dev \
@@ -29,6 +30,7 @@ From: ubuntu:24.04
         python3-pip \
         python3-venv \
         python3-dev \
+        libboost-all-dev \
         libopenblas-dev \
         gcc \
         g++ \
@@ -53,14 +55,15 @@ From: ubuntu:24.04
     # Install Python Dependencies
     cd /SingleCell
     python3 -m venv .venv
-    source .venv/bin/activate
+    . .venv/bin/activate
     pip install -r requirements.txt
 
     # Installing ThirdParty dependencies
     ## muParser
     cd /SingleCell/ThirdParty/muparser/
-    cmake .
-    make 
+    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=/usr/local
+    cmake --build build
+    cmake --install build
 
     ## libXML2
     cd /SingleCell/ThirdParty/libxml2-2.14.3/
@@ -115,7 +118,8 @@ From: ubuntu:24.04
     export PMIX_MCA_psec=^munge
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
-    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     # Setup varaibles for OpenMPI support within the container
     export OMPI_DIR=/opt/ompi
