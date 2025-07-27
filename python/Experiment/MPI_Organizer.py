@@ -293,7 +293,7 @@ def package_results(
 
 class ResultCache:
 
-    def __init__(self, cach_dir: str = './.cache_') -> None:
+    def __init__(self, cach_dir: str = './.cache') -> None:
         self.cache_dir = cach_dir
 
         os.makedirs(self.cache_dir, exist_ok=True)

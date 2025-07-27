@@ -7443,8 +7443,8 @@
           <speciesReference species="nuc_prot__PPM1D_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_imp__WIP1pro_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="nuc_imp__WIP1pro_"/>
           <modifierSpeciesReference species="cyt_mrna__PPM1D_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7601,10 +7601,10 @@
           <speciesReference species="nuc_prot__CCND_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
-          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
+          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="cyt_mrna__CCND1_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7658,10 +7658,10 @@
           <speciesReference species="nuc_prot__CCND_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
-          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
+          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="cyt_mrna__CCND2_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7715,10 +7715,10 @@
           <speciesReference species="nuc_prot__CCND_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
-          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
+          <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="nuc_prot__E2F_"/>
           <modifierSpeciesReference species="cyt_mrna__CCND3_203_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7772,9 +7772,9 @@
           <speciesReference species="nuc_prot__CCNE_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
-          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="cyt_mrna__CCNE1_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7812,9 +7812,9 @@
           <speciesReference species="nuc_prot__CCNE_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
-          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="cyt_mrna__CCNE2_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7924,9 +7924,9 @@
           <speciesReference species="nuc_prot__CCNA_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
-          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="cyt_mrna__CCNA2_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -7964,9 +7964,9 @@
           <speciesReference species="nuc_prot__CDKN1B_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
-          <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="cyt_mrna__CDKN1B_201_"/>
         </listOfModifiers>
         <kineticLaw>
@@ -8203,8 +8203,8 @@
           <speciesReference species="cyt_prot__CFLAR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CFLAR_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CFLAR_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8231,8 +8231,8 @@
           <speciesReference species="cyt_prot__p_CASP8_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP8_218_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP8_218_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8259,8 +8259,8 @@
           <speciesReference species="cyt_prot__p_CASP8_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP10_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP10_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8287,8 +8287,8 @@
           <speciesReference species="cyt_prot__BFAR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BFAR_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BFAR_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8315,8 +8315,8 @@
           <speciesReference species="cyt_prot__p_CASP3_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP3_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP3_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8343,8 +8343,8 @@
           <speciesReference species="cyt_prot__p_CASP3_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP7_203_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP7_203_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8371,8 +8371,8 @@
           <speciesReference species="cyt_prot__p_CASP6_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP6_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP6_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8399,8 +8399,8 @@
           <speciesReference species="cyt_prot__XIAP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__XIAP_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__XIAP_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8427,8 +8427,8 @@
           <speciesReference species="cyt_prot__PARP1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PARP1_203_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PARP1_203_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8455,8 +8455,8 @@
           <speciesReference species="cyt_prot__BID_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BID_211_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BID_211_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8483,8 +8483,8 @@
           <speciesReference species="cyt_prot__BCL2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BCL2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BCL2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8511,8 +8511,8 @@
           <speciesReference species="cyt_prot__BCL2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BCL2L1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BCL2L1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8539,8 +8539,8 @@
           <speciesReference species="cyt_prot__BCL2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MCL1_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MCL1_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8567,8 +8567,8 @@
           <speciesReference species="cyt_prot_i__BAX_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BAX_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BAX_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8595,8 +8595,8 @@
           <speciesReference species="mit_mixed__CYC1__Membrane_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CYCS_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CYCS_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8623,8 +8623,8 @@
           <speciesReference species="mit_mixed__DIABLO__Membrane_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__DIABLO_206_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__DIABLO_206_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8651,8 +8651,8 @@
           <speciesReference species="cyt_prot_i__APAF1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__APAF1_210_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__APAF1_210_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8679,8 +8679,8 @@
           <speciesReference species="cyt_prot_i__PCSK9_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CASP9_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CASP9_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8707,8 +8707,8 @@
           <speciesReference species="cyt_prot__BAD_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BAD_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BAD_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8735,8 +8735,8 @@
           <speciesReference species="cyt_prot__BBC3_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BBC3_203_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BBC3_203_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8763,8 +8763,8 @@
           <speciesReference species="cyt_prot__PMAIP1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PMAIP1_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PMAIP1_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8791,8 +8791,8 @@
           <speciesReference species="cyt_prot__BCL2L11_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BCL2L11_204_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BCL2L11_204_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8819,8 +8819,8 @@
           <speciesReference species="ext_prot__EGF_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__EGF_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__EGF_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8847,8 +8847,8 @@
           <speciesReference species="ext_prot__NRG1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__NRG1_203_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__NRG1_203_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8875,8 +8875,8 @@
           <speciesReference species="cyt_prot__EGFR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__EGFR_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__EGFR_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8903,8 +8903,8 @@
           <speciesReference species="cyt_prot__ERBB2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__ERBB2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__ERBB2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8931,8 +8931,8 @@
           <speciesReference species="cyt_prot__ERBB3_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__ERBB3_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__ERBB3_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8959,8 +8959,8 @@
           <speciesReference species="cyt_prot__ERBB4_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__ERBB4_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__ERBB4_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -8987,8 +8987,8 @@
           <speciesReference species="cyt_prot__EGFRvIII_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__EGFRvIII_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__EGFRvIII_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9015,8 +9015,8 @@
           <speciesReference species="cyt_prot__MET_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MET_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MET_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9043,8 +9043,8 @@
           <speciesReference species="ext_prot__HGF_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__HGF_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__HGF_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9071,8 +9071,8 @@
           <speciesReference species="cyt_prot__PDGFRB_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PDGFRA_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PDGFRA_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9099,8 +9099,8 @@
           <speciesReference species="cyt_prot__PDGFRB_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PDGFRB_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PDGFRB_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9127,8 +9127,8 @@
           <speciesReference species="ext_prot__PDGFB_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PDGFB_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PDGFB_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9155,8 +9155,8 @@
           <speciesReference species="cyt_prot__SPRY2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__SPRY2_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__SPRY2_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9183,8 +9183,8 @@
           <speciesReference species="cyt_prot__CBL_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CBL_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CBL_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9211,8 +9211,8 @@
           <speciesReference species="cyt_prot__GRB2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__GRB2_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__GRB2_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9239,8 +9239,8 @@
           <speciesReference species="cyt_prot__PLCG_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PLCG1_223_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PLCG1_223_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9267,8 +9267,8 @@
           <speciesReference species="cyt_prot__PLCG_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PLCG2_208_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PLCG2_208_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9295,8 +9295,8 @@
           <speciesReference species="cyt_prot__PIK3C_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3CA_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3CA_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9323,8 +9323,8 @@
           <speciesReference species="cyt_prot__PIK3C_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3CB_214_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3CB_214_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9351,8 +9351,8 @@
           <speciesReference species="cyt_prot__PIK3C_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3CG_205_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3CG_205_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9379,8 +9379,8 @@
           <speciesReference species="cyt_prot__PIK3C_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3CD_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3CD_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9407,8 +9407,8 @@
           <speciesReference species="cyt_prot__PIK3R_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3R1_211_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3R1_211_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9435,8 +9435,8 @@
           <speciesReference species="cyt_prot__PIK3R_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3R2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3R2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9463,8 +9463,8 @@
           <speciesReference species="cyt_prot__PIK3R_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3R3_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3R3_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9491,8 +9491,8 @@
           <speciesReference species="cyt_prot__PIK3R_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3R4_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3R4_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9519,8 +9519,8 @@
           <speciesReference species="cyt_prot__PIK3C2A_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PIK3C2A_206_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PIK3C2A_206_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9547,8 +9547,8 @@
           <speciesReference species="cyt_prot__GRP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RASGRP1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RASGRP1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9575,8 +9575,8 @@
           <speciesReference species="cyt_prot__GRP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RASGRP3_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RASGRP3_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9603,8 +9603,8 @@
           <speciesReference species="cyt_mixed__RAS__GDP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__NRAS_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__NRAS_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9631,8 +9631,8 @@
           <speciesReference species="cyt_mixed__RAS__GDP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__KRAS_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__KRAS_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9659,8 +9659,8 @@
           <speciesReference species="cyt_mixed__RAS__GDP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__HRAS_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__HRAS_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9687,8 +9687,8 @@
           <speciesReference species="cyt_prot__NF1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__NF1_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__NF1_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9715,8 +9715,8 @@
           <speciesReference species="cyt_prot__RAF1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RAF1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RAF1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9743,8 +9743,8 @@
           <speciesReference species="cyt_prot__BRAF_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__BRAF_220_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__BRAF_220_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9771,8 +9771,8 @@
           <speciesReference species="cyt_prot__MAP2K_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MAP2K1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MAP2K1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9799,8 +9799,8 @@
           <speciesReference species="cyt_prot__MAP2K_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MAP2K2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MAP2K2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9827,8 +9827,8 @@
           <speciesReference species="cyt_prot__DUSP6_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__DUSP6_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__DUSP6_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9855,8 +9855,8 @@
           <speciesReference species="cyt_prot__RPS6KA_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPS6KA1_204_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPS6KA1_204_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9883,8 +9883,8 @@
           <speciesReference species="cyt_prot__RPS6KA_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPS6KA2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPS6KA2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9911,8 +9911,8 @@
           <speciesReference species="cyt_prot__RPS6KA_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPS6KA3_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPS6KA3_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9939,8 +9939,8 @@
           <speciesReference species="cyt_prot__RPS6KA_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPS6KA4_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPS6KA4_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9967,8 +9967,8 @@
           <speciesReference species="nuc_prot__DUSP1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__DUSP1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__DUSP1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -9995,8 +9995,8 @@
           <speciesReference species="nuc_prot__FOS_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__FOS_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__FOS_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10023,8 +10023,8 @@
           <speciesReference species="nuc_prot__JUN_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__JUN_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__JUN_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10051,8 +10051,8 @@
           <speciesReference species="nuc_prot__MYC_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MYC_206_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MYC_206_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10079,8 +10079,8 @@
           <speciesReference species="cyt_prot__CTNNB1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__CTNNB1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__CTNNB1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10107,8 +10107,8 @@
           <speciesReference species="cyt_prot__PTEN_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PTEN_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PTEN_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10135,8 +10135,8 @@
           <speciesReference species="cyt_prot__AKT_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__AKT1_218_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__AKT1_218_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10163,8 +10163,8 @@
           <speciesReference species="cyt_prot__AKT_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__AKT2_206_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__AKT2_206_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10191,8 +10191,8 @@
           <speciesReference species="cyt_prot__PDPK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PDPK1_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PDPK1_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10219,8 +10219,8 @@
           <speciesReference species="cyt_prot__RICTOR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RICTOR_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RICTOR_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10247,8 +10247,8 @@
           <speciesReference species="cyt_prot__MTOR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MTOR_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MTOR_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10275,8 +10275,8 @@
           <speciesReference species="cyt_prot__GSK3B_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__GSK3B_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__GSK3B_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10303,8 +10303,8 @@
           <speciesReference species="cyt_prot__TSC1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__TSC1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__TSC1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10331,8 +10331,8 @@
           <speciesReference species="cyt_prot__TSC2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__TSC2_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__TSC2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10359,8 +10359,8 @@
           <speciesReference species="cyt_prot__PRKC_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PRKCA_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PRKCA_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10387,8 +10387,8 @@
           <speciesReference species="cyt_prot__PRKC_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PRKCB_210_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PRKCB_210_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10415,8 +10415,8 @@
           <speciesReference species="cyt_prot__PRKC_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PRKCG_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PRKCG_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10443,8 +10443,8 @@
           <speciesReference species="cyt_prot__PRKC_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PRKCD_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PRKCD_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10471,8 +10471,8 @@
           <speciesReference species="cyt_prot__PEBP1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__PEBP1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__PEBP1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10499,8 +10499,8 @@
           <speciesReference species="cyt_prot__MAPK_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MAPK1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MAPK1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10527,8 +10527,8 @@
           <speciesReference species="cyt_prot__MAPK_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__MAPK3_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__MAPK3_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10555,8 +10555,8 @@
           <speciesReference species="cyt_prot__FOXO3_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__FOXO3_202_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__FOXO3_202_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10583,8 +10583,8 @@
           <speciesReference species="cyt_mixed__RHEB__GDP_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RHEB_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RHEB_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10611,8 +10611,8 @@
           <speciesReference species="cyt_prot__RPTOR_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPTOR_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPTOR_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -10639,8 +10639,8 @@
           <speciesReference species="cyt_prot__RPS6KB1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="cyt_mrna__RPS6KB1_201_"/>
           <modifierSpeciesReference species="cyt_prot__EIF4E_"/>
+          <modifierSpeciesReference species="cyt_mrna__RPS6KB1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14294,8 +14294,8 @@
           <speciesReference species="nuc_prot__p_RB1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot__CCND__CDK4_"/>
           <modifierSpeciesReference species="nuc_prot_CCND__CDK4__CDKN1B_"/>
+          <modifierSpeciesReference species="nuc_prot__CCND__CDK4_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14610,8 +14610,8 @@
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="nuc_prot__CCND__CDK4__CDKN1A_"/>
-          <modifierSpeciesReference species="nuc_prot__CCND__CDK4_"/>
           <modifierSpeciesReference species="nuc_prot_CCND__CDK4__CDKN1B_"/>
+          <modifierSpeciesReference species="nuc_prot__CCND__CDK4_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14804,13 +14804,13 @@
           <speciesReference species="nuc_prot_i__CCNE__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
           <modifierSpeciesReference species="nuc_prot_i__CCNA__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1B_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1B_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -15196,13 +15196,13 @@
           <speciesReference species="nuc_prot_i__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
           <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1B_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
-          <modifierSpeciesReference species="nuc_prot_i__CCNE__CDK2_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
-          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1B_"/>
+          <modifierSpeciesReference species="nuc_prot_i__CCNE__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -15751,8 +15751,8 @@
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="nuc_prot__CCNB__CDK1__CDKN1B_"/>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
           <modifierSpeciesReference species="nuc_prot__CCNB__CDK1__CDKN1A_"/>
+          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -61000,9 +61000,9 @@
           <speciesReference species="cyt_mrna__CCND1_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__CCND1_"/>
           <modifierSpeciesReference species="nuc_prot__p_FOS__JUN_"/>
           <modifierSpeciesReference species="nuc_prot__MYC_"/>
+          <modifierSpeciesReference species="nuc_gene_a__CCND1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -61084,9 +61084,9 @@
           <speciesReference species="cyt_mrna__CCND2_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__CCND2_"/>
           <modifierSpeciesReference species="nuc_prot__p_FOS__JUN_"/>
           <modifierSpeciesReference species="nuc_prot__MYC_"/>
+          <modifierSpeciesReference species="nuc_gene_a__CCND2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -61168,9 +61168,9 @@
           <speciesReference species="cyt_mrna__CCND3_203_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__CCND3_"/>
           <modifierSpeciesReference species="nuc_prot__p_FOS__JUN_"/>
           <modifierSpeciesReference species="nuc_prot__MYC_"/>
+          <modifierSpeciesReference species="nuc_gene_a__CCND3_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -62649,9 +62649,9 @@
           <speciesReference species="cyt_mrna__SPRY2_202_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__SPRY2_"/>
           <modifierSpeciesReference species="nuc_prot__pT202_pY204_MAPK_"/>
           <modifierSpeciesReference species="nuc_prot__p_RPS6KA_"/>
+          <modifierSpeciesReference species="nuc_gene_a__SPRY2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -63140,9 +63140,9 @@
           <speciesReference species="cyt_mrna__DUSP6_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__DUSP6_"/>
           <modifierSpeciesReference species="nuc_prot__pT202_pY204_MAPK_"/>
           <modifierSpeciesReference species="nuc_prot__p_RPS6KA_"/>
+          <modifierSpeciesReference species="nuc_gene_a__DUSP6_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -63289,9 +63289,9 @@
           <speciesReference species="cyt_mrna__DUSP1_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__DUSP1_"/>
           <modifierSpeciesReference species="nuc_prot__pT202_pY204_MAPK_"/>
           <modifierSpeciesReference species="nuc_prot__p_RPS6KA_"/>
+          <modifierSpeciesReference species="nuc_gene_a__DUSP1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -63366,10 +63366,10 @@
           <speciesReference species="cyt_mrna__FOS_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__FOS_"/>
           <modifierSpeciesReference species="nuc_prot__pT202_pY204_MAPK_"/>
           <modifierSpeciesReference species="nuc_prot__p_RPS6KA_"/>
           <modifierSpeciesReference species="nuc_prot__p_FOS__JUN_"/>
+          <modifierSpeciesReference species="nuc_gene_a__FOS_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -63453,8 +63453,8 @@
           <speciesReference species="cyt_mrna__JUN_201_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__JUN_"/>
           <modifierSpeciesReference species="nuc_prot__p_FOS__JUN_"/>
+          <modifierSpeciesReference species="nuc_gene_a__JUN_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -63508,8 +63508,8 @@
           <speciesReference species="cyt_mrna__MYC_206_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_gene_a__MYC_"/>
           <modifierSpeciesReference species="nuc_prot__CTNNB1_"/>
+          <modifierSpeciesReference species="nuc_gene_a__MYC_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
