@@ -50,6 +50,9 @@ class Helpers:
 
         data_dict = {}
         for simulation in data:
+            
+            if observable_name not in list(data[simulation].keys()):
+                continue
 
             data_dict[simulation] = {
                 'time': data[simulation][observable_name]['time'],
@@ -101,7 +104,7 @@ class CellDeathMetrics:
             mask = simulation_values > threshold
             
             # Handle cases dynamically
-            if time_array.size == 1:  # Single-value case
+            if time_array.size < len(mask):  # Single-value case
                 if mask.any():  # If at least one condition exceeds the threshold
                     dead_simulation_times = time_array[0]  # Use the single time value
                 else:

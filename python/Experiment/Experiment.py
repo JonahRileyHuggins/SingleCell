@@ -24,7 +24,6 @@ from shared_utils.file_loader import Config
 import shared_utils.utils as utils
 import MPI_Organizer as org
 import ObservableCalculator as obs
-from Visualizer import Visualizer
 
 sys.path.append("../../build/")
 from pySingleCell import SingleCell

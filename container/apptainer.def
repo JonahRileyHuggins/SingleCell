@@ -14,7 +14,7 @@ From: ubuntu:24.04
 
     # Export variables for the build process
     export BLAS_LIBS=-lopenblas
-    # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
