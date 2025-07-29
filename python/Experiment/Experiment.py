@@ -226,7 +226,7 @@ class Experiment:
                 # Use iloc[0] to safely get the first preequilibrationConditionId
                 precondition_id = precondition_matches['preequilibrationConditionId'].iloc[0]
                 
-                if precondition_id is not 'nan':
+                if pd.notna(precondition_id) and str(precondition_id).strip().lower() != 'nan':
 
                     logger.debug((
                         f"Extracting preequilibration condition {precondition_id}",
