@@ -1,3 +1,4 @@
 observableId	observableFormula	noiseFormula
-cycA_Cdk2_total	Ma*1.0	1
-Sphase	Me*1.0+Ma*1.0+Mb*1.0	1
+cycA_Cdk2_total	nuc_prot__CCNA__CDK2_	1
+Sphase	nuc_prot__CCNE__CDK2_+nuc_prot__CCNA__CDK2_+nuc_prot__CCNB__CDK1_	1
+blank	0	1

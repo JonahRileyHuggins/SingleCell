@@ -1,11 +1,12 @@
-observableId	simulationConditionId	measurement	time
-cPARP_total	GF_0	None	259200
-cPARP_total	EGF_3p3_INS_1721	None	259200
-cPARP_total	EGF_3p3_INS_1721_MEKi_10000	None	259200
-cPARP_total	EGF_3p3_INS_1721_AKTi_10000	None	259200
-cPARP_total	EGF_3p3_INS_1721_MEKi_10000AKTi_10000	None	259200
-PARP_total	GF_0	None	259200
-PARP_total	EGF_3p3_INS_1721	None	259200
-PARP_total	EGF_3p3_INS_1721_MEKi_10000	None	259200
-PARP_total	EGF_3p3_INS_1721_AKTi_10000	None	259200
-PARP_total	EGF_3p3_INS_1721_MEKi_10000AKTi_10000	None	259200
+observableId	preequilibrationConditionId	simulationConditionId	measurement	time
+blank		serum_starved	None	86400
+cPARP_total	serum_starved	GF_0	None	259200
+cPARP_total	serum_starved	EGF_3p3_INS_1721	None	259200
+cPARP_total	serum_starved	EGF_3p3_INS_1721_MEKi_10000	None	259200
+cPARP_total	serum_starved	EGF_3p3_INS_1721_AKTi_10000	None	259200
+cPARP_total	serum_starved	EGF_3p3_INS_1721_MEKi_10000AKTi_10000	None	259200
+PARP_total	serum_starved	GF_0	None	259200
+PARP_total	serum_starved	EGF_3p3_INS_1721	None	259200
+PARP_total	serum_starved	EGF_3p3_INS_1721_MEKi_10000	None	259200
+PARP_total	serum_starved	EGF_3p3_INS_1721_AKTi_10000	None	259200
+PARP_total	serum_starved	EGF_3p3_INS_1721_MEKi_10000AKTi_10000	None	259200

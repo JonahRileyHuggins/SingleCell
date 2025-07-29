@@ -1,4 +1,5 @@
-conditionId	conditionName	MEKi	AKTi	E	H	HGF	P	F	I	INS
+conditionId	conditionName	cyt_imp__MAP2Kinhibitor_	cyt_imp__AKTinhibitor_	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_
+heterogenize	heterogenous starting population	0	0	0	0	0	0	0	0	0
 EGF_only	cell cycle progression over 30 hours, EGF stimulus only	0	0	10	0	0	0	0	0	0
 INS_only	cell cycle progression over 30 hours, INS stimulus only	0	0	0	0	0	0	0	0	1721
 EGF_INS	cell cycle progression over 30 hours, INS and EGF stimulus	0	0	10	0	0	0	0	0	1721
