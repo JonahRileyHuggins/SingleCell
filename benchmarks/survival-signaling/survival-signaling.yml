@@ -1,7 +1,7 @@
 format_version: 1 
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems:
-  - name: "Survival Signalling"
+  - name: "Survival Signaling"
     condition_files: 
     - conditions.tsv
     measurement_files:
@@ -10,5 +10,5 @@ problems:
     - observables.tsv
     sbml_files:
     - ../../sbml_files/Deterministic.sbml
-    cell_number: 1
+    cell_count: 1
     

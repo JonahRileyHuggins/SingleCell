@@ -188,7 +188,7 @@ class Experiment:
         output:
             returns the results of the SPARCED model unit test simulation
         """
-        self.results_dict = obs.ObservableCalculator(self).run()
+        self.manager.results_dict = obs.ObservableCalculator(self).run()
 
         self.save_results(args)
 
