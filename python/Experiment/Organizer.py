@@ -128,7 +128,7 @@ class Organizer:
 
                 while pause_ranks:
 
-                    task_list.insert(idx+1, None)
+                    task_list.insert(idx+cell_count, None)
 
                     pause_ranks -= 1
 
