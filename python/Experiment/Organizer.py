@@ -132,6 +132,8 @@ class Organizer:
 
                     pause_ranks -= 1
 
+                pre_conds.pop(pre_conds.index(cond_id))
+
         return task_list
 
 
