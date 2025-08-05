@@ -4,8 +4,8 @@ import argparse
 import pyperclip
 
 parser = argparse.ArgumentParser(prog = "unit-converter")
-parser.add_argument("-m", "--mpc", help="molecules per cell value for converting between units")
-parser.add_argument("-n", "--nanomolar", help = "entry value in units nanomolar for conversion")
+parser.add_argument("-m", "--mpc", help="target unit molecules / cell")
+parser.add_argument("-n", "--nanomolar", help = "target unit nanomolar")
 parser.add_argument("-c", "--compartment_volume", help="volume (liters) of cellular compartment" \
                     "for unit conversion")
 
@@ -34,7 +34,7 @@ def nanomolar2mpc(nanomolar_value: float, compartment_volume: float) -> float:
     Returns:
     - mpc_value (float): discrete number of molecules per cell volume
     """
-    return (nanomolar_value * (1.0 / 1.0e9) * (compartment_volume / 1.0 ) * AVOGADRO)
+    return (nanomolar_value * (1.0 / 1.0e9) * AVOGADRO * (compartment_volume/1.0))
 
 
 

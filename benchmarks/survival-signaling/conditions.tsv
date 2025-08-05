@@ -1,4 +1,4 @@
-conditionId	conditionName	kP31_1	kP34_1	kP110_1	kP114_1	ext_prot__TNFSF10_	cyt_mrna__BBC3_203_	cyt_mrna__PMAIP1_202_
+conditionId	conditionName	kP33_1	kP36_1	kP114_1	kP118_1	ext_prot__TNFSF10_	cyt_mrna__BBC3_203_	cyt_mrna__PMAIP1_202_
 TRAIL_only	Low TRAIL Dose	0.001	0.001	0.05	0.05	0.005	0.000316	0.00126
 TRAIL_ERK_AKT	"Upregulated ERK and ppAKT "	0.01	0.01	0.5	0.5	0.005	0.000316	0.00126
 TRIAL_PUMA_NOXA	PUMA and NOXA upregulated	0.001	0.001	0.05	0.05	0.005	0.00632	0.0252
