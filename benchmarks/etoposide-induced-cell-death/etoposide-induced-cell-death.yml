@@ -8,7 +8,6 @@ problems:
     observable_files:
     - observables.tsv
     sbml_files:
-    sbml_files:
     - ../../sbml_files/Hybrid.sbml
     - ../../sbml_files/Stochastic.sbml
     cell_count: 100

@@ -1,7 +1,7 @@
 format_version: 1 
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems: 
-  - name: Trail Percent Death Benchmark
+  - name: Trail-Percent-Death
     condition_files: 
     - conditions.tsv
     measurement_files:

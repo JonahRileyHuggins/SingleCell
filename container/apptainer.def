@@ -49,7 +49,7 @@ From: ubuntu:24.04
     chmod -R 777 /SingleCell
     chown -R root:root /SingleCell
 
-    # Ubuntu 22.04 doesn't symlink python to python3 by default:
+    # Ubuntu 24.04 doesn't symlink python to python3 by default:
     ln -s /usr/bin/python3 /usr/bin/python
 
     # Install Python Dependencies
@@ -83,34 +83,14 @@ From: ubuntu:24.04
     ./buildSundials.sh
     ./buildAmici.sh
 
-    # Installing packages for OpenMPI
-    echo "Installing Open MPI"
-    export OMPI_DIR=/opt/ompi
-    ### Inspect host MPI version and change line 49
-    export OMPI_VERSION=5.0.1 ### Change This Line to Your Host System OpenMPI version
-    # Using string manipulation
-    export VAR_VERSION="${OMPI_VERSION%.*}"  # Remove everything after the last dot
-
-    export OMPI_URL="https://download.open-mpi.org/release/open-mpi/v$VAR_VERSION/openmpi-$OMPI_VERSION.tar.bz2"
-    mkdir -p /tmp/ompi
-    mkdir -p /opt
-    # Download
-    cd /tmp/ompi && wget -O openmpi-$OMPI_VERSION.tar.bz2 $OMPI_URL && tar -xjf openmpi-$OMPI_VERSION.tar.bz2
-    # Compile and install
-    cd /tmp/ompi/openmpi-$OMPI_VERSION && ./configure --prefix=$OMPI_DIR && make install
-    # Set env variables so we can compile our application
-    export PATH=$OMPI_DIR/bin:$PATH
-    export LD_LIBRARY_PATH=$OMPI_DIR/lib:$LD_LIBRARY_PATH
-    export MANPATH=$OMPI_DIR/share/man:$MANPATH
-
     # Build links to models inside container
     cd /SingleCell/python/ModelBuilding/
     python3 createModels.py -p ../../data/config.yaml
 
     ## SingleCell:
-    cd /SingleCell/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    cmake --build build
+    #cd /SingleCell/
+    #cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    #cmake --build build
 
 
 %environment
@@ -122,7 +102,6 @@ From: ubuntu:24.04
     export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     # Setup varaibles for OpenMPI support within the container
-    export OMPI_DIR=/opt/ompi
     export SINGULARITY_OMPI_DIR=$OMPI_DIR
     export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
     export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
