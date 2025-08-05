@@ -1,4 +1,4 @@
-conditionId	conditionName	E	H	HGF	P	F	I	INS
+conditionId	conditionName	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_
 EGF_0.001	EGF set to 0.001	0.001	9.36E-15	2.47E-15	2.86E-19	4.13E-16	1.26E-18	8.95E-15
 EGF_0.01	EGF set to 0.01	0.01	9.36E-15	2.47E-15	2.86E-19	4.13E-16	1.26E-18	8.95E-15
 EGF_0.1	EGF set to 0.1	0.1	9.36E-15	2.47E-15	2.86E-19	4.13E-16	1.26E-18	8.95E-15

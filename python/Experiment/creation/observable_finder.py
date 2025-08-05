@@ -38,16 +38,16 @@ class SpeciesRules:
         '_cyt_': ['Cytoplasm', 'cyt_', 'Cytosol'],
         '_mit_': ['Mitochondria', 'Mitochondrion', 'mit_'],
         '_nuc_': ['Nucleus', 'nuc_'],
-        '_end_': ['Endosome', 'end_'], 
-        '_exc_': ['Extracellular', 'exc_'],
+        '_ext_': ['Extracellular', 'ext_'],
     }
 
     SPECIES_TYPES = {
         '_mrna_': ['mRNA', '_mrna_'],
         '_prot_': ['Protein', '_prot_'],
         '_lipid_': ['Lipid', '_lipid_'],
-        '_cong_': ['Conglomerate', '_cong_'],
-        '_entity_': ['Entity', '_entity_'],
+        '_gene_': ['Conglomerate', '_gene_'],
+        '_mixed_': ['Entity', '_mixed_'],
+        '_imp_': ['Implicit', '_imp_']
     }
 
     MODIFIERS = {
@@ -62,7 +62,7 @@ class SpeciesRules:
 
     STRUCTURE = r'^(?P<compartment>cyt_|mit_|nuc_|end_|exc_)' \
                 r'(?P<species_type>mrna_|prot_|lipid_|cong_|entity_)' \
-                r'(?P<modifiers>(_p|_u|_cl|_a|_i)*)' \
+                r'(?P<modifiers>(_p|_u|cl_|a_|i_)*)' \
                 r'(?P<residue_position>_\d+[A-Z]?)?' \
                 r'_(?P<base_species>[A-Za-z0-9]+)' \
                 r'(__(?P<additional_species>[A-Za-z0-9]+))?$'
@@ -259,9 +259,9 @@ class SpeciesQuery:
         
         species_df = self.model_files['species']
 
-        species_df['species'] = species_df['species'].astype(str)
+        species_df['speciesId'] = species_df['speciesId'].astype(str)
         matching_species = species_df.loc[
-        species_df['species'].str.contains(re.escape(component), na=False), 'species'
+        species_df['speciesId'].str.contains(re.escape(component), na=False), 'speciesId'
         ]
         return matching_species.tolist()
 
@@ -279,7 +279,7 @@ class SpeciesQuery:
         related_species = []
         for index, row in self.model_files['species'].iterrows():
             if annotation in row['annotation']:
-                related_species.append(row['species'])
+                related_species.append(row['speciesId'])
 
         return related_species
 
@@ -326,7 +326,7 @@ class ObservableBuilder:
         """
 
         comp_volumes = self.extract_compartmental_volume()
-
+        cytoplasm_vol = comp_volumes['Cytoplasm']
         observable = ''
 
         for specie in self.species:
@@ -337,7 +337,7 @@ class ObservableBuilder:
 
             num_instances = self.get_instance_of_component_in_species(queried_specie=specie)
 
-            observable += f'({num_instances} * {specie} * {comp_volume}) + '
+            observable += f'({num_instances} * {specie} * {comp_volume / cytoplasm_vol}) + '
 
         return observable[:-3]
     
@@ -348,7 +348,7 @@ class ObservableBuilder:
         - dict: The compartmental volumes.
         """
         compartments = self.species_query.model_files['compartments']
-        compartments = compartments.set_index('compartments')
+        compartments = compartments.set_index('compartmentId')
 
         compartment_volumes = {}
 
@@ -367,7 +367,7 @@ class ObservableBuilder:
         """
         species_sheet = self.species_query.model_files['species']
 
-        specie_row = species_sheet.loc[species_sheet['species'] == specie]
+        specie_row = species_sheet.loc[species_sheet['speciesId'] == specie]
 
         specie_comp = specie_row['compartment'].values[0]
 

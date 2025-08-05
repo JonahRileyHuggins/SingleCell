@@ -302,6 +302,8 @@ class CellPopMetrics:
         cycling_val = 0
 
         for simulation in self.data:
+            if observable not in self.data[simulation].keys():
+                continue
             condition_id = self.data[simulation]['conditionId']
 
             if condition_id not in threshold_bins:
@@ -348,11 +350,10 @@ class LeftRightSplit:
         CONVERT_TO_HOURS = 3600
 
         for i, condition in enumerate(conds_registry):
-
             color = colors[i] if colors else None
 
             for simulation in data:
-                if simulation in conds_registry[condition]:
+                if simulation in conds_registry[condition] and observable in data[simulation].keys():
                     self.axes_left[i].plot(
                         data[simulation][observable][dependent_var] / CONVERT_TO_HOURS,
                         data[simulation][observable][independent_var], 

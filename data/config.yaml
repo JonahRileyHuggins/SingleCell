@@ -3,7 +3,7 @@
 # General infos
 name: "MCF10A Model"
 header: "Under Construction"
-location: "data"
+location: "."
 version: "1.0"
 description: "Configuration for loading reference and swappable input files"
 author: "Jonah R. Huggins"

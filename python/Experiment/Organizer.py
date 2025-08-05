@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-script name: MPI_Organizer.py
+script name: Organizer.py
 Created on Fri Jan. 10th 12:00:00 2024
 Author: Jonah R. Huggins
 
