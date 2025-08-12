@@ -24,11 +24,11 @@ import json
 import pandas as pd
 
 sys.path.append("../build/")
-from pySingleCell import SingleCell
+from pySingleCell import SingleCell as SC
 
 # Arguement Parsing (Internal For Now)
 parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
-
+parser.add_argument('--sbml', '-s', help='SBMLs to be simulated.', nargs='+', default=['../sbml_files/Deterministic.sbml'])
 parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
                     help='Species to modify in key=value format', default=[])
 parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
@@ -36,48 +36,41 @@ parser.add_argument('--stop', help = 'stop time for simulation.', default = 8640
 parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
 parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
 
-args = parser.parse_args()
-
-#-----------------------------Static Variables-----------------------------------------#
-SBML_DIR = '../sbml_files/'
-
 #-------------------Class Definition-----------------------------------------#
-class TestSim:
+class SingleCell:
     """Primary instance of the single cell for simulation."""
 
-    def __init__(self):
+    def __init__(self, args):
+        self.single_cell = SC(*args.sbml)
+        self.start = args.start
+        self.stop = args.stop
+        self.step = args.step
+        self.modify = args.modify
 
-        self.stochastic_path = os.path.join(SBML_DIR, 'Stochastic.sbml')
 
-        self.deterministic_path = os.path.join(SBML_DIR, 'Hybrid.sbml')
     
-    def simulate(self, args, **kwargs):
+    def simulate(self):
         """Primary simulation function using hybrid stochastic-deterministic method
 
         Parameters:
-            - args (simpleNamespace): Namespace taken from command-line arguements.
 
         Returns: 
             - results_dataframe (pd.DataFrame): finalized results of simulation. 
         """
 
-        # Need to add entity map for deterministic simulations:
-
-        single_cell = SingleCell(*[self.stochastic_path, self.deterministic_path])
-
         for pair in args.modify:
             if '=' in pair:
                 key, val = pair.split('=', 1)
                 print("Setting %s to value %d", key, float(val))
-                single_cell.modify(key, float(val))
+                self.single_cell.modify(key, float(val))
 
-        results_array = single_cell.simulate(
-            args.start,
-            args.stop, 
-            args.step
+        results_array = self.single_cell.simulate(
+            self.start,
+            self.stop, 
+            self.step
             )
 
-        speciesIds = single_cell.getGlobalSpeciesIds()
+        speciesIds = self.single_cell.getGlobalSpeciesIds()
 
         results_df = pd.DataFrame(results_array, columns=speciesIds)
 
@@ -94,4 +87,4 @@ def parse_dict_arg(arg_string):
 if __name__ == '__main__':
     args = parser.parse_args()
 
-    TestSim().simulate(args)
+    SingleCell(args).simulate()

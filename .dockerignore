@@ -3,9 +3,11 @@
 *_pycache_*
 old-*
 README.md
+build*
 kube*
 *nextflow*
 main*
-.git
+.git*
 *.md
 .cache
+results*

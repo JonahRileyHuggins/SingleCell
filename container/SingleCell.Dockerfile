@@ -6,32 +6,34 @@
 
 FROM ubuntu:24.04
 
-# Copy SingleCell files (ensure build context matches path)
-RUN mkdir -p /SingleCell
-COPY . /SingleCell/
-
-# Set working directory
-WORKDIR /SingleCell
-
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
     SHELL=/bin/bash \
     BLAS_LIBS=-lopenblas \
     PATH=/root/.local/bin:$PATH \
-    LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
-    PIPX_HOME=/usr/local/pipx \
-    PIPX_BIN_DIR=/usr/local/bin 
+    VENV_PATH=/SingleCell/.venv
+
+# Copy SingleCell files (ensure build context matches path)
+RUN mkdir -p /SingleCell
+COPY . /SingleCell/
+
+# Safety Check; verifies any files from Windows are sanitized
+RUN apt-get update && apt-get install -y dos2unix \
+    && find /SingleCell -type f -name "*.sh" -exec dos2unix {} \; \
+    && find /SingleCell -type f -name "*.sh" -exec chmod +x {} \; \
+    && find /SingleCell -type l -exec sh -c 'target=$(readlink "{}"); cp --remove-destination "$target" "{}"' \; \
+    && apt-get remove -y dos2unix && apt-get autoremove -y
+
+
+
+# Set working directory
+WORKDIR /SingleCell
+
 
 # Update and install basic dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
         build-essential \
-        apt-utils \
         curl \
-        libssl-dev \
-        libmunge-dev \
-        libmunge2 \
-        munge \
-        bash \
         wget \
         python3-pip \
         python3-venv \
@@ -44,9 +46,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gfortran \
         cmake \
         make \
-        file \
-        libgfortran5 \
-        libatomic1 \
         swig \
         libhdf5-dev \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -55,8 +54,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN mkdir -p $PIPX_HOME $PIPX_BIN_DIR
 
 RUN cd /SingleCell
-RUN python3 -m venv .venv && source .venv/bin/activate
-RUN pip install -r requirements.txt
+RUN python3 -m venv .venv \
+    && . .venv/bin/activate \
+    && pip install -r requirements.txt
 
     # Installing ThirdParty dependencies
     ## muParser
@@ -83,8 +83,10 @@ RUN cd /SingleCell/ThirdParty/AMICI/scripts/ \
     && ./buildSundials.sh \
     && ./buildAmici.sh
 
-    # Build links to models inside container
-RUN cd /SingleCell/python/ModelBuilding/ \
+    # Build models inside container
+RUN cd /SingleCell/ \
+    && . .venv/bin/activate \
+    && cd python/ModelBuilding/ \
     && python3 createModels.py -p ../../data/config.yaml
 
     ## SingleCell:
@@ -92,13 +94,10 @@ RUN cd /SingleCell/ \
     && cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     && cmake --build build
 
-# Install Python dependencies using pipx
-# RUN pipx ensurepath
-# RUN pipx install dist/singlecell-0.1-py3-none-any.whl --verbose --force
-
-
 # Set default shell
 SHELL ["/bin/bash", "-c"]
 
+# on run: activates the virtual environment stored in SingleCell/.venv
+CMD ["/bin/bash", "-c", "source $VENV_PATH/bin/activate && exec bash"]
 # Test the installation
 # RUN sparced --help
