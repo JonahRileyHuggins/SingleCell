@@ -1,0 +1,11 @@
+*.ipynb_check*
+*xlsx
+*_pycache_*
+old-*
+README.md
+kube*
+*nextflow*
+main*
+.git
+*.md
+.cache
