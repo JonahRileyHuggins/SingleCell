@@ -19,8 +19,6 @@ Output:
 import os
 import sys
 import argparse
-from types import SimpleNamespace
-from typing import Optional
 import json
 
 import pandas as pd
@@ -29,14 +27,14 @@ sys.path.append("../build/")
 from pySingleCell import SingleCell
 
 # Arguement Parsing (Internal For Now)
-parser = argparse.ArgumentParser(description='')
+parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
 
 parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
                     help='Species to modify in key=value format', default=[])
 parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
 parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
 parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
-parser.add_argument('--output', help = 'output path', default="py_simulation_results.tsv")
+parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
 
 args = parser.parse_args()
 
@@ -51,7 +49,7 @@ class TestSim:
 
         self.stochastic_path = os.path.join(SBML_DIR, 'Stochastic.sbml')
 
-        self.deterministic_path = os.path.join(SBML_DIR, 'Deterministic.sbml')
+        self.deterministic_path = os.path.join(SBML_DIR, 'Hybrid.sbml')
     
     def simulate(self, args, **kwargs):
         """Primary simulation function using hybrid stochastic-deterministic method
@@ -65,7 +63,7 @@ class TestSim:
 
         # Need to add entity map for deterministic simulations:
 
-        single_cell = SingleCell(self.stochastic_path, self.deterministic_path)
+        single_cell = SingleCell(*[self.stochastic_path, self.deterministic_path])
 
         for pair in args.modify:
             if '=' in pair:
