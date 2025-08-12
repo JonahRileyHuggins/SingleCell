@@ -1,5 +1,5 @@
 # Must be built from the root directory of the repo
-# BUILD: docker build -t singlecell -f container/SingleCell.docker .
+# BUILD: docker build -t singlecell -f container/SingleCell.Dockerfile .
 # TEST LOCAL (optional): docker run -p 8888:8888 --name test1 -i -t singlecell
 # TAG: docker tag singlecell JonahRileyHuggins/SingleCell:latest
 # PUSH: docker push JonahRileyHuggins/SingleCell:latest
@@ -23,7 +23,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PIPX_BIN_DIR=/usr/local/bin 
 
 # Update and install basic dependencies
-RUN     apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         apt-utils \
         curl \
@@ -52,7 +52,11 @@ RUN     apt-get update && apt-get install -y --no-install-recommends \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Create persistent paths for pipx
-RUN mkdir -p $PIPX_HOME $PIPX_BIN_DIR
+# RUN mkdir -p $PIPX_HOME $PIPX_BIN_DIR
+
+RUN cd /SingleCell
+RUN python3 -m venv .venv && source .venv/bin/activate
+RUN pip install -r requirements.txt
 
     # Installing ThirdParty dependencies
     ## muParser
@@ -89,8 +93,9 @@ RUN cd /SingleCell/ \
     && cmake --build build
 
 # Install Python dependencies using pipx
-RUN pipx ensurepath
-RUN pipx install dist/singlecell-0.1-py3-none-any.whl --verbose --force
+# RUN pipx ensurepath
+# RUN pipx install dist/singlecell-0.1-py3-none-any.whl --verbose --force
+
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]
