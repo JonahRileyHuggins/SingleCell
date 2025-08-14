@@ -1,5 +1,5 @@
-# Genome-Complete Deterministic Model 
-model Deterministic()
+# Human Epithelial Cell Model -- One4All 
+model One4All()
 
   # Compartments and Species:
   Compartment Cytoplasm;
@@ -66,7 +66,7 @@ model Deterministic()
   Species nuc_prot_i__CDC25C__CCNB__CDK1_ in Nucleus;
   Species nuc_prot__CCNA_ in Nucleus;
   Species nuc_prot_i__CCNA__CDK2_ in Nucleus;
-  Species nuc_prot_CCNA__CDK2_ in Nucleus;
+  Species nuc_prot__CCNA__CDK2_ in Nucleus;
   Species nuc_prot__CCNA__CDK2__CDKN1B_ in Nucleus;
   Species nuc_prot__CDKN1B_ in Nucleus;
   Species nuc_prot_i__CDH1_ in Nucleus;
@@ -76,7 +76,7 @@ model Deterministic()
   Species nuc_prot__p_CDC25__CCNA__CDK2_ in Nucleus;
   Species nuc_prot__CCNB_ in Nucleus;
   Species nuc_prot_i__CCNB__CDK1_ in Nucleus;
-  Species nuc_prot_CCNB__CDK1_ in Nucleus;
+  Species nuc_prot__CCNB__CDK1_ in Nucleus;
   Species nuc_prot_i__CDC20_ in Nucleus;
   Species nuc_prot_a__CDC20_ in Nucleus;
   Species nuc_prot__CDC25__CCNB__CDK1_ in Nucleus;
@@ -1574,7 +1574,7 @@ model Deterministic()
   vD63: nuc_imp__DNADoubleStrandBreak_ => ; (kD63_1*nuc_prot__BRCA2_*nuc_imp__DNADoubleStrandBreak_)*Nucleus;
   vD64: nuc_imp__DNASingleStrandBreak_ => ; (kD64_1*nuc_prot__MSH6_*nuc_imp__DNASingleStrandBreak_)*Nucleus;
   vD65: nuc_imp__DNASingleStrandBreak_ => ; (kD65_1*nuc_prot__MGMT_*nuc_imp__DNASingleStrandBreak_)*Nucleus;
-  vD66:  => nuc_imp__DNADoubleStrandBreak_ + nuc_imp__DNASingleStrandBreak_; ((kD66_1+kD66_2*(kD66_3/(kD66_3+kD66_4)))*(((nuc_prot_CCNA__CDK2_+nuc_prot__CCNE__CDK2_)^kD66_5)/(((nuc_prot_CCNA__CDK2_+nuc_prot__CCNE__CDK2_)^kD66_5)+(kD66_6^kD66_5))))*Nucleus;
+  vD66:  => nuc_imp__DNADoubleStrandBreak_ + nuc_imp__DNASingleStrandBreak_; ((kD66_1+kD66_2*(kD66_3/(kD66_3+kD66_4)))*(((nuc_prot__CCNA__CDK2_+nuc_prot__CCNE__CDK2_)^kD66_5)/(((nuc_prot__CCNA__CDK2_+nuc_prot__CCNE__CDK2_)^kD66_5)+(kD66_6^kD66_5))))*Nucleus;
   vC1:  => nuc_prot__RB1_; (kC1_1)*Nucleus;
   vC2: nuc_prot__RB1_ + nuc_prot__E2F_ => nuc_prot__RB1__E2F_; (kC2_1*nuc_prot__RB1_*nuc_prot__E2F_)*Nucleus;
   vC3: nuc_prot__RB1__E2F_ => nuc_prot__RB1_ + nuc_prot__E2F_; (kC3_1*nuc_prot__RB1__E2F_)*Nucleus;
@@ -1588,7 +1588,7 @@ model Deterministic()
   vC11: nuc_prot__p_RB1_ => ; (kC11_1*nuc_prot__p_RB1_)*Nucleus;
   vC12: nuc_prot__p_p_RB1_ => ; (kC12_1*nuc_prot__p_p_RB1_)*Nucleus;
   vC13:  => nuc_prot__E2F_; (kC13_1)*Nucleus;
-  vC14: nuc_prot__E2F_ => nuc_prot__p_E2F_; (kC14_1*nuc_prot_CCNA__CDK2_*(nuc_prot__E2F_/(nuc_prot__E2F_+kC14_2)))*Nucleus;
+  vC14: nuc_prot__E2F_ => nuc_prot__p_E2F_; (kC14_1*nuc_prot__CCNA__CDK2_*(nuc_prot__E2F_/(nuc_prot__E2F_+kC14_2)))*Nucleus;
   vC15: nuc_prot__p_E2F_ => nuc_prot__E2F_; (kC15_1*(nuc_prot__p_E2F_/(nuc_prot__p_E2F_+kC15_2)))*Nucleus;
   vC16: nuc_prot__E2F_ => ; (kC16_1*nuc_prot__E2F_)*Nucleus;
   vC17: nuc_prot__p_E2F_ => ; (kC17_1*nuc_prot__p_E2F_)*Nucleus;
@@ -1602,7 +1602,7 @@ model Deterministic()
   vC25: nuc_prot__CCND__CDK4_ + nuc_prot__CDKN1B_ => nuc_prot_CCND__CDK4__CDKN1B_; (kC25_1*nuc_prot__CCND__CDK4_*nuc_prot__CDKN1B_)*Nucleus;
   vC26: nuc_prot_CCND__CDK4__CDKN1B_ => nuc_prot__CCND__CDK4_ + nuc_prot__CDKN1B_; (kC26_1*nuc_prot_CCND__CDK4__CDKN1B_)*Nucleus;
   vC27:  => nuc_prot__CCNE_; (kC27_1)*Nucleus;
-  vC28: nuc_prot__CCNE_ => nuc_prot_i__CCNE__CDK2_; (kC28_1*nuc_prot__CCNE_*(kC28_2-(nuc_prot_i__CCNE__CDK2_+nuc_prot__CCNE__CDK2_+nuc_prot__CCNE__CDK2__CDKN1B_+nuc_prot__CCNE__CDK2__CDKN1A_+nuc_prot_i__CCNA__CDK2_+nuc_prot_CCNA__CDK2_+nuc_prot__CCNA__CDK2__CDKN1B_+nuc_prot__CCNA__CDK2__CDKN1A_)))*Nucleus;
+  vC28: nuc_prot__CCNE_ => nuc_prot_i__CCNE__CDK2_; (kC28_1*nuc_prot__CCNE_*(kC28_2-(nuc_prot_i__CCNE__CDK2_+nuc_prot__CCNE__CDK2_+nuc_prot__CCNE__CDK2__CDKN1B_+nuc_prot__CCNE__CDK2__CDKN1A_+nuc_prot_i__CCNA__CDK2_+nuc_prot__CCNA__CDK2_+nuc_prot__CCNA__CDK2__CDKN1B_+nuc_prot__CCNA__CDK2__CDKN1A_)))*Nucleus;
   vC29: nuc_prot_i__CCNE__CDK2_ => nuc_prot__CCNE_; (kC29_1*nuc_prot_i__CCNE__CDK2_)*Nucleus;
   vC30: nuc_prot__CCNE_ => ; (kC30_1*(nuc_prot__SKP2_/(kC30_2+nuc_prot__SKP2_))*(nuc_prot__CCNE_/(kC30_3+nuc_prot__CCNE_)))*Nucleus;
   vC31: nuc_prot__CCNE__CDK2_ => nuc_prot_i__CCNE__CDK2_; (kC31_1*(nuc_prot__WEE1_+kC31_2)*(nuc_prot__CCNE__CDK2_/(kC31_3+nuc_prot__CCNE__CDK2_)))*Nucleus;
@@ -1618,49 +1618,49 @@ model Deterministic()
   vC41: nuc_prot_i__CDC25A__CCNE__CDK2_ => ; (kC41_1*nuc_prot_i__CDC25A__CCNE__CDK2_)*Nucleus;
   vC42: nuc_prot__CDC25A__CCNE__CDK2_ => ; (kC42_1*nuc_prot__CDC25A__CCNE__CDK2_)*Nucleus;
   vC43:  => nuc_prot__CCNA_; (kC43_1)*Nucleus;
-  vC44: nuc_prot__CCNA_ => nuc_prot_i__CCNA__CDK2_; (kC44_1*nuc_prot__CCNA_*(kC44_2-(nuc_prot_i__CCNE__CDK2_+nuc_prot__CCNE__CDK2_+nuc_prot__CCNE__CDK2__CDKN1B_+nuc_prot__CCNE__CDK2__CDKN1A_+nuc_prot_i__CCNA__CDK2_+nuc_prot_CCNA__CDK2_+nuc_prot__CCNA__CDK2__CDKN1B_+nuc_prot__CCNA__CDK2__CDKN1A_)))*Nucleus;
+  vC44: nuc_prot__CCNA_ => nuc_prot_i__CCNA__CDK2_; (kC44_1*nuc_prot__CCNA_*(kC44_2-(nuc_prot_i__CCNE__CDK2_+nuc_prot__CCNE__CDK2_+nuc_prot__CCNE__CDK2__CDKN1B_+nuc_prot__CCNE__CDK2__CDKN1A_+nuc_prot_i__CCNA__CDK2_+nuc_prot__CCNA__CDK2_+nuc_prot__CCNA__CDK2__CDKN1B_+nuc_prot__CCNA__CDK2__CDKN1A_)))*Nucleus;
   vC45: nuc_prot_i__CCNA__CDK2_ => nuc_prot__CCNA_; (kC45_1*nuc_prot_i__CCNA__CDK2_)*Nucleus;
   vC46: nuc_prot__CCNA_ => ; (kC46_1*(nuc_prot__CCNA_/(kC46_2+nuc_prot__CCNA_))*(nuc_prot_a__CDC20_/(kC46_3+nuc_prot_a__CDC20_)))*Nucleus;
   vC47: nuc_prot__CCNA_ => ; (kC47_1*nuc_prot__CCNA_)*Nucleus;
-  vC48: nuc_prot_CCNA__CDK2_ => nuc_prot_i__CCNA__CDK2_; (kC48_1*(nuc_prot__WEE1_+kC48_2)*(nuc_prot_CCNA__CDK2_/(kC48_3+nuc_prot_CCNA__CDK2_)))*Nucleus;
-  vC49: nuc_prot_i__CCNA__CDK2_ => nuc_prot_CCNA__CDK2_; (kC49_1*nuc_prot__p_CDC25__CCNA__CDK2_*(nuc_prot_i__CCNA__CDK2_/(kC49_2+nuc_prot_i__CCNA__CDK2_)))*Nucleus;
-  vC50: nuc_prot_CCNA__CDK2_ + nuc_prot__CDKN1B_ => nuc_prot__CCNA__CDK2__CDKN1B_; (kC50_1*nuc_prot_CCNA__CDK2_*nuc_prot__CDKN1B_)*Nucleus;
-  vC51: nuc_prot__CCNA__CDK2__CDKN1B_ => nuc_prot_CCNA__CDK2_ + nuc_prot__CDKN1B_; (kC51_1*nuc_prot__CCNA__CDK2__CDKN1B_)*Nucleus;
+  vC48: nuc_prot__CCNA__CDK2_ => nuc_prot_i__CCNA__CDK2_; (kC48_1*(nuc_prot__WEE1_+kC48_2)*(nuc_prot__CCNA__CDK2_/(kC48_3+nuc_prot__CCNA__CDK2_)))*Nucleus;
+  vC49: nuc_prot_i__CCNA__CDK2_ => nuc_prot__CCNA__CDK2_; (kC49_1*nuc_prot__p_CDC25__CCNA__CDK2_*(nuc_prot_i__CCNA__CDK2_/(kC49_2+nuc_prot_i__CCNA__CDK2_)))*Nucleus;
+  vC50: nuc_prot__CCNA__CDK2_ + nuc_prot__CDKN1B_ => nuc_prot__CCNA__CDK2__CDKN1B_; (kC50_1*nuc_prot__CCNA__CDK2_*nuc_prot__CDKN1B_)*Nucleus;
+  vC51: nuc_prot__CCNA__CDK2__CDKN1B_ => nuc_prot__CCNA__CDK2_ + nuc_prot__CDKN1B_; (kC51_1*nuc_prot__CCNA__CDK2__CDKN1B_)*Nucleus;
   vC52: nuc_prot__CDKN1B_ => nuc_prot__p_CDKN1B_; (kC52_1*nuc_prot__CCNE__CDK2_*(nuc_prot__CDKN1B_/(nuc_prot__CDKN1B_+kC52_2)))*Nucleus;
   vC53: nuc_prot__p_CDKN1B_ => nuc_prot__CDKN1B_; (kC53_1*(nuc_prot__p_CDKN1B_/(nuc_prot__p_CDKN1B_+kC53_2)))*Nucleus;
   vC54: nuc_prot__p_CDKN1B_ => ; (kC54_1*(nuc_prot__SKP2_/(nuc_prot__SKP2_+kC54_2))*(nuc_prot__p_CDKN1B_/(nuc_prot__p_CDKN1B_+kC54_3)))*Nucleus;
   vC55: nuc_prot__p_CDKN1B_ => ; (kC55_1*nuc_prot__p_CDKN1B_)*Nucleus;
-  vC56: nuc_prot_a__CDH1_ => nuc_prot_i__CDH1_; (kC56_1*(nuc_prot_a__CDH1_/(kC56_2+nuc_prot_a__CDH1_))*(nuc_prot_CCNA__CDK2_+nuc_prot_CCNB__CDK1_))*Nucleus;
+  vC56: nuc_prot_a__CDH1_ => nuc_prot_i__CDH1_; (kC56_1*(nuc_prot_a__CDH1_/(kC56_2+nuc_prot_a__CDH1_))*(nuc_prot__CCNA__CDK2_+nuc_prot__CCNB__CDK1_))*Nucleus;
   vC57: nuc_prot_i__CDH1_ => nuc_prot_a__CDH1_; (kC57_1*(nuc_prot_i__CDH1_/(kC57_2+nuc_prot_i__CDH1_)))*Nucleus;
   vC58: nuc_prot_i__CDH1_ => ; (kC58_1*nuc_prot_i__CDH1_)*Nucleus;
   vC59:  => nuc_prot_a__CDH1_; (kC59_1)*Nucleus;
   vC60: nuc_prot_a__CDH1_ => ; (kC60_1*nuc_prot_a__CDH1_)*Nucleus;
   vC61:  => nuc_prot_i__CDC25B__CCNA__CDK2_; (kC61_1)*Nucleus;
   vC62: nuc_prot__p_CDC25__CCNA__CDK2_ => nuc_prot_i__CDC25B__CCNA__CDK2_; (kC62_1*(kC62_2+(kC62_3*nuc_prot__CHEK1_))*(nuc_prot__p_CDC25__CCNA__CDK2_/(kC62_4+nuc_prot__p_CDC25__CCNA__CDK2_)))*Nucleus;
-  vC63: nuc_prot_i__CDC25B__CCNA__CDK2_ => nuc_prot__p_CDC25__CCNA__CDK2_; (kC63_1*(nuc_prot_CCNA__CDK2_+kC63_2)*(nuc_prot_i__CDC25B__CCNA__CDK2_/(kC63_3+nuc_prot_i__CDC25B__CCNA__CDK2_)))*Nucleus;
+  vC63: nuc_prot_i__CDC25B__CCNA__CDK2_ => nuc_prot__p_CDC25__CCNA__CDK2_; (kC63_1*(nuc_prot__CCNA__CDK2_+kC63_2)*(nuc_prot_i__CDC25B__CCNA__CDK2_/(kC63_3+nuc_prot_i__CDC25B__CCNA__CDK2_)))*Nucleus;
   vC64: nuc_prot_i__CDC25B__CCNA__CDK2_ => ; (kC64_1*nuc_prot_i__CDC25B__CCNA__CDK2_)*Nucleus;
   vC65: nuc_prot__p_CDC25__CCNA__CDK2_ => ; (kC65_1*nuc_prot__p_CDC25__CCNA__CDK2_)*Nucleus;
   vC66:  => nuc_prot__CCNB_; (kC66_1)*Nucleus;
-  vC67: nuc_prot__CCNB_ => nuc_prot_i__CCNB__CDK1_; (kC67_1*nuc_prot__CCNB_*(kC67_2-(nuc_prot_i__CCNB__CDK1_+nuc_prot_CCNB__CDK1_+nuc_prot__CCNB__CDK1__CDKN1B_+nuc_prot__CCNB__CDK1__CDKN1A_)))*Nucleus;
+  vC67: nuc_prot__CCNB_ => nuc_prot_i__CCNB__CDK1_; (kC67_1*nuc_prot__CCNB_*(kC67_2-(nuc_prot_i__CCNB__CDK1_+nuc_prot__CCNB__CDK1_+nuc_prot__CCNB__CDK1__CDKN1B_+nuc_prot__CCNB__CDK1__CDKN1A_)))*Nucleus;
   vC68: nuc_prot_i__CCNB__CDK1_ => nuc_prot__CCNB_; (kC68_1*nuc_prot_i__CCNB__CDK1_)*Nucleus;
   vC69: nuc_prot__CCNB_ => ; (kC69_1*(nuc_prot__CCNB_/(kC69_2+nuc_prot__CCNB_))*((nuc_prot_a__CDC20_/(kC69_3+nuc_prot_a__CDC20_))+(nuc_prot_a__CDH1_/(kC69_4+nuc_prot_a__CDH1_))))*Nucleus;
   vC70: nuc_prot__CCNB_ => ; (kC70_1*nuc_prot__CCNB_)*Nucleus;
-  vC71: nuc_prot_CCNB__CDK1_ => nuc_prot_i__CCNB__CDK1_; (kC71_1*(nuc_prot__WEE1_+kC71_2)*(nuc_prot_CCNB__CDK1_/(kC71_3+nuc_prot_CCNB__CDK1_)))*Nucleus;
-  vC72: nuc_prot_i__CCNB__CDK1_ => nuc_prot_CCNB__CDK1_; (kC72_1*nuc_prot__CDC25__CCNB__CDK1_*(nuc_prot_i__CCNB__CDK1_/(kC72_2+nuc_prot_i__CCNB__CDK1_)))*Nucleus;
-  vC73: nuc_prot__CDKN1B_ + nuc_prot_CCNB__CDK1_ => nuc_prot__CCNB__CDK1__CDKN1B_; (kC73_1*nuc_prot__CDKN1B_*nuc_prot_CCNB__CDK1_)*Nucleus;
-  vC74: nuc_prot__CCNB__CDK1__CDKN1B_ => nuc_prot__CDKN1B_ + nuc_prot_CCNB__CDK1_; (kC74_1*nuc_prot__CCNB__CDK1__CDKN1B_)*Nucleus;
+  vC71: nuc_prot__CCNB__CDK1_ => nuc_prot_i__CCNB__CDK1_; (kC71_1*(nuc_prot__WEE1_+kC71_2)*(nuc_prot__CCNB__CDK1_/(kC71_3+nuc_prot__CCNB__CDK1_)))*Nucleus;
+  vC72: nuc_prot_i__CCNB__CDK1_ => nuc_prot__CCNB__CDK1_; (kC72_1*nuc_prot__CDC25__CCNB__CDK1_*(nuc_prot_i__CCNB__CDK1_/(kC72_2+nuc_prot_i__CCNB__CDK1_)))*Nucleus;
+  vC73: nuc_prot__CDKN1B_ + nuc_prot__CCNB__CDK1_ => nuc_prot__CCNB__CDK1__CDKN1B_; (kC73_1*nuc_prot__CDKN1B_*nuc_prot__CCNB__CDK1_)*Nucleus;
+  vC74: nuc_prot__CCNB__CDK1__CDKN1B_ => nuc_prot__CDKN1B_ + nuc_prot__CCNB__CDK1_; (kC74_1*nuc_prot__CCNB__CDK1__CDKN1B_)*Nucleus;
   vC75:  => nuc_prot_i__CDC20_; (kC75_1)*Nucleus;
-  vC76: nuc_prot_i__CDC20_ => nuc_prot_a__CDC20_; (kC76_1*nuc_prot_CCNB__CDK1_*(nuc_prot_i__CDC20_/(kC76_2+nuc_prot_i__CDC20_)))*Nucleus;
+  vC76: nuc_prot_i__CDC20_ => nuc_prot_a__CDC20_; (kC76_1*nuc_prot__CCNB__CDK1_*(nuc_prot_i__CDC20_/(kC76_2+nuc_prot_i__CDC20_)))*Nucleus;
   vC77: nuc_prot_a__CDC20_ => nuc_prot_i__CDC20_; (kC77_1*(nuc_prot_a__CDC20_/(kC77_2+nuc_prot_a__CDC20_)))*Nucleus;
   vC78: nuc_prot_i__CDC20_ => ; (kC78_1*nuc_prot_i__CDC20_)*Nucleus;
   vC79: nuc_prot_a__CDC20_ => ; (kC79_1*nuc_prot_a__CDC20_)*Nucleus;
   vC80:  => nuc_prot_i__CDC25C__CCNB__CDK1_; (kC80_1)*Nucleus;
   vC81: nuc_prot__CDC25__CCNB__CDK1_ => nuc_prot_i__CDC25C__CCNB__CDK1_; (kC81_1*(kC81_2+(kC81_3*nuc_prot__CHEK1_))*(nuc_prot__CDC25__CCNB__CDK1_/(kC81_4+nuc_prot__CDC25__CCNB__CDK1_)))*Nucleus;
-  vC82: nuc_prot_i__CDC25C__CCNB__CDK1_ => nuc_prot__CDC25__CCNB__CDK1_; (kC82_1*(nuc_prot_CCNB__CDK1_+kC82_2)*(nuc_prot_i__CDC25C__CCNB__CDK1_/(kC82_3+nuc_prot_i__CDC25C__CCNB__CDK1_)))*Nucleus;
+  vC82: nuc_prot_i__CDC25C__CCNB__CDK1_ => nuc_prot__CDC25__CCNB__CDK1_; (kC82_1*(nuc_prot__CCNB__CDK1_+kC82_2)*(nuc_prot_i__CDC25C__CCNB__CDK1_/(kC82_3+nuc_prot_i__CDC25C__CCNB__CDK1_)))*Nucleus;
   vC83: nuc_prot_i__CDC25C__CCNB__CDK1_ => ; (kC83_1*nuc_prot_i__CDC25C__CCNB__CDK1_)*Nucleus;
   vC84: nuc_prot__CDC25__CCNB__CDK1_ => ; (kC84_1*nuc_prot__CDC25__CCNB__CDK1_)*Nucleus;
   vC85:  => nuc_prot__WEE1_; (kC85_1)*Nucleus;
-  vC86: nuc_prot__WEE1_ => nuc_prot__p_WEE1_; (kC86_1*(nuc_prot_CCNB__CDK1_+kC86_2)*(nuc_prot__WEE1_/(kC86_3+nuc_prot__WEE1_)))*Nucleus;
+  vC86: nuc_prot__WEE1_ => nuc_prot__p_WEE1_; (kC86_1*(nuc_prot__CCNB__CDK1_+kC86_2)*(nuc_prot__WEE1_/(kC86_3+nuc_prot__WEE1_)))*Nucleus;
   vC87: nuc_prot__p_WEE1_ => nuc_prot__WEE1_; (kC87_1*(nuc_prot__p_WEE1_/(kC87_2+nuc_prot__p_WEE1_)))*Nucleus;
   vC88: nuc_prot__WEE1_ => ; (kC88_1*nuc_prot__WEE1_)*Nucleus;
   vC89: nuc_prot__p_WEE1_ => ; (kC89_1*nuc_prot__p_WEE1_)*Nucleus;
@@ -1674,10 +1674,10 @@ model Deterministic()
   vC97: nuc_prot__CCND__CDK4__CDKN1A_ => nuc_prot__CCND__CDK4_ + nuc_prot__CDKN1A_; (kC97_1*nuc_prot__CCND__CDK4__CDKN1A_)*Nucleus;
   vC98: nuc_prot__CCNE__CDK2_ + nuc_prot__CDKN1A_ => nuc_prot__CCNE__CDK2__CDKN1A_; (kC98_1*nuc_prot__CCNE__CDK2_*nuc_prot__CDKN1A_)*Nucleus;
   vC99: nuc_prot__CCNE__CDK2__CDKN1A_ => nuc_prot__CCNE__CDK2_ + nuc_prot__CDKN1A_; (kC99_1*nuc_prot__CCNE__CDK2__CDKN1A_)*Nucleus;
-  vC100: nuc_prot_CCNA__CDK2_ + nuc_prot__CDKN1A_ => nuc_prot__CCNA__CDK2__CDKN1A_; (kC100_1*nuc_prot_CCNA__CDK2_*nuc_prot__CDKN1A_)*Nucleus;
-  vC101: nuc_prot__CCNA__CDK2__CDKN1A_ => nuc_prot_CCNA__CDK2_ + nuc_prot__CDKN1A_; (kC101_1*nuc_prot__CCNA__CDK2__CDKN1A_)*Nucleus;
-  vC102: nuc_prot_CCNB__CDK1_ + nuc_prot__CDKN1A_ => nuc_prot__CCNB__CDK1__CDKN1A_; (kC102_1*nuc_prot_CCNB__CDK1_*nuc_prot__CDKN1A_)*Nucleus;
-  vC103: nuc_prot__CCNB__CDK1__CDKN1A_ => nuc_prot_CCNB__CDK1_ + nuc_prot__CDKN1A_; (kC103_1*nuc_prot__CCNB__CDK1__CDKN1A_)*Nucleus;
+  vC100: nuc_prot__CCNA__CDK2_ + nuc_prot__CDKN1A_ => nuc_prot__CCNA__CDK2__CDKN1A_; (kC100_1*nuc_prot__CCNA__CDK2_*nuc_prot__CDKN1A_)*Nucleus;
+  vC101: nuc_prot__CCNA__CDK2__CDKN1A_ => nuc_prot__CCNA__CDK2_ + nuc_prot__CDKN1A_; (kC101_1*nuc_prot__CCNA__CDK2__CDKN1A_)*Nucleus;
+  vC102: nuc_prot__CCNB__CDK1_ + nuc_prot__CDKN1A_ => nuc_prot__CCNB__CDK1__CDKN1A_; (kC102_1*nuc_prot__CCNB__CDK1_*nuc_prot__CDKN1A_)*Nucleus;
+  vC103: nuc_prot__CCNB__CDK1__CDKN1A_ => nuc_prot__CCNB__CDK1_ + nuc_prot__CDKN1A_; (kC103_1*nuc_prot__CCNB__CDK1__CDKN1A_)*Nucleus;
   vC104: nuc_prot__CDKN1A_ => ; (kC104_1*nuc_prot__CDKN1A_)*Nucleus;
   vA1: ext_prot__TNFSF10_ + cyt_prot__TNFRSF10_ => cyt_prot__TNFSF10__TNFRSF10_; (kA1_1*ext_prot__TNFSF10_*cyt_prot__TNFRSF10_)*Cytoplasm;
   vA2: cyt_prot__TNFSF10__TNFRSF10_ => ext_prot__TNFSF10_ + cyt_prot__TNFRSF10_; (kA2_1*cyt_prot__TNFSF10__TNFRSF10_)*Cytoplasm;
@@ -4469,7 +4469,7 @@ model Deterministic()
   nuc_prot_i__CDC25C__CCNB__CDK1_ = 5.529821e+01;
   nuc_prot__CCNA_ = 4.029093e+00;
   nuc_prot_i__CCNA__CDK2_ = 1.403684e+01;
-  nuc_prot_CCNA__CDK2_ = 5.235356e+00;
+  nuc_prot__CCNA__CDK2_ = 5.235356e+00;
   nuc_prot__CCNA__CDK2__CDKN1B_ = 1.283845e+00;
   nuc_prot__CDKN1B_ = 2.043549e+01;
   nuc_prot_i__CDH1_ = 5.985885e-01;
@@ -4479,7 +4479,7 @@ model Deterministic()
   nuc_prot__p_CDC25__CCNA__CDK2_ = 4.164972e+01;
   nuc_prot__CCNB_ = 3.443669e+00;
   nuc_prot_i__CCNB__CDK1_ = 3.901125e+00;
-  nuc_prot_CCNB__CDK1_ = 6.842720e-01;
+  nuc_prot__CCNB__CDK1_ = 6.842720e-01;
   nuc_prot_i__CDC20_ = 7.116747e+01;
   nuc_prot_a__CDC20_ = 7.301463e-01;
   nuc_prot__CDC25__CCNB__CDK1_ = 9.403017e+00;

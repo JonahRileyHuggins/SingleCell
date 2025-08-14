@@ -18,7 +18,7 @@ The script is executed by running the following command in the terminal:
 """
 
 #-----------------------Package Import & Defined Arguements--------------------# 
-from python.shared_utils.arguments import parse_args
+from py_src.shared_utils.arguments import parse_args
 
 def main():
     """Main entry point."""
@@ -29,7 +29,7 @@ def main():
         Handle the compile subcommand. This script is the method for constructing an \
         AMICI model using SPARCED input files.
         """
-        from python.ModelBuilding.launcher import Builder
+        from py_src.ModelBuilding.launcher import Builder
         Builder(args)
 
     elif args.command == "Simulate":
@@ -37,7 +37,7 @@ def main():
         Handle Simulate subcommand.
         Run a single simulation with a set of conditions.
         """
-        from python.Simulate.SingleCell import SingleCell
+        from py_src.Simulate.SingleCell import SingleCell
         SingleCell(args).simulate()
 
     elif args.command == "Experiment":
@@ -45,14 +45,14 @@ def main():
         Handle Experiment subcommand. 
         Module to automate model-data comparisons and complex simulations. 
         """
-        from python.Experiment.launcher import Experimentalist
+        from py_src.Experiment.launcher import Experimentalist
         Experimentalist(args)
 
     elif args.command == "Tool":
         """
         Handle misc. tools specified in tools subdirectory
         """
-        from python.tools.launcher import ToolBelt
+        from py_src.tools.launcher import ToolBelt
         ToolBelt(args=args)
 
     else:

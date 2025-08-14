@@ -27,7 +27,7 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
-#include "../amici_models/Deterministic/Deterministic.h"
+#include "../amici_models/deterministic/deterministic.h"
 
 //=============================Class Details================================//
 DeterministicModule::DeterministicModule(

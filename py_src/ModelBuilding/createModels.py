@@ -8,6 +8,7 @@ Description: Creates an instance of two sbml models for the genome-compelete MCF
 
 import os
 import sys
+import copy
 import logging
 from types import SimpleNamespace
 from collections import defaultdict
@@ -41,8 +42,6 @@ class CreateModel:
     
         self.sbml_model = None
 
-        self.parameters = None
-
         self.model_name = None
 
         self.output_path = args.output
@@ -59,35 +58,13 @@ class CreateModel:
             self.solvers.append('One4All')
 
         for solver in self.solvers:
+            self.model_name = solver
             self.__builder_steps(solver)
 
         # Clean up, clean up, everybody do your share...
         del self.sbml_doc
         del self.sbml_model
-        del self.parameters
         del self.model_name
-
-
-    def __builder_steps(self, solver: str) -> None:
-        "Completes primary construction steps of build process"
-
-        self.model_name = solver
-
-        self.__get_components(solver)
-
-        self.__reduce_rxns()
-
-        # Composition method, not the cleanest but works.
-        AntimonyFile(self)
-
-        sbml_file_path = self.__convert_antimony_to_sbml()
-
-        self.sbml_paths[solver] = sbml_file_path
-
-        self._load_sbml(sbml_file_path)
-
-        self._add_annotations()
-
 
     def __get_solvers_list(self) -> list:
         """Finds list of unique solver types in species build file"""
@@ -100,37 +77,75 @@ class CreateModel:
 
         return unique_solvers_list
 
-    def __get_components(self, solver: str) -> None:
+    def __builder_steps(self, solver: str) -> None:
+        "Completes primary construction steps of build process"
+
+        solver_components = self.__get_components(solver)
+
+        solver_components = self.__reduce_rxns(solver_components)
+
+        # Composition method, not the cleanest but works.
+        AntimonyFile(
+            solver_components,
+            solver,
+            self.output_path
+            )
+
+        sbml_file_path = self.__convert_antimony_to_sbml()
+
+        self.sbml_paths[solver] = sbml_file_path
+
+        self._load_sbml(sbml_file_path)
+
+        self._add_annotations(solver_components)
+
+    def __get_components(self, solver: str) -> SimpleNamespace:
         """Gets solver components only"""
 
+        solver_components = copy.deepcopy(self.model_files)
+
         if solver == 'One4All':
-            self.parameters = pd.DataFrame(
+            solver_components.other_params = pd.DataFrame(
                 [], 
                 columns=['parameterId', 
                          'value'])
-            return # One4All combines all species.
+        else: 
+            # Filter species for non-solver
+            solver_components.other_params = self.__get_other_params(
+                solver, 
+                solver_components.species
+            )
 
-        # Filter species for non-solver
-        other_params = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() != solver
+            logger.debug('>>>>>>> immediate parameters dataframe: %s' % (solver_components.other_params))
+
+            solver_components.species = solver_components.species[
+                solver_components.species['solver'].str.lower().str.strip() == solver
+                ]
+            print('model species: ',solver_components.species)
+
+        return solver_components
+
+    def __get_other_params(
+            self, 
+            solver: str,
+            species_dataframe: pd.DataFrame) -> pd.DataFrame:
+        """Retrieves all species not pertaining to current solver"""
+
+        other_species = species_dataframe[
+            species_dataframe['solver'].str.lower().str.strip() != solver
         ].reset_index()
 
-        other_params = pd.DataFrame([], columns=['speciesId', 'initialConcentration (nM)'])
-
-        logger.info('>>>>>>> immediate parameters dataframe: %s' % (other_params))
-
         # Create new DataFrame with desired columns
-        self.parameters = other_params[['speciesId', 'initialConcentration (nM)']].rename(
-            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
-        )
+        other_params = other_species[['speciesId', 'initialConcentration (nM)']].rename(
+                columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
+            )
+        
+        return other_params
 
-        logger.info('>>>>>>>> params dataframe after column name: %s' % (self.parameters))
-
-        self.model_files.species = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() == solver
-            ]
-
-    def __reduce_rxns(self) -> None:
+    def __reduce_rxns(
+            self,
+            solver_components: pd.DataFrame
+        ) -> None:
         """removes reactions containing 'other' components. Deciding method by whether
           species is either reactant or product in current model.
         """
@@ -138,9 +153,9 @@ class CreateModel:
         # Collector list for species to drop
         drop_indices = []
 
-        model_speciesIds = set(self.model_files.species.index.to_list())
+        model_speciesIds = set(solver_components.species.index.to_list())
 
-        for reactionId, row in self.model_files.ratelaws.iterrows():
+        for reactionId, row in solver_components.ratelaws.iterrows():
 
             rxn = row.get('r ; p')
 
@@ -163,7 +178,9 @@ class CreateModel:
                     drop_indices.append(reactionId)
                     break  # no need to check more species for this reaction
 
-        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
+        solver_components.ratelaws.drop(index=drop_indices, inplace=True)
+
+        return solver_components
 
     def __convert_antimony_to_sbml(self):
         """Load antimony doc into an SBML object"""
@@ -204,11 +221,14 @@ class CreateModel:
         self.sbml_doc = sbml_reader.readSBML(sbml_file_path)
         self.sbml_model = self.sbml_doc.getModel()
 
-    def _add_annotations(self):
+    def _add_annotations(
+            self, 
+            solver_components: SimpleNamespace
+            ):
         """Appends annotations to the finalized sbml model"""
 
         # Set species annotations
-        for speciesId, species_vals in self.model_files.species.iterrows():
+        for speciesId, species_vals in solver_components.species.iterrows():
             annotations = species_vals['annotation1':]
             Annot = ""
 
@@ -222,7 +242,7 @@ class CreateModel:
             self.sbml_model.getSpecies(speciesId).setAnnotation(Annot.strip())
         
         # Set Compartment annotations
-        for compartmentId, compartment_vals in self.model_files.compartments.iterrows():
+        for compartmentId, compartment_vals in solver_components.compartments.iterrows():
             annotation = compartment_vals.get('annotation', '')
             if not pd.isna(annotation):
                 self.sbml_model.getCompartment(compartmentId).setAnnotation(str(annotation).strip())
@@ -239,12 +259,17 @@ class CreateModel:
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, parent_model_type: SimpleNamespace):
-        self.model_files = parent_model_type.model_files
-        self.model_name = parent_model_type.model_name
+    def __init__(
+            self, 
+            solver_components: SimpleNamespace, 
+            model_name: str,
+            output: os.PathLike | str
+        ) -> None:
+        self.model_files = solver_components
+        self.model_name = model_name
         ## Include other operations here. 
-        self.parameters = parent_model_type.parameters
-        self.output = parent_model_type.output_path
+        self.parameters = solver_components.other_params
+        self.output = output
 
         self.antimony_file = self.__create_antimony_file()
 
@@ -479,6 +504,11 @@ if __name__ == '__main__':
                         help="Catch-all arguments passed as key=value pairs")
     parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
     parser.add_argument('--output', '-o', default = "../../sbml_files", help  = "path to which you want output files stored")
+    parser.add_argument(
+        '--one4all', 
+        default=True,
+        help='Builds Deterministic SBML (and AMICI) model'
+    )
 
     args = parser.parse_args()
 

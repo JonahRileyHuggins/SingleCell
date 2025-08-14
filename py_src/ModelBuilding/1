@@ -1,0 +1,7 @@
+/home/jonah/Desktop/SingleCell/.venv/lib/python3.12/site-packages/antimony/__init__.py:10: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import get_distribution
+usage: SBMLModelCreator [-h] [--path PATH] [--name NAME]
+                        [--catchall [KEY=VALUE ...]] [-v] [--output OUTPUT]
+                        [--one4all ONE4ALL]
+                        [--SBML_Only SBML_ONLY [SBML_ONLY ...]]
+SBMLModelCreator: error: unrecognized arguments: 2 output.log

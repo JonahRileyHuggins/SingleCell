@@ -82,7 +82,7 @@ set(SINGLECELL_SRC_LIST
     src/main.cpp)
 
 # === External dependencies ===
-add_subdirectory(amici_models/Deterministic)
+add_subdirectory(amici_models/deterministic)
 add_subdirectory(amici_models/One4All)
 add_subdirectory(ThirdParty/pybind11)
 add_subdirectory(ThirdParty/libxml2-2.14.3)
@@ -100,7 +100,7 @@ target_include_directories(SingleCell PRIVATE
 
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
-    Deterministic
+    deterministic
     One4All
     xml2
     sbml
@@ -127,7 +127,7 @@ target_include_directories(pySingleCell PRIVATE
 
 target_link_libraries(pySingleCell PRIVATE
     ${AMICI_LIB}
-    Deterministic
+    deterministic
     One4All
     xml2
     sbml

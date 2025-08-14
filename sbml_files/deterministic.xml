@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
-  <model metaid="Hybrid" id="Hybrid" substanceUnits="substance" timeUnits="time_unit" volumeUnits="volume">
+  <model metaid="deterministic" id="deterministic" substanceUnits="substance" timeUnits="time_unit" volumeUnits="volume">
     <listOfUnitDefinitions>
       <unitDefinition id="volume">
         <listOfUnits>
@@ -211,7 +211,7 @@
       <species id="nuc_prot_i__CCNA__CDK2_" compartment="Nucleus" initialConcentration="14.03684" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>P20248 P24941</annotation>
       </species>
-      <species id="nuc_prot_CCNA__CDK2_" compartment="Nucleus" initialConcentration="5.235356" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+      <species id="nuc_prot__CCNA__CDK2_" compartment="Nucleus" initialConcentration="5.235356" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>P20248 P24941</annotation>
       </species>
       <species id="nuc_prot__CCNA__CDK2__CDKN1B_" compartment="Nucleus" initialConcentration="1.283845" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
@@ -241,7 +241,7 @@
       <species id="nuc_prot_i__CCNB__CDK1_" compartment="Nucleus" initialConcentration="3.901125" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>P14635 Q8WWL7 P06493</annotation>
       </species>
-      <species id="nuc_prot_CCNB__CDK1_" compartment="Nucleus" initialConcentration="0.684272" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+      <species id="nuc_prot__CCNB__CDK1_" compartment="Nucleus" initialConcentration="0.684272" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>P14635 P06493</annotation>
       </species>
       <species id="nuc_prot_i__CDC20_" compartment="Nucleus" initialConcentration="71.16747" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
@@ -2452,6 +2452,204 @@
       <species id="cyt_prot__IFNG__INFGR_" compartment="Cytoplasm" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>P01579 P38484</annotation>
       </species>
+      <species id="cyt_mrna__RB1_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000267163.6</annotation>
+      </species>
+      <species id="cyt_mrna__E2F1_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000343380.6</annotation>
+      </species>
+      <species id="cyt_mrna__E2F2_203_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000634683.2</annotation>
+      </species>
+      <species id="cyt_mrna__E2F3_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000346618.8</annotation>
+      </species>
+      <species id="cyt_mrna__CCNE1_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000262643.8</annotation>
+      </species>
+      <species id="cyt_mrna__CCNE2_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000308108.9</annotation>
+      </species>
+      <species id="cyt_mrna__SKP2_202_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000274255.11</annotation>
+      </species>
+      <species id="cyt_mrna__CDC25A_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000302506.8</annotation>
+      </species>
+      <species id="cyt_mrna__CDC25B_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000245960.10</annotation>
+      </species>
+      <species id="cyt_mrna__CDC25C_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000323760.11</annotation>
+      </species>
+      <species id="cyt_mrna__CCNA2_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000274026.10</annotation>
+      </species>
+      <species id="cyt_mrna__CDKN1B_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000228872.9</annotation>
+      </species>
+      <species id="cyt_mrna__CDH1_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000261769.10</annotation>
+      </species>
+      <species id="cyt_mrna__CCNB1_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000256442.10</annotation>
+      </species>
+      <species id="cyt_mrna__CDC20_201_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000310955.11</annotation>
+      </species>
+      <species id="cyt_mrna__WEE1_202_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000450114.7</annotation>
+      </species>
+      <species id="cyt_mrna__CHEK1_204_" compartment="Cytoplasm" initialConcentration="0.005376217" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000438015.7</annotation>
+      </species>
+      <species id="cyt_mrna__CDKN1A_201_" compartment="Cytoplasm" initialConcentration="0.003794976" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000244741.10</annotation>
+      </species>
+      <species id="cyt_mrna__CDK1_203_" compartment="Cytoplasm" initialConcentration="0.01391491" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000395284.8</annotation>
+      </species>
+      <species id="cyt_mrna__CDK2_201_" compartment="Cytoplasm" initialConcentration="0.0006324961" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000266970.9</annotation>
+      </species>
+      <species id="cyt_mrna__CDK4_201_" compartment="Cytoplasm" initialConcentration="0.003478728" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000257904.11</annotation>
+      </species>
+      <species id="cyt_mrna__CDK6_202_" compartment="Cytoplasm" initialConcentration="0.002213736" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENST00000424848.3</annotation>
+      </species>
+      <species id="nuc_gene_a__RB1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000139687</annotation>
+      </species>
+      <species id="nuc_gene_a__E2F1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000101412</annotation>
+      </species>
+      <species id="nuc_gene_a__E2F2_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000007968</annotation>
+      </species>
+      <species id="nuc_gene_a__E2F3_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000112242</annotation>
+      </species>
+      <species id="nuc_gene_a__CCNE1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000105173</annotation>
+      </species>
+      <species id="nuc_gene_a__CCNE2_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000175305</annotation>
+      </species>
+      <species id="nuc_gene_a__SKP2_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000145604</annotation>
+      </species>
+      <species id="nuc_gene_a__CDC25A_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000164045</annotation>
+      </species>
+      <species id="nuc_gene_a__CDC25B_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000101224</annotation>
+      </species>
+      <species id="nuc_gene_a__CDC25C_" compartment="Nucleus" initialConcentration="0.002846232" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000158402</annotation>
+      </species>
+      <species id="nuc_gene_a__CCNA2_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000145386</annotation>
+      </species>
+      <species id="nuc_gene_a__CDKN1B_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000111276</annotation>
+      </species>
+      <species id="nuc_gene_a__CDH1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000039068</annotation>
+      </species>
+      <species id="nuc_gene_a__CCNB1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000134057</annotation>
+      </species>
+      <species id="nuc_gene_a__CDC20_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000117399</annotation>
+      </species>
+      <species id="nuc_gene_a__WEE1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000166483</annotation>
+      </species>
+      <species id="nuc_gene_a__CHEK1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000149554</annotation>
+      </species>
+      <species id="nuc_gene_a__CDKN1A_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000124762</annotation>
+      </species>
+      <species id="nuc_gene_a__CDK1_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000170312</annotation>
+      </species>
+      <species id="nuc_gene_a__CDK2_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000123374</annotation>
+      </species>
+      <species id="nuc_gene_a__CDK4_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000135446</annotation>
+      </species>
+      <species id="nuc_gene_a__CDK6_" compartment="Nucleus" initialConcentration="0.001897488" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000105810</annotation>
+      </species>
+      <species id="nuc_gene_i__RB1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000139687</annotation>
+      </species>
+      <species id="nuc_gene_i__E2F1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000101412</annotation>
+      </species>
+      <species id="nuc_gene_i__E2F2_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000007968</annotation>
+      </species>
+      <species id="nuc_gene_i__E2F3_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000112242</annotation>
+      </species>
+      <species id="nuc_gene_i__CCNE1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000105173</annotation>
+      </species>
+      <species id="nuc_gene_i__CCNE2_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000175305</annotation>
+      </species>
+      <species id="nuc_gene_i__SKP2_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000145604</annotation>
+      </species>
+      <species id="nuc_gene_i__CDC25A_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000164045</annotation>
+      </species>
+      <species id="nuc_gene_i__CDC25B_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000101224</annotation>
+      </species>
+      <species id="nuc_gene_i__CDC25C_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000158402</annotation>
+      </species>
+      <species id="nuc_gene_i__CCNA2_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000145386</annotation>
+      </species>
+      <species id="nuc_gene_i__CDKN1B_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000111276</annotation>
+      </species>
+      <species id="nuc_gene_i__CDH1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000039068</annotation>
+      </species>
+      <species id="nuc_gene_i__CCNB1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000134057</annotation>
+      </species>
+      <species id="nuc_gene_i__CDC20_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000117399</annotation>
+      </species>
+      <species id="nuc_gene_i__WEE1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000166483</annotation>
+      </species>
+      <species id="nuc_gene_i__CHEK1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000149554</annotation>
+      </species>
+      <species id="nuc_gene_i__CDKN1A_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000124762</annotation>
+      </species>
+      <species id="nuc_gene_i__CDK1_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000170312</annotation>
+      </species>
+      <species id="nuc_gene_i__CDK2_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000123374</annotation>
+      </species>
+      <species id="nuc_gene_i__CDK4_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000135446</annotation>
+      </species>
+      <species id="nuc_gene_i__CDK6_" compartment="Nucleus" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>ENSG00000105810</annotation>
+      </species>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="kbR_1" value="0.0042" constant="true"/>
@@ -2476,13 +2674,9 @@
       <parameter id="cyt_mrna__ATR_201_" value="0.0006324961" constant="true"/>
       <parameter id="kTL5_2" value="100" constant="true"/>
       <parameter id="kTL6_1" value="70.1" constant="true"/>
-      <parameter id="cyt_mrna__RB1_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL7_1" value="4.39" constant="true"/>
-      <parameter id="cyt_mrna__E2F1_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL8_1" value="4.39" constant="true"/>
-      <parameter id="cyt_mrna__E2F2_203_" value="0.005376217" constant="true"/>
       <parameter id="kTL9_1" value="4.39" constant="true"/>
-      <parameter id="cyt_mrna__E2F3_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL10_1" value="26.9" constant="true"/>
       <parameter id="kTL10_2" value="0.0118" constant="true"/>
       <parameter id="kTL10_3" value="10" constant="true"/>
@@ -2504,40 +2698,26 @@
       <parameter id="kTL13_1" value="0.127" constant="true"/>
       <parameter id="kTL13_2" value="10" constant="true"/>
       <parameter id="kTL13_3" value="200" constant="true"/>
-      <parameter id="cyt_mrna__CCNE1_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL14_1" value="0.127" constant="true"/>
       <parameter id="kTL14_2" value="10" constant="true"/>
       <parameter id="kTL14_3" value="200" constant="true"/>
-      <parameter id="cyt_mrna__CCNE2_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL15_1" value="13.2" constant="true"/>
-      <parameter id="cyt_mrna__SKP2_202_" value="0.005376217" constant="true"/>
       <parameter id="kTL16_1" value="11.4" constant="true"/>
-      <parameter id="cyt_mrna__CDC25A_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL17_1" value="9.22" constant="true"/>
-      <parameter id="cyt_mrna__CDC25B_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL18_1" value="10.5" constant="true"/>
-      <parameter id="cyt_mrna__CDC25C_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL19_1" value="0.0329" constant="true"/>
       <parameter id="kTL19_2" value="10" constant="true"/>
       <parameter id="kTL19_3" value="200" constant="true"/>
-      <parameter id="cyt_mrna__CCNA2_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL20_1" value="70.3" constant="true"/>
       <parameter id="kTL20_2" value="0.0878" constant="true"/>
       <parameter id="kTL20_3" value="10" constant="true"/>
       <parameter id="kTL20_4" value="200" constant="true"/>
-      <parameter id="cyt_mrna__CDKN1B_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL21_1" value="9.66" constant="true"/>
-      <parameter id="cyt_mrna__CDH1_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL22_1" value="4.39" constant="true"/>
-      <parameter id="cyt_mrna__CCNB1_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL23_1" value="8.78" constant="true"/>
-      <parameter id="cyt_mrna__CDC20_201_" value="0.005376217" constant="true"/>
       <parameter id="kTL24_1" value="5.27" constant="true"/>
-      <parameter id="cyt_mrna__WEE1_202_" value="0.005376217" constant="true"/>
       <parameter id="kTL25_1" value="0.00874" constant="true"/>
-      <parameter id="cyt_mrna__CHEK1_204_" value="0.005376217" constant="true"/>
       <parameter id="kTL26_1" value="0.531" constant="true"/>
-      <parameter id="cyt_mrna__CDKN1A_201_" value="0.003794976" constant="true"/>
       <parameter id="kTL31_1" value="0" constant="true"/>
       <parameter id="cyt_mrna__TNFSF10_201_" value="0" constant="true"/>
       <parameter id="kTL31_2" value="100" constant="true"/>
@@ -5424,40 +5604,105 @@
       <parameter id="kI84_1" value="4.6e-06" constant="true"/>
       <parameter id="kI85_1" value="4.6e-06" constant="true"/>
       <parameter id="kI86_1" value="4.6e-06" constant="true"/>
-      <parameter id="cyt_mrna__CDK1_203_" value="0.01391491" constant="true"/>
-      <parameter id="cyt_mrna__CDK2_201_" value="0.0006324961" constant="true"/>
-      <parameter id="cyt_mrna__CDK4_201_" value="0.003478728" constant="true"/>
-      <parameter id="cyt_mrna__CDK6_202_" value="0.002213736" constant="true"/>
+      <parameter id="kGac6_1" value="0.0005" constant="true"/>
+      <parameter id="kGac7_1" value="0.0005" constant="true"/>
+      <parameter id="kGac8_1" value="0.0005" constant="true"/>
+      <parameter id="kGac9_1" value="0.0005" constant="true"/>
+      <parameter id="kGac13_1" value="0.0005" constant="true"/>
+      <parameter id="kGac14_1" value="0.0005" constant="true"/>
+      <parameter id="kGac15_1" value="0.0005" constant="true"/>
+      <parameter id="kGac16_1" value="0.0005" constant="true"/>
+      <parameter id="kGac17_1" value="0.0005" constant="true"/>
+      <parameter id="kGac18_1" value="0.0005" constant="true"/>
+      <parameter id="kGac19_1" value="0.0005" constant="true"/>
+      <parameter id="kGac20_1" value="0.0005" constant="true"/>
+      <parameter id="kGac21_1" value="0.0005" constant="true"/>
+      <parameter id="kGac22_1" value="0.0005" constant="true"/>
+      <parameter id="kGac23_1" value="0.0005" constant="true"/>
+      <parameter id="kGac24_1" value="0.0005" constant="true"/>
+      <parameter id="kGac25_1" value="0.0005" constant="true"/>
+      <parameter id="kGac26_1" value="0.0005" constant="true"/>
+      <parameter id="kGac27_1" value="0.0005" constant="true"/>
+      <parameter id="kGac28_1" value="0.0005" constant="true"/>
+      <parameter id="kGac29_1" value="0.0005" constant="true"/>
+      <parameter id="kGac30_1" value="0.0005" constant="true"/>
+      <parameter id="kGin6_1" value="0.005" constant="true"/>
+      <parameter id="kGin7_1" value="0.005" constant="true"/>
+      <parameter id="kGin8_1" value="0.005" constant="true"/>
+      <parameter id="kGin9_1" value="0.005" constant="true"/>
+      <parameter id="kGin13_1" value="0.005" constant="true"/>
+      <parameter id="kGin14_1" value="0.005" constant="true"/>
+      <parameter id="kGin15_1" value="0.005" constant="true"/>
+      <parameter id="kGin16_1" value="0.005" constant="true"/>
+      <parameter id="kGin17_1" value="0.005" constant="true"/>
+      <parameter id="kGin18_1" value="0.005" constant="true"/>
+      <parameter id="kGin19_1" value="0.005" constant="true"/>
+      <parameter id="kGin20_1" value="0.005" constant="true"/>
+      <parameter id="kGin21_1" value="0.005" constant="true"/>
+      <parameter id="kGin22_1" value="0.005" constant="true"/>
+      <parameter id="kGin23_1" value="0.005" constant="true"/>
+      <parameter id="kGin24_1" value="0.005" constant="true"/>
+      <parameter id="kGin25_1" value="0.005" constant="true"/>
+      <parameter id="kGin26_1" value="0.005" constant="true"/>
+      <parameter id="kGin27_1" value="0.005" constant="true"/>
+      <parameter id="kGin28_1" value="0.005" constant="true"/>
+      <parameter id="kGin29_1" value="0.005" constant="true"/>
+      <parameter id="kGin30_1" value="0.005" constant="true"/>
+      <parameter id="kTC6_1" value="0.00281" constant="true"/>
+      <parameter id="kTC7_1" value="0.0045" constant="true"/>
+      <parameter id="kTC8_1" value="0.00738" constant="true"/>
+      <parameter id="kTC9_1" value="0.00747" constant="true"/>
+      <parameter id="kTC13_1" value="0.012" constant="true"/>
+      <parameter id="kTC14_1" value="0.012" constant="true"/>
+      <parameter id="kTC15_1" value="0.00638" constant="true"/>
+      <parameter id="kTC16_1" value="0.00487" constant="true"/>
+      <parameter id="kTC17_1" value="0.00207" constant="true"/>
+      <parameter id="kTC18_1" value="0.00486" constant="true"/>
+      <parameter id="kTC19_1" value="0.012" constant="true"/>
+      <parameter id="kTC20_1" value="0.00837" constant="true"/>
+      <parameter id="kTC21_1" value="0.00211" constant="true"/>
+      <parameter id="kTC22_1" value="0.012" constant="true"/>
+      <parameter id="kTC23_1" value="0.002" constant="true"/>
+      <parameter id="kTC24_1" value="0.00811" constant="true"/>
+      <parameter id="kTC25_1" value="0.00306" constant="true"/>
+      <parameter id="kTC26_1" value="0.0127" constant="true"/>
+      <parameter id="kTC26_2" value="0.1" constant="true"/>
+      <parameter id="kTC26_3" value="50" constant="true"/>
+      <parameter id="kTC26_4" value="4" constant="true"/>
+      <parameter id="kTC27_1" value="0.00524" constant="true"/>
+      <parameter id="kTC28_1" value="0.000449" constant="true"/>
+      <parameter id="kTC29_1" value="0.00111" constant="true"/>
+      <parameter id="kTC30_1" value="0.00159" constant="true"/>
+      <parameter id="kTCd6_1" value="3.01e-05" constant="true"/>
+      <parameter id="kTCd7_1" value="4.81e-05" constant="true"/>
+      <parameter id="kTCd8_1" value="7.89e-05" constant="true"/>
+      <parameter id="kTCd9_1" value="7.99e-05" constant="true"/>
+      <parameter id="kTCd13_1" value="0.000128" constant="true"/>
+      <parameter id="kTCd14_1" value="0.000128" constant="true"/>
+      <parameter id="kTCd15_1" value="6.83e-05" constant="true"/>
+      <parameter id="kTCd16_1" value="5.2e-05" constant="true"/>
+      <parameter id="kTCd17_1" value="2.21e-05" constant="true"/>
+      <parameter id="kTCd18_1" value="7.8e-05" constant="true"/>
+      <parameter id="kTCd19_1" value="0.000128" constant="true"/>
+      <parameter id="kTCd20_1" value="8.96e-05" constant="true"/>
+      <parameter id="kTCd21_1" value="2.26e-05" constant="true"/>
+      <parameter id="kTCd22_1" value="0.000128" constant="true"/>
+      <parameter id="kTCd23_1" value="2.14e-05" constant="true"/>
+      <parameter id="kTCd24_1" value="8.67e-05" constant="true"/>
+      <parameter id="kTCd25_1" value="3.27e-05" constant="true"/>
+      <parameter id="kTCd26_1" value="0.000193" constant="true"/>
+      <parameter id="kTCd27_1" value="2.16e-05" constant="true"/>
+      <parameter id="kTCd28_1" value="4.08e-05" constant="true"/>
+      <parameter id="kTCd29_1" value="1.84e-05" constant="true"/>
+      <parameter id="kTCd30_1" value="4.14e-05" constant="true"/>
       <parameter id="nuc_gene_a__TP53_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__MDM2_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__PPM1D_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__ATM_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__ATR_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__RB1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__E2F1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__E2F2_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__E2F3_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__CCND1_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__CCND2_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__CCND3_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CCNE1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CCNE2_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__SKP2_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDC25A_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDC25B_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDC25C_" value="0.002846232" constant="true"/>
-      <parameter id="nuc_gene_a__CCNA2_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDKN1B_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDH1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CCNB1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDC20_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__WEE1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CHEK1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDKN1A_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDK1_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDK2_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDK4_" value="0.001897488" constant="true"/>
-      <parameter id="nuc_gene_a__CDK6_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__TNFSF10_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__TNFRSF10A_" value="0.001897488" constant="true"/>
       <parameter id="nuc_gene_a__TNFRSF10B_" value="0.001897488" constant="true"/>
@@ -5582,31 +5827,9 @@
       <parameter id="nuc_gene_i__PPM1D_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__ATM_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__ATR_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__RB1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__E2F1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__E2F2_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__E2F3_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__CCND1_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__CCND2_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__CCND3_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CCNE1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CCNE2_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__SKP2_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDC25A_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDC25B_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDC25C_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CCNA2_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDKN1B_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDH1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CCNB1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDC20_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__WEE1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CHEK1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDKN1A_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDK1_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDK2_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDK4_" value="0" constant="true"/>
-      <parameter id="nuc_gene_i__CDK6_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__TNFSF10_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__TNFRSF10A_" value="0" constant="true"/>
       <parameter id="nuc_gene_i__TNFRSF10B_" value="0" constant="true"/>
@@ -5735,31 +5958,9 @@
       <parameter id="kGac3_1" value="0.0005" constant="true"/>
       <parameter id="kGac4_1" value="0.0005" constant="true"/>
       <parameter id="kGac5_1" value="0.0005" constant="true"/>
-      <parameter id="kGac6_1" value="0.0005" constant="true"/>
-      <parameter id="kGac7_1" value="0.0005" constant="true"/>
-      <parameter id="kGac8_1" value="0.0005" constant="true"/>
-      <parameter id="kGac9_1" value="0.0005" constant="true"/>
       <parameter id="kGac10_1" value="0.0005" constant="true"/>
       <parameter id="kGac11_1" value="0.0005" constant="true"/>
       <parameter id="kGac12_1" value="0.0005" constant="true"/>
-      <parameter id="kGac13_1" value="0.0005" constant="true"/>
-      <parameter id="kGac14_1" value="0.0005" constant="true"/>
-      <parameter id="kGac15_1" value="0.0005" constant="true"/>
-      <parameter id="kGac16_1" value="0.0005" constant="true"/>
-      <parameter id="kGac17_1" value="0.0005" constant="true"/>
-      <parameter id="kGac18_1" value="0.0005" constant="true"/>
-      <parameter id="kGac19_1" value="0.0005" constant="true"/>
-      <parameter id="kGac20_1" value="0.0005" constant="true"/>
-      <parameter id="kGac21_1" value="0.0005" constant="true"/>
-      <parameter id="kGac22_1" value="0.0005" constant="true"/>
-      <parameter id="kGac23_1" value="0.0005" constant="true"/>
-      <parameter id="kGac24_1" value="0.0005" constant="true"/>
-      <parameter id="kGac25_1" value="0.0005" constant="true"/>
-      <parameter id="kGac26_1" value="0.0005" constant="true"/>
-      <parameter id="kGac27_1" value="0.0005" constant="true"/>
-      <parameter id="kGac28_1" value="0.0005" constant="true"/>
-      <parameter id="kGac29_1" value="0.0005" constant="true"/>
-      <parameter id="kGac30_1" value="0.0005" constant="true"/>
       <parameter id="kGac31_1" value="0.0005" constant="true"/>
       <parameter id="kGac32_1" value="0.0005" constant="true"/>
       <parameter id="kGac33_1" value="0.0005" constant="true"/>
@@ -5884,31 +6085,9 @@
       <parameter id="kGin3_1" value="0.005" constant="true"/>
       <parameter id="kGin4_1" value="0.005" constant="true"/>
       <parameter id="kGin5_1" value="0.005" constant="true"/>
-      <parameter id="kGin6_1" value="0.005" constant="true"/>
-      <parameter id="kGin7_1" value="0.005" constant="true"/>
-      <parameter id="kGin8_1" value="0.005" constant="true"/>
-      <parameter id="kGin9_1" value="0.005" constant="true"/>
       <parameter id="kGin10_1" value="0.005" constant="true"/>
       <parameter id="kGin11_1" value="0.005" constant="true"/>
       <parameter id="kGin12_1" value="0.005" constant="true"/>
-      <parameter id="kGin13_1" value="0.005" constant="true"/>
-      <parameter id="kGin14_1" value="0.005" constant="true"/>
-      <parameter id="kGin15_1" value="0.005" constant="true"/>
-      <parameter id="kGin16_1" value="0.005" constant="true"/>
-      <parameter id="kGin17_1" value="0.005" constant="true"/>
-      <parameter id="kGin18_1" value="0.005" constant="true"/>
-      <parameter id="kGin19_1" value="0.005" constant="true"/>
-      <parameter id="kGin20_1" value="0.005" constant="true"/>
-      <parameter id="kGin21_1" value="0.005" constant="true"/>
-      <parameter id="kGin22_1" value="0.005" constant="true"/>
-      <parameter id="kGin23_1" value="0.005" constant="true"/>
-      <parameter id="kGin24_1" value="0.005" constant="true"/>
-      <parameter id="kGin25_1" value="0.005" constant="true"/>
-      <parameter id="kGin26_1" value="0.005" constant="true"/>
-      <parameter id="kGin27_1" value="0.005" constant="true"/>
-      <parameter id="kGin28_1" value="0.005" constant="true"/>
-      <parameter id="kGin29_1" value="0.005" constant="true"/>
-      <parameter id="kGin30_1" value="0.005" constant="true"/>
       <parameter id="kGin31_1" value="0.005" constant="true"/>
       <parameter id="kGin32_1" value="0.005" constant="true"/>
       <parameter id="kGin33_1" value="0.005" constant="true"/>
@@ -6033,10 +6212,6 @@
       <parameter id="kTC3_1" value="0.000954" constant="true"/>
       <parameter id="kTC4_1" value="0.000216" constant="true"/>
       <parameter id="kTC5_1" value="0.000194" constant="true"/>
-      <parameter id="kTC6_1" value="0.00281" constant="true"/>
-      <parameter id="kTC7_1" value="0.0045" constant="true"/>
-      <parameter id="kTC8_1" value="0.00738" constant="true"/>
-      <parameter id="kTC9_1" value="0.00747" constant="true"/>
       <parameter id="kTC10_1" value="0.000454" constant="true"/>
       <parameter id="kTC10_2" value="0.1" constant="true"/>
       <parameter id="kTC10_3" value="1.25" constant="true"/>
@@ -6055,27 +6230,6 @@
       <parameter id="kTC12_4" value="3" constant="true"/>
       <parameter id="kTC12_5" value="450" constant="true"/>
       <parameter id="kTC12_6" value="3" constant="true"/>
-      <parameter id="kTC13_1" value="0.012" constant="true"/>
-      <parameter id="kTC14_1" value="0.012" constant="true"/>
-      <parameter id="kTC15_1" value="0.00638" constant="true"/>
-      <parameter id="kTC16_1" value="0.00487" constant="true"/>
-      <parameter id="kTC17_1" value="0.00207" constant="true"/>
-      <parameter id="kTC18_1" value="0.00486" constant="true"/>
-      <parameter id="kTC19_1" value="0.012" constant="true"/>
-      <parameter id="kTC20_1" value="0.00837" constant="true"/>
-      <parameter id="kTC21_1" value="0.00211" constant="true"/>
-      <parameter id="kTC22_1" value="0.012" constant="true"/>
-      <parameter id="kTC23_1" value="0.002" constant="true"/>
-      <parameter id="kTC24_1" value="0.00811" constant="true"/>
-      <parameter id="kTC25_1" value="0.00306" constant="true"/>
-      <parameter id="kTC26_1" value="0.0127" constant="true"/>
-      <parameter id="kTC26_2" value="0.1" constant="true"/>
-      <parameter id="kTC26_3" value="50" constant="true"/>
-      <parameter id="kTC26_4" value="4" constant="true"/>
-      <parameter id="kTC27_1" value="0.00524" constant="true"/>
-      <parameter id="kTC28_1" value="0.000449" constant="true"/>
-      <parameter id="kTC29_1" value="0.00111" constant="true"/>
-      <parameter id="kTC30_1" value="0.00159" constant="true"/>
       <parameter id="kTC31_1" value="0" constant="true"/>
       <parameter id="kTC32_1" value="0.000338" constant="true"/>
       <parameter id="kTC33_1" value="0.0044" constant="true"/>
@@ -6273,31 +6427,9 @@
       <parameter id="kTCd3_1" value="8.67e-05" constant="true"/>
       <parameter id="kTCd4_1" value="1.31e-05" constant="true"/>
       <parameter id="kTCd5_1" value="1.76e-05" constant="true"/>
-      <parameter id="kTCd6_1" value="3.01e-05" constant="true"/>
-      <parameter id="kTCd7_1" value="4.81e-05" constant="true"/>
-      <parameter id="kTCd8_1" value="7.89e-05" constant="true"/>
-      <parameter id="kTCd9_1" value="7.99e-05" constant="true"/>
       <parameter id="kTCd10_1" value="1.38e-05" constant="true"/>
       <parameter id="kTCd11_1" value="1.38e-05" constant="true"/>
       <parameter id="kTCd12_1" value="1.38e-05" constant="true"/>
-      <parameter id="kTCd13_1" value="0.000128" constant="true"/>
-      <parameter id="kTCd14_1" value="0.000128" constant="true"/>
-      <parameter id="kTCd15_1" value="6.83e-05" constant="true"/>
-      <parameter id="kTCd16_1" value="5.2e-05" constant="true"/>
-      <parameter id="kTCd17_1" value="2.21e-05" constant="true"/>
-      <parameter id="kTCd18_1" value="7.8e-05" constant="true"/>
-      <parameter id="kTCd19_1" value="0.000128" constant="true"/>
-      <parameter id="kTCd20_1" value="8.96e-05" constant="true"/>
-      <parameter id="kTCd21_1" value="2.26e-05" constant="true"/>
-      <parameter id="kTCd22_1" value="0.000128" constant="true"/>
-      <parameter id="kTCd23_1" value="2.14e-05" constant="true"/>
-      <parameter id="kTCd24_1" value="8.67e-05" constant="true"/>
-      <parameter id="kTCd25_1" value="3.27e-05" constant="true"/>
-      <parameter id="kTCd26_1" value="0.000193" constant="true"/>
-      <parameter id="kTCd27_1" value="2.16e-05" constant="true"/>
-      <parameter id="kTCd28_1" value="4.08e-05" constant="true"/>
-      <parameter id="kTCd29_1" value="1.84e-05" constant="true"/>
-      <parameter id="kTCd30_1" value="4.14e-05" constant="true"/>
       <parameter id="kTCd31_1" value="0" constant="true"/>
       <parameter id="kTCd32_1" value="6.15e-05" constant="true"/>
       <parameter id="kTCd33_1" value="6.15e-05" constant="true"/>
@@ -6629,6 +6761,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__RB1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__RB1_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6644,6 +6779,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__E2F_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__E2F1_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6659,6 +6797,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__E2F_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__E2F2_203_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6674,6 +6815,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__E2F_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__E2F3_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6861,6 +7005,7 @@
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
+          <modifierSpeciesReference species="cyt_mrna__CCNE1_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6900,6 +7045,7 @@
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
+          <modifierSpeciesReference species="cyt_mrna__CCNE2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -6935,6 +7081,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__SKP2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__SKP2_202_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6950,6 +7099,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CDC25A__CCNE__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDC25A_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6965,6 +7117,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CDC25B__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDC25B_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6980,6 +7135,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CDC25C__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDC25C_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -6999,6 +7157,7 @@
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
+          <modifierSpeciesReference species="cyt_mrna__CCNA2_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7038,6 +7197,7 @@
           <modifierSpeciesReference species="nuc_prot__RB1_"/>
           <modifierSpeciesReference species="nuc_prot__p_RB1_"/>
           <modifierSpeciesReference species="nuc_prot__E2F_"/>
+          <modifierSpeciesReference species="cyt_mrna__CDKN1B_201_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -7080,6 +7240,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot_a__CDH1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDH1_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -7095,6 +7258,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__CCNB_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CCNB1_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -7110,6 +7276,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CDC20_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDC20_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -7125,6 +7294,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__WEE1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__WEE1_202_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -7140,6 +7312,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__CHEK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CHEK1_204_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -7155,6 +7330,9 @@
         <listOfProducts>
           <speciesReference species="nuc_prot__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="cyt_mrna__CDKN1A_201_"/>
+        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -13115,7 +13293,7 @@
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -13144,7 +13322,7 @@
                   <power/>
                   <apply>
                     <plus/>
-                    <ci> nuc_prot_CCNA__CDK2_ </ci>
+                    <ci> nuc_prot__CCNA__CDK2_ </ci>
                     <ci> nuc_prot__CCNE__CDK2_ </ci>
                   </apply>
                   <ci> kD66_5 </ci>
@@ -13155,7 +13333,7 @@
                     <power/>
                     <apply>
                       <plus/>
-                      <ci> nuc_prot_CCNA__CDK2_ </ci>
+                      <ci> nuc_prot__CCNA__CDK2_ </ci>
                       <ci> nuc_prot__CCNE__CDK2_ </ci>
                     </apply>
                     <ci> kD66_5 </ci>
@@ -13448,14 +13626,14 @@
           <speciesReference species="nuc_prot__p_E2F_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> kC14_1 </ci>
-              <ci> nuc_prot_CCNA__CDK2_ </ci>
+              <ci> nuc_prot__CCNA__CDK2_ </ci>
               <apply>
                 <divide/>
                 <ci> nuc_prot__E2F_ </ci>
@@ -13746,7 +13924,7 @@
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1B_"/>
           <modifierSpeciesReference species="nuc_prot_i__CCNA__CDK2_"/>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1B_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
@@ -13767,7 +13945,7 @@
                   <ci> nuc_prot__CCNE__CDK2__CDKN1B_ </ci>
                   <ci> nuc_prot__CCNE__CDK2__CDKN1A_ </ci>
                   <ci> nuc_prot_i__CCNA__CDK2_ </ci>
-                  <ci> nuc_prot_CCNA__CDK2_ </ci>
+                  <ci> nuc_prot__CCNA__CDK2_ </ci>
                   <ci> nuc_prot__CCNA__CDK2__CDKN1B_ </ci>
                   <ci> nuc_prot__CCNA__CDK2__CDKN1A_ </ci>
                 </apply>
@@ -14138,7 +14316,7 @@
           <modifierSpeciesReference species="nuc_prot_i__CCNE__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1B_"/>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1B_"/>
           <modifierSpeciesReference species="nuc_prot__CCNE__CDK2__CDKN1A_"/>
           <modifierSpeciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_"/>
@@ -14159,7 +14337,7 @@
                   <ci> nuc_prot__CCNE__CDK2__CDKN1B_ </ci>
                   <ci> nuc_prot__CCNE__CDK2__CDKN1A_ </ci>
                   <ci> nuc_prot_i__CCNA__CDK2_ </ci>
-                  <ci> nuc_prot_CCNA__CDK2_ </ci>
+                  <ci> nuc_prot__CCNA__CDK2_ </ci>
                   <ci> nuc_prot__CCNA__CDK2__CDKN1B_ </ci>
                   <ci> nuc_prot__CCNA__CDK2__CDKN1A_ </ci>
                 </apply>
@@ -14239,7 +14417,7 @@
       </reaction>
       <reaction id="vC48" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CCNA__CDK2_" stoichiometry="1" constant="true"/>
@@ -14259,11 +14437,11 @@
               </apply>
               <apply>
                 <divide/>
-                <ci> nuc_prot_CCNA__CDK2_ </ci>
+                <ci> nuc_prot__CCNA__CDK2_ </ci>
                 <apply>
                   <plus/>
                   <ci> kC48_3 </ci>
-                  <ci> nuc_prot_CCNA__CDK2_ </ci>
+                  <ci> nuc_prot__CCNA__CDK2_ </ci>
                 </apply>
               </apply>
               <ci> Nucleus </ci>
@@ -14276,7 +14454,7 @@
           <speciesReference species="nuc_prot_i__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="nuc_prot__p_CDC25__CCNA__CDK2_"/>
@@ -14303,7 +14481,7 @@
       </reaction>
       <reaction id="vC50" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1B_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
@@ -14314,7 +14492,7 @@
             <apply>
               <times/>
               <ci> kC50_1 </ci>
-              <ci> nuc_prot_CCNA__CDK2_ </ci>
+              <ci> nuc_prot__CCNA__CDK2_ </ci>
               <ci> nuc_prot__CDKN1B_ </ci>
               <ci> Nucleus </ci>
             </apply>
@@ -14326,7 +14504,7 @@
           <speciesReference species="nuc_prot__CCNA__CDK2__CDKN1B_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1B_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
@@ -14454,8 +14632,8 @@
           <speciesReference species="nuc_prot_i__CDH1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNB__CDK1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14473,8 +14651,8 @@
               </apply>
               <apply>
                 <plus/>
-                <ci> nuc_prot_CCNA__CDK2_ </ci>
-                <ci> nuc_prot_CCNB__CDK1_ </ci>
+                <ci> nuc_prot__CCNA__CDK2_ </ci>
+                <ci> nuc_prot__CCNB__CDK1_ </ci>
               </apply>
               <ci> Nucleus </ci>
             </apply>
@@ -14611,7 +14789,7 @@
           <speciesReference species="nuc_prot__p_CDC25__CCNA__CDK2_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNA__CDK2_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNA__CDK2_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14620,7 +14798,7 @@
               <ci> kC63_1 </ci>
               <apply>
                 <plus/>
-                <ci> nuc_prot_CCNA__CDK2_ </ci>
+                <ci> nuc_prot__CCNA__CDK2_ </ci>
                 <ci> kC63_2 </ci>
               </apply>
               <apply>
@@ -14689,7 +14867,7 @@
           <speciesReference species="nuc_prot_i__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNB__CDK1_"/>
           <modifierSpeciesReference species="nuc_prot__CCNB__CDK1__CDKN1B_"/>
           <modifierSpeciesReference species="nuc_prot__CCNB__CDK1__CDKN1A_"/>
         </listOfModifiers>
@@ -14705,7 +14883,7 @@
                 <apply>
                   <plus/>
                   <ci> nuc_prot_i__CCNB__CDK1_ </ci>
-                  <ci> nuc_prot_CCNB__CDK1_ </ci>
+                  <ci> nuc_prot__CCNB__CDK1_ </ci>
                   <ci> nuc_prot__CCNB__CDK1__CDKN1B_ </ci>
                   <ci> nuc_prot__CCNB__CDK1__CDKN1A_ </ci>
                 </apply>
@@ -14798,7 +14976,7 @@
       </reaction>
       <reaction id="vC71" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="nuc_prot_i__CCNB__CDK1_" stoichiometry="1" constant="true"/>
@@ -14818,11 +14996,11 @@
               </apply>
               <apply>
                 <divide/>
-                <ci> nuc_prot_CCNB__CDK1_ </ci>
+                <ci> nuc_prot__CCNB__CDK1_ </ci>
                 <apply>
                   <plus/>
                   <ci> kC71_3 </ci>
-                  <ci> nuc_prot_CCNB__CDK1_ </ci>
+                  <ci> nuc_prot__CCNB__CDK1_ </ci>
                 </apply>
               </apply>
               <ci> Nucleus </ci>
@@ -14835,7 +15013,7 @@
           <speciesReference species="nuc_prot_i__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="nuc_prot__CDC25__CCNB__CDK1_"/>
@@ -14863,7 +15041,7 @@
       <reaction id="vC73" reversible="false" fast="false">
         <listOfReactants>
           <speciesReference species="nuc_prot__CDKN1B_" stoichiometry="1" constant="true"/>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="nuc_prot__CCNB__CDK1__CDKN1B_" stoichiometry="1" constant="true"/>
@@ -14874,7 +15052,7 @@
               <times/>
               <ci> kC73_1 </ci>
               <ci> nuc_prot__CDKN1B_ </ci>
-              <ci> nuc_prot_CCNB__CDK1_ </ci>
+              <ci> nuc_prot__CCNB__CDK1_ </ci>
               <ci> Nucleus </ci>
             </apply>
           </math>
@@ -14886,7 +15064,7 @@
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="nuc_prot__CDKN1B_" stoichiometry="1" constant="true"/>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -14921,14 +15099,14 @@
           <speciesReference species="nuc_prot_a__CDC20_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNB__CDK1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> kC76_1 </ci>
-              <ci> nuc_prot_CCNB__CDK1_ </ci>
+              <ci> nuc_prot__CCNB__CDK1_ </ci>
               <apply>
                 <divide/>
                 <ci> nuc_prot_i__CDC20_ </ci>
@@ -15059,7 +15237,7 @@
           <speciesReference species="nuc_prot__CDC25__CCNB__CDK1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNB__CDK1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -15068,7 +15246,7 @@
               <ci> kC82_1 </ci>
               <apply>
                 <plus/>
-                <ci> nuc_prot_CCNB__CDK1_ </ci>
+                <ci> nuc_prot__CCNB__CDK1_ </ci>
                 <ci> kC82_2 </ci>
               </apply>
               <apply>
@@ -15137,7 +15315,7 @@
           <speciesReference species="nuc_prot__p_WEE1_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="nuc_prot_CCNB__CDK1_"/>
+          <modifierSpeciesReference species="nuc_prot__CCNB__CDK1_"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -15146,7 +15324,7 @@
               <ci> kC86_1 </ci>
               <apply>
                 <plus/>
-                <ci> nuc_prot_CCNB__CDK1_ </ci>
+                <ci> nuc_prot__CCNB__CDK1_ </ci>
                 <ci> kC86_2 </ci>
               </apply>
               <apply>
@@ -15415,7 +15593,7 @@
       </reaction>
       <reaction id="vC100" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
@@ -15426,7 +15604,7 @@
             <apply>
               <times/>
               <ci> kC100_1 </ci>
-              <ci> nuc_prot_CCNA__CDK2_ </ci>
+              <ci> nuc_prot__CCNA__CDK2_ </ci>
               <ci> nuc_prot__CDKN1A_ </ci>
               <ci> Nucleus </ci>
             </apply>
@@ -15438,7 +15616,7 @@
           <speciesReference species="nuc_prot__CCNA__CDK2__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="nuc_prot_CCNA__CDK2_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNA__CDK2_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
@@ -15454,7 +15632,7 @@
       </reaction>
       <reaction id="vC102" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
@@ -15465,7 +15643,7 @@
             <apply>
               <times/>
               <ci> kC102_1 </ci>
-              <ci> nuc_prot_CCNB__CDK1_ </ci>
+              <ci> nuc_prot__CCNB__CDK1_ </ci>
               <ci> nuc_prot__CDKN1A_ </ci>
               <ci> Nucleus </ci>
             </apply>
@@ -15477,7 +15655,7 @@
           <speciesReference species="nuc_prot__CCNB__CDK1__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="nuc_prot_CCNB__CDK1_" stoichiometry="1" constant="true"/>
+          <speciesReference species="nuc_prot__CCNB__CDK1_" stoichiometry="1" constant="true"/>
           <speciesReference species="nuc_prot__CDKN1A_" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
@@ -54395,6 +54573,1561 @@
               <times/>
               <ci> kI86_1 </ci>
               <ci> cyt_prot__IFNG__INFGR_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac6" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__RB1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__RB1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac6_1 </ci>
+              <ci> nuc_gene_i__RB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac7" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__E2F1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__E2F1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac7_1 </ci>
+              <ci> nuc_gene_i__E2F1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac8" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__E2F2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__E2F2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac8_1 </ci>
+              <ci> nuc_gene_i__E2F2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac9" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__E2F3_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__E2F3_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac9_1 </ci>
+              <ci> nuc_gene_i__E2F3_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac13" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CCNE1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CCNE1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac13_1 </ci>
+              <ci> nuc_gene_i__CCNE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac14" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CCNE2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CCNE2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac14_1 </ci>
+              <ci> nuc_gene_i__CCNE2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac15" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__SKP2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__SKP2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac15_1 </ci>
+              <ci> nuc_gene_i__SKP2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDC25A_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDC25A_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac16_1 </ci>
+              <ci> nuc_gene_i__CDC25A_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac17" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDC25B_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDC25B_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac17_1 </ci>
+              <ci> nuc_gene_i__CDC25B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac18" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDC25C_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDC25C_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac18_1 </ci>
+              <ci> nuc_gene_i__CDC25C_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac19" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CCNA2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CCNA2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac19_1 </ci>
+              <ci> nuc_gene_i__CCNA2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac20" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDKN1B_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDKN1B_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac20_1 </ci>
+              <ci> nuc_gene_i__CDKN1B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac21" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDH1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDH1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac21_1 </ci>
+              <ci> nuc_gene_i__CDH1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac22" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CCNB1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CCNB1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac22_1 </ci>
+              <ci> nuc_gene_i__CCNB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac23" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDC20_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDC20_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac23_1 </ci>
+              <ci> nuc_gene_i__CDC20_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac24" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__WEE1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__WEE1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac24_1 </ci>
+              <ci> nuc_gene_i__WEE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac25" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CHEK1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CHEK1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac25_1 </ci>
+              <ci> nuc_gene_i__CHEK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac26" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDKN1A_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDKN1A_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac26_1 </ci>
+              <ci> nuc_gene_i__CDKN1A_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac27" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDK1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDK1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac27_1 </ci>
+              <ci> nuc_gene_i__CDK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac28" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDK2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDK2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac28_1 </ci>
+              <ci> nuc_gene_i__CDK2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac29" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDK4_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDK4_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac29_1 </ci>
+              <ci> nuc_gene_i__CDK4_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGac30" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_i__CDK6_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_a__CDK6_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGac30_1 </ci>
+              <ci> nuc_gene_i__CDK6_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin6" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__RB1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__RB1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin6_1 </ci>
+              <ci> nuc_gene_a__RB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin7" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__E2F1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__E2F1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin7_1 </ci>
+              <ci> nuc_gene_a__E2F1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin8" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__E2F2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__E2F2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin8_1 </ci>
+              <ci> nuc_gene_a__E2F2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin9" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__E2F3_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__E2F3_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin9_1 </ci>
+              <ci> nuc_gene_a__E2F3_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin13" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CCNE1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CCNE1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin13_1 </ci>
+              <ci> nuc_gene_a__CCNE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin14" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CCNE2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CCNE2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin14_1 </ci>
+              <ci> nuc_gene_a__CCNE2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin15" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__SKP2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__SKP2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin15_1 </ci>
+              <ci> nuc_gene_a__SKP2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDC25A_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDC25A_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin16_1 </ci>
+              <ci> nuc_gene_a__CDC25A_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin17" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDC25B_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDC25B_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin17_1 </ci>
+              <ci> nuc_gene_a__CDC25B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin18" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDC25C_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDC25C_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin18_1 </ci>
+              <ci> nuc_gene_a__CDC25C_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin19" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CCNA2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CCNA2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin19_1 </ci>
+              <ci> nuc_gene_a__CCNA2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin20" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDKN1B_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDKN1B_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin20_1 </ci>
+              <ci> nuc_gene_a__CDKN1B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin21" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDH1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDH1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin21_1 </ci>
+              <ci> nuc_gene_a__CDH1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin22" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CCNB1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CCNB1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin22_1 </ci>
+              <ci> nuc_gene_a__CCNB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin23" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDC20_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDC20_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin23_1 </ci>
+              <ci> nuc_gene_a__CDC20_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin24" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__WEE1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__WEE1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin24_1 </ci>
+              <ci> nuc_gene_a__WEE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin25" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CHEK1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CHEK1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin25_1 </ci>
+              <ci> nuc_gene_a__CHEK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin26" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDKN1A_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDKN1A_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin26_1 </ci>
+              <ci> nuc_gene_a__CDKN1A_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin27" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDK1_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDK1_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin27_1 </ci>
+              <ci> nuc_gene_a__CDK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin28" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDK2_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDK2_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin28_1 </ci>
+              <ci> nuc_gene_a__CDK2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin29" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDK4_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDK4_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin29_1 </ci>
+              <ci> nuc_gene_a__CDK4_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vGin30" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="nuc_gene_a__CDK6_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nuc_gene_i__CDK6_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kGin30_1 </ci>
+              <ci> nuc_gene_a__CDK6_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC6" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__RB1_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__RB1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC6_1 </ci>
+              <ci> nuc_gene_a__RB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC7" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__E2F1_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__E2F1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC7_1 </ci>
+              <ci> nuc_gene_a__E2F1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC8" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__E2F2_203_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__E2F2_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC8_1 </ci>
+              <ci> nuc_gene_a__E2F2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC9" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__E2F3_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__E2F3_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC9_1 </ci>
+              <ci> nuc_gene_a__E2F3_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC13" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CCNE1_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CCNE1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC13_1 </ci>
+              <ci> nuc_gene_a__CCNE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC14" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CCNE2_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CCNE2_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC14_1 </ci>
+              <ci> nuc_gene_a__CCNE2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC15" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__SKP2_202_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__SKP2_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC15_1 </ci>
+              <ci> nuc_gene_a__SKP2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC16" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDC25A_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDC25A_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC16_1 </ci>
+              <ci> nuc_gene_a__CDC25A_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC17" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDC25B_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDC25B_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC17_1 </ci>
+              <ci> nuc_gene_a__CDC25B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC18" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDC25C_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDC25C_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC18_1 </ci>
+              <ci> nuc_gene_a__CDC25C_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC19" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CCNA2_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CCNA2_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC19_1 </ci>
+              <ci> nuc_gene_a__CCNA2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC20" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDKN1B_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDKN1B_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC20_1 </ci>
+              <ci> nuc_gene_a__CDKN1B_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC21" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDH1_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDH1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC21_1 </ci>
+              <ci> nuc_gene_a__CDH1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC22" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CCNB1_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CCNB1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC22_1 </ci>
+              <ci> nuc_gene_a__CCNB1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC23" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDC20_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDC20_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC23_1 </ci>
+              <ci> nuc_gene_a__CDC20_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC24" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__WEE1_202_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__WEE1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC24_1 </ci>
+              <ci> nuc_gene_a__WEE1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC25" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CHEK1_204_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CHEK1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC25_1 </ci>
+              <ci> nuc_gene_a__CHEK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC26" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDKN1A_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_prot_a__TP53_"/>
+          <modifierSpeciesReference species="nuc_gene_a__CDKN1A_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci> kTC26_1 </ci>
+                  <ci> nuc_gene_a__CDKN1A_ </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> kTC26_2 </ci>
+                  <ci> nuc_gene_a__CDKN1A_ </ci>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <power/>
+                      <apply>
+                        <divide/>
+                        <ci> nuc_prot_a__TP53_ </ci>
+                        <ci> kTC26_3 </ci>
+                      </apply>
+                      <ci> kTC26_4 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <power/>
+                        <apply>
+                          <divide/>
+                          <ci> nuc_prot_a__TP53_ </ci>
+                          <ci> kTC26_3 </ci>
+                        </apply>
+                        <ci> kTC26_4 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC27" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDK1_203_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDK1_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC27_1 </ci>
+              <ci> nuc_gene_a__CDK1_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC28" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDK2_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDK2_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC28_1 </ci>
+              <ci> nuc_gene_a__CDK2_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC29" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDK4_201_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDK4_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC29_1 </ci>
+              <ci> nuc_gene_a__CDK4_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTC30" reversible="false" fast="false">
+        <listOfProducts>
+          <speciesReference species="cyt_mrna__CDK6_202_" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="nuc_gene_a__CDK6_"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTC30_1 </ci>
+              <ci> nuc_gene_a__CDK6_ </ci>
+              <ci> Nucleus </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd6" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__RB1_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd6_1 </ci>
+              <ci> cyt_mrna__RB1_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd7" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__E2F1_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd7_1 </ci>
+              <ci> cyt_mrna__E2F1_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd8" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__E2F2_203_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd8_1 </ci>
+              <ci> cyt_mrna__E2F2_203_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd9" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__E2F3_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd9_1 </ci>
+              <ci> cyt_mrna__E2F3_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd13" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CCNE1_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd13_1 </ci>
+              <ci> cyt_mrna__CCNE1_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd14" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CCNE2_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd14_1 </ci>
+              <ci> cyt_mrna__CCNE2_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd15" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__SKP2_202_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd15_1 </ci>
+              <ci> cyt_mrna__SKP2_202_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd16" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDC25A_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd16_1 </ci>
+              <ci> cyt_mrna__CDC25A_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd17" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDC25B_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd17_1 </ci>
+              <ci> cyt_mrna__CDC25B_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd18" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDC25C_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd18_1 </ci>
+              <ci> cyt_mrna__CDC25C_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd19" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CCNA2_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd19_1 </ci>
+              <ci> cyt_mrna__CCNA2_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd20" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDKN1B_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd20_1 </ci>
+              <ci> cyt_mrna__CDKN1B_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd21" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDH1_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd21_1 </ci>
+              <ci> cyt_mrna__CDH1_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd22" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CCNB1_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd22_1 </ci>
+              <ci> cyt_mrna__CCNB1_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd23" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDC20_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd23_1 </ci>
+              <ci> cyt_mrna__CDC20_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd24" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__WEE1_202_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd24_1 </ci>
+              <ci> cyt_mrna__WEE1_202_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd25" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CHEK1_204_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd25_1 </ci>
+              <ci> cyt_mrna__CHEK1_204_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd26" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDKN1A_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd26_1 </ci>
+              <ci> cyt_mrna__CDKN1A_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd27" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDK1_203_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd27_1 </ci>
+              <ci> cyt_mrna__CDK1_203_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd28" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDK2_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd28_1 </ci>
+              <ci> cyt_mrna__CDK2_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd29" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDK4_201_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd29_1 </ci>
+              <ci> cyt_mrna__CDK4_201_ </ci>
+              <ci> Cytoplasm </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="vTCd30" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="cyt_mrna__CDK6_202_" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> kTCd30_1 </ci>
+              <ci> cyt_mrna__CDK6_202_ </ci>
               <ci> Cytoplasm </ci>
             </apply>
           </math>

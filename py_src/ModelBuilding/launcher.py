@@ -10,8 +10,8 @@ Decider / Launcher script for Builder submodule.
 # -----------------------Package Import & Defined Arguements-------------------#
 import logging
 from types import SimpleNamespace
-from python.ModelBuilding.createModels import CreateModel
-from python.ModelBuilding.amici_model_builder import amici_builder
+from py_src.ModelBuilding.createModels import CreateModel
+from py_src.ModelBuilding.amici_model_builder import amici_builder
 
 
 logging.basicConfig(

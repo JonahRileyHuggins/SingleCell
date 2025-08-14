@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SingleCell"
-version = "0.01"
+version = "0.0.1"
 description = "A platform for for constructing, expanding, and simulating large-scale, single-cell mechanistic models."
 authors = [
     { name = "Jonah Huggins", email = "JonahRileyHuggins@gmail.com" },
@@ -12,29 +12,23 @@ authors = [
     { name = "Aurore Amrit", email = "aurore.amrit@umu.se" },
     { name = "Atalanta Harley-Gasaway", email = "amhrnnd@g.clemson.edu" },
     { name = "Cemal Erdem", email = "Cemal.erdem@umu.se" }
-
 ]
 license = {text = "GPL-2.0"}
 dependencies = [
-    "h5py==3.11",
-    "numpy==2.3.1",
+    "numpy==2.2.4",
     "scipy==1.14.0",
-    "sympy==1.12",
+    "sympy==1.14.0",
     "pandas==2.3.1",
     "matplotlib==3.10.3",
-    "python-libsbml==5.20.0",
-    "swig==4.1.0",
+    "python-libsbml==5.20.5",
     "antimony==2.12.0.2",
     "amici==0.32.0",
-    "pyyaml==6.0.1",
-    "phrasedml==1.3.0",
-    "lxml==5.3.0",
-    "seaborn==0.11.2",
-    "ipykernel==6.29.5",
+    "pyyaml==6.0.2",
+    "lxml==6.0.0",
     "pyperclip==1.9.0"
 ]
 
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 keywords = ["mechanistic modeling", "single-cell models", "simulation", "systems biology"]
 
 readme = {file = "README.md", content-type = "text/markdown"}
@@ -43,5 +37,11 @@ readme = {file = "README.md", content-type = "text/markdown"}
 Homepage = "https://github.com/JonahRileyHuggins/SingleCell/"
 Repository = "https://github.com/JonahRileyHuggins/SingleCell"
 
-[tool.setuptools.packages]
-find = { where = ["python"], include = ["python*"], exclude = ["container*", "benchmarks*", "data*", "src*", "include*", "tests*", "ThirdParty*", "amici_models*"] }
+[project.scripts]
+SingleCell = "cli.cli:main"
+
+[tool.setuptools]
+packages = { find = { where = ["py_src"], include = ["py_src*"] } }
+
+[tool.setuptools.package-data]
+"py_src" = ["**/*.yaml", "**/*.json", "**/*.ini"]

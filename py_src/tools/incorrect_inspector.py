@@ -13,8 +13,8 @@ import logging
 import pandas as pd
 from types import SimpleNamespace
 
-from python.shared_utils.file_loader import Config
-from python.shared_utils.utils import parse_kwargs
+from py_src.shared_utils.file_loader import Config
+from py_src.shared_utils.utils import parse_kwargs
 
 
 logging.basicConfig(
