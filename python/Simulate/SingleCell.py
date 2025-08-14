@@ -16,14 +16,13 @@ Output:
 """
 # -----------------------Package Import & Defined Arguements-------------------#
 
-import os
 import sys
 import argparse
 import json
 
 import pandas as pd
 
-sys.path.append("../build/")
+sys.path.append("../../build/")
 from pySingleCell import SingleCell as SC
 
 # Arguement Parsing (Internal For Now)

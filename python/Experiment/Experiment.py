@@ -6,12 +6,13 @@ Created On: 2025-07-10
 
 description: Primary class object of an experiment
 """
-
+# =========================================
+# ============ Package Import ============
+# =========================================
 import os
 import sys
 import logging
 import argparse
-
 import pickle as pkl
 from datetime import date
 import multiprocessing as mp
@@ -23,22 +24,6 @@ from Organizer import Organizer
 import ObservableCalculator as obs
 from shared_utils.file_loader import FileLoader
 from ResultsCacher import ResultCache
-
-
-parser = argparse.ArgumentParser(prog='ModelsCreator')
-parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
-                                                                        which files to inspect for name changes.')
-parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
-parser.add_argument('--cores', '-c', default=os.cpu_count(), help = "Number of processes to divide tasks across")
-parser.add_argument('--catchall', metavar='KEY=VALUE', nargs='*',
-                    help="Catch-all arguments passed as key=value pairs")
-parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = ".", help  = "path to which you want output files stored")
-parser.add_argument(
-    '--observables',
-    action='store_false',
-    help='Enable downsampling of data'
-)
 
 
 logging.basicConfig(
@@ -82,7 +67,7 @@ class Experiment:
 
         self.cell_count = getattr(self.details.problems[0], "cell_count", 1)
 
-        logger.info(f"Starting multiprocessing simulation across {cores} cores.")
+        logger.info(f"Starting in-silico experiment across {cores} cores.")
 
         logger.info("Loading Experiment %s details from %s", self.name, self.petab_yaml)
 
@@ -198,18 +183,33 @@ class Experiment:
 
 if __name__ == '__main__':
 
+    parser = argparse.ArgumentParser(prog='Experiment')
+    parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                            which files to inspect for name changes.')
+    parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
+    parser.add_argument('--cores', '-c', default=os.cpu_count(), help = "Number of processes to divide tasks across")
+    parser.add_argument('--catchall', metavar='KEY=VALUE', nargs='*',
+                        help="Catch-all arguments passed as key=value pairs")
+    parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
+    parser.add_argument('--output', '-o', default = ".", help  = "path to which you want output files stored")
+    parser.add_argument(
+        '--observables',
+        action='store_false',
+        help='Enable downsampling of data'
+    )
+
     args = parser.parse_args()
    
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
-    experiment = Experiment(args.yaml_path, args.cores)
+    experiment = Experiment(args.path, args.cores)
 
     experiment.run()
 
     logger.debug("Closed simulation method successfully.")
 
-    if args.observables == False:
+    if args.No_Observables == False:
         experiment.save_results(args)
         logger.debug("Saved Results successfully.")
 

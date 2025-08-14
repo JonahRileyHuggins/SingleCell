@@ -1,95 +1,191 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
+# =========================================
+# ============ Package Import ============
+# =========================================
+import os
 import argparse
 
 
+# =========================================
+# ============ CLI Arguements ============
+# =========================================
 def parse_args():
-    """Retrieve and parse arguments necessary for model creation
+      """Retrieve and parse arguments necessary for model creation
 
-    Arguments:
-        None
+      Arguments:
+            None
 
-    Returns:
-        A namespace populated with all the attributes.
-    """
-    
-    parser = argparse.ArgumentParser(prog="SPARCED", description="SPARCED CLI tool.")
-    
-    # Define shared arguments in a parent parser
-    shared_parser = argparse.ArgumentParser(add_help=False)
-    shared_parser.add_argument('-v', '--verbose', action='store_false', help="Enable verbose output.")
-    shared_parser.add_argument('-y', '--yaml', help="YAML file with input configuration.")
-    shared_parser.add_argument('-i', '--input_data',
-                                 help="name of the subfolder containing SPARCED formatted input files")
-    shared_parser.add_argument('-m', '--model',
-                        help="relative path to the directory containing the \
-                              models folders")
-    shared_parser.add_argument('-n', '--name',
-                        help="name of the model\nCompilation: desired name for \
-                              the generated model (should be identical to \
-                              model's folder name).\nSimulation: name of the \
-                              input model.")
-    shared_parser.add_argument('-w', '--wild',
-                        help="UNDER CONSTRUCTION\nrunning wild (without SPARCED \
-                              hard-coded values/behaviors")
+      Returns:
+            A namespace populated with all the attributes.
+      """
+      # ========== [Parent Parser] =============
+      parser = argparse.ArgumentParser(prog="SingleCell", description="SingleCell CLI tool.")
+      # Parent-Shared arguments
+      shared_parser = argparse.ArgumentParser(add_help=False)
+      shared_parser.add_argument(
+            '-v', '--verbose', 
+            action='store_true', 
+            help="Enable verbose output.", 
+            dest="verbose"
+      )
+      shared_parser.add_argument(
+            '-p', '--path', 
+            help="General path, intended for configuration YAML file."
+      )
+      shared_parser.add_argument(
+            '-n', '--name',
+            help="String-type name"
+      )
+      shared_parser.add_argument(
+            '--output', 
+            '-o', 
+            default = ".", 
+            help  = "path to store output files"
+      )
+      shared_parser.add_argument(
+            '-w', '--wild',
+            help="UNDER CONSTRUCTION\nrunning wild (without SPARCED hard-coded values/behaviors"
+      )
 
-    # Define subcommands
-    subparsers = parser.add_subparsers(dest="command", help="Subcommands: compile, simulate, validate")
+      # Subcommand definitions
+      subparsers = parser.add_subparsers(dest="command", help="Commands: Build, Simulate, Experiment, Tool")
 
-    # Compile subcommand
-    compile_parser = subparsers.add_parser("compile", 
-                                           parents=[shared_parser],
-                                           help="Compile a model.")
-    compile_parser.add_argument('-o', '--output_parameters',
-                                 help="desired name for the output parameters file")
 
-    # Simulate subcommand
-    # -- Lowercase
-    simulate_parser = subparsers.add_parser("simulate", 
-                                            parents=[shared_parser],
-                                            help="Run a simulation.")
-    simulate_parser.add_argument('-p', '--population_size',
-                                  help="desired cell population size for the simulation")
-    simulate_parser.add_argument('-t', '--time',
-                                  help="desired virtual duration of the simulation (h)")
-    simulate_parser.add_argument('-r', '--results',
-                                  help="directory where simulation results will be saved")
-    simulate_parser.add_argument('-s', '--simulation',
-                        help="desired name for the simulation output files")
-    simulate_parser.add_argument('-x', '--exchange',
-                         help="timeframe between modules information exchange \
-                               during the simulation")
-    # -- Uppercase
-    simulate_parser.add_argument('-D', '--deterministic',
-                        help="don't run simulation in deterministic mode")
-    simulate_parser.add_argument('-P', '--perturbations',
-                        help="name of the perturbations file to use (will \
-                              override default)")
+      # =========== [Command: Build] =============
+      build_parser = subparsers.add_parser(
+            "Build", 
+            parents=[shared_parser],
+            help="Build a model. SBML (and/or) AMICI"
+      )
+      build_parser.add_argument(
+            '--catchall', 
+            '-c', 
+            metavar='KEY=VALUE', 
+            nargs='*',
+            help="Catch-all arguments passed as key=value pairs"
+      )
+      build_parser.add_argument(
+            '--one4all', 
+            default=True,
+            help='Builds Deterministic SBML (and AMICI) model'
+      )
+      build_parser.add_argument(
+            '--SBML_Only',
+            help='List of solvers to skip AMICI compilation for (SBML-only build)',
+            nargs='+',
+            default=['Stochastic']
+      )
 
-    # Benchmark subcommand
-    benchmark_parser = subparsers.add_parser("validate", 
-                                            parents=[shared_parser],
-                                            help="Benchmark a model.")
-    # -- Lowercase
-    benchmark_parser.add_argument('-rs', '--return_sedml',default=False,
-                        help="return the SED-ML file")
-    benchmark_parser.add_argument('-r', '--results', default="./../results/New-Benchmark/",
-                                   help="directory where benchmark results will be saved")
-    benchmark_parser.add_argument('-b', '--benchmark', default=None,
-                                  required=False,
-                                  help="name of the benchmark to be used")
-    benchmark_parser.add_argument('-c', '--cores',                default=1,
-                        help="number of cores to use for a parallel process")
-    benchmark_parser.add_argument('-bd', '--benchmark_description', default=None,
-                        help="description of the benchmark")
-    benchmark_parser.add_argument( '-a', '--run_all', help="run all benchmarks \
-                                  in the benchmarks directory. This will override \
-                                  the -b flag",
-                                  required=False, default=None)
-    # -- Uppercase
-    benchmark_parser.add_argument('--Observable', default=1,
-                        help="only the observable(s) in observables.tsv are calculated (1) \
-                              or if the entire simulation is saved (0)")
 
-    return(parser.parse_args())
+      # =========== [Command: Simulate] =============
+      # -- Lowercase
+      simulate_parser = subparsers.add_parser(
+            "Simulate", 
+            parents=[shared_parser],
+            help="Run a simulation."
+      )
+      simulate_parser.add_argument(
+            '--sbml', 
+            '-s', 
+            help='SBMLs to be simulated.', 
+            nargs='+', 
+            default=['../sbml_files/Deterministic.sbml']
+      )
+      simulate_parser.add_argument(
+            '--modify', 
+            '-m', 
+            metavar='KEY=VALUE', 
+            nargs='+',
+            help='Species to modify in key=value format',
+            default=[]
+      )
+      simulate_parser.add_argument(
+            '--start', 
+            help = 'start time in seconds for simulation', 
+            default = 0.0
+      )
+      simulate_parser.add_argument(
+            '--stop', 
+            help = 'stop time for simulation.', 
+            default = 86400.0
+      )
+      simulate_parser.add_argument(
+            '--step', 
+            help = 'step size of each iteration in the primary for-loop.', 
+            default = 30.0
+      )
+
+
+      # =========== [Command: Experiment] =============
+      experiment_parser = subparsers.add_parser(
+            "Experiment", 
+            parents=[shared_parser],
+            help="PEtab specified in-silico experiment."
+      )
+      # -- Lowercase
+      experiment_parser.add_argument(
+            '--cores', 
+            '-c', 
+            default=os.cpu_count(), 
+            help = "Number of processes to divide tasks across"
+      )
+      experiment_parser.add_argument(
+      '--No_Observables',
+      action='store_false',
+      help='Disable downsampling of data; specified in PEtab observables.tsv'
+      )
+      experiment_parser.add_argument(
+            '--catchall', 
+            metavar='KEY=VALUE', 
+            nargs='*',
+            help="Catch-all arguments passed as key=value pairs"
+      )
+
+
+      # ============ [Command: Tool] =================
+      tool_parser = subparsers.add_parser(
+            'Tool', 
+            parents=[shared_parser], 
+            help='Misc. helper tools for modeling'
+      )
+      tool_subparsers = tool_parser.add_subparsers(
+            dest="tool_command", 
+            help="Subcommands: unit_converter, inspector, species_name_converter"
+            )
+      
+      # ---------- [Subcommand: unit converter] -------------
+      uc_parser = tool_subparsers.add_parser(
+            'unit_converter',
+            help='Convert between nanomolar and molecules per cell'
+      )
+      uc_parser.add_argument(
+          "--mpc", 
+          help="target unit molecules / cell"
+      )
+      uc_parser.add_argument(
+            "--nanomolar", 
+            help = "target unit nanomolar"
+      )
+      uc_parser.add_argument(
+            "-c", 
+            "--compartment_volume", 
+            help="volume (liters) of cellular compartment" \
+                        "for unit conversion"
+      )
+
+      # ---------- [Subcommand: incorrect inspector] -------------
+      ii_parser = tool_subparsers.add_parser(
+            'incorrect_inspector',
+            help='Find incorrectly specified parameters'
+            )
+
+      # ---------- [Subcommand: species name converter] ------------
+      snc_parser = tool_subparsers.add_parser(
+            'species_name_converter',
+            help='Replaces old species names with new'
+            )
+
+      return(parser.parse_args())

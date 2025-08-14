@@ -1,4 +1,4 @@
-# Genome Complete MCF10A Model
+# Human Epithelial Cell Model: A Genome Complete MCF10A Model
 
 # General infos
 name: "Human Epithelial Cell Model"
@@ -12,10 +12,15 @@ author: "Jonah R. Huggins"
 compilation:
     directory: "."
     files:
-      compartments: "SPARCED - Compartments.tsv"
-      ratelaws: "SPARCED - Ratelaws.tsv"
-      species: "SPARCED - Species.tsv"
-      parameters: "SPARCED - Parameters.tsv"
+      compartments: "../data/SPARCED - Compartments.tsv"
+      ratelaws: "../data/SPARCED - Ratelaws.tsv"
+      species: "../data/SPARCED - Species.tsv"
+      parameters: "../data/SPARCED - Parameters.tsv"
+    paths:
+      sbml: "../sbml_files/"
+      model_cache: "../amici_models/"
+
+
 
 swap_files:
   old: 

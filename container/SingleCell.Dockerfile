@@ -4,40 +4,25 @@
 # TAG: docker tag singlecell JonahRileyHuggins/SingleCell:latest
 # PUSH: docker push JonahRileyHuggins/SingleCell:latest
 
-FROM ubuntu:24.04
+# Dockerfile for SingleCell - optimized for bind mounts and venv isolation
+FROM python:3.12-slim
 
-# Set environment variables
+# Environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
     SHELL=/bin/bash \
     BLAS_LIBS=-lopenblas \
     PATH=/root/.local/bin:$PATH \
-    VENV_PATH=/SingleCell/.venv
+    VENV_PATH=/opt/.venv \
+    BUILD_PATH=/opt/SingleCell-build \
+    THIRD_PARTY_BUILD=/opt/SingleCell-build/ThirdParty \
+    PYTHONPATH=/opt/SingleCell-build:$PYTHONPATH \
+    LD_LIBRARY_PATH=/opt/SingleCell-build/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
-# Copy SingleCell files (ensure build context matches path)
-RUN mkdir -p /SingleCell
-COPY . /SingleCell/
-
-# Safety Check; verifies any files from Windows are sanitized
-RUN apt-get update && apt-get install -y dos2unix \
-    && find /SingleCell -type f -name "*.sh" -exec dos2unix {} \; \
-    && find /SingleCell -type f -name "*.sh" -exec chmod +x {} \; \
-    && find /SingleCell -type l -exec sh -c 'target=$(readlink "{}"); cp --remove-destination "$target" "{}"' \; \
-    && apt-get remove -y dos2unix && apt-get autoremove -y
-
-
-
-# Set working directory
-WORKDIR /SingleCell
-
-
-# Update and install basic dependencies
-RUN apt-get install -y --no-install-recommends \
+# Install basic dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
         wget \
-        python3-pip \
-        python3-venv \
-        python3-dev \
         libboost-all-dev \
         libopenblas-dev \
         gcc \
@@ -45,59 +30,82 @@ RUN apt-get install -y --no-install-recommends \
         git \
         gfortran \
         cmake \
-        make \
         swig \
         libhdf5-dev \
-        && apt-get clean && rm -rf /var/lib/apt/lists/*
+        vim nano curl wget dos2unix \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Create persistent paths for pipx
-# RUN mkdir -p $PIPX_HOME $PIPX_BIN_DIR
+# Create directories for builds
+RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 
-RUN cd /SingleCell
-RUN python3 -m venv .venv \
-    && . .venv/bin/activate \
-    && pip install -r requirements.txt
+# Copy only essential project files
+WORKDIR /SingleCell
+COPY sbml_files ./sbml_files
+COPY benchmarks ./benchmarks
+COPY data ./data
+COPY src ./src
+COPY include ./include
+COPY python ./python
+COPY amici_models ./amici_models
+COPY CMakeLists.txt ./CMakeLists.txt
+COPY requirements.txt .
 
-    # Installing ThirdParty dependencies
-    ## muParser
-RUN cd /SingleCell/ThirdParty/muparser/ \
-    && cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=/usr/local \
-    && cmake --build build \
-    && cmake --install build
+# Sanitize shell scripts from Windows line endings
+RUN find . -type f -name "*.sh" -exec dos2unix {} \; \
+ && find . -type f -name "*.sh" -exec chmod +x {} \;
 
-    ## libXML2
-RUN cd /SingleCell/ThirdParty/libxml2-2.14.3/ \
-    && cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    && cmake --build build \
-    && cmake --install build
+# Create virtual environment and install Python deps
+RUN python -m venv $VENV_PATH \
+    && . $VENV_PATH/bin/activate \
+    && pip install --no-cache-dir -r requirements.txt
 
-    ## libSBML
-RUN cd /SingleCell/ThirdParty/libsbml-5.20.2/ \
-    && cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    && cmake --build build \
-    && cmake --install build
+# Build ThirdParty dependencies outside of /SingleCell
+WORKDIR $THIRD_PARTY_BUILD
 
-    ## AMICI
-RUN cd /SingleCell/ThirdParty/AMICI/scripts/ \
-    && ./buildSuiteSparse.sh \
-    && ./buildSundials.sh \
-    && ./buildAmici.sh
+# muParser
+RUN cd /SingleCell/ThirdParty/muparser \
+ && cmake -B $THIRD_PARTY_BUILD/muparser-build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=$THIRD_PARTY_BUILD/muparser \
+ && cmake --build $THIRD_PARTY_BUILD/muparser-build \
+ && cmake --install $THIRD_PARTY_BUILD/muparser
 
-    # Build models inside container
-RUN cd /SingleCell/ \
-    && . .venv/bin/activate \
-    && cd python/ModelBuilding/ \
-    && python3 createModels.py -p ../../data/config.yaml
+# libXML2
+RUN cd /SingleCell/ThirdParty/libxml2-2.14.3 \
+ && cmake -B $THIRD_PARTY_BUILD/libxml2-build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=$THIRD_PARTY_BUILD/libxml2 \
+ && cmake --build $THIRD_PARTY_BUILD/libxml2-build \
+ && cmake --install $THIRD_PARTY_BUILD/libxml2
 
-    ## SingleCell:
-RUN cd /SingleCell/ \
-    && cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    && cmake --build build
+# libSBML
+RUN cd /SingleCell/ThirdParty/libsbml-5.20.2 \
+ && cmake -B $THIRD_PARTY_BUILD/libsbml-build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=$THIRD_PARTY_BUILD/libsbml \
+ && cmake --build $THIRD_PARTY_BUILD/libsbml-build \
+ && cmake --install $THIRD_PARTY_BUILD/libsbml
+
+# AMICI
+RUN cd /SingleCell/ThirdParty/AMICI/scripts \
+ && ./buildSuiteSparse.sh \
+ && ./buildSundials.sh \
+ && ./buildAmici.sh \
+ && cp -r ../AMICI/* $THIRD_PARTY_BUILD/
+
+# Build pySingleCell C++ extension into BUILD_PATH and install in venv
+WORKDIR $BUILD_PATH
+RUN cd /SingleCell/python/pySingleCell \
+ && . $VENV_PATH/bin/activate \
+ && python setup.py build_ext --inplace --build-lib $BUILD_PATH \
+ && cp $BUILD_PATH/pySingleCell*.so $VENV_PATH/lib/python3.12/site-packages/
+
+# Build models inside container
+RUN . $VENV_PATH/bin/activate \
+ && cd /SingleCell/python/ModelBuilding \
+ && python createModels.py -p ../../data/config.yaml
+
+# Build SingleCell core C++ (optional, if needed)
+RUN cd /SingleCell \
+ && cmake -B $BUILD_PATH/build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+ && cmake --build $BUILD_PATH/build
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]
 
-# on run: activates the virtual environment stored in SingleCell/.venv
-CMD ["/bin/bash", "-c", "source $VENV_PATH/bin/activate && exec bash"]
-# Test the installation
-# RUN sparced --help
+# Default entrypoint: activate venv and drop into bash
+CMD ["bash", "-c", "source $VENV_PATH/bin/activate && exec bash"]

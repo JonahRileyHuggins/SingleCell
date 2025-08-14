@@ -11,47 +11,50 @@ building the model may take several minutes. There are 3 main utilities describe
 3. Benchmarking
 
 The script is executed by running the following command in the terminal:
-    $ SPARCED compile
-    $ SPARCED simulate
-    $ SPARCED validate
-    $ SPARCED -h
+    $ SingleCell Build
+    $ SingleCell Simulate
+    $ SingleCell Experiment
+    $ SingleCell -h
 """
 
 #-----------------------Package Import & Defined Arguements--------------------# 
-from src.utils.arguments import parse_args
-
-def compile_model(args):
-    """Handle the compile subcommand. This script is the method for constructing an \
-    AMICI model using SPARCED input files."""
-    from src.compilation.compilation import create_and_compile_model
-    create_and_compile_model() # Process parsed arguments and launch model creation
-
-def simulate_model(args):
-    """ Handle the simulate subcommand.
-    Run a simulation. Here, you can run an experiment, i.e. one or several cell simulations \
-    within the given initial conditions. Executes the simulation of an AMICI model,\
-    compiled either using the SPARCED input files or SBML file.
-    """
-    from src.simulation.experiment import run_experiment
-    run_experiment() # Process parsed arguments and launch simulation
-
-def benchmark_model(args):
-    """Handle the benchmark subcommand. Script to automate model-data comparisons, \
-    'benchmarks'. 
-    """
-    from src.validation.launchers import launch_validation
-    launch_validation() # Process parsed arguments and launch validation
+from python.shared_utils.arguments import parse_args
 
 def main():
     """Main entry point."""
     args = parse_args()
 
-    if args.command == "compile":
-        compile_model(args)
-    elif args.command == "simulate":
-        simulate_model(args)
-    elif args.command == "validate":
-        benchmark_model(args)
+    if args.command == "Build":
+        """
+        Handle the compile subcommand. This script is the method for constructing an \
+        AMICI model using SPARCED input files.
+        """
+        from python.ModelBuilding.launcher import Builder
+        Builder(args)
+
+    elif args.command == "Simulate":
+        """ 
+        Handle Simulate subcommand.
+        Run a single simulation with a set of conditions.
+        """
+        from python.Simulate.SingleCell import SingleCell
+        SingleCell(args).simulate()
+
+    elif args.command == "Experiment":
+        """
+        Handle Experiment subcommand. 
+        Module to automate model-data comparisons and complex simulations. 
+        """
+        from python.Experiment.launcher import Experimentalist
+        Experimentalist(args)
+
+    elif args.command == "Tool":
+        """
+        Handle misc. tools specified in tools subdirectory
+        """
+        from python.tools.launcher import ToolBelt
+        ToolBelt(args=args)
+
     else:
         print("No valid command provided. Use --help for guidance.")
 

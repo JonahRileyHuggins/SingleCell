@@ -18,10 +18,10 @@ import os
 import re
 import sys
 import logging
-import argparse
 
 sys.path.append('../../')
 from shared_utils.file_loader import FileLoader, Config
+from shared_utils.utils import parse_kwargs
 
 
 logging.basicConfig(
@@ -33,20 +33,13 @@ logger = logging.getLogger(__name__)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-
-parser = argparse.ArgumentParser(prog='swap_name')
-parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
-                                                                        which files to inspect for name changes.')
-parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
-                    help="Catch-all arguments passed as key=value pairs")
-parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose"
-)
-
-
-def main(config_path: os.PathLike, **kwargs) -> None:
+def convert(config_path: os.PathLike, verbose = False, **kwargs) -> None:
     """
     Swaps file names in method parameters args with new names
     """
+    if verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
     logger.info("Starting name swap process using config: %s", config_path)
 
     loader = FileLoader(config_path)
@@ -166,36 +159,20 @@ def replace_names(expr: str, name_map: dict) -> str:
     return expr_protected
 
 
-def parse_kwargs(arg_list: list)-> dict:
-    """Parses catchall function."""
-
-
-    kwargs = {}
-
-
-    for arg in arg_list:
-        if '=' not in arg:
-            raise ValueError(f"Invalid argument format: {arg}. Use key=value.")
-        else:
-            key, value = arg.split('=', 1)
-            kwargs[key] = value
-
-
-    return kwargs
-
-
-
-
 if __name__ == '__main__':
 
+    import argparse
 
+    parser = argparse.ArgumentParser(prog='swap_name')
+    parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                            which files to inspect for name changes.')
+    parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
+                        help="Catch-all arguments passed as key=value pairs")
+    parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose"
+    )
     args = parser.parse_args()
-   
-    if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
-
 
     kwargs = parse_kwargs(args.catchall) if args.catchall else {}
 
 
-    main(args.path, **kwargs)
+    convert(args.path, args.verbose, **kwargs)

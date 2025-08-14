@@ -51,18 +51,18 @@ class DeterministicModule : public BaseModule {
         ) override;
 
         /**
-         * @brief Calculates a single timestep for the deterministic module
+         * @brief Calculates a single timestep for the Deterministic module
          * 
          * @param step current step of the simulation
          * 
-         * @returns None (new state vector of t+1 values for deterministic step)
+         * @returns None (new state vector of t+1 values for Deterministic step)
         */
         void step(
             int step
         ) override;
 
         /**
-         * @brief Calculates every timestep for the deterministic module before returning call
+         * @brief Calculates every timestep for the Deterministic module before returning call
          * 
          * @param timepoints vector of timepoints for the simulation
          */

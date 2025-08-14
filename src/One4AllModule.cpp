@@ -1,10 +1,10 @@
 /**
- * @file HybridModule.h
+ * @file One4AllModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 15-05-2025
  * 
- * @brief Definitions for HybridModule operations
+ * @brief Definitions for One4AllModule operations
 */
 
 //===========================Library Import=================================//
@@ -23,41 +23,41 @@
 // Internal libraries
 #include "singlecell/utils.h"
 #include "singlecell/SBMLHandler.h"
-#include "singlecell/HybridModule.h"
+#include "singlecell/One4AllModule.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
-#include "../amici_models/Hybrid/Hybrid.h"
+#include "../amici_models/One4All/One4All.h"
 
 //=============================Class Details================================//
-HybridModule::HybridModule(
-    SBMLHandler HybridModel
- ) : BaseModule(HybridModel)
+One4AllModule::One4AllModule(
+    SBMLHandler One4AllModel
+ ) : BaseModule(One4AllModel)
  {
-    // Retrieve the Hybrid matrix from the sbml document.
-    this->stoichmat = HybridModel.getStoichiometricMatrix();
+    // Retrieve the One4All matrix from the sbml document.
+    this->stoichmat = One4AllModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    this->formulas_vector = HybridModel.getReactionExpressions();
+    this->formulas_vector = One4AllModel.getReactionExpressions();
 
     //Instantiate SBML model
-    this->sbml = HybridModel.model;
+    this->sbml = One4AllModel.model;
 
-    // // Import AMICI Model from 'bin/AMICI_MODELS/model
-    // this->model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Hybrid::Model_Hybrid>();
+    // Import AMICI Model from 'amici_models/$modelname
+    // this->model = std::make_unique<amici::model_One4All::Model_One4All>();
+    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_One4All::Model_One4All>();
     this->model = std::move(new_model);
     
     //Update AMICI model for any modifications present in SBML:
-    this->model->setFixedParameters(HybridModel.getParameterValues());
+    this->model->setFixedParameters(One4AllModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
     this->target_id = "Stochastic";
 }
 
-std::string HybridModule::getModuleId() { return this->algorithm_id; }
+std::string One4AllModule::getModuleId() { return this->algorithm_id; }
 
-void HybridModule::loadTargetModule(
+void One4AllModule::loadTargetModule(
     const std::vector<std::unique_ptr<BaseModule>>& module_list
 ) {
     for (const auto& mod : module_list) {
@@ -70,7 +70,7 @@ void HybridModule::loadTargetModule(
     }
 }
 
-void HybridModule::step(int step) {
+void One4AllModule::step(int step) {
     // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);
 
@@ -98,7 +98,7 @@ void HybridModule::step(int step) {
 
 }
 
-void HybridModule::run(
+void One4AllModule::run(
     std::vector<double> timepoints
 ) {
 
@@ -130,7 +130,7 @@ void HybridModule::run(
     }
 }
 
-std::vector<double> HybridModule::setAllSpeciesValues(
+std::vector<double> One4AllModule::setAllSpeciesValues(
                                         std::vector<double> current_states,
                                         std::vector<double> update_states
                                         ) {
@@ -154,7 +154,7 @@ std::vector<double> HybridModule::setAllSpeciesValues(
 
 }
 
-std::vector<double> HybridModule::getNewStepResult(
+std::vector<double> One4AllModule::getNewStepResult(
     const amici::ReturnData &rdata
 ) {
 
@@ -178,7 +178,7 @@ std::vector<double> HybridModule::getNewStepResult(
     return last_species_values;
 }
 
-void HybridModule::setSimulationSettings(
+void One4AllModule::setSimulationSettings(
     double start, 
     double stop, 
     double step
@@ -210,7 +210,7 @@ void HybridModule::setSimulationSettings(
     this->updateParameters();
 }
 
-std::vector<double> HybridModule::getLastStepResult(
+std::vector<double> One4AllModule::getLastStepResult(
     int timestep
 ) {
 
@@ -223,7 +223,7 @@ std::vector<double> HybridModule::getLastStepResult(
     return state_vector;
 }
 
-void HybridModule::updateParameters() {
+void One4AllModule::updateParameters() {
     
     for (const auto& module : this->targets) {
 
@@ -231,7 +231,7 @@ void HybridModule::updateParameters() {
 
         for (int i = 0; i < this->overlapping_params.size(); i++) {
 
-            // Hybrid model needs both AMICI and SBML set:
+            // One4All model needs both AMICI and SBML set:
             //AMICI
             this->model->setFixedParameterById(
                 this->overlapping_params[i], 

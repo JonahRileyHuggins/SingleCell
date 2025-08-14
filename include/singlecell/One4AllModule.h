@@ -1,17 +1,17 @@
 /**
- * @file: HybridModule.h
+ * @file: One4AllModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 14-05-2025
  * 
- * @brief Class Creator For Deterministic Module Using AMICI
+ * @brief Class Creator For One4All Module Using AMICI
  */
 
 //========================header file definition============================//
 #pragma once
 
-#ifndef HYBRIDMODULE_h
-#define HYBRIDMODULE_h
+#ifndef One4AllMODULE_h
+#define One4AllMODULE_h
 
 //===========================Library Import=================================//
 //Std Libraries
@@ -27,14 +27,14 @@
 #include "amici/amici.h"
 
 //==========================Class Declaration===============================//
-class HybridModule : public BaseModule {
+class One4AllModule : public BaseModule {
     public:
     //----------------------------Methods-----------------------------------//
-        HybridModule(
-            SBMLHandler HybridModel
+        One4AllModule(
+            SBMLHandler One4AllModel
         ); //Ctor
 
-        ~HybridModule() override = default; //Dtor
+        ~One4AllModule() override = default; //Dtor
 
         /**
          * @brief retrieves private member algorithm_id for determining which simulation
@@ -51,18 +51,18 @@ class HybridModule : public BaseModule {
         ) override;
 
         /**
-         * @brief Calculates a single timestep for the Hybrid module
+         * @brief Calculates a single timestep for the One4All module
          * 
          * @param step current step of the simulation
          * 
-         * @returns None (new state vector of t+1 values for Hybrid step)
+         * @returns None (new state vector of t+1 values for One4All step)
         */
         void step(
             int step
         ) override;
 
         /**
-         * @brief Calculates every timestep for the Hybrid module before returning call
+         * @brief Calculates every timestep for the One4All module before returning call
          * 
          * @param timepoints vector of timepoints for the simulation
          */

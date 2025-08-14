@@ -7,34 +7,21 @@ Description: Creates an instance of two sbml models for the genome-compelete MCF
 """
 
 import os
-import re
 import sys
-import shutil
 import logging
-import argparse
-import subprocess
 from types import SimpleNamespace
+from collections import defaultdict
 
 sys.path.append("../")
 sys.path.append("../../")
-
+from shared_utils.utils import parse_kwargs
 from shared_utils.file_loader import FileLoader
 
 import pandas as pd
 import numpy as np
 
 import libsbml
-import amici
 import antimony as sb
-
-parser = argparse.ArgumentParser(prog='ModelsCreator')
-parser.add_argument('--yaml_path', '-p', default = None, help = 'path to configuration file detailing \
-                                                                        which files to inspect for name changes.')
-parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
-parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
-                    help="Catch-all arguments passed as key=value pairs")
-parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
-parser.add_argument('--output', '-o', default = "../../sbml_files", help  = "path to which you want output files stored")
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -50,30 +37,139 @@ class CreateModel:
 
         logger.info('Starting build process for model %s ...', args.name)
 
-        self.model_name = args.name
-
         self.sbml_doc = None
     
         self.sbml_model = None
 
         self.parameters = None
 
+        self.model_name = None
+
         self.output_path = args.output
 
-        loader = FileLoader(args.yaml_path)
+        self.sbml_paths = defaultdict(str) # Stores details of solver sbml paths
+
+        loader = FileLoader(args.path)
         self.model_files = loader._extract_model_build_files()
 
-    def __get_component(self) -> None:
-        return NotImplementedError("method `_get_component()` must be implemented in child class.")
-    
-    def __reduce_rxns(self) ->  None:
-        return NotImplementedError("method `__reduce_rxnx()` must be implemented by child class")
+        # Get all unique solvers:
+        self.solvers = self.__get_solvers_list()
 
-    def _convert_antimony_to_sbml(self):
+        if args.one4all:
+            self.solvers.append('One4All')
+
+        for solver in self.solvers:
+            self.__builder_steps(solver)
+
+        # Clean up, clean up, everybody do your share...
+        del self.sbml_doc
+        del self.sbml_model
+        del self.parameters
+        del self.model_name
+
+
+    def __builder_steps(self, solver: str) -> None:
+        "Completes primary construction steps of build process"
+
+        self.model_name = solver
+
+        self.__get_components(solver)
+
+        self.__reduce_rxns()
+
+        # Composition method, not the cleanest but works.
+        AntimonyFile(self)
+
+        sbml_file_path = self.__convert_antimony_to_sbml()
+
+        self.sbml_paths[solver] = sbml_file_path
+
+        self._load_sbml(sbml_file_path)
+
+        self._add_annotations()
+
+
+    def __get_solvers_list(self) -> list:
+        """Finds list of unique solver types in species build file"""
+        # A) Extract the column & clean / sanitize
+        solvers_col = self.model_files.species['solver'].str.lower().str.strip()
+        # B) Drop any duplicate solver instances
+        unique_solvers = solvers_col.drop_duplicates()
+        # C) convert to list
+        unique_solvers_list = unique_solvers.tolist()
+
+        return unique_solvers_list
+
+    def __get_components(self, solver: str) -> None:
+        """Gets solver components only"""
+
+        if solver == 'One4All':
+            self.parameters = pd.DataFrame(
+                [], 
+                columns=['parameterId', 
+                         'value'])
+            return # One4All combines all species.
+
+        # Filter species for non-solver
+        other_params = self.model_files.species[
+            self.model_files.species['solver'].str.lower().str.strip() != solver
+        ].reset_index()
+
+        other_params = pd.DataFrame([], columns=['speciesId', 'initialConcentration (nM)'])
+
+        logger.info('>>>>>>> immediate parameters dataframe: %s' % (other_params))
+
+        # Create new DataFrame with desired columns
+        self.parameters = other_params[['speciesId', 'initialConcentration (nM)']].rename(
+            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
+        )
+
+        logger.info('>>>>>>>> params dataframe after column name: %s' % (self.parameters))
+
+        self.model_files.species = self.model_files.species[
+            self.model_files.species['solver'].str.lower().str.strip() == solver
+            ]
+
+    def __reduce_rxns(self) -> None:
+        """removes reactions containing 'other' components. Deciding method by whether
+          species is either reactant or product in current model.
+        """
+
+        # Collector list for species to drop
+        drop_indices = []
+
+        model_speciesIds = set(self.model_files.species.index.to_list())
+
+        for reactionId, row in self.model_files.ratelaws.iterrows():
+
+            rxn = row.get('r ; p')
+
+            if pd.isna(rxn) or not isinstance(rxn, str):
+                logger.debug("Reaction entry is NaN or not a string: %s", rxn)
+                continue
+
+            reactants_str, products_str = (rxn.split(';') + [''])[:2]
+            logger.debug("Parsed reaction string: reactants='%s', products='%s'", reactants_str, products_str)
+
+            reactants = [r.strip() for r in reactants_str.split('+') if r.strip()]
+            products = [p.strip() for p in products_str.split('+') if p.strip()]
+
+            reaction_parts = reactants + products
+
+            for species in reaction_parts:
+                if species not in set(model_speciesIds):
+
+                    logger.debug("Excluding non-model reaction %s: %s", reactionId, species)
+                    drop_indices.append(reactionId)
+                    break  # no need to check more species for this reaction
+
+        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
+
+    def __convert_antimony_to_sbml(self):
         """Load antimony doc into an SBML object"""
 
         antimony_file_path = f'{self.output_path}/antimony_{self.model_name}.txt'
-        sbml_file_path = f'{self.output_path}/{self.model_name}.sbml'
+        sbml_file_path = f'{self.output_path}/{self.model_name}.xml'
 
         if sb.loadFile(str(antimony_file_path)) == -1:
             logger.debug(sb.getLastError())
@@ -136,214 +232,14 @@ class CreateModel:
     def _write_sbml(self):
         writer = libsbml.SBMLWriter()
 
-        sbml_output_path = f'{self.output_path}/{self.model_name}.sbml'
+        sbml_output_path = f'{self.output_path}/{self.model_name}.xml'
 
         writer.writeSBML(self.sbml_doc, sbml_output_path)
-
-    @classmethod # Table, need method to build file handler.
-    def factory_model_handler(self, args, **kwargs): 
-        """Factory method for auto determining the type of model being built"""
-        if args.name != 'Stochastic':
-            DeterministicModel(args, **kwargs)
-        else:
-            StochasticModel(args, **kwargs)
             
-
-class DeterministicModel(CreateModel):
-    """Handles making the SBML and AMICI models from parent class CreateModel"""
-    def __init__(self, args, **kwargs):
-        super().__init__(args, **kwargs)
-
-        # Place here the updated model files
-        self._get_components(args.deterministic_only)
-
-        self.__reduce_rxns()
-
-        AntimonyFile(self)
-
-        sbml_file_path = self._convert_antimony_to_sbml()
-
-        self._load_sbml(sbml_file_path)
-
-        self._add_annotations()
-
-        self._make_AMICI_model(sbml_file_path)
-
-
-    def _get_components(self, deterministic_only = False):
-        """Gets deterministic components only"""
-
-        # Filter species for stochastic solver
-
-        stochastic_params = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() == 'stochastic'
-        ].reset_index()
-
-        if deterministic_only:
-            stochastic_params = pd.DataFrame([], columns=['speciesId', 'initialConcentration (nM)'])
-
-        logger.info('>>>>>>> immediate parameters dataframe: %s' % (stochastic_params))
-
-        # Create new DataFrame with desired columns
-        self.parameters = stochastic_params[['speciesId', 'initialConcentration (nM)']].rename(
-            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
-        )
-
-        logger.info('>>>>>>>> params dataframe after column name: %s' % (self.parameters))
-
-        if deterministic_only ==  False:
-
-            self.model_files.species = self.model_files.species[
-                self.model_files.species['solver'].str.lower().str.strip() == 'deterministic'
-            ]
-
-        elif deterministic_only == True:
-            self.model_files.species = self.model_files.species
-    
-    def __reduce_rxns(self) -> None:
-        """removes reactions containing stochastic components. Deciding method by whether
-          species is either reactant or product in deterministic model.
-        """
-
-        # Collector list for species to drop
-        drop_indices = []
-
-        deterministic_speciesIds = set(self.model_files.species.index.to_list())
-
-        for reactionId, row in self.model_files.ratelaws.iterrows():
-
-            rxn = row.get('r ; p')
-
-            if pd.isna(rxn) or not isinstance(rxn, str):
-                logger.debug("Reaction entry is NaN or not a string: %s", rxn)
-                continue
-
-            reactants_str, products_str = (rxn.split(';') + [''])[:2]
-            logger.debug("Parsed reaction string: reactants='%s', products='%s'", reactants_str, products_str)
-
-            reactants = [r.strip() for r in reactants_str.split('+') if r.strip()]
-            products = [p.strip() for p in products_str.split('+') if p.strip()]
-
-            reaction_parts = reactants + products
-
-            for species in reaction_parts:
-                if species not in set(deterministic_speciesIds):
-
-                    logger.debug("Dropping reaction %s due to stochastic species: %s", reactionId, species)
-                    drop_indices.append(reactionId)
-                    break  # no need to check more species for this reaction
-
-        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
-
-
-    def _make_AMICI_model(self, sbml_file_path):
-        """Generates an AMICI model from the SBML files pre-generated within the class
-
-        Args:
-            sbml_file_path (_type_): _description_
-        """
-        # Create an SbmlImporter instance for our SBML model
-
-        amici_model_output_path = f'../../amici_models/{args.name}'
-    
-        _make_output_dir(amici_model_output_path)
-
-        sbml_importer = amici.SbmlImporter(sbml_file_path)
-
-        constantParameters = [params.getId() for params in self.sbml_model.getListOfParameters()]
-
-        # The actual compilation step by AMICI, takes a while to complete for large models
-        sbml_importer.sbml2amici(args.name,
-                                amici_model_output_path,
-                                verbose=args.verbose,
-                                constant_parameters=constantParameters)
-        
-
-        # makeshift band-aid for global variable problems in multi-amici-model CMakeLists.txt:
-        if args.name == 'Hybrid':
-            result = subprocess.run([
-                "sed", "-i",
-                r"/add_custom_target(install-python/,/)/d",
-                "../../amici_models/Hybrid/swig/CMakeLists.txt"
-                ], 
-                capture_output=True,
-                text=True,
-                check=True
-                )
-        
-
-class StochasticModel(CreateModel):
-    """Handles making the SBML from parent class CreateModel"""
-    def __init__(self, args, **kwargs):
-        super().__init__(args, **kwargs)
-
-        self._get_components()
-
-        self.__reduce_rxns()
-
-        AntimonyFile(self, stochastic=True)
-
-        sbml_file_path = self._convert_antimony_to_sbml()
-
-        self._load_sbml(sbml_file_path)
-
-        self._add_annotations()
-
-    def _get_components(self):
-        """Gets stochastic components only, converts deterministic into parameters"""
-
-        # Filter species for stochastic solver
-        deterministic_params = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() == 'deterministic'
-        ].reset_index()
-
-        # Create new DataFrame with desired columns
-        self.parameters = deterministic_params[['speciesId', 'initialConcentration (nM)']].rename(
-            columns={'speciesId': 'parameterId', 'initialConcentration (nM)': 'value'}
-        )
-
-        self.model_files.species = self.model_files.species[
-            self.model_files.species['solver'].str.lower().str.strip() == 'stochastic'
-        ]
-
-    def __reduce_rxns(self) -> None:
-        """removes reactions containing deterministic components. Deciding method by whether
-          species is either reactant or product in stochastic model.
-        """
-
-        # Collector list for species to drop
-        drop_indices = []
-
-        stochastic_speciesIds = set(self.model_files.species.index.to_list())
-
-        for reactionId, row in self.model_files.ratelaws.iterrows():
-
-            rxn = row.get('r ; p')
-
-            if pd.isna(rxn) or not isinstance(rxn, str):
-                logger.debug("Reaction entry is NaN or not a string: %s", rxn)
-                continue
-
-            reactants_str, products_str = (rxn.split(';') + [''])[:2]
-            logger.debug("Parsed reaction string: reactants='%s', products='%s'", reactants_str, products_str)
-
-            reactants = [r.strip() for r in reactants_str.split('+') if r.strip()]
-            products = [p.strip() for p in products_str.split('+') if p.strip()]
-
-            reaction_parts = reactants + products
-
-            for species in reaction_parts:
-                if species not in set(stochastic_speciesIds):
-
-                    logger.debug("Dropping reaction %s due to deterministic species: %s", reactionId, species)
-                    drop_indices.append(reactionId)
-                    break  # no need to check more species for this reaction
-
-        self.model_files.ratelaws.drop(index=drop_indices, inplace=True)
 
 class AntimonyFile:
     """ Creates antimony file for easy conversion to SBML """
-    def __init__(self, parent_model_type: SimpleNamespace, stochastic = False):
+    def __init__(self, parent_model_type: SimpleNamespace):
         self.model_files = parent_model_type.model_files
         self.model_name = parent_model_type.model_name
         ## Include other operations here. 
@@ -366,7 +262,7 @@ class AntimonyFile:
 
         self.__make_compartments_constant()
 
-        self.__assign_units(stochastic=stochastic)
+        self.__assign_units()
 
         self.__end_antimony_file()
 
@@ -378,9 +274,9 @@ class AntimonyFile:
         """Creates a variable to store the antimony file document. Header started, 
         returned during init stage fore OOP process. """
         fileModel = open(f'{self.output}/antimony_{self.model_name}.txt', encoding='utf-8', mode='w')
-        logger.info('storing %s in ../sbml_files/antimony_%s' % (self.model_name, self.model_name))
+        logger.info('storing %s in %s/antimony_%s' % (self.model_name, self.output, self.model_name))
 
-        fileModel.write(f'# Genome-Complete {self.model_name} Model \n')
+        fileModel.write(f'# Human Epithelial Cell Model -- {self.model_name} \n')
         fileModel.write(f'model {self.model_name}()\n')
         return fileModel
 
@@ -511,7 +407,7 @@ class AntimonyFile:
         compartment_line = ",".join(const_compartments) + ";\n"
         self.antimony_file.write(compartment_line)
 
-    def __assign_units(self, stochastic = False):
+    def __assign_units(self):
         """Writing Model Units"""
 
         # Write unit definitions
@@ -519,10 +415,7 @@ class AntimonyFile:
         self.antimony_file.write("\n  unit time_unit = second;")
         self.antimony_file.write("\n  unit volume = litre;")
         self.antimony_file.write("\n  unit substance = 1e-9 mole;")
-        if stochastic == True:
-            self.antimony_file.write("\n  unit mpc = 1 molecule;")
-        else:
-            self.antimony_file.write("\n  unit nM = 1e-9 mole / litre;")
+        self.antimony_file.write("\n  unit nM = 1e-9 mole / litre;")
         self.antimony_file.write("\n")
 
     def __end_antimony_file(self):
@@ -576,48 +469,22 @@ class Ratelaw:
         self.formula = self.ratelaw['ratelaw']
 
 
-@staticmethod
-def _make_output_dir(amici_model_path: str | os.PathLike) -> None:
-    """ Provide a path and this returns a directory. Separating from Classes for operability."""
-    if not os.path.exists(amici_model_path):
-        os.mkdir(path=amici_model_path)
-
-
-@staticmethod
-def parse_kwargs(arg_list: list)-> dict:
-    """Parses catchall function."""
-
-
-    kwargs = {}
-
-
-    for arg in arg_list:
-        if '=' not in arg:
-            raise ValueError(f"Invalid argument format: {arg}. Use key=value.")
-        else:
-            key, value = arg.split('=', 1)
-            kwargs[key] = value
-
-
-    return kwargs
-
 if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(prog='SBMLModelCreator')
+    parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                            which files to inspect for name changes.')
+    parser.add_argument('--name', '-n', default = 'Deterministic', help = "String-type name of model")
+    parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
+                        help="Catch-all arguments passed as key=value pairs")
+    parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose")
+    parser.add_argument('--output', '-o', default = "../../sbml_files", help  = "path to which you want output files stored")
 
     args = parser.parse_args()
-   
+
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
     kwargs = parse_kwargs(args.catchall) if args.catchall else {}
 
-    args.deterministic_only = False
-
-    args.name = 'Hybrid'
-    CreateModel.factory_model_handler(args, **kwargs)
-
-    args.name = 'Stochastic'
-    CreateModel.factory_model_handler(args, **kwargs)
-
-    args.deterministic_only = True
-    args.name = 'Deterministic'
-    CreateModel.factory_model_handler(args, **kwargs)
+    CreateModel(args=args)

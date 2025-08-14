@@ -10,11 +10,11 @@ match in the Species model build file.
 import os
 import re
 import logging
-import argparse
 import pandas as pd
-
+from types import SimpleNamespace
 
 from python.shared_utils.file_loader import Config
+from python.shared_utils.utils import parse_kwargs
 
 
 logging.basicConfig(
@@ -27,16 +27,6 @@ logger = logging.getLogger(__name__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 
-parser = argparse.ArgumentParser(prog='incorrect-inspector')
-parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
-                                                                        which files to inspect for name changes.')
-parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
-                    help="Catch-all arguments passed as key=value pairs")
-parser.add_argument('--output', '-o', metavar='OUTPUT', help = 'desired path to return list of old names from inspection, compliant with ' \
-                    'format for species name converter script. default column names are old')
-parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose"
-)
-
 parameter_regex = re.compile(
     'k([A-Z]{1}[a-zA-Z0-9]*[0-9]+[a-z]*(_[0-9]+)+)'
     )
@@ -46,13 +36,17 @@ species_regex = re.compile(
 )
 
 
-def main(config_path: os.PathLike, args, **kwargs) -> None:
+def incorrect_inspector(args: SimpleNamespace, **kwargs) -> None:
     """
     Checks files in inspect section of config against reference species list.
     """
-    logger.info("Starting isolation process using config: %s", config_path)
+   
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
 
-    config = Config.file_loader(config_path)
+    logger.info("Starting isolation process using config: %s", args.path)
+
+    config = Config.file_loader(args.path)
 
     project_root = "./../" # Single cell root directory
 
@@ -131,36 +125,22 @@ def main(config_path: os.PathLike, args, **kwargs) -> None:
         output_file.to_csv(args.output, index=False, sep = '\t')
 
 
-def parse_kwargs(arg_list: list)-> dict:
-    """Parses catchall function."""
-
-
-    kwargs = {}
-
-
-    for arg in arg_list:
-        if '=' not in arg:
-            raise ValueError(f"Invalid argument format: {arg}. Use key=value.")
-        else:
-            key, value = arg.split('=', 1)
-            kwargs[key] = value
-
-
-    return kwargs
-
-
-
-
 if __name__ == '__main__':
 
+    import argparse
 
+    parser = argparse.ArgumentParser(prog='incorrect-inspector')
+    parser.add_argument('--path', '-p', default = None, help = 'path to configuration file detailing \
+                                                                            which files to inspect for name changes.')
+    parser.add_argument('--catchall', '-c', metavar='KEY=VALUE', nargs='*',
+                        help="Catch-all arguments passed as key=value pairs")
+    parser.add_argument('--output', '-o', metavar='OUTPUT', help = 'desired path to return list of old names from inspection, compliant with ' \
+                        'format for species name converter script. default column names are old')
+    parser.add_argument('-v', '--verbose', help="Be verbose", action="store_true", dest="verbose"
+    )
+    
     args = parser.parse_args()
-   
-    if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
-
 
     kwargs = parse_kwargs(args.catchall) if args.catchall else {}
 
-
-    main(args.path, args, **kwargs)
+    incorrect_inspector(args.path, args, **kwargs)

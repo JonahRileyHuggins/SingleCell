@@ -22,7 +22,7 @@ set(SINGLECELL_SRC_LIST
     src/BaseModule.cpp
     src/DeterministicModule.cpp
     src/StochasticModule.cpp
-    src/HybridModule.cpp
+    src/One4AllModule.cpp
     src/SingleCell.cpp
     src/utils.cpp
     src/ArgParsing.cpp
@@ -30,7 +30,7 @@ set(SINGLECELL_SRC_LIST
 
 # === External dependencies ===
 add_subdirectory(amici_models/Deterministic)
-add_subdirectory(amici_models/Hybrid)
+add_subdirectory(amici_models/One4All)
 add_subdirectory(ThirdParty/pybind11)
 add_subdirectory(ThirdParty/libxml2-2.14.3)
 add_subdirectory(ThirdParty/muparser)
@@ -48,7 +48,7 @@ target_include_directories(SingleCell PRIVATE
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
     Deterministic
-    Hybrid
+    One4All
     xml2
     sbml
     muparser
@@ -75,13 +75,12 @@ target_include_directories(pySingleCell PRIVATE
 target_link_libraries(pySingleCell PRIVATE
     ${AMICI_LIB}
     Deterministic
-    Hybrid
+    One4All
     xml2
     sbml
     muparser
     pybind11::module
 )
-
 
 
 # Output directory for .so / .pyd

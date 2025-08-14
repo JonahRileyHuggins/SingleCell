@@ -54,3 +54,21 @@ def tasks_this_round(size, total_jobs, round_number):
         raise ValueError("Round number exceeds the number of rounds")
 
     return tasks_this_round
+
+@staticmethod 
+def parse_kwargs(arg_list: list)-> dict:
+    """Parses catchall function."""
+
+
+    kwargs = {}
+
+
+    for arg in arg_list:
+        if '=' not in arg:
+            raise ValueError(f"Invalid argument format: {arg}. Use key=value.")
+        else:
+            key, value = arg.split('=', 1)
+            kwargs[key] = value
+
+
+    return kwargs
