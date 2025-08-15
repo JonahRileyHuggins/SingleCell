@@ -13,8 +13,8 @@ import logging
 from types import SimpleNamespace
 from collections import defaultdict
 
-from shared_utils.utils import parse_kwargs
-from shared_utils.file_loader import FileLoader
+from singlecell.shared_utils.utils import parse_kwargs
+from singlecell.shared_utils.file_loader import FileLoader
 
 import pandas as pd
 import numpy as np

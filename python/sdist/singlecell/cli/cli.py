@@ -18,7 +18,9 @@ The script is executed by running the following command in the terminal:
 """
 
 #-----------------------Package Import & Defined Arguements--------------------# 
-from shared_utils.arguments import parse_args
+import sys
+sys.path.append('../')
+from singlecell.shared_utils.arguments import parse_args
 
 def main():
     """Main entry point."""

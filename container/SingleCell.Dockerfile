@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gfortran \
         cmake \
         swig \
+        pipx \
         libhdf5-dev \
         vim nano curl wget dos2unix \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -42,6 +43,7 @@ RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 WORKDIR /SingleCell
 COPY sbml_files ./sbml_files
 COPY benchmarks ./benchmarks
+COPY dist ./dist
 COPY data ./data
 COPY src ./src
 COPY include ./include
@@ -55,10 +57,7 @@ RUN find . -type f -name "*.sh" -exec dos2unix {} \; \
  && find . -type f -name "*.sh" -exec chmod +x {} \;
 
 # Create virtual environment and install Python deps
-
-RUN python -m pip install --user pipx && \
-    python -m pipx ensurepath
-
+RUN pipx ensurepath
 RUN pipx install dist/singlecell-0.0.1-py3-none-any.whl --verbose --force
 
 # # Build pySingleCell C++ extension into BUILD_PATH and install in venv

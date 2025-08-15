@@ -9,6 +9,7 @@ import os
 import subprocess
 import pathlib
 import logging
+
 def build_singlecell(
         source_dir: os.PathLike | str = '../../../../',
         build_dir: os.PathLike | str = '../../../../build'

@@ -41,7 +41,7 @@ Repository = "https://github.com/JonahRileyHuggins/SingleCell"
 SingleCell = "singlecell.cli.cli:main"
 
 [tool.setuptools]
-packages = { find = { where = ["python"], include = ["sdist/singlecell*"] } }
+packages = { find = { where = ["sdist"], include = ["singlecell*"] } }
 
 [tool.setuptools.package-data]
 "singlecell" = ["**/*.yaml", "**/*.json", "**/*.ini"]

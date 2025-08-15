@@ -13,20 +13,17 @@ Output: MPI tasks for each rank, MPI task assignment, and MPI results aggregatio
 """
 # -----------------------Package Import & Defined Arguements-------------------#
 import gc
-import sys
 import logging
 
 import numpy as np
 import pandas as pd
 import multiprocessing as mp
 
-sys.path.append("../")
 from Manager import Manager
 from ResultsCacher import ResultCache
 
-sys.path.append("../../build/")
-from pySingleCell import SingleCell
-
+from singlecell.shared_utils.utils import get_pysinglecell
+SingleCell = get_pysinglecell()
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True

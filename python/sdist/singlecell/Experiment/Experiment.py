@@ -10,20 +10,19 @@ description: Primary class object of an experiment
 # ============ Package Import ============
 # =========================================
 import os
-import sys
 import logging
 import argparse
 import pickle as pkl
 from datetime import date
 import multiprocessing as mp
 
-sys.path.append("../")
 from Worker import Worker
 from Manager import Manager
 from Organizer import Organizer
 import ObservableCalculator as obs
-from shared_utils.file_loader import FileLoader
 from ResultsCacher import ResultCache
+from singlecell.shared_utils.file_loader import FileLoader
+
 
 
 logging.basicConfig(

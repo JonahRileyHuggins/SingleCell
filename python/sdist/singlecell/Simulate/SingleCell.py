@@ -15,15 +15,14 @@ Output:
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
-
-import sys
 import argparse
 import json
 
 import pandas as pd
+from pathlib import Path
 
-sys.path.append("../../build/")
-from pySingleCell import SingleCell as SC
+from singlecell.shared_utils.utils import get_pysinglecell
+SC = get_pysinglecell()
 
 # Arguement Parsing (Internal For Now)
 parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')

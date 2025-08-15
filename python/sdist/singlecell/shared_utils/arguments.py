@@ -11,6 +11,25 @@ import pathlib
 
 project_root = pathlib.Path(__file__).parent.parent.parent.parent.parent
 
+ASCII_HEADER = r"""
+
+  ░██████   ░██                      ░██              ░██████             ░██ ░██ 
+ ░██   ░██                           ░██             ░██   ░██            ░██ ░██ 
+░██         ░██░████████   ░████████ ░██  ░███████  ░██         ░███████  ░██ ░██ 
+ ░████████  ░██░██    ░██ ░██    ░██ ░██ ░██    ░██ ░██        ░██    ░██ ░██ ░██ 
+        ░██ ░██░██    ░██ ░██    ░██ ░██ ░█████████ ░██        ░█████████ ░██ ░██ 
+ ░██   ░██  ░██░██    ░██ ░██   ░███ ░██ ░██         ░██   ░██ ░██        ░██ ░██ 
+  ░██████   ░██░██    ░██  ░█████░██ ░██  ░███████    ░██████   ░███████  ░██ ░██ 
+                                 ░██                                              
+                           ░███████                                               
+                                                                                  
+
+   ╔═════════════════════════════════════════════════════════════╗
+   ║  Software for building and running in-silico experiments    ║
+   ║      with the Human Epithelial Cell Model                   ║
+   ╚═════════════════════════════════════════════════════════════╝
+"""
+
 # =========================================
 # ============ CLI Arguements ============
 # =========================================
@@ -24,7 +43,10 @@ def parse_args():
             A namespace populated with all the attributes.
       """
       # ========== [Parent Parser] =============
-      parser = argparse.ArgumentParser(prog="SingleCell", description="SingleCell CLI tool.")
+      parser = argparse.ArgumentParser(description=ASCII_HEADER,
+          formatter_class=argparse.RawDescriptionHelpFormatter
+      )
+
       # Parent-Shared arguments
       shared_parser = argparse.ArgumentParser(add_help=False)
       shared_parser.add_argument(

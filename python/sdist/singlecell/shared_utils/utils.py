@@ -9,7 +9,9 @@ Description: shared-utility functions for Experiments class.
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
+import os, sys
 from pathlib import Path
+import textwrap
 
 def get_project_root() -> Path:
     return Path(__file__).parent.parent.parent.parent
@@ -76,3 +78,44 @@ def parse_kwargs(arg_list: list)-> dict:
 
 
     return kwargs
+
+def add_pysinglecell_path():
+    # 1) env var
+    env = os.getenv("PYSINGLECELL_PATH")
+    if env:
+        p = Path(env).expanduser().resolve()
+        if p.is_dir():
+            sys.path.insert(0, str(p))
+            return True
+
+    # 2) config file
+    cfg = Path(os.getenv("XDG_CONFIG_HOME", Path.home() / ".config")) / "singlecell" / "pysinglecell_path"
+    if cfg.is_file():
+        p = Path(cfg.read_text().strip()).expanduser().resolve()
+        if p.is_dir():
+            sys.path.insert(0, str(p))
+            return True
+
+    # 3) fallback: repo-relative build (only for dev)
+    try:
+        repo_root = Path(__file__).resolve().parents[4]  # adjust as necessary
+        candidate = repo_root / "build"
+        for f in candidate.glob("pySingleCell*.so"):
+            if f.is_file():
+                sys.path.insert(0, str(candidate.resolve()))
+                return True
+    except Exception:
+        pass
+
+    return False
+
+def get_pysinglecell(): 
+    if not add_pysinglecell_path():
+        raise ModuleNotFoundError(textwrap.dedent("""\
+            Could not find pySingleCell. Fix by:
+            * setting PYSINGLECELL_PATH to the build dir: export PYSINGLECELL_PATH=/abs/path/to/build
+            * or creating ~/.config/singlecell/pysinglecell_path containing that path
+            * or packaging the .so into the wheel so pipx install includes it
+        """))
+    from pySingleCell import SingleCell
+    return SingleCell
