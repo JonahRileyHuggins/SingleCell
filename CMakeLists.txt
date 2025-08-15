@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15...4.0)
 project(SingleCell)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -69,6 +69,12 @@ endif()
 set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
 
+# === External dependencies ===
+add_subdirectory(ThirdParty/pybind11)
+add_subdirectory(ThirdParty/libxml2-2.14.3)
+add_subdirectory(ThirdParty/muparser)
+add_subdirectory(ThirdParty/libsbml-5.20.2)
+
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
     src/SBMLHandler.cpp
@@ -81,13 +87,9 @@ set(SINGLECELL_SRC_LIST
     src/ArgParsing.cpp
     src/main.cpp)
 
-# === External dependencies ===
+# === Internal Dependencies ===  
 add_subdirectory(amici_models/deterministic)
 add_subdirectory(amici_models/One4All)
-add_subdirectory(ThirdParty/pybind11)
-add_subdirectory(ThirdParty/libxml2-2.14.3)
-add_subdirectory(ThirdParty/muparser)
-add_subdirectory(ThirdParty/libsbml-5.20.2)
 
 # === Executable target ===
 add_executable(${PROJECT_NAME} ${SINGLECELL_SRC_LIST})
