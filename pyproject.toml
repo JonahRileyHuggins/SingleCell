@@ -38,10 +38,10 @@ Homepage = "https://github.com/JonahRileyHuggins/SingleCell/"
 Repository = "https://github.com/JonahRileyHuggins/SingleCell"
 
 [project.scripts]
-SingleCell = "cli.cli:main"
+SingleCell = "py_src.cli.cli:main"
 
 [tool.setuptools]
-packages = { find = { where = ["py_src"], include = ["py_src*"] } }
+packages = { find = { where = ["."], include = ["py_src*"] } }
 
 [tool.setuptools.package-data]
 "py_src" = ["**/*.yaml", "**/*.json", "**/*.ini"]

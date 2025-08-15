@@ -105,8 +105,8 @@ std::unordered_map<std::string, std::any> ArgParsing::setDefaults() {
     args_map["--start"] = 0.0;
     args_map["--stop"] = 60.0;
     args_map["--step"] = 1.0;
-    args_map["--stochastic_model"] = std::string("../sbml_files/Stochastic.sbml");
-    args_map["--deterministic_model"] = std::string("../sbml_files/Hybrid.sbml");
+    args_map["--stochastic_model"] = std::string("../sbml_files/stochastic.xml");
+    args_map["--deterministic_model"] = std::string("../sbml_files/deterministic.xml");
     args_map["--output"] = std::string("../src/results.tsv");
 
     return args_map;
@@ -122,8 +122,8 @@ void ArgParsing::printUsage() {
             "     --start <Double> {[Optional] Default:0.0}\n"
             "     --stop <Double> {[Optional] Default: 60.0}\n"
             "     --step <Double> {[Optional] Default:1.0}\n"
-            "     --stochastic_model <std::string> {[Optional] Default:  ../tests/Stochastic.sbml}\n"
-            "     --deterministic_model <std::string> {[Optional] Default:  ../tests/Deterministic.sbml}\n"
+            "     --stochastic_model <std::string> {[Optional] Default:  ../tests/stochastic.xml}\n"
+            "     --deterministic_model <std::string> {[Optional] Default:  ../tests/deterministic.xml}\n"
             "     --modify <SpeciesId || ParameterId || CompartmentId>=<Double> {[Optional]}\n"
             "     --output <std::string>{[Optional] Default: ../src/results.tsv}\n";
 

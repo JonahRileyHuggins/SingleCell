@@ -1,7 +1,7 @@
 format_version: 1
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems:
-  - name: "DNA Damage Repair"
+  - name: "DNA-Damage-Repair"
     condition_files: 
     - conditions.tsv
     measurement_files:
@@ -9,6 +9,6 @@ problems:
     observable_files:
     - observables.tsv
     sbml_files:
-    - ../../sbml_files/Deterministic.sbml
+    - ../../sbml_files/One4All.xml
     cell_count: 1
     

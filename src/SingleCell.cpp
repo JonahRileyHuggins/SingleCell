@@ -20,7 +20,7 @@
 #include "singlecell/SingleCell.h"
 #include "singlecell/BaseModule.h"
 #include "singlecell/SBMLHandler.h"
-#include "singlecell/HybridModule.h"
+#include "singlecell/One4AllModule.h"
 #include "singlecell/StochasticModule.h"
 #include "singlecell/DeterministicModule.h"
 
@@ -28,7 +28,7 @@
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
     { "Deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
     { "Stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } },
-    { "Hybrid", [](const SBMLHandler& handler) { return std::make_unique<HybridModule>(handler); } }
+    { "One4All", [](const SBMLHandler& handler) { return std::make_unique<One4AllModule>(handler); } }
 };
 
 std::vector<std::vector<double>> SingleCell::simulate(

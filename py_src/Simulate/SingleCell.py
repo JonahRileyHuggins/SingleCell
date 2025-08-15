@@ -27,7 +27,7 @@ from pySingleCell import SingleCell as SC
 
 # Arguement Parsing (Internal For Now)
 parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
-parser.add_argument('--sbml', '-s', help='SBMLs to be simulated.', nargs='+', default=['../sbml_files/Deterministic.sbml'])
+parser.add_argument('--sbml', '-s', help='SBMLs to be simulated.', nargs='+', default=['../../sbml_files/One4All.xml'])
 parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
                     help='Species to modify in key=value format', default=[])
 parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)

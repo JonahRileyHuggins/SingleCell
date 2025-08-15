@@ -45,7 +45,7 @@ DeterministicModule::DeterministicModule(
 
     // // Import AMICI Model from 'bin/AMICI_MODELS/model
     // this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
+    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
     this->model = std::move(new_model);
     
     //Update AMICI model for any modifications present in SBML:
