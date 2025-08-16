@@ -21,6 +21,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Install basic dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
+        ninja-build \
         curl \
         wget \
         libboost-all-dev \
@@ -43,7 +44,6 @@ RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 WORKDIR /SingleCell
 COPY sbml_files ./sbml_files
 COPY benchmarks ./benchmarks
-COPY dist ./dist
 COPY data ./data
 COPY src ./src
 COPY include ./include
@@ -58,27 +58,10 @@ RUN find . -type f -name "*.sh" -exec dos2unix {} \; \
 
 # Create virtual environment and install Python deps
 RUN pipx ensurepath
-RUN pipx install dist/singlecell-0.0.1-py3-none-any.whl --verbose --force
-
-# # Build pySingleCell C++ extension into BUILD_PATH and install in venv
-# WORKDIR $BUILD_PATH
-# RUN cd /SingleCell/python/pySingleCell \
-#  && . $VENV_PATH/bin/activate \
-#  && python setup.py build_ext --inplace --build-lib $BUILD_PATH \
-#  && cp $BUILD_PATH/pySingleCell*.so $VENV_PATH/lib/python3.12/site-packages/
-
-# # Build models inside container
-# RUN . $VENV_PATH/bin/activate \
-#  && cd /SingleCell/python/ModelBuilding \
-#  && python createModels.py -p ../../data/config.yaml
-
-# # Build SingleCell core C++ (optional, if needed)
-# RUN cd /SingleCell \
-#  && cmake -B $BUILD_PATH/build -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-#  && cmake --build $BUILD_PATH/build
+RUN pipx install python/dist/singlecell-0.0.1-py3-none-any.whl --verbose --force
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]
 
 # Default entrypoint: activate venv and drop into bash
-# CMD ["bash", "-c", "source $VENV_PATH/bin/activate && exec bash"]
+CMD ["bash", "-c", "SingleCell --help; exec bash"]

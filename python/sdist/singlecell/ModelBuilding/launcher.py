@@ -10,9 +10,9 @@ Decider / Launcher script for Builder submodule.
 # -----------------------Package Import & Defined Arguements-------------------#
 import logging
 from types import SimpleNamespace
-from ModelBuilding.sbml_model_builder import CreateModel
-from ModelBuilding.amici_model_builder import amici_builder
-from singlecell_builder import build_singlecell
+from singlecell.ModelBuilding.sbml_model_builder import CreateModel
+from singlecell.ModelBuilding.amici_model_builder import amici_builder
+from singlecell.ModelBuilding.singlecell_builder import build_singlecell
 
 
 logging.basicConfig(

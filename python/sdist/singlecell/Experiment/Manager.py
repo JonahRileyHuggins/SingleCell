@@ -15,8 +15,8 @@ import sys
 import pandas as pd
 
 sys.path.append('../')
-import shared_utils.utils as utils
-from ResultsCacher import ResultCache
+import singlecell.shared_utils.utils as utils
+from singlecell.Experiment.ResultsCacher import ResultCache
 
 
 class Manager:

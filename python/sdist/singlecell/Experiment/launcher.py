@@ -14,7 +14,7 @@ import os
 import logging
 from typing import List
 from types import SimpleNamespace
-from Experiment import Experiment
+from singlecell.Experiment.Experiment import Experiment
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True

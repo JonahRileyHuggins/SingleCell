@@ -16,11 +16,11 @@ import pickle as pkl
 from datetime import date
 import multiprocessing as mp
 
-from Worker import Worker
-from Manager import Manager
-from Organizer import Organizer
-import ObservableCalculator as obs
-from ResultsCacher import ResultCache
+from singlecell.Experiment.Worker import Worker
+from singlecell.Experiment.Manager import Manager
+from singlecell.Experiment.Organizer import Organizer
+import singlecell.Experiment.ObservableCalculator as obs
+from singlecell.Experiment.ResultsCacher import ResultCache
 from singlecell.shared_utils.file_loader import FileLoader
 
 
