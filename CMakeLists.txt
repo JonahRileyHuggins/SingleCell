@@ -9,16 +9,58 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(BLA_VENDOR OpenBLAS)
 find_package(BLAS REQUIRED)
 
+# === Git External Projects === 
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+# Update submodules as needed
+    option(GIT_SUBMODULE "Check submodules during build" ON)
+    if(GIT_SUBMODULE)
+        message(STATUS "Submodule update")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                        RESULT_VARIABLE GIT_SUBMOD_RESULT)
+        if(NOT GIT_SUBMOD_RESULT EQUAL "0")
+            message(FATAL_ERROR "git submodule update --init --recursive failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
+        endif()
+    endif()
+endif()
+
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/extern/libxml2/CMakeLists.txt")
+    message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+endif()
+
+# --- Build libxml2 as external project ---
+# include(ExternalProject)
+# ExternalProject_Add(xml2
+#     SOURCE_DIR ${CMAKE_SOURCE_DIR}/extern/libxml2
+#     BINARY_DIR ${CMAKE_BINARY_DIR}/extern/libxml2-build
+#     INSTALL_DIR ${CMAKE_BINARY_DIR}/extern/libxml2-install
+#     CONFIGURE_COMMAND ${CMAKE_COMMAND} -S <SOURCE_DIR> -B <BINARY_DIR>
+#         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+#     BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target all -- -j
+#     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR>
+# )
+
+# # Tell libsbml where to find libxml2
+# set(LIBXML_INCLUDE_DIR
+#     ${CMAKE_BINARY_DIR}/extern/libxml2-install/include/libxml2
+#     CACHE PATH "libxml2 include dir"
+# )
+# set(LIBXML_LIBRARY
+#     ${CMAKE_BINARY_DIR}/extern/libxml2-install/lib/libxml2.a
+#     CACHE FILEPATH "libxml2 library"
+# )
+
 # --- Run AMICI build scripts at configure time (simple approach) ---
-set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/ThirdParty")
+set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
 set(AMICI_SCRIPTS_DIR "${AMICI_DIR}/scripts")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
 set(AMICI_LIB "${AMICI_DIR}/build/libamici.a")
-set(AMICI_STAMP "${CMAKE_BINARY_DIR}/_thirdparty_amici_built.stamp")
+set(AMICI_STAMP "${CMAKE_BINARY_DIR}/_extern_amici_built.stamp")
 
 if(NOT EXISTS "${AMICI_LIB}")
-    message(STATUS "AMICI library not found at ${AMICI_LIB_PATH}. Running AMICI build scripts (configure-time).")
+    message(STATUS "AMICI library not found at ${AMICI_DIR}. Running AMICI build scripts (configure-time).")
 
     # Run SuiteSparse install:
     execute_process(
@@ -70,10 +112,11 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
 
 # === External dependencies ===
-add_subdirectory(ThirdParty/pybind11)
-add_subdirectory(ThirdParty/libxml2-2.14.3)
-add_subdirectory(ThirdParty/muparser)
-add_subdirectory(ThirdParty/libsbml-5.20.2)
+add_subdirectory(extern/pybind11)
+add_subdirectory(extern/libxml2)
+add_subdirectory(extern/muparser)
+add_subdirectory(extern/libsbml)
+add_dependencies(sbml xml2)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
