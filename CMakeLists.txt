@@ -3,7 +3,7 @@ project(SingleCell)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
+set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
 # === Paths ===
 
 set(BLA_VENDOR OpenBLAS)
@@ -29,30 +29,55 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/extern/libxml2/CMakeLists.txt")
     message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
-# --- Build libxml2 as external project ---
-# include(ExternalProject)
-# ExternalProject_Add(xml2
-#     SOURCE_DIR ${CMAKE_SOURCE_DIR}/extern/libxml2
-#     BINARY_DIR ${CMAKE_BINARY_DIR}/extern/libxml2-build
-#     INSTALL_DIR ${CMAKE_BINARY_DIR}/extern/libxml2-install
-#     CONFIGURE_COMMAND ${CMAKE_COMMAND} -S <SOURCE_DIR> -B <BINARY_DIR>
-#         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
-#     BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target all -- -j
-#     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR>
-# )
+# --- libxml2 ---
+find_library(LIBXML_LIB
+    NAMES xml2 libxml2 libxml2.so libxml2.a
+    PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
+)
 
-# # Tell libsbml where to find libxml2
-# set(LIBXML_INCLUDE_DIR
-#     ${CMAKE_BINARY_DIR}/extern/libxml2-install/include/libxml2
-#     CACHE PATH "libxml2 include dir"
-# )
-# set(LIBXML_LIBRARY
-#     ${CMAKE_BINARY_DIR}/extern/libxml2-install/lib/libxml2.a
-#     CACHE FILEPATH "libxml2 library"
-# )
+if(NOT LIBXML_LIB)
+    message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
+    set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
+
+    # Configure
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -S ${LIBXML_DIR} -B ${LIBXML_DIR}/build
+        RESULT_VARIABLE _res_conf
+        OUTPUT_VARIABLE _out_conf
+        ERROR_VARIABLE  _err_conf
+    )
+    if(NOT _res_conf EQUAL 0)
+        message(FATAL_ERROR "LibXml2 CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+    endif()
+
+    # Build
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} --build ${LIBXML_DIR}/build
+        RESULT_VARIABLE _res_build
+        OUTPUT_VARIABLE _out_build
+        ERROR_VARIABLE  _err_build
+    )
+    if(NOT _res_build EQUAL 0)
+        message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
+    endif()
+
+    # Install
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build --prefix ${LIBXML_DIR}/install
+        RESULT_VARIABLE _res_inst
+        OUTPUT_VARIABLE _out_inst
+        ERROR_VARIABLE  _err_inst
+    )
+    if(NOT _res_inst EQUAL 0)
+        message(FATAL_ERROR "LibXml2 install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
+    endif()
+
+    # Update library search path
+    list(APPEND CMAKE_PREFIX_PATH ${LIBXML_DIR}/install)
+endif()
+
 
 # --- Run AMICI build scripts at configure time (simple approach) ---
-set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
 set(AMICI_SCRIPTS_DIR "${AMICI_DIR}/scripts")
 set(AMICI_INCLUDE_DIR "${AMICI_DIR}/include")
@@ -115,8 +140,8 @@ list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/libxml2)
 add_subdirectory(extern/muparser)
-add_subdirectory(extern/libsbml)
-add_dependencies(sbml xml2)
+# add_subdirectory(extern/libsbml)
+# add_dependencies(sbml xml2)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
