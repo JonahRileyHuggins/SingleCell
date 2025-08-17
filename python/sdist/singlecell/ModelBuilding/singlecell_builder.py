@@ -10,6 +10,12 @@ import subprocess
 import pathlib
 import logging
 
+logging.basicConfig(
+    level=logging.INFO, # Overriden if Verbose Arg. True
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 def build_singlecell(
         source_dir: os.PathLike | str = '../../../../',
         build_dir: os.PathLike | str = '../../../../build'
@@ -23,7 +29,7 @@ def build_singlecell(
     : param build_dir (str):
         path to the build directory
     """
-
+    logger.info('Compiling SingleCell source code')
     build_dir = pathlib.Path(build_dir)
     build_dir.mkdir(exist_ok=True)
 

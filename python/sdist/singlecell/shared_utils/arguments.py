@@ -100,7 +100,7 @@ def parse_args():
             '--SBML_Only',
             help='List of solvers to skip AMICI compilation for (SBML-only build)',
             nargs='+',
-            default=['Stochastic']
+            default=['stochastic']
       )
       build_parser.add_argument(
             '--build_dir', 

@@ -13,15 +13,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     BLAS_LIBS=-lopenblas \
     PATH=/root/.local/bin:$PATH \
     VENV_PATH=/opt/.venv 
-    # BUILD_PATH=/opt/SingleCell-build \
-    # THIRD_PARTY_BUILD=/opt/SingleCell-build/ThirdParty \
-    # # PYTHONPATH=/opt/SingleCell-build:$PYTHONPATH \
-    # LD_LIBRARY_PATH=/opt/SingleCell-build/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 # Install basic dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
-        ninja-build \
         curl \
         wget \
         libboost-all-dev \
@@ -44,6 +39,7 @@ RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 WORKDIR /SingleCell
 COPY sbml_files ./sbml_files
 COPY benchmarks ./benchmarks
+COPY extern ./extern
 COPY data ./data
 COPY src ./src
 COPY include ./include
