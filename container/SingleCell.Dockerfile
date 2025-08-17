@@ -17,6 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Install basic dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
+        ninja-build \
         curl \
         wget \
         libboost-all-dev \
@@ -37,16 +38,7 @@ RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 
 # Copy only essential project files
 WORKDIR /SingleCell
-COPY sbml_files ./sbml_files
-COPY benchmarks ./benchmarks
-COPY extern ./extern
-COPY data ./data
-COPY src ./src
-COPY include ./include
-COPY python ./python
-COPY amici_models ./amici_models
-COPY CMakeLists.txt ./CMakeLists.txt
-COPY requirements.txt .
+COPY . /SingleCell/
 
 # Sanitize shell scripts from Windows line endings
 RUN find . -type f -name "*.sh" -exec dos2unix {} \; \

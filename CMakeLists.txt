@@ -134,7 +134,7 @@ endif()
 
 # Expose the Amici_DIR so find_package can find the config produced by AMICI install
 set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
-list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
+# list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
