@@ -60,6 +60,7 @@ class SingleCell:
         self.stop = args.stop
         self.step = args.step
         self.modify = args.modify
+        self.output = args.output
 
 
     
@@ -88,7 +89,7 @@ class SingleCell:
 
         results_df = pd.DataFrame(results_array, columns=speciesIds)
 
-        results_df.to_csv(args.output, sep = '\t', index = False)
+        results_df.to_csv(self.output, sep = '\t', index = False)
 
 
 def parse_dict_arg(arg_string):

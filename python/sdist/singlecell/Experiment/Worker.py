@@ -12,8 +12,10 @@ Output: MPI tasks for each rank, MPI task assignment, and MPI results aggregatio
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
+import os
 import gc
 import logging
+import importlib.util
 
 import numpy as np
 import pandas as pd
@@ -22,8 +24,22 @@ import multiprocessing as mp
 from singlecell.Experiment.Manager import Manager
 from singlecell.Experiment.ResultsCacher import ResultCache
 
-from singlecell.shared_utils.utils import get_pysinglecell
-SingleCell = get_pysinglecell()
+so_path = os.path.join(
+    os.getenv("SINGLECELL_PATH"),
+    "build",
+    "pySingleCell.cpython-312-x86_64-linux-gnu.so"
+)
+
+if not os.path.isfile(so_path):
+    raise FileNotFoundError(f"Could not find pySingleCell shared object at: {so_path}")
+
+# Load the module from the given path
+spec = importlib.util.spec_from_file_location("pySingleCell", so_path)
+pySingleCell = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(pySingleCell)
+
+# Access class symbols
+SingleCell = pySingleCell.SingleCell
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
