@@ -16,9 +16,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+base_path = pathlib.Path(os.environ.get("SINGLECELL_PATH", pathlib.Path.home() / ".local/share/SingleCell"))
+
 def build_singlecell(
-        source_dir: os.PathLike | str = '../../../../',
-        build_dir: os.PathLike | str = '../../../../build'
+        source_dir: os.PathLike | str = base_path,
+        build_dir: os.PathLike | str = base_path / "build"
         ) -> None:
     """
     Compiles project source code
@@ -55,12 +57,12 @@ if __name__ == '__main__':
     parser.add_argument(
         '--build_dir', 
         help='CMake build directory for project C++ code',
-        default=os.path.join("../../../../build")
+        default="~/.local/share/SingleCell"
     )
     parser.add_argument(
         '--cmake_source_dir', 
         help='CMakeLists.txt directory for project C++ code',
-        default='../../../../'
+        default="~/.local/share/SingleCell/"
     )
     args = parser.parse_args()
     build_singlecell(args.cmake_source_dir, args.build_dir)

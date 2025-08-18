@@ -15,14 +15,30 @@ Output:
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
+import os
+import importlib.util
 import argparse
 import json
 
 import pandas as pd
-from pathlib import Path
 
-from singlecell.shared_utils.utils import get_pysinglecell
-SC = get_pysinglecell()
+# Absolute path to your compiled extension (.so file)
+so_path = os.path.join(
+    os.getenv("SINGLECELL_PATH"),
+    "build",
+    "pySingleCell.cpython-312-x86_64-linux-gnu.so"
+)
+
+if not os.path.isfile(so_path):
+    raise FileNotFoundError(f"Could not find pySingleCell shared object at: {so_path}")
+
+# Load the module from the given path
+spec = importlib.util.spec_from_file_location("pySingleCell", so_path)
+pySingleCell = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(pySingleCell)
+
+# Access class symbols
+SC = pySingleCell.SingleCell
 
 # Arguement Parsing (Internal For Now)
 parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
@@ -56,7 +72,7 @@ class SingleCell:
             - results_dataframe (pd.DataFrame): finalized results of simulation. 
         """
 
-        for pair in args.modify:
+        for pair in self.modify:
             if '=' in pair:
                 key, val = pair.split('=', 1)
                 print("Setting %s to value %d", key, float(val))

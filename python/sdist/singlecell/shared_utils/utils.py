@@ -83,10 +83,11 @@ def parse_kwargs(arg_list: list)-> dict:
 def add_pysinglecell_path():
     # 1) env var
     env = os.getenv("SINGLECELL_PATH")
+    print('hallejluah there was a path var found!')
     if env:
         p = Path(env).expanduser().resolve()
         if p.is_dir():
-            sys.path.insert(0, str(p))
+            sys.path.insert(0, str(p) + "/build")
             return True
 
     # 2) config file
@@ -94,8 +95,8 @@ def add_pysinglecell_path():
     if os.path.exists(cfg):
         for f in cfg.glob("pySingleCell*.so"):
             if f.is_file():
-                sys.path.insert(0, str(candidate.resolve()))
-                return True
+                sys.path.insert(0, str(cfg.resolve()))
+                return env
         sys.path.insert(0, str(cfg))
     # 3) fallback: repo-relative build (only for dev)
     try:
@@ -110,13 +111,14 @@ def add_pysinglecell_path():
 
     return False
 
-def get_pysinglecell(): 
+def get_pysinglecell() -> os.PathLike | str: 
     if not add_pysinglecell_path():
         raise ModuleNotFoundError(textwrap.dedent("""\
             Could not find pySingleCell. Fix by:
-            * setting PYSINGLECELL_PATH to the build dir: export PYSINGLECELL_PATH=/abs/path/to/build
+            * setting SINGLECELL_PATH to the build dir: export SINGLECELL_PATH=/abs/path/to/build
             * or creating ~/.config/singlecell/pysinglecell_path containing that path
             * or packaging the .so into the wheel so pipx install includes it
         """))
-    from pySingleCell import SingleCell
-    return SingleCell
+    env = os.getenv("SINGLECELL_PATH")
+    print('path was appended. Print statement for error stuff')
+    return env

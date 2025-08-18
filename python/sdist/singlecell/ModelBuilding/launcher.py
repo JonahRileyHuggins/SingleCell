@@ -13,7 +13,8 @@ from types import SimpleNamespace
 from singlecell.ModelBuilding.sbml_model_builder import CreateModel
 from singlecell.ModelBuilding.amici_model_builder import amici_builder, sanitize_multimodel_build
 from singlecell.ModelBuilding.singlecell_builder import build_singlecell
-
+from singlecell.shared_utils.utils import get_project_root
+project_root = get_project_root()
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -35,8 +36,9 @@ class Builder:
         
         for solver, path in stored_details.sbml_paths.items():
             logger.info("Compiling AMICI model '%s'", solver)
-            amici_builder(path, solver, args.output, args.verbose)
+
+            amici_builder(sbml_path=path, model_name=solver, verbose=args.verbose)
         
-        sanitize_multimodel_build(args.output)
+        sanitize_multimodel_build()
 
         build_singlecell(args.cmake_source_dir, args.build_dir)

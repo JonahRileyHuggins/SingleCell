@@ -255,11 +255,3 @@ target_link_libraries(pySingleCell PRIVATE
 set_target_properties(pySingleCell PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
-
-# # Update the environment PYSINGLECELL_PATH variable:
-add_custom_command(TARGET pySingleCell POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{HOME}/.config/singlecell"
-  COMMAND /bin/sh -c "printf '%s\n' '${CMAKE_BINARY_DIR}' > \"$ENV{HOME}/.config/singlecell/pysinglecell_path\""
-  COMMENT "Recording pySingleCell build dir to \$HOME/.config/singlecell/pysinglecell_path"
-)
-

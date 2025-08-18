@@ -7,9 +7,9 @@ Description: Creates an instance of two sbml models for the genome-compelete MCF
 """
 
 import os
-import sys
 import copy
 import logging
+from pathlib import Path
 from types import SimpleNamespace
 from collections import defaultdict
 
@@ -42,7 +42,8 @@ class CreateModel:
 
         self.model_name = None
 
-        self.output_path = args.output
+        base_path = Path(os.environ.get("SINGLECELL_PATH", Path.home() / ".local/share/SingleCell"))
+        self.output_path = base_path / "sbml_files"
 
         self.sbml_paths = defaultdict(str) # Stores details of solver sbml paths
 

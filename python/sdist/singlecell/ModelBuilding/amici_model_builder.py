@@ -16,6 +16,7 @@ import os
 import amici
 import logging
 import subprocess
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -23,10 +24,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+base_path = Path(os.environ.get("SINGLECELL_PATH", Path.home() / ".local/share/SingleCell"))
+
 def amici_builder(
         sbml_path: os.PathLike | str, 
         model_name: str = None,
-        output: os.PathLike | str = '../../../../amici_models/', 
+        output: os.PathLike | str = base_path / "amici_models", 
         verbose: bool = False
     ):
     """
@@ -34,7 +37,7 @@ def amici_builder(
     into a binaries directory (`sparced-cpp/bin/AMICI_{MODELNAME}`). 
     """
     
-    output_directory = output + model_name
+    output_directory = str(output) + "/" + model_name
     _make_output_dir(output_directory)
 
     sbml_importer = amici.SbmlImporter(sbml_path)
@@ -49,7 +52,7 @@ def _make_output_dir(amici_model_path: str | os.PathLike) -> None:
         os.mkdir(path=amici_model_path)
 
 def sanitize_multimodel_build(
-    build_dir: os.PathLike | str = "../../../../amici_models/"        
+    build_dir: os.PathLike | str = base_path / "amici_models"        
 ) -> None:
     """
     Removes problematic function in amici CMakeLists build when 2+ AMICI models are present.
