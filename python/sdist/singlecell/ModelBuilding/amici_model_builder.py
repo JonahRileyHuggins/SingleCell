@@ -42,7 +42,17 @@ def amici_builder(
 
     sbml_importer = amici.SbmlImporter(sbml_path)
 
-    sbml_importer.sbml2amici(model_name, output_directory, verbose = verbose)
+    # AMICI stores an instance of the SBML object inside the importer object.
+    sbml_model = sbml_importer.sbml
+
+    constantParams = [params.getId() for params in sbml_model.getListOfParameters()]
+
+    sbml_importer.sbml2amici(
+        model_name, 
+        output_directory, 
+        verbose = verbose, 
+        constant_parameters=constantParams
+        )
 
     return # Builds AMICI directory in specified path
 
