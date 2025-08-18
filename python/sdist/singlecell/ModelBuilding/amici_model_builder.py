@@ -54,15 +54,23 @@ def sanitize_multimodel_build(
     """
     Removes problematic function in amici CMakeLists build when 2+ AMICI models are present.
     """
-    amici_model_count = count_subdirectories(build_dir)
-
-    for item in range(1, amici_model_count):
+    for item in os.listdir(build_dir):
         item_path = os.path.join(build_dir, item)
-        result = subprocess.run([
-            "sed", "-i",
-            r"/add_custom_target(install-python/,/)/d",
-            f"{item_path}/swig/CMakeLists.txt"
-            ], 
+
+        # Skip if it's not a directory
+        if not os.path.isdir(item_path):
+            continue
+
+        cmake_file = os.path.join(item_path, "swig", "CMakeLists.txt")
+        if not os.path.exists(cmake_file):
+            continue
+
+        subprocess.run(
+            [
+                "sed", "-i",
+                r"/add_custom_target(install-python/,/)/d",
+                cmake_file
+            ],
             capture_output=True,
             text=True,
             check=True

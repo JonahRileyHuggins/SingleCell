@@ -37,6 +37,6 @@ class Builder:
             logger.info("Compiling AMICI model '%s'", solver)
             amici_builder(path, solver, args.output, args.verbose)
         
-        sanitize_multimodel_build(args.build_dir)
+        sanitize_multimodel_build(args.output)
 
         build_singlecell(args.cmake_source_dir, args.build_dir)
