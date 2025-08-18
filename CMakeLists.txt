@@ -34,10 +34,10 @@ find_library(LIBXML_LIB
     NAMES xml2 libxml2 libxml2.so libxml2.a
     PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
 )
+set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
 
 if(NOT LIBXML_LIB)
     message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
-    set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
 
     # Configure
     execute_process(
@@ -73,7 +73,6 @@ if(NOT LIBXML_LIB)
     endif()
 
     # Update library search path
-    list(APPEND CMAKE_PREFIX_PATH ${LIBXML_DIR}/install)
 endif()
 
 # --- libsbml ---
@@ -187,7 +186,6 @@ add_subdirectory(extern/pybind11)
 add_subdirectory(extern/libxml2)
 add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
-# add_dependencies(sbml xml2)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
@@ -258,9 +256,10 @@ set_target_properties(pySingleCell PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-# Update the environment PYSINGLECELL_PATH variable:
+# # Update the environment PYSINGLECELL_PATH variable:
 add_custom_command(TARGET pySingleCell POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E make_directory "$ENV{HOME}/.config/singlecell"
   COMMAND /bin/sh -c "printf '%s\n' '${CMAKE_BINARY_DIR}' > \"$ENV{HOME}/.config/singlecell/pysinglecell_path\""
   COMMENT "Recording pySingleCell build dir to \$HOME/.config/singlecell/pysinglecell_path"
 )
+

@@ -11,7 +11,7 @@ Decider / Launcher script for Builder submodule.
 import logging
 from types import SimpleNamespace
 from singlecell.ModelBuilding.sbml_model_builder import CreateModel
-from singlecell.ModelBuilding.amici_model_builder import amici_builder
+from singlecell.ModelBuilding.amici_model_builder import amici_builder, sanitize_multimodel_build
 from singlecell.ModelBuilding.singlecell_builder import build_singlecell
 
 
@@ -36,5 +36,7 @@ class Builder:
         for solver, path in stored_details.sbml_paths.items():
             logger.info("Compiling AMICI model '%s'", solver)
             amici_builder(path, solver, args.output, args.verbose)
+        
+        sanitize_multimodel_build(args.output)
 
         build_singlecell(args.cmake_source_dir, args.build_dir)
