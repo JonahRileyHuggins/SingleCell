@@ -14,7 +14,8 @@ from pathlib import Path
 import textwrap
 
 def get_project_root() -> Path:
-    return Path(__file__).parent.parent.parent.parent
+    return os.path.join(Path.home(), ".local", "share", "SingleCell")
+
 
 @staticmethod
 def identifier_generator():
@@ -81,7 +82,7 @@ def parse_kwargs(arg_list: list)-> dict:
 
 def add_pysinglecell_path():
     # 1) env var
-    env = os.getenv("PYSINGLECELL_PATH")
+    env = os.getenv("SINGLECELL_PATH")
     if env:
         p = Path(env).expanduser().resolve()
         if p.is_dir():
@@ -89,13 +90,13 @@ def add_pysinglecell_path():
             return True
 
     # 2) config file
-    cfg = Path(os.getenv("XDG_CONFIG_HOME", Path.home() / ".config")) / "singlecell" / "pysinglecell_path"
-    if cfg.is_file():
-        p = Path(cfg.read_text().strip()).expanduser().resolve()
-        if p.is_dir():
-            sys.path.insert(0, str(p))
-            return True
-
+    cfg = Path(os.getenv("XDG_CONFIG_HOME", Path.home() / ".local")) / "share" / "SingleCell" / "build"
+    if os.path.exists(cfg):
+        for f in cfg.glob("pySingleCell*.so"):
+            if f.is_file():
+                sys.path.insert(0, str(candidate.resolve()))
+                return True
+        sys.path.insert(0, str(cfg))
     # 3) fallback: repo-relative build (only for dev)
     try:
         repo_root = Path(__file__).resolve().parents[4]  # adjust as necessary

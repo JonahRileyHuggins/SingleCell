@@ -9,7 +9,7 @@ import os
 import argparse
 import pathlib
 
-project_root = pathlib.Path(__file__).parent.parent.parent.parent.parent
+project_root = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
 
 ASCII_HEADER = r"""
 

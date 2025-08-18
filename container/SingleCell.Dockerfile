@@ -44,9 +44,8 @@ COPY . /SingleCell/
 RUN find . -type f -name "*.sh" -exec dos2unix {} \; \
  && find . -type f -name "*.sh" -exec chmod +x {} \;
 
-# Create virtual environment and install Python deps
-RUN pipx ensurepath
-RUN pipx install python/dist/singlecell-0.0.1-py3-none-any.whl --verbose --force
+# Install dependencies
+RUN ./Install.sh
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]

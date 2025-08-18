@@ -63,7 +63,7 @@ if(NOT LIBXML_LIB)
 
     # Install
     execute_process(
-        COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build --prefix ${LIBXML_DIR}/install
+        COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build
         RESULT_VARIABLE _res_inst
         OUTPUT_VARIABLE _out_inst
         ERROR_VARIABLE  _err_inst
@@ -76,6 +76,52 @@ if(NOT LIBXML_LIB)
     list(APPEND CMAKE_PREFIX_PATH ${LIBXML_DIR}/install)
 endif()
 
+# --- libsbml ---
+find_library(LIBSBML_LIB
+    NAMES sbml libsbml libsbml.so libsbml.a
+    PATHS "${THIRD_PARTY_DIR}/libsbml/build/"
+)
+
+if(NOT LIBSBML_LIB)
+    message(STATUS "LIBSBML library not found at ${THIRD_PARTY_DIR}/libsbml/build/. Installing (configure-time).")
+    set(LIBSBML_DIR "${THIRD_PARTY_DIR}/libsbml")
+
+    # Configure
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -S ${LIBSBML_DIR} -B ${LIBSBML_DIR}/build
+        RESULT_VARIABLE _res_conf
+        OUTPUT_VARIABLE _out_conf
+        ERROR_VARIABLE  _err_conf
+    )
+    if(NOT _res_conf EQUAL 0)
+        message(FATAL_ERROR "LibSBML CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+    endif()
+
+    # Build
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build
+        RESULT_VARIABLE _res_build
+        OUTPUT_VARIABLE _out_build
+        ERROR_VARIABLE  _err_build
+    )
+    if(NOT _res_build EQUAL 0)
+        message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
+    endif()
+
+    # Install
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} --install ${LIBSBML_DIR}/build 
+        RESULT_VARIABLE _res_inst
+        OUTPUT_VARIABLE _out_inst
+        ERROR_VARIABLE  _err_inst
+    )
+    if(NOT _res_inst EQUAL 0)
+        message(FATAL_ERROR "LibSBML install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
+    endif()
+
+    # Update library search path
+    list(APPEND CMAKE_PREFIX_PATH ${LIBSBML_DIR}/install)
+endif()
 
 # --- Run AMICI build scripts at configure time (simple approach) ---
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
@@ -140,7 +186,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/libxml2)
 add_subdirectory(extern/muparser)
-# add_subdirectory(extern/libsbml)
+add_subdirectory(extern/libsbml)
 # add_dependencies(sbml xml2)
 
 # === Source Files ===
