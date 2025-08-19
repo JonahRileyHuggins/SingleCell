@@ -64,25 +64,20 @@ def parse_args():
             help="String-type name"
       )
       shared_parser.add_argument(
-            '--output', 
-            '-o', 
+            '--output', '-o', 
             default = ".", 
             help  = "path to store output files"
       )
-      shared_parser.add_argument(
-            '-w', '--wild',
-            help="UNDER CONSTRUCTION\nrunning wild (without SPARCED hard-coded values/behaviors"
-      )
 
       # Subcommand definitions
-      subparsers = parser.add_subparsers(dest="command", help="Commands: Build, Simulate, Experiment, Tool")
+      subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
 
       # =========== [Command: Build] =============
       build_parser = subparsers.add_parser(
             "Build", 
             parents=[shared_parser],
-            help="Build a model. SBML (and/or) AMICI"
+            help="Build a model. (SBML and/or AMICI)"
       )
       build_parser.add_argument(
             '--catchall', 
@@ -98,24 +93,24 @@ def parse_args():
       )
       build_parser.add_argument(
             '--SBML_Only',
-            help='List of solvers to skip AMICI compilation for (SBML-only build)',
             nargs='+',
-            default=['stochastic']
+            default=['stochastic'],
+            help ="Skip AMICI compilation for listed solvers (default: stochastic)."
       )
       build_parser.add_argument(
             '--build_dir', 
-            help='CMake build directory for project C++ code',
-            default=os.path.join(project_root, "build")
+            default=os.path.join(project_root, "build"),
+            help=f"CMake build directory for project C++ code (default: {os.path.join(project_root, 'build')})."
       )
       build_parser.add_argument(
-            '--cmake_source_dir', 
-            help='CMakeLists.txt directory for project C++ code',
-            default=project_root
+            '--cmake_source_dir',
+            default=project_root,
+            help=f"Directory containing CMakeLists.txt (default: {project_root})."
       )
       build_parser.add_argument(
-            '--AMICI_Only', 
-            help='Flag turns off SingleCell build command',
-            action='store_false'
+            '--AMICI_Only',
+            action='store_false',
+            help="Only build AMICI model (disable SingleCell build)."
       )
 
       # =========== [Command: Simulate] =============
@@ -128,32 +123,31 @@ def parse_args():
       simulate_parser.add_argument(
             '--sbml', 
             '-s', 
-            help='SBMLs to be simulated.', 
+            help="One or more SBML files to simulate (default: ../sbml_files/One4All.xml).", 
             nargs='+', 
-            default=['../sbml_files/Deterministic.sbml']
+            default=['../sbml_files/On4All.xml']
       )
       simulate_parser.add_argument(
-            '--modify', 
-            '-m', 
-            metavar='KEY=VALUE', 
+            '--modify', '-m',
+            metavar='KEY=VALUE',
             nargs='+',
-            help='Species to modify in key=value format',
-            default=[]
+            default=[],
+            help="Initial species modifications in key=value format."
       )
       simulate_parser.add_argument(
-            '--start', 
-            help = 'start time in seconds for simulation', 
-            default = 0.0
+            '--start',
+            default=0.0,
+            help="Simulation start time in seconds (default: 0.0)."
       )
       simulate_parser.add_argument(
-            '--stop', 
-            help = 'stop time for simulation.', 
-            default = 86400.0
+            '--stop',
+            default=86400.0,
+            help="Simulation stop time in seconds (default: 86400.0 = 24 hrs)."
       )
       simulate_parser.add_argument(
-            '--step', 
-            help = 'step size of each iteration in the primary for-loop.', 
-            default = 30.0
+            '--step',
+            default=30.0,
+            help="Simulation step size in seconds (default: 30.0)."
       )
 
 
