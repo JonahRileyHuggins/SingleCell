@@ -22,7 +22,7 @@ import json
 
 import pandas as pd
 
-# Absolute path to your compiled extension (.so file)
+# Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
     os.getenv("SINGLECELL_PATH"),
     "build",

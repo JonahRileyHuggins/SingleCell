@@ -49,7 +49,7 @@ StochasticModule::StochasticModule(
 
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "Hybrid";
+    this->target_id = "deterministic";
 
  }
 

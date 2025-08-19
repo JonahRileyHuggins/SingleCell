@@ -172,7 +172,7 @@ def parse_args():
       )
       experiment_parser.add_argument(
       '--No_Observables',
-      action='store_false',
+      action='store_true',
       help='Disable downsampling of data; specified in PEtab observables.tsv'
       )
       experiment_parser.add_argument(
@@ -180,6 +180,11 @@ def parse_args():
             metavar='KEY=VALUE', 
             nargs='*',
             help="Catch-all arguments passed as key=value pairs"
+      )
+      experiment_parser.add_argument(
+            '--run_all', 
+            help = 'Execute all benchmarks in a provided directory',
+            default=None
       )
 
 

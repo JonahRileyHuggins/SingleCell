@@ -9,5 +9,5 @@ problems:
     observable_files:
     - observables.tsv
     sbml_files:
-    - ../../sbml_files/Deterministic.sbml
+    - ../../sbml_files/On4All.xml
     cell_count: 1

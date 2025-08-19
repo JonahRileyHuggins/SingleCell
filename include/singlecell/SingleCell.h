@@ -24,8 +24,6 @@
 //Internal Libraries
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/BaseModule.h"
-#include "singlecell/StochasticModule.h"
-#include "singlecell/DeterministicModule.h"
 
 // Third Party Libraries
 #include "sbml/SBMLReader.h"

@@ -52,7 +52,7 @@ DeterministicModule::DeterministicModule(
     this->model->setFixedParameters(DeterministicModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "Stochastic";
+    this->target_id = "stochastic";
 }
 
 std::string DeterministicModule::getModuleId() { return this->algorithm_id; }

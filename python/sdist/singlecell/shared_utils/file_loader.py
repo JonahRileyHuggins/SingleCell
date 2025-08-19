@@ -53,7 +53,7 @@ class FileLoader:
                     ext = os.path.splitext(fp)[1].lower()
 
                     #SBML files only need path, loaded into SingleCell
-                    if ext in (".sbml",):
+                    if ext in (".sbml", ".xml"):
                         
                         loaded.append(fp)
                     else:

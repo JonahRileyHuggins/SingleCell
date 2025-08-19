@@ -7,7 +7,7 @@ problems:
     - measurements.tsv
     observable_files:
     - observables.tsv
-    sbml_files:
-    - ../../sbml_files/Hybrid.sbml
-    - ../../sbml_files/Stochastic.sbml
+    sbml_files:   
+    - ../../sbml_files/deterministic.xml
+    - ../../sbml_files/stochastic.xml
     cell_count: 100

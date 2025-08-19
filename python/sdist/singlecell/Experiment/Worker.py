@@ -24,6 +24,8 @@ import multiprocessing as mp
 from singlecell.Experiment.Manager import Manager
 from singlecell.Experiment.ResultsCacher import ResultCache
 
+
+# Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
     os.getenv("SINGLECELL_PATH"),
     "build",

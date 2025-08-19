@@ -52,7 +52,7 @@ One4AllModule::One4AllModule(
     this->model->setFixedParameters(One4AllModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "Stochastic";
+    this->target_id = "stochastic";
 }
 
 std::string One4AllModule::getModuleId() { return this->algorithm_id; }

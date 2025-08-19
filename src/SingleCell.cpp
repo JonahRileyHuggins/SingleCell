@@ -26,8 +26,8 @@
 
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
-    { "Deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
-    { "Stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } },
+    { "deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
+    { "stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } },
     { "One4All", [](const SBMLHandler& handler) { return std::make_unique<One4AllModule>(handler); } }
 };
 

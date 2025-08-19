@@ -94,7 +94,7 @@ class Experimentalist:
 
         logger.debug("Closed simulation method successfully.")
 
-        if self.args.No_Observables == False:
+        if self.args.No_Observables == True:
             experiment.save_results(self.args)
             logger.debug("Saved Results successfully.")
 
