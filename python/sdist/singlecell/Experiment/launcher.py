@@ -29,6 +29,7 @@ class Experimentalist:
 
     def __init__(self, args: SimpleNamespace):
         self.args = args
+        self.launch_experiment()
 
     def launch_experiment(self) -> None:
         """

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 # =========================================
 # ============ Package Import ============
 # =========================================
@@ -31,198 +30,191 @@ ASCII_HEADER = r"""
 """
 
 # =========================================
-# ============ CLI Arguements ============
+# ============ CLI Arguments ==============
 # =========================================
 def parse_args():
-      """Retrieve and parse arguments necessary for model creation
+    """Retrieve and parse arguments necessary for model creation"""
 
-      Arguments:
-            None
+    parser = argparse.ArgumentParser(
+        description=ASCII_HEADER,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
 
-      Returns:
-            A namespace populated with all the attributes.
-      """
-      # ========== [Parent Parser] =============
-      parser = argparse.ArgumentParser(description=ASCII_HEADER,
-          formatter_class=argparse.RawDescriptionHelpFormatter
-      )
+    # ---------- Shared / Global Options ----------
+    shared_parser = argparse.ArgumentParser(add_help=False)
+    global_group = shared_parser.add_argument_group("Global Options")
+    global_group.add_argument(
+        '-v', '--verbose',
+        action='store_true',
+        dest="verbose",
+        help="Enable verbose logging output."
+    )
+    global_group.add_argument(
+        '-p', '--path',
+        help="Path to a configuration YAML file."
+    )
+    global_group.add_argument(
+        '-n', '--name',
+        help="Descriptive name for this run."
+    )
+    global_group.add_argument(
+        '-o', '--output',
+        default=".",
+        help="Directory to store output files (default: current directory)."
+    )
 
-      # Parent-Shared arguments
-      shared_parser = argparse.ArgumentParser(add_help=False)
-      shared_parser.add_argument(
-            '-v', '--verbose', 
-            action='store_true', 
-            help="Enable verbose output.", 
-            dest="verbose"
-      )
-      shared_parser.add_argument(
-            '-p', '--path', 
-            help="General path, intended for configuration YAML file."
-      )
-      shared_parser.add_argument(
-            '-n', '--name',
-            help="String-type name"
-      )
-      shared_parser.add_argument(
-            '--output', '-o', 
-            default = ".", 
-            help  = "path to store output files"
-      )
+    # ---------- Subcommands ----------
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-      # Subcommand definitions
-      subparsers = parser.add_subparsers(dest="command", help="Available commands")
+    # =========== [Command: Build] ============
+    build_parser = subparsers.add_parser(
+        "Build",
+        parents=[shared_parser],
+        help="Construct models (SBML and/or AMICI)."
+    )
+    build_group = build_parser.add_argument_group("Build Options")
+    build_group.add_argument(
+        '--catchall', '-c',
+        metavar='KEY=VALUE',
+        nargs='*',
+        help="Additional build arguments in key=value format."
+    )
+    build_group.add_argument(
+        '--one4all',
+        default=True,
+        help="Build both deterministic SBML and AMICI model (default: True)."
+    )
+    build_group.add_argument(
+        '--SBML_Only',
+        nargs='+',
+        default=['stochastic'],
+        help="Skip AMICI compilation for listed solvers (default: stochastic)."
+    )
+    build_group.add_argument(
+        '--build_dir',
+        default=os.path.join(project_root, "build"),
+        help=f"CMake build directory (default: {os.path.join(project_root, 'build')})."
+    )
+    build_group.add_argument(
+        '--cmake_source_dir',
+        default=project_root,
+        help=f"Directory containing CMakeLists.txt (default: {project_root})."
+    )
+    build_group.add_argument(
+        '--AMICI_Only',
+        action='store_false',
+        help="Only build AMICI model (disable SingleCell build)."
+    )
 
+    # =========== [Command: Simulate] =========
+    simulate_parser = subparsers.add_parser(
+        "Simulate",
+        parents=[shared_parser],
+        help="Run deterministic/stochastic simulations."
+    )
+    sim_group = simulate_parser.add_argument_group("Simulation Options")
+    sim_group.add_argument(
+        '--sbml', '-s',
+        nargs='+',
+        default=['../sbml_files/One4All.xml'],
+        help="One or more SBML files to simulate (default: ../sbml_files/One4All.xml)."
+    )
+    sim_group.add_argument(
+        '--modify', '-m',
+        metavar='KEY=VALUE',
+        nargs='+',
+        default=[],
+        help="Initial species modifications in key=value format."
+    )
+    sim_group.add_argument(
+        '--start',
+        type=float,
+        default=0.0,
+        help="Simulation start time in seconds (default: 0.0)."
+    )
+    sim_group.add_argument(
+        '--stop',
+        type=float,
+        default=86400.0,
+        help="Simulation stop time in seconds (default: 86400.0 = 24 hrs)."
+    )
+    sim_group.add_argument(
+        '--step',
+        type=float,
+        default=30.0,
+        help="Simulation step size in seconds (default: 30.0)."
+    )
 
-      # =========== [Command: Build] =============
-      build_parser = subparsers.add_parser(
-            "Build", 
-            parents=[shared_parser],
-            help="Build a model. (SBML and/or AMICI)"
-      )
-      build_parser.add_argument(
-            '--catchall', 
-            '-c', 
-            metavar='KEY=VALUE', 
-            nargs='*',
-            help="Catch-all arguments passed as key=value pairs"
-      )
-      build_parser.add_argument(
-            '--one4all', 
-            default=True,
-            help='Builds Deterministic SBML (and AMICI) model'
-      )
-      build_parser.add_argument(
-            '--SBML_Only',
-            nargs='+',
-            default=['stochastic'],
-            help ="Skip AMICI compilation for listed solvers (default: stochastic)."
-      )
-      build_parser.add_argument(
-            '--build_dir', 
-            default=os.path.join(project_root, "build"),
-            help=f"CMake build directory for project C++ code (default: {os.path.join(project_root, 'build')})."
-      )
-      build_parser.add_argument(
-            '--cmake_source_dir',
-            default=project_root,
-            help=f"Directory containing CMakeLists.txt (default: {project_root})."
-      )
-      build_parser.add_argument(
-            '--AMICI_Only',
-            action='store_false',
-            help="Only build AMICI model (disable SingleCell build)."
-      )
+    # =========== [Command: Experiment] ======
+    experiment_parser = subparsers.add_parser(
+        "Experiment",
+        parents=[shared_parser],
+        help="Execute PEtab-specified in-silico experiments."
+    )
+    exp_group = experiment_parser.add_argument_group("Experiment Options")
+    exp_group.add_argument(
+        '--cores', '-c',
+        type=int,
+        default=os.cpu_count(),
+        help=f"Number of parallel processes (default: {os.cpu_count()})."
+    )
+    exp_group.add_argument(
+        '--No_Observables',
+        action='store_true',
+        help="Disable observable downsampling defined in observables.tsv."
+    )
+    exp_group.add_argument(
+        '--catchall',
+        metavar='KEY=VALUE',
+        nargs='*',
+        help="Additional experiment arguments in key=value format."
+    )
+    exp_group.add_argument(
+        '--run_all',
+        default=None,
+        help="Execute all benchmarks in a given directory."
+    )
 
-      # =========== [Command: Simulate] =============
-      # -- Lowercase
-      simulate_parser = subparsers.add_parser(
-            "Simulate", 
-            parents=[shared_parser],
-            help="Run a simulation."
-      )
-      simulate_parser.add_argument(
-            '--sbml', 
-            '-s', 
-            help="One or more SBML files to simulate (default: ../sbml_files/One4All.xml).", 
-            nargs='+', 
-            default=['../sbml_files/On4All.xml']
-      )
-      simulate_parser.add_argument(
-            '--modify', '-m',
-            metavar='KEY=VALUE',
-            nargs='+',
-            default=[],
-            help="Initial species modifications in key=value format."
-      )
-      simulate_parser.add_argument(
-            '--start',
-            default=0.0,
-            help="Simulation start time in seconds (default: 0.0)."
-      )
-      simulate_parser.add_argument(
-            '--stop',
-            default=86400.0,
-            help="Simulation stop time in seconds (default: 86400.0 = 24 hrs)."
-      )
-      simulate_parser.add_argument(
-            '--step',
-            default=30.0,
-            help="Simulation step size in seconds (default: 30.0)."
-      )
+    # ============ [Command: Tool] ===========
+    tool_parser = subparsers.add_parser(
+        'Tool',
+        parents=[shared_parser],
+        help='Miscellaneous helper tools for modeling.'
+    )
+    tool_subparsers = tool_parser.add_subparsers(
+        dest="tool_command",
+        help="Available tool subcommands"
+    )
 
+    # ----- [Tool: unit converter] -----------
+    uc_parser = tool_subparsers.add_parser(
+        'unit_converter',
+        help='Convert between nanomolar and molecules per cell.'
+    )
+    uc_group = uc_parser.add_argument_group("Unit Converter Options")
+    uc_group.add_argument(
+        "--mpc",
+        help="Value in molecules per cell."
+    )
+    uc_group.add_argument(
+        "--nanomolar",
+        help="Value in nanomolar."
+    )
+    uc_group.add_argument(
+        "-c", "--compartment_volume",
+        help="Compartment volume in liters (used for conversion)."
+    )
 
-      # =========== [Command: Experiment] =============
-      experiment_parser = subparsers.add_parser(
-            "Experiment", 
-            parents=[shared_parser],
-            help="PEtab specified in-silico experiment."
-      )
-      # -- Lowercase
-      experiment_parser.add_argument(
-            '--cores', 
-            '-c', 
-            default=os.cpu_count(), 
-            help = "Number of processes to divide tasks across"
-      )
-      experiment_parser.add_argument(
-      '--No_Observables',
-      action='store_true',
-      help='Disable downsampling of data; specified in PEtab observables.tsv'
-      )
-      experiment_parser.add_argument(
-            '--catchall', 
-            metavar='KEY=VALUE', 
-            nargs='*',
-            help="Catch-all arguments passed as key=value pairs"
-      )
-      experiment_parser.add_argument(
-            '--run_all', 
-            help = 'Execute all benchmarks in a provided directory',
-            default=None
-      )
+    # ----- [Tool: incorrect inspector] -----
+    tool_subparsers.add_parser(
+        'incorrect_inspector',
+        help='Identify incorrectly specified parameters.'
+    )
 
+    # ----- [Tool: species name converter] ---
+    tool_subparsers.add_parser(
+        'species_name_converter',
+        help='Replace old species names with new names.'
+    )
 
-      # ============ [Command: Tool] =================
-      tool_parser = subparsers.add_parser(
-            'Tool', 
-            parents=[shared_parser], 
-            help='Misc. helper tools for modeling'
-      )
-      tool_subparsers = tool_parser.add_subparsers(
-            dest="tool_command", 
-            help="Subcommands: unit_converter, inspector, species_name_converter"
-            )
-      
-      # ---------- [Subcommand: unit converter] -------------
-      uc_parser = tool_subparsers.add_parser(
-            'unit_converter',
-            help='Convert between nanomolar and molecules per cell'
-      )
-      uc_parser.add_argument(
-          "--mpc", 
-          help="target unit molecules / cell"
-      )
-      uc_parser.add_argument(
-            "--nanomolar", 
-            help = "target unit nanomolar"
-      )
-      uc_parser.add_argument(
-            "-c", 
-            "--compartment_volume", 
-            help="volume (liters) of cellular compartment" \
-                        "for unit conversion"
-      )
-
-      # ---------- [Subcommand: incorrect inspector] -------------
-      ii_parser = tool_subparsers.add_parser(
-            'incorrect_inspector',
-            help='Find incorrectly specified parameters'
-            )
-
-      # ---------- [Subcommand: species name converter] ------------
-      snc_parser = tool_subparsers.add_parser(
-            'species_name_converter',
-            help='Replaces old species names with new'
-            )
-
-      return(parser.parse_args())
+    return parser.parse_args()
