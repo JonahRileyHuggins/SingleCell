@@ -1,10 +1,10 @@
 Bootstrap: docker
-From: ubuntu:24.04
+From: python:3.12-slim
 
 %files
     ### Modify line 6, columns 9:14 to local SingleCell directory
-    /path/to/SingleCell /SingleCell ### Change This Line
-    #^^^^^^^^changeme -->#^^^^^^^^Don't Delete Me :'(
+    ${PWD}/../. /SingleCell ### Change This Line
+    #^changeme-->^^^^^^^^Don't Delete Me :'(
 
 %post
  
@@ -14,22 +14,14 @@ From: ubuntu:24.04
 
     # Export variables for the build process
     export BLAS_LIBS=-lopenblas
-    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+    #export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
-        apt-utils \
+        ninja-build \
         curl \
-        libssl-dev \
-        libmunge-dev \
-        libmunge2 \
-        munge \
-        bash \
         wget \
-        python3-pip \
-        python3-venv \
-        python3-dev \
         libboost-all-dev \
         libopenblas-dev \
         gcc \
@@ -37,13 +29,11 @@ From: ubuntu:24.04
         git \
         gfortran \
         cmake \
-        make \
-        file \
-        libgfortran5 \
-        libatomic1 \
         swig \
+        pipx \
         libhdf5-dev \
-        && apt-get clean && rm -rf /var/lib/apt/lists/*
+        vim nano curl wget dos2unix \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
     # Ensure owner permissions for /SingleCell
     chmod -R 777 /SingleCell
@@ -52,59 +42,19 @@ From: ubuntu:24.04
     # Ubuntu 24.04 doesn't symlink python to python3 by default:
     ln -s /usr/bin/python3 /usr/bin/python
 
-    # Install Python Dependencies
     cd /SingleCell
-    python3 -m venv .venv
-    . .venv/bin/activate
-    pip install -r requirements.txt
+    find . -type f -name "*.sh" -exec dos2unix {} \; \
+    && find . -type f -name "*.sh" -exec chmod +x {} \;
 
-    # Installing ThirdParty dependencies
-    ## muParser
-    cd /SingleCell/ThirdParty/muparser/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INSTALL_PREFIX=/usr/local
-    cmake --build build
-    cmake --install build
-
-    ## libXML2
-    cd /SingleCell/ThirdParty/libxml2-2.14.3/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    cmake --build build
-    cmake --install build
-
-    ## libSBML
-    cd /SingleCell/ThirdParty/libsbml-5.20.2/
-    cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    cmake --build build
-    cmake --install build
-
-    ## AMICI
-    cd /SingleCell/ThirdParty/AMICI/scripts/
-    ./buildSuiteSparse.sh
-    ./buildSundials.sh
-    ./buildAmici.sh
-
-    # Build links to models inside container
-    cd /SingleCell/python/ModelBuilding/
-    python3 createModels.py -p ../../data/config.yaml
-
-    ## SingleCell:
-    #cd /SingleCell/
-    #cmake -B build -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-    #cmake --build build
-
+    # Install Python Dependencies
+    chmod +x ./Install.sh
+    ./Install.sh
 
 %environment
     # Set up runtime environment variables
     export PMIX_MCA_psec=^munge
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
-    # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
-    # Setup varaibles for OpenMPI support within the container
-    export SINGULARITY_OMPI_DIR=$OMPI_DIR
-    export SINGULARITYENV_APPEND_PATH=$OMPI_DIR/bin
-    export SINGULAIRTYENV_APPEND_LD_LIBRARY_PATH=$OMPI_DIR/lib
 
     # Ensures the container is bound to the local instance of SingleCell for cross operation.
     export SINGULARITY_BINDPATH="./SingleCell:/SingleCell:rw"
@@ -114,6 +64,7 @@ From: ubuntu:24.04
     exec SingleCell "$@"
 
 %startscript
+    exec SingleCell --help
     exec "$@"
 
 %help

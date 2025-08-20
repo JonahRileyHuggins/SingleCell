@@ -11,8 +11,7 @@ FROM python:3.12-slim
 ENV DEBIAN_FRONTEND=noninteractive \
     SHELL=/bin/bash \
     BLAS_LIBS=-lopenblas \
-    PATH=/root/.local/bin:$PATH \
-    VENV_PATH=/opt/.venv 
+    PATH=/root/.local/bin:$PATH 
 
 # Install basic dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -32,9 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libhdf5-dev \
         vim nano curl wget dos2unix \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Create directories for builds
-RUN mkdir -p $VENV_PATH $BUILD_PATH $THIRD_PARTY_BUILD
 
 # Copy only essential project files
 WORKDIR /SingleCell
