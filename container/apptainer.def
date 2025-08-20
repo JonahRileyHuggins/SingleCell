@@ -3,8 +3,8 @@ From: python:3.12-slim
 
 %files
     ### Modify line 6, columns 9:14 to local SingleCell directory
-    ${PWD}/../. /SingleCell ### Change This Line
-    #^changeme-->^^^^^^^^Don't Delete Me :'(
+    ${PWD}/../. /SingleCell ### Change This Line, note the two separate paths (source \space dest)
+    #!!^changeme-->^^^^^^^^Don't Delete Me :'(
 
 %post
  
@@ -52,7 +52,6 @@ From: python:3.12-slim
 
 %environment
     # Set up runtime environment variables
-    export PMIX_MCA_psec=^munge
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
 
@@ -61,11 +60,10 @@ From: python:3.12-slim
 
 %runscript
     # Default command for the container
-    exec SingleCell "$@"
+    exec SingleCell --help
 
 %startscript
     exec SingleCell --help
-    exec "$@"
 
 %help
     This container enables cross-platform installation of SingleCell tools.
