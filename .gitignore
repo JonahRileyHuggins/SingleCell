@@ -225,3 +225,4 @@ amici_models/Deterministic/*
 results.txt
 build/*
 benchmarks/*/results/*
+!extern/AMICI/python/sdist/**
