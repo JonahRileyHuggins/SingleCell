@@ -30,97 +30,109 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/extern/libxml2/CMakeLists.txt")
 endif()
 
 # --- libxml2 ---
-find_library(LIBXML_LIB
-    NAMES xml2 libxml2 libxml2.so libxml2.a
-    PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
-)
-set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
+find_package(LibXml2 QUIET)
 
-if(NOT LIBXML_LIB)
-    message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
+if(NOT LibXml2_FOUND)
+    message(STATUS "System LibXml2 not found. Falling back to local copy...")
 
-    # Configure
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} -S ${LIBXML_DIR} -B ${LIBXML_DIR}/build
-        RESULT_VARIABLE _res_conf
-        OUTPUT_VARIABLE _out_conf
-        ERROR_VARIABLE  _err_conf
+    find_library(LIBXML_LIB
+        NAMES xml2 libxml2 libxml2.so libxml2.a
+        PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
     )
-    if(NOT _res_conf EQUAL 0)
-        message(FATAL_ERROR "LibXml2 CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
-    endif()
+    set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
 
-    # Build
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --build ${LIBXML_DIR}/build
-        RESULT_VARIABLE _res_build
-        OUTPUT_VARIABLE _out_build
-        ERROR_VARIABLE  _err_build
-    )
-    if(NOT _res_build EQUAL 0)
-        message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
-    endif()
+    if(NOT LIBXML_LIB)
+        message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
 
-    # Install
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build
-        RESULT_VARIABLE _res_inst
-        OUTPUT_VARIABLE _out_inst
-        ERROR_VARIABLE  _err_inst
-    )
-    if(NOT _res_inst EQUAL 0)
-        message(FATAL_ERROR "LibXml2 install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
-    endif()
+        # Configure
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} -S ${LIBXML_DIR} -B ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_conf
+            OUTPUT_VARIABLE _out_conf
+            ERROR_VARIABLE  _err_conf
+        )
+        if(NOT _res_conf EQUAL 0)
+            message(FATAL_ERROR "LibXml2 CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+        endif()
 
-    # Update library search path
+        # Build
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} --build ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_build
+            OUTPUT_VARIABLE _out_build
+            ERROR_VARIABLE  _err_build
+        )
+        if(NOT _res_build EQUAL 0)
+            message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
+        endif()
+
+        # Install
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_inst
+            OUTPUT_VARIABLE _out_inst
+            ERROR_VARIABLE  _err_inst
+        )
+        if(NOT _res_inst EQUAL 0)
+            message(FATAL_ERROR "LibXml2 install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
+        endif()
+
+        # Update library search path
+    endif()
 endif()
+
+message(STATUS "LibXml2 include: ${LIBXML_INCLUDE_DIR}")
+message(STATUS "LibXml2 library: ${LIBXML_LIBRARY}")
 
 # --- libsbml ---
-find_library(LIBSBML_LIB
-    NAMES sbml libsbml libsbml.so libsbml.a
-    PATHS "${THIRD_PARTY_DIR}/libsbml/build/"
-)
+find_package(sbml QUIET)
 
-if(NOT LIBSBML_LIB)
-    message(STATUS "LIBSBML library not found at ${THIRD_PARTY_DIR}/libsbml/build/. Installing (configure-time).")
+if(NOT LIBSBML_FOUND)
+    message(STATUS "System LibSBML not found. Falling back to local copy...")
+
     set(LIBSBML_DIR "${THIRD_PARTY_DIR}/libsbml")
 
-    # Configure
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} -S ${LIBSBML_DIR} -B ${LIBSBML_DIR}/build
-        RESULT_VARIABLE _res_conf
-        OUTPUT_VARIABLE _out_conf
-        ERROR_VARIABLE  _err_conf
+    # Look for an existing local build
+    find_library(LIBSBML_LIB
+        NAMES sbml libsbml libsbml.so libsbml.a
+        PATHS "${LIBSBML_DIR}/build"
     )
-    if(NOT _res_conf EQUAL 0)
-        message(FATAL_ERROR "LibSBML CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+
+ if(NOT LIBSBML_LIB)
+        message(STATUS "Local LibSBML not built yet. Configuring and building...")
+
+        # Configure
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} -S ${LIBSBML_DIR} -B ${LIBSBML_DIR}/build
+            RESULT_VARIABLE _res_conf
+            OUTPUT_VARIABLE _out_conf
+            ERROR_VARIABLE  _err_conf
+        )
+        if(NOT _res_conf EQUAL 0)
+            message(FATAL_ERROR "LibSBML configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+        endif()
+
+        # Build
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build --parallel
+            RESULT_VARIABLE _res_build
+            OUTPUT_VARIABLE _out_build
+            ERROR_VARIABLE  _err_build
+        )
+        if(NOT _res_build EQUAL 0)
+            message(FATAL_ERROR "LibSBML build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
+        endif()
     endif()
 
-    # Build
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build
-        RESULT_VARIABLE _res_build
-        OUTPUT_VARIABLE _out_build
-        ERROR_VARIABLE  _err_build
-    )
-    if(NOT _res_build EQUAL 0)
-        message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
-    endif()
+    # Add the build tree to the prefix path so that find_package(LibSBML) can succeed
+    list(APPEND CMAKE_PREFIX_PATH "${LIBSBML_DIR}/build")
 
-    # Install
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --install ${LIBSBML_DIR}/build 
-        RESULT_VARIABLE _res_inst
-        OUTPUT_VARIABLE _out_inst
-        ERROR_VARIABLE  _err_inst
-    )
-    if(NOT _res_inst EQUAL 0)
-        message(FATAL_ERROR "LibSBML install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
-    endif()
-
-    # Update library search path
-    list(APPEND CMAKE_PREFIX_PATH ${LIBSBML_DIR}/install)
+    # Try find_package again, now pointing to the local build
+    find_package(sbml REQUIRED PATHS "${LIBSBML_DIR}/build" NO_DEFAULT_PATH)
 endif()
+
+message(STATUS "LibSBML include: ${LibSBML_INCLUDE_DIRS}")
+message(STATUS "LibSBML library: ${LibSBML_LIBRARIES}")
 
 # --- Run AMICI build scripts at configure time (simple approach) ---
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
@@ -179,13 +191,12 @@ endif()
 
 # Expose the Amici_DIR so find_package can find the config produced by AMICI install
 set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
-# list(APPEND CMAKE_PREFIX_PATH "${Amici_DIR}")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
-add_subdirectory(extern/libxml2)
+# add_subdirectory(extern/libxml2)
 add_subdirectory(extern/muparser)
-add_subdirectory(extern/libsbml)
+# add_subdirectory(extern/libsbml)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
@@ -216,7 +227,6 @@ target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
     deterministic
     One4All
-    xml2
     sbml
     muparser
     pybind11::module
@@ -243,7 +253,6 @@ target_link_libraries(pySingleCell PRIVATE
     ${AMICI_LIB}
     deterministic
     One4All
-    xml2
     sbml
     muparser
     pybind11::module

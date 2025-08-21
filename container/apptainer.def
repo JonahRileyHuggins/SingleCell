@@ -32,6 +32,7 @@ From: python:3.12-slim
         swig \
         pipx \
         libhdf5-dev \
+        libxml2-dev \
         vim nano curl wget dos2unix \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -46,7 +47,20 @@ From: python:3.12-slim
     find . -type f -name "*.sh" -exec dos2unix {} \; \
     && find . -type f -name "*.sh" -exec chmod +x {} \;
 
+    # preinstall libsbml
+    cd /SingleCell/extern/libsbml/ 
+    cmake -B build \
+    && cmake --build build/ --parallel \
+    && cmake --install build/
+
+    # preinstall AMICI
+    cd /SingleCell/extern/AMICI/scripts/
+    bash ./buildSuitesparse.sh
+    bash ./buildSundials.sh
+    bash ./buildAmici.sh
+
     # Install Python Dependencies
+    cd /SingleCell
     chmod +x ./Install.sh
     ./Install.sh
 
@@ -54,9 +68,6 @@ From: python:3.12-slim
     # Set up runtime environment variables
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
-
-    # Ensures the container is bound to the local instance of SingleCell for cross operation.
-    export SINGULARITY_BINDPATH="./SingleCell:/SingleCell:rw"
 
 %runscript
     # Default command for the container
