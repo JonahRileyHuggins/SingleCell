@@ -55,7 +55,7 @@ From: python:3.12-slim
 
     # preinstall AMICI
     cd /SingleCell/extern/AMICI/scripts/
-    bash ./buildSuitesparse.sh
+    bash ./buildSuiteSparse.sh
     bash ./buildSundials.sh
     bash ./buildAmici.sh
 
