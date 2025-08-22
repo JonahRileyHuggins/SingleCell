@@ -21,7 +21,7 @@ import argparse
 import json
 
 import pandas as pd
-
+from shared_utils.interface import AbstractSimulator
 # Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
     os.getenv("SINGLECELL_PATH"),
@@ -51,20 +51,18 @@ parser.add_argument('--step', help = 'step size of each iteration in the primary
 parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
 
 #-------------------Class Definition-----------------------------------------#
-class SingleCell:
+class SingleCell(AbstractSimulator):
     """Primary instance of the single cell for simulation."""
 
     def __init__(self, args):
-        self.single_cell = SC(*args.sbml)
-        self.start = args.start
-        self.stop = args.stop
-        self.step = args.step
-        self.modify = args.modify
+        tool = SC(*args.sbml)
+        super().__init__(tool)
+        # self.single_cell = SC(*args.sbml)
+
         self.output = args.output
 
-
     
-    def simulate(self):
+    def simulate(self, start, stop, step):
         """Primary simulation function using hybrid stochastic-deterministic method
 
         Parameters:
@@ -79,24 +77,24 @@ class SingleCell:
                 print("Setting %s to value %d", key, float(val))
                 self.single_cell.modify(key, float(val))
 
-        results_array = self.single_cell.simulate(
-            self.start,
-            self.stop, 
-            self.step
+        results_array = self.tool.simulate(
+            start,
+            stop, 
+            step
             )
 
-        speciesIds = self.single_cell.getGlobalSpeciesIds()
+        speciesIds = self.tool.getGlobalSpeciesIds()
 
         results_df = pd.DataFrame(results_array, columns=speciesIds)
 
         results_df.to_csv(self.output, sep = '\t', index = False)
 
+    def modify(self, component, value):
+        """
+        Method for SingleCell simulator modify method
+        """
+        self.tool.modify(component, value)
 
-def parse_dict_arg(arg_string):
-    try:
-        return json.loads(arg_string)
-    except json.JSONDecodeError:
-        raise argparse.ArgumentTypeError(f"Invalid JSON format: '{arg_string}'")
 
 
 if __name__ == '__main__':

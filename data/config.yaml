@@ -10,12 +10,17 @@ author: "Jonah R. Huggins"
 
 # Compilation
 compilation:
-    directory: "."
-    files:
-      compartments: "SPARCED - Compartments.tsv"
-      ratelaws: "SPARCED - Ratelaws.tsv"
-      species: "SPARCED - Species.tsv"
-      parameters: "SPARCED - Parameters.tsv"
+  directory: "."
+  files:
+    compartments: "SPARCED - Compartments.tsv"
+    ratelaws: "SPARCED - Ratelaws.tsv"
+    species: "SPARCED - Species.tsv"
+    parameters: "SPARCED - Parameters.tsv"
+
+# Simulator Wrapper Location:
+simulation:
+  class_name: "SingleCell" # Child class of enforced-virtual parent wrapper
+  wrapper_path: "../python/sdist/singlecell/Simulate/SingleCell.py" # path should be relative to config.yaml
 
 swap_files:
   old: 
