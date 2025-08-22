@@ -98,7 +98,7 @@ if(NOT LIBSBML_FOUND)
         PATHS "${LIBSBML_DIR}/build"
     )
 
- if(NOT LIBSBML_LIB)
+    if(NOT LIBSBML_LIB)
         message(STATUS "Local LibSBML not built yet. Configuring and building...")
 
         # Configure
@@ -194,9 +194,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
-# add_subdirectory(extern/libxml2)
 add_subdirectory(extern/muparser)
-# add_subdirectory(extern/libsbml)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
