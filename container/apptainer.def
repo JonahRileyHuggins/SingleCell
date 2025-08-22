@@ -14,7 +14,7 @@ From: python:3.12-slim
 
     # Export variables for the build process
     export BLAS_LIBS=-lopenblas
-    #export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
@@ -69,6 +69,7 @@ From: python:3.12-slim
     # Set up runtime environment variables
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 %runscript
     # Default command for the container
