@@ -4,9 +4,9 @@ script name: SingleCell.py
 Created on Thurs. 2025-04-12 20:29:00
 Author: Jonah R. Huggins
 
-Description: [**PROTOTYPE**] entrypoint for the SPARCED model simulation. Parsing and wrapper \n
+Description: [**PROTOTYPE**] entrypoint for model simulation. Parsing and wrapper \n
 function that takes model attributes, performs basic data handling, and passes \n
-initial model state array to SPARCED C++ simulation engine  
+initial model state array to C++ simulation engine  
 
 Input: Simulation Settings
 
@@ -17,11 +17,11 @@ Output:
 # -----------------------Package Import & Defined Arguements-------------------#
 import os
 import importlib.util
-import argparse
-import json
 
 import pandas as pd
+
 from shared_utils.interface import AbstractSimulator
+
 # Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
     os.getenv("SINGLECELL_PATH"),
@@ -37,32 +37,31 @@ spec = importlib.util.spec_from_file_location("pySingleCell", so_path)
 pySingleCell = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pySingleCell)
 
-# Access class symbols
+# Access class symbols, SC so python doesn't confuse with wrapper class
 SC = pySingleCell.SingleCell
-
-# Arguement Parsing (Internal For Now)
-parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
-parser.add_argument('--sbml', '-s', help='SBMLs to be simulated.', nargs='+', default=['../../sbml_files/One4All.xml'])
-parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
-                    help='Species to modify in key=value format', default=[])
-parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
-parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
-parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
-parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
 
 #-------------------Class Definition-----------------------------------------#
 class SingleCell(AbstractSimulator):
-    """Primary instance of the single cell for simulation."""
+    """Wrapper Class for C++ interface at pybind exposed methods"""
 
-    def __init__(self, args):
-        tool = SC(*args.sbml)
-        super().__init__(tool)
-        # self.single_cell = SC(*args.sbml)
+    def __init__(self, *args, **kwargs):
+        """
+        Populates self.tool with custom module, enables extensibility in 
+        experiment framework
+        """
+        super().__init__(args, kwargs)
 
-        self.output = args.output
+    def load(self,*args, **kwargs) -> SC:
+        """Meets parent class loader method for SingleCell loader"""
+        
+        sbml_list = []
 
-    
-    def simulate(self, start, stop, step):
+        for sbml_path in args:
+            sbml_list.append(sbml_path)
+        
+        self.tool(*sbml_list)
+
+    def simulate(self, start, stop, step) -> pd.DataFrame:
         """Primary simulation function using hybrid stochastic-deterministic method
 
         Parameters:
@@ -70,12 +69,6 @@ class SingleCell(AbstractSimulator):
         Returns: 
             - results_dataframe (pd.DataFrame): finalized results of simulation. 
         """
-
-        for pair in self.modify:
-            if '=' in pair:
-                key, val = pair.split('=', 1)
-                print("Setting %s to value %d", key, float(val))
-                self.single_cell.modify(key, float(val))
 
         results_array = self.tool.simulate(
             start,
@@ -87,17 +80,53 @@ class SingleCell(AbstractSimulator):
 
         results_df = pd.DataFrame(results_array, columns=speciesIds)
 
-        results_df.to_csv(self.output, sep = '\t', index = False)
+        return results_df
 
-    def modify(self, component, value):
+    def modify(
+            self, 
+            component: str, 
+            value: int | float
+            ):
         """
         Method for SingleCell simulator modify method
         """
-        self.tool.modify(component, value)
-
+        self.tool.modify(component, float(value))
 
 
 if __name__ == '__main__':
+    import sys
+    import argparse
+    from shared_utils.file_loader import FileLoader
+
+    # Arguement Parsing (Internal For Now)
+    parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
+
+    parser.add_argument('--sbmls', help="Path to sbml file(s)")
+
+    parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
+                        help='Species to modify in key=value format', default=[])
+    parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
+    parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
+    parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
+    parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
+
     args = parser.parse_args()
 
-    SingleCell(args).simulate()
+    try: 
+        
+        single_cell = SingleCell(*args.sbmls)
+
+    except FileNotFoundError:
+        print("Invalid sbml path supplied")
+        sys.exit(0)
+
+    if 'modify' in args.__dict__.keys():
+        for pair in args.modify:
+            if '=' in pair:
+                key, val = pair.split('=', 1)
+                print("Setting %s to value %d", key, float(val))
+                single_cell.modify(key, float(val))
+
+    results_df = single_cell.simulate(start=args.start, stop=args.stop, step=args.step)
+    
+    results_df.to_csv(args.output, sep='\t', index=False)

@@ -39,8 +39,8 @@ def main():
         Handle Simulate subcommand.
         Run a single simulation with a set of conditions.
         """
-        from singlecell.Simulate.SingleCell import SingleCell
-        SingleCell(args).simulate()
+        from singlecell.Simulate.launcher import Simulation
+        Simulation(args=args)
 
     elif args.command == "Experiment":
         """

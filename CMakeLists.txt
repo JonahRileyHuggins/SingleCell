@@ -128,7 +128,7 @@ if(NOT LIBSBML_FOUND)
     list(APPEND CMAKE_PREFIX_PATH "${LIBSBML_DIR}/build")
 
     # Try find_package again, now pointing to the local build
-    find_package(sbml REQUIRED PATHS "${LIBSBML_DIR}/build" NO_DEFAULT_PATH)
+    find_package(sbml REQUIRED PATHS "${LIBSBML_DIR}/build/src" NO_DEFAULT_PATH)
 endif()
 
 message(STATUS "LibSBML include: ${LibSBML_INCLUDE_DIRS}")
