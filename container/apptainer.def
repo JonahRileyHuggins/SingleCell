@@ -1,78 +1,64 @@
 Bootstrap: docker
-From: python:3.12-slim
+From: ubuntu:24.04
 
 %files
-    ### Modify line 6, columns 9:14 to local SingleCell directory
-    ${PWD} /SingleCell ### Change This Line, note the two separate paths (source \space dest)
-    #!!^changeme-->^^^^^^^^Don't Delete Me :'(
+    ${PWD} /SingleCell
 
 %post
- 
-    # Set shell and environment
     export DEBIAN_FRONTEND=noninteractive
     export SHELL=/bin/bash
 
-    # Export variables for the build process
-    export BLAS_LIBS=-lopenblas
-    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
-    # Update and install basic dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         ninja-build \
         curl \
         wget \
-        libboost-all-dev \
-        libopenblas-dev \
-        gcc \
-        g++ \
         git \
-        gfortran \
         cmake \
         swig \
-        pipx \
+        gfortran \
+        gcc \
+        g++ \
+        libboost-all-dev \
+        libopenblas-dev \
         libhdf5-dev \
         libxml2-dev \
-        vim nano curl wget dos2unix \
+        python3 \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+        vim nano dos2unix \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-    # Ensure owner permissions for /SingleCell
-    chmod -R 777 /SingleCell
-    chown -R root:root /SingleCell
-
-    # Ubuntu 24.04 doesn't symlink python to python3 by default:
+    # Ensure python is available as "python"
     ln -s /usr/bin/python3 /usr/bin/python
 
+    # Fix scripts and perms
     cd /SingleCell
-    find . -type f -name "*.sh" -exec dos2unix {} \; \
-    && find . -type f -name "*.sh" -exec chmod +x {} \;
+    find . -type f -name "*.sh" -exec dos2unix {} \; -exec chmod +x {} \;
 
-    # Install Python Dependencies
-    cd /SingleCell
+    # Run project installer
     chmod +x ./Install.sh
     ./Install.sh
 
-    # preinstall libsbml at local user site
-    # Note: directory made in 
-    cd ~/.local/share/SingleCell/extern/libsbml/ 
+    # Build libsbml
+    cd ~/.local/share/SingleCell/extern/libsbml/
     cmake -B build \
     && cmake --build build/ --parallel \
     && cmake --install build/
 
-    # preinstall AMICI
+    # Build amici deps
     cd ~/.local/share/SingleCell/extern/AMICI/scripts/
     bash ./buildSuiteSparse.sh
     bash ./buildSundials.sh
     bash ./buildAmici.sh
 
 %environment
-    # Set up runtime environment variables
     export PATH=/root/.local/bin:$PATH
     export BLAS_LIBS=-lopenblas
     export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 %runscript
-    # Default command for the container
     exec SingleCell --help
 
 %startscript
@@ -80,5 +66,3 @@ From: python:3.12-slim
 
 %help
     This container enables cross-platform installation of SingleCell tools.
-    Concerns and questions should be posted directly on our project
-    Repository page at TO BE FILLED IN LATER.

@@ -2,7 +2,7 @@
 
 # copy project files into local app directory
 mkdir -p ~/.local/share/SingleCell
-rsync -av . ~/.local/share/SingleCell
+cp -av . ~/.local/share/SingleCell
 
 # persistent environment variable
 echo 'export SINGLECELL_PATH="$HOME/.local/share/SingleCell"' >> ~/.bashrc
