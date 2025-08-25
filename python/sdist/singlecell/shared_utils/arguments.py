@@ -51,7 +51,7 @@ def parse_args():
     )
     global_group.add_argument(
         '-p', '--path',
-        help="Path to a configuration YAML file."
+        help="Path to data file."
     )
     global_group.add_argument(
         '-n', '--name',
@@ -85,25 +85,40 @@ def parse_args():
         help="Build both deterministic SBML and AMICI model (default: True)."
     )
     build_group.add_argument(
+        '--ANTIMONY_OUTPUT_DIR',
+        default=os.path.join(project_root, "sbml_files"),
+        help=f"Antimony output directory (default: {os.path.join(project_root, 'sbml_files')})."
+    )
+    build_group.add_argument(
         '--SBML_Only',
         nargs='+',
         default=['stochastic'],
         help="Skip AMICI compilation for listed solvers (default: stochastic)."
     )
     build_group.add_argument(
-        '--build_dir',
-        default=os.path.join(project_root, "build"),
-        help=f"CMake build directory (default: {os.path.join(project_root, 'build')})."
-    )
-    build_group.add_argument(
-        '--cmake_source_dir',
-        default=project_root,
-        help=f"Directory containing CMakeLists.txt (default: {project_root})."
+        '--SBML_OUTPUT_DIR',
+        default=os.path.join(project_root, "sbml_files"),
+        help=f"SBML output directory (default: {os.path.join(project_root, 'sbml_files')})."
     )
     build_group.add_argument(
         '--AMICI_Only',
         action='store_false',
         help="Only build AMICI model (disable SingleCell build)."
+    )
+    build_group.add_argument(
+        '--AMICI_OUTPUT_DIR',
+        default=os.path.join(project_root, "amici_models"),
+        help=f"AMICI output directory (default: {os.path.join(project_root, 'amici_models')})."
+    )
+    build_group.add_argument(
+        '--SINGLECELL_BUILD_DIR',
+        default=os.path.join(project_root, "build"),
+        help=f"CMake build directory (default: {os.path.join(project_root, 'build')})."
+    )
+    build_group.add_argument(
+        '--SINGLECELL_CMAKE_SOURCE_DIR',
+        default=project_root,
+        help=f"Directory containing CMakeLists.txt (default: {project_root})."
     )
 
     # =========== [Command: Simulate] =========

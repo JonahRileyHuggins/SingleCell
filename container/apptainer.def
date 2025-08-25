@@ -17,8 +17,9 @@ From: ubuntu:24.04
         cmake \
         swig \
         gfortran \
-        gcc \
-        g++ \
+        libgomp1 \
+        gcc-14 \
+        g++-14 \
         libboost-all-dev \
         libopenblas-dev \
         libhdf5-dev \

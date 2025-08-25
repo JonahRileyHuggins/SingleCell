@@ -10,12 +10,7 @@ Decider / Launcher script for Builder submodule.
 # -----------------------Package Import & Defined Arguements-------------------#
 import logging
 from types import SimpleNamespace
-from singlecell.ModelBuilding.sbml_model_builder import CreateModel
-from singlecell.ModelBuilding.amici_model_builder import amici_builder, sanitize_multimodel_build
-from singlecell.ModelBuilding.singlecell_builder import build_singlecell
-from singlecell.shared_utils.utils import get_project_root
-project_root = get_project_root()
-
+from singlecell.ModelBuilding.build_process_organizer import Build_Organizer
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
     format="%(asctime)s - %(levelname)s - %(message)s"
@@ -27,18 +22,19 @@ logger = logging.getLogger(__name__)
 class Builder:
 
     def __init__(self, args: SimpleNamespace) -> None:
+    
+        builder = Build_Organizer(args=args)
+
+        logger.info("Creating Antimony file(s)")
+        builder.build_antimony_files()
+
         logger.info("Creating SBML model(s)")
-        stored_details = CreateModel(args= args)
+        builder.build_sbml_models()
 
-        if args.SBML_Only:
-            for sbml in args.SBML_Only:
-                stored_details.sbml_paths.pop(sbml, None)
+        logger.info("Compiling AMICI model(s)")
+        builder.build_amici_models()
+
+        logger.info("Compiling SingleCell code")
+        builder.build_singlecell_code()
+
         
-        for solver, path in stored_details.sbml_paths.items():
-            logger.info("Compiling AMICI model '%s'", solver)
-
-            amici_builder(sbml_path=path, model_name=solver, verbose=args.verbose)
-        
-        sanitize_multimodel_build()
-
-        build_singlecell(args.cmake_source_dir, args.build_dir)

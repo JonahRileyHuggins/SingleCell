@@ -48,21 +48,3 @@ def build_singlecell(
     )
 
     return # builds Cmake files, no returns
-
-
-if __name__ == '__main__':
-    import argparse
-
-    parser = argparse.ArgumentParser(prog='SingleCell_Builder')
-    parser.add_argument(
-        '--build_dir', 
-        help='CMake build directory for project C++ code',
-        default="~/.local/share/SingleCell"
-    )
-    parser.add_argument(
-        '--cmake_source_dir', 
-        help='CMakeLists.txt directory for project C++ code',
-        default="~/.local/share/SingleCell/"
-    )
-    args = parser.parse_args()
-    build_singlecell(args.cmake_source_dir, args.build_dir)
