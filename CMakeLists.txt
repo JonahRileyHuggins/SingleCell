@@ -4,6 +4,9 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
+
+set(CMAKE_BUILD_TYPE Debug)
+
 # === Paths ===
 
 set(BLA_VENDOR OpenBLAS)
@@ -114,7 +117,7 @@ if(NOT LIBSBML_FOUND)
 
         # Build
         execute_process(
-            COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build --parallel
+            COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build
             RESULT_VARIABLE _res_build
             OUTPUT_VARIABLE _out_build
             ERROR_VARIABLE  _err_build
@@ -122,13 +125,9 @@ if(NOT LIBSBML_FOUND)
         if(NOT _res_build EQUAL 0)
             message(FATAL_ERROR "LibSBML build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
         endif()
+
     endif()
 
-    # Add the build tree to the prefix path so that find_package(LibSBML) can succeed
-    list(APPEND CMAKE_PREFIX_PATH "${LIBSBML_DIR}/build")
-
-    # Try find_package again, now pointing to the local build
-    find_package(sbml REQUIRED PATHS "${LIBSBML_DIR}/build" NO_DEFAULT_PATH)
 endif()
 
 message(STATUS "LibSBML include: ${LibSBML_INCLUDE_DIRS}")
@@ -195,6 +194,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
 add_subdirectory(extern/muparser)
+add_subdirectory(extern/libsbml)
 
 # === Source Files ===
 set(SINGLECELL_SRC_LIST

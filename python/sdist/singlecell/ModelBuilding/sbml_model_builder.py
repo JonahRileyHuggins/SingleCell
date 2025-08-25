@@ -132,7 +132,7 @@ class CreateSBMLModel:
     def _write_sbml(self):
         writer = libsbml.SBMLWriter()
 
-        sbml_output_path = f'{self.output_path}/{self.model_name}.xml'
+        sbml_output_path = f'{self.sbml_output_dir}/{self.model_name}.xml'
 
         writer.writeSBML(self.sbml_doc, sbml_output_path)
 

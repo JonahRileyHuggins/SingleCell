@@ -46,10 +46,10 @@ class Build_Organizer:
 
         self.antimony_output_dir = args.ANTIMONY_OUTPUT_DIR
         self.sbml_output_dir = args.SBML_OUTPUT_DIR
-        self.amici_output_dir = args.AMICI_OUPUT_DIR
+        self.amici_output_dir = args.AMICI_OUTPUT_DIR
         self.singlecell_cmake_source_dir = args.SINGLECELL_CMAKE_SOURCE_DIR
         self.singlecell_build_dir = args.SINGLECELL_BUILD_DIR
-
+        self.verbose = args.verbose
         loader = FileLoader(args.path)
         self.model_files = loader._extract_model_build_files()
 
@@ -292,5 +292,5 @@ class Build_Organizer:
             Compiles source code at args.SINGLECELL_BUILD_DIR
         """
 
-        build_singlecell(self.singlecell_build_dir, self.singlecell_cmake_source_dir)
+        build_singlecell(self.singlecell_cmake_source_dir, self.singlecell_build_dir)
 

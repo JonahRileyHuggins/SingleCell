@@ -57,7 +57,10 @@ class CreateAMICIModel:
         )
 
 
-    def _make_output_dir(amici_model_path: str | os.PathLike) -> None:
+    def _make_output_dir(
+        self,
+        amici_model_path: str | os.PathLike
+        ) -> None:
         """ Provide a path and this returns a directory. Separating from Classes for operability."""
         if not os.path.exists(amici_model_path):
             os.mkdir(path=amici_model_path)
