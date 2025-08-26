@@ -23,6 +23,19 @@ BaseModule::BaseModule(
     SBMLHandler Module
 ) : handler(Module) {}
 
+void BaseModule::loadSourceModules(
+    const std::vector<std::unique_ptr<BaseModule>>& module_list
+) {
+    for (const auto& mod : module_list) {
+
+        if (mod->getModuleId() == this->source_id) {
+
+            this->sources.push_back(mod.get());
+        }
+
+    }
+}
+
 std::vector<double> BaseModule::setTimeSteps(double start, double stop, double step) {
      // Initialized array to be returned:
     std::vector<double> timepoints;

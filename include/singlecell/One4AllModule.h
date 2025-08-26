@@ -109,10 +109,6 @@ class One4AllModule : public BaseModule {
             int timestep
         ) override;
 
-        void loadTargetModule(
-            const std::vector<std::unique_ptr<BaseModule>>& module_list
-        ) override;
-
     //-------------------------------Members--------------------------------//
 
 

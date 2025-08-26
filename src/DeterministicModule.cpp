@@ -43,7 +43,7 @@ DeterministicModule::DeterministicModule(
     //Instantiate SBML model
     this->sbml = DeterministicModel.model;
 
-    // // Import AMICI Model from 'bin/AMICI_MODELS/model
+    // // Import AMICI Model from 'AMICI_MODELS/model
     // this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
     this->model = std::move(new_model);
@@ -52,23 +52,11 @@ DeterministicModule::DeterministicModule(
     this->model->setFixedParameters(DeterministicModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "stochastic";
+    this->source_id = "stochastic";
+
 }
 
 std::string DeterministicModule::getModuleId() { return this->algorithm_id; }
-
-void DeterministicModule::loadTargetModule(
-    const std::vector<std::unique_ptr<BaseModule>>& module_list
-) {
-    for (const auto& mod : module_list) {
-
-        if (mod->getModuleId() == this->target_id) {
-
-            this->targets.push_back(mod.get());
-        }
-
-    }
-}
 
 void DeterministicModule::step(int step) {
     // Get the (step - 1)th result
@@ -224,25 +212,28 @@ std::vector<double> DeterministicModule::getLastStepResult(
 }
 
 void DeterministicModule::updateParameters() {
+    // Deterministic model needs both AMICI and SBML set:
     
-    for (const auto& module : this->targets) {
+    // 1. Iterate over all specified model sources to recieve from
+    for (const auto& module : this->sources) {
 
         SBMLHandler alternate_model = module->handler;
 
         for (int i = 0; i < this->overlapping_params.size(); i++) {
 
-            // Deterministic model needs both AMICI and SBML set:
-            //AMICI
-            this->model->setFixedParameterById(
-                this->overlapping_params[i], 
-                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-            );
-
-            //SBML
-            this->sbml->getParameter(this->overlapping_params[i])->setValue(
+            //2. SBML parameter update
+            this->sbml->getParameter(
+                this->overlapping_params[i]
+            )->setValue(
                 alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
             );
         }
+
+    // 3. retrieve updated parameter value list, note, works only after sbml parameters updated
+    std::vector<double> param_vals = this->handler->getParameterValues();
+
+    // 4. set AMICI model via vectorized method
+    this->model->setFixedParameters(param_vals);
 
     }
 }

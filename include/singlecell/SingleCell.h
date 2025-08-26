@@ -72,7 +72,7 @@ class SingleCell {
          * @brief Iterates over stored class member modules, assigns targets 
          * to modules
          */
-        void assignGlobalTargets();
+        void assignGlobalSources();
 
         /**
          * @brief Iterates over stored class member modules, identifies target entities

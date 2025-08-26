@@ -90,6 +90,12 @@ class DeterministicModule : public BaseModule {
         std::vector<double> getNewStepResult(
             const amici::ReturnData &rdata
         );
+
+        /**
+         * @brief retrieves list of indicies for all params overalapping between 
+         * target models and DeterministicModule
+         */
+        void storeOverlappingParamIndicies();
         
     //-------------------------------Members--------------------------------//
         std::unique_ptr<amici::Model> model;
@@ -107,10 +113,6 @@ class DeterministicModule : public BaseModule {
          */
         std::vector<double> getLastStepResult(
             int timestep
-        ) override;
-
-        void loadTargetModule(
-            const std::vector<std::unique_ptr<BaseModule>>& module_list
         ) override;
 
     //-------------------------------Members--------------------------------//

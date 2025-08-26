@@ -180,12 +180,13 @@ std::vector<std::string> SBMLHandler::getParameterIds() {
 
 std::vector<double> SBMLHandler::getParameterValues() {
 
-    std::vector<double> parameter_vals;
-    parameter_vals.resize(this->model->getNumParameters());
+    std::vector<double> parameter_vals(this->model->getNumParameters());
 
-    for (int p = 0; p < this->model->getNumParameters(); p++) {
-        parameter_vals[p] = this->model->getParameter(p)->getValue();
-    }
+    std::transform(
+        0, this->model->getNumParameters(),
+        parameter_vals.begin(),
+        [this](int p) { return this->model->getParameter(p)->getValue(); }
+    );
 
     return parameter_vals;
 }

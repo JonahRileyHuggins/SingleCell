@@ -49,24 +49,11 @@ StochasticModule::StochasticModule(
 
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "deterministic";
+    this->source_id = "deterministic";
 
  }
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
-
-void StochasticModule::loadTargetModule(
-    const std::vector<std::unique_ptr<BaseModule>>& module_list
-) {
-    for (const auto& mod : module_list) {
-
-        if (mod->getModuleId() == this->target_id) {
-
-            this->targets.push_back(mod.get());
-        }
-
-    }
-}
 
 std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
     /** 
@@ -335,7 +322,7 @@ void StochasticModule::run(
 
 void StochasticModule::updateParameters() {
 
-    for (const auto& alt_module : this->targets) {
+    for (const auto& alt_module : this->sources) {
 
         SBMLHandler alternate_model = alt_module->handler;
 

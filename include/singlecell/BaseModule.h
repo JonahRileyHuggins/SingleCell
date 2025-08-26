@@ -76,7 +76,7 @@ class BaseModule {
 
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "";
-        std::string target_id = "";
+        std::string source_id = "";
         double delta_t;
 
 
@@ -97,12 +97,12 @@ class BaseModule {
         virtual std::string getModuleId() = 0;   
 
         /**
-         * @brief finds targets for module to send information to.ADD_FILTERED_PLIST
+         * @brief finds sources for module to recieve information from
          * 
          */
-        virtual void loadTargetModule(
+        void loadSourceModules(
             const std::vector<std::unique_ptr<BaseModule>>& module_list
-        ) = 0; 
+        ); 
 
         /**
          * @brief calculates number of simulation steps, aka timepoints
@@ -169,7 +169,7 @@ class BaseModule {
 
         std::vector<std::string> overlapping_params;
 
-        std::vector<BaseModule*> targets;
+        std::vector<BaseModule*> sources;
 
         std::vector<double> timesteps;
 

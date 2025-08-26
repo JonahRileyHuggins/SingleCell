@@ -52,22 +52,6 @@ One4AllModule::One4AllModule(
     this->model->setFixedParameters(One4AllModel.getParameterValues());
 
     this->algorithm_id = this->sbml->getId();
-    this->target_id = "stochastic";
-}
-
-std::string One4AllModule::getModuleId() { return this->algorithm_id; }
-
-void One4AllModule::loadTargetModule(
-    const std::vector<std::unique_ptr<BaseModule>>& module_list
-) {
-    for (const auto& mod : module_list) {
-
-        if (mod->getModuleId() == this->target_id) {
-
-            this->targets.push_back(mod.get());
-        }
-
-    }
 }
 
 void One4AllModule::step(int step) {
@@ -225,7 +209,7 @@ std::vector<double> One4AllModule::getLastStepResult(
 
 void One4AllModule::updateParameters() {
     
-    for (const auto& module : this->targets) {
+    for (const auto& module : this->sources) {
 
         SBMLHandler alternate_model = module->handler;
 

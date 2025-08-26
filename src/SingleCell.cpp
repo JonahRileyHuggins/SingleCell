@@ -41,9 +41,9 @@ std::vector<std::vector<double>> SingleCell::simulate(
     this->loadSimulationModules();
 
     // Assign Target per Module
-    this->assignGlobalTargets();
+    this->assignGlobalSources();
 
-    // Identify all module overlaps between targets
+    // Identify all module overlaps between source & targets
     this->findModuleOverlaps();
 
     // Add simulation time steps, results matrix
@@ -108,11 +108,11 @@ void SingleCell::loadSimulationModules() {
     }
 }
 
-void SingleCell::assignGlobalTargets() {
+void SingleCell::assignGlobalSources() {
 
     for (const auto& mod : this->modules) {
 
-        mod->loadTargetModule(this->modules);
+        mod->loadSourceModules(this->modules);
 
     }
 }
@@ -121,7 +121,7 @@ void SingleCell::findModuleOverlaps() {
 
     for (const auto& mod : this->modules) {
 
-        for (const auto& target : mod->targets) {
+        for (const auto& target : mod->sources) {
 
             mod->findOverlappingIds(target->sbml);
 
