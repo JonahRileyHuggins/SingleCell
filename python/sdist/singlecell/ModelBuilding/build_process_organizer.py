@@ -11,12 +11,11 @@ Description: Entrypoint to call atomized commands for build:
 """
 import os
 import copy
-import pathlib
 import logging
 from types import SimpleNamespace
 
 import pandas as pd
-from singlecell.shared_utils.utils import make_default_root
+
 from singlecell.shared_utils.file_loader import FileLoader
 from singlecell.ModelBuilding.antimony_model_builder import CreateAntimonyFile
 from singlecell.ModelBuilding.sbml_model_builder import CreateSBMLModel
@@ -50,6 +49,7 @@ class Build_Organizer:
         self.amici_output_dir = args.AMICI_OUTPUT_DIR
         self.singlecell_cmake_source_dir = args.SINGLECELL_CMAKE_SOURCE_DIR
         self.singlecell_build_dir = args.SINGLECELL_BUILD_DIR
+        self.sbml_only_list = args.SBML_Only
         # make_default_root(args.SINGLECELL_CMAKE_SOURCE_DIR, args.SINGLECELL_BUILD_DIR)
 
         self.verbose = args.verbose
@@ -262,8 +262,12 @@ class Build_Organizer:
         - None 
             Saves SBML models to disc at args.SBML_OUTPUT_PATH
         """
-
+        if "all" in self.sbml_only_list:
+            return
         for solver in self.solvers:
+
+            if solver in self.sbml_only_list:
+                continue
 
             sbml_path = os.path.join(self.sbml_output_dir, f"{solver}.xml")
 
@@ -273,11 +277,13 @@ class Build_Organizer:
                 sbml_path=sbml_path, 
                 model_name=solver, 
                 output=self.amici_output_dir, 
-                verbose=self.verbose
+                verbose=self.verbose,
+                compile=False # set True if python library needed
+
             )
 
         # Remove add_custom_target() function for 2+ AMICI models
-        CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
+        # CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
 
 
     def build_singlecell_code(self) -> None:
@@ -292,6 +298,6 @@ class Build_Organizer:
         - None 
             Compiles source code at args.SINGLECELL_BUILD_DIR
         """
-
-        build_singlecell(self.singlecell_cmake_source_dir, self.singlecell_build_dir)
+        if len(self.sbml_only_list) != len(self.solvers) or "all" not in [s.lower() for s in self.sbml_only_list]:
+            build_singlecell(self.singlecell_cmake_source_dir, self.singlecell_build_dir)
 

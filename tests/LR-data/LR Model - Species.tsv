@@ -1,4 +1,4 @@
-speciesId	compartment	initialConcentration	solver
+speciesId	compartment	initialConcentration (nM)	solver
 cyt_prot__LIGAND_	Cytoplasm	0	Deterministic
 cyt_prot__RECEPTOR_	Cytoplasm	100	Deterministic
 cyt_prot__LIGAND__RECEPTOR_	Cytoplasm	0	Deterministic

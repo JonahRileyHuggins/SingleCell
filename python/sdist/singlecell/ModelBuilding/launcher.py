@@ -30,7 +30,7 @@ class Builder:
 
         logger.info("Creating SBML model(s)")
         builder.build_sbml_models()
-
+    
         logger.info("Compiling AMICI model(s)")
         builder.build_amici_models()
 

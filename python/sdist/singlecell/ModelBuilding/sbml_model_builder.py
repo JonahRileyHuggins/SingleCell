@@ -10,8 +10,6 @@ import os
 import logging
 from types import SimpleNamespace
 
-from singlecell.shared_utils.utils import parse_kwargs
-
 import pandas as pd
 
 import libsbml

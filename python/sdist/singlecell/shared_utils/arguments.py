@@ -93,7 +93,7 @@ def parse_args():
         '--SBML_Only',
         nargs='+',
         default=['stochastic'],
-        help="Skip AMICI compilation for listed solvers (default: stochastic)."
+        help="Skip AMICI/SingleCell compilation for listed solvers (default: stochastic)."
     )
     build_group.add_argument(
         '--SBML_OUTPUT_DIR',

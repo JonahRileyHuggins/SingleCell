@@ -24,7 +24,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-base_path = Path(os.environ.get("SINGLECELL_PATH", Path.home() / ".local/share/SingleCell"))
+base_path = os.path.join("/", "opt", "SingleCell")
 class CreateAMICIModel:
 
     def __init__(
