@@ -11,18 +11,17 @@ Description: Entrypoint to call atomized commands for build:
 """
 import os
 import copy
+import pathlib
 import logging
-from typing import TextIO
 from types import SimpleNamespace
-from collections import defaultdict
 
+import pandas as pd
+from singlecell.shared_utils.utils import make_default_root
 from singlecell.shared_utils.file_loader import FileLoader
 from singlecell.ModelBuilding.antimony_model_builder import CreateAntimonyFile
 from singlecell.ModelBuilding.sbml_model_builder import CreateSBMLModel
 from singlecell.ModelBuilding.amici_model_builder import CreateAMICIModel
 from singlecell.ModelBuilding.singlecell_builder import build_singlecell
-
-import pandas as pd
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -40,6 +39,8 @@ class Build_Organizer:
         4. SingleCell source code compilation
     """
 
+    base_path = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+
     def __init__(self, args, **kwargs):
 
         logger.info('Starting build process for solver %s ...', args.name)
@@ -49,6 +50,8 @@ class Build_Organizer:
         self.amici_output_dir = args.AMICI_OUTPUT_DIR
         self.singlecell_cmake_source_dir = args.SINGLECELL_CMAKE_SOURCE_DIR
         self.singlecell_build_dir = args.SINGLECELL_BUILD_DIR
+        # make_default_root(args.SINGLECELL_CMAKE_SOURCE_DIR, args.SINGLECELL_BUILD_DIR)
+
         self.verbose = args.verbose
         loader = FileLoader(args.path)
         self.model_files = loader._extract_model_build_files()
@@ -102,8 +105,6 @@ class Build_Organizer:
             solver_components.species = solver_components.species[
                 solver_components.species['solver'].str.lower().str.strip() == solver
             ]
-            print('model species: ',solver_components.species)
-
         return solver_components
 
 

@@ -87,8 +87,6 @@ endif()
 message(STATUS "LibXml2 include: ${LIBXML_INCLUDE_DIR}")
 message(STATUS "LibXml2 library: ${LIBXML_LIBRARY}")
 
-
-
 # --- Run AMICI build scripts at configure time (simple approach) ---
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
 set(AMICI_SCRIPTS_DIR "${AMICI_DIR}/scripts")

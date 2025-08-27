@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-base_path = pathlib.Path(os.environ.get("SINGLECELL_PATH", pathlib.Path.home() / ".local/share/SingleCell"))
+base_path = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
 
 def build_singlecell(
         source_dir: os.PathLike | str = base_path,
@@ -31,7 +31,6 @@ def build_singlecell(
     : param build_dir (str):
         path to the build directory
     """
-    logger.info('Compiling SingleCell source code')
     build_dir = pathlib.Path(build_dir)
     build_dir.mkdir(exist_ok=True)
 
