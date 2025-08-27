@@ -24,7 +24,7 @@ import json
 import pandas as pd
 
 # Absolute path to compiled extension (pySingleCell*.so file)
-project_root = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+project_root = os.path.join("/", "opt", "SingleCell")
 so_path = os.path.join(
     project_root,
     "build",

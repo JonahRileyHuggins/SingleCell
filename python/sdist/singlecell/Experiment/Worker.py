@@ -15,7 +15,6 @@ Output: MPI tasks for each rank, MPI task assignment, and MPI results aggregatio
 import os
 import gc
 import logging
-import pathlib
 import importlib.util
 
 import numpy as np
@@ -27,7 +26,7 @@ from singlecell.Experiment.ResultsCacher import ResultCache
 
 
 # Absolute path to compiled extension (pySingleCell*.so file)
-project_root = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+project_root = os.path.join("/", "opt", "SingleCell")
 so_path = os.path.join(
     project_root,
     "build",

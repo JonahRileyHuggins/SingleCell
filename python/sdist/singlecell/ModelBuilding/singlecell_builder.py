@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-base_path = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+project_root = os.path.join("/", "opt", "SingleCell")
 
 def build_singlecell(
         source_dir: os.PathLike | str = base_path,

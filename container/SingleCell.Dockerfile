@@ -1,8 +1,8 @@
 # Must be built from the root directory of the repo
 # BUILD: docker build -t singlecell -f container/SingleCell.Dockerfile .
-# TEST LOCAL (optional): docker run -p 8888:8888 --name test1 -i -t singlecell
-# TAG: docker tag singlecell JonahRileyHuggins/SingleCell:latest
-# PUSH: docker push JonahRileyHuggins/SingleCell:latest
+# TEST LOCAL (optional): docker run -it --rm jonahrileyhuggins/singlecell:latest
+# TAG: docker tag singlecell jonahrileyhuggins/singlecell:latest
+# PUSH: docker push jonahrileyhuggins/singlecell:latest
 
 # Dockerfile for SingleCell - optimized for bind mounts and venv isolation
 FROM python:3.12-slim

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # copy project files into local app directory
-mkdir -p $HOME/.local/share/SingleCell
-tar cf - . | (cd $HOME/.local/share/SingleCell && tar xvf -)
+mkdir -p /opt/SingleCell
+tar cf - . | (cd /opt/SingleCell && tar xvf -)
 
 # Install pipx tool
 pipx ensurepath

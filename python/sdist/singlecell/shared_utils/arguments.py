@@ -8,7 +8,7 @@ import os
 import argparse
 import pathlib
 
-project_root = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+project_root = os.path.join("/", "opt", "SingleCell")
 
 ASCII_HEADER = r"""
 
@@ -131,8 +131,8 @@ def parse_args():
     sim_group.add_argument(
         '--sbml', '-s',
         nargs='+',
-        default=['../sbml_files/One4All.xml'],
-        help="One or more SBML files to simulate (default: ../sbml_files/One4All.xml)."
+        default=[f'{project_root}/sbml_files/One4All.xml'],
+        help=f"One or more SBML files to simulate (default: {project_root}/sbml_files/One4All.xml)."
     )
     sim_group.add_argument(
         '--modify', '-m',

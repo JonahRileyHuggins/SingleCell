@@ -39,7 +39,7 @@ class Build_Organizer:
         4. SingleCell source code compilation
     """
 
-    base_path = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
+    project_root = os.path.join("/", "opt", "SingleCell")
 
     def __init__(self, args, **kwargs):
 
