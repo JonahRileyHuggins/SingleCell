@@ -16,7 +16,6 @@ import os
 import amici
 import logging
 import subprocess
-from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -31,7 +30,7 @@ class CreateAMICIModel:
             self,
             sbml_path: os.PathLike | str, 
             model_name: str = None,
-            output: os.PathLike | str = base_path / "amici_models", 
+            output: os.PathLike | str = os.path.join(base_path, "amici_models"),
             verbose: bool = False
         ):
         """
@@ -53,7 +52,8 @@ class CreateAMICIModel:
             model_name, 
             output_directory, 
             verbose = verbose, 
-            constant_parameters=constantParams
+            constant_parameters=constantParams,
+            compile=False # set True if python library needed
         )
 
 
@@ -67,7 +67,7 @@ class CreateAMICIModel:
 
     @staticmethod
     def sanitize_multimodel_build(
-        build_dir: os.PathLike | str = base_path / "amici_models"        
+        build_dir: os.PathLike | str = os.path.join("/", "opt", "SingleCell") 
     ) -> None:
         """
         Removes problematic function in amici CMakeLists build when 2+ AMICI models are present.

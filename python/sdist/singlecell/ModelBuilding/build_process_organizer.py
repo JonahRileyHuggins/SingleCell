@@ -277,13 +277,11 @@ class Build_Organizer:
                 sbml_path=sbml_path, 
                 model_name=solver, 
                 output=self.amici_output_dir, 
-                verbose=self.verbose,
-                compile=False # set True if python library needed
-
+                verbose=self.verbose
             )
 
         # Remove add_custom_target() function for 2+ AMICI models
-        # CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
+        CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
 
 
     def build_singlecell_code(self) -> None:
