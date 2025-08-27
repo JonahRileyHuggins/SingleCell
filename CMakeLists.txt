@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
 
-set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_BUILD_TYPE Debug)
 
 # === Paths ===
 
@@ -87,51 +87,7 @@ endif()
 message(STATUS "LibXml2 include: ${LIBXML_INCLUDE_DIR}")
 message(STATUS "LibXml2 library: ${LIBXML_LIBRARY}")
 
-# --- libsbml ---
-find_package(sbml QUIET)
 
-if(NOT LIBSBML_FOUND)
-    message(STATUS "System LibSBML not found. Falling back to local copy...")
-
-    set(LIBSBML_DIR "${THIRD_PARTY_DIR}/libsbml")
-
-    # Look for an existing local build
-    find_library(LIBSBML_LIB
-        NAMES sbml libsbml libsbml.so libsbml.a
-        PATHS "${LIBSBML_DIR}/build"
-    )
-
-    if(NOT LIBSBML_LIB)
-        message(STATUS "Local LibSBML not built yet. Configuring and building...")
-
-        # Configure
-        execute_process(
-            COMMAND ${CMAKE_COMMAND} -S ${LIBSBML_DIR} -B ${LIBSBML_DIR}/build
-            RESULT_VARIABLE _res_conf
-            OUTPUT_VARIABLE _out_conf
-            ERROR_VARIABLE  _err_conf
-        )
-        if(NOT _res_conf EQUAL 0)
-            message(FATAL_ERROR "LibSBML configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
-        endif()
-
-        # Build
-        execute_process(
-            COMMAND ${CMAKE_COMMAND} --build ${LIBSBML_DIR}/build
-            RESULT_VARIABLE _res_build
-            OUTPUT_VARIABLE _out_build
-            ERROR_VARIABLE  _err_build
-        )
-        if(NOT _res_build EQUAL 0)
-            message(FATAL_ERROR "LibSBML build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
-        endif()
-
-    endif()
-
-endif()
-
-message(STATUS "LibSBML include: ${LibSBML_INCLUDE_DIRS}")
-message(STATUS "LibSBML library: ${LibSBML_LIBRARIES}")
 
 # --- Run AMICI build scripts at configure time (simple approach) ---
 set(AMICI_DIR "${THIRD_PARTY_DIR}/AMICI")
@@ -196,6 +152,9 @@ add_subdirectory(extern/pybind11)
 add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
+# --- libsbml ---
+set(LIBSBML_INCLUDE_DIR "${THIRD_PARTY_DIR}/libsbml/src/")
+
 # === Source Files ===
 set(SINGLECELL_SRC_LIST
     src/SBMLHandler.cpp
@@ -219,6 +178,8 @@ target_include_directories(SingleCell PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
     ${AMICI_INCLUDE_DIR}
+    ${CMAKE_BINARY_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern/libsbml/src
 )
 
 target_link_libraries(SingleCell PRIVATE
@@ -245,6 +206,8 @@ target_include_directories(pySingleCell PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/src
     ${AMICI_INCLUDE_DIR}
+    ${CMAKE_BINARY_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern/libsbml/src
 )
 
 target_link_libraries(pySingleCell PRIVATE

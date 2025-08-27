@@ -10,7 +10,9 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include <unordered_map>
+
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
 
@@ -181,13 +183,11 @@ std::vector<std::string> SBMLHandler::getParameterIds() {
 std::vector<double> SBMLHandler::getParameterValues() {
 
     std::vector<double> parameter_vals(this->model->getNumParameters());
+    
+    for (int p = 0; p < this->model->getNumParameters(); p++) {
 
-    std::transform(
-        0, this->model->getNumParameters(),
-        parameter_vals.begin(),
-        [this](int p) { return this->model->getParameter(p)->getValue(); }
-    );
-
+        parameter_vals[p] = this->model->getParameter(p)->getValue();
+    }
     return parameter_vals;
 }
 

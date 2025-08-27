@@ -54,6 +54,7 @@ int main(
         stochastic_sbml,
         deterministic_sbml
     );
+
     std::cout << "Simulation Details:\n";
     for (const auto& [key, value] : argparser->cli_map) {
         std::cout << "  " << key << " => ";
@@ -79,7 +80,6 @@ int main(
             );
         }
     }
-
     std::vector<std::vector<double>> results_matrix = single_cell->simulate(
         start, 
         stop, 

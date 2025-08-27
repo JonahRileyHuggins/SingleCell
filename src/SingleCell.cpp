@@ -45,6 +45,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
     // Identify all module overlaps between source & targets
     this->findModuleOverlaps();
+    std::cout << "Id's overlapping params without error" << "\n";
 
     // Add simulation time steps, results matrix
     this->setGlobalSimulationSettings(
@@ -86,6 +87,8 @@ void SingleCell::loadSimulationModules() {
 
         const std::string id = handler.model->getId();
 
+        std::cout << "SBML Handler: " << id << "\n";
+
         auto matched_module = this->moduleFactory.find(id);
 
         if (matched_module != moduleFactory.end()) {
@@ -100,10 +103,6 @@ void SingleCell::loadSimulationModules() {
                 this->modules.push_back(std::move(base_mod));
 
             }
-        } else {
-            // Fallback if no match
-            std::unique_ptr<BaseModule> base_mod = std::make_unique<DeterministicModule>(handler);
-            this->modules.push_back(std::move(base_mod));
         }
     }
 }

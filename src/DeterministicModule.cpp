@@ -47,10 +47,10 @@ DeterministicModule::DeterministicModule(
     // this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
     this->model = std::move(new_model);
-    
+
     //Update AMICI model for any modifications present in SBML:
     this->model->setFixedParameters(DeterministicModel.getParameterValues());
-
+    
     this->algorithm_id = this->sbml->getId();
     this->source_id = "stochastic";
 
@@ -230,7 +230,7 @@ void DeterministicModule::updateParameters() {
         }
 
     // 3. retrieve updated parameter value list, note, works only after sbml parameters updated
-    std::vector<double> param_vals = this->handler->getParameterValues();
+    std::vector<double> param_vals = this->handler.getParameterValues();
 
     // 4. set AMICI model via vectorized method
     this->model->setFixedParameters(param_vals);
