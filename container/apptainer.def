@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: python3.12-slim
+From: python:3.12-slim
 
 %files
     ${PWD} /SingleCell
@@ -19,7 +19,7 @@ From: python3.12-slim
         swig \
         gfortran \
         libopenmpi-dev \
-        libopenmpi-bin \
+        openmpi-bin \
         gcc-14 \
         g++-14 \
         libboost-all-dev \

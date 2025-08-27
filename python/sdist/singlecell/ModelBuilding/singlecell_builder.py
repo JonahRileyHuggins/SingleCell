@@ -20,7 +20,7 @@ base_path = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
 
 def build_singlecell(
         source_dir: os.PathLike | str = base_path,
-        build_dir: os.PathLike | str = base_path / "build"
+        build_dir: os.PathLike | str = os.path.join(base_path, "build")
         ) -> None:
     """
     Compiles project source code
