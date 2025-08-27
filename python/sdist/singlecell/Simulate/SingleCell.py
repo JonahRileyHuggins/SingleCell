@@ -17,14 +17,16 @@ Output:
 # -----------------------Package Import & Defined Arguements-------------------#
 import os
 import importlib.util
+import pathlib
 import argparse
 import json
 
 import pandas as pd
 
 # Absolute path to compiled extension (pySingleCell*.so file)
+project_root = os.path.join(pathlib.Path.home(), ".local", "share", "SingleCell")
 so_path = os.path.join(
-    os.getenv("SINGLECELL_PATH"),
+    project_root,
     "build",
     "pySingleCell.cpython-312-x86_64-linux-gnu.so"
 )
