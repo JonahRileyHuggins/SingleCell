@@ -229,3 +229,6 @@ benchmarks/*/results/*
 
 # hide compiled libxml build
 extern/libxml2/build
+
+# hide test results
+tests/LR-Benchmark/results

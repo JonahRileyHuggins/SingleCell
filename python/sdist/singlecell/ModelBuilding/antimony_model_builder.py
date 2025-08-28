@@ -151,7 +151,7 @@ class CreateAntimonyFile:
 
             self.antimony_file.write("  %s = %.6e;\n" % (species_name, np.double(species_vals['initialConcentration (nM)'])))
 
-            logger.info("Assigning Species %s equal to %.6e;\n" % ((species_name, np.double(species_vals['initialConcentration (nM)']))))
+            logger.info("Assigning Species %s equal to %.6e;" % ((species_name, np.double(species_vals['initialConcentration (nM)']))))
 
     def __update_parameters(self) -> None:
         """getter method for making parameters object, intended only for use by antimonyModel
