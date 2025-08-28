@@ -38,7 +38,8 @@ class Build_Organizer:
         4. SingleCell source code compilation
     """
 
-    project_root = os.path.join("/", "opt", "SingleCell")
+    # Absolute path to compiled extension (pySingleCell*.so file)
+    project_root = os.getenv("SINGLECELL_PATH")
 
     def __init__(self, args, **kwargs):
 

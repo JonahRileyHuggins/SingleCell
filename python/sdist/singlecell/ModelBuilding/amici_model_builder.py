@@ -23,7 +23,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-base_path = os.path.join("/", "opt", "SingleCell")
+# Absolute path to compiled extension (pySingleCell*.so file)
+base_path = os.getenv("SINGLECELL_PATH")
+
 class CreateAMICIModel:
 
     def __init__(

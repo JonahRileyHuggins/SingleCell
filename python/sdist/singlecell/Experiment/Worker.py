@@ -26,9 +26,8 @@ from singlecell.Experiment.ResultsCacher import ResultCache
 
 
 # Absolute path to compiled extension (pySingleCell*.so file)
-project_root = os.path.join("/", "opt", "SingleCell")
 so_path = os.path.join(
-    project_root,
+    os.getenv("SINGLECELL_PATH"),
     "build",
     "pySingleCell.cpython-312-x86_64-linux-gnu.so"
 )

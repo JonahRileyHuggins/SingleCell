@@ -6,9 +6,8 @@
 # =========================================
 import os
 import argparse
-import pathlib
 
-project_root = os.path.join("/", "opt", "SingleCell")
+project_root = os.getenv("SINGLECELL_PATH","/SingleCell")
 
 ASCII_HEADER = r"""
 

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# copy project files into local app directory
-mkdir -p /opt/SingleCell
-tar cf - . | (cd /opt/SingleCell && tar xvf -)
+# persistent environment variable
+echo "export SINGLECELL_PATH=\"$PWD\"" >> ~/.bashrc
 
 # Install pipx tool
 pipx ensurepath
