@@ -1,0 +1,14 @@
+format_version: 1 
+parameter_file: ../LR-data/LR Model - Parameters.tsv
+problems: 
+  - name: 'test-benchmark'
+    condition_files: 
+    - conditions.tsv
+    measurement_files:
+    - measurements.tsv
+    observable_files:
+    - observables.tsv
+    sbml_files:
+    - ../LR_sbml_files/deterministic.xml
+    - ../LR_sbml_files/stochastic.xml
+    cell_count: 2

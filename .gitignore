@@ -226,3 +226,6 @@ results.txt
 build/*
 benchmarks/*/results/*
 !extern/AMICI/python/sdist/**
+
+# hide compiled libxml build
+extern/libxml2/build
