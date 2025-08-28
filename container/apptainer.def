@@ -8,6 +8,7 @@ From: python:3.12-slim
     export DEBIAN_FRONTEND=noninteractive
     export SHELL=/bin/bash
     export PATH=/root/.local/bin:$PATH
+    export SINGLECELL_PATH=/SingleCell
 
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -40,10 +41,7 @@ From: python:3.12-slim
     chmod +x ./Install.sh
     ./Install.sh
 
-    # Build libxml2 into container
-    cd $HOME/.local/share/SingleCell/extern/libxml2/
-    cmake -B build/
-    cmake --build build
+    /root/.local/bin/SingleCell Build -p data/config.yaml -v
 
 %environment
     export PATH=/root/.local/bin:$PATH

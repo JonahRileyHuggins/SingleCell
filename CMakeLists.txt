@@ -33,60 +33,57 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/extern/libxml2/CMakeLists.txt")
 endif()
 
 # --- libxml2 ---
-# find_package(LibXml2 QUIET)
+find_package(LibXml2 QUIET)
 
-# if(NOT LibXml2_FOUND)
-#     message(STATUS "System LibXml2 not found. Falling back to local copy...")
+if(NOT LibXml2_FOUND)
+    message(STATUS "System LibXml2 not found. Falling back to local copy...")
 
-find_library(LIBXML_LIB
-    NAMES xml2 libxml2 libxml2.so libxml2.a
-    PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
-)
-set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
-
-if(NOT LIBXML_LIB)
-    message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
-
-    # Configure
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} -S ${LIBXML_DIR} -B ${LIBXML_DIR}/build
-        RESULT_VARIABLE _res_conf
-        OUTPUT_VARIABLE _out_conf
-        ERROR_VARIABLE  _err_conf
+    find_library(LIBXML_LIB
+        NAMES xml2 libxml2 libxml2.so libxml2.a
+        PATHS "${THIRD_PARTY_DIR}/libxml2/build/"
     )
-    if(NOT _res_conf EQUAL 0)
-        message(FATAL_ERROR "LibXml2 CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+    set(LIBXML_DIR "${THIRD_PARTY_DIR}/libxml2")
+
+    if(NOT LIBXML_LIB)
+        message(STATUS "LIBXML2 library not found at ${THIRD_PARTY_DIR}/libxml2/build/. Installing (configure-time).")
+
+        # Configure
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} -S ${LIBXML_DIR} -B ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_conf
+            OUTPUT_VARIABLE _out_conf
+            ERROR_VARIABLE  _err_conf
+        )
+        if(NOT _res_conf EQUAL 0)
+            message(FATAL_ERROR "LibXml2 CMake configure failed (exit ${_res_conf}).\nstdout:\n${_out_conf}\nstderr:\n${_err_conf}")
+        endif()
+
+        # Build
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} --build ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_build
+            OUTPUT_VARIABLE _out_build
+            ERROR_VARIABLE  _err_build
+        )
+        if(NOT _res_build EQUAL 0)
+            message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
+        endif()
+
+        # Install
+        execute_process(
+            COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build
+            RESULT_VARIABLE _res_inst
+            OUTPUT_VARIABLE _out_inst
+            ERROR_VARIABLE  _err_inst
+        )
+        if(NOT _res_inst EQUAL 0)
+            message(FATAL_ERROR "LibXml2 install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
+        endif()
+
+        # Update library search path
     endif()
+endif()
 
-    # Build
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --build ${LIBXML_DIR}/build
-        RESULT_VARIABLE _res_build
-        OUTPUT_VARIABLE _out_build
-        ERROR_VARIABLE  _err_build
-    )
-    if(NOT _res_build EQUAL 0)
-        message(FATAL_ERROR "LibXml2 build failed (exit ${_res_build}).\nstdout:\n${_out_build}\nstderr:\n${_err_build}")
-    endif()
-
-#         # Install
-#         execute_process(
-#             COMMAND ${CMAKE_COMMAND} --install ${LIBXML_DIR}/build
-#             RESULT_VARIABLE _res_inst
-#             OUTPUT_VARIABLE _out_inst
-#             ERROR_VARIABLE  _err_inst
-#         )
-#         if(NOT _res_inst EQUAL 0)
-#             message(FATAL_ERROR "LibXml2 install failed (exit ${_res_inst}).\nstdout:\n${_out_inst}\nstderr:\n${_err_inst}")
-#         endif()
-
-#         # Update library search path
-    endif()
-# endif()
-
-add_subdirectory(extern/libxml2)
-set(LIBXML_INCLUDE_DIR "${LIBXML_DIR}/include/libxml2/libxml")
-set(LIBXML_LIBRARY "${LIBXML_DIR}/build/libxml2.so")
 message(STATUS "LibXml2 include: ${LIBXML_INCLUDE_DIR}")
 message(STATUS "LibXml2 library: ${LIBXML_LIBRARY}")
 
