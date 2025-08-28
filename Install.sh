@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # persistent environment variable
-echo "export SINGLECELL_PATH="/SingleCell" >> ~/.bashrc
+echo 'export SINGLECELL_PATH="/SingleCell"' >> ~/.bashrc
 
 # Install pipx tool
 pipx ensurepath

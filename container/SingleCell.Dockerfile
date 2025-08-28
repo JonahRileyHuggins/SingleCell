@@ -11,7 +11,8 @@ FROM python:3.12-slim
 ENV DEBIAN_FRONTEND=noninteractive \
     SHELL=/bin/bash \
     BLAS_LIBS=-lopenblas \
-    PATH=/root/.local/bin:$PATH 
+    SINGLECELL_PATH=/SingleCell \
+    PATH=/root/.local/bin:$PATH
 
 # Install basic dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -42,6 +43,9 @@ RUN find . -type f -name "*.sh" -exec dos2unix {} \; \
 
 # Install dependencies
 RUN ./Install.sh
+
+# For HPC:
+# RUN /root/.local/bin/SingleCell Build -p ./data/config.yaml 
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]
