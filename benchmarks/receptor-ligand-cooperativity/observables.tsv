@@ -1,5 +1,5 @@
 observableId	observableFormula	noiseFormula
-EE1_species	cyt_prot__EGF__EGFR_*1.0	1
+EE1_species	cyt_prot__EGF__EGFR_	1
 HE3_species	cyt_prot__NRG1__ERBB3_	1
 HE4_species	cyt_prot__NRG1__ERBB4_	1
 HGF_species	cyt_prot__HGF__MET_	1
@@ -7,6 +7,8 @@ Ppr_species	cyt_prot__PDGFB__PDGFRB_	1
 Ffr_species	cyt_prot__FGF__FGFR_	1
 EE1E2_species	cyt_prot__EGF__EGFR__ERBB2_	1
 EE1Ev3_species	cyt_prot__EGF__EGFR__EGFRvIII_	1
+EE1E1_species	cyt_prot__EGF__EGFR__EGFR_	1
+EE1E3_species	cyt_prot__EGF__EGFR__ERBB3_	1
 EE1E4_species	cyt_prot__EGF__EGFR__ERBB4_	1
 E2HE3_species	cyt_prot__ERBB2__NRG1__ERBB3_	1
 E1HE3_species	cyt_prot__EGFR__NRG1__ERBB3_	1

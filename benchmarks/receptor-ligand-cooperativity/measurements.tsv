@@ -7,6 +7,8 @@ Ppr_species	EGF_0p001		3600
 Ffr_species	EGF_0p001		3600
 EE1E2_species	EGF_0p001		3600
 EE1Ev3_species	EGF_0p001		3600
+EE1E1_species	EGF_0p001		3600
+EE1E3_species	EGF_0p001		3600
 EE1E4_species	EGF_0p001		3600
 E2HE3_species	EGF_0p001		3600
 E1HE3_species	EGF_0p001		3600
@@ -42,6 +44,8 @@ Ppr_species	EGF_0p01		3600
 Ffr_species	EGF_0p01		3600
 EE1E2_species	EGF_0p01		3600
 EE1Ev3_species	EGF_0p01		3600
+EE1E1_species	EGF_0p01		3600
+EE1E3_species	EGF_0p01		3600
 EE1E4_species	EGF_0p01		3600
 E2HE3_species	EGF_0p01		3600
 E1HE3_species	EGF_0p01		3600
@@ -77,6 +81,8 @@ Ppr_species	EGF_0p1		3600
 Ffr_species	EGF_0p1		3600
 EE1E2_species	EGF_0p1		3600
 EE1Ev3_species	EGF_0p1		3600
+EE1E1_species	EGF_0p1		3600
+EE1E3_species	EGF_0p1		3600
 EE1E4_species	EGF_0p1		3600
 E2HE3_species	EGF_0p1		3600
 E1HE3_species	EGF_0p1		3600
@@ -112,6 +118,8 @@ Ppr_species	EGF_1		3600
 Ffr_species	EGF_1		3600
 EE1E2_species	EGF_1		3600
 EE1Ev3_species	EGF_1		3600
+EE1E1_species	EGF_1		3600
+EE1E3_species	EGF_1		3600
 EE1E4_species	EGF_1		3600
 E2HE3_species	EGF_1		3600
 E1HE3_species	EGF_1		3600
@@ -147,6 +155,8 @@ Ppr_species	EGF_10		3600
 Ffr_species	EGF_10		3600
 EE1E2_species	EGF_10		3600
 EE1Ev3_species	EGF_10		3600
+EE1E1_species	EGF_10		3600
+EE1E3_species	EGF_10		3600
 EE1E4_species	EGF_10		3600
 E2HE3_species	EGF_10		3600
 E1HE3_species	EGF_10		3600
@@ -182,6 +192,8 @@ Ppr_species	EGF_100		3600
 Ffr_species	EGF_100		3600
 EE1E2_species	EGF_100		3600
 EE1Ev3_species	EGF_100		3600
+EE1E1_species	EGF_100		3600
+EE1E3_species	EGF_100		3600
 EE1E4_species	EGF_100		3600
 E2HE3_species	EGF_100		3600
 E1HE3_species	EGF_100		3600
@@ -217,6 +229,8 @@ Ppr_species	EGF_1000		3600
 Ffr_species	EGF_1000		3600
 EE1E2_species	EGF_1000		3600
 EE1Ev3_species	EGF_1000		3600
+EE1E1_species	EGF_1000		3600
+EE1E3_species	EGF_1000		3600
 EE1E4_species	EGF_1000		3600
 E2HE3_species	EGF_1000		3600
 E1HE3_species	EGF_1000		3600
@@ -252,6 +266,8 @@ Ppr_species	H_0p001		3600
 Ffr_species	H_0p001		3600
 EE1E2_species	H_0p001		3600
 EE1Ev3_species	H_0p001		3600
+EE1E1_species	H_0p001		3600
+EE1E3_species	H_0p001		3600
 EE1E4_species	H_0p001		3600
 E2HE3_species	H_0p001		3600
 E1HE3_species	H_0p001		3600
@@ -287,6 +303,8 @@ Ppr_species	H_0p01		3600
 Ffr_species	H_0p01		3600
 EE1E2_species	H_0p01		3600
 EE1Ev3_species	H_0p01		3600
+EE1E1_species	H_0p01		3600
+EE1E3_species	H_0p01		3600
 EE1E4_species	H_0p01		3600
 E2HE3_species	H_0p01		3600
 E1HE3_species	H_0p01		3600
@@ -322,6 +340,8 @@ Ppr_species	H_0p1		3600
 Ffr_species	H_0p1		3600
 EE1E2_species	H_0p1		3600
 EE1Ev3_species	H_0p1		3600
+EE1E1_species	H_0p1		3600
+EE1E3_species	H_0p1		3600
 EE1E4_species	H_0p1		3600
 E2HE3_species	H_0p1		3600
 E1HE3_species	H_0p1		3600
@@ -357,6 +377,8 @@ Ppr_species	H_1		3600
 Ffr_species	H_1		3600
 EE1E2_species	H_1		3600
 EE1Ev3_species	H_1		3600
+EE1E1_species	H_1		3600
+EE1E3_species	H_1		3600
 EE1E4_species	H_1		3600
 E2HE3_species	H_1		3600
 E1HE3_species	H_1		3600
@@ -392,6 +414,8 @@ Ppr_species	H_10		3600
 Ffr_species	H_10		3600
 EE1E2_species	H_10		3600
 EE1Ev3_species	H_10		3600
+EE1E1_species	H_10		3600
+EE1E3_species	H_10		3600
 EE1E4_species	H_10		3600
 E2HE3_species	H_10		3600
 E1HE3_species	H_10		3600
@@ -427,6 +451,8 @@ Ppr_species	H_100		3600
 Ffr_species	H_100		3600
 EE1E2_species	H_100		3600
 EE1Ev3_species	H_100		3600
+EE1E1_species	H_100		3600
+EE1E3_species	H_100		3600
 EE1E4_species	H_100		3600
 E2HE3_species	H_100		3600
 E1HE3_species	H_100		3600
@@ -462,6 +488,8 @@ Ppr_species	H_1000		3600
 Ffr_species	H_1000		3600
 EE1E2_species	H_1000		3600
 EE1Ev3_species	H_1000		3600
+EE1E1_species	H_1000		3600
+EE1E3_species	H_1000		3600
 EE1E4_species	H_1000		3600
 E2HE3_species	H_1000		3600
 E1HE3_species	H_1000		3600
@@ -497,6 +525,8 @@ Ppr_species	HGF_0p001		3600
 Ffr_species	HGF_0p001		3600
 EE1E2_species	HGF_0p001		3600
 EE1Ev3_species	HGF_0p001		3600
+EE1E1_species	HGF_0p001		3600
+EE1E3_species	HGF_0p001		3600
 EE1E4_species	HGF_0p001		3600
 E2HE3_species	HGF_0p001		3600
 E1HE3_species	HGF_0p001		3600
@@ -532,6 +562,8 @@ Ppr_species	HGF_0p01		3600
 Ffr_species	HGF_0p01		3600
 EE1E2_species	HGF_0p01		3600
 EE1Ev3_species	HGF_0p01		3600
+EE1E1_species	HGF_0p01		3600
+EE1E3_species	HGF_0p01		3600
 EE1E4_species	HGF_0p01		3600
 E2HE3_species	HGF_0p01		3600
 E1HE3_species	HGF_0p01		3600
@@ -567,6 +599,8 @@ Ppr_species	HGF_0p1		3600
 Ffr_species	HGF_0p1		3600
 EE1E2_species	HGF_0p1		3600
 EE1Ev3_species	HGF_0p1		3600
+EE1E1_species	HGF_0p1		3600
+EE1E3_species	HGF_0p1		3600
 EE1E4_species	HGF_0p1		3600
 E2HE3_species	HGF_0p1		3600
 E1HE3_species	HGF_0p1		3600
@@ -602,6 +636,8 @@ Ppr_species	HGF_1		3600
 Ffr_species	HGF_1		3600
 EE1E2_species	HGF_1		3600
 EE1Ev3_species	HGF_1		3600
+EE1E1_species	HGF_1		3600
+EE1E3_species	HGF_1		3600
 EE1E4_species	HGF_1		3600
 E2HE3_species	HGF_1		3600
 E1HE3_species	HGF_1		3600
@@ -637,6 +673,8 @@ Ppr_species	HGF_10		3600
 Ffr_species	HGF_10		3600
 EE1E2_species	HGF_10		3600
 EE1Ev3_species	HGF_10		3600
+EE1E1_species	HGF_10		3600
+EE1E3_species	HGF_10		3600
 EE1E4_species	HGF_10		3600
 E2HE3_species	HGF_10		3600
 E1HE3_species	HGF_10		3600
@@ -672,6 +710,8 @@ Ppr_species	HGF_100		3600
 Ffr_species	HGF_100		3600
 EE1E2_species	HGF_100		3600
 EE1Ev3_species	HGF_100		3600
+EE1E1_species	HGF_100		3600
+EE1E3_species	HGF_100		3600
 EE1E4_species	HGF_100		3600
 E2HE3_species	HGF_100		3600
 E1HE3_species	HGF_100		3600
@@ -707,6 +747,8 @@ Ppr_species	HGF_1000		3600
 Ffr_species	HGF_1000		3600
 EE1E2_species	HGF_1000		3600
 EE1Ev3_species	HGF_1000		3600
+EE1E1_species	HGF_1000		3600
+EE1E3_species	HGF_1000		3600
 EE1E4_species	HGF_1000		3600
 E2HE3_species	HGF_1000		3600
 E1HE3_species	HGF_1000		3600
@@ -742,6 +784,8 @@ Ppr_species	P_0p001		3600
 Ffr_species	P_0p001		3600
 EE1E2_species	P_0p001		3600
 EE1Ev3_species	P_0p001		3600
+EE1E1_species	P_0p001		3600
+EE1E3_species	P_0p001		3600
 EE1E4_species	P_0p001		3600
 E2HE3_species	P_0p001		3600
 E1HE3_species	P_0p001		3600
@@ -777,6 +821,8 @@ Ppr_species	P_0p01		3600
 Ffr_species	P_0p01		3600
 EE1E2_species	P_0p01		3600
 EE1Ev3_species	P_0p01		3600
+EE1E1_species	P_0p01		3600
+EE1E3_species	P_0p01		3600
 EE1E4_species	P_0p01		3600
 E2HE3_species	P_0p01		3600
 E1HE3_species	P_0p01		3600
@@ -812,6 +858,8 @@ Ppr_species	P_0p1		3600
 Ffr_species	P_0p1		3600
 EE1E2_species	P_0p1		3600
 EE1Ev3_species	P_0p1		3600
+EE1E1_species	P_0p1		3600
+EE1E3_species	P_0p1		3600
 EE1E4_species	P_0p1		3600
 E2HE3_species	P_0p1		3600
 E1HE3_species	P_0p1		3600
@@ -847,6 +895,8 @@ Ppr_species	P_1		3600
 Ffr_species	P_1		3600
 EE1E2_species	P_1		3600
 EE1Ev3_species	P_1		3600
+EE1E1_species	P_1		3600
+EE1E3_species	P_1		3600
 EE1E4_species	P_1		3600
 E2HE3_species	P_1		3600
 E1HE3_species	P_1		3600
@@ -882,6 +932,8 @@ Ppr_species	P_10		3600
 Ffr_species	P_10		3600
 EE1E2_species	P_10		3600
 EE1Ev3_species	P_10		3600
+EE1E1_species	P_10		3600
+EE1E3_species	P_10		3600
 EE1E4_species	P_10		3600
 E2HE3_species	P_10		3600
 E1HE3_species	P_10		3600
@@ -917,6 +969,8 @@ Ppr_species	P_100		3600
 Ffr_species	P_100		3600
 EE1E2_species	P_100		3600
 EE1Ev3_species	P_100		3600
+EE1E1_species	P_100		3600
+EE1E3_species	P_100		3600
 EE1E4_species	P_100		3600
 E2HE3_species	P_100		3600
 E1HE3_species	P_100		3600
@@ -952,6 +1006,8 @@ Ppr_species	P_1000		3600
 Ffr_species	P_1000		3600
 EE1E2_species	P_1000		3600
 EE1Ev3_species	P_1000		3600
+EE1E1_species	P_1000		3600
+EE1E3_species	P_1000		3600
 EE1E4_species	P_1000		3600
 E2HE3_species	P_1000		3600
 E1HE3_species	P_1000		3600
@@ -987,6 +1043,8 @@ Ppr_species	F_0p001		3600
 Ffr_species	F_0p001		3600
 EE1E2_species	F_0p001		3600
 EE1Ev3_species	F_0p001		3600
+EE1E1_species	F_0p001		3600
+EE1E3_species	F_0p001		3600
 EE1E4_species	F_0p001		3600
 E2HE3_species	F_0p001		3600
 E1HE3_species	F_0p001		3600
@@ -1022,6 +1080,8 @@ Ppr_species	F_0p01		3600
 Ffr_species	F_0p01		3600
 EE1E2_species	F_0p01		3600
 EE1Ev3_species	F_0p01		3600
+EE1E1_species	F_0p01		3600
+EE1E3_species	F_0p01		3600
 EE1E4_species	F_0p01		3600
 E2HE3_species	F_0p01		3600
 E1HE3_species	F_0p01		3600
@@ -1057,6 +1117,8 @@ Ppr_species	F_0p1		3600
 Ffr_species	F_0p1		3600
 EE1E2_species	F_0p1		3600
 EE1Ev3_species	F_0p1		3600
+EE1E1_species	F_0p1		3600
+EE1E3_species	F_0p1		3600
 EE1E4_species	F_0p1		3600
 E2HE3_species	F_0p1		3600
 E1HE3_species	F_0p1		3600
@@ -1092,6 +1154,8 @@ Ppr_species	F_1		3600
 Ffr_species	F_1		3600
 EE1E2_species	F_1		3600
 EE1Ev3_species	F_1		3600
+EE1E1_species	F_1		3600
+EE1E3_species	F_1		3600
 EE1E4_species	F_1		3600
 E2HE3_species	F_1		3600
 E1HE3_species	F_1		3600
@@ -1127,6 +1191,8 @@ Ppr_species	F_10		3600
 Ffr_species	F_10		3600
 EE1E2_species	F_10		3600
 EE1Ev3_species	F_10		3600
+EE1E1_species	F_10		3600
+EE1E3_species	F_10		3600
 EE1E4_species	F_10		3600
 E2HE3_species	F_10		3600
 E1HE3_species	F_10		3600
@@ -1162,6 +1228,8 @@ Ppr_species	F_100		3600
 Ffr_species	F_100		3600
 EE1E2_species	F_100		3600
 EE1Ev3_species	F_100		3600
+EE1E1_species	F_100		3600
+EE1E3_species	F_100		3600
 EE1E4_species	F_100		3600
 E2HE3_species	F_100		3600
 E1HE3_species	F_100		3600
@@ -1197,6 +1265,8 @@ Ppr_species	EGF_10		3600
 Ffr_species	EGF_10		3600
 EE1E2_species	EGF_10		3600
 EE1Ev3_species	EGF_10		3600
+EE1E1_species	EGF_10		3600
+EE1E3_species	EGF_10		3600
 EE1E4_species	EGF_10		3600
 E2HE3_species	EGF_10		3600
 E1HE3_species	EGF_10		3600
@@ -1232,6 +1302,8 @@ Ppr_species	F_1000		3600
 Ffr_species	F_1000		3600
 EE1E2_species	F_1000		3600
 EE1Ev3_species	F_1000		3600
+EE1E1_species	F_1000		3600
+EE1E3_species	F_1000		3600
 EE1E4_species	F_1000		3600
 E2HE3_species	F_1000		3600
 E1HE3_species	F_1000		3600
@@ -1267,6 +1339,8 @@ Ppr_species	I_0p001		3600
 Ffr_species	I_0p001		3600
 EE1E2_species	I_0p001		3600
 EE1Ev3_species	I_0p001		3600
+EE1E1_species	I_0p001		3600
+EE1E3_species	I_0p001		3600
 EE1E4_species	I_0p001		3600
 E2HE3_species	I_0p001		3600
 E1HE3_species	I_0p001		3600
@@ -1302,6 +1376,8 @@ Ppr_species	I_0p01		3600
 Ffr_species	I_0p01		3600
 EE1E2_species	I_0p01		3600
 EE1Ev3_species	I_0p01		3600
+EE1E1_species	I_0p01		3600
+EE1E3_species	I_0p01		3600
 EE1E4_species	I_0p01		3600
 E2HE3_species	I_0p01		3600
 E1HE3_species	I_0p01		3600
@@ -1337,6 +1413,8 @@ Ppr_species	I_0p1		3600
 Ffr_species	I_0p1		3600
 EE1E2_species	I_0p1		3600
 EE1Ev3_species	I_0p1		3600
+EE1E1_species	I_0p1		3600
+EE1E3_species	I_0p1		3600
 EE1E4_species	I_0p1		3600
 E2HE3_species	I_0p1		3600
 E1HE3_species	I_0p1		3600
@@ -1372,6 +1450,8 @@ Ppr_species	I_1		3600
 Ffr_species	I_1		3600
 EE1E2_species	I_1		3600
 EE1Ev3_species	I_1		3600
+EE1E1_species	I_1		3600
+EE1E3_species	I_1		3600
 EE1E4_species	I_1		3600
 E2HE3_species	I_1		3600
 E1HE3_species	I_1		3600
@@ -1407,6 +1487,8 @@ Ppr_species	I_10		3600
 Ffr_species	I_10		3600
 EE1E2_species	I_10		3600
 EE1Ev3_species	I_10		3600
+EE1E1_species	I_10		3600
+EE1E3_species	I_10		3600
 EE1E4_species	I_10		3600
 E2HE3_species	I_10		3600
 E1HE3_species	I_10		3600
@@ -1442,6 +1524,8 @@ Ppr_species	I_100		3600
 Ffr_species	I_100		3600
 EE1E2_species	I_100		3600
 EE1Ev3_species	I_100		3600
+EE1E1_species	I_100		3600
+EE1E3_species	I_100		3600
 EE1E4_species	I_100		3600
 E2HE3_species	I_100		3600
 E1HE3_species	I_100		3600
@@ -1477,6 +1561,8 @@ Ppr_species	I_1000		3600
 Ffr_species	I_1000		3600
 EE1E2_species	I_1000		3600
 EE1Ev3_species	I_1000		3600
+EE1E1_species	I_1000		3600
+EE1E3_species	I_1000		3600
 EE1E4_species	I_1000		3600
 E2HE3_species	I_1000		3600
 E1HE3_species	I_1000		3600
@@ -1512,6 +1598,8 @@ Ppr_species	INS_0p001		3600
 Ffr_species	INS_0p001		3600
 EE1E2_species	INS_0p001		3600
 EE1Ev3_species	INS_0p001		3600
+EE1E1_species	INS_0p001		3600
+EE1E3_species	INS_0p001		3600
 EE1E4_species	INS_0p001		3600
 E2HE3_species	INS_0p001		3600
 E1HE3_species	INS_0p001		3600
@@ -1547,6 +1635,8 @@ Ppr_species	INS_0p01		3600
 Ffr_species	INS_0p01		3600
 EE1E2_species	INS_0p01		3600
 EE1Ev3_species	INS_0p01		3600
+EE1E1_species	INS_0p01		3600
+EE1E3_species	INS_0p01		3600
 EE1E4_species	INS_0p01		3600
 E2HE3_species	INS_0p01		3600
 E1HE3_species	INS_0p01		3600
@@ -1582,6 +1672,8 @@ Ppr_species	INS_0p1		3600
 Ffr_species	INS_0p1		3600
 EE1E2_species	INS_0p1		3600
 EE1Ev3_species	INS_0p1		3600
+EE1E1_species	INS_0p1		3600
+EE1E3_species	INS_0p1		3600
 EE1E4_species	INS_0p1		3600
 E2HE3_species	INS_0p1		3600
 E1HE3_species	INS_0p1		3600
@@ -1617,6 +1709,8 @@ Ppr_species	INS_1		3600
 Ffr_species	INS_1		3600
 EE1E2_species	INS_1		3600
 EE1Ev3_species	INS_1		3600
+EE1E1_species	INS_1		3600
+EE1E3_species	INS_1		3600
 EE1E4_species	INS_1		3600
 E2HE3_species	INS_1		3600
 E1HE3_species	INS_1		3600
@@ -1652,6 +1746,8 @@ Ppr_species	INS_10		3600
 Ffr_species	INS_10		3600
 EE1E2_species	INS_10		3600
 EE1Ev3_species	INS_10		3600
+EE1E1_species	INS_10		3600
+EE1E3_species	INS_10		3600
 EE1E4_species	INS_10		3600
 E2HE3_species	INS_10		3600
 E1HE3_species	INS_10		3600
@@ -1687,6 +1783,8 @@ Ppr_species	INS_100		3600
 Ffr_species	INS_100		3600
 EE1E2_species	INS_100		3600
 EE1Ev3_species	INS_100		3600
+EE1E1_species	INS_100		3600
+EE1E3_species	INS_100		3600
 EE1E4_species	INS_100		3600
 E2HE3_species	INS_100		3600
 E1HE3_species	INS_100		3600
@@ -1722,6 +1820,8 @@ Ppr_species	INS_1000		3600
 Ffr_species	INS_1000		3600
 EE1E2_species	INS_1000		3600
 EE1Ev3_species	INS_1000		3600
+EE1E1_species	INS_1000		3600
+EE1E3_species	INS_1000		3600
 EE1E4_species	INS_1000		3600
 E2HE3_species	INS_1000		3600
 E1HE3_species	INS_1000		3600
