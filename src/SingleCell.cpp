@@ -45,8 +45,7 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
     // Identify all module overlaps between source & targets
     this->findModuleOverlaps();
-    std::cout << "Id's overlapping params without error" << "\n";
-
+    
     // Add simulation time steps, results matrix
     this->setGlobalSimulationSettings(
         start,
