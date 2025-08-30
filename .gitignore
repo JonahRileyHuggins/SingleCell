@@ -225,6 +225,7 @@ amici_models/Deterministic/*
 results.txt
 build/*
 benchmarks/*/results/*
+benchmarks/*.png
 !extern/AMICI/python/sdist/**
 
 # hide compiled libxml build
