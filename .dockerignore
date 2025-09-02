@@ -7,7 +7,14 @@ build*
 kube*
 *nextflow*
 main*
-.git*
+.git
+.gitignore
 *.md
 .cache
 results*
+*/build
+**/venv
+extern/AMICI/build
+extern/AMICI/ThirdParty/SuiteSparse/build/*
+extern/AMICI/ThirdParty/sundials/build/*
+extern/libxml2/build/*

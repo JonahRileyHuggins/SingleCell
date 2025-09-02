@@ -41,7 +41,7 @@ std::vector<double> BaseModule::setTimeSteps(double start, double stop, double s
     std::vector<double> timepoints;
 
     // For loop for calculation
-    for (double val = start; val < stop; val +=step) {
+    for (double val = start; val < stop+step; val +=step) {
 
         timepoints.push_back(val);
     }
