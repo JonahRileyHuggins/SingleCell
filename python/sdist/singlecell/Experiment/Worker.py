@@ -98,7 +98,7 @@ class Worker:
             results_array = self.single_cell.simulate(0.0, stop_time, 30.0)
 
             results = pd.DataFrame(results_array, columns=state_ids)
-            results['time'] = np.arange(0, stop_time, 30)
+            results['time'] = np.arange(0, stop_time+30.0, 30.0)
 
             parcel = self.__package_results(results, condition_id, cell)
 
