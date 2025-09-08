@@ -203,6 +203,7 @@ def parse_args():
     # ----- [Tool: unit converter] -----------
     uc_parser = tool_subparsers.add_parser(
         'unit_converter',
+        parents=[shared_parser],
         help='Convert between nanomolar and molecules per cell.'
     )
     uc_group = uc_parser.add_argument_group("Unit Converter Options")
@@ -220,14 +221,16 @@ def parse_args():
     )
 
     # ----- [Tool: incorrect inspector] -----
-    tool_subparsers.add_parser(
+    ii = tool_subparsers.add_parser(
         'incorrect_inspector',
+        parents=[shared_parser],
         help='Identify incorrectly specified parameters.'
     )
 
     # ----- [Tool: species name converter] ---
-    tool_subparsers.add_parser(
+    snc = tool_subparsers.add_parser(
         'species_name_converter',
+        parents=[shared_parser],
         help='Replace old species names with new names.'
     )
 
