@@ -20,8 +20,8 @@ import sys
 import logging
 
 sys.path.append('../../')
-from shared_utils.file_loader import FileLoader, Config
-from shared_utils.utils import parse_kwargs
+from singlecell.shared_utils.file_loader import FileLoader, Config
+from singlecell.shared_utils.utils import parse_kwargs
 
 
 logging.basicConfig(
@@ -45,9 +45,7 @@ def convert(config_path: os.PathLike, verbose = False, **kwargs) -> None:
     loader = FileLoader(config_path)
     logger.debug("Loaded configuration successfully")
 
-    
-    project_root = "./../../../" # Single cell root directory
-    config_base = os.path.join(project_root, loader.config.get("location", ""))
+    config_base = os.path.join(os.path.dirname(config_path), loader.config.get("location", ""))
 
 
     name_map = handle_mapping(loader, **kwargs)
@@ -88,12 +86,12 @@ def convert(config_path: os.PathLike, verbose = False, **kwargs) -> None:
 def handle_mapping(loader: dict, **kwargs) -> dict:
     """Takes the config file and returns dictionary with properly formatted key-value pairs"""
     
-    config_path = os.path.join(os.getcwd(), os.path.dirname(loader.config_path))
+    # config_path = os.path.join(os.getcwd(), os.path.dirname(loader.config_path))
 
     logger.debug("Loading old names from: %s", loader.config.swap_files.old.filename)
     old_file = Config.file_loader(
         os.path.join(
-            config_path, 
+            os.path.dirname(loader.config_path), 
             loader.config.swap_files.old.filename
         ), 
         **kwargs
@@ -105,7 +103,7 @@ def handle_mapping(loader: dict, **kwargs) -> dict:
 
     new_file = Config.file_loader(
         os.path.join(
-            config_path,
+            os.path.dirname(loader.config_path),
             loader.config.swap_files.new.filename
         ), 
         **kwargs

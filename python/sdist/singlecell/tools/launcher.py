@@ -6,9 +6,9 @@ Author: Jonah Huggins
 
 Decider / Launcher script for tool belt submodule
 """
-from incorrect_inspector import incorrect_inspector
-from species_name_converter import convert
-from unit_converter import nanomolar2mpc, mpc2nanomolar
+from singlecell.tools.incorrect_inspector import incorrect_inspector
+from singlecell.tools.species_name_converter import convert
+from singlecell.tools.unit_converter import nanomolar2mpc, mpc2nanomolar
 
 from types import SimpleNamespace
 
