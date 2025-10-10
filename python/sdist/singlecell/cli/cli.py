@@ -40,14 +40,15 @@ def main():
         Run a single simulation with a set of conditions.
         """
         from singlecell.Simulate.SingleCell import SingleCell
-        SingleCell(args).simulate()
+        sbml_files = args.sbml
+        sc = SingleCell(sbml_files).simulate(args.start, args.stop, args.step)
 
     elif args.command == "Experiment":
         """
         Handle Experiment subcommand. 
         Module to automate model-data comparisons and complex simulations. 
         """
-        from singlecell.Experiment.launcher import Experimentalist
+        from singlecell.Benchtop.src.benchtop.launcher import Experimentalist
         Experimentalist(args)
 
     elif args.command == "Tool":

@@ -4,9 +4,9 @@ script name: SingleCell.py
 Created on Thurs. 2025-04-12 20:29:00
 Author: Jonah R. Huggins
 
-Description: [**PROTOTYPE**] entrypoint for the SPARCED model simulation. Parsing and wrapper \n
+Description: [**PROTOTYPE**] entrypoint for model simulation. Parsing and wrapper \n
 function that takes model attributes, performs basic data handling, and passes \n
-initial model state array to SPARCED C++ simulation engine  
+initial model state array to C++ simulation engine  
 
 Input: Simulation Settings
 
@@ -16,11 +16,13 @@ Output:
 """
 # -----------------------Package Import & Defined Arguements-------------------#
 import os
+import sys
 import importlib.util
-import argparse
-import json
 
 import pandas as pd
+
+sys.path.append('../')
+from Benchtop.src.benchtop.AbstractSimulator import AbstractSimulator
 
 # Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
@@ -37,48 +39,34 @@ spec = importlib.util.spec_from_file_location("pySingleCell", so_path)
 pySingleCell = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pySingleCell)
 
-# Access class symbols
+# Access class symbols, SC so python doesn't confuse with wrapper class
 SC = pySingleCell.SingleCell
 
-# Arguement Parsing (Internal For Now)
-parser = argparse.ArgumentParser(
-        description='Basic script for running single simulations with the SPARCED model'
-        )
-parser.add_argument(
-        '--sbml', 
-        '-s', 
-        help='SBMLs to be simulated.', 
-        nargs='+', 
-        default=['../../sbml_files/One4All.xml']
-        )
-parser.add_argument(
-        '--modify', 
-        '-m', 
-        metavar='KEY=VALUE', 
-        nargs='+',
-        help='Species to modify in key=value format', 
-        default=[]
-        )
-parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
-parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
-parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
-parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
-
 #-------------------Class Definition-----------------------------------------#
-class SingleCell:
-    """Primary instance of the single cell for simulation."""
+class SingleCell(AbstractSimulator):
+    """Wrapper Class for C++ interface"""
 
-    def __init__(self, args):
-        self.single_cell = SC(*args.sbml)
-        self.start = args.start
-        self.stop = args.stop
-        self.step = args.step
-        self.modify = args.modify
-        self.output = args.output
+    def __init__(self, *args, **kwargs):
+        """
+        Populates self.tool with custom module, enables extensibility in 
+        experiment framework
+        """
+        super().__init__(args, kwargs)
 
+    def load(self,*args, **kwargs) -> SC:
+        """Passes sbml files in args to SingleCell constructor"""
+        
+        sbml_list = []
 
-    
-    def simulate(self):
+        for sbml_path in args:
+            sbml_list.append(sbml_path)
+        
+        self.tool(*sbml_list)
+
+    def getStateIds(self, *args, **kwargs) -> list:
+        return self.tool.getGlobalSpeciesIds()
+
+    def simulate(self, start, stop, step) -> pd.DataFrame:
         """Primary simulation function using hybrid stochastic-deterministic method
 
         Parameters:
@@ -87,33 +75,24 @@ class SingleCell:
             - results_dataframe (pd.DataFrame): finalized results of simulation. 
         """
 
-        for pair in self.modify:
-            if '=' in pair:
-                key, val = pair.split('=', 1)
-                print("Setting %s to value %d", key, float(val))
-                self.single_cell.modify(key, float(val))
-
-        results_array = self.single_cell.simulate(
-            self.start,
-            self.stop, 
-            self.step
+        results_array = self.tool.simulate(
+            start,
+            stop, 
+            step
             )
 
-        speciesIds = self.single_cell.getGlobalSpeciesIds()
+        speciesIds = self.tool.getGlobalSpeciesIds()
 
         results_df = pd.DataFrame(results_array, columns=speciesIds)
 
-        results_df.to_csv(self.output, sep = '\t', index = False)
+        return results_df
 
-
-def parse_dict_arg(arg_string):
-    try:
-        return json.loads(arg_string)
-    except json.JSONDecodeError:
-        raise argparse.ArgumentTypeError(f"Invalid JSON format: '{arg_string}'")
-
-
-if __name__ == '__main__':
-    args = parser.parse_args()
-
-    SingleCell(args).simulate()
+    def modify(
+            self, 
+            component: str, 
+            value: int | float
+            ):
+        """
+        Method for SingleCell simulator modify method
+        """
+        self.tool.modify(component, float(value))

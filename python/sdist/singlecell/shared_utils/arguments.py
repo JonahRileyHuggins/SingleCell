@@ -173,6 +173,18 @@ def parse_args():
         help=f"Number of parallel processes (default: {os.cpu_count()})."
     )
     exp_group.add_argument(
+        '--cache_dir',
+        type=str,
+        default='./.cache',
+        help=f"Cache directory for storing simulations"
+    )
+    exp_group.add_argument(
+        '--load_index',
+        type=bool,
+        default=False,
+        help=f"Loads cached index file for last experiment"
+    )
+    exp_group.add_argument(
         '--No_Observables',
         action='store_true',
         help="Disable observable downsampling defined in observables.tsv."
