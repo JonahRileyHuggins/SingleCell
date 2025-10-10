@@ -146,12 +146,12 @@ class CellDeathMetrics:
         
         return condition_averaged_times
 
-    def death_ratio(self, percent:Optional[bool] = False):
+    def death_ratio(self, threshold:Optional[float] = 100.0 , percent:Optional[bool] = False):
         """ Returns the ratio of dead cells for each condition in the results\
               dictionary
         Parameters:
-        - time_to_death (dict): dictionary containing the times to death for \
-            each cell per condition from the time_to_death function
+        - threshold (float): value for bool evaluation of cell death
+        - percent (bool): return as percent
 
         Returns:    
         - dead_cells (dict): dictionary containing the ratio of dead cells for \
@@ -160,7 +160,7 @@ class CellDeathMetrics:
         dead_cells = {}
 
         cells_per_condition = {}
-        for _, entry_info in self.time_to_death().items():
+        for _, entry_info in self.time_to_death(threshold).items():
             condition = entry_info['conditionId']
             if condition not in dead_cells:
                 dead_cells[condition] = 0
