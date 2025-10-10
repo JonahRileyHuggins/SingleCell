@@ -4,7 +4,7 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
-
+set(VECTOR_FLAGS -O3 -fopt-info-vec-optimized -fopt-info-vec-missed -fopt-info-vec-all)
 # set(CMAKE_BUILD_TYPE Debug)
 
 # === Paths ===
@@ -186,6 +186,7 @@ target_link_libraries(SingleCell PRIVATE
     pybind11::module
 )
 
+target_compile_options(SingleCell PRIVATE ${VECTOR_FLAGS})
 
 # Copy executable to python directory after build
 add_custom_command(TARGET SingleCell POST_BUILD
@@ -214,7 +215,7 @@ target_link_libraries(pySingleCell PRIVATE
     pybind11::module
 )
 
-
+target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})
 
 # Output directory for .so / .pyd
 set_target_properties(pySingleCell PROPERTIES
