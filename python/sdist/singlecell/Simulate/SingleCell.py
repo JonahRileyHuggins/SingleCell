@@ -21,8 +21,8 @@ import importlib.util
 
 import pandas as pd
 
-sys.path.append(f'{os.path.dirname(__file__)}/Benchtop/src')
-from benchtop.AbstractSimulator import AbstractSimulator
+sys.path.append(f'{os.path.dirname(__file__)}/Benchtop/src/benchtop')
+from AbstractSimulator import AbstractSimulator
 
 # Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(

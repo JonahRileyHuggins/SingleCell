@@ -119,7 +119,7 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
         const std::string component = components_vector[i];
 
         // Check if in SBML as Parameter || Species || Compartment;
-        this->handler.getModelEntityValue(component); 
+        component_value_map[component] = this->handler.getModelEntityValue(component); 
     }
 
     return component_value_map;
