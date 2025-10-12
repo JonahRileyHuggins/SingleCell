@@ -21,8 +21,8 @@ import importlib.util
 
 import pandas as pd
 
-sys.path.append('../')
-from Benchtop.src.benchtop.AbstractSimulator import AbstractSimulator
+sys.path.append(f'{os.path.dirname(__file__)}/Benchtop/src')
+from benchtop.AbstractSimulator import AbstractSimulator
 
 # Absolute path to compiled extension (pySingleCell*.so file)
 so_path = os.path.join(
@@ -44,24 +44,19 @@ SC = pySingleCell.SingleCell
 
 #-------------------Class Definition-----------------------------------------#
 class SingleCell(AbstractSimulator):
-    """Wrapper Class for C++ interface"""
+    """Wrapper Class for C++ interface at pybind exposed methods"""
 
     def __init__(self, *args, **kwargs):
         """
         Populates self.tool with custom module, enables extensibility in 
         experiment framework
         """
-        super().__init__(args, kwargs)
+        super().__init__(*args, **kwargs)
 
     def load(self,*args, **kwargs) -> SC:
-        """Passes sbml files in args to SingleCell constructor"""
+        """Meets parent class loader method for SingleCell loader"""
         
-        sbml_list = []
-
-        for sbml_path in args:
-            sbml_list.append(sbml_path)
-        
-        self.tool(*sbml_list)
+        self.tool = SC(*args)
 
     def getStateIds(self, *args, **kwargs) -> list:
         return self.tool.getGlobalSpeciesIds()
@@ -96,3 +91,42 @@ class SingleCell(AbstractSimulator):
         Method for SingleCell simulator modify method
         """
         self.tool.modify(component, float(value))
+
+
+if __name__ == '__main__':
+    import sys
+    import argparse
+    from Experiment.file_loader import FileLoader
+
+    # Arguement Parsing (Internal For Now)
+    parser = argparse.ArgumentParser(description='Basic script for running single simulations with the SPARCED model')
+
+    parser.add_argument('--sbmls', help="Path to sbml file(s)")
+
+    parser.add_argument('--modify', '-m', metavar='KEY=VALUE', nargs='+',
+                        help='Species to modify in key=value format', default=[])
+    parser.add_argument('--start', help = 'start time in seconds for simulation', default = 0.0)
+    parser.add_argument('--stop', help = 'stop time for simulation.', default = 86400.0)
+    parser.add_argument('--step', help = 'step size of each iteration in the primary for-loop.', default = 30.0)
+    parser.add_argument('--output', help = 'output path', default="singlecell_results.tsv")
+
+    args = parser.parse_args()
+
+    try: 
+        
+        single_cell = SingleCell(*args.sbmls)
+
+    except FileNotFoundError:
+        print("Invalid sbml path supplied")
+        sys.exit(0)
+
+    if 'modify' in args.__dict__.keys():
+        for pair in args.modify:
+            if '=' in pair:
+                key, val = pair.split('=', 1)
+                print("Setting %s to value %d", key, float(val))
+                single_cell.modify(key, float(val))
+
+    results_df = single_cell.simulate(start=args.start, stop=args.stop, step=args.step)
+    
+    results_df.to_csv(args.output, sep='\t', index=False)

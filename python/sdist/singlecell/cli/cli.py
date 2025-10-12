@@ -18,9 +18,10 @@ The script is executed by running the following command in the terminal:
 """
 
 #-----------------------Package Import & Defined Arguements--------------------# 
+import os
 import sys
-sys.path.append('../')
-from singlecell.shared_utils.arguments import parse_args
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from shared_utils.arguments import parse_args
 
 def main():
     """Main entry point."""
@@ -31,7 +32,7 @@ def main():
         Handle the compile subcommand. This script is the method for constructing an \
         AMICI model using SPARCED input files.
         """
-        from singlecell.ModelBuilding.launcher import Builder
+        from ModelBuilding.launcher import Builder
         Builder(args)
 
     elif args.command == "Simulate":
@@ -39,23 +40,25 @@ def main():
         Handle Simulate subcommand.
         Run a single simulation with a set of conditions.
         """
-        from singlecell.Simulate.SingleCell import SingleCell
+        from Simulate.SingleCell import SingleCell
         sbml_files = args.sbml
         sc = SingleCell(sbml_files).simulate(args.start, args.stop, args.step)
+
+        sc.to_csv(args.output, sep='\t')
 
     elif args.command == "Experiment":
         """
         Handle Experiment subcommand. 
         Module to automate model-data comparisons and complex simulations. 
         """
-        from singlecell.Benchtop.src.benchtop.launcher import Experimentalist
+        from Benchtop.src.benchtop.launcher import Experimentalist
         Experimentalist(args)
 
     elif args.command == "Tool":
         """
         Handle misc. tools specified in tools subdirectory
         """
-        from singlecell.tools.launcher import ToolBelt
+        from tools.launcher import ToolBelt
         ToolBelt(args=args)
 
     else:
