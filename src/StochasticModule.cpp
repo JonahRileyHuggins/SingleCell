@@ -119,16 +119,7 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
         const std::string component = components_vector[i];
 
         // Check if in SBML as Parameter || Species || Compartment;
-        if (sbml->getParameter(component)!= nullptr) {
-            double value = sbml->getParameter(component)->getValue();
-            component_value_map[component] = value;
-        } else if (sbml->getSpecies(component) != nullptr) {
-            double value = sbml->getSpecies(component)->getInitialConcentration();
-            component_value_map[component] = value;
-        } else if (sbml->getCompartment(component)!= nullptr) {
-            double value = sbml->getCompartment(component)->getVolume();
-            component_value_map[component] = value;
-        } 
+        this->handler.getModelEntityValue(component); 
     }
 
     return component_value_map;

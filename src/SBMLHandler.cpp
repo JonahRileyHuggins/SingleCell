@@ -200,15 +200,15 @@ void SBMLHandler::setModelEntityValue(
 
         this->model->getParameter(entity_id)->setValue(new_value);
 
-            std::cout << "Parameter: " << static_cast<std::string>(this->model->getParameter(entity_id)->getId());
-            std::cout << " set value: " << static_cast<double>(this->model->getParameter(entity_id)->getValue()) << "\n";
+            // std::cout << "Parameter: " << static_cast<std::string>(this->model->getParameter(entity_id)->getId());
+            // std::cout << " set value: " << static_cast<double>(this->model->getParameter(entity_id)->getValue()) << "\n";
 
     } else if (this->model->getSpecies(entity_id) != nullptr) {
 
         this->model->getSpecies(entity_id)->setInitialConcentration(new_value);
 
-        std::cout << "Species: " << static_cast<std::string>(this->model->getSpecies(entity_id)->getId());
-        std::cout << " set value: " << static_cast<double>(this->model->getSpecies(entity_id)->getInitialConcentration()) << "\n";
+        // std::cout << "Species: " << static_cast<std::string>(this->model->getSpecies(entity_id)->getId());
+        // std::cout << " set value: " << static_cast<double>(this->model->getSpecies(entity_id)->getInitialConcentration()) << "\n";
 
     } else if (this->model->getCompartment(entity_id) != nullptr) {
 
@@ -220,6 +220,36 @@ void SBMLHandler::setModelEntityValue(
         std::exit(EXIT_FAILURE);
     }
 }
+
+double SBMLHandler::getModelEntityValue(
+    std::string entity_id
+) {
+
+    double value; 
+
+    // Check if in SBML as Parameter || Species || Compartment;
+    if (this->model->getParameter(entity_id) != nullptr) {
+
+        value = this->model->getParameter(entity_id)->getValue();
+
+    } else if (this->model->getSpecies(entity_id) != nullptr) {
+
+        value = this->model->getSpecies(entity_id)->getInitialConcentration();
+
+    } else if (this->model->getCompartment(entity_id) != nullptr) {
+
+      value = this->model->getCompartment(entity_id)->getVolume();
+
+    }else {
+        printf("Entity {%s} Not Found In Model", entity_id.c_str());
+
+        std::exit(EXIT_FAILURE);
+    }
+
+    return value;
+}
+
+
 
 std::vector<std::string> SBMLHandler::getReactionIds() {
 

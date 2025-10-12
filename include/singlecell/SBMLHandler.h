@@ -99,6 +99,17 @@ class SBMLHandler {
         );
 
         /**
+         * @brief retrieves current value for model entity id provided
+         * 
+         * @param entity_id string SBML identifier
+         * 
+         * @returns value as double
+         */
+        double SBMLHandler::getModelEntityValue(
+        std::string entity_id
+        );
+
+        /**
          * @brief gets list of reactionId strings
          * 
          * @param None
