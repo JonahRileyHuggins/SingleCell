@@ -105,7 +105,7 @@ class SBMLHandler {
          * 
          * @returns value as double
          */
-        double SBMLHandler::getModelEntityValue(
+        double getModelEntityValue(
         std::string entity_id
         );
 
