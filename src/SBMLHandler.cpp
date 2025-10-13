@@ -242,7 +242,7 @@ double SBMLHandler::getModelEntityValue(
 
     } else {
         throw std::runtime_error(
-            "Entity '" + entity_id + "' not found in SBML model."
+            "Entity '" + entity_id + "' not found in SBML model"
         );
     }
 
