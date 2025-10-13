@@ -153,12 +153,6 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
     if (!current_token_bin.empty()) {
         tokens.push_back(current_token_bin);
     }
-
-    // Remove any accidental empty strings
-    tokens.erase(std::remove_if(tokens.begin(), tokens.end(),
-                                [](const std::string& s) { return s.empty(); }),
-                 tokens.end());
-
     return tokens;
 }
 
