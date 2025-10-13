@@ -113,17 +113,31 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
 
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
-    // Iterate over each component and return SBML components with values associated
-    for ( int i = 0; i < components_vector.size(); i++) {
+    for (const auto& component : components_vector) {
+        std::cout << "component: " << component << std::endl;
 
-        const std::string component = components_vector[i];
+        try {
+            // Attempt to get value from SBML
+            component_value_map[component] = this->handler.getModelEntityValue(component);
+        } catch (const std::runtime_error&) {
+            // Try converting to double if not found in SBML
+            try {
+                size_t idx;
+                double val = std::stod(component, &idx);
 
-        // Check if in SBML as Parameter || Species || Compartment;
-        component_value_map[component] = this->handler.getModelEntityValue(component); 
+                if (idx == component.size()) {  // entire string was numeric
+                    component_value_map[component] = val;
+                } else {
+                    throw std::runtime_error("Invalid component: " + component);
+                }
+            } catch (const std::invalid_argument&) {
+                throw std::runtime_error("Component not found and not a number: " + component);
+            } catch (const std::out_of_range&) {
+                throw std::runtime_error("Numeric value out of range for component: " + component);
+            }
+        }
     }
-
     return component_value_map;
-        
 }
 
 std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {

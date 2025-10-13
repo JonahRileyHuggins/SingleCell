@@ -215,9 +215,9 @@ void SBMLHandler::setModelEntityValue(
         this->model->getCompartment(entity_id)->setVolume(new_value);
 
     }else {
-        printf("Entity {%s} Not Found In Model", entity_id.c_str());
-
-        std::exit(EXIT_FAILURE);
+        throw std::runtime_error(
+            "Entity '" + entity_id + "' not found in SBML model."
+        );
     }
 }
 
@@ -240,10 +240,10 @@ double SBMLHandler::getModelEntityValue(
 
       value = this->model->getCompartment(entity_id)->getVolume();
 
-    }else {
-        printf("Entity {%s} Not Found In Model", entity_id.c_str());
-
-        std::exit(EXIT_FAILURE);
+    } else {
+        throw std::runtime_error(
+            "Entity '" + entity_id + "' not found in SBML model."
+        );
     }
 
     return value;
