@@ -1,13 +1,14 @@
 format_version: 1 
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems:
-  - condition_files: 
+  - name: IOSA
+    condition_files: 
     - conditions.tsv
     measurement_files:
     - measurements.tsv
     observable_files:
     - observables.tsv
     sbml_files:   
-    - ../../sbml_files/deterministic.xml
     - ../../sbml_files/stochastic.xml
+    - ../../sbml_files/deterministic.xml
     cell_count: 30

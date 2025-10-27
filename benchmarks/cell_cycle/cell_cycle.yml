@@ -1,7 +1,7 @@
 format_version: 1 
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems: 
-  - name: 'cell cycle'
+  - name: cell-cycle
     condition_files: 
     - conditions.tsv
     measurement_files:
@@ -9,5 +9,5 @@ problems:
     observable_files:
     - observables.tsv
     sbml_files:
-    - ../../sbml_files/On4All.xml
+    - ../../sbml_files/One4All.xml
     cell_count: 1
