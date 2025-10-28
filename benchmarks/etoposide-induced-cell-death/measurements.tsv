@@ -1,9 +1,13 @@
 observableId	preequilibrationConditionId	simulationConditionId	measurement	time
 blank		heterogenize		86400
 blank	heterogenize	E_3.3_INS_1721_preequilibrate		259200
-cPARP_100plus	heterogenize	E_0_INS_0_etop	12.38666667	86400
-cPARP_100plus	heterogenize	E_0_INS_0_etop	15.61333333	172800
-cPARP_100plus	heterogenize	E_0_INS_0_etop		259200
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	34.00356667	86400
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	52.32253333	172800
-cPARP_100plus	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	62.6129	259200
+cPARP_obs	heterogenize	E_0_INS_0_etop	12.38666667	86400
+cPARP_obs	heterogenize	E_0_INS_0_etop	15.61333333	172800
+cPARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	34.00356667	86400
+cPARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	52.32253333	172800
+cPARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	62.6129	259200
+PARP_obs	heterogenize	E_0_INS_0_etop	12.38666667	86400
+PARP_obs	heterogenize	E_0_INS_0_etop	15.61333333	172800
+PARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	34.00356667	86400
+PARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	52.32253333	172800
+PARP_obs	E_3.3_INS_1721_preequilibrate	E_20_INS_0p001_etop	62.6129	259200

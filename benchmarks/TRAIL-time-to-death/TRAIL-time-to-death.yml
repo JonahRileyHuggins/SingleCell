@@ -1,7 +1,7 @@
 format_version: 1 
 parameter_file: ../../data/SPARCED - Parameters.tsv
 problems:
-  - name: "TRAIL-Induced Time To Death"
+  - name: TRAIL-ttd
     condition_files: 
     - conditions.tsv
     measurement_files:
