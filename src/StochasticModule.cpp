@@ -90,18 +90,19 @@ double StochasticModule::computeReaction(std::string formula_str) {
     std::unordered_map<std::string, double> component_values;
 
     try {
-        for (const auto& [name, value] : components) {
-            component_values[name] = value;
-            parser.DefineVar(name, &component_values[name]);
-        }
-        parser.SetExpr(formula_str);
+    for (const auto& [name, value] : components) {
+        component_values[name] = value;
+        parser.DefineVar(name, &component_values[name]);
+    }
+    parser.SetExpr(formula_str);
 
-        double v_i = parser.Eval();
+    double v_i = parser.Eval();
 
-        return v_i;
+    return v_i;
+
     }
     catch (mu::Parser::exception_type &e) {
-        //std::cout << "Error while parsing: " << e.GetMsg() << "\n";
+        std::cout << "Error while parsing: " << e.GetMsg() << "\n";
         return std::numeric_limits<double>::quiet_NaN();
     }
 }
@@ -112,23 +113,26 @@ std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(c
 
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
-    for (const auto& component : components_vector) {
-        try {
-            // Attempt to get value from SBML
-            component_value_map[component] = this->handler.getModelEntityValue(component);
-        } catch (const std::runtime_error&) {
-            // Try converting to double if not found in SBML
-            size_t idx;
-            double val = std::stod(component, &idx);
+    // Iterate over each component and return SBML components with values associated
+    for ( int i = 0; i < components_vector.size(); i++) {
 
-            if (idx == component.size()) {  // entire string was numeric
-                component_value_map[component] = val;
-            } else {
-                throw std::runtime_error("Invalid component: " + component);
-            }
-        }
+        const std::string component = components_vector[i];
+
+        // Check if in SBML as Parameter || Species || Compartment;
+        if (sbml->getParameter(component)!= nullptr) {
+            double value = sbml->getParameter(component)->getValue();
+            component_value_map[component] = value;
+        } else if (sbml->getSpecies(component) != nullptr) {
+            double value = sbml->getSpecies(component)->getInitialConcentration();
+            component_value_map[component] = value;
+        } else if (sbml->getCompartment(component)!= nullptr) {
+            double value = sbml->getCompartment(component)->getVolume();
+            component_value_map[component] = value;
+        } 
     }
+
     return component_value_map;
+        
 }
 
 std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
