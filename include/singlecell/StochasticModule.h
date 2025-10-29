@@ -183,7 +183,7 @@ class StochasticModule : public BaseModule{
         //---------------------------Members----------------------------------//
         std::vector<double> molecules2nM_conversion_factors;
         std::vector<double> nM2mpv_conversion_factors;
- 
+        mu::Parser parser;
 
     protected:
         // -------------------------Methods-----------------------------------//

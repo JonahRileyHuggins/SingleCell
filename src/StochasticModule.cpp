@@ -81,8 +81,6 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
     
 double StochasticModule::computeReaction(std::string formula_str) {
 
-    // Create instance of Parser object
-    mu::Parser parser;
 
     // get variables in formula
     std::unordered_map<std::string, double> components = mapComponentsToValues(formula_str);
@@ -92,11 +90,11 @@ double StochasticModule::computeReaction(std::string formula_str) {
     try {
     for (const auto& [name, value] : components) {
         component_values[name] = value;
-        parser.DefineVar(name, &component_values[name]);
+        this->parser.DefineVar(name, &component_values[name]);
     }
-    parser.SetExpr(formula_str);
+    this->parser.SetExpr(formula_str);
 
-    double v_i = parser.Eval();
+    double v_i = this->parser.Eval();
 
     return v_i;
 
