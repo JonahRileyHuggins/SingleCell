@@ -19,6 +19,8 @@
 #include <optional>
 #include <unordered_map>
 
+#include "muParser.h"
+
 // Internal libraries
 #include "BaseModule.h"
 #include "SBMLHandler.h"
