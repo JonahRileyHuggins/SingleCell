@@ -19,6 +19,9 @@
 #include <optional>
 #include <unordered_map>
 
+// external library
+#include "parser.h"
+
 // Internal libraries
 #include "BaseModule.h"
 #include "SBMLHandler.h"
