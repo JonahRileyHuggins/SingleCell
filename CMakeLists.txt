@@ -4,7 +4,7 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
-set(VECTOR_FLAGS -O3 -Ofast -march=native -ftree-vectorize -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed -fopt-info-vec-all)
+set(VECTOR_FLAGS -O3 -march=native -ftree-vectorize -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed -fopt-info-vec-all)
 # set(CMAKE_BUILD_TYPE Debug)
 
 # === Paths ===
