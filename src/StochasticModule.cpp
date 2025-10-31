@@ -12,9 +12,12 @@
 #include <ctime>
 #include <cmath>
 #include <vector>
+#include <cctype>
 #include <string>
 #include <random>
 #include <memory>
+#include <sstream>
+#include <iomanip>
 #include <fstream>
 #include <optional>
 #include <iostream>
@@ -26,8 +29,8 @@
 #include "singlecell/SBMLHandler.h"
 #include "singlecell/StochasticModule.h"
 
-// Third Party Libraries
-#include "muParser.h"
+// external library
+#include "parser.h"
 
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
@@ -46,7 +49,6 @@ StochasticModule::StochasticModule(
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
-
 
     this->algorithm_id = this->sbml->getId();
     this->source_id = "deterministic";
@@ -79,31 +81,34 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
     return v;
 }
     
-double StochasticModule::computeReaction(std::string formula_str) {
-
-
-    // get variables in formula
+double StochasticModule::computeReaction(const std::string &formula_str) {
+    // Get variables in formula
     std::unordered_map<std::string, double> components = mapComponentsToValues(formula_str);
-    //Persistent copy of component values:
-    std::unordered_map<std::string, double> component_values;
+
+    // Copy formula string for safe replacement
+    std::string new_formula_str = formula_str;
 
     try {
-    for (const auto& [name, value] : components) {
-        component_values[name] = value;
-        this->parser.DefineVar(name, &component_values[name]);
+        for (const auto& [name, value] : components) {
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
+        }
+
+        // Send to parser algorithm
+        double v_i = parser(new_formula_str.c_str());
+        return v_i;
     }
-    this->parser.SetExpr(formula_str);
-
-    double v_i = this->parser.Eval();
-
-    return v_i;
-
+    catch (const std::exception& e) {
+        std::cerr << "Error computing reaction from formula '"
+                  << formula_str << "': " << e.what() << std::endl;
+        throw; 
     }
-    catch (mu::Parser::exception_type &e) {
-        std::cout << "Error while parsing: " << e.GetMsg() << "\n";
-        return std::numeric_limits<double>::quiet_NaN();
+    catch (...) {
+        std::cerr << "Unknown error computing reaction from formula '"
+                  << formula_str << "'." << std::endl;
+        throw;
     }
 }
+
 
 std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(const std::string& formula_str) {
 
@@ -156,6 +161,39 @@ std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& fo
         tokens.push_back(current_token_bin);
     }
     return tokens;
+}
+
+bool StochasticModule::is_alnumus(char c) {
+    return std::isalnum(static_cast<unsigned char>(c)) || c == '_';
+}
+
+std::string StochasticModule::safe_replace_alnumus(
+    std::string &input,
+    const std::string &swap,
+    const std::string &with
+) {
+    if (swap.empty()) return input;
+
+    size_t pos = 0;
+    while ((pos = input.find(swap, pos)) != std::string::npos) {
+        bool left_ok = (pos == 0) || !is_alnumus(input[pos - 1]);
+        bool right_ok = (pos + swap.size() >= input.size()) ||
+                        !is_alnumus(input[pos + swap.size()]);
+
+        if (left_ok && right_ok) {
+            input.replace(pos, swap.size(), with);
+            pos += with.size();
+        } else {
+            pos += swap.size();
+        }
+    }
+    return input;
+}
+
+std::string StochasticModule::to_str(double val) {
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(15) << val;
+    return out.str();
 }
 
 std::vector<double> StochasticModule::samplePoisson(

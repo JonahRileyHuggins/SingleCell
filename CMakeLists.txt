@@ -144,7 +144,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
-add_subdirectory(extern/muparser)
+# add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
 # --- libsbml ---
@@ -160,9 +160,18 @@ set(SINGLECELL_SRC_LIST
     src/SingleCell.cpp
     src/utils.cpp
     src/ArgParsing.cpp
-    src/main.cpp)
+    src/main.cpp
+    )
 
 # === Internal Dependencies ===  
+add_library(ReactionParser STATIC
+    extern/ReactionParser/src/parser.c
+)
+
+target_include_directories(ReactionParser PUBLIC
+    ${THIRD_PARTY_DIR}/ReactionParser/include
+)
+
 add_subdirectory(amici_models/deterministic)
 add_subdirectory(amici_models/One4All)
 
@@ -182,7 +191,7 @@ target_link_libraries(SingleCell PRIVATE
     deterministic
     One4All
     sbml
-    muparser
+    ReactionParser
     pybind11::module
 )
 
@@ -211,10 +220,9 @@ target_link_libraries(pySingleCell PRIVATE
     deterministic
     One4All
     sbml
-    muparser
+    ReactionParser
     pybind11::module
 )
-
 target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})
 
 # Output directory for .so / .pyd
