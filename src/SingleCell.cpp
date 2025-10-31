@@ -14,7 +14,6 @@
 #include <chrono>
 #include <unordered_set>
 
-
 // Internal Libraries
 #include "singlecell/utils.h"
 #include "singlecell/SingleCell.h"

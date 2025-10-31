@@ -117,7 +117,7 @@ class StochasticModule : public BaseModule{
         * @return v_i reaction i's left hand result
         */
         double computeReaction(
-            std::string formula_str
+            const std::string &formula_str
         );
 
         /**
@@ -143,6 +143,40 @@ class StochasticModule : public BaseModule{
         std::vector<std::string> tokenizeFormula(
             const std::string& formula_str
         );
+
+        /**
+         * @brief extended cctypes isalnum() method that also allows underscore characters
+         * 
+         * @param c character being evaluated
+         * 
+         * @returns 0 || 1
+         */
+        bool is_alnumus(char c);
+
+        /**
+         * @brief swaps a string containing alphanumeric characters and underscores with
+         * another string
+         * 
+         * @param input the string to be modified
+         * @param swap the substring within input to be swapped out
+         * @param with the substring to replace the swap-string
+         * 
+         * @returns input the now-modified input string
+         */
+        std::string safe_replace_alnumus(
+            std::string &input, 
+            const std::string &swap,
+            const std::string &with
+            );
+
+        /**
+         * @brief converts double precision values to a 15th decimal string
+         * @note standard
+         * @param val double value to be converted
+         * 
+         * @returns proper double to 15th decimal place
+         */
+        std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
@@ -185,7 +219,6 @@ class StochasticModule : public BaseModule{
         //---------------------------Members----------------------------------//
         std::vector<double> molecules2nM_conversion_factors;
         std::vector<double> nM2mpv_conversion_factors;
-        mu::Parser parser;
 
     protected:
         // -------------------------Methods-----------------------------------//
