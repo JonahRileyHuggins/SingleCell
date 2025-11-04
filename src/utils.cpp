@@ -14,7 +14,7 @@
 #include <iostream>
 
 // Internal Libraries
-#include "singlecell/utils.h"
+#include "utils.h"
 
 namespace matrix_utils {
     void save_matrix(
