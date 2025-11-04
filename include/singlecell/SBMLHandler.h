@@ -153,6 +153,22 @@ class SBMLHandler {
          */
         std::vector<double> getParameterValues();
 
+        /**
+         * @brief Makes a map of species, reactions, and compartments and stores 
+         * their values in a map
+         * 
+         * @returns component_map a dictionary of components and their respective values
+         */
+        std::unordered_map<std::string, double> getModelValuesMap();
+
+        /**
+         * @brief Retrieves all model Compartment Identifiers
+         * 
+         * @returns list of compartment identifiers 
+         * 
+         */
+        std::vector<std::string> SBMLHandler::getCompartmentIds();
+
     //----------------------------members-----------------------------------//
         std::vector<double> species_volumes;
         std::string name;

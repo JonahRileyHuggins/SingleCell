@@ -23,6 +23,9 @@
 #include "BaseModule.h"
 #include "SBMLHandler.h"
 
+// External Libraries
+#include "parser.h"
+
 //==========================Class Declaration===============================//
 class StochasticModule : public BaseModule{
     public:
@@ -102,9 +105,13 @@ class StochasticModule : public BaseModule{
 
     private:
     // -------------------------Methods-----------------------------------//
-        std::vector<double> computeReactions(
-            const std::vector<double>& state
-        );
+
+        /**
+         * @brief Computes reactions for the most recent time step
+         * 
+         * @returns new state vector for current step
+         */
+        std::vector<double> computeReactions();
 
 
         /**
@@ -120,14 +127,12 @@ class StochasticModule : public BaseModule{
 
         /**
          * @brief Finds all species in the formula string 
-         *      NOTE: species must be initialConcentration only. 
-         *      TODO: make compatible with Species initialAmount
          * 
          * @param formula_str string form of the reaction formula
          * 
          * @returns Map of component IDs to their numerical value
          */
-        std::unordered_map<std::string,double> mapComponentsToValues(
+        std::unordered_map<std::string,double> getFormulaValues(
             const std::string& formula_str
         );
         
@@ -217,6 +222,7 @@ class StochasticModule : public BaseModule{
         //---------------------------Members----------------------------------//
         std::vector<double> molecules2nM_conversion_factors;
         std::vector<double> nM2mpv_conversion_factors;
+        std::vector<double> species_volumes;
 
     protected:
         // -------------------------Methods-----------------------------------//

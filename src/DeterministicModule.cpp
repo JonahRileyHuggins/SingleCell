@@ -40,19 +40,23 @@ DeterministicModule::DeterministicModule(
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
     this->formulas_vector = DeterministicModel.getReactionExpressions();
 
-    //Instantiate SBML model
-    this->sbml = DeterministicModel.model;
-
     // // Import AMICI Model from 'AMICI_MODELS/model
-    // this->model = std::make_unique<amici::model_Deterministic::Model_Deterministic>();
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
     this->model = std::move(new_model);
 
     //Update AMICI model for any modifications present in SBML:
     this->model->setFixedParameters(DeterministicModel.getParameterValues());
     
-    this->algorithm_id = this->sbml->getId();
+    this->algorithm_id = DeterministicModel.model->getId();
     this->source_id = "stochastic";
+
+    //Populate Component map
+    this->component_map = DeterministicModel.getModelValuesMap();
+    this->species_list = DeterministicModel.getSpeciesIds();
+    this->params_list = DeterministicModel.getParameterIds();
+    this->compartments_list = DeterministicModel.getCompartmentIds();
+    this->store = this->params_list;
+
 
 }
 
@@ -63,23 +67,24 @@ void DeterministicModule::step(int step) {
     std::vector<double> last_record = this->getLastStepResult(step);
 
     //reset SBML species values:
-    this->handler.setState(last_record);
+    this->updateComponentMap(this->species_list,last_record);
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, this->delta_t};
 
-    model->setTimepoints(step_forward);
+    this->model->setTimepoints(step_forward);
 
     // Set initial state based on last record
-    model->setInitialStates(last_record);
+    this->model->setInitialStates(last_record);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
-    // Extract results (assuming you want the final state)
+    // Extract results
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
-    this->handler.setState(last_vals);
+    // Update internal state map
+    this->updateComponentMap(this->species_list, last_vals);
 
     // Record values to results matrix
     BaseModule::recordStepResult(last_vals, step);
@@ -94,13 +99,13 @@ void DeterministicModule::run(
     std::vector<double> initial_state = this->getLastStepResult(0);
 
     //reset SBML species values:
-    this->handler.setState(initial_state);
+    this->updateComponentMap(this->species_list, initial_state);
 
     // Set the all timepoints for total runtime
-    model->setTimepoints(timepoints);
+    this->model->setTimepoints(timepoints);
 
     // Set AMICI object initial state
-    model->setInitialStates(initial_state);
+    this->model->setInitialStates(initial_state);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
@@ -119,9 +124,9 @@ void DeterministicModule::run(
 }
 
 std::vector<double> DeterministicModule::setAllSpeciesValues(
-                                        std::vector<double> current_states,
-                                        std::vector<double> update_states
-                                        ) {
+    std::vector<double> current_states,
+    std::vector<double> update_states
+) {
 
     // Creating instance of list to be returned:
     std::vector<double> updated_concentrations;
@@ -177,7 +182,7 @@ void DeterministicModule::setSimulationSettings(
     // Create an instance of the solver class
     this->solver = this->model->getSolver();
 
-    int numSpecies = this->sbml->getNumSpecies();
+    int numSpecies = this->species_list.size();
 
     this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
@@ -186,7 +191,7 @@ void DeterministicModule::setSimulationSettings(
 
     // record initial state as first vector in results_matrix member
     BaseModule::recordStepResult(
-        this->handler.getInitialState(),
+        this->getSpeciesValues(),
         0
     );
 
@@ -211,29 +216,3 @@ std::vector<double> DeterministicModule::getLastStepResult(
     return state_vector;
 }
 
-void DeterministicModule::updateParameters() {
-    // Deterministic model needs both AMICI and SBML set:
-    
-    // 1. Iterate over all specified model sources to recieve from
-    for (const auto& module : this->sources) {
-
-        SBMLHandler alternate_model = module->handler;
-
-        for (int i = 0; i < this->overlapping_params.size(); i++) {
-
-            //2. SBML parameter update
-            this->sbml->getParameter(
-                this->overlapping_params[i]
-            )->setValue(
-                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-            );
-        }
-
-    // 3. retrieve updated parameter value list, note, works only after sbml parameters updated
-    std::vector<double> param_vals = this->handler.getParameterValues();
-
-    // 4. set AMICI model via vectorized method
-    this->model->setFixedParameters(param_vals);
-
-    }
-}

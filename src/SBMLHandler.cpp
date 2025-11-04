@@ -191,6 +191,18 @@ std::vector<double> SBMLHandler::getParameterValues() {
     return parameter_vals;
 }
 
+std::vector<std::string> SBMLHandler::getCompartmentIds() {
+
+    std::vector<std::string> compartment_ids(this->model->getNumCompartments());
+
+    for (int i = 0; i < this->model->getNumCompartments(); i++) {
+
+        compartment_ids[i] = this->model->getCompartment(i)->getId();
+
+    }
+    return compartment_ids;
+}
+
 void SBMLHandler::setModelEntityValue(
     std::string entity_id, 
     double new_value
@@ -317,5 +329,39 @@ void SBMLHandler::setState(
         this->model->getSpecies(i)->setInitialConcentration(new_state[i]);
 
     }
+
+}
+
+std::unordered_map<std::string, double> SBMLHandler::getModelValuesMap() {
+
+    std::vector<std::string> list_species = this->getSpeciesIds();
+
+    std::vector<std::string> list_params = this->getParameterIds();
+
+    std::vector<std::string> list_comps = this->getCompartmentIds();
+
+    std::unordered_map<std::string, double> component_map(
+        list_species.size() + list_params.size() + list_comps.size()
+    );
+
+    for (const auto &species : list_species) {
+
+        component_map[species] = this->model->getSpecies(species)->getInitialConcentration();
+
+    }
+
+    for (const auto &param : list_params) {
+
+        component_map[param] = this->model->getParameter(param)->getValue();
+
+    }
+
+    for (const auto &comp : list_comps) {
+
+        component_map[comp] = this->model->getCompartment(comp)->getVolume();
+
+    }
+
+    return component_map;
 
 }

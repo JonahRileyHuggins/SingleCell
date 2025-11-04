@@ -21,7 +21,11 @@
 //=============================Class Details================================//
 BaseModule::BaseModule(
     SBMLHandler Module
-) : handler(Module) {}
+) : handler(Module) {
+
+    
+
+}
 
 void BaseModule::loadSourceModules(
     const std::vector<std::unique_ptr<BaseModule>>& module_list
@@ -61,6 +65,7 @@ std::vector<std::vector<double>> BaseModule::createResultsMatrix(
 
 }
 
+
 void BaseModule::recordStepResult(
     const std::vector<double>& state_vector,
     int timepoint
@@ -69,28 +74,66 @@ void BaseModule::recordStepResult(
 
 }
 
-void BaseModule::findOverlappingIds(
-    const Model* alternate_model
-) {
+std::vector<double> BaseModule::getSpeciesValues() {
 
-    std::vector<std::string> alt_species_ids;
+    std::vector<double> return_list(this->species_list.size());
 
-    int numSpecies = alternate_model->getNumSpecies();
+    for (int i = 0; i < this->species_list.size(); i++) {
 
-    for (int i = 0; i < numSpecies; i++) {
+        return_list[i] = this->component_map[species_list[i]];
 
-        const Species* species = alternate_model->getSpecies(i);
-
-        alt_species_ids.push_back(species->getId());
     }
+    return return_list;
+}
 
-    std::vector<std::string> param_ids = handler.getParameterIds();
+std::vector<double> BaseModule::getParameterValues() {
 
-    std::unordered_set<std::string> lookup(alt_species_ids.begin(), alt_species_ids.end());
+    std::vector<double> return_list(this->params_list.size());
 
-    for (const auto& id : param_ids) {
-        if (lookup.count(id)) {
-            this->overlapping_params.push_back(id);
-        }
+    for (int i = 0; i < this->params_list.size(); i++) {
+
+        return_list[i] = this->component_map[params_list[i]];
+
+    }
+    return return_list;
+}
+
+std::vector<double> BaseModule::getStoreData() {
+
+    std::vector<double> store_data(this->store.size());
+
+    for (int i = 0; i < this->store.size(); i++) {
+
+        store_data[i] = this->component_map[this->store[i]];
+
+    }
+    return store_data;
+}
+
+void BaseModule::updateComponentMap(
+    std::vector<std::string> entities, 
+    std::vector<double> updates
+) {
+    // Safety check ensuring values properly match entities
+    assert(entities.size() == updates.size());
+
+    for (int i = 0; i < entities.size(); i++) {
+
+        this->component_map[entities[i]] = updates[i];
+
+    }
+}
+
+void BaseModule::getAltModuleStores() {
+
+    for (const auto& alt_module : this->sources) {
+
+        /* retrieves alternate module store and updates 
+        this module's component map with the respective values
+        */
+        this->updateComponentMap(
+            alt_module->store,
+            alt_module->getStoreData()
+        );
     }
 }

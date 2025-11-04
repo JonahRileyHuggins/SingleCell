@@ -43,36 +43,39 @@ StochasticModule::StochasticModule(
     // List of formula strings to be parsed.
     this->formulas_vector = StochasticModel.getReactionExpressions();
 
-    //Instantiate SBML model
-    this->sbml = StochasticModel.model;
-
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
 
-    this->algorithm_id = this->sbml->getId();
+    this->algorithm_id = StochasticModel.model->getId();
     this->source_id = "deterministic";
+
+    //Populate Component map
+    this->component_map = StochasticModel.getModelValuesMap();
+    this->species_list = StochasticModel.getSpeciesIds();
+    this->params_list = StochasticModel.getParameterIds();
+    this->compartments_list = StochasticModel.getCompartmentIds();
+    this->species_volumes = StochasticModel.species_volumes;
+    this->store = this->params_list;
 
  }
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
-std::vector<double> StochasticModule::computeReactions(const std::vector<double>& state) {
+std::vector<double> StochasticModule::computeReactions() {
     /** 
      * @brief Computes all reactions in the SBML model
-     * 
-     * @param state the initial states of all species in the SBML model
      * 
      * @returns v vector of state values after initial stochiometric calculations
     */
     
-    unsigned int numReactions = sbml->getNumReactions();
+    unsigned int numReactions = this->formulas_vector.size();
 
     std::vector<double> v(numReactions);
 
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
-        //Reaction getter
+        
         std::string formula_i = formulas_vector[i];
 
         v[i] = computeReaction(formula_i);
@@ -82,8 +85,9 @@ std::vector<double> StochasticModule::computeReactions(const std::vector<double>
 }
     
 double StochasticModule::computeReaction(const std::string &formula_str) {
+
     // Get variables in formula
-    std::unordered_map<std::string, double> components = mapComponentsToValues(formula_str);
+    std::unordered_map<std::string, double> components = this->getFormulaValues(formula_str);
 
     // Copy formula string for safe replacement
     std::string new_formula_str = formula_str;
@@ -109,33 +113,21 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
     }
 }
 
+std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
+    const std::string& formula_str
+) {
 
-std::unordered_map<std::string,double> StochasticModule::mapComponentsToValues(const std::string& formula_str) {
-
-    std::unordered_map<std::string, double> component_value_map;
+    std::unordered_map<std::string, double> formula_value_map;
 
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
-    for ( int i = 0; i < components_vector.size(); i++) {
-
-        const std::string component = components_vector[i];
-
-        // Check if in SBML as Parameter || Species || Compartment;
-        if (sbml->getParameter(component)!= nullptr) {
-            double value = sbml->getParameter(component)->getValue();
-            component_value_map[component] = value;
-        } else if (sbml->getSpecies(component) != nullptr) {
-            double value = sbml->getSpecies(component)->getInitialConcentration();
-            component_value_map[component] = value;
-        } else if (sbml->getCompartment(component)!= nullptr) {
-            double value = sbml->getCompartment(component)->getVolume();
-            component_value_map[component] = value;
-        } 
+    for (int i = 0; i < components_vector.size(); i++) {
+        std::string component = components_vector[i];
+        formula_value_map[component] = this->component_map[component];
+    
     }
-
-    return component_value_map;
-        
+    return formula_value_map;       
 }
 
 std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
@@ -284,14 +276,16 @@ void StochasticModule::setSimulationSettings(
 
     this->delta_t = step;
 
-    int numSpecies = this->sbml->getNumSpecies();
+    int numSpecies = this->species_list.size();
 
     this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
-    this->results_matrix = BaseModule::createResultsMatrix(numSpecies, timesteps.size());
+    this->results_matrix = BaseModule::createResultsMatrix(
+        numSpecies, timesteps.size()
+    );
 
     BaseModule::recordStepResult(
-        this->handler.getInitialState(), 
+        this->getSpeciesValues(), 
         0
     );
 
@@ -299,10 +293,10 @@ void StochasticModule::setSimulationSettings(
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
 
-    std::vector<std::string> speciesIds = handler.getSpeciesIds();
-    for (size_t i = 0; i < speciesIds.size(); ++i) {
-        Species* s = sbml->getSpecies(speciesIds[i]);
-        s->setInitialConcentration(state[i]);
+    for (size_t i = 0; i < this->species_list.size(); ++i) {
+
+        this->component_map[this->species_list[i]] = state[i];
+
     }
 }
 
@@ -310,39 +304,54 @@ void StochasticModule::step(
     int step
 ) {
     // get (step minus 1) position in results_matrix member
-    std::vector<double> last_state_nM = getLastStepResult(step);  // nM
+    std::vector<double> last_state_nM = this->getLastStepResult(step);  // nM
 
-    //reset SBML species values:
-    this->handler.setState(last_state_nM); // nM 
-
-    //convert from nanomolar to mpc:
-    this->handler.convertSpeciesUnits(this->nM2mpv_conversion_factors); // molecules per volume
+    // convert units to molecule per volume
+    std::vector<double> mpv_state(last_state_nM);
+    for (int i = 0; i < mpv_state.size(); i++) {
+        mpv_state[i] = last_state_nM[i] * this->nM2mpv_conversion_factors[i];
+    }
+    this->updateComponentMap(
+        this->species_list,
+        mpv_state
+    );
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> realizations = samplePoisson(computeReactions(this->handler.getInitialState()));
+    std::vector<double> realizations = samplePoisson(computeReactions());
 
-    //reassign molecules per volume to just molecules:
-    this->handler.convertSpeciesUnits(this->handler.species_volumes);
+    // //reassign molecules per volume to just molecules:
+    std::vector<double> mol_state(mpv_state.size());
+    std::vector<double> saved_state = this->getSpeciesValues();
+    for (int i = 0; i < mol_state.size(); i++) {
+        mol_state[i] = saved_state[i] * this->species_volumes[i];
+    }
 
-    // Constrain Tau-leap algorithm for conservation of mass
+    // Constrain Tau-leap algorithm for conservation of moiety
     std::vector<double> constrained_realizations = constrainTau(
         realizations, 
-        this->handler.getInitialState()
+        mol_state
     );
     
     // Calculate the updated state for current step:
     std::vector<double> new_state = computeNewState(
-        this->handler.getInitialState(),
+        mol_state,
         constrained_realizations
     );
+    
+    // convert units to nanoMolar
+    std::vector<double> nM_state(new_state);
+    for (int i = 0; i < nM_state.size(); i++) {
+        nM_state[i] = new_state[i] * this->molecules2nM_conversion_factors[i];
+    }
 
-    this->handler.setState(new_state);
-
-    // Convert back into nanomolar
-    this->handler.convertSpeciesUnits(this->molecules2nM_conversion_factors);
+    // Convert map values back to nanomolar value
+    this->updateComponentMap(
+        this->species_list, // Variables to be converted
+        nM_state // nM-converted results
+    );
 
     //Record iteration's result
-    BaseModule::recordStepResult(this->handler.getInitialState(), step);
+    BaseModule::recordStepResult(nM_state, step);
 
 }
 
@@ -352,37 +361,6 @@ void StochasticModule::run(
     for (int t = 0; t < timesteps.size(); t++) {
 
         this->step(t);
-
-    }
-}
-
-void StochasticModule::updateParameters() {
-
-    for (const auto& alt_module : this->sources) {
-
-        SBMLHandler alternate_model = alt_module->handler;
-
-        std::vector<std::string> species_list = alternate_model.getSpeciesIds();
-
-        for (int i = 0; i < this->overlapping_params.size(); ++i) {
-            const std::string& id = this->overlapping_params[i];
-
-            Parameter* parameter = this->sbml->getParameter(id);
-
-            Species* species = alternate_model.model->getSpecies(id);
-
-            if (species == nullptr) {
-                std::cerr << "[Warning] Species with ID '" << id << "' not found in alternate model.\n";
-                continue; // skip to next iteration
-            }
-
-            if (parameter == nullptr) {
-                std::cerr << "[Warning] Parameter with ID '" << id << "' not found in sbml.\n";
-                continue;
-            }
-
-            parameter->setValue(species->getInitialConcentration());
-        }
 
     }
 }

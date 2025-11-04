@@ -64,6 +64,13 @@ class BaseModule {
         );
 
         /**
+         * @brief updates the stored variables in the component map
+         * 
+         * @param
+         */
+        virtual void updateComponentMap();
+
+        /**
          * @brief Getter method for last recorded value in results matrix
          * 
          * @param timepoint position in results matrix being returned
@@ -139,10 +146,6 @@ class BaseModule {
             std::vector<double> timepoints
         ) = 0;        
 
-        void findOverlappingIds(
-            const Model* alternate_model
-        );
-    
         virtual void setSimulationSettings(
             double start, 
             double stop, 
@@ -153,27 +156,73 @@ class BaseModule {
          * @brief Exchange method for swapping parameters with species values in modules
          *  @NOTE: required method in Stochastic- & Deterministic- Modules
          * 
+         * @param entities list of entities to update in the component map
+         * @param updates list of update values (double)
+         * 
          * @returns None updates internal models.
          */
-        virtual void updateParameters() = 0;
+        void updateComponentMap(
+            std::vector<std::string> entities, 
+            std::vector<double> updates
+        );
+
+        /**
+         * @brief Retrieves species values from the components map
+         */
+        std::vector<double> getSpeciesValues();
+
+        /**
+         * @brief Retrieves parameter values from the components map
+         */
+        std::vector<double> getParameterValues();
+
+        /**
+         * @brief Sets species values
+         */
+        void setSpeciesValues(std::vector<double> updated_vals);
+
+        /**
+         * @brief Sets parameter values
+         * 
+         * @param updated_vals vector of new states
+         */
+        void setParameterValues(std::vector<double> updated_vals);
+
+        /**
+         * @brief Retrieves data in component map assigned to variables in class
+         * member `store`
+         */
+        std::vector<double> getStoreData();
+
+        /**
+         * @brief Iterates over connected modules and updates component map after
+         * each step forward
+         */
+        void BaseModule::getAltModuleStores();
 
     //-------------------------------Members--------------------------------//
         SBMLHandler handler;
-        Model* sbml;
-
+        
         std::vector<std::vector<double>> stoichmat;
 
         std::vector<std::string> formulas_vector;
 
         std::vector<std::vector<double>> results_matrix;
 
-        std::vector<std::string> overlapping_params;
-
         std::vector<BaseModule*> sources;
 
         std::vector<double> timesteps;
 
+        std::unordered_map<std::string, double> component_map;
+        std::vector<std::string> compartments_list;
+        std::vector<std::string> species_list;
+        std::vector<std::string> params_list;
+        std::vector<std::string> send_data;
 
+        /** Stores a list of keys associated with data the submodule is agreeing
+         * to share with other submodules. Inspired by vivarium store.
+         */
+        std::vector<std::string> store;
 };
 
 #endif // BASEMODULE_H
