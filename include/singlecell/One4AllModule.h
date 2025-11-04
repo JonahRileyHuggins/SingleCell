@@ -70,12 +70,6 @@ class One4AllModule : public BaseModule {
             std::vector<double> timepoints
         ) override;
 
-        /**
-         * @brief exchanges parameter-to-species values with target-modules
-         * 
-         */
-        void updateParameters();
-        
     //-------------------------------Members--------------------------------//
         std::string algorithm_id;
 
@@ -90,6 +84,12 @@ class One4AllModule : public BaseModule {
         std::vector<double> getNewStepResult(
             const amici::ReturnData &rdata
         );
+
+        /**
+         * @brief internal method for assigning updated parameter values to the 
+         * AMICI models
+         */
+        void One4AllModule::updateAMICIModel();
         
     //-------------------------------Members--------------------------------//
         std::unique_ptr<amici::Model> model;

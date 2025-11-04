@@ -68,6 +68,9 @@ void DeterministicModule::step(int step) {
 
     //reset SBML species values:
     this->updateComponentMap(this->species_list,last_record);
+    
+    // Need to update AMICI model
+    this->updateAMICIModel();
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, this->delta_t};
@@ -142,7 +145,6 @@ std::vector<double> DeterministicModule::setAllSpeciesValues(
         updated_concentrations[i] = update_states[i];
 
     }
-    
     return updated_concentrations;
 
 }
@@ -167,7 +169,6 @@ std::vector<double> DeterministicModule::getNewStepResult(
         last_species_values.push_back(static_cast<double>(all_species[i]));
     
     }
-
     return last_species_values;
 }
 
@@ -200,7 +201,10 @@ void DeterministicModule::setSimulationSettings(
     solver->setRelativeTolerance(1e-6);
     solver->setMaxSteps(100000);
 
-    this->updateParameters();
+    // Update internal state map
+    this->getAltModuleStores();
+    // Need to update AMICI model
+    this->updateAMICIModel();
 }
 
 std::vector<double> DeterministicModule::getLastStepResult(
@@ -216,3 +220,13 @@ std::vector<double> DeterministicModule::getLastStepResult(
     return state_vector;
 }
 
+void DeterministicModule::updateAMICIModel() {
+    
+    for (int p = 0; p < this->params_list.size(); p++) {
+
+        this->model->setFixedParameterById(
+                this->params_list[p], 
+                this->component_map[this->params_list[p]]
+        );
+    }
+}

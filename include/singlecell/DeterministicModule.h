@@ -92,10 +92,9 @@ class DeterministicModule : public BaseModule {
         );
 
         /**
-         * @brief retrieves list of indicies for all params overalapping between 
-         * target models and DeterministicModule
+         * @brief internal method to update AMICI model parameters
          */
-        void storeOverlappingParamIndicies();
+        void updateAMICIModel();
         
     //-------------------------------Members--------------------------------//
         std::unique_ptr<amici::Model> model;

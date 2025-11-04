@@ -40,9 +40,6 @@ One4AllModule::One4AllModule(
     // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
     this->formulas_vector = One4AllModel.getReactionExpressions();
 
-    //Instantiate SBML model
-    this->sbml = One4AllModel.model;
-
     // Import AMICI Model from 'amici_models/$modelname
     // this->model = std::make_unique<amici::model_One4All::Model_One4All>();
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_One4All::Model_One4All>();
@@ -51,34 +48,44 @@ One4AllModule::One4AllModule(
     //Update AMICI model for any modifications present in SBML:
     this->model->setFixedParameters(One4AllModel.getParameterValues());
 
-    this->algorithm_id = this->sbml->getId();
+    this->algorithm_id = One4AllModel.model->getId();
     this->source_id = "stochastic";
+
+    //Populate Component map
+    this->component_map = One4AllModel.getModelValuesMap();
+    this->species_list = One4AllModel.getSpeciesIds();
+    this->params_list = One4AllModel.getParameterIds();
+    this->compartments_list = One4AllModel.getCompartmentIds();
+    this->store = this->params_list;
 }
 
 std::string One4AllModule::getModuleId() { return this->algorithm_id; }
 
 void One4AllModule::step(int step) {
-    // Get the (step - 1)th result
     std::vector<double> last_record = this->getLastStepResult(step);
 
     //reset SBML species values:
-    this->handler.setState(last_record);
+    this->updateComponentMap(this->species_list,last_record);
+    
+    // Need to update AMICI model
+    this->updateAMICIModel();
 
     // Set the single timepoint to simulate
     std::vector<double> step_forward = {0.0, this->delta_t};
 
-    model->setTimepoints(step_forward);
+    this->model->setTimepoints(step_forward);
 
     // Set initial state based on last record
-    model->setInitialStates(last_record);
+    this->model->setInitialStates(last_record);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
-    // Extract results (assuming you want the final state)
+    // Extract results
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
-    this->handler.setState(last_vals);
+    // Update internal state map
+    this->updateComponentMap(this->species_list, last_vals);
 
     // Record values to results matrix
     BaseModule::recordStepResult(last_vals, step);
@@ -93,13 +100,13 @@ void One4AllModule::run(
     std::vector<double> initial_state = this->getLastStepResult(0);
 
     //reset SBML species values:
-    this->handler.setState(initial_state);
+    this->updateComponentMap(this->species_list, initial_state);
 
     // Set the all timepoints for total runtime
-    model->setTimepoints(timepoints);
+    this->model->setTimepoints(timepoints);
 
     // Set AMICI object initial state
-    model->setInitialStates(initial_state);
+    this->model->setInitialStates(initial_state);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
@@ -176,7 +183,7 @@ void One4AllModule::setSimulationSettings(
     // Create an instance of the solver class
     this->solver = this->model->getSolver();
 
-    int numSpecies = this->sbml->getNumSpecies();
+    int numSpecies = this->species_list.size();
 
     this->timesteps = BaseModule::setTimeSteps(start, stop, step);
 
@@ -185,7 +192,7 @@ void One4AllModule::setSimulationSettings(
 
     // record initial state as first vector in results_matrix member
     BaseModule::recordStepResult(
-        this->handler.getInitialState(),
+        this->getSpeciesValues(),
         0
     );
 
@@ -194,7 +201,10 @@ void One4AllModule::setSimulationSettings(
     solver->setRelativeTolerance(1e-6);
     solver->setMaxSteps(100000);
 
-    this->updateParameters();
+    // Update internal state map
+    this->getAltModuleStores();
+    // Need to update AMICI model
+    this->updateAMICIModel();
 }
 
 std::vector<double> One4AllModule::getLastStepResult(
@@ -210,26 +220,13 @@ std::vector<double> One4AllModule::getLastStepResult(
     return state_vector;
 }
 
-void One4AllModule::updateParameters() {
+void One4AllModule::updateAMICIModel() {
     
-    for (const auto& module : this->sources) {
+    for (int p = 0; p < this->params_list.size(); p++) {
 
-        SBMLHandler alternate_model = module->handler;
-
-        for (int i = 0; i < this->overlapping_params.size(); i++) {
-
-            // One4All model needs both AMICI and SBML set:
-            //AMICI
-            this->model->setFixedParameterById(
-                this->overlapping_params[i], 
-                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-            );
-
-            //SBML
-            this->sbml->getParameter(this->overlapping_params[i])->setValue(
-                alternate_model.model->getSpecies(this->overlapping_params[i])->getInitialConcentration()
-            );
-        }
-
+        this->model->setFixedParameterById(
+                this->params_list[p], 
+                this->component_map[this->params_list[p]]
+        );
     }
 }
