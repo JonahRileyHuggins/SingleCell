@@ -167,7 +167,7 @@ class SBMLHandler {
          * @returns list of compartment identifiers 
          * 
          */
-        std::vector<std::string> SBMLHandler::getCompartmentIds();
+        std::vector<std::string> getCompartmentIds();
 
     //----------------------------members-----------------------------------//
         std::vector<double> species_volumes;
