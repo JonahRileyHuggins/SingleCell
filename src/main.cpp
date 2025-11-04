@@ -18,9 +18,9 @@
 
 
 // Internal Libraries
-#include "singlecell/utils.h"
-#include "singlecell/ArgParsing.h"
-#include "singlecell/SingleCell.h"
+#include "utils.h"
+#include "ArgParsing.h"
+#include "SingleCell.h"
 
 //--------------------------Function Definitions----------------------------//
 

@@ -22,11 +22,8 @@
 #include <unordered_map>
 
 //Internal Libraries
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/BaseModule.h"
-
-// Third Party Libraries
-#include "sbml/SBMLReader.h"
+#include "SBMLHandler.h"
+#include "BaseModule.h"
 
 //==========================Class Declaration===============================//
 class SingleCell {

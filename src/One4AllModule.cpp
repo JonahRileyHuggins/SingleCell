@@ -21,9 +21,9 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "singlecell/utils.h"
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/One4AllModule.h"
+#include "utils.h"
+#include "SBMLHandler.h"
+#include "One4AllModule.h"
 
 // Third Party Libraries
 #include "amici/amici.h"

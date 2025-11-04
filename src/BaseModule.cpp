@@ -16,8 +16,8 @@
 
 
 // Internal Libraries
-#include "singlecell/BaseModule.h"
-#include "singlecell/SBMLHandler.h"
+#include "BaseModule.h"
+#include "SBMLHandler.h"
 //=============================Class Details================================//
 BaseModule::BaseModule(
     SBMLHandler Module

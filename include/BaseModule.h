@@ -21,7 +21,7 @@
 #include <unordered_map>
 
 //Internal Libraries
-#include "singlecell/SBMLHandler.h"
+#include "SBMLHandler.h"
 
 //Third Party Libraries
 #include "sbml/SBMLReader.h"

@@ -17,8 +17,8 @@
 #include <sbml/SBMLReader.h>
 
 // Internal Libraries
-#include "singlecell/utils.h"
-#include "singlecell/SBMLHandler.h"
+#include "utils.h"
+#include "SBMLHandler.h"
 
 //--------------------------Class Declaration-------------------------------//
 SBMLHandler::SBMLHandler(

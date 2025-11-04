@@ -15,13 +15,13 @@
 #include <unordered_set>
 
 // Internal Libraries
-#include "singlecell/utils.h"
-#include "singlecell/SingleCell.h"
-#include "singlecell/BaseModule.h"
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/One4AllModule.h"
-#include "singlecell/StochasticModule.h"
-#include "singlecell/DeterministicModule.h"
+#include "utils.h"
+#include "SingleCell.h"
+#include "BaseModule.h"
+#include "SBMLHandler.h"
+#include "One4AllModule.h"
+#include "StochasticModule.h"
+#include "DeterministicModule.h"
 
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {

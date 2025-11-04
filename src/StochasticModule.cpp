@@ -25,9 +25,9 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "singlecell/utils.h"
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/StochasticModule.h"
+#include "utils.h"
+#include "SBMLHandler.h"
+#include "StochasticModule.h"
 
 // external library
 #include "parser.h"
