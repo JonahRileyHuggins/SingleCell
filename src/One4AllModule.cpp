@@ -65,7 +65,7 @@ void One4AllModule::step(int step) {
     std::vector<double> last_record = this->getLastStepResult(step);
 
     //reset SBML species values:
-    BaseModule::updateComponentMap(this->species_list,last_record);
+    this->updateComponentMap(this->species_list,last_record);
     
     // Need to update AMICI model
     this->updateAMICIModel();
@@ -85,7 +85,7 @@ void One4AllModule::step(int step) {
     std::vector<double> last_vals = this->getNewStepResult(*rdata);
 
     // Update internal state map
-    BaseModule::updateComponentMap(this->species_list, last_vals);
+    this->updateComponentMap(this->species_list, last_vals);
 
     // Record values to results matrix
     BaseModule::recordStepResult(last_vals, step);
@@ -100,7 +100,7 @@ void One4AllModule::run(
     std::vector<double> initial_state = this->getLastStepResult(0);
 
     //reset SBML species values:
-    BaseModule::updateComponentMap(this->species_list, initial_state);
+    this->updateComponentMap(this->species_list, initial_state);
 
     // Set the all timepoints for total runtime
     this->model->setTimepoints(timepoints);
@@ -192,7 +192,7 @@ void One4AllModule::setSimulationSettings(
 
     // record initial state as first vector in results_matrix member
     BaseModule::recordStepResult(
-        BaseModule::getSpeciesValues(),
+        this->getSpeciesValues(),
         0
     );
 
@@ -202,7 +202,7 @@ void One4AllModule::setSimulationSettings(
     solver->setMaxSteps(100000);
 
     // Update internal state map
-    BaseModule::getAltModuleStores();
+    this->getAltModuleStores();
     // Need to update AMICI model
     this->updateAMICIModel();
 }

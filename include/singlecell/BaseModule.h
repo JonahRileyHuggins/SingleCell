@@ -64,13 +64,6 @@ class BaseModule {
         );
 
         /**
-         * @brief updates the stored variables in the component map
-         * 
-         * @param
-         */
-        virtual void updateComponentMap();
-
-        /**
          * @brief Getter method for last recorded value in results matrix
          * 
          * @param timepoint position in results matrix being returned

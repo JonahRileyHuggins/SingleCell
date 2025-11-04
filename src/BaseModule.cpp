@@ -21,11 +21,7 @@
 //=============================Class Details================================//
 BaseModule::BaseModule(
     SBMLHandler Module
-) : handler(Module) {
-
-    
-
-}
+) : handler(Module) {}
 
 void BaseModule::loadSourceModules(
     const std::vector<std::unique_ptr<BaseModule>>& module_list
