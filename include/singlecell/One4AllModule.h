@@ -89,7 +89,7 @@ class One4AllModule : public BaseModule {
          * @brief internal method for assigning updated parameter values to the 
          * AMICI models
          */
-        void One4AllModule::updateAMICIModel();
+        void updateAMICIModel();
         
     //-------------------------------Members--------------------------------//
         std::unique_ptr<amici::Model> model;

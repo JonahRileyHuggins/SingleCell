@@ -198,7 +198,7 @@ class BaseModule {
          * @brief Iterates over connected modules and updates component map after
          * each step forward
          */
-        void BaseModule::getAltModuleStores();
+        void getAltModuleStores();
 
     //-------------------------------Members--------------------------------//
         SBMLHandler handler;
