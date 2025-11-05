@@ -223,7 +223,7 @@ std::vector<double> StochasticModule::constrainTau(
 
         std::vector<double> Rhat_i(xhat_tn.size()); // double for storing each reaction product
 
-        #
+        #pragma omp simd
         for (int j = 0; j < xhat_tn.size(); j++) {
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
@@ -259,9 +259,11 @@ std::vector<double> StochasticModule::computeNewState(
         // Update the stochastic state vector: new_state = old_state * v
     std::vector<double> new_state(state_t.size());
     
-    #pragma omp simd collapse(2)
+    #pragma omp simd
     for (size_t i = 0; i < state_t.size(); ++i) {
         double delta = 0.0;
+        
+        #pragma omp simd reduction(+:delta)
         for (size_t j = 0; j < real_vec.size(); ++j) {
             delta += stoichmat[i][j] * real_vec[j];
         }
