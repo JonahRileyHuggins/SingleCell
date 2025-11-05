@@ -220,7 +220,7 @@ std::vector<double> One4AllModule::getLastStepResult(
     return state_vector;
 }
 
-void DeterministicModule::updateAMICIModel() {
+void One4AllModule::updateAMICIModel() {
     
     std::vector<double> param_values(this->params_list.size());
 
@@ -229,8 +229,6 @@ void DeterministicModule::updateAMICIModel() {
         param_values[p] = this->component_map[this->params_list[p]];
 
     }
-    
     this->model->setFixedParameters(param_values);
-
 }
 
