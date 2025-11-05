@@ -23,6 +23,7 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
+#include <omp.h>
 
 // Internal libraries
 #include "utils.h"
@@ -122,6 +123,7 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
+    #pragma omp simd
     for (int i = 0; i < components_vector.size(); i++) {
         std::string component = components_vector[i];
         formula_value_map[component] = this->component_map[component];
@@ -221,6 +223,7 @@ std::vector<double> StochasticModule::constrainTau(
 
         std::vector<double> Rhat_i(xhat_tn.size()); // double for storing each reaction product
 
+        #
         for (int j = 0; j < xhat_tn.size(); j++) {
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
@@ -256,6 +259,7 @@ std::vector<double> StochasticModule::computeNewState(
         // Update the stochastic state vector: new_state = old_state * v
     std::vector<double> new_state(state_t.size());
     
+    #pragma omp simd collapse(2)
     for (size_t i = 0; i < state_t.size(); ++i) {
         double delta = 0.0;
         for (size_t j = 0; j < real_vec.size(); ++j) {
@@ -292,7 +296,7 @@ void StochasticModule::setSimulationSettings(
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
-
+    #pragma omp simd
     for (size_t i = 0; i < this->species_list.size(); ++i) {
 
         this->component_map[this->species_list[i]] = state[i];
