@@ -4,12 +4,17 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
-add_compile_options(
-    -O3 -march=znver4 -mavx2 -mavx -mavx512f -mavx512vl 
-    -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma 
-    -mavx512vbmi -fopt-info-vec-optimized -fopt-info-vec-missed 
+set(VECTOR_FLAGS
+    -O3
+    -march=haswell       # Haswell, Broadwell, Skylake all support AVX2
+    -mavx2               # enable AVX2 instructions explicitly
+    -ftree-vectorize     # allow auto vectorization
+    -fopenmp-simd        # enable #pragma omp simd
+    -fopt-info-vec-optimized
+    -fopt-info-vec-missed
     -fopt-info-vec-all
 )
+
 set(CMAKE_BUILD_TYPE Release)
 
 # === Paths ===
