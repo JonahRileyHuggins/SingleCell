@@ -225,21 +225,21 @@ std::vector<double> StochasticModule::constrainTau(
             Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
         }
 
-        std::vector<double> abs_r;
-        abs_r.reserve(Rhat_i.size());
-
-        for (const auto& rct : Rhat_i) {
-            double abs_val = std::abs(rct);
+        // <-- Modify starting here: check as source for possible error
+        // retrieve all consumed reactants
+        std::vector<double> abs_r(Rhat_i.size());
+        size_t count = 0;
+        for (size_t r = 0; r < Rhat_i.size(); ++r) {
+            double abs_val = std::abs(Rhat_i[r]);
             if (abs_val > 0)
-                abs_r.push_back(abs_val);
+                abs_r[count++] = abs_val;
         }
+        abs_r.resize(count); // trim unused entries
 
-        double R_mi = m_i[i]; // was set 0.0
-        for (const auto& reactant : abs_r) {
-
-            if (reactant < R_mi) { // drop reactants != negative (-): i.e. not rate-limiting
+        double R_mi = m_i[i];
+        for (double reactant : abs_r) {
+            if (reactant < R_mi) // drop reactants != negative (-): i.e. not rate-limiting
                 R_mi = reactant;
-            }
         }
 
         mhat_actual[i] = R_mi;
