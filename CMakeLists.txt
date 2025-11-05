@@ -4,7 +4,12 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
-set(VECTOR_FLAGS -Ofast -march=native -ftree-vectorize -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed -fopt-info-vec-all)
+add_compile_options(
+    -O3 -march=znver4 -mavx2 -mavx -mavx512f -mavx512vl 
+    -mavx512cd -mavx512vl -mavx512bw -mavx512dq -mavx512ifma 
+    -mavx512vbmi -fopt-info-vec-optimized -fopt-info-vec-missed 
+    -fopt-info-vec-all
+)
 set(CMAKE_BUILD_TYPE Release)
 
 # === Paths ===
