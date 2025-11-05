@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
 set(VECTOR_FLAGS
-    -O3
-    -march=haswell       # Haswell, Broadwell, Skylake all support AVX2
+    -Ofast
+    -march=native        # Auto-detect +
     -mavx2               # enable AVX2 instructions explicitly
     -ftree-vectorize     # allow auto vectorization
     -fopenmp-simd        # enable #pragma omp simd
