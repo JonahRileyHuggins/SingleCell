@@ -19,7 +19,6 @@
 #include <Eigen/Dense>
 
 // Internal Libraries
-#include "utils.h"
 #include "SBMLHandler.h"
 
 //--------------------------Class Declaration-------------------------------//

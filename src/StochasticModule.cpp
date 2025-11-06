@@ -26,7 +26,7 @@
 #include <omp.h>
 
 // Internal libraries
-#include "utils.h"
+#include "unit_conversions.h"
 #include "SBMLHandler.h"
 #include "StochasticModule.h"
 

@@ -15,7 +15,6 @@
 #include <unordered_set>
 
 // Internal Libraries
-#include "utils.h"
 #include "SingleCell.h"
 #include "BaseModule.h"
 #include "SBMLHandler.h"

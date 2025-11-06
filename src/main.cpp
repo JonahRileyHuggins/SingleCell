@@ -20,7 +20,6 @@
 #include <Eigen/Dense>
 
 // Internal Libraries
-#include "utils.h"
 #include "ArgParsing.h"
 #include "SingleCell.h"
 

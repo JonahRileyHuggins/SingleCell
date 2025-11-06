@@ -114,16 +114,11 @@ class SingleCell {
          * @brief creates combined results matrix for every module in 
          * class member this->modules
          * 
-         * @param numTimesteps integer number of timepoints, specifying how long 
-         * results matrix should be
-         * 
          * @returns results_matrix combined matrix of results for all modules, 
          * basically just adds each module implementation of BaseModule.results_matrix
          * class member to finalized results matrix.
          */
-        Eigen::MatrixXd combineResultsMatrix(
-            int numTimesteps
-        );
+        Eigen::MatrixXd combineResultsMatrix();
 
     //------------------------------members---------------------------------//
         std::vector<std::unique_ptr<BaseModule>> modules;

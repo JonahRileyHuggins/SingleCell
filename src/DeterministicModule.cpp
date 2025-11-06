@@ -21,7 +21,6 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "utils.h"
 #include "SBMLHandler.h"
 #include "DeterministicModule.h"
 
