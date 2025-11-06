@@ -85,6 +85,7 @@ std::vector<double> StochasticModule::computeReactions() {
     return v;
 }
     
+#pragma omp declare simd
 double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
@@ -259,7 +260,6 @@ std::vector<double> StochasticModule::computeNewState(
         // Update the stochastic state vector: new_state = old_state * v
     std::vector<double> new_state(state_t.size());
     
-    #pragma omp simd
     for (size_t i = 0; i < state_t.size(); ++i) {
         double delta = 0.0;
         
@@ -298,11 +298,10 @@ void StochasticModule::setSimulationSettings(
 }
 
 void StochasticModule::setModelState(const std::vector<double>& state) {
+
     #pragma omp simd
     for (size_t i = 0; i < this->species_list.size(); ++i) {
-
         this->component_map[this->species_list[i]] = state[i];
-
     }
 }
 
@@ -346,6 +345,7 @@ void StochasticModule::step(
     
     // convert units to nanoMolar
     std::vector<double> nM_state(new_state);
+    #pragma omp simd
     for (int i = 0; i < nM_state.size(); i++) {
         nM_state[i] = new_state[i] * this->molecules2nM_conversion_factors[i];
     }
