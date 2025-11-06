@@ -291,14 +291,14 @@ void StochasticModule::step(
     Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
     // convert units to molecule per volume
-    Eigen::VectorXd mpv_state = last_state_nM * this->nM2mpv_conversion_factors;
+    Eigen::VectorXd mpv_state = last_state_nM.array() * this->nM2mpv_conversion_factors.array();
     this->updateComponentMap(this->species_list, mpv_state);
 
     // Sample stochastic answer from Poisson distribution
     Eigen::VectorXd realizations = samplePoisson(computeReactions());
 
     // //reassign molecules per volume to just molecules:
-    Eigen::VectorXd mol_state = this->getSpeciesValues() * this->species_volumes;
+    Eigen::VectorXd mol_state = this->getSpeciesValues().array() * this->species_volumes.array();
 
     // Constrain Tau-leap algorithm for conservation of moiety
     Eigen::VectorXd constrained_realizations = constrainTau(realizations,  mol_state);
@@ -307,7 +307,7 @@ void StochasticModule::step(
     Eigen::VectorXd new_state = computeNewState(mol_state, constrained_realizations);
     
     // convert units to nanoMolar
-    Eigen::VectorXd nM_state = new_state * this->molecules2nM_conversion_factors;
+    Eigen::VectorXd nM_state = new_state.array() * this->molecules2nM_conversion_factors.array();
 
     // Convert map values back to nanomolar value
     this->updateComponentMap(this->species_list, nM_state);
