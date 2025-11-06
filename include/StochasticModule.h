@@ -19,14 +19,13 @@
 #include <optional>
 #include <unordered_map>
 
-#include "muParser.h"
-
 // Internal libraries
 #include "BaseModule.h"
 #include "SBMLHandler.h"
 
 // External Libraries
 #include "parser.h"
+#include <Eigen/Dense>
 
 //==========================Class Declaration===============================//
 class StochasticModule : public BaseModule{
@@ -81,7 +80,7 @@ class StochasticModule : public BaseModule{
          * @param timepoints vector of timepoints for the simulation
          */
         void run(
-            std::vector<double> timepoints
+            Eigen::VectorXd timepoints
         ) override;
 
         /**
@@ -92,7 +91,7 @@ class StochasticModule : public BaseModule{
          * @returns None
          */
         void setModelState(
-            const std::vector<double>& state
+            const Eigen::VectorXd& state
         );
 
         /**
@@ -113,7 +112,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns new state vector for current step
          */
-        std::vector<double> computeReactions();
+        Eigen::VectorXd computeReactions();
 
 
         /**
@@ -190,7 +189,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
-        std::vector<double> samplePoisson(
+        Eigen::VectorXd samplePoisson(
             std::vector<double> mu
         );
 
@@ -201,7 +200,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
-        std::vector<double> constrainTau(
+        Eigen::VectorXd constrainTau(
             std::vector<double> m_i,
             std::vector<double> xhat_tn
         ); 
@@ -216,15 +215,15 @@ class StochasticModule : public BaseModule{
          * 
          * @returns new_state vector of doubles equal to X_t = X_{t-1} + delta
          */
-        std::vector<double> computeNewState(
-        std::vector<double> state_t,
-        std::vector<double> real_vec
+        Eigen::VectorXd computeNewState(
+        Eigen::VectorXd state_t,
+        Eigen::VectorXd real_vec
         );
 
         //---------------------------Members----------------------------------//
-        std::vector<double> molecules2nM_conversion_factors;
-        std::vector<double> nM2mpv_conversion_factors;
-        std::vector<double> species_volumes;
+        Eigen::VectorXd molecules2nM_conversion_factors;
+        Eigen::VectorXd nM2mpv_conversion_factors;
+        Eigen::VectorXd species_volumes;
 
     protected:
         // -------------------------Methods-----------------------------------//
@@ -235,7 +234,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns state_vector vector of species states recorded in results_matrix object
          */
-        std::vector<double> getLastStepResult(
+        std::Eigen::VectorXd getLastStepResult(
             int timestep
         ) override;
 

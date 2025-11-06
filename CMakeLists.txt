@@ -201,6 +201,7 @@ target_link_libraries(SingleCell PRIVATE
     One4All
     sbml
     ReactionParser
+    ${CMAKE_SOURCE_DIR}/extern/Eigen
 )
 
 target_compile_options(SingleCell PRIVATE ${VECTOR_FLAGS})
@@ -229,6 +230,7 @@ target_link_libraries(pySingleCell PRIVATE
     One4All
     sbml
     ReactionParser
+    ${CMAKE_SOURCE_DIR}/extern/Eigen
     pybind11::module
 )
 target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})

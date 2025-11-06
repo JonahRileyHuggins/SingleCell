@@ -23,6 +23,9 @@
 #include "StochasticModule.h"
 #include "DeterministicModule.h"
 
+// Third Party Libraries
+#include <Eigen/Dense>
+
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
     { "deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
@@ -30,7 +33,7 @@ std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandle
     { "One4All", [](const SBMLHandler& handler) { return std::make_unique<One4AllModule>(handler); } }
 };
 
-std::vector<std::vector<double>> SingleCell::simulate(
+Eigen::MatrixXd SingleCell::simulate(
     double start, 
     double stop,
     double step
@@ -49,13 +52,13 @@ std::vector<std::vector<double>> SingleCell::simulate(
         step
     );
 
-    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
+    Eigen::VectorXd timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
     // run simulation:
     this->runGlobal(timeSteps);
 
     // combine each module's results matrix together
-    std::vector<std::vector<double>> results_matrix = combineResultsMatrix(
+    Eigen::MatrixXd results_matrix = combineResultsMatrix(
         timeSteps.size()
     );
 
@@ -127,7 +130,7 @@ void SingleCell::setGlobalSimulationSettings(
 }
 
 void SingleCell::runGlobal(
-    std::vector<double> timesteps
+    Eigen::VectorXd timesteps
 ) { 
     auto start_t = std::chrono::high_resolution_clock::now();
     printf("Running Simulation for %lu steps.", timesteps.size());
@@ -194,13 +197,13 @@ void SingleCell::updateGlobalMaps() {
 
 }
 
-std::vector<std::vector<double>> SingleCell::combineResultsMatrix(
+Eigen::MatrixXd SingleCell::combineResultsMatrix(
     int timesteps
 ) {
 
     int numSpecies = this->getGlobalSpeciesIds().size();
 
-    std::vector<std::vector<double>> final_matrix;
+    Eigen::MatrixXd final_matrix;
 
     for (size_t m = 0; m < this->modules.size(); m++) {
 
@@ -209,7 +212,7 @@ std::vector<std::vector<double>> SingleCell::combineResultsMatrix(
             final_matrix = this->modules[m]->results_matrix;
         } else {
 
-            std::vector<std::vector<double>> mod_matrix = this->modules[m]->results_matrix;
+            Eigen::MatrixXd mod_matrix = this->modules[m]->results_matrix;
 
             for (size_t t = 0; t < mod_matrix.size(); t++) {
 

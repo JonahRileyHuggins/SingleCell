@@ -64,7 +64,7 @@ std::string DeterministicModule::getModuleId() { return this->algorithm_id; }
 
 void DeterministicModule::step(int step) {
     // Get the (step - 1)th result
-    std::vector<double> last_record = this->getLastStepResult(step);
+    Eigen::VectorXd last_record = this->getLastStepResult(step);
 
     //reset SBML species values:
     this->updateComponentMap(this->species_list,last_record);
@@ -73,7 +73,7 @@ void DeterministicModule::step(int step) {
     this->updateAMICIModel();
 
     // Set the single timepoint to simulate
-    std::vector<double> step_forward = {0.0, this->delta_t};
+    Eigen::VectorXd step_forward = {0.0, this->delta_t};
 
     this->model->setTimepoints(step_forward);
 
@@ -84,7 +84,7 @@ void DeterministicModule::step(int step) {
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
     // Extract results
-    std::vector<double> last_vals = this->getNewStepResult(*rdata);
+    Eigen::VectorXd last_vals = this->getNewStepResult(*rdata);
 
     // Update internal state map
     this->updateComponentMap(this->species_list, last_vals);

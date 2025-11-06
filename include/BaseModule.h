@@ -25,6 +25,7 @@
 
 //Third Party Libraries
 #include "sbml/SBMLReader.h"
+#include <Eigen/Dense>
 
 //==========================Class Declaration===============================//
 class BaseModule {
@@ -45,7 +46,7 @@ class BaseModule {
          * 
          * @returns results_matrix species-by-timesteps matrix of doubles
          */
-        std::vector<std::vector<double>> createResultsMatrix(
+        Eigen::MatrixXd createResultsMatrix(
             int numSpecies,
             int numTimeSteps
         ); 
@@ -59,7 +60,7 @@ class BaseModule {
          * @returns None assigns new states to member results_matrix
          */
         void recordStepResult(
-            const std::vector<double>& state_vector, 
+            const Eigen::VectorXd& state_vector, 
             int timepoint
         );
 
@@ -70,7 +71,7 @@ class BaseModule {
          * 
          * @returns state_vector vector of species states recorded in results_matrix object
          */
-        virtual std::vector<double> getLastStepResult(
+        virtual Eigen::VectorXd getLastStepResult(
             int timepoint
         ) = 0;
 
@@ -113,7 +114,7 @@ class BaseModule {
          * 
          * @returns timepoints vector of float values 
          */
-        static std::vector<double> setTimeSteps(
+        static Eigen::VectorXd setTimeSteps(
             double start, 
             double stop, 
             double step
@@ -136,7 +137,7 @@ class BaseModule {
          * @param timepoints vector of timepoints for the simulation
          */
         virtual void run(
-            std::vector<double> timepoints
+            Eigen::VectorXd timepoints
         ) = 0;        
 
         virtual void setSimulationSettings(
@@ -156,36 +157,36 @@ class BaseModule {
          */
         void updateComponentMap(
             std::vector<std::string> entities, 
-            std::vector<double> updates
+            Eigen::VectorXd updates
         );
 
         /**
          * @brief Retrieves species values from the components map
          */
-        std::vector<double> getSpeciesValues();
+        Eigen::VectorXd getSpeciesValues();
 
         /**
          * @brief Retrieves parameter values from the components map
          */
-        std::vector<double> getParameterValues();
+        Eigen::VectorXd getParameterValues();
 
         /**
          * @brief Sets species values
          */
-        void setSpeciesValues(std::vector<double> updated_vals);
+        void setSpeciesValues(Eigen::VectorXd updated_vals);
 
         /**
          * @brief Sets parameter values
          * 
          * @param updated_vals vector of new states
          */
-        void setParameterValues(std::vector<double> updated_vals);
+        void setParameterValues(Eigen::VectorXd updated_vals);
 
         /**
          * @brief Retrieves data in component map assigned to variables in class
          * member `store`
          */
-        std::vector<double> getStoreData();
+        Eigen::VectorXd getStoreData();
 
         /**
          * @brief Iterates over connected modules and updates component map after
@@ -193,18 +194,27 @@ class BaseModule {
          */
         void getAltModuleStores();
 
+        /**
+         * @brief Retrieves last result saved in the results matrix
+         * 
+         * @param timestep current iteration of the simulation
+         * 
+         * @returns state_vector t-1 array of values
+         */
+        Eigen::VectorXd getLastStepResult(int timestep);
+
     //-------------------------------Members--------------------------------//
         SBMLHandler handler;
         
-        std::vector<std::vector<double>> stoichmat;
+        Eigen::MatrixXd stoichmat;
 
         std::vector<std::string> formulas_vector;
 
-        std::vector<std::vector<double>> results_matrix;
+        Eigen::MatrixXd results_matrix;
 
         std::vector<BaseModule*> sources;
 
-        std::vector<double> timesteps;
+        Eigen::VectorXd timesteps;
 
         std::unordered_map<std::string, double> component_map;
         std::vector<std::string> compartments_list;

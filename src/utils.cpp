@@ -16,6 +16,9 @@
 // Internal Libraries
 #include "utils.h"
 
+// Third Party Libraries
+#include <Eigen/Dense>
+
 namespace matrix_utils {
     void save_matrix(
         std::vector<std::vector<double>> results_matrix,
@@ -72,57 +75,20 @@ namespace matrix_utils {
 }
 
 namespace unit_conversions {
-    std::vector<double> nanomolar2mpv(
-        std::vector<double> cell_volumes
-    ) {
-
+    Eigen::VectorXd nanomolar2mpv(const Eigen::VectorXd& cell_volumes) {
         const double nm2Molar = 1e9;
+        const double avogadro = 6.022e23;
 
-        const double avagadros = 6.022e23;
+        const double conversion = (1.0 / nm2Molar) * avogadro;
 
-        std::vector<double> mpv_vec(cell_volumes.size());
-
-        for (int i = 0; i < cell_volumes.size(); i++) {
-
-            mpv_vec[i] = (1.0 / nm2Molar) * (avagadros / 1.0);
-
-        }
-
-        return mpv_vec;
-
+        return Eigen::VectorXd::Constant(cell_volumes.size(), conversion);
     }
 
-    std::vector<double> molecules2nanomolar(
-        std::vector<double> cell_volumes
-    ) {
-
-        const double avagadros = 6.022e23;
-
+    Eigen::VectorXd molecules2nanomolar(const Eigen::VectorXd& cell_volumes) {
+        const double avogadro = 6.022e23;
         const double molar2nM = 1.0e9;
 
-        std::vector<double> nanomolar_vec(cell_volumes.size());
-
-        for (int i = 0; i < cell_volumes.size(); i++) {
-
-            nanomolar_vec[i] = (1.0 / cell_volumes[i]) * (1.0 / avagadros) * molar2nM;
-
-        }
-
-        return nanomolar_vec;
-    }
-
-    std::vector<double> convert(
-        std::vector<double> prior_values,
-        std::vector<double> conversion_factors
-    ) {
-
-        std::vector<double> converted_vals(prior_values.size());
-
-        for (int i = 0; i < conversion_factors.size(); i++) {
-
-            converted_vals[i] = prior_values[i] * conversion_factors[i];
-
-        }
-        return converted_vals;
+        // Elementwise calculation: 1 / (cell_volume * avogadro) * molar2nM
+        return (1.0 / (cell_volumes.array() * avogadro)) * molar2nM;
     }
 }

@@ -17,6 +17,8 @@
 #include <string>
 #include <memory>
 
+#include <Eigen/Dense>
+
 //=======================Namespace Definition===============================//
 
 namespace matrix_utils {
@@ -61,8 +63,8 @@ namespace unit_conversions {
      * @return mpc_vec list of static conversion factors 
      * from unit  units nanomolar to molecules per cell
      */
-    std::vector<double> nanomolar2mpv(
-        std::vector<double> cell_volumes
+    Eigen::VectorXd nanomolar2mpv(
+        Eigen::VectorXd cell_volumes
     );
 
     /**
@@ -74,22 +76,10 @@ namespace unit_conversions {
      * @return nanomolar_vec list of static conversion factors 
      * from unit molecules per cell to units nanomolar
      */
-    std::vector<double> molecules2nanomolar(
-        std::vector<double> cell_volumes
+    Eigen::VectorXd molecules2nanomolar(
+        Eigen::VectorXd cell_volumes
     );
 
-    /**
-     * @brief method to convert iterational values to proper units per model.convert
-     * 
-     * @param prior_values list of values before conversion
-     * @param conversion_factors list of conversion factors, same length as prior_values
-     * 
-     * @returns converted_vals element-wise multiplied values per item in prior_values
-     */
-    std::vector<double> convert(
-        std::vector<double> prior_values,
-        std::vector<double> conversion_factors
-    );
 }
 
 #endif

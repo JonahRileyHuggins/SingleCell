@@ -25,6 +25,7 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
+#include <Eigen/Dense>
 
 //==========================Class Declaration===============================//
 class DeterministicModule : public BaseModule {
@@ -67,7 +68,7 @@ class DeterministicModule : public BaseModule {
          * @param timepoints vector of timepoints for the simulation
          */
         void run(
-            std::vector<double> timepoints
+            Eigen::VectorXd timepoints
         ) override;
 
         /**
@@ -82,9 +83,9 @@ class DeterministicModule : public BaseModule {
 
     private:
     // ---------------------------Methods-----------------------------------//
-        std::vector<double> setAllSpeciesValues(
+        Eigen::VectorXd setAllSpeciesValues(
             std::vector<double> current_states,
-            std::vector<double> update_states
+            Eigen::VectorXd update_states
         );
 
         std::vector<double> getNewStepResult(

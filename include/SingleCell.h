@@ -25,6 +25,9 @@
 #include "SBMLHandler.h"
 #include "BaseModule.h"
 
+// Third Party Libraries
+#include <Eigen/Dense>
+
 //==========================Class Declaration===============================//
 class SingleCell {
     private:
@@ -118,7 +121,7 @@ class SingleCell {
          * basically just adds each module implementation of BaseModule.results_matrix
          * class member to finalized results matrix.
          */
-        std::vector<std::vector<double>> combineResultsMatrix(
+        Eigen::MatrixXd combineResultsMatrix(
             int numTimesteps
         );
 
@@ -144,7 +147,7 @@ class SingleCell {
          * 
          * @returns matrix of global states for both models
          */
-        std::vector<std::vector<double>> simulate(
+        Eigen::MatrixXd simulate(
             double start = 0.0, //seconds
             double stop = 60.0, //seconds
             double step = 30.0 //seconds

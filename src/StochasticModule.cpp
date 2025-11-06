@@ -32,6 +32,7 @@
 
 // external library
 #include "parser.h"
+#include <Eigen/Dense>
 
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
@@ -309,7 +310,7 @@ void StochasticModule::step(
     int step
 ) {
     // get (step minus 1) position in results_matrix member
-    std::vector<double> last_state_nM = this->getLastStepResult(step);  // nM
+    Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
     // convert units to molecule per volume
     std::vector<double> mpv_state(last_state_nM);
@@ -371,11 +372,11 @@ void StochasticModule::run(
     }
 }
 
-std::vector<double> StochasticModule::getLastStepResult(
+Eigen::VectorXd StochasticModule::getLastStepResult(
     int timestep
 ) {
 
-    std::vector<double> state_vector(this->results_matrix.size());
+    Eigen::VectorXd state_vector(this->results_matrix.size());
 
     state_vector = this->results_matrix[
         (timestep > 0) ? timestep - 1 : timestep
