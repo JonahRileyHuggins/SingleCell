@@ -4,8 +4,18 @@ project(SingleCell)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/extern")
-set(VECTOR_FLAGS -O3 -march=native -ftree-vectorize -fopenmp-simd -fopt-info-vec-optimized -fopt-info-vec-missed -fopt-info-vec-all)
-# set(CMAKE_BUILD_TYPE Debug)
+set(VECTOR_FLAGS
+    -Ofast
+    -march=native        # Auto-detect +
+    -mavx2               # enable AVX2 instructions explicitly
+    -ftree-vectorize     # allow auto vectorization
+    -fopenmp-simd        # enable #pragma omp simd
+    -fopt-info-vec-optimized
+    -fopt-info-vec-missed
+    -fopt-info-vec-all
+)
+
+set(CMAKE_BUILD_TYPE Release)
 
 # === Paths ===
 
@@ -144,7 +154,6 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
-# add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
 # --- libsbml ---
@@ -192,7 +201,6 @@ target_link_libraries(SingleCell PRIVATE
     One4All
     sbml
     ReactionParser
-    pybind11::module
 )
 
 target_compile_options(SingleCell PRIVATE ${VECTOR_FLAGS})

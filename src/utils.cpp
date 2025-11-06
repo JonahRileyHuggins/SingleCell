@@ -14,7 +14,7 @@
 #include <iostream>
 
 // Internal Libraries
-#include "singlecell/utils.h"
+#include "utils.h"
 
 namespace matrix_utils {
     void save_matrix(
@@ -59,10 +59,12 @@ namespace matrix_utils {
         const std::vector<std::vector<double>>& matrix, 
         size_t indexCol
     ) {
-        std::vector<double>column;
+        std::vector<double>column(matrix.size());
 
-        for (const auto& row : matrix) {
-            column.push_back(row[indexCol]);
+        for (int r = 0; r < matrix.size(); r++) {
+
+            column[r] = matrix[r][indexCol];
+
         }
 
         return column;

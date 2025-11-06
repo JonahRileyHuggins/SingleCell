@@ -19,7 +19,7 @@
 #include <unordered_map>
 
 //Internal Libraries
-#include "singlecell/ArgParsing.h"
+#include "ArgParsing.h"
 
 //=============================Class Details================================//
 ArgParsing::ArgParsing(int argc, char* argv[]) {

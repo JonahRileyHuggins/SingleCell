@@ -13,7 +13,7 @@
 #include <unordered_map>
 
 // Internal Libraries
-#include "singlecell/SingleCell.h"    // class header
+#include "SingleCell.h"    // class header
 
 // Third Party Libraries
 #include <pybind11/stl.h>  // needed for std::vector, std::string

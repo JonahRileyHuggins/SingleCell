@@ -1,17 +1,17 @@
 /**
- * @file: One4AllModule.h
+ * @file: DeterministicModule.h
  * 
  * @authors Jonah R. Huggins, Marc R. Birtwistle
  * @date 14-05-2025
  * 
- * @brief Class Creator For One4All Module Using AMICI
+ * @brief Class Creator For Deterministic Module Using AMICI
  */
 
 //========================header file definition============================//
 #pragma once
 
-#ifndef One4AllMODULE_h
-#define One4AllMODULE_h
+#ifndef DETERMINISTICMODULE_h
+#define DETERMINISTICMODULE_h
 
 //===========================Library Import=================================//
 //Std Libraries
@@ -27,14 +27,14 @@
 #include "amici/amici.h"
 
 //==========================Class Declaration===============================//
-class One4AllModule : public BaseModule {
+class DeterministicModule : public BaseModule {
     public:
     //----------------------------Methods-----------------------------------//
-        One4AllModule(
-            SBMLHandler One4AllModel
+        DeterministicModule(
+            SBMLHandler DeterministicModel
         ); //Ctor
 
-        ~One4AllModule() override = default; //Dtor
+        ~DeterministicModule() override = default; //Dtor
 
         /**
          * @brief retrieves private member algorithm_id for determining which simulation
@@ -51,18 +51,18 @@ class One4AllModule : public BaseModule {
         ) override;
 
         /**
-         * @brief Calculates a single timestep for the One4All module
+         * @brief Calculates a single timestep for the Deterministic module
          * 
          * @param step current step of the simulation
          * 
-         * @returns None (new state vector of t+1 values for One4All step)
+         * @returns None (new state vector of t+1 values for Deterministic step)
         */
         void step(
             int step
         ) override;
 
         /**
-         * @brief Calculates every timestep for the One4All module before returning call
+         * @brief Calculates every timestep for the Deterministic module before returning call
          * 
          * @param timepoints vector of timepoints for the simulation
          */
@@ -90,6 +90,11 @@ class One4AllModule : public BaseModule {
         std::vector<double> getNewStepResult(
             const amici::ReturnData &rdata
         );
+
+        /**
+         * @brief internal method to update AMICI model parameters
+         */
+        void updateAMICIModel();
         
     //-------------------------------Members--------------------------------//
         std::unique_ptr<amici::Model> model;

@@ -15,13 +15,13 @@
 #include <unordered_set>
 
 // Internal Libraries
-#include "singlecell/utils.h"
-#include "singlecell/SingleCell.h"
-#include "singlecell/BaseModule.h"
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/One4AllModule.h"
-#include "singlecell/StochasticModule.h"
-#include "singlecell/DeterministicModule.h"
+#include "utils.h"
+#include "SingleCell.h"
+#include "BaseModule.h"
+#include "SBMLHandler.h"
+#include "One4AllModule.h"
+#include "StochasticModule.h"
+#include "DeterministicModule.h"
 
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
@@ -41,9 +41,6 @@ std::vector<std::vector<double>> SingleCell::simulate(
 
     // Assign Target per Module
     this->assignGlobalSources();
-
-    // Identify all module overlaps between source & targets
-    this->findModuleOverlaps();
     
     // Add simulation time steps, results matrix
     this->setGlobalSimulationSettings(
@@ -114,18 +111,6 @@ void SingleCell::assignGlobalSources() {
     }
 }
 
-void SingleCell::findModuleOverlaps() {
-
-    for (const auto& mod : this->modules) {
-
-        for (const auto& target : mod->sources) {
-
-            mod->findOverlappingIds(target->sbml);
-
-        }
-    }
-}
-
 void SingleCell::setGlobalSimulationSettings(
     double start,
     double stop,
@@ -165,7 +150,7 @@ void SingleCell::runGlobal(
             this->stepGlobal(step);
 
             // exchange data
-            this->updateGlobalParameters();
+            this->updateGlobalMaps();
 
             auto iter_t = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> iter_time = iter_t - start_t;
@@ -199,11 +184,11 @@ void SingleCell::stepGlobal(
 
 }
 
-void SingleCell::updateGlobalParameters() {
+void SingleCell::updateGlobalMaps() {
 
     for (const auto& mod : this->modules) {
 
-        mod->updateParameters();
+        mod->getAltModuleStores();
 
     }
 

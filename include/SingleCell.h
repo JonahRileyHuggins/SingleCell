@@ -22,11 +22,8 @@
 #include <unordered_map>
 
 //Internal Libraries
-#include "singlecell/SBMLHandler.h"
-#include "singlecell/BaseModule.h"
-
-// Third Party Libraries
-#include "sbml/SBMLReader.h"
+#include "SBMLHandler.h"
+#include "BaseModule.h"
 
 //==========================Class Declaration===============================//
 class SingleCell {
@@ -73,13 +70,6 @@ class SingleCell {
          * to modules
          */
         void assignGlobalSources();
-
-        /**
-         * @brief Iterates over stored class member modules, identifies target entities
-         * 
-         */
-        void findModuleOverlaps();
-
         /**
          * @brief modifies intial states for each module stored in class member modules
          * 
@@ -112,7 +102,10 @@ class SingleCell {
             int step
         );
 
-        void updateGlobalParameters();
+        /**
+         * @brief round robin-style retrieval of connected module's store member 
+         */
+        void updateGlobalMaps();
 
         /**
          * @brief creates combined results matrix for every module in 
