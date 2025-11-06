@@ -42,7 +42,7 @@ def build_singlecell(
 
     # build commands, again mimicing cmake build process
     subprocess.run(
-        ["cmake", "--build", str(build_dir), "--parallel"], 
+        ["cmake", "--build", str(build_dir), "--parallel $(($(nproc) - 1))"], 
         check=True
     )
 
