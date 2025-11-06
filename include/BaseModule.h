@@ -64,17 +64,6 @@ class BaseModule {
             int timepoint
         );
 
-        /**
-         * @brief Getter method for last recorded value in results matrix
-         * 
-         * @param timepoint position in results matrix being returned
-         * 
-         * @returns state_vector vector of species states recorded in results_matrix object
-         */
-        virtual Eigen::VectorXd getLastStepResult(
-            int timepoint
-        ) = 0;
-
     //-------------------------------Members--------------------------------//
         std::string algorithm_id = "";
         std::string source_id = "";
@@ -195,11 +184,11 @@ class BaseModule {
         void getAltModuleStores();
 
         /**
-         * @brief Retrieves last result saved in the results matrix
+         * @brief Retrieval method for last recorded value in results matrix
          * 
-         * @param timestep current iteration of the simulation
+         * @param timepoint position in results matrix being returned
          * 
-         * @returns state_vector t-1 array of values
+         * @returns state_vector species states recorded in results_matrix member
          */
         Eigen::VectorXd getLastStepResult(int timestep);
 

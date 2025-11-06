@@ -59,7 +59,7 @@ Eigen::MatrixXd BaseModule::createResultsMatrix(
     int numTimeSteps
 ) {
 
-    Eigen::MatrixXd results_matrix(numTimeSteps, std::vector<double>(numSpecies));
+    Eigen::MatrixXd results_matrix(numTimeSteps, numSpecies);
 
     return results_matrix;
 
@@ -70,7 +70,7 @@ void BaseModule::recordStepResult(
     const Eigen::VectorXd& state_vector,
     int timepoint
 ) {
-    this->results_matrix[timepoint] = state_vector;
+    results_matrix.(timepoint) = state_vector.transpose();
 
 }
 
@@ -80,7 +80,7 @@ Eigen::VectorXd BaseModule::getSpeciesValues() {
 
     for (int i = 0; i < this->species_list.size(); i++) {
 
-        return_list[i] = this->component_map[species_list[i]];
+        return_list(i) = this->component_map[species_list[i]];
 
     }
     return return_list;
@@ -92,7 +92,7 @@ Eigen::VectorXd BaseModule::getParameterValues() {
 
     for (int i = 0; i < this->params_list.size(); i++) {
 
-        return_list[i] = this->component_map[params_list[i]];
+        return_list(i) = this->component_map[params_list[i]];
 
     }
     return return_list;
@@ -104,24 +104,19 @@ Eigen::VectorXd BaseModule::getStoreData() {
 
     for (int i = 0; i < this->store.size(); i++) {
 
-        store_data[i] = this->component_map[this->store[i]];
+        store_data(i) = this->component_map[this->store[i]];
 
     }
     return store_data;
 }
 
 void BaseModule::updateComponentMap(
-    std::vector<std::string> entities, 
-    Eigen::VectorXd updates
+    const std::vector<std::string>& entities, 
+    const Eigen::VectorXd& updates
 ) {
-    // Safety check ensuring values properly match entities
     assert(entities.size() == updates.size());
-
-    for (int i = 0; i < entities.size(); i++) {
-
-        this->component_map[entities[i]] = updates[i];
-
-    }
+    for (int i = 0; i < static_cast<int>(entities.size()); ++i)
+        this->component_map[entities[i]] = updates(i);
 }
 
 void BaseModule::getAltModuleStores() {

@@ -83,12 +83,7 @@ class DeterministicModule : public BaseModule {
 
     private:
     // ---------------------------Methods-----------------------------------//
-        Eigen::VectorXd setAllSpeciesValues(
-            std::vector<double> current_states,
-            Eigen::VectorXd update_states
-        );
-
-        std::vector<double> getNewStepResult(
+        Eigen::VectorXd getNewStepResult(
             const amici::ReturnData &rdata
         );
 
@@ -104,16 +99,6 @@ class DeterministicModule : public BaseModule {
 
     protected:
     // ---------------------------Methods-----------------------------------//
-        /**
-         * @brief Getter method for last recorded value in results matrix
-         * 
-         * @param timepoint position in results matrix being returned
-         * 
-         * @returns state_vector vector of species states recorded in results_matrix object
-         */
-        std::vector<double> getLastStepResult(
-            int timestep
-        ) override;
 
     //-------------------------------Members--------------------------------//
 

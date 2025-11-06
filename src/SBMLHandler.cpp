@@ -13,8 +13,10 @@
 #include <algorithm>
 #include <unordered_map>
 
+// Third Party Library
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
+#include <Eigen/Dense>
 
 // Internal Libraries
 #include "utils.h"
@@ -55,7 +57,7 @@ SBMLHandler::~SBMLHandler() { // Destructor Method
     }
 }
 
-std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
+Eigen::MatrixXd SBMLHandler::getStoichiometricMatrix() {
 
     int numSpecies = this->model->getNumSpecies();
 
@@ -65,7 +67,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
 
     // build a blank stoichiometric matrix of zeros
-    std::vector<std::vector<double>> stoichmat(numSpecies, std::vector<double>(numReactions, 0.0));
+    Eigen::MatrixXd stoichmat = Eigen::MatrixXd::Zero(numSpecies, numReactions);
 
     // Populate the matrix:
     for (int i = 0; i < numReactions; i++) {
@@ -81,7 +83,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
             const std::string speciesId = reactant->getSpecies();
             double coeff = reactant->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] -= coeff;
+            stoichmat(speciesIndex, i) -= coeff;
         }
 
         const ListOfSpeciesReferences* products = reaction->getListOfProducts();
@@ -93,7 +95,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
             const std::string speciesId = product->getSpecies();
             double coeff = product->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] += coeff;
+            stoichmat(speciesIndex, i) += coeff;
         }
     }
 
@@ -261,8 +263,6 @@ double SBMLHandler::getModelEntityValue(
     return value;
 }
 
-
-
 std::vector<std::string> SBMLHandler::getReactionIds() {
 
     unsigned int numReactions = this->model->getNumReactions();
@@ -278,21 +278,18 @@ std::vector<std::string> SBMLHandler::getReactionIds() {
     return reactionIds;
 }
 
-std::vector<double> SBMLHandler::getGlobalSpeciesCompartmentVals( 
-
-) {
-
+Eigen::VectorXd SBMLHandler::getGlobalSpeciesCompartmentVals() {
 
     unsigned int numSpecies = this->model->getNumSpecies();
 
     // Results vector for list of compartment values per species
-    std::vector<double> cell_volumes(numSpecies);
+    Eigen::VectorXd cell_volumes(numSpecies);
 
     for (int i = 0; i < numSpecies; i++) {
 
         std::string comp_i = this->model->getSpecies(i)->getCompartment();
 
-        cell_volumes[i] = this->model->getCompartment(comp_i)->getVolume();
+        cell_volumes(i) = this->model->getCompartment(comp_i)->getVolume();
 
     }
 

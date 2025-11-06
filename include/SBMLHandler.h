@@ -13,12 +13,17 @@
 #define SBMLHandler_h
 
 // -------------------------------Library Import-----------------------------//
+// Std Library
 #include <vector>
 #include <string>
 #include <memory>
 #include <unordered_map>
+
+// Third Party Libraries
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
+#include <Eigen/Dense>
+
 //--------------------------Constants Declarations---------------------------//
 
 //--------------------------Class Declaration-------------------------------//
@@ -40,7 +45,7 @@ class SBMLHandler {
         * 
         * @returns stoichmat A stochiometric matrix 
         * */
-        std::vector<std::vector<double>> getStoichiometricMatrix();
+        Eigen::MatrixXd getStoichiometricMatrix();
 
         /**
          * @brief creates a map of species identifiers to thier corresponding index
@@ -126,7 +131,7 @@ class SBMLHandler {
          * @returns cell_volumes vector list of compartmental volumes, as defined in
          * class member this->model
          */
-        std::vector<double> getGlobalSpeciesCompartmentVals();
+        Eigen::VectorXd getGlobalSpeciesCompartmentVals();
 
         /**
          * @brief add method docstring
@@ -170,7 +175,7 @@ class SBMLHandler {
         std::vector<std::string> getCompartmentIds();
 
     //----------------------------members-----------------------------------//
-        std::vector<double> species_volumes;
+        Eigen::VectorXd species_volumes;
         std::string name;
 
 

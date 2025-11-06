@@ -84,17 +84,6 @@ class StochasticModule : public BaseModule{
         ) override;
 
         /**
-         * @brief public method for updating the simulation states at every timestep. 
-         * 
-         * @param state vector of timestep values to be calculated. 
-         * 
-         * @returns None
-         */
-        void setModelState(
-            const Eigen::VectorXd& state
-        );
-
-        /**
          * @brief Override class for BaseModule, exchanges data with target
          * modules at each timestep
          */
@@ -190,7 +179,7 @@ class StochasticModule : public BaseModule{
          * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
         Eigen::VectorXd samplePoisson(
-            std::vector<double> mu
+            Eigen::VectorXd mu
         );
 
         /**
@@ -201,8 +190,8 @@ class StochasticModule : public BaseModule{
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
         Eigen::VectorXd constrainTau(
-            std::vector<double> m_i,
-            std::vector<double> xhat_tn
+            Eigen::VectorXd m_i,
+            Eigen::VectorXd xhat_tn
         ); 
 
         /**
@@ -227,16 +216,6 @@ class StochasticModule : public BaseModule{
 
     protected:
         // -------------------------Methods-----------------------------------//
-        /**
-         * @brief Getter method for last recorded value in results matrix
-         * 
-         * @param timepoint position in results matrix being returned
-         * 
-         * @returns state_vector vector of species states recorded in results_matrix object
-         */
-        std::Eigen::VectorXd getLastStepResult(
-            int timestep
-        ) override;
 
         //---------------------------Members----------------------------------//
 

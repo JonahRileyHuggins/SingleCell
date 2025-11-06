@@ -58,9 +58,7 @@ Eigen::MatrixXd SingleCell::simulate(
     this->runGlobal(timeSteps);
 
     // combine each module's results matrix together
-    Eigen::MatrixXd results_matrix = combineResultsMatrix(
-        timeSteps.size()
-    );
+    Eigen::MatrixXd results_matrix = combineResultsMatrix(timeSteps.size());
 
     this->modules.clear();
 
@@ -197,33 +195,27 @@ void SingleCell::updateGlobalMaps() {
 
 }
 
-Eigen::MatrixXd SingleCell::combineResultsMatrix(
-    int timesteps
-) {
+Eigen::MatrixXd SingleCell::combineResultsMatrix() {
 
-    int numSpecies = this->getGlobalSpeciesIds().size();
+    if (modules.empty())
+        return Eigen::MatrixXd();  // empty
 
-    Eigen::MatrixXd final_matrix;
+    Eigen::MatrixXd final_matrix = modules[0]->results_matrix;
 
-    for (size_t m = 0; m < this->modules.size(); m++) {
+    for (size_t m = 1; m < modules.size(); ++m) {
+        const Eigen::MatrixXd& mod_matrix = modules[m]->results_matrix;
 
-        if (m == 0) {
+        // Check number of rows
+        assert(final_matrix.rows() == mod_matrix.rows());
 
-            final_matrix = this->modules[m]->results_matrix;
-        } else {
+        // Resize final_matrix to hold extra columns
+        int oldCols = final_matrix.cols();
+        final_matrix.conservativeResize(Eigen::NoChange, oldCols + mod_matrix.cols());
 
-            Eigen::MatrixXd mod_matrix = this->modules[m]->results_matrix;
-
-            for (size_t t = 0; t < mod_matrix.size(); t++) {
-
-                final_matrix[t].insert(
-                    final_matrix[t].end(),
-                    mod_matrix[t].begin(),
-                    mod_matrix[t].end()
-                );
-            }
-        }
+        // Copy new module matrix into the newly added columns
+        final_matrix.block(0, oldCols, mod_matrix.rows(), mod_matrix.cols()) = mod_matrix;
     }
+
     return final_matrix;
 }
 

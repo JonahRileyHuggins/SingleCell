@@ -18,6 +18,7 @@
 // Third Party Libraries
 #include <pybind11/stl.h>  // needed for std::vector, std::string
 #include <pybind11/pybind11.h>
+#include <pybind11/eigen.h>
 
 namespace py = pybind11;
 
