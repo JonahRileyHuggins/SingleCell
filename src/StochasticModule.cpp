@@ -221,7 +221,7 @@ Eigen::VectorXd StochasticModule::constrainTau(
     for (int j = 0; j < this->stoichmat.cols(); ++j) {
 
         // Vector for current ratelaw stoichiometries per species (i.e. column of S)
-        Eigen::VectorXd S_j = this->stoichmat.col(j)
+        Eigen::VectorXd S_j = this->stoichmat.col(j);
 
         // calculate coefficient products of current state
         Eigen::VectorXd Rhat_j = xhat_tn.array() * S_j.array(); 

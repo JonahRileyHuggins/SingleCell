@@ -58,7 +58,7 @@ Eigen::MatrixXd SingleCell::simulate(
     this->runGlobal(timeSteps);
 
     // combine each module's results matrix together
-    Eigen::MatrixXd results_matrix = combineResultsMatrix(timeSteps.size());
+    Eigen::MatrixXd results_matrix = combineResultsMatrix();
 
     this->modules.clear();
 

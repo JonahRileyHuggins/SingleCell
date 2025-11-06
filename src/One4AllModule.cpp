@@ -67,7 +67,7 @@ void One4AllModule::step(int step) {
     this->updateAMICIModel();
 
     // Set the single timepoint to simulate
-    Eigen::VectorXd step_forward = {0.0, this->delta_t};
+    std::vector<double> step_forward = {0.0, this->delta_t};
 
     this->model->setTimepoints(step_forward);
 
@@ -98,8 +98,8 @@ void One4AllModule::run(
     Eigen::VectorXd initial_state = this->getLastStepResult(0);
 
     // convert eigen typesets to primitives AMICI wants
-    std::vector<double> time_vec(param_values.data(), 
-                        param_values.data() + param_values.size());
+    std::vector<double> time_vec(timepoints.data(), 
+                        timepoints.data() + timepoints.size());
 
     std::vector<double> init_state_vec(initial_state.data(),
                         initial_state.data() + initial_state.size());

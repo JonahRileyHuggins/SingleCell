@@ -93,7 +93,7 @@ class SingleCell {
          * @param timesteps vector of double steps to length of simulation
          */
         void runGlobal(
-            std::vector<double> timesteps
+            Eigen::VectorXd timesteps
         );
 
         /**
