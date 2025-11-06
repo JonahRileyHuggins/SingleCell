@@ -70,7 +70,7 @@ void BaseModule::recordStepResult(
     const Eigen::VectorXd& state_vector,
     int timepoint
 ) {
-    results_matrix.(timepoint) = state_vector.transpose();
+    results_matrix.row(timepoint) = state_vector.transpose();
 
 }
 

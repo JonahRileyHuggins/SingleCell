@@ -193,6 +193,7 @@ target_include_directories(SingleCell PRIVATE
     ${AMICI_INCLUDE_DIR}
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern #<-- necessary for Eigen
 )
 
 target_link_libraries(SingleCell PRIVATE
@@ -201,7 +202,6 @@ target_link_libraries(SingleCell PRIVATE
     One4All
     sbml
     ReactionParser
-    ${CMAKE_SOURCE_DIR}/extern/Eigen
 )
 
 target_compile_options(SingleCell PRIVATE ${VECTOR_FLAGS})
@@ -222,6 +222,7 @@ target_include_directories(pySingleCell PRIVATE
     ${AMICI_INCLUDE_DIR}
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern #<-- Necessary for Eigen
 )
 
 target_link_libraries(pySingleCell PRIVATE
@@ -230,7 +231,6 @@ target_link_libraries(pySingleCell PRIVATE
     One4All
     sbml
     ReactionParser
-    ${CMAKE_SOURCE_DIR}/extern/Eigen
     pybind11::module
 )
 target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})

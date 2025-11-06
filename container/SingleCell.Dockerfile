@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         swig \
         pipx \
         libhdf5-dev \
-        vim nano curl wget dos2unix \
+        vim nano dos2unix \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy only essential project files

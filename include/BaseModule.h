@@ -145,8 +145,8 @@ class BaseModule {
          * @returns None updates internal models.
          */
         void updateComponentMap(
-            std::vector<std::string> entities, 
-            Eigen::VectorXd updates
+            const std::vector<std::string>& entities, 
+            const Eigen::VectorXd& updates
         );
 
         /**
