@@ -50,7 +50,7 @@ namespace unit_conversions {
      */
     inline Eigen::VectorXd molecules2nanomolar(const Eigen::VectorXd& cell_volumes) {
 
-        return (1.0 / (cell_volumes.array() * avogadro)) * molar2nM;
+        return (1.0 / (cell_volumes.array() * avogadro)) * nm2Molar;
     }
 
     }

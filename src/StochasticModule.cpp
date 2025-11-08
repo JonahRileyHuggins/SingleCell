@@ -231,7 +231,7 @@ Eigen::VectorXd StochasticModule::constrainTau(
         Eigen::ArrayXd abs_r = Rhat_j(Rhat_j > 0);
 
         // Compute min valid reactant or fallback to m_i(j)
-        double R_mi = valid_reactants.size() > 0 ? valid_reactants.minCoeff() : m_i(j);
+        double R_mi = abs_r.size() > 0 ? abs_r.minCoeff() : m_i(j);
         mhat_actual(j) = std::min(m_i(j), R_mi);
     }
 
