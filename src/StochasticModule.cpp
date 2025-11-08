@@ -80,17 +80,13 @@ Eigen::VectorXd StochasticModule::computeReactions() {
     Eigen::VectorXd v(numReactions);
 
     // Populate the matrix:
-    for (unsigned int i = 0; i < numReactions; i++) {
-        
-        std::string formula_i = formulas_vector[i];
+    for (unsigned int i = 0; i < numReactions; i++)
+        v(i) = computeReaction(formulas_vector[i]);
 
-        v(i) = computeReaction(formula_i);
-    }
     
     return v;
 }
     
-#pragma omp declare simd
 double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
@@ -131,8 +127,7 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     // Iterate over each component and return SBML components with values associated
     #pragma omp simd
     for (int i = 0; i < components_vector.size(); i++) {
-        std::string component = components_vector[i];
-        formula_value_map[component] = this->component_map[component];
+        formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
     
     }
     return formula_value_map;       
