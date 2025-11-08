@@ -62,7 +62,7 @@ StochasticModule::StochasticModule(
 
     // Initialize random sampler only once
     std::random_device rd;
-    this->generator(rd());
+    this->generator.seed(rd());
 
  }
 
