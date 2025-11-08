@@ -22,6 +22,9 @@
 //=======================Namespace Definition===============================//
 
 namespace unit_conversions {
+    static constexpr double nm2Molar = 1e9;
+    static constexpr double avogadro = 6.022e23;
+
     /**
      * @brief conversion factor list for nanomolar to molecules per cell concentration,
      * considering every component's compartmental volume
@@ -32,8 +35,6 @@ namespace unit_conversions {
      * from unit  units nanomolar to molecules per cell
      */
     inline Eigen::VectorXd nanomolar2mpv(const Eigen::VectorXd& cell_volumes) {
-        const double nm2Molar = 1e9;
-        const double avogadro = 6.022e23;
         const double conversion = (1.0 / nm2Molar) * avogadro;
         return Eigen::VectorXd::Constant(cell_volumes.size(), conversion);
     }
@@ -48,8 +49,7 @@ namespace unit_conversions {
      * from unit molecules per cell to units nanomolar
      */
     inline Eigen::VectorXd molecules2nanomolar(const Eigen::VectorXd& cell_volumes) {
-        const double avogadro = 6.022e23;
-        const double molar2nM = 1.0e9;
+
         return (1.0 / (cell_volumes.array() * avogadro)) * molar2nM;
     }
 
