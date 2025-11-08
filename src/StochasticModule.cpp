@@ -58,7 +58,7 @@ StochasticModule::StochasticModule(
     this->params_list = StochasticModel.getParameterIds();
     this->compartments_list = StochasticModel.getCompartmentIds();
     this->species_volumes = StochasticModel.species_volumes;
-    this->store = this->params_list;
+    this->store = this->species_list;
 
  }
 
@@ -101,7 +101,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
         }
 
         // Send to parser algorithm
-        double v_i = parser(new_formula_str.c_str());
+        double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
         return v_i;
     }
     catch (const std::exception& e) {
@@ -204,7 +204,7 @@ Eigen::VectorXd StochasticModule::samplePoisson(
 
     for (size_t i = 0; i < mu.size(); ++i) {
 
-        std::poisson_distribution<int> dist((mu[i] * this->delta_t)); 
+        std::poisson_distribution<int> dist((mu(i) * this->delta_t)); 
         m_i(i) = dist(generator);
 
     }

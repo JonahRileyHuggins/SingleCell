@@ -49,7 +49,7 @@ DeterministicModule::DeterministicModule(
     this->species_list = DeterministicModel.getSpeciesIds();
     this->params_list = DeterministicModel.getParameterIds();
     this->compartments_list = DeterministicModel.getCompartmentIds();
-    this->store = this->params_list;
+    this->store = this->species_list;
 }
 
 std::string DeterministicModule::getModuleId() { return this->algorithm_id; }

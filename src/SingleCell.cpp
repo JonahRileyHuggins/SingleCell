@@ -151,17 +151,8 @@ void SingleCell::runGlobal(
 
             // exchange data
             this->updateGlobalMaps();
-
-            auto iter_t = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> iter_time = iter_t - start_t;
-            printf("Iteration [%i / %i] Time: %f", 
-                                (int)(step), 
-                                (int)(timesteps.size()), 
-                                iter_time.count());
-            printf("\n");
         }
     }
-
 
     auto stop_t = std::chrono::high_resolution_clock::now();
 
