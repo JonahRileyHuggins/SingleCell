@@ -16,6 +16,7 @@
 //Std Libaries
 #include <vector>
 #include <memory>
+#include <random>
 #include <optional>
 #include <unordered_map>
 
@@ -213,6 +214,7 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd molecules2nM_conversion_factors;
         Eigen::VectorXd nM2mpv_conversion_factors;
         Eigen::VectorXd species_volumes;
+        std::mt19937 generator;
 
     protected:
         // -------------------------Methods-----------------------------------//

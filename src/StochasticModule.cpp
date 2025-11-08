@@ -60,6 +60,10 @@ StochasticModule::StochasticModule(
     this->species_volumes = StochasticModel.species_volumes;
     this->store = this->species_list;
 
+    // Initialize random sampler only once
+    std::random_device rd;
+    this->generator(rd());
+
  }
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
@@ -196,16 +200,13 @@ Eigen::VectorXd StochasticModule::samplePoisson(
     Eigen::VectorXd mu
 ) {
 
-    std::random_device rd;
-    std::mt19937 generator(rd());
-
     // realization vector for storing random poisson samples
     Eigen::VectorXd m_i(mu.size()); 
 
     for (size_t i = 0; i < mu.size(); ++i) {
 
         std::poisson_distribution<int> dist((mu(i) * this->delta_t)); 
-        m_i(i) = dist(generator);
+        m_i(i) = dist(this->generator);
 
     }
     return m_i;
