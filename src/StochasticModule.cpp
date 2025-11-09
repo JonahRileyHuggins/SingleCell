@@ -206,6 +206,8 @@ Eigen::VectorXd StochasticModule::samplePoisson(
     return m_i;
 }
 
+double min_element_fast(const Eigen::VectorXd &vec) 
+
 Eigen::VectorXd StochasticModule::constrainTau(
     Eigen::VectorXd m_i,
     Eigen::VectorXd xhat_tn
@@ -213,7 +215,8 @@ Eigen::VectorXd StochasticModule::constrainTau(
 
     Eigen::VectorXd mhat_actual(m_i.size()); // results storage vector
 
-    for (int j = 0; j < this->stoichmat.cols(); ++j) {
+    const int numCols = this->stoichmat.cols();
+    for (int j = 0; j < numCols; ++j) {
 
         // Vector for curresnt ratelaw stoichiometries per species (i.e. column of S)
         const auto S_j = this->stoichmat.col(j);
@@ -221,11 +224,9 @@ Eigen::VectorXd StochasticModule::constrainTau(
         // calculate coefficient products of current state
         Eigen::ArrayXd Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
 
-        // retrieve all consumed reactants
-        Eigen::ArrayXd abs_r = Rhat_j(Rhat_j > 0);
-
         // Compute min valid reactant or fallback to m_i(j)
-        double R_mi = abs_r.size() > 0 ? abs_r.minCoeff() : m_i(j);
+        double R_mi = m_i(j);
+        for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
         mhat_actual(j) = std::min(m_i(j), R_mi);
     }
 
