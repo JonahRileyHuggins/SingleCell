@@ -125,7 +125,6 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     std::vector<std::string> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
-    #pragma omp simd
     for (int i = 0; i < components_vector.size(); i++) {
         formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
     
