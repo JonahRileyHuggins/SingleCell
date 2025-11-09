@@ -166,7 +166,7 @@ void SingleCell::runGlobal(
 void SingleCell::stepGlobal(
     int timestep
 ) {
-    #pragma omp parallel for
+
     for (const auto& mod : this->modules) {
         
         mod->step(timestep);
@@ -176,7 +176,7 @@ void SingleCell::stepGlobal(
 }
 
 void SingleCell::updateGlobalMaps() {
-    #pragma omp parallel for
+
     for (const auto& mod : this->modules) {
 
         mod->getAltModuleStores();

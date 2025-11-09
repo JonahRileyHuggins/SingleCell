@@ -244,6 +244,7 @@ target_link_libraries(pySingleCell PRIVATE
     sbml
     ReactionParser
     pybind11::module
+    OpenMP::OpenMP_CXX
 )
 target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})
 
