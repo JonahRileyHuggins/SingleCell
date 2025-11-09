@@ -206,8 +206,6 @@ Eigen::VectorXd StochasticModule::samplePoisson(
     return m_i;
 }
 
-double min_element_fast(const Eigen::VectorXd &vec) 
-
 Eigen::VectorXd StochasticModule::constrainTau(
     Eigen::VectorXd m_i,
     Eigen::VectorXd xhat_tn
