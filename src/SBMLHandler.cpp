@@ -150,9 +150,8 @@ std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeF
             if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
                 if (!current_token_bin.empty()) {
                     tokens.push_back(current_token_bin);
-                    current_token_bin.clear();
                 }
-                tokens.push_back(std::string(1, c));
+                current_token_bin.clear();
             } else if (!isspace(c)) {
                 current_token_bin += c;
             } else if (!current_token_bin.empty()) {

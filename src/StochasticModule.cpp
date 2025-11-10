@@ -44,7 +44,14 @@ StochasticModule::StochasticModule(
 
     // List of formula strings to be parsed.
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
-
+    // Loop over each entry
+    for (const auto& [formula, tokens] : this->tokenized_formula_map) {
+        std::cout << "Formula: " << formula << "\nTokens: ";
+        for (const auto& token : tokens) {
+            std::cout << token << "--";
+        }
+        std::cout << "\n";
+    }
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
@@ -122,8 +129,8 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
 
     std::unordered_map<std::string, double> formula_value_map;
 
-    std::vector<std::string_view> components_vector = this->tokenized_formula_map[formula_str];
-
+    std::vector<std::string> components_vector = this->tokenized_formula_map[formula_str];
+    
     // Iterate over each component and return SBML components with values associated
     for (int i = 0; i < components_vector.size(); i++) {
         formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
@@ -242,6 +249,9 @@ void StochasticModule::setSimulationSettings(
 void StochasticModule::step(
     int step
 ) {
+
+
+
     // get (step minus 1) position in results_matrix member
     Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
