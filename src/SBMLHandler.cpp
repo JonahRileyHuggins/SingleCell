@@ -140,8 +140,8 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
 
 std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeFormulas() {
     std::vector<std::string> formulas_vec = this->getReactionExpressions();
-    std::unordered_map<std::string, std::vector<std::string>> result;
-    result.reserve(formulas_vec.size());
+    std::unordered_map<std::string, std::vector<std::string>> formulas_component_map;
+    formulas_component_map.reserve(formulas_vec.size());
     for (const auto &formula : formulas_vec) {
         std::vector<std::string> tokens;
         std::string current_token_bin;

@@ -90,7 +90,7 @@ Eigen::VectorXd StochasticModule::computeReactions() {
 double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
-    std::vector<std::string> components = this->tokenized_formula_map[formula_str];
+    std::unordered_map<std::string,double> components = this->getFormulaValues(formula_str);
 
     // Copy formula string for safe replacement
     std::string new_formula_str = formula_str;
@@ -122,14 +122,14 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
 
     std::unordered_map<std::string, double> formula_value_map;
 
-    std::vector<std::string_view> components_vector = tokenizeFormula(formula_str);
+    std::vector<std::string_view> components_vector = this->tokenized_formula_map[formula_str];
 
     // Iterate over each component and return SBML components with values associated
     for (int i = 0; i < components_vector.size(); i++) {
         formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
     
     }
-    return formula_value_map;       
+    return formula_value_map;
 }
 
 bool StochasticModule::is_alnumus(char c) {
