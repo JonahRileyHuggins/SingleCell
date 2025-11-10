@@ -149,17 +149,17 @@ class StochasticModule : public BaseModule{
         std::string safe_replace_alnumus(
             std::string &input, 
             const std::string &swap,
-            double with_val
+            const std::string &with
             );
         
-        // /**
-        //  * @brief converts double precision values to a 15th decimal string
-        //  * @note standard
-        //  * @param val double value to be converted
-        //  * 
-        //  * @returns proper double to 15th decimal place
-        //  */
-        // std::string to_str(double val);
+        /**
+         * @brief converts double precision values to a 15th decimal string
+         * @note standard
+         * @param val double value to be converted
+         * 
+         * @returns proper double to 15th decimal place
+         */
+        std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
