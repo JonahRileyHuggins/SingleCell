@@ -139,7 +139,7 @@ std::string StochasticModule::safe_replace_alnumus(
     if (swap.empty()) return input;
 
     char buffer[32];
-    std::snprintf(buffer, sizeof(buffer), "%.6f", with_val);
+    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
     std::string with(buffer);
 
     size_t pos = 0;
