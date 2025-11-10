@@ -84,7 +84,7 @@ Eigen::VectorXd StochasticModule::computeReactions() {
 
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++)
-        v(i) = computeReaction(this->formulas_vector[i];);
+        v(i) = computeReaction(this->formulas_vector[i]);
 
     return v;
 }
@@ -99,7 +99,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
         }
 
         // Send to parser algorithm
