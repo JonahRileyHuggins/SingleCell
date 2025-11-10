@@ -141,32 +141,37 @@ std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeF
     std::vector<std::string> formulas_vec = this->getReactionExpressions();
     std::unordered_map<std::string, std::vector<std::string>> formulas_component_map;
 
-    for (int f = 0; f < formulas_vec.size(); f++ ) {
+    for (const auto& formula : formulas_vec) {
         std::vector<std::string> tokens;
         std::string current_token_bin;
-        std::vector<std::string> formula = formulas_vec[f];
+
         for (char c : formula) {
-            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
+            if (c == '+' || c == '-' || c == '*' || c == '/' || 
+                c == '^' || c == '(' || c == ')') {
+
                 if (!current_token_bin.empty()) {
                     tokens.push_back(current_token_bin);
+                    current_token_bin.clear();
                 }
-                current_token_bin.clear();
-            } else if (!isspace(c)) {
+            } 
+            else if (!std::isspace(static_cast<unsigned char>(c))) {
                 current_token_bin += c;
-            } else if (!current_token_bin.empty()) {
+            } 
+            else if (!current_token_bin.empty()) {
                 tokens.push_back(current_token_bin);
                 current_token_bin.clear();
             }
         }
-        if (!current_token_bin.empty()) {
+
+        if (!current_token_bin.empty())
             tokens.push_back(current_token_bin);
-        }
 
         formulas_component_map[formula] = tokens;
     }
 
     return formulas_component_map;
 }
+
 
 std::vector<std::string> SBMLHandler::getSpeciesIds() {
 
