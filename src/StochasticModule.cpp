@@ -45,14 +45,7 @@ StochasticModule::StochasticModule(
     // List of formula strings to be parsed.
     this->formulas_vector = StochasticModel.getReactionExpressions();
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
-    // Loop over each entry
-    for (const auto& [formula, tokens] : this->tokenized_formula_map) {
-        std::cout << "Formula: " << formula << "\nTokens: ";
-        for (const auto& token : tokens) {
-            std::cout << token << "--";
-        }
-        std::cout << "\n";
-    }
+
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
@@ -103,6 +96,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
         }
 
         // Send to parser algorithm
+
         double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
         return v_i;
     }
@@ -145,7 +139,7 @@ std::string StochasticModule::safe_replace_alnumus(
     if (swap.empty()) return input;
 
     char buffer[32];
-    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
+    std::snprintf(buffer, sizeof(buffer), "%.6f", with_val);
     std::string with(buffer);
 
     size_t pos = 0;
