@@ -43,7 +43,7 @@ StochasticModule::StochasticModule(
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed.
-    this->formulas_vector = StochasticModel.getReactionExpressions();
+    this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
 
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
@@ -90,14 +90,14 @@ Eigen::VectorXd StochasticModule::computeReactions() {
 double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
-    std::unordered_map<std::string, double> components = this->getFormulaValues(formula_str);
+    std::vector<std::string> components = this->tokenized_formula_map[formula_str];
 
     // Copy formula string for safe replacement
     std::string new_formula_str = formula_str;
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
         }
 
         // Send to parser algorithm
@@ -122,7 +122,7 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
 
     std::unordered_map<std::string, double> formula_value_map;
 
-    std::vector<std::string> components_vector = tokenizeFormula(formula_str);
+    std::vector<std::string_view> components_vector = tokenizeFormula(formula_str);
 
     // Iterate over each component and return SBML components with values associated
     for (int i = 0; i < components_vector.size(); i++) {
@@ -132,31 +132,6 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     return formula_value_map;       
 }
 
-std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
-
-    std::vector<std::string> tokens;
-
-    std::string current_token_bin;
-
-    for (char c : formula_str) {
-        if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
-            if (!current_token_bin.empty()) {
-                tokens.push_back(current_token_bin);
-            } 
-            current_token_bin.clear();
-        } else if (c != ' ') {
-            current_token_bin += c;
-        } else if (!current_token_bin.empty()) {
-            tokens.push_back(current_token_bin);
-            current_token_bin.clear();
-        }
-    }
-    if (!current_token_bin.empty()) {
-        tokens.push_back(current_token_bin);
-    }
-    return tokens;
-}
-
 bool StochasticModule::is_alnumus(char c) {
     return std::isalnum(static_cast<unsigned char>(c)) || c == '_';
 }
@@ -164,9 +139,13 @@ bool StochasticModule::is_alnumus(char c) {
 std::string StochasticModule::safe_replace_alnumus(
     std::string &input,
     const std::string &swap,
-    const std::string &with
+    double with_val
 ) {
     if (swap.empty()) return input;
+
+    char buffer[32];
+    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
+    std::string with(buffer);
 
     size_t pos = 0;
     while ((pos = input.find(swap, pos)) != std::string::npos) {
@@ -182,12 +161,6 @@ std::string StochasticModule::safe_replace_alnumus(
         }
     }
     return input;
-}
-
-std::string StochasticModule::to_str(double val) {
-    std::ostringstream out;
-    out << std::fixed << std::setprecision(15) << val;
-    return out.str();
 }
 
 Eigen::VectorXd StochasticModule::samplePoisson(
@@ -217,7 +190,7 @@ Eigen::VectorXd StochasticModule::constrainTau(
     for (int j = 0; j < numCols; ++j) {
 
         // Vector for curresnt ratelaw stoichiometries per species (i.e. column of S)
-        const auto S_j = this->stoichmat.col(j);
+        Eigen::VectorXd S_j = this->stoichmat.col(j);
 
         // calculate coefficient products of current state
         Eigen::ArrayXd Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
@@ -225,7 +198,7 @@ Eigen::VectorXd StochasticModule::constrainTau(
         // Compute min valid reactant or fallback to m_i(j)
         double R_mi = m_i(j);
         for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
-        mhat_actual(j) = std::min(m_i(j), R_mi);
+        mhat_actual(j) = m_i(j) < R_mi ? m_i(j) : R_mi;
     }
 
     return mhat_actual;

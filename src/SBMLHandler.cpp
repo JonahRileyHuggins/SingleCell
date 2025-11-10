@@ -138,6 +138,39 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
     return formulas_vector;
 }
 
+std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeFormulas() {
+    std::vector<std::string> formulas_vec = this->getReactionExpressions();
+    std::unordered_map<std::string, std::vector<std::string>> result;
+    result.reserve(formulas_vec.size());
+    for (const auto &formula : formulas_vec) {
+        std::vector<std::string> tokens;
+        std::string current_token_bin;
+
+        for (char c : formula) {
+            if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
+                if (!current_token_bin.empty()) {
+                    tokens.push_back(current_token_bin);
+                    current_token_bin.clear();
+                }
+                tokens.push_back(std::string(1, c));
+            } else if (!isspace(c)) {
+                current_token_bin += c;
+            } else if (!current_token_bin.empty()) {
+                tokens.push_back(current_token_bin);
+                current_token_bin.clear();
+            }
+        }
+
+        if (!current_token_bin.empty()) {
+            tokens.push_back(current_token_bin);
+        }
+
+        formulas_component_map[formula] = tokens;
+    }
+
+    return formulas_component_map;
+}
+
 std::vector<std::string> SBMLHandler::getSpeciesIds() {
 
     unsigned int num_species = this->model->getNumSpecies();

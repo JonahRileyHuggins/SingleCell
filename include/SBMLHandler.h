@@ -68,7 +68,12 @@ class SBMLHandler {
         std::vector<std::string> getReactionExpressions();
 
         /**
-         * @brief getter method for returning all model ids as a vector
+         * @brief builds a dictionary of formulas with their components tokenized
+         */
+        std::unordered_map<std::string, std::vector<std::string>> tokenizeFormulas();
+
+        /**
+         * @brief retrieval method for returning all model ids as a vector
          * 
          * @param None
          * 
@@ -77,7 +82,7 @@ class SBMLHandler {
         std::vector<std::string> getSpeciesIds();
 
         /**
-         * @brief getter method for obtaining SBML intial state values
+         * @brief retrieval method for obtaining SBML intial state values
          * 
          * @param None
          * 
@@ -124,7 +129,7 @@ class SBMLHandler {
         std::vector<std::string> getReactionIds();
 
         /**
-         * @brief getter method for retrieving species-specific compartmental volumes
+         * @brief retrieval method for retrieving species-specific compartmental volumes
          * 
          * @param None
          * 
@@ -177,6 +182,7 @@ class SBMLHandler {
     //----------------------------members-----------------------------------//
         Eigen::VectorXd species_volumes;
         std::string name;
+
 
 
     private:

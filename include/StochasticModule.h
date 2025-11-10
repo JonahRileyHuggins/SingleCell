@@ -126,17 +126,6 @@ class StochasticModule : public BaseModule{
         std::unordered_map<std::string,double> getFormulaValues(
             const std::string& formula_str
         );
-        
-        /**
-         * @brief Creates a list of strings based on formula contents
-         * 
-         * @param formula_str string type reaction formula
-         * 
-         * @returns tokens a list of components from the formula, without operators
-         */
-        std::vector<std::string> tokenizeFormula(
-            const std::string& formula_str
-        );
 
         /**
          * @brief extended cctypes isalnum() method that also allows underscore characters
@@ -160,17 +149,8 @@ class StochasticModule : public BaseModule{
         std::string safe_replace_alnumus(
             std::string &input, 
             const std::string &swap,
-            const std::string &with
+            double with_val
             );
-
-        /**
-         * @brief converts double precision values to a 15th decimal string
-         * @note standard
-         * @param val double value to be converted
-         * 
-         * @returns proper double to 15th decimal place
-         */
-        std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
@@ -211,6 +191,7 @@ class StochasticModule : public BaseModule{
         );
 
         //---------------------------Members----------------------------------//
+        std::unordered_map<std::string, std::vector<std::string>> tokenized_formula_map;
         Eigen::VectorXd molecules2nM_conversion_factors;
         Eigen::VectorXd nM2mpv_conversion_factors;
         Eigen::VectorXd species_volumes;
