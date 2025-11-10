@@ -170,9 +170,9 @@ class StochasticModule : public BaseModule{
          * 
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
-        Eigen::VectorXd& constrainTau(
-            Eigen::VectorXd& &m_i,
-            Eigen::VectorXd& &xhat_tn
+        Eigen::VectorXd constrainTau(
+            Eigen::VectorXd &m_i,
+            Eigen::VectorXd &xhat_tn
         ); 
 
         /**

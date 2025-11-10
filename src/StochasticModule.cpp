@@ -179,9 +179,9 @@ Eigen::VectorXd StochasticModule::samplePoisson(
     return m_i;
 }
 
-Eigen::VectorXd& StochasticModule::constrainTau(
-    Eigen::VectorXd& m_i,
-    Eigen::VectorXd& xhat_tn
+Eigen::VectorXd StochasticModule::constrainTau(
+    Eigen::VectorXd &m_i,
+    Eigen::VectorXd &xhat_tn
 ) {
 
     this->mhat_actual.setZero(m_i.size()); // results storage vector
