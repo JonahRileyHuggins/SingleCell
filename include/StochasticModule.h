@@ -200,6 +200,7 @@ class StochasticModule : public BaseModule{
         );
 
         //---------------------------Members----------------------------------//
+        std::vector<std::string> formulas_vector;
         std::unordered_map<std::string, std::vector<std::string>> tokenized_formula_map;
         Eigen::VectorXd molecules2nM_conversion_factors;
         Eigen::VectorXd nM2mpv_conversion_factors;

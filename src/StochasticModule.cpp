@@ -43,6 +43,7 @@ StochasticModule::StochasticModule(
     this->stoichmat = StochasticModel.getStoichiometricMatrix();
 
     // List of formula strings to be parsed.
+    this->formulas_vector = StochasticModel.getReactionExpressions();
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
     // Loop over each entry
     for (const auto& [formula, tokens] : this->tokenized_formula_map) {
@@ -82,15 +83,21 @@ Eigen::VectorXd StochasticModule::computeReactions() {
      * @returns v vector of state values after initial stochiometric calculations
     */
     
+Eigen::VectorXd StochasticModule::computeReactions() {
+    /** 
+     * @brief Computes all reactions in the SBML model
+     * 
+     * @returns v vector of state values after initial stochiometric calculations
+    */
+
     unsigned int numReactions = this->formulas_vector.size();
 
     Eigen::VectorXd v(numReactions);
 
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++)
-        v(i) = computeReaction(formulas_vector[i]);
+        v(i) = computeReaction(this->formulas_vector[i];);
 
-    
     return v;
 }
     
@@ -104,7 +111,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
         }
 
         // Send to parser algorithm
@@ -130,7 +137,6 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     std::unordered_map<std::string, double> formula_value_map;
 
     std::vector<std::string> components_vector = this->tokenized_formula_map[formula_str];
-    
     // Iterate over each component and return SBML components with values associated
     for (int i = 0; i < components_vector.size(); i++) {
         formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
@@ -146,9 +152,13 @@ bool StochasticModule::is_alnumus(char c) {
 std::string StochasticModule::safe_replace_alnumus(
     std::string &input,
     const std::string &swap,
-    const std::string &with
+    double with_val
 ) {
     if (swap.empty()) return input;
+
+    char buffer[32];
+    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
+    std::string with(buffer);
 
     size_t pos = 0;
     while ((pos = input.find(swap, pos)) != std::string::npos) {
@@ -164,12 +174,6 @@ std::string StochasticModule::safe_replace_alnumus(
         }
     }
     return input;
-}
-
-std::string StochasticModule::to_str(double val) {
-    std::ostringstream out;
-    out << std::fixed << std::setprecision(15) << val;
-    return out.str();
 }
 
 Eigen::VectorXd StochasticModule::samplePoisson(
@@ -252,6 +256,8 @@ void StochasticModule::step(
     int step
 ) {
 
+
+
     // get (step minus 1) position in results_matrix member
     Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
@@ -261,7 +267,7 @@ void StochasticModule::step(
 
     // Sample stochastic answer from Poisson distribution
     Eigen::VectorXd realizations = samplePoisson(computeReactions());
-    for (const auto& r : realizations) std::cout << r << "\t";
+
     // //reassign molecules per volume to just molecules:
     Eigen::VectorXd mol_state = this->getSpeciesValues().array() * this->species_volumes.array();
 
