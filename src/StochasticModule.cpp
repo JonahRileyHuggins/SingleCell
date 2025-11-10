@@ -46,6 +46,11 @@ StochasticModule::StochasticModule(
     this->formulas_vector = StochasticModel.getReactionExpressions();
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
 
+    // Initialize eigen variables before simulation:
+    this->mhat_actual.resize(this->stoichmat.cols());
+    this->S_j.resize(this->stoichmat.rows());
+    this->Rhat_j.resize(this->stoichmat.rows());
+
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
     this->molecules2nM_conversion_factors = unit_conversions::molecules2nanomolar(StochasticModel.species_volumes);
@@ -174,29 +179,28 @@ Eigen::VectorXd StochasticModule::samplePoisson(
     return m_i;
 }
 
-Eigen::VectorXd StochasticModule::constrainTau(
-    Eigen::VectorXd m_i,
-    Eigen::VectorXd xhat_tn
+Eigen::VectorXd& StochasticModule::constrainTau(
+    Eigen::VectorXd& m_i,
+    Eigen::VectorXd& xhat_tn
 ) {
 
-    Eigen::VectorXd mhat_actual(m_i.size()); // results storage vector
+    this->mhat_actual.setZero(m_i.size()); // results storage vector
 
     const int numCols = this->stoichmat.cols();
     for (int j = 0; j < numCols; ++j) {
 
         // Vector for curresnt ratelaw stoichiometries per species (i.e. column of S)
-        Eigen::VectorXd S_j = this->stoichmat.col(j);
+        this->S_j = this->stoichmat.col(j);
 
         // calculate coefficient products of current state
-        Eigen::ArrayXd Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
+        this->Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
 
         // Compute min valid reactant or fallback to m_i(j)
         double R_mi = m_i(j);
         for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
-        mhat_actual(j) = m_i(j) < R_mi ? m_i(j) : R_mi;
+        this->mhat_actual(j) = std::min(m_i(j), R_mi);
     }
-
-    return mhat_actual;
+    return this->mhat_actual;
 }
 
 Eigen::VectorXd StochasticModule::computeNewState(
@@ -237,8 +241,6 @@ void StochasticModule::setSimulationSettings(
 void StochasticModule::step(
     int step
 ) {
-
-
 
     // get (step minus 1) position in results_matrix member
     Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM

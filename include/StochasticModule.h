@@ -151,15 +151,6 @@ class StochasticModule : public BaseModule{
             const std::string &swap,
             double with_val
             );
-        
-        // /**
-        //  * @brief converts double precision values to a 15th decimal string
-        //  * @note standard
-        //  * @param val double value to be converted
-        //  * 
-        //  * @returns proper double to 15th decimal place
-        //  */
-        // std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
@@ -179,9 +170,9 @@ class StochasticModule : public BaseModule{
          * 
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
-        Eigen::VectorXd constrainTau(
-            Eigen::VectorXd m_i,
-            Eigen::VectorXd xhat_tn
+        Eigen::VectorXd& constrainTau(
+            Eigen::VectorXd& &m_i,
+            Eigen::VectorXd& &xhat_tn
         ); 
 
         /**
@@ -206,6 +197,9 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd nM2mpv_conversion_factors;
         Eigen::VectorXd species_volumes;
         std::mt19937 generator;
+        Eigen::VectorXd mhat_actual;
+        Eigen::VectorXd S_j;
+        Eigen::ArrayXd Rhat_j;
 
     protected:
         // -------------------------Methods-----------------------------------//
