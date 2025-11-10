@@ -149,7 +149,7 @@ class StochasticModule : public BaseModule{
         std::string safe_replace_alnumus(
             std::string &input, 
             const std::string &swap,
-            double with_val
+            const std::string &with
             );
         
         /**
