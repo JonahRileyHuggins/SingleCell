@@ -104,7 +104,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
         }
 
         // Send to parser algorithm
@@ -146,13 +146,9 @@ bool StochasticModule::is_alnumus(char c) {
 std::string StochasticModule::safe_replace_alnumus(
     std::string &input,
     const std::string &swap,
-    double with_val
+    const std::string &with
 ) {
     if (swap.empty()) return input;
-
-    char buffer[32];
-    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
-    std::string with(buffer);
 
     size_t pos = 0;
     while ((pos = input.find(swap, pos)) != std::string::npos) {
@@ -168,6 +164,12 @@ std::string StochasticModule::safe_replace_alnumus(
         }
     }
     return input;
+}
+
+std::string StochasticModule::to_str(double val) {
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(15) << val;
+    return out.str();
 }
 
 Eigen::VectorXd StochasticModule::samplePoisson(

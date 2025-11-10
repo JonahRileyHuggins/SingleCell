@@ -151,6 +151,15 @@ class StochasticModule : public BaseModule{
             const std::string &swap,
             double with_val
             );
+        
+        /**
+         * @brief converts double precision values to a 15th decimal string
+         * @note standard
+         * @param val double value to be converted
+         * 
+         * @returns proper double to 15th decimal place
+         */
+        std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
