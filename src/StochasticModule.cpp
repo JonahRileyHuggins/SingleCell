@@ -77,18 +77,6 @@ StochasticModule::StochasticModule(
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
 Eigen::VectorXd StochasticModule::computeReactions() {
-    /** 
-     * @brief Computes all reactions in the SBML model
-     * 
-     * @returns v vector of state values after initial stochiometric calculations
-    */
-    
-Eigen::VectorXd StochasticModule::computeReactions() {
-    /** 
-     * @brief Computes all reactions in the SBML model
-     * 
-     * @returns v vector of state values after initial stochiometric calculations
-    */
 
     unsigned int numReactions = this->formulas_vector.size();
 
