@@ -111,7 +111,7 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
         }
 
         // Send to parser algorithm
