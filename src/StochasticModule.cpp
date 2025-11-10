@@ -250,8 +250,6 @@ void StochasticModule::step(
     int step
 ) {
 
-
-
     // get (step minus 1) position in results_matrix member
     Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
@@ -261,7 +259,7 @@ void StochasticModule::step(
 
     // Sample stochastic answer from Poisson distribution
     Eigen::VectorXd realizations = samplePoisson(computeReactions());
-
+    for (const auto& r : realizations) std::cout << r << "\t";
     // //reassign molecules per volume to just molecules:
     Eigen::VectorXd mol_state = this->getSpeciesValues().array() * this->species_volumes.array();
 

@@ -117,10 +117,8 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
 
     unsigned int numReactions = this->model->getNumReactions();
 
-    double v_i(numReactions);
-
     // create a list to return:
-    std::vector<std::string> formulas_vector(v_i);
+    std::vector<std::string> formulas_vector(numReactions);
 
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
@@ -139,13 +137,14 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
 }
 
 std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeFormulas() {
+
     std::vector<std::string> formulas_vec = this->getReactionExpressions();
     std::unordered_map<std::string, std::vector<std::string>> formulas_component_map;
-    formulas_component_map.reserve(formulas_vec.size());
-    for (const auto &formula : formulas_vec) {
+
+    for (int f = 0; f < formulas_vec.size(); f++ ) {
         std::vector<std::string> tokens;
         std::string current_token_bin;
-
+        std::vector<std::string> formula = formulas_vec[f];
         for (char c : formula) {
             if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
                 if (!current_token_bin.empty()) {
@@ -159,7 +158,6 @@ std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeF
                 current_token_bin.clear();
             }
         }
-
         if (!current_token_bin.empty()) {
             tokens.push_back(current_token_bin);
         }
