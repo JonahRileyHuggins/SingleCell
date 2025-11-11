@@ -31,7 +31,6 @@
 #include "StochasticModule.h"
 
 // external library
-#include "parser.h"
 #include <Eigen/Dense>
 
 //=============================Class Details================================//
@@ -92,29 +91,25 @@ double StochasticModule::computeReaction(const std::string &formula_str) {
     // Get variables in formula
     std::unordered_map<std::string,double> components = this->getFormulaValues(formula_str);
 
-    // Copy formula string for safe replacement
-    std::string new_formula_str = formula_str;
+    //Persistent copy of component values:
+    std::unordered_map<std::string, double> component_values;
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
+            component_values[name] = value;
+            this->parser.DefineVar(name, &component_values[name]);
         }
+        this->parser.SetExpr(formula_str);
 
-        // Send to parser algorithm
+        double v_i = this->parser.Eval();
 
-        double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
         return v_i;
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error computing reaction from formula '"
-                  << formula_str << "': " << e.what() << std::endl;
-        throw; 
-    }
-    catch (...) {
-        std::cerr << "Unknown error computing reaction from formula '"
-                  << formula_str << "'." << std::endl;
-        throw;
-    }
+
+        }
+        catch (mu::Parser::exception_type &e) {
+            std::cout << "Error while parsing: " << e.GetMsg() << "\n";
+            return std::numeric_limits<double>::quiet_NaN();
+        }
 }
 
 std::unordered_map<std::string,double> StochasticModule::getFormulaValues(

@@ -163,6 +163,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
+add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
 # --- libsbml ---
@@ -209,7 +210,7 @@ target_link_libraries(SingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
+    muparser
     OpenMP::OpenMP_CXX
 )
 
@@ -242,7 +243,7 @@ target_link_libraries(pySingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
+    muparser
     pybind11::module
     OpenMP::OpenMP_CXX
 )

@@ -25,7 +25,7 @@
 #include "SBMLHandler.h"
 
 // External Libraries
-#include "parser.h"
+#include "muParser.h"
 #include <Eigen/Dense>
 
 //==========================Class Declaration===============================//
@@ -200,6 +200,7 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd mhat_actual;
         Eigen::VectorXd S_j;
         Eigen::ArrayXd Rhat_j;
+        mu::Parser parser;
 
     protected:
         // -------------------------Methods-----------------------------------//
