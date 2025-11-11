@@ -142,36 +142,46 @@ std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeF
     std::unordered_map<std::string, std::vector<std::string>> formulas_component_map;
 
     for (const auto& formula : formulas_vec) {
-        std::vector<std::string> tokens;
-        std::string current_token_bin;
+        std::vector<std::string> list_of_tokens; // approved tokens
+        std::string token_bin; // temp storage to build token
 
         for (char c : formula) {
-            if (c == '+' || c == '-' || c == '*' || c == '/' || 
-                c == '^' || c == '(' || c == ')') {
 
+            if (std::isalnum(static_cast<unsigned char>(c)) || c == '_') {
+                token_bin += c;
+            }
+            else { // once space or operator encountered: time to eval current token bin
                 if (!current_token_bin.empty()) {
-                    tokens.push_back(current_token_bin);
-                    current_token_bin.clear();
+                    unsigned int is_num = 1;
+
+                    for (char t : token_bin) {
+                         // if anywhere in the current token we see an alphabetic; its a variable
+                        if (!std::isdigit(static_cast<unsigned char>(t)) && t != '.') {
+                            is_num = 0; //sets is evaluator to 0 or false and immediately breaks
+                            break;
+                        }
+                    } // now check if current token is not number
+                    if (!is_num) list_of_tokens.push_back(token_bin);
+
+                    token_bin.clear(); //clean bin and restart
                 }
-            } 
-            else if (!std::isspace(static_cast<unsigned char>(c))) {
-                current_token_bin += c;
-            } 
-            else if (!current_token_bin.empty()) {
-                tokens.push_back(current_token_bin);
-                current_token_bin.clear();
             }
         }
-
-        if (!current_token_bin.empty())
-            tokens.push_back(current_token_bin);
-
-        formulas_component_map[formula] = tokens;
+        if (!token_bin.empty()) {
+            unsigned int is_num = 1;
+            for (char t : token_bin) {
+                if (!std::isdigit(static_cast<unsigned char>(t)) && t != '.') {
+                    is_num = 0;
+                    break;
+                }
+            }
+            if (!is_num) list_of_tokens.push_back(token_bin);
+        }
+        formulas_component_map[formula] = list_of_tokens;
     }
 
     return formulas_component_map;
 }
-
 
 std::vector<std::string> SBMLHandler::getSpeciesIds() {
 

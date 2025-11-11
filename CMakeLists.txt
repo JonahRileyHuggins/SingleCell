@@ -210,7 +210,7 @@ target_link_libraries(SingleCell PRIVATE
     deterministic
     One4All
     sbml
-    muparser
+    ReactionParser
     OpenMP::OpenMP_CXX
 )
 
@@ -243,7 +243,7 @@ target_link_libraries(pySingleCell PRIVATE
     deterministic
     One4All
     sbml
-    muparser
+    ReactionParser
     pybind11::module
     OpenMP::OpenMP_CXX
 )
