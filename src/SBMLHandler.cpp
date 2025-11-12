@@ -151,7 +151,7 @@ std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeF
                 token_bin += c;
             }
             else { // once space or operator encountered: time to eval current token bin
-                if (!current_token_bin.empty()) {
+                if (!token_bin.empty()) {
                     unsigned int is_num = 1;
 
                     for (char t : token_bin) {
