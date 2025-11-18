@@ -34,8 +34,7 @@ One4AllModule::One4AllModule(
     SBMLHandler One4AllModel
  ) : BaseModule(One4AllModel)
  {
-    // Import AMICI Model from 'amici_models/$modelname
-    // this->model = std::make_unique<amici::model_One4All::Model_One4All>();
+    // Import AMICI Model from 'amici_models/$modelname'
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_One4All::Model_One4All>();
     this->model = std::move(new_model);
     
@@ -50,7 +49,7 @@ One4AllModule::One4AllModule(
     this->species_list = One4AllModel.getSpeciesIds();
     this->params_list = One4AllModel.getParameterIds();
     this->compartments_list = One4AllModel.getCompartmentIds();
-    this->store = this->params_list;
+    this->store = this->species_list;
 }
 
 std::string One4AllModule::getModuleId() { return this->algorithm_id; }
@@ -116,7 +115,7 @@ void One4AllModule::run(
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
     int n_species = rdata->nx; // number of species
-    int n_timepoints = rdata->nt; //timepoints
+    int n_timepoints = rdata->nt; // timepoints
 
     for (int i = 0; i < n_timepoints; i++) {
         for (int j = 0; j < n_species; j++) {
