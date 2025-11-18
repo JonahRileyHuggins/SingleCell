@@ -16,13 +16,53 @@
 #include <fstream>
 #include <iostream>
 
+// Third Party Libraries
+#include <Eigen/Dense>
 
 // Internal Libraries
-#include "utils.h"
 #include "ArgParsing.h"
 #include "SingleCell.h"
 
 //--------------------------Function Definitions----------------------------//
+
+void save_matrix(
+    const Eigen::MatrixXd& results_matrix,
+    const std::string& output,
+    const std::vector<std::string>& row_labels = {},
+    const std::vector<std::string>& col_labels = {}
+) {
+    std::ofstream outFile(output);
+
+    int numRows = results_matrix.rows();
+    int numCols = results_matrix.cols();
+
+    // Write column labels
+    if (!col_labels.empty()) {
+        outFile << "index";
+        for (const auto& label : col_labels) {
+            outFile << "\t" << label;
+        }
+        outFile << "\n";
+    }
+
+    // Write each row
+    for (int i = 0; i < numRows; ++i) {
+        if (!row_labels.empty()) {
+            outFile << row_labels[i];
+        } else {
+            outFile << i;  // optional: write row index if no label
+        }
+
+        for (int j = 0; j < numCols; ++j) {
+            outFile << "\t" << results_matrix(i, j);
+        }
+
+        outFile << "\n";
+    }
+
+    outFile.close();
+}
+
 
 /**
  * @brief executes simulation instructions
@@ -80,15 +120,15 @@ int main(
             );
         }
     }
-    std::vector<std::vector<double>> results_matrix = single_cell->simulate(
+    Eigen::MatrixXd results_matrix = single_cell->simulate(
         start, 
         stop, 
         step
     );
 
-    std::vector<std::string> timesteps(results_matrix.size());
+    std::vector<std::string> timesteps(results_matrix.rows());
 
-    for (int i = 0; i < results_matrix.size(); i++) {
+    for (int i = 0; i < results_matrix.rows(); i++) {
 
         double time_i = i * step;
 
@@ -98,7 +138,7 @@ int main(
 
     std::vector<std::string> global_species_ids = single_cell->getGlobalSpeciesIds();
 
-    matrix_utils::save_matrix(
+    save_matrix(
         results_matrix,
         std::any_cast<std::string>(argparser->cli_map["--output"]),
         timesteps,

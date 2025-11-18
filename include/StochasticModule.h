@@ -16,17 +16,16 @@
 //Std Libaries
 #include <vector>
 #include <memory>
+#include <random>
 #include <optional>
 #include <unordered_map>
-
-#include "muParser.h"
 
 // Internal libraries
 #include "BaseModule.h"
 #include "SBMLHandler.h"
 
 // External Libraries
-#include "parser.h"
+#include <Eigen/Dense>
 
 //==========================Class Declaration===============================//
 class StochasticModule : public BaseModule{
@@ -81,19 +80,8 @@ class StochasticModule : public BaseModule{
          * @param timepoints vector of timepoints for the simulation
          */
         void run(
-            std::vector<double> timepoints
+            Eigen::VectorXd timepoints
         ) override;
-
-        /**
-         * @brief public method for updating the simulation states at every timestep. 
-         * 
-         * @param state vector of timestep values to be calculated. 
-         * 
-         * @returns None
-         */
-        void setModelState(
-            const std::vector<double>& state
-        );
 
         /**
          * @brief Override class for BaseModule, exchanges data with target
@@ -113,7 +101,7 @@ class StochasticModule : public BaseModule{
          * 
          * @returns new state vector for current step
          */
-        std::vector<double> computeReactions();
+        Eigen::VectorXd computeReactions();
 
 
         /**
@@ -135,17 +123,6 @@ class StochasticModule : public BaseModule{
          * @returns Map of component IDs to their numerical value
          */
         std::unordered_map<std::string,double> getFormulaValues(
-            const std::string& formula_str
-        );
-        
-        /**
-         * @brief Creates a list of strings based on formula contents
-         * 
-         * @param formula_str string type reaction formula
-         * 
-         * @returns tokens a list of components from the formula, without operators
-         */
-        std::vector<std::string> tokenizeFormula(
             const std::string& formula_str
         );
 
@@ -171,17 +148,8 @@ class StochasticModule : public BaseModule{
         std::string safe_replace_alnumus(
             std::string &input, 
             const std::string &swap,
-            const std::string &with
+            double with_val
             );
-
-        /**
-         * @brief converts double precision values to a 15th decimal string
-         * @note standard
-         * @param val double value to be converted
-         * 
-         * @returns proper double to 15th decimal place
-         */
-        std::string to_str(double val);
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
@@ -190,8 +158,8 @@ class StochasticModule : public BaseModule{
          * 
          * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
-        std::vector<double> samplePoisson(
-            std::vector<double> mu
+        Eigen::VectorXd samplePoisson(
+            Eigen::VectorXd mu
         );
 
         /**
@@ -201,9 +169,9 @@ class StochasticModule : public BaseModule{
          * 
          * @returns  m_actual minimum choice between negative reactants per reaction
         */
-        std::vector<double> constrainTau(
-            std::vector<double> m_i,
-            std::vector<double> xhat_tn
+        Eigen::VectorXd constrainTau(
+            Eigen::VectorXd &m_i,
+            Eigen::VectorXd &xhat_tn
         ); 
 
         /**
@@ -216,28 +184,24 @@ class StochasticModule : public BaseModule{
          * 
          * @returns new_state vector of doubles equal to X_t = X_{t-1} + delta
          */
-        std::vector<double> computeNewState(
-        std::vector<double> state_t,
-        std::vector<double> real_vec
+        Eigen::VectorXd computeNewState(
+        Eigen::VectorXd state_t,
+        Eigen::VectorXd real_vec
         );
 
         //---------------------------Members----------------------------------//
-        std::vector<double> molecules2nM_conversion_factors;
-        std::vector<double> nM2mpv_conversion_factors;
-        std::vector<double> species_volumes;
+        std::vector<std::string> formulas_vector;
+        std::unordered_map<std::string, std::vector<std::string>> tokenized_formula_map;
+        Eigen::VectorXd molecules2nM_conversion_factors;
+        Eigen::VectorXd nM2mpv_conversion_factors;
+        Eigen::VectorXd species_volumes;
+        std::mt19937 generator;
+        Eigen::VectorXd mhat_actual;
+        Eigen::VectorXd S_j;
+        Eigen::ArrayXd Rhat_j;
 
     protected:
         // -------------------------Methods-----------------------------------//
-        /**
-         * @brief Getter method for last recorded value in results matrix
-         * 
-         * @param timepoint position in results matrix being returned
-         * 
-         * @returns state_vector vector of species states recorded in results_matrix object
-         */
-        std::vector<double> getLastStepResult(
-            int timestep
-        ) override;
 
         //---------------------------Members----------------------------------//
 

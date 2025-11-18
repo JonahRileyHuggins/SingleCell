@@ -25,6 +25,9 @@
 #include "SBMLHandler.h"
 #include "BaseModule.h"
 
+// Third Party Libraries
+#include <Eigen/Dense>
+
 //==========================Class Declaration===============================//
 class SingleCell {
     private:
@@ -90,7 +93,7 @@ class SingleCell {
          * @param timesteps vector of double steps to length of simulation
          */
         void runGlobal(
-            std::vector<double> timesteps
+            Eigen::VectorXd timesteps
         );
 
         /**
@@ -111,16 +114,11 @@ class SingleCell {
          * @brief creates combined results matrix for every module in 
          * class member this->modules
          * 
-         * @param numTimesteps integer number of timepoints, specifying how long 
-         * results matrix should be
-         * 
          * @returns results_matrix combined matrix of results for all modules, 
          * basically just adds each module implementation of BaseModule.results_matrix
          * class member to finalized results matrix.
          */
-        std::vector<std::vector<double>> combineResultsMatrix(
-            int numTimesteps
-        );
+        Eigen::MatrixXd combineResultsMatrix();
 
     //------------------------------members---------------------------------//
         std::vector<std::unique_ptr<BaseModule>> modules;
@@ -144,7 +142,7 @@ class SingleCell {
          * 
          * @returns matrix of global states for both models
          */
-        std::vector<std::vector<double>> simulate(
+        Eigen::MatrixXd simulate(
             double start = 0.0, //seconds
             double stop = 60.0, //seconds
             double step = 30.0 //seconds

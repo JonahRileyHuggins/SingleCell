@@ -21,25 +21,19 @@
 #include <unordered_map>
 
 // Internal libraries
-#include "utils.h"
 #include "SBMLHandler.h"
 #include "DeterministicModule.h"
 
 // Third Party Libraries
 #include "amici/amici.h"
 #include "../amici_models/deterministic/deterministic.h"
+#include <Eigen/Dense>
 
 //=============================Class Details================================//
 DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
  ) : BaseModule(DeterministicModel)
  {
-    // Retrieve the Deterministic matrix from the sbml document.
-    this->stoichmat = DeterministicModel.getStoichiometricMatrix();
-
-    // List of formula strings to be parsed. <-- !!! Might swap for something ASTNode compatible later.
-    this->formulas_vector = DeterministicModel.getReactionExpressions();
-
     // // Import AMICI Model from 'AMICI_MODELS/model
     std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
     this->model = std::move(new_model);
@@ -55,19 +49,17 @@ DeterministicModule::DeterministicModule(
     this->species_list = DeterministicModel.getSpeciesIds();
     this->params_list = DeterministicModel.getParameterIds();
     this->compartments_list = DeterministicModel.getCompartmentIds();
-    this->store = this->params_list;
-
-
+    this->store = this->species_list;
 }
 
 std::string DeterministicModule::getModuleId() { return this->algorithm_id; }
 
 void DeterministicModule::step(int step) {
     // Get the (step - 1)th result
-    std::vector<double> last_record = this->getLastStepResult(step);
+    Eigen::VectorXd last_record = this->getLastStepResult(step);
 
     //reset SBML species values:
-    this->updateComponentMap(this->species_list,last_record);
+    this->updateComponentMap(this->species_list, last_record);
     
     // Need to update AMICI model
     this->updateAMICIModel();
@@ -77,38 +69,47 @@ void DeterministicModule::step(int step) {
 
     this->model->setTimepoints(step_forward);
 
-    // Set initial state based on last record
-    this->model->setInitialStates(last_record);
+    // Retrieve last record state, convert to AMICI-compatible and update
+    std::vector<double> last_rec_vec(last_record.data(),
+                        last_record.data() + last_record.size());
+    this->model->setInitialStates(last_rec_vec);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
 
     // Extract results
-    std::vector<double> last_vals = this->getNewStepResult(*rdata);
+    Eigen::VectorXd last_vals = this->getNewStepResult(*rdata);
 
     // Update internal state map
     this->updateComponentMap(this->species_list, last_vals);
 
     // Record values to results matrix
-    BaseModule::recordStepResult(last_vals, step);
+    this->recordStepResult(last_vals, step);
 
 }
 
 void DeterministicModule::run(
-    std::vector<double> timepoints
+    Eigen::VectorXd timepoints
 ) {
 
     // Starting vector for simulation
-    std::vector<double> initial_state = this->getLastStepResult(0);
+    Eigen::VectorXd initial_state = this->getLastStepResult(0);
+
+    // convert eigen typesets to primitives AMICI wants
+    std::vector<double> time_vec(timepoints.data(), 
+                        timepoints.data() + timepoints.size());
+
+    std::vector<double> init_state_vec(initial_state.data(),
+                        initial_state.data() + initial_state.size());
 
     //reset SBML species values:
     this->updateComponentMap(this->species_list, initial_state);
 
     // Set the all timepoints for total runtime
-    this->model->setTimepoints(timepoints);
+    this->model->setTimepoints(time_vec);
 
     // Set AMICI object initial state
-    this->model->setInitialStates(initial_state);
+    this->model->setInitialStates(init_state_vec);
 
     // Run the simulation
     std::unique_ptr<amici::ReturnData> rdata = amici::runAmiciSimulation(*solver, nullptr, *model);
@@ -119,56 +120,28 @@ void DeterministicModule::run(
     for (int i = 0; i < n_timepoints; i++) {
         for (int j = 0; j < n_species; j++) {
 
-            this->results_matrix[i][j] = rdata->x[i * n_species + j];
+            this->results_matrix(i, j) = rdata->x[i * n_species + j];
 
         }
 
     }
 }
 
-std::vector<double> DeterministicModule::setAllSpeciesValues(
-    std::vector<double> current_states,
-    std::vector<double> update_states
-) {
-
-    // Creating instance of list to be returned:
-    std::vector<double> updated_concentrations;
-    for (amici::realtype val : current_states) {
-
-        updated_concentrations.push_back(static_cast<double>(val));
-
-    } 
-
-    // Initial Species modification:
-    for (int i = 0; i < update_states.size(); ++i) {
-
-        updated_concentrations[i] = update_states[i];
-
-    }
-    return updated_concentrations;
-
-}
-
-std::vector<double> DeterministicModule::getNewStepResult(
+Eigen::VectorXd DeterministicModule::getNewStepResult(
     const amici::ReturnData &rdata
 ) {
+    int n_species = rdata.nx;
+    int n_timepoints = rdata.nt;
 
-    int n_species = rdata.nx; // number of species
-    int n_timepoints = rdata.nt; 
-    
-    const std::vector<double>& all_species = rdata.x; // species trajectories flat array length n_species * n_timepoints
+    const std::vector<double>& all_species = rdata.x;  // flat array length = n_species * n_timepoints
 
-    // this makes the start value of  our for-loop at rdata.x[-1, starting_column] in python terms
-    int last_idx = (n_timepoints-1) * n_species;
+    int last_idx = (n_timepoints - 1) * n_species;
 
-    std::vector<double> last_species_values;
-    
-    // convert each species value from amici::realtype to double
-    for (int i = last_idx; i < last_idx + n_species; ++i) {
+    Eigen::VectorXd last_species_values(n_species);
 
-        last_species_values.push_back(static_cast<double>(all_species[i]));
-    
-    }
+    for (int i = 0; i < n_species; ++i)
+        last_species_values(i) = static_cast<double>(all_species[last_idx + i]);
+
     return last_species_values;
 }
 
@@ -207,19 +180,6 @@ void DeterministicModule::setSimulationSettings(
     this->updateAMICIModel();
 }
 
-std::vector<double> DeterministicModule::getLastStepResult(
-    int timestep
-) {
-
-    std::vector<double> state_vector(this->results_matrix.size());
-
-    state_vector = this->results_matrix[
-        (timestep > 0) ? timestep - 1 : timestep
-    ];
-
-    return state_vector;
-}
-
 void DeterministicModule::updateAMICIModel() {
     
     std::vector<double> param_values(this->params_list.size());
@@ -229,7 +189,5 @@ void DeterministicModule::updateAMICIModel() {
         param_values[p] = this->component_map[this->params_list[p]];
 
     }
-    
     this->model->setFixedParameters(param_values);
-
 }

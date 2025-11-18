@@ -13,11 +13,12 @@
 #include <algorithm>
 #include <unordered_map>
 
+// Third Party Library
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
+#include <Eigen/Dense>
 
 // Internal Libraries
-#include "utils.h"
 #include "SBMLHandler.h"
 
 //--------------------------Class Declaration-------------------------------//
@@ -55,7 +56,7 @@ SBMLHandler::~SBMLHandler() { // Destructor Method
     }
 }
 
-std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
+Eigen::MatrixXd SBMLHandler::getStoichiometricMatrix() {
 
     int numSpecies = this->model->getNumSpecies();
 
@@ -65,7 +66,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
     std::unordered_map<std::string, unsigned int> species_map = speciesMap(numSpecies);
 
     // build a blank stoichiometric matrix of zeros
-    std::vector<std::vector<double>> stoichmat(numSpecies, std::vector<double>(numReactions, 0.0));
+    Eigen::MatrixXd stoichmat = Eigen::MatrixXd::Zero(numSpecies, numReactions);
 
     // Populate the matrix:
     for (int i = 0; i < numReactions; i++) {
@@ -81,7 +82,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
             const std::string speciesId = reactant->getSpecies();
             double coeff = reactant->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] -= coeff;
+            stoichmat(speciesIndex, i) -= coeff;
         }
 
         const ListOfSpeciesReferences* products = reaction->getListOfProducts();
@@ -93,7 +94,7 @@ std::vector<std::vector<double>> SBMLHandler::getStoichiometricMatrix() {
             const std::string speciesId = product->getSpecies();
             double coeff = product->getStoichiometry();
             unsigned int speciesIndex = species_map.at(speciesId);
-            stoichmat[speciesIndex][i] += coeff;
+            stoichmat(speciesIndex, i) += coeff;
         }
     }
 
@@ -116,10 +117,8 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
 
     unsigned int numReactions = this->model->getNumReactions();
 
-    double v_i(numReactions);
-
     // create a list to return:
-    std::vector<std::string> formulas_vector(v_i);
+    std::vector<std::string> formulas_vector(numReactions);
 
     // Populate the matrix:
     for (unsigned int i = 0; i < numReactions; i++) {
@@ -135,6 +134,53 @@ std::vector<std::string> SBMLHandler::getReactionExpressions() {
     }
     
     return formulas_vector;
+}
+
+std::unordered_map<std::string, std::vector<std::string>> SBMLHandler::tokenizeFormulas() {
+
+    std::vector<std::string> formulas_vec = this->getReactionExpressions();
+    std::unordered_map<std::string, std::vector<std::string>> formulas_component_map;
+
+    for (const auto& formula : formulas_vec) {
+        std::vector<std::string> list_of_tokens; // approved tokens
+        std::string token_bin; // temp storage to build token
+
+        for (char c : formula) {
+
+            if (std::isalnum(static_cast<unsigned char>(c)) || c == '_') {
+                token_bin += c;
+            }
+            else { // once space or operator encountered: time to eval current token bin
+                if (!token_bin.empty()) {
+                    unsigned int is_num = 1;
+
+                    for (char t : token_bin) {
+                         // if anywhere in the current token we see an alphabetic; its a variable
+                        if (!std::isdigit(static_cast<unsigned char>(t)) && t != '.') {
+                            is_num = 0; //sets is evaluator to 0 or false and immediately breaks
+                            break;
+                        }
+                    } // now check if current token is not number
+                    if (!is_num) list_of_tokens.push_back(token_bin);
+
+                    token_bin.clear(); //clean bin and restart
+                }
+            }
+        }
+        if (!token_bin.empty()) {
+            unsigned int is_num = 1;
+            for (char t : token_bin) {
+                if (!std::isdigit(static_cast<unsigned char>(t)) && t != '.') {
+                    is_num = 0;
+                    break;
+                }
+            }
+            if (!is_num) list_of_tokens.push_back(token_bin);
+        }
+        formulas_component_map[formula] = list_of_tokens;
+    }
+
+    return formulas_component_map;
 }
 
 std::vector<std::string> SBMLHandler::getSpeciesIds() {
@@ -261,8 +307,6 @@ double SBMLHandler::getModelEntityValue(
     return value;
 }
 
-
-
 std::vector<std::string> SBMLHandler::getReactionIds() {
 
     unsigned int numReactions = this->model->getNumReactions();
@@ -278,21 +322,18 @@ std::vector<std::string> SBMLHandler::getReactionIds() {
     return reactionIds;
 }
 
-std::vector<double> SBMLHandler::getGlobalSpeciesCompartmentVals( 
-
-) {
-
+Eigen::VectorXd SBMLHandler::getGlobalSpeciesCompartmentVals() {
 
     unsigned int numSpecies = this->model->getNumSpecies();
 
     // Results vector for list of compartment values per species
-    std::vector<double> cell_volumes(numSpecies);
+    Eigen::VectorXd cell_volumes(numSpecies);
 
     for (int i = 0; i < numSpecies; i++) {
 
         std::string comp_i = this->model->getSpecies(i)->getCompartment();
 
-        cell_volumes[i] = this->model->getCompartment(comp_i)->getVolume();
+        cell_volumes(i) = this->model->getCompartment(comp_i)->getVolume();
 
     }
 

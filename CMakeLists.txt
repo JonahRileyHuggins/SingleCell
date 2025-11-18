@@ -10,17 +10,26 @@ set(VECTOR_FLAGS
     -mavx2               # enable AVX2 instructions explicitly
     -ftree-vectorize     # allow auto vectorization
     -fopenmp-simd        # enable #pragma omp simd
+    -fopenmp
+    -ffast-math
     -fopt-info-vec-optimized
-    -fopt-info-vec-missed
-    -fopt-info-vec-all
+#    -fopt-info-vec-missed
+#    -fopt-info-vec-all
 )
 
 set(CMAKE_BUILD_TYPE Release)
+
+add_compile_definitions(
+    EIGEN_NO_DEBUG
+    EIGEN_DONT_ALIGN_STATICALLY
+    EIGEN_UNROLLING_LIMIT=256
+)
 
 # === Paths ===
 
 set(BLA_VENDOR OpenBLAS)
 find_package(BLAS REQUIRED)
+find_package(OpenMP REQUIRED)
 
 # === Git External Projects === 
 find_package(Git QUIET)
@@ -154,6 +163,7 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
+add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
 # --- libsbml ---
@@ -167,7 +177,6 @@ set(SINGLECELL_SRC_LIST
     src/StochasticModule.cpp
     src/One4AllModule.cpp
     src/SingleCell.cpp
-    src/utils.cpp
     src/ArgParsing.cpp
     src/main.cpp
     )
@@ -193,6 +202,7 @@ target_include_directories(SingleCell PRIVATE
     ${AMICI_INCLUDE_DIR}
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern #<-- necessary for Eigen
 )
 
 target_link_libraries(SingleCell PRIVATE
@@ -201,7 +211,11 @@ target_link_libraries(SingleCell PRIVATE
     One4All
     sbml
     ReactionParser
+    OpenMP::OpenMP_CXX
 )
+
+add_compile_definitions(EIGEN_USE_THREADS)
+add_compile_definitions(EIGEN_DONT_PARALLELIZE=0)
 
 target_compile_options(SingleCell PRIVATE ${VECTOR_FLAGS})
 
@@ -221,6 +235,7 @@ target_include_directories(pySingleCell PRIVATE
     ${AMICI_INCLUDE_DIR}
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
+    ${CMAKE_SOURCE_DIR}/extern #<-- Necessary for Eigen
 )
 
 target_link_libraries(pySingleCell PRIVATE
@@ -230,6 +245,7 @@ target_link_libraries(pySingleCell PRIVATE
     sbml
     ReactionParser
     pybind11::module
+    OpenMP::OpenMP_CXX
 )
 target_compile_options(pySingleCell PRIVATE ${VECTOR_FLAGS})
 

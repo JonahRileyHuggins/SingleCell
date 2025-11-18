@@ -13,12 +13,17 @@
 #define SBMLHandler_h
 
 // -------------------------------Library Import-----------------------------//
+// Std Library
 #include <vector>
 #include <string>
 #include <memory>
 #include <unordered_map>
+
+// Third Party Libraries
 #include <sbml/SBMLTypes.h>
 #include <sbml/SBMLReader.h>
+#include <Eigen/Dense>
+
 //--------------------------Constants Declarations---------------------------//
 
 //--------------------------Class Declaration-------------------------------//
@@ -40,7 +45,7 @@ class SBMLHandler {
         * 
         * @returns stoichmat A stochiometric matrix 
         * */
-        std::vector<std::vector<double>> getStoichiometricMatrix();
+        Eigen::MatrixXd getStoichiometricMatrix();
 
         /**
          * @brief creates a map of species identifiers to thier corresponding index
@@ -63,7 +68,12 @@ class SBMLHandler {
         std::vector<std::string> getReactionExpressions();
 
         /**
-         * @brief getter method for returning all model ids as a vector
+         * @brief builds a dictionary of formulas with their components tokenized
+         */
+        std::unordered_map<std::string, std::vector<std::string>> tokenizeFormulas();
+
+        /**
+         * @brief retrieval method for returning all model ids as a vector
          * 
          * @param None
          * 
@@ -72,7 +82,7 @@ class SBMLHandler {
         std::vector<std::string> getSpeciesIds();
 
         /**
-         * @brief getter method for obtaining SBML intial state values
+         * @brief retrieval method for obtaining SBML intial state values
          * 
          * @param None
          * 
@@ -119,14 +129,14 @@ class SBMLHandler {
         std::vector<std::string> getReactionIds();
 
         /**
-         * @brief getter method for retrieving species-specific compartmental volumes
+         * @brief retrieval method for retrieving species-specific compartmental volumes
          * 
          * @param None
          * 
          * @returns cell_volumes vector list of compartmental volumes, as defined in
          * class member this->model
          */
-        std::vector<double> getGlobalSpeciesCompartmentVals();
+        Eigen::VectorXd getGlobalSpeciesCompartmentVals();
 
         /**
          * @brief add method docstring
@@ -170,8 +180,9 @@ class SBMLHandler {
         std::vector<std::string> getCompartmentIds();
 
     //----------------------------members-----------------------------------//
-        std::vector<double> species_volumes;
+        Eigen::VectorXd species_volumes;
         std::string name;
+
 
 
     private:

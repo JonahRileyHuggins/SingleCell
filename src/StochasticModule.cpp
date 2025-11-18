@@ -26,12 +26,13 @@
 #include <omp.h>
 
 // Internal libraries
-#include "utils.h"
+#include "unit_conversions.h"
 #include "SBMLHandler.h"
 #include "StochasticModule.h"
 
 // external library
 #include "parser.h"
+#include <Eigen/Dense>
 
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
@@ -43,6 +44,12 @@ StochasticModule::StochasticModule(
 
     // List of formula strings to be parsed.
     this->formulas_vector = StochasticModel.getReactionExpressions();
+    this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
+
+    // Initialize eigen variables before simulation:
+    this->mhat_actual.resize(this->stoichmat.cols());
+    this->S_j.resize(this->stoichmat.rows());
+    this->Rhat_j.resize(this->stoichmat.rows());
 
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
@@ -57,50 +64,45 @@ StochasticModule::StochasticModule(
     this->params_list = StochasticModel.getParameterIds();
     this->compartments_list = StochasticModel.getCompartmentIds();
     this->species_volumes = StochasticModel.species_volumes;
-    this->store = this->params_list;
+    this->store = this->species_list;
+
+    // Initialize random sampler only once
+    std::random_device rd;
+    this->generator.seed(rd());
 
  }
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
-std::vector<double> StochasticModule::computeReactions() {
-    /** 
-     * @brief Computes all reactions in the SBML model
-     * 
-     * @returns v vector of state values after initial stochiometric calculations
-    */
-    
+Eigen::VectorXd StochasticModule::computeReactions() {
+
     unsigned int numReactions = this->formulas_vector.size();
 
-    std::vector<double> v(numReactions);
+    Eigen::VectorXd v(numReactions);
 
     // Populate the matrix:
-    for (unsigned int i = 0; i < numReactions; i++) {
-        
-        std::string formula_i = formulas_vector[i];
+    for (unsigned int i = 0; i < numReactions; i++)
+        v(i) = computeReaction(this->formulas_vector[i]);
 
-        v[i] = computeReaction(formula_i);
-    }
-    
     return v;
 }
     
-#pragma omp declare simd
 double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
-    std::unordered_map<std::string, double> components = this->getFormulaValues(formula_str);
+    std::unordered_map<std::string,double> components = this->getFormulaValues(formula_str);
 
     // Copy formula string for safe replacement
     std::string new_formula_str = formula_str;
 
     try {
         for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, to_str(value));
+            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
         }
 
         // Send to parser algorithm
-        double v_i = parser(new_formula_str.c_str());
+
+        double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
         return v_i;
     }
     catch (const std::exception& e) {
@@ -121,41 +123,13 @@ std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
 
     std::unordered_map<std::string, double> formula_value_map;
 
-    std::vector<std::string> components_vector = tokenizeFormula(formula_str);
-
+    std::vector<std::string> components_vector = this->tokenized_formula_map[formula_str];
     // Iterate over each component and return SBML components with values associated
-    #pragma omp simd
     for (int i = 0; i < components_vector.size(); i++) {
-        std::string component = components_vector[i];
-        formula_value_map[component] = this->component_map[component];
+        formula_value_map[components_vector[i]] = this->component_map[components_vector[i]];
     
     }
-    return formula_value_map;       
-}
-
-std::vector<std::string> StochasticModule::tokenizeFormula(const std::string& formula_str) {
-
-    std::vector<std::string> tokens;
-
-    std::string current_token_bin;
-
-    for (char c : formula_str) {
-        if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
-            if (!current_token_bin.empty()) {
-                tokens.push_back(current_token_bin);
-            } 
-            current_token_bin.clear();
-        } else if (c != ' ') {
-            current_token_bin += c;
-        } else if (!current_token_bin.empty()) {
-            tokens.push_back(current_token_bin);
-            current_token_bin.clear();
-        }
-    }
-    if (!current_token_bin.empty()) {
-        tokens.push_back(current_token_bin);
-    }
-    return tokens;
+    return formula_value_map;
 }
 
 bool StochasticModule::is_alnumus(char c) {
@@ -165,9 +139,13 @@ bool StochasticModule::is_alnumus(char c) {
 std::string StochasticModule::safe_replace_alnumus(
     std::string &input,
     const std::string &swap,
-    const std::string &with
+    double with_val
 ) {
     if (swap.empty()) return input;
+
+    char buffer[32];
+    std::snprintf(buffer, sizeof(buffer), "%.15f", with_val);
+    std::string with(buffer);
 
     size_t pos = 0;
     while ((pos = input.find(swap, pos)) != std::string::npos) {
@@ -185,91 +163,54 @@ std::string StochasticModule::safe_replace_alnumus(
     return input;
 }
 
-std::string StochasticModule::to_str(double val) {
-    std::ostringstream out;
-    out << std::fixed << std::setprecision(15) << val;
-    return out.str();
-}
-
-std::vector<double> StochasticModule::samplePoisson(
-    std::vector<double> mu
+Eigen::VectorXd StochasticModule::samplePoisson(
+    Eigen::VectorXd mu
 ) {
 
-    std::random_device rd;
-    std::mt19937 generator(rd());
-
     // realization vector for storing random poisson samples
-    std::vector<double> m_i(mu.size()); 
+    Eigen::VectorXd m_i(mu.size()); 
 
     for (size_t i = 0; i < mu.size(); ++i) {
 
-        std::poisson_distribution<int> dist((mu[i] * this->delta_t)); 
-        m_i[i] = dist(generator);
+        std::poisson_distribution<int> dist((mu(i) * this->delta_t)); 
+        m_i(i) = dist(this->generator);
 
     }
     return m_i;
 }
 
-std::vector<double> StochasticModule::constrainTau(
-    std::vector<double> m_i,
-    std::vector<double> xhat_tn
+Eigen::VectorXd StochasticModule::constrainTau(
+    Eigen::VectorXd &m_i,
+    Eigen::VectorXd &xhat_tn
 ) {
 
-    std::vector<double> mhat_actual(m_i.size()); // results storage vector
+    this->mhat_actual.setZero(m_i.size()); // results storage vector
 
-    for (int i = 0; i < this->stoichmat[0].size(); i++) {
+    const int numCols = this->stoichmat.cols();
+    for (int j = 0; j < numCols; ++j) {
 
-        // Vector for current ratelaw stoichiometries per species (i.e. column of S)
-        std::vector<double> S_i = matrix_utils::getColumn(this->stoichmat, i);
+        // Vector for curresnt ratelaw stoichiometries per species (i.e. column of S)
+        this->S_j = this->stoichmat.col(j);
 
-        std::vector<double> Rhat_i(xhat_tn.size()); // double for storing each reaction product
+        // calculate coefficient products of current state
+        this->Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
 
-        #pragma omp simd
-        for (int j = 0; j < xhat_tn.size(); j++) {
-            Rhat_i[j] = xhat_tn[j] * S_i[j]; // calculate coefficient products of current state
-        }
-
-        // <-- Modify starting here: check as source for possible error
-        // retrieve all consumed reactants
-        std::vector<double> abs_r(Rhat_i.size());
-        size_t count = 0;
-        for (size_t r = 0; r < Rhat_i.size(); ++r) {
-            double abs_val = std::abs(Rhat_i[r]);
-            if (abs_val > 0)
-                abs_r[count++] = abs_val;
-        }
-        abs_r.resize(count); // trim unused entries
-
-        double R_mi = m_i[i];
-        for (double reactant : abs_r) {
-            if (reactant < R_mi) // drop reactants != negative (-): i.e. not rate-limiting
-                R_mi = reactant;
-        }
-
-        mhat_actual[i] = R_mi;
+        // Compute min valid reactant or fallback to m_i(j)
+        double R_mi = m_i(j);
+        for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
+        this->mhat_actual(j) = std::min(m_i(j), R_mi);
     }
-
-    return mhat_actual;
+    return this->mhat_actual;
 }
 
-std::vector<double> StochasticModule::computeNewState(
-    std::vector<double> state_t,
-    std::vector<double> real_vec
+Eigen::VectorXd StochasticModule::computeNewState(
+    Eigen::VectorXd state_t,
+    Eigen::VectorXd real_vec
 ) {
 
-        // Update the stochastic state vector: new_state = old_state * v
-    std::vector<double> new_state(state_t.size());
-    
-    for (size_t i = 0; i < state_t.size(); ++i) {
-        double delta = 0.0;
-        
-        #pragma omp simd reduction(+:delta)
-        for (size_t j = 0; j < real_vec.size(); ++j) {
-            delta += stoichmat[i][j] * real_vec[j];
-        }
-
-        new_state[i] = std::round(state_t[i] + delta);
-    }
+    // Update the stochastic state vector: new_state = old_state * v
+    Eigen::VectorXd delta = stoichmat * real_vec;   // matrix-vector product
+    Eigen::VectorXd new_state = (state_t + delta).array().round();  // elementwise rounding
 
     return new_state;
 }
@@ -297,64 +238,34 @@ void StochasticModule::setSimulationSettings(
 
 }
 
-void StochasticModule::setModelState(const std::vector<double>& state) {
-
-    #pragma omp simd
-    for (size_t i = 0; i < this->species_list.size(); ++i) {
-        this->component_map[this->species_list[i]] = state[i];
-    }
-}
-
 void StochasticModule::step(
     int step
 ) {
+
     // get (step minus 1) position in results_matrix member
-    std::vector<double> last_state_nM = this->getLastStepResult(step);  // nM
+    Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
 
     // convert units to molecule per volume
-    std::vector<double> mpv_state(last_state_nM);
-    for (int i = 0; i < mpv_state.size(); i++) {
-        mpv_state[i] = last_state_nM[i] * this->nM2mpv_conversion_factors[i];
-    }
-    this->updateComponentMap(
-        this->species_list,
-        mpv_state
-    );
+    Eigen::VectorXd mpv_state = last_state_nM.array() * this->nM2mpv_conversion_factors.array();
+    this->updateComponentMap(this->species_list, mpv_state);
 
     // Sample stochastic answer from Poisson distribution
-    std::vector<double> realizations = samplePoisson(computeReactions());
+    Eigen::VectorXd realizations = samplePoisson(computeReactions());
 
     // //reassign molecules per volume to just molecules:
-    std::vector<double> mol_state(mpv_state.size());
-    std::vector<double> saved_state = this->getSpeciesValues();
-    for (int i = 0; i < mol_state.size(); i++) {
-        mol_state[i] = saved_state[i] * this->species_volumes[i];
-    }
+    Eigen::VectorXd mol_state = this->getSpeciesValues().array() * this->species_volumes.array();
 
     // Constrain Tau-leap algorithm for conservation of moiety
-    std::vector<double> constrained_realizations = constrainTau(
-        realizations, 
-        mol_state
-    );
+    Eigen::VectorXd constrained_realizations = constrainTau(realizations,  mol_state);
     
     // Calculate the updated state for current step:
-    std::vector<double> new_state = computeNewState(
-        mol_state,
-        constrained_realizations
-    );
+    Eigen::VectorXd new_state = computeNewState(mol_state, constrained_realizations);
     
     // convert units to nanoMolar
-    std::vector<double> nM_state(new_state);
-    #pragma omp simd
-    for (int i = 0; i < nM_state.size(); i++) {
-        nM_state[i] = new_state[i] * this->molecules2nM_conversion_factors[i];
-    }
+    Eigen::VectorXd nM_state = new_state.array() * this->molecules2nM_conversion_factors.array();
 
     // Convert map values back to nanomolar value
-    this->updateComponentMap(
-        this->species_list, // Variables to be converted
-        nM_state // nM-converted results
-    );
+    this->updateComponentMap(this->species_list, nM_state);
 
     //Record iteration's result
     BaseModule::recordStepResult(nM_state, step);
@@ -362,24 +273,11 @@ void StochasticModule::step(
 }
 
 void StochasticModule::run(
-    std::vector<double> timesteps
+    Eigen::VectorXd timesteps
 ) {
     for (int t = 0; t < timesteps.size(); t++) {
 
         this->step(t);
 
     }
-}
-
-std::vector<double> StochasticModule::getLastStepResult(
-    int timestep
-) {
-
-    std::vector<double> state_vector(this->results_matrix.size());
-
-    state_vector = this->results_matrix[
-        (timestep > 0) ? timestep - 1 : timestep
-    ];
-
-    return state_vector;
 }

@@ -15,13 +15,15 @@
 #include <unordered_set>
 
 // Internal Libraries
-#include "utils.h"
 #include "SingleCell.h"
 #include "BaseModule.h"
 #include "SBMLHandler.h"
 #include "One4AllModule.h"
 #include "StochasticModule.h"
 #include "DeterministicModule.h"
+
+// Third Party Libraries
+#include <Eigen/Dense>
 
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
@@ -30,7 +32,7 @@ std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandle
     { "One4All", [](const SBMLHandler& handler) { return std::make_unique<One4AllModule>(handler); } }
 };
 
-std::vector<std::vector<double>> SingleCell::simulate(
+Eigen::MatrixXd SingleCell::simulate(
     double start, 
     double stop,
     double step
@@ -49,15 +51,13 @@ std::vector<std::vector<double>> SingleCell::simulate(
         step
     );
 
-    std::vector<double> timeSteps = BaseModule::setTimeSteps(start, stop, step);
+    Eigen::VectorXd timeSteps = BaseModule::setTimeSteps(start, stop, step);
 
     // run simulation:
     this->runGlobal(timeSteps);
 
     // combine each module's results matrix together
-    std::vector<std::vector<double>> results_matrix = combineResultsMatrix(
-        timeSteps.size()
-    );
+    Eigen::MatrixXd results_matrix = combineResultsMatrix();
 
     this->modules.clear();
 
@@ -127,7 +127,7 @@ void SingleCell::setGlobalSimulationSettings(
 }
 
 void SingleCell::runGlobal(
-    std::vector<double> timesteps
+    Eigen::VectorXd timesteps
 ) { 
     auto start_t = std::chrono::high_resolution_clock::now();
     printf("Running Simulation for %lu steps.", timesteps.size());
@@ -151,17 +151,8 @@ void SingleCell::runGlobal(
 
             // exchange data
             this->updateGlobalMaps();
-
-            auto iter_t = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> iter_time = iter_t - start_t;
-            printf("Iteration [%i / %i] Time: %f", 
-                                (int)(step), 
-                                (int)(timesteps.size()), 
-                                iter_time.count());
-            printf("\n");
         }
     }
-
 
     auto stop_t = std::chrono::high_resolution_clock::now();
 
@@ -194,33 +185,27 @@ void SingleCell::updateGlobalMaps() {
 
 }
 
-std::vector<std::vector<double>> SingleCell::combineResultsMatrix(
-    int timesteps
-) {
+Eigen::MatrixXd SingleCell::combineResultsMatrix() {
 
-    int numSpecies = this->getGlobalSpeciesIds().size();
+    if (modules.empty())
+        return Eigen::MatrixXd();  // empty
 
-    std::vector<std::vector<double>> final_matrix;
+    Eigen::MatrixXd final_matrix = modules[0]->results_matrix;
 
-    for (size_t m = 0; m < this->modules.size(); m++) {
+    for (size_t m = 1; m < modules.size(); ++m) {
+        const Eigen::MatrixXd& mod_matrix = modules[m]->results_matrix;
 
-        if (m == 0) {
+        // Check number of rows
+        assert(final_matrix.rows() == mod_matrix.rows());
 
-            final_matrix = this->modules[m]->results_matrix;
-        } else {
+        // Resize final_matrix to hold extra columns
+        int oldCols = final_matrix.cols();
+        final_matrix.conservativeResize(Eigen::NoChange, oldCols + mod_matrix.cols());
 
-            std::vector<std::vector<double>> mod_matrix = this->modules[m]->results_matrix;
-
-            for (size_t t = 0; t < mod_matrix.size(); t++) {
-
-                final_matrix[t].insert(
-                    final_matrix[t].end(),
-                    mod_matrix[t].begin(),
-                    mod_matrix[t].end()
-                );
-            }
-        }
+        // Copy new module matrix into the newly added columns
+        final_matrix.block(0, oldCols, mod_matrix.rows(), mod_matrix.cols()) = mod_matrix;
     }
+
     return final_matrix;
 }
 
