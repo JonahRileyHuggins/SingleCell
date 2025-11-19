@@ -42,7 +42,7 @@ def main():
         """
         from Simulate.SingleCell import SingleCell
         sbml_files = args.sbml
-        sc = SingleCell(sbml_files).simulate(args.start, args.stop, args.step)
+        sc = SingleCell(*sbml_files).simulate(args.start, args.stop, args.step)
 
         sc.to_csv(args.output, sep='\t')
 

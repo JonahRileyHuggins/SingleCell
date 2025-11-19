@@ -11,9 +11,10 @@ main*
 .gitignore
 *.md
 .cache
-results*
+benchmarks/*/results/
 */build
 **/venv
+.vscode
 extern/AMICI/build
 extern/AMICI/ThirdParty/SuiteSparse/build/*
 extern/AMICI/ThirdParty/sundials/build/*

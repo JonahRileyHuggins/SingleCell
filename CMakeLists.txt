@@ -163,7 +163,6 @@ set(Amici_DIR "${AMICI_DIR}/build" CACHE PATH "AMICI package config dir")
 
 # === External dependencies ===
 add_subdirectory(extern/pybind11)
-add_subdirectory(extern/muparser)
 add_subdirectory(extern/libsbml)
 
 # --- libsbml ---
