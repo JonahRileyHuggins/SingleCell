@@ -98,10 +98,8 @@ class StochasticModule : public BaseModule{
 
         /**
          * @brief Computes reactions for the most recent time step
-         * 
-         * @returns new state vector for current step
          */
-        Eigen::VectorXd computeReactions();
+        void computeReactions();
 
 
         /**
@@ -153,40 +151,28 @@ class StochasticModule : public BaseModule{
 
         /** 
          * @brief Update stoichiometric values by setting as the mean for a poission distribution
-         * 
-         * @param mu the rate vector calculated from each reaction, per second time unit
-         * 
-         * @returns m_i vector of Poisson-dist informed scalar values for righthand side v of x_dot = S*v
         */
-        Eigen::VectorXd samplePoisson(
-            Eigen::VectorXd mu
-        );
+        void samplePoisson();
 
         /**
          * @brief constrains Tau leap against negative values that result from low copy numbers
          * 
-         * @param xhat_tn current poisson-sample vector
-         * 
-         * @returns  m_actual minimum choice between negative reactants per reaction
-        */
-        Eigen::VectorXd constrainTau(
-            Eigen::VectorXd &m_i,
-            Eigen::VectorXd &xhat_tn
+         * @param last_state results of the prior step
+         */
+        void constrainTau(
+            const Eigen::VectorXd &last_state
         ); 
 
         /**
          * @brief calculates the updated state by adding to the prior state
          *  the new rates (Schilling and Palsson, 1998)
          * 
-         * @param state_t the vector of states (in molecules) of the prior timestep
-         * @param real_vec vector of propensity realizations, sampled from a poisson dist. 
-         * and constrained to perserve moiety
+         * @param last_state the vector of states (in molecules) of the prior timestep
          * 
          * @returns new_state vector of doubles equal to X_t = X_{t-1} + delta
          */
         Eigen::VectorXd computeNewState(
-        Eigen::VectorXd state_t,
-        Eigen::VectorXd real_vec
+        Eigen::VectorXd &last_state
         );
 
         //---------------------------Members----------------------------------//
@@ -196,9 +182,11 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd nM2mpv_conversion_factors;
         Eigen::VectorXd species_volumes;
         std::mt19937 generator;
-        Eigen::VectorXd mhat_actual;
-        Eigen::VectorXd S_j;
         Eigen::ArrayXd Rhat_j;
+        Eigen::VectorXd propensities; // prewritten variable for computeReactions()
+        Eigen::VectorXd realizations; // return variable for samplePoisson method
+        Eigen::VectorXd constrained_realizations;
+        
 
     protected:
         // -------------------------Methods-----------------------------------//
