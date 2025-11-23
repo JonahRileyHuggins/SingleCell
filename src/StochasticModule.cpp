@@ -23,7 +23,6 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
-#include <omp.h>
 
 // Internal libraries
 #include "unit_conversions.h"
@@ -48,7 +47,7 @@ StochasticModule::StochasticModule(
 
     // Initialize Eigen variables before simulation:
     this->constrained_realizations.resize(this->stoichmat.cols());
-    this->Rhat_j.resize(this->stoichmat.rows());
+    // this->Rhat_j.resize(this->stoichmat.rows());
     this->propensities.resize(this->formulas_vector.size());
     this->realizations.resize(this->formulas_vector.size());
 
@@ -160,9 +159,9 @@ std::string StochasticModule::safe_replace_alnumus(
 
 void StochasticModule::samplePoisson() {
 
-    for (size_t i = 0; i < this->realizations.size(); ++i) {
+    for (size_t i = 0; i < this->propensities.size(); ++i) {
 
-        std::poisson_distribution<int> dist((this->realizations(i) * this->delta_t)); 
+        std::poisson_distribution<int> dist((this->propensities(i) * this->delta_t)); 
         this->realizations(i) = dist(this->generator);
 
     }
@@ -172,18 +171,21 @@ void StochasticModule::constrainTau(
     const Eigen::VectorXd &last_state
 ) {
     // reset out from prior step
-    this->constrained_realizations.setZero(this->propensities.size());
+    // this->constrained_realizations.setZero(this->realizations.size());
 
     const int numCols = this->stoichmat.cols();
+
+    Eigen::ArrayXd tmp(this->realizations.size());
+
     for (int j = 0; j < numCols; ++j) {
 
         // compute coefficient products directly from the column
-        this->Rhat_j = (last_state.array() * this->stoichmat.col(j).array()).abs();
+        tmp = (last_state.array() * this->stoichmat.col(j).array()).abs();
+        const double masked_min = (tmp > 0.0).select(tmp, this->inf).minCoeff();
 
         // Compute min valid reactant or fallback to propensity-j
-        double R_mi = this->propensities(j);
-        for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
-        this->constrained_realizations(j) = std::min(this->propensities(j), R_mi);
+        const double R_mi = std::isfinite(masked_min) ? masked_min : this->realizations(j);
+        this->realizations(j) = std::min(this->realizations(j), R_mi);
     }
 }
 
@@ -192,7 +194,7 @@ Eigen::VectorXd StochasticModule::computeNewState(
 ) {
 
     // Update the stochastic state vector: new_state = old_state * v
-    Eigen::VectorXd delta = stoichmat * this->constrained_realizations;   // matrix-vector product
+    Eigen::VectorXd delta = stoichmat * this->realizations;   // matrix-vector product
     Eigen::VectorXd new_state = (last_state + delta).array().round();  // elementwise rounding
 
     return new_state;

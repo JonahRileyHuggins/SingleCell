@@ -15,6 +15,7 @@
 //===========================Library Import=================================//
 //Std Libaries
 #include <vector>
+#include <limits>
 #include <memory>
 #include <random>
 #include <optional>
@@ -182,10 +183,11 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd nM2mpv_conversion_factors;
         Eigen::VectorXd species_volumes;
         std::mt19937 generator;
-        Eigen::ArrayXd Rhat_j;
+        // Eigen::ArrayXd Rhat_j;
         Eigen::VectorXd propensities; // prewritten variable for computeReactions()
         Eigen::VectorXd realizations; // return variable for samplePoisson method
         Eigen::VectorXd constrained_realizations;
+        const double inf = std::numeric_limits<double>::infinity();
         
 
     protected:
