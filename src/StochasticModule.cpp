@@ -46,8 +46,6 @@ StochasticModule::StochasticModule(
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
 
     // Initialize Eigen variables before simulation:
-    this->constrained_realizations.resize(this->stoichmat.cols());
-    // this->Rhat_j.resize(this->stoichmat.rows());
     this->propensities.resize(this->formulas_vector.size());
     this->realizations.resize(this->formulas_vector.size());
 
@@ -65,6 +63,8 @@ StochasticModule::StochasticModule(
     this->compartments_list = StochasticModel.getCompartmentIds();
     this->species_volumes = StochasticModel.species_volumes;
     this->store = this->species_list;
+
+    this->new_state.resize(this->species_list.size());
 
     // Initialize random sampler only once
     std::random_device rd;
@@ -171,7 +171,6 @@ void StochasticModule::constrainTau(
     const Eigen::VectorXd &last_state
 ) {
     // reset out from prior step
-    // this->constrained_realizations.setZero(this->realizations.size());
 
     const int numCols = this->stoichmat.cols();
 
@@ -192,11 +191,10 @@ void StochasticModule::constrainTau(
 Eigen::VectorXd StochasticModule::computeNewState(
     Eigen::VectorXd &last_state
 ) {
-
     // Update the stochastic state vector: new_state = old_state * v
-    Eigen::VectorXd delta = stoichmat * this->realizations;   // matrix-vector product
-    Eigen::VectorXd new_state = (last_state + delta).array().round();  // elementwise rounding
-
+    new_state.noalias() = last_state;
+    new_state.noalias() += stoichmat * realizations;
+    new_state = new_state.array().round();
     return new_state;
 }
 
@@ -236,18 +234,20 @@ void StochasticModule::step(
 
     // overwrite this->propensities with new step values
     this->computeReactions();
+
     // overwrite this->realizations by sampling from Poisson distribution
     this->samplePoisson();
 
     // convert back to total molecules in-place
     last_state.array() *= this->species_volumes.array();  // molecules/L -> molecules
-
-    // Constrain Tau-leap algorithm for conservation of moiety
-    this->constrainTau(last_state);
     
     // Calculate the updated state for current step:
     Eigen::VectorXd new_state = computeNewState(last_state);
-    
+    if (new_state.minCoeff() < 0.0) {
+        // Constrain Tau-leap algorithm for conservation of moiety
+        this->constrainTau(last_state);
+        new_state=computeNewState(last_state);
+    }
     // convert units to nanoMolar
     new_state.array() *= this->molecules2nM_conversion_factors.array(); // molecules -> nM
 
