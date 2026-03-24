@@ -23,7 +23,6 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
-#include <omp.h>
 
 // Internal libraries
 #include "unit_conversions.h"
@@ -46,10 +45,9 @@ StochasticModule::StochasticModule(
     this->formulas_vector = StochasticModel.getReactionExpressions();
     this->tokenized_formula_map = StochasticModel.tokenizeFormulas();
 
-    // Initialize eigen variables before simulation:
-    this->mhat_actual.resize(this->stoichmat.cols());
-    this->S_j.resize(this->stoichmat.rows());
-    this->Rhat_j.resize(this->stoichmat.rows());
+    // Initialize Eigen variables before simulation:
+    this->propensities.resize(this->formulas_vector.size());
+    this->realizations.resize(this->formulas_vector.size());
 
     //call conversion method here:
     this->nM2mpv_conversion_factors = unit_conversions::nanomolar2mpv(StochasticModel.species_volumes);
@@ -66,6 +64,8 @@ StochasticModule::StochasticModule(
     this->species_volumes = StochasticModel.species_volumes;
     this->store = this->species_list;
 
+    this->new_state.resize(this->species_list.size());
+
     // Initialize random sampler only once
     std::random_device rd;
     this->generator.seed(rd());
@@ -74,17 +74,11 @@ StochasticModule::StochasticModule(
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
-Eigen::VectorXd StochasticModule::computeReactions() {
+void StochasticModule::computeReactions() {
 
-    unsigned int numReactions = this->formulas_vector.size();
-
-    Eigen::VectorXd v(numReactions);
-
-    // Populate the matrix:
-    for (unsigned int i = 0; i < numReactions; i++)
-        v(i) = computeReaction(this->formulas_vector[i]);
-
-    return v;
+    // Populate the vector:
+    for (unsigned int i = 0; i < this->propensities.size(); i++)
+        this->propensities(i) = computeReaction(this->formulas_vector[i]);
 }
     
 double StochasticModule::computeReaction(const std::string &formula_str) {
@@ -163,55 +157,44 @@ std::string StochasticModule::safe_replace_alnumus(
     return input;
 }
 
-Eigen::VectorXd StochasticModule::samplePoisson(
-    Eigen::VectorXd mu
-) {
+void StochasticModule::samplePoisson() {
 
-    // realization vector for storing random poisson samples
-    Eigen::VectorXd m_i(mu.size()); 
+    for (size_t i = 0; i < this->propensities.size(); ++i) {
 
-    for (size_t i = 0; i < mu.size(); ++i) {
-
-        std::poisson_distribution<int> dist((mu(i) * this->delta_t)); 
-        m_i(i) = dist(this->generator);
+        std::poisson_distribution<int> dist((this->propensities(i) * this->delta_t)); 
+        this->realizations(i) = dist(this->generator);
 
     }
-    return m_i;
 }
 
-Eigen::VectorXd StochasticModule::constrainTau(
-    Eigen::VectorXd &m_i,
-    Eigen::VectorXd &xhat_tn
+void StochasticModule::constrainTau(
+    const Eigen::VectorXd &last_state
 ) {
-
-    this->mhat_actual.setZero(m_i.size()); // results storage vector
+    // reset out from prior step
 
     const int numCols = this->stoichmat.cols();
+
+    Eigen::ArrayXd tmp(this->realizations.size());
+
     for (int j = 0; j < numCols; ++j) {
 
-        // Vector for curresnt ratelaw stoichiometries per species (i.e. column of S)
-        this->S_j = this->stoichmat.col(j);
+        // compute coefficient products directly from the column
+        tmp = (last_state.array() * this->stoichmat.col(j).array()).abs();
+        const double masked_min = (tmp > 0.0).select(tmp, this->inf).minCoeff();
 
-        // calculate coefficient products of current state
-        this->Rhat_j = (xhat_tn.array() * S_j.array()).abs(); 
-
-        // Compute min valid reactant or fallback to m_i(j)
-        double R_mi = m_i(j);
-        for (const double &val : Rhat_j) if (val > 0 && val < R_mi) R_mi = val;
-        this->mhat_actual(j) = std::min(m_i(j), R_mi);
+        // Compute min valid reactant or fallback to propensity-j
+        const double R_mi = std::isfinite(masked_min) ? masked_min : this->realizations(j);
+        this->realizations(j) = std::min(this->realizations(j), R_mi);
     }
-    return this->mhat_actual;
 }
 
 Eigen::VectorXd StochasticModule::computeNewState(
-    Eigen::VectorXd state_t,
-    Eigen::VectorXd real_vec
+    Eigen::VectorXd &last_state
 ) {
-
     // Update the stochastic state vector: new_state = old_state * v
-    Eigen::VectorXd delta = stoichmat * real_vec;   // matrix-vector product
-    Eigen::VectorXd new_state = (state_t + delta).array().round();  // elementwise rounding
-
+    new_state.noalias() = last_state;
+    new_state.noalias() += stoichmat * realizations;
+    new_state = new_state.array().round();
     return new_state;
 }
 
@@ -243,32 +226,36 @@ void StochasticModule::step(
 ) {
 
     // get (step minus 1) position in results_matrix member
-    Eigen::VectorXd last_state_nM = this->getLastStepResult(step);  // nM
+    Eigen::VectorXd last_state = this->getLastStepResult(step);  // nM
 
-    // convert units to molecule per volume
-    Eigen::VectorXd mpv_state = last_state_nM.array() * this->nM2mpv_conversion_factors.array();
-    this->updateComponentMap(this->species_list, mpv_state);
+    // convert units to molecule per litre
+    last_state.array() *= this->nM2mpv_conversion_factors.array(); //nM -> molecules/L
+    this->updateComponentMap(this->species_list, last_state);
 
-    // Sample stochastic answer from Poisson distribution
-    Eigen::VectorXd realizations = samplePoisson(computeReactions());
+    // overwrite this->propensities with new step values
+    this->computeReactions();
 
-    // //reassign molecules per volume to just molecules:
-    Eigen::VectorXd mol_state = this->getSpeciesValues().array() * this->species_volumes.array();
+    // overwrite this->realizations by sampling from Poisson distribution
+    this->samplePoisson();
 
-    // Constrain Tau-leap algorithm for conservation of moiety
-    Eigen::VectorXd constrained_realizations = constrainTau(realizations,  mol_state);
+    // convert back to total molecules in-place
+    last_state.array() *= this->species_volumes.array();  // molecules/L -> molecules
     
     // Calculate the updated state for current step:
-    Eigen::VectorXd new_state = computeNewState(mol_state, constrained_realizations);
-    
+    Eigen::VectorXd new_state = computeNewState(last_state);
+    if (new_state.minCoeff() < 0.0) {
+        // Constrain Tau-leap algorithm for conservation of moiety
+        this->constrainTau(last_state);
+        new_state=computeNewState(last_state);
+    }
     // convert units to nanoMolar
-    Eigen::VectorXd nM_state = new_state.array() * this->molecules2nM_conversion_factors.array();
+    new_state.array() *= this->molecules2nM_conversion_factors.array(); // molecules -> nM
 
     // Convert map values back to nanomolar value
-    this->updateComponentMap(this->species_list, nM_state);
+    this->updateComponentMap(this->species_list, new_state);
 
     //Record iteration's result
-    BaseModule::recordStepResult(nM_state, step);
+    BaseModule::recordStepResult(new_state, step);
 
 }
 
