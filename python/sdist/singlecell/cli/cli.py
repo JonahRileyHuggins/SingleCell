@@ -42,9 +42,15 @@ def main():
         """
         from Simulate.SingleCell import SingleCell
         sbml_files = args.sbml
-        sc = SingleCell(*sbml_files).simulate(args.start, args.stop, args.step)
-
-        sc.to_csv(args.output, sep='\t')
+        sc = SingleCell(*sbml_files)
+        modifiers = args.modify #<-- List of ["key1=value1, ..."]
+        for modifier in modifiers:
+            key, value = modifier.split('=')
+            sc.modify(component=key.strip(), value=float(value))
+        
+        # returns Pandas DataFrame
+        results = sc.simulate(args.start, args.stop, args.step)
+        results.to_csv(args.output, sep='\t')
 
     elif args.command == "Experiment":
         """
