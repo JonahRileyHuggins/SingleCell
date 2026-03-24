@@ -78,7 +78,7 @@ class CreateAntimonyFile:
         self.antimony_file.write("\n  # Compartments and Species:\n") # Antimony Compartments/Species module title
 
         for name in compartment_names:
-            self.antimony_file.write("  Compartment %s;\n" % (name))
+            self.antimony_file.write("  compartment %s;\n" % (name))
             logger.info('Compartment "%s" written to antimony document', name)
         self.antimony_file.write('\n') 
             
@@ -92,7 +92,7 @@ class CreateAntimonyFile:
         for speciesid, species_vals in species_df.iterrows():
             species_compartment = species_vals['compartment'] # handled in cell 9
             
-            self.antimony_file.write("  Species ") #handled in cell 10
+            self.antimony_file.write("  species ") #handled in cell 10
             self.antimony_file.write("%s in %s" % (speciesid, species_compartment))
             self.antimony_file.write(';\n')
 
@@ -115,7 +115,7 @@ class CreateAntimonyFile:
 
             self.antimony_file.write( # bottom of Cell 13
                 f"  {ratelaw_id}: "
-                + f"{' + '.join(ratelaw_info.reactants)} => {' + '.join(ratelaw_info.products)}; "
+                + f"{' + '.join(ratelaw_info.reactants)} -> {' + '.join(ratelaw_info.products)}; "
                 + f"({ratelaw_info.formula})"
             )
             self.antimony_file.write(
@@ -138,7 +138,7 @@ class CreateAntimonyFile:
 
             self.antimony_file.write("  %s has volume;\n" % (compartment_name))
             
-            logger.info("Compartment %s has volume %s " % (compartment_name, np.double(compartment_vals['volume'])))
+            logger.info("compartment %s has volume %s " % (compartment_name, np.double(compartment_vals['volume'])))
  
     def __assign_species_initial_concentrations(self): # Cell 21
         """Write species initial concentrations to antimony document"""
