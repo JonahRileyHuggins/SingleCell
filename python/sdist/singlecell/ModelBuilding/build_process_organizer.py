@@ -28,7 +28,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 class Build_Organizer:
     """
     Entrypoint to call atomized commands for build:
@@ -41,29 +40,54 @@ class Build_Organizer:
     # Absolute path to compiled extension (pySingleCell*.so file)
     project_root = os.getenv("SINGLECELL_PATH")
 
-    def __init__(self, args, **kwargs):
-
-        logger.info('Starting build process for solver %s ...', args.name)
-
-        self.antimony_output_dir = args.ANTIMONY_OUTPUT_DIR
-        self.sbml_output_dir = args.SBML_OUTPUT_DIR
-        self.amici_output_dir = args.AMICI_OUTPUT_DIR
-        self.singlecell_cmake_source_dir = args.SINGLECELL_CMAKE_SOURCE_DIR
-        self.singlecell_build_dir = args.SINGLECELL_BUILD_DIR
-        self.sbml_only_list = args.SBML_Only
-        # make_default_root(args.SINGLECELL_CMAKE_SOURCE_DIR, args.SINGLECELL_BUILD_DIR)
-
-        self.verbose = args.verbose
-        loader = FileLoader(args.path)
+    DEFAULTS = {
+        "ANTIMONY_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
+        "SBML_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
+        "AMICI_OUTPUT_DIR": os.path.join(project_root, "amici_models"),
+        "SINGLECELL_BUILD_DIR": os.path.join(project_root, "build"),
+        "SINGLECELL_CMAKE_SOURCE_DIR": project_root,
+        "SBML_Only": ['stochastic'],
+        "one4all": True,
+        "verbose": False,
+        "path": None,
+        "name": None,
+    }
+    
+    def __init__(self, args=None, **kwargs):
+    
+        config = self._resolve_config(args, kwargs)
+    
+        logger.info('Starting build process for solver %s ...', config["name"])
+    
+        self.antimony_output_dir = config["ANTIMONY_OUTPUT_DIR"]
+        self.sbml_output_dir = config["SBML_OUTPUT_DIR"]
+        self.amici_output_dir = config["AMICI_OUTPUT_DIR"]
+        self.singlecell_cmake_source_dir = config["SINGLECELL_CMAKE_SOURCE_DIR"]
+        self.singlecell_build_dir = config["SINGLECELL_BUILD_DIR"]
+        self.sbml_only_list = config["SBML_Only"]
+    
+        self.verbose = config["verbose"]
+    
+        loader = FileLoader(config["path"])
         self.model_files = loader._extract_model_build_files()
-
-        # Get all unique solvers:
+    
         self.solvers = self.__get_solvers_list()
-
-        if args.one4all:
+    
+        if config["one4all"]:
             self.solvers.append('One4All')
-
-
+    
+    def _resolve_config(self, args, kwargs):
+        config = self.DEFAULTS.copy()
+    
+        if args is not None:
+            if isinstance(args, dict):
+                config.update(args)
+            else:
+                config.update(vars(args))
+    
+        config.update(kwargs)
+        return config
+    
     def __get_solvers_list(self) -> list:
         """Finds list of unique solver types in species build file"""
         # A) Extract the column & clean / sanitize
