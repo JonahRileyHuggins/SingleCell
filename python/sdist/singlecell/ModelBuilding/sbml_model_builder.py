@@ -106,7 +106,9 @@ class CreateSBMLModel:
 
         # Set species annotations
         for speciesId, species_vals in solver_components.species.iterrows():
-            annotations = species_vals['annotation1':]
+            annotation_rows = solver_components.annotations.loc[[species_id]]
+            annotations = annotation_rows["annotation"].dropna().astype(str).str.strip().tolist()
+            #annotations = species_vals['annotation1':]
             Annot = ""
 
             for identifier in annotations:
