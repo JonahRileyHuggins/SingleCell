@@ -12,31 +12,8 @@ author: "Jonah R. Huggins"
 compilation:
     directory: "."
     files:
-      compartments: "SPARCED - Compartments.tsv"
-      ratelaws: "SPARCED - Ratelaws.tsv"
-      species: "SPARCED - Species.tsv"
-      parameters: "SPARCED - Parameters.tsv"
+      compartments: "SPARCED-Compartments.tsv"
+      ratelaws: "SPARCED-Ratelaws.tsv"
+      species: "SPARCED-Species.tsv"
+      parameters: "SPARCED-Parameters.tsv"
 
-swap_files:
-  old: 
-    filename: "../benchmarks/stochastic-expression/swap-reference.tsv" # The primary reference file(s)
-    column: "old"
-    datatype: "string"
-  new: 
-    filename: "../benchmarks/stochastic-expression/swap-reference.tsv" # The primary reference file(s)
-    column: "new"
-    datatype: "string"
-  update:
-    - file1:
-      filename: "../benchmarks/stochastic-expression/observables.tsv"  # List of files to be swapped in place of reference
-      output: "../benchmarks/stochastic-expression/observables-r.tsv"
-
-inspector:
-  inspect:
-    file:
-      path: "SPARCED - Ratelaws.tsv"
-      column: "r ; p"
-      column2: "ratelaw"
-  reference:
-    filepath: "SPARCED - Species.tsv"
-    column: "speciesId"
