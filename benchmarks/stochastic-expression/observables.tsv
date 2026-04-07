@@ -1,6 +1,6 @@
 observableId	observableFormula	noiseFormula
-MAPK1ac	nuc_gene_i__PRKCG_*(6.022*10**23)*(1/(1.0*10**9))*(1.75*10**-12)	1
-MAPK3ac	nuc_gene_i__PRKCD_*(6.022*10**23)*(1/(1.0*10**9))*(1.75*10**-12)	1
-MAPK1_mRNA	nuc_gene_i__PDPK1_*(6.022*10**23)*(1/(1.0*10**9))*(5.25*10**-12)	1
-MAPK3_mRNA	nuc_gene_i__MTOR_*(6.022*10**23)*(1/(1.0*10**9))*(5.25*10**-12)	1
-ERK_total	cyt_cong__p_p_MAPK__B2L11_1_*1+cyt_cong__p_p_MAPK__BAD_*1+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*1+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*1+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_*1+nuc_prot__FOXO3_1_*1+cyt_comp__MAP2Kinhibitor_*1+cyt_prot__IF4E_1_*1+cyt_prot__4EBP1__IF4E_1_*1+cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_*1+cyt_cong__JAK_*1+cyt_cong__INGR2__JAK_*1+cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK_*1+nuc_gene_i__MTOR_*1+cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__p_STAT1_*1+nuc_gene_i__TSC1_*1+cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__PTN11_*1+cyt_prot__p_STAT1__PTN1_*1+cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__SOCS1__STAT1_*1+exc_prot__IFNG_*1+cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__PTN11__STAT1_*1	1
+MAPK1ac	nuc_gene_a__MAPK1_*(6.022*10**23)*(1/(1.0*10**9))*(1.75*10**-12)	1
+MAPK3ac	nuc_gene_a__MAPK3_*(6.022*10**23)*(1/(1.0*10**9))*(1.75*10**-12)	1
+MAPK1_mRNA	cyt_mrna__MAPK1_201_*(6.022*10**23)*(1/(1.0*10**9))*(5.25*10**-12)	1
+MAPK3_mRNA	cyt_mrna__MAPK3_201_*(6.022*10**23)*(1/(1.0*10**9))*(5.25*10**-12)	1
+ERK_total	cyt_cong__p_p_MAPK__B2L11_1_*1+cyt_cong__p_p_MAPK__BAD_*1+cyt_cong__EGFR_1__p_p_MAPK_*1+cyt_cong__ERBB2_1__p_p_MAPK_*1+cyt_cong__ERBB4_1__p_p_MAPK_*1+nuc_cong__MAPK_*1+nuc_cong__p_p_MAPK_*1+cyt_cong__MAPK_*1+cyt_cong__p_MAPK_*1+cyt_cong__p_p_MAPK_*1+cyt_cong__GRB2__SOS1_1__p_p_MAPK_*1+cyt_cong__RAF1_1__p_p_MAPK_*1+cyt_cong__NF1_1__p_p_MAPK_*1+cyt_cong__MAPK__p_p_MAP2K_*1+cyt_cong__p_MAPK__p_p_MAP2K_*1+cyt_cong__RPS6KA__p_p_MAPK_*1+nuc_cong__p_p_MAPK__DUS1_*1+nuc_cong__FOS_1__p_p_MAPK_*1+cyt_cong__p_MAPK__DUS6_1_*1+cyt_cong__p_p_MAPK__DUS6_1_*1+cyt_cong__p_p_MAPK__p_DUS1_*1	1
