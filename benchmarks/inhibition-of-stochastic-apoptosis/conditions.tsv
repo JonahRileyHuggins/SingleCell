@@ -1,6 +1,6 @@
-conditionId	conditionName	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_	cyt_imp__MAP2Kinhibitor_	cyt_imp__AKTinhibitor_
-serum_starved	serum starved setting	0.0	0	0	0	0	0	0	0	0
-GF_0	No growth Factors added	0.0	0	0	0	0	0	0	0	0
+conditionId	conditionName	exc_prot__EGF_1_	exc_prot__NRG1_1_	exc_prot__HGF_1_	exc_prot__PDGFB_1_	exc_cong__FGF_	exc_cong__IGF_	exc_prot__INS_1_	nuc_gene_i__INSR_	nuc_gene_i__IFNG_
+serum_starved	serum starved setting	0	0	0	0	0	0	0	0	0
+GF_0	No growth Factors added	0	0	0	0	0	0	0	0	0
 EGF_3p3_INS_1721	EGF and Insulin turned to 3.3 and 1721	3.3	0	0	0	0	0	1721	0	0
 EGF_3p3_INS_1721_MEKi_10000	EGF and Insulin turned to 3.3 and 1721, MEK inhibitor set to 10000	3.3	0	0	0	0	0	1721	10000	0
 EGF_3p3_INS_1721_AKTi_10000	EGF and Insulin turned to 3.3 and 1721, AKT inhibitor set to 10000	3.3	0	0	0	0	0	1721	0	10000

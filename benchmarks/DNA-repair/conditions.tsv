@@ -1,7 +1,7 @@
-conditionId	conditionName	kD63_1	kD64_1	kD65_1	nuc_imp__DNADoubleStrandBreak_	nuc_imp__DNASingleStrandBreak_
-damageSSB_25_k313_1_0_k314_1_0_k315_1_0	single strand break with parameters set to 0	0.0	0.0	0.0	0	25
-damageSSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	single strand break with parameters multiplied by 15 percent	7.5e-06	1.5e-06	1.5e-06	0	25
-damageDSB_25_k313_1_0_k314_1_0_k315_1_0	double strand break with parameters set to 0	0.0	0.0	0.0	25	0
-damageDSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	double strand break with parameters multiplied by 5	0.00025	5e-05	5e-05	25	0
-damageSSB_25_damageDSB_25_k313_1_0_k314_1_0_k315_1_0	single and double strand breaks with parameters set to 0	0.0	0.0	0.0	25	25
-damageSSB_25_damageDSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	single and double strand breaks with parameters multiplied by 5	0.00025	5e-05	5e-05	25	25
+conditionId	conditionName	kD63_1	kD64_1	kD65_1	nuc_abs__DNADoubleStrandBreak_	nuc_abs__DNASingleStrandBreak_
+damageSSB_25_k313_1_0_k314_1_0_k315_1_0	single strand break with parameters set to 0	0	0	0	0	25
+damageSSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	single strand break with parameters multiplied by 15 percent	0.0000075	0.0000015	0.0000015	0	25
+damageDSB_25_k313_1_0_k314_1_0_k315_1_0	double strand break with parameters set to 0	0	0	0	25	0
+damageDSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	double strand break with parameters multiplied by 5	0.00025	0.00005	0.00005	25	0
+damageSSB_25_damageDSB_25_k313_1_0_k314_1_0_k315_1_0	single and double strand breaks with parameters set to 0	0	0	0	25	25
+damageSSB_25_damageDSB_25_k313_1_7p5eNeg5_k314_1_7p5eNeg5_k315_1_7p5eNeg5	single and double strand breaks with parameters multiplied by 5	0.00025	0.00005	0.00005	25	25

@@ -1,2 +1,2 @@
-conditionId	conditionName	ext_prot__EGF_	ext_prot__NRG1_	ext_prot__HGF_	ext_prot__PDGFB_	ext_prot__FGF_	ext_prot__IGF_	ext_prot__INS_
+conditionId	conditionName	exc_prot__EGF_1_	exc_prot__NRG1_1_	exc_prot__HGF_1_	exc_prot__PDGFB_1_	exc_cong__FGF_	exc_cong__IGF_	exc_prot__INS_1_
 Ribosome_mpc	Ribosome total concentration (mpc) over time. 	100	100	100	100	100	100	100
