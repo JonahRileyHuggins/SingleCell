@@ -16,4 +16,5 @@ compilation:
       ratelaws: "SPARCED-Ratelaws.tsv"
       species: "SPARCED-Species.tsv"
       parameters: "SPARCED-Parameters.tsv"
+      annotations: "SPARCED-Annotations.tsv"
 

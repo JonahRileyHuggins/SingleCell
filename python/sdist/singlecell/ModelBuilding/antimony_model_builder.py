@@ -115,7 +115,7 @@ class CreateAntimonyFile:
 
             self.antimony_file.write( # bottom of Cell 13
                 f"  {ratelaw_id}: "
-                + f"{' + '.join(ratelaw_info.reactants)} -> {' + '.join(ratelaw_info.products)}; "
+                + f"{' + '.join(ratelaw_info.reactants)} => {' + '.join(ratelaw_info.products)}; "
                 + f"({ratelaw_info.formula})"
             )
             self.antimony_file.write(
