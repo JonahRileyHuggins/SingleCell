@@ -202,6 +202,7 @@ target_include_directories(SingleCell PRIVATE
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern #<-- necessary for Eigen
+    ${CMAKE_SOURCE_DIR}/extern/exprtk
 )
 
 target_link_libraries(SingleCell PRIVATE
@@ -235,6 +236,7 @@ target_include_directories(pySingleCell PRIVATE
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern #<-- Necessary for Eigen
+    ${CMAKE_SOURCE_DIR}/extern/exprtk
 )
 
 target_link_libraries(pySingleCell PRIVATE

@@ -1,0 +1,11 @@
+speciesId	annotation	type
+nuc_gene_a__LIGAND_	ENSG000X	Gene
+nuc_gene_a__RECEPTOR_	ENSG000Y	Gene
+nuc_gene_i__LIGAND_	ENSG000X	Gene
+nuc_gene_i__RECEPTOR_	ENSG000Y	Gene
+cyt_mrna__LIGAND_	ENST000X	mRNA
+cyt_mrna__RECEPTOR_	ENST000Y	mRNA
+cyt_prot__LIGAND_	P0000X	Protein
+cyt_prot__RECEPTOR_	P0000Y	Protein
+cyt_prot__LIGAND__RECEPTOR_	P0000X	Protein
+

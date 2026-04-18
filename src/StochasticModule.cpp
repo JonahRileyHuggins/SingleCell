@@ -32,6 +32,7 @@
 // external library
 #include "parser.h"
 #include <Eigen/Dense>
+#include "exprtk.hpp"
 
 //=============================Class Details================================//
 StochasticModule::StochasticModule(
@@ -56,13 +57,13 @@ StochasticModule::StochasticModule(
     this->algorithm_id = StochasticModel.model->getId();
     this->source_id = "deterministic";
 
-    //Populate Component map
+    // Populate Component map
     this->component_map = StochasticModel.getModelValuesMap();
     this->species_list = StochasticModel.getSpeciesIds();
     this->params_list = StochasticModel.getParameterIds();
     this->compartments_list = StochasticModel.getCompartmentIds();
     this->species_volumes = StochasticModel.species_volumes;
-    this->store = this->species_list;
+    this->store = this->species_list; // <-- (17/04/2026) is this necessary?
 
     this->new_state.resize(this->species_list.size());
 
@@ -70,46 +71,71 @@ StochasticModule::StochasticModule(
     std::random_device rd;
     this->generator.seed(rd());
 
- }
+    // Allocate size for expressions
+    this->expressions.resize(this->formulas_vector.size());
+        
+    // Bind variables in component map to symbol table
+    for (auto& [key, value] : this->component_map) {
+
+        this->symbol_table.add_variable(key, value);
+    
+    }
+    this->symbol_table.add_constants();
+
+    // Compile expressions for update
+    for (size_t i = 0; i < this->formulas_vector.size(); i++) {
+        
+        this->expressions[i].register_symbol_table(this->symbol_table);
+
+        if (!parser.compile(this->formulas_vector[i], this->expressions[i])) {
+            std::cerr << "Compile error: " << this->formulas_vector[i] << "\n";
+        }
+
+    }
+}
 
 std::string StochasticModule::getModuleId() { return this->algorithm_id; }
 
 void StochasticModule::computeReactions() {
 
     // Populate the vector:
-    for (unsigned int i = 0; i < this->propensities.size(); i++)
-        this->propensities(i) = computeReaction(this->formulas_vector[i]);
+    //for (unsigned int i = 0; i < this->propensities.size(); i++)
+        // this->propensities(i) = computeReaction(this->formulas_vector[i]);
+    // If expressions are the values of reactions, then this should work
+    for (unsigned int i = 0; i < this->expressions.size(); ++i) {
+        this->propensities(i) = this->expressions[i].value();
+    }
 }
     
-double StochasticModule::computeReaction(const std::string &formula_str) {
+//double StochasticModule::computeReaction(const std::string &formula_str) {
 
     // Get variables in formula
-    std::unordered_map<std::string,double> components = this->getFormulaValues(formula_str);
+//    std::unordered_map<std::string,double> components = this->getFormulaValues(formula_str);
 
     // Copy formula string for safe replacement
-    std::string new_formula_str = formula_str;
+//    std::string new_formula_str = formula_str;
 
-    try {
-        for (const auto& [name, value] : components) {
-            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
-        }
+//    try {
+//        for (const auto& [name, value] : components) {
+//            new_formula_str = safe_replace_alnumus(new_formula_str, name, value);
+//        }
 
         // Send to parser algorithm
 
-        double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
-        return v_i;
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error computing reaction from formula '"
-                  << formula_str << "': " << e.what() << std::endl;
-        throw; 
-    }
-    catch (...) {
-        std::cerr << "Unknown error computing reaction from formula '"
-                  << formula_str << "'." << std::endl;
-        throw;
-    }
-}
+//        double v_i = parser(new_formula_str.c_str()); //!<-- verify for units bug
+//        return v_i;
+//    }
+//    catch (const std::exception& e) {
+//        std::cerr << "Error computing reaction from formula '"
+//                  << formula_str << "': " << e.what() << std::endl;
+//        throw; 
+//    }
+//    catch (...) {
+//        std::cerr << "Unknown error computing reaction from formula '"
+//                  << formula_str << "'." << std::endl;
+//        throw;
+//    }
+//}
 
 std::unordered_map<std::string,double> StochasticModule::getFormulaValues(
     const std::string& formula_str
