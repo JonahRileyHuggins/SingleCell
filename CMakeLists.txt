@@ -181,14 +181,6 @@ set(SINGLECELL_SRC_LIST
     )
 
 # === Internal Dependencies ===  
-add_library(ReactionParser STATIC
-    extern/ReactionParser/src/parser.c
-)
-
-target_include_directories(ReactionParser PUBLIC
-    ${THIRD_PARTY_DIR}/ReactionParser/include
-)
-
 add_subdirectory(amici_models/deterministic)
 add_subdirectory(amici_models/One4All)
 
@@ -210,7 +202,6 @@ target_link_libraries(SingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
     OpenMP::OpenMP_CXX
 )
 
@@ -244,7 +235,6 @@ target_link_libraries(pySingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
     pybind11::module
     OpenMP::OpenMP_CXX
 )
