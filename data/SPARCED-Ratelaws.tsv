@@ -38,9 +38,9 @@ vTL34	Cytoplasm	; cyt_prot__CFLAR_1_	kTL34_1*cyt_mrna__CFLAR_201_*(cyt_prot__IF4
 vTL35	Cytoplasm	; cyt_cong_i__CASP8_	kTL35_1*cyt_mrna__CASP8_218_*(cyt_prot__IF4E_1_/(kTL35_2+cyt_prot__IF4E_1_))
 vTL36	Cytoplasm	; cyt_cong_i__CASP8_	kTL36_1*cyt_mrna__CASP10_202_*(cyt_prot__IF4E_1_/(kTL36_2+cyt_prot__IF4E_1_))
 vTL37	Cytoplasm	; cyt_prot__BFAR_1_	kTL37_1*cyt_mrna__BFAR_222_*(cyt_prot__IF4E_1_/(kTL37_2+cyt_prot__IF4E_1_))
-vTL38	Cytoplasm	; cyt_cong__CASP3_	kTL38_1*cyt_mrna__CASP3_201_*(cyt_prot__IF4E_1_/(kTL38_2+cyt_prot__IF4E_1_))
-vTL39	Cytoplasm	; cyt_cong__CASP3_	kTL39_1*cyt_mrna__CASP7_203_*(cyt_prot__IF4E_1_/(kTL39_2+cyt_prot__IF4E_1_))
-vTL40	Cytoplasm	; cyt_cong_i__CASP6_	kTL40_1*cyt_mrna__CASP6_201_*(cyt_prot__IF4E_1_/(kTL40_2+cyt_prot__IF4E_1_))
+vTL38	Cytoplasm	; cyt_cong_i__CASP3_	kTL38_1*cyt_mrna__CASP3_201_*(cyt_prot__IF4E_1_/(kTL38_2+cyt_prot__IF4E_1_))
+vTL39	Cytoplasm	; cyt_cong_i__CASP3_	kTL39_1*cyt_mrna__CASP7_203_*(cyt_prot__IF4E_1_/(kTL39_2+cyt_prot__IF4E_1_))
+vTL40	Cytoplasm	; cyt_prot_i__CASP6_	kTL40_1*cyt_mrna__CASP6_201_*(cyt_prot__IF4E_1_/(kTL40_2+cyt_prot__IF4E_1_))
 vTL41	Cytoplasm	; cyt_prot__XIAP_1_	kTL41_1*cyt_mrna__XIAP_202_*(cyt_prot__IF4E_1_/(kTL41_2+cyt_prot__IF4E_1_))
 vTL42	Cytoplasm	; cyt_prot__PARP1_1_	kTL42_1*cyt_mrna__PARP1_203_*(cyt_prot__IF4E_1_/(kTL42_2+cyt_prot__IF4E_1_))
 vTL43	Cytoplasm	; cyt_prot__BID_1_	kTL43_1*cyt_mrna__BID_211_*(cyt_prot__IF4E_1_/(kTL43_2+cyt_prot__IF4E_1_))
@@ -172,8 +172,8 @@ vTLd28	Cytoplasm	cyt_cong__TNFRSF10_ ;	kTLd28_1*cyt_cong__TNFRSF10_
 vTLd29	Cytoplasm	cyt_prot__CFLAR_1_ ;	kTLd29_1*cyt_prot__CFLAR_1_
 vTLd30	Cytoplasm	cyt_cong_i__CASP8_ ;	kTLd30_1*cyt_cong_i__CASP8_
 vTLd31	Cytoplasm	cyt_prot__BFAR_1_ ;	kTLd31_1*cyt_prot__BFAR_1_
-vTLd32	Cytoplasm	cyt_cong__CASP3_ ;	kTLd32_1*cyt_cong__CASP3_
-vTLd33	Cytoplasm	cyt_cong_i__CASP6_ ;	kTLd33_1*cyt_cong_i__CASP6_
+vTLd32	Cytoplasm	cyt_cong_i__CASP3_ ;	kTLd32_1*cyt_cong_i__CASP3_
+vTLd33	Cytoplasm	cyt_prot_i__CASP6_ ;	kTLd33_1*cyt_prot_i__CASP6_
 vTLd34	Cytoplasm	cyt_prot__XIAP_1_ ;	kTLd34_1*cyt_prot__XIAP_1_
 vTLd35	Cytoplasm	cyt_prot__PARP1_1_ ;	kTLd35_1*cyt_prot__PARP1_1_
 vTLd36	Cytoplasm	cyt_prot__BID_1_ ;	kTLd36_1*cyt_prot__BID_1_
@@ -427,26 +427,26 @@ vA7	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ; cyt_cong_a__TNF10_1__TNFRS
 vA8	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ; cyt_cong_a__TNF10_1__TNFRSF10_ + cyt_cong_a__CASP8_	kA8_1*cyt_cong_a__TNF10_1__TNFRSF10__CASP8_
 vA9	Cytoplasm	cyt_cong_a__CASP8_ + cyt_prot__BFAR_1_ ; cyt_cong__CASP8__BFAR_1_	kA9_1*cyt_cong_a__CASP8_*cyt_prot__BFAR_1_
 vA10	Cytoplasm	cyt_cong__CASP8__BFAR_1_ ; cyt_cong_a__CASP8_ + cyt_prot__BFAR_1_	kA10_1*cyt_cong__CASP8__BFAR_1_
-vA11	Cytoplasm	cyt_cong_a__CASP8_ + cyt_cong__CASP3_ ; cyt_cong__CASP8__CASP3_	kA11_1*cyt_cong_a__CASP8_*cyt_cong__CASP3_
-vA12	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong__CASP3_	kA12_1*cyt_cong__CASP8__CASP3_
-vA13	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong__cl_CASP3_	kA13_1*cyt_cong__CASP8__CASP3_
-vA14	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_cong_i__CASP6_ ; cyt_cong__CASP3__CASP6_	kA14_1*cyt_cong__cl_CASP3_*cyt_cong_i__CASP6_
-vA15	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong__cl_CASP3_ + cyt_cong_i__CASP6_	kA15_1*cyt_cong__CASP3__CASP6_
-vA16	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong__cl_CASP3_ + cyt_prot_a__CASP6_	kA16_1*cyt_cong__CASP3__CASP6_
+vA11	Cytoplasm	cyt_cong_a__CASP8_ + cyt_cong_i__CASP3_ ; cyt_cong__CASP8__CASP3_	kA11_1*cyt_cong_a__CASP8_*cyt_cong_i__CASP3_
+vA12	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong_i__CASP3_	kA12_1*cyt_cong__CASP8__CASP3_
+vA13	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong_a__CASP3_	kA13_1*cyt_cong__CASP8__CASP3_
+vA14	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot_i__CASP6_ ; cyt_cong__CASP3__CASP6_	kA14_1*cyt_cong_a__CASP3_*cyt_prot_i__CASP6_
+vA15	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong_a__CASP3_ + cyt_prot_i__CASP6_	kA15_1*cyt_cong__CASP3__CASP6_
+vA16	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong_a__CASP3_ + cyt_prot_a__CASP6_	kA16_1*cyt_cong__CASP3__CASP6_
 vA17	Cytoplasm	cyt_cong_i__CASP8_ + cyt_prot_a__CASP6_ ; cyt_cong__CASP6__CASP8_	kA17_1*cyt_cong_i__CASP8_*cyt_prot_a__CASP6_
 vA18	Cytoplasm	cyt_cong__CASP6__CASP8_ ; cyt_cong_i__CASP8_ + cyt_prot_a__CASP6_	kA18_1*cyt_cong__CASP6__CASP8_
 vA19	Cytoplasm	cyt_cong__CASP6__CASP8_ ; cyt_cong_a__CASP8_ + cyt_prot_a__CASP6_	kA19_1*cyt_cong__CASP6__CASP8_
-vA20	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_prot__XIAP_1_ ; cyt_prot__CASP3__XIAP_	kA20_1*cyt_cong__cl_CASP3_*cyt_prot__XIAP_1_
-vA21	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_cong__cl_CASP3_ + cyt_prot__XIAP_1_	kA21_1*cyt_prot__CASP3__XIAP_
+vA20	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot__XIAP_1_ ; cyt_prot__CASP3__XIAP_	kA20_1*cyt_cong_a__CASP3_*cyt_prot__XIAP_1_
+vA21	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_cong_a__CASP3_ + cyt_prot__XIAP_1_	kA21_1*cyt_prot__CASP3__XIAP_
 vA22	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_prot__XIAP_1_ + cyt_cong__u_CASP3_	kA22_1*cyt_prot__CASP3__XIAP_
-vA23	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_prot__PARP1_1_ ; cyt_cong__CASP3__PARP1_	kA23_1*cyt_cong__cl_CASP3_*cyt_prot__PARP1_1_
-vA24	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong__cl_CASP3_ + cyt_prot__PARP1_1_	kA24_1*cyt_cong__CASP3__PARP1_
-vA25	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong__cl_CASP3_ + cyt_prot__cl_PARP1_	kA25_1*cyt_cong__CASP3__PARP1_
+vA23	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot__PARP1_1_ ; cyt_cong__CASP3__PARP1_	kA23_1*cyt_cong_a__CASP3_*cyt_prot__PARP1_1_
+vA24	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong_a__CASP3_ + cyt_prot__PARP1_1_	kA24_1*cyt_cong__CASP3__PARP1_
+vA25	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong_a__CASP3_ + cyt_prot__cl_PARP1_	kA25_1*cyt_cong__CASP3__PARP1_
 vA26	Cytoplasm	cyt_cong_a__CASP8_ + cyt_prot__BID_1_ ; cyt_cong__CASP8__BID_1_	kA26_1*cyt_cong_a__CASP8_*cyt_prot__BID_1_
 vA27	Cytoplasm	cyt_cong__CASP8__BID_1_ ; cyt_cong_a__CASP8_ + cyt_prot__BID_1_	kA27_1*cyt_cong__CASP8__BID_1_
 vA28	Cytoplasm	cyt_cong__CASP8__BID_1_ ; cyt_cong_a__CASP8_ + cyt_prot__cl_BID_1_	kA28_1*cyt_cong__CASP8__BID_1_
-vA29	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_cong__BCL2_ ; cyt_cong_cl_BID_1__BCL2_	kA29_1*cyt_prot__cl_BID_1_*cyt_cong__BCL2_
-vA30	Cytoplasm	cyt_cong_cl_BID_1__BCL2_ ; cyt_prot__cl_BID_1_ + cyt_cong__BCL2_	kA30_1*cyt_cong_cl_BID_1__BCL2_
+vA29	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_cong__BCL2_ ; cyt_cong__cl_BID_1__BCL2_	kA29_1*cyt_prot__cl_BID_1_*cyt_cong__BCL2_
+vA30	Cytoplasm	cyt_cong__cl_BID_1__BCL2_ ; cyt_prot__cl_BID_1_ + cyt_cong__BCL2_	kA30_1*cyt_cong__cl_BID_1__BCL2_
 vA31	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_prot_i__BAX_1_ ; cyt_prot__cl_BID_1__BAX_1_	kA31_1*cyt_prot__cl_BID_1_*cyt_prot_i__BAX_1_
 vA32	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ; cyt_prot__cl_BID_1_ + cyt_prot_i__BAX_1_	kA32_1*cyt_prot__cl_BID_1__BAX_1_
 vA33	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ; cyt_prot__cl_BID_1_ + cyt_prot_a__BAX_1_	kA33_1*cyt_prot__cl_BID_1__BAX_1_
@@ -478,9 +478,9 @@ vA58	Cytoplasm	cyt_prot__CY1__APAF_1_ ; cyt_prot__CY1_ + cyt_prot__APAF_1_	kA58_
 vA59	Cytoplasm	cyt_prot__CY1__APAF_1_ ; cyt_prot__CY1_ + cyt_prot_a__APAF_1_	kA59_1*cyt_prot__CY1__APAF_1_
 vA60	Cytoplasm	cyt_prot_a__APAF_1_ + cyt_prot__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1_	kA60_1*cyt_prot_a__APAF_1_*cyt_prot__PCSK9_1_
 vA61	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1_ + cyt_prot__PCSK9_1_	kA61_1*cyt_prot_a__APAF_1__PCSK9_1_
-vA62	Cytoplasm	cyt_cong__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__CASP3_	kA62_1*cyt_cong__CASP3_*cyt_prot_a__APAF_1__PCSK9_1_
-vA63	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA63_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
-vA64	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong__cl_CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA64_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
+vA62	Cytoplasm	cyt_cong_i__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__CASP3_	kA62_1*cyt_cong_i__CASP3_*cyt_prot_a__APAF_1__PCSK9_1_
+vA63	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong_i__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA63_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
+vA64	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong_a__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA64_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
 vA65	Mitochondria	mit_prot_i__DBLOH_1_ ; cyt_prot__DBLOH_1_	kA65_1*mit_prot_i__DBLOH_1_
 vA66	Cytoplasm	cyt_prot__DBLOH_1_ ; mit_prot_i__DBLOH_1_	kA66_1*cyt_prot__DBLOH_1_
 vA67	Cytoplasm	cyt_prot__XIAP_1_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__XIAP_	kA67_1*cyt_prot__XIAP_1_*cyt_prot_a__APAF_1__PCSK9_1_
@@ -1732,7 +1732,7 @@ vAd4	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ;	kAd4_1*cyt_cong_a__TNF10_
 vAd5	Cytoplasm	cyt_cong_a__CASP8_ ;	kAd5_1*cyt_cong_a__CASP8_
 vAd6	Cytoplasm	cyt_cong__CASP8__BFAR_1_ ;	kAd6_1*cyt_cong__CASP8__BFAR_1_
 vAd7	Cytoplasm	cyt_cong__CASP8__CASP3_ ;	kAd7_1*cyt_cong__CASP8__CASP3_
-vAd8	Cytoplasm	cyt_cong__cl_CASP3_ ;	kAd8_1*cyt_cong__cl_CASP3_
+vAd8	Cytoplasm	cyt_cong_a__CASP3_ ;	kAd8_1*cyt_cong_a__CASP3_
 vAd9	Cytoplasm	cyt_cong__CASP3__CASP6_ ;	kAd9_1*cyt_cong__CASP3__CASP6_
 vAd10	Cytoplasm	cyt_prot_a__CASP6_ ;	kAd10_1*cyt_prot_a__CASP6_
 vAd11	Cytoplasm	cyt_cong__CASP6__CASP8_ ;	kAd11_1*cyt_cong__CASP6__CASP8_
@@ -1741,7 +1741,7 @@ vAd13	Cytoplasm	cyt_cong__CASP3__PARP1_ ;	kAd13_1*cyt_cong__CASP3__PARP1_
 vAd14	Cytoplasm	cyt_prot__cl_PARP1_ ;	kAd14_1*cyt_prot__cl_PARP1_
 vAd15	Cytoplasm	cyt_cong__CASP8__BID_1_ ;	kAd15_1*cyt_cong__CASP8__BID_1_
 vAd16	Cytoplasm	cyt_prot__cl_BID_1_ ;	kAd16_1*cyt_prot__cl_BID_1_
-vAd17	Cytoplasm	cyt_cong_cl_BID_1__BCL2_ ;	kAd17_1*cyt_cong_cl_BID_1__BCL2_
+vAd17	Cytoplasm	cyt_cong__cl_BID_1__BCL2_ ;	kAd17_1*cyt_cong__cl_BID_1__BCL2_
 vAd18	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ;	kAd18_1*cyt_prot__cl_BID_1__BAX_1_
 vAd19	Cytoplasm	cyt_prot_a__BAX_1_ ;	kAd19_1*cyt_prot_a__BAX_1_
 vAd20	Mitochondria	mit_prot_a__BAX_1_ ;	kAd20_1*mit_prot_a__BAX_1_

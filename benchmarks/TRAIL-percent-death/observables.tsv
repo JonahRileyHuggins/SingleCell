@@ -1,5 +1,5 @@
 observableId	observableFormula	noiseFormula
 blank	0	1
 cPARP_total	cyt_prot__cl_PARP1_*1	1
-PARP_total	cyt_prot__PARP1_*1	1
+PARP_total	cyt_prot__PARP1_1_*1	1
 TRAIL_to_ngPer_mL	exc_prot__TNF10_1_*25.97402597402597	1

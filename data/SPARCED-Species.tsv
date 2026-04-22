@@ -93,10 +93,10 @@ cyt_cong_a__TNF10_1__TNFRSF10__CASP8_	Cytoplasm	0.0	Deterministic
 cyt_cong_a__CASP8_	Cytoplasm	0.0005051866364	Deterministic
 cyt_prot__BFAR_1_	Cytoplasm	0.8411539614	Deterministic
 cyt_cong__CASP8__BFAR_1_	Cytoplasm	0.001306372322	Deterministic
-cyt_cong__CASP3_	Cytoplasm	79.9328682	Deterministic
+cyt_cong_i__CASP3_	Cytoplasm	79.9328682	Deterministic
 cyt_cong__CASP8__CASP3_	Cytoplasm	0.006376929866	Deterministic
-cyt_cong__cl_CASP3_	Cytoplasm	0.0002025657987	Deterministic
-cyt_cong_i__CASP6_	Cytoplasm	47.67662922	Deterministic
+cyt_cong_a__CASP3_	Cytoplasm	0.0002025657987	Deterministic
+cyt_prot_i__CASP6_	Cytoplasm	47.67662922	Deterministic
 cyt_cong__CASP3__CASP6_	Cytoplasm	3.05e-08	Deterministic
 cyt_prot_a__CASP6_	Cytoplasm	0.0005733205948	Deterministic
 cyt_cong__CASP6__CASP8_	Cytoplasm	1.44e-07	Deterministic
