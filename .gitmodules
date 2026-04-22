@@ -4,6 +4,3 @@
 [submodule "python/sdist/singlecell/Benchtop"]
 	path = python/sdist/singlecell/Benchtop
 	url = https://jonahrileyhuggins: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@github.com/jonahrileyhuggins/Benchtop.git
-[submodule "extern/ReactionParser"]
-	path = extern/ReactionParser
-	url = https://github.com/jonahrileyhuggins/ReactionParser.git

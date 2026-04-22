@@ -181,14 +181,6 @@ set(SINGLECELL_SRC_LIST
     )
 
 # === Internal Dependencies ===  
-add_library(ReactionParser STATIC
-    extern/ReactionParser/src/parser.c
-)
-
-target_include_directories(ReactionParser PUBLIC
-    ${THIRD_PARTY_DIR}/ReactionParser/include
-)
-
 add_subdirectory(amici_models/deterministic)
 add_subdirectory(amici_models/One4All)
 
@@ -202,6 +194,7 @@ target_include_directories(SingleCell PRIVATE
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern #<-- necessary for Eigen
+    ${CMAKE_SOURCE_DIR}/extern/exprtk
 )
 
 target_link_libraries(SingleCell PRIVATE
@@ -209,7 +202,6 @@ target_link_libraries(SingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
     OpenMP::OpenMP_CXX
 )
 
@@ -235,6 +227,7 @@ target_include_directories(pySingleCell PRIVATE
     ${CMAKE_BINARY_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern/libsbml/src
     ${CMAKE_SOURCE_DIR}/extern #<-- Necessary for Eigen
+    ${CMAKE_SOURCE_DIR}/extern/exprtk
 )
 
 target_link_libraries(pySingleCell PRIVATE
@@ -242,7 +235,6 @@ target_link_libraries(pySingleCell PRIVATE
     deterministic
     One4All
     sbml
-    ReactionParser
     pybind11::module
     OpenMP::OpenMP_CXX
 )

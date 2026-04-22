@@ -1,5 +1,5 @@
 format_version: 1 
-parameter_file: ../../data/SPARCED - Parameters.tsv
+parameter_file: ../../data/SPARCED-Parameters.tsv
 problems:
   - name: TRAIL-ttd
     condition_files: 

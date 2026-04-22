@@ -8,7 +8,7 @@ vTL4	Cytoplasm	; nuc_prot_i__ATM_	kTL4_1*cyt_mrna__ATM_229_*(cyt_prot__IF4E_1_/(
 vTL5	Cytoplasm	; nuc_prot_i__ATR_1_	kTL5_1*cyt_mrna__ATR_201_*(cyt_prot__IF4E_1_/(kTL5_2+cyt_prot__IF4E_1_))
 vTL6	Nucleus	; nuc_prot__RB_	kTL6_1*cyt_mrna__RB1_201_
 vTL7	Nucleus	; nuc_cong__E2F_	kTL7_1*cyt_mrna__E2F1_201_
-vTL8	Nucleus	; nuc_cong__E2F_	kTL8_1*cyt_mrna__E2F2_201_
+vTL8	Nucleus	; nuc_cong__E2F_	kTL8_1*cyt_mrna__E2F2_204_
 vTL9	Nucleus	; nuc_cong__E2F_	kTL9_1*cyt_mrna__E2F3_201_
 vTL10	Nucleus	; nuc_cong__CCND_	(kTL10_1+kTL10_2*nuc_cong__E2F_*(kTL10_3/(kTL10_3+nuc_prot__RB_))*(kTL10_4/(kTL10_4+nuc_prot__pT373_RB_)))*cyt_mrna__CCND1_201_*(cyt_prot__IF4E_1_/(kTL10_5+cyt_prot__IF4E_1_))
 vTL11	Nucleus	; nuc_cong__CCND_	(kTL11_1+kTL11_2*nuc_cong__E2F_*(kTL11_3/(kTL11_3+nuc_prot__RB_))*(kTL11_4/(kTL11_4+nuc_prot__pT373_RB_)))*cyt_mrna__CCND2_201_*(cyt_prot__IF4E_1_/(kTL11_5+cyt_prot__IF4E_1_))
@@ -37,12 +37,12 @@ vTL33	Cytoplasm	; cyt_cong__TNFRSF10_	kTL33_1*cyt_mrna__TNFRSF10B_201_*(cyt_prot
 vTL34	Cytoplasm	; cyt_prot__CFLAR_1_	kTL34_1*cyt_mrna__CFLAR_201_*(cyt_prot__IF4E_1_/(kTL34_2+cyt_prot__IF4E_1_))
 vTL35	Cytoplasm	; cyt_cong_i__CASP8_	kTL35_1*cyt_mrna__CASP8_218_*(cyt_prot__IF4E_1_/(kTL35_2+cyt_prot__IF4E_1_))
 vTL36	Cytoplasm	; cyt_cong_i__CASP8_	kTL36_1*cyt_mrna__CASP10_202_*(cyt_prot__IF4E_1_/(kTL36_2+cyt_prot__IF4E_1_))
-vTL37	Cytoplasm	; cyt_prot__BFAR_1_	kTL37_1*cyt_mrna__BFAR_201_*(cyt_prot__IF4E_1_/(kTL37_2+cyt_prot__IF4E_1_))
-vTL38	Cytoplasm	; cyt_cong__CASP3_	kTL38_1*cyt_mrna__CASP3_201_*(cyt_prot__IF4E_1_/(kTL38_2+cyt_prot__IF4E_1_))
-vTL39	Cytoplasm	; cyt_cong__CASP3_	kTL39_1*cyt_mrna__CASP7_203_*(cyt_prot__IF4E_1_/(kTL39_2+cyt_prot__IF4E_1_))
-vTL40	Cytoplasm	; cyt_cong_i__CASP6_	kTL40_1*cyt_mrna__CASP6_201_*(cyt_prot__IF4E_1_/(kTL40_2+cyt_prot__IF4E_1_))
-vTL41	Cytoplasm	; cyt_prot__XIAP_	kTL41_1*cyt_mrna__XIAP_202_*(cyt_prot__IF4E_1_/(kTL41_2+cyt_prot__IF4E_1_))
-vTL42	Cytoplasm	; cyt_prot__PARP1_	kTL42_1*cyt_mrna__PARP1_203_*(cyt_prot__IF4E_1_/(kTL42_2+cyt_prot__IF4E_1_))
+vTL37	Cytoplasm	; cyt_prot__BFAR_1_	kTL37_1*cyt_mrna__BFAR_222_*(cyt_prot__IF4E_1_/(kTL37_2+cyt_prot__IF4E_1_))
+vTL38	Cytoplasm	; cyt_cong_i__CASP3_	kTL38_1*cyt_mrna__CASP3_201_*(cyt_prot__IF4E_1_/(kTL38_2+cyt_prot__IF4E_1_))
+vTL39	Cytoplasm	; cyt_cong_i__CASP3_	kTL39_1*cyt_mrna__CASP7_203_*(cyt_prot__IF4E_1_/(kTL39_2+cyt_prot__IF4E_1_))
+vTL40	Cytoplasm	; cyt_prot_i__CASP6_	kTL40_1*cyt_mrna__CASP6_201_*(cyt_prot__IF4E_1_/(kTL40_2+cyt_prot__IF4E_1_))
+vTL41	Cytoplasm	; cyt_prot__XIAP_1_	kTL41_1*cyt_mrna__XIAP_202_*(cyt_prot__IF4E_1_/(kTL41_2+cyt_prot__IF4E_1_))
+vTL42	Cytoplasm	; cyt_prot__PARP1_1_	kTL42_1*cyt_mrna__PARP1_203_*(cyt_prot__IF4E_1_/(kTL42_2+cyt_prot__IF4E_1_))
 vTL43	Cytoplasm	; cyt_prot__BID_1_	kTL43_1*cyt_mrna__BID_211_*(cyt_prot__IF4E_1_/(kTL43_2+cyt_prot__IF4E_1_))
 vTL44	Cytoplasm	; cyt_cong__BCL2_	kTL44_1*cyt_mrna__BCL2_201_*(cyt_prot__IF4E_1_/(kTL44_2+cyt_prot__IF4E_1_))
 vTL45	Cytoplasm	; cyt_cong__BCL2_	kTL45_1*cyt_mrna__BCL2L1_201_*(cyt_prot__IF4E_1_/(kTL45_2+cyt_prot__IF4E_1_))
@@ -52,7 +52,7 @@ vTL48	Cytoplasm	; mit_prot__CY1_	kTL48_1*cyt_mrna__CYC1_201_*(cyt_prot__IF4E_1_/
 vTL49	Cytoplasm	; mit_prot__DBLOH_1_	kTL49_1*cyt_mrna__DIABLO_206_*(cyt_prot__IF4E_1_/(kTL49_2+cyt_prot__IF4E_1_))
 vTL50	Cytoplasm	; cyt_prot__APAF_1_	kTL50_1*cyt_mrna__APAF1_210_*(cyt_prot__IF4E_1_/(kTL50_2+cyt_prot__IF4E_1_))
 vTL51	Cytoplasm	; cyt_prot__PCSK9_1_	kTL51_1*cyt_mrna__CASP9_201_*(cyt_prot__IF4E_1_/(kTL51_2+cyt_prot__IF4E_1_))
-vTL52	Cytoplasm	; cyt_prot__BAD_	kTL52_1*cyt_mrna__BAD_201_*(cyt_prot__IF4E_1_/(kTL52_2+cyt_prot__IF4E_1_))
+vTL52	Cytoplasm	; cyt_prot__BAD_1_	kTL52_1*cyt_mrna__BAD_201_*(cyt_prot__IF4E_1_/(kTL52_2+cyt_prot__IF4E_1_))
 vTL53	Cytoplasm	; cyt_prot__BBC3_1_	kTL53_1*cyt_mrna__BBC3_203_*(cyt_prot__IF4E_1_/(kTL53_2+cyt_prot__IF4E_1_))
 vTL54	Cytoplasm	; cyt_prot__APR_1_	kTL54_1*cyt_mrna__PMAIP1_202_*(cyt_prot__IF4E_1_/(kTL54_2+cyt_prot__IF4E_1_))
 vTL55	Cytoplasm	; cyt_prot__B2L11_1_	kTL55_1*cyt_mrna__BCL2L11_204_*(cyt_prot__IF4E_1_/(kTL55_2+cyt_prot__IF4E_1_))
@@ -67,9 +67,9 @@ vTL64	Cytoplasm	; exc_prot__HGF_1_	kTL64_1*cyt_mrna__HGF_201_*(cyt_prot__IF4E_1_
 vTL65	Cytoplasm	; cyt_cong__PGFRB_	kTL65_1*cyt_mrna__PDGFRA_201_*(cyt_prot__IF4E_1_/(kTL65_2+cyt_prot__IF4E_1_))
 vTL66	Cytoplasm	; cyt_cong__PGFRB_	kTL66_1*cyt_mrna__PDGFRB_201_*(cyt_prot__IF4E_1_/(kTL66_2+cyt_prot__IF4E_1_))
 vTL67	Cytoplasm	; exc_prot__PDGFB_1_	kTL67_1*cyt_mrna__PDGFB_201_*(cyt_prot__IF4E_1_/(kTL67_2+cyt_prot__IF4E_1_))
-vTL68	Cytoplasm	; cyt_prot__SPY2_	kTL68_1*cyt_mrna__SPRY2_202_*(cyt_prot__IF4E_1_/(kTL68_2+cyt_prot__IF4E_1_))
-vTL69	Cytoplasm	; cyt_prot__CBL_	kTL69_1*cyt_mrna__CBL_201_*(cyt_prot__IF4E_1_/(kTL69_2+cyt_prot__IF4E_1_))
-vTL70	Cytoplasm	; cyt_prot__GRB2_	kTL70_1*cyt_mrna__GRB2_202_*(cyt_prot__IF4E_1_/(kTL70_2+cyt_prot__IF4E_1_))
+vTL68	Cytoplasm	; cyt_prot__SPY2_1_	kTL68_1*cyt_mrna__SPRY2_202_*(cyt_prot__IF4E_1_/(kTL68_2+cyt_prot__IF4E_1_))
+vTL69	Cytoplasm	; cyt_prot__CBL_1_	kTL69_1*cyt_mrna__CBL_201_*(cyt_prot__IF4E_1_/(kTL69_2+cyt_prot__IF4E_1_))
+vTL70	Cytoplasm	; cyt_prot__GRB2_1_	kTL70_1*cyt_mrna__GRB2_202_*(cyt_prot__IF4E_1_/(kTL70_2+cyt_prot__IF4E_1_))
 vTL71	Cytoplasm	; cyt_cong__PLCG_	kTL71_1*cyt_mrna__PLCG1_223_*(cyt_prot__IF4E_1_/(kTL71_2+cyt_prot__IF4E_1_))
 vTL72	Cytoplasm	; cyt_cong__PLCG_	kTL72_1*cyt_mrna__PLCG2_208_*(cyt_prot__IF4E_1_/(kTL72_2+cyt_prot__IF4E_1_))
 vTL73	Cytoplasm	; cyt_cong__PIK3C_	kTL73_1*cyt_mrna__PIK3CA_201_*(cyt_prot__IF4E_1_/(kTL73_2+cyt_prot__IF4E_1_))
@@ -80,33 +80,33 @@ vTL77	Cytoplasm	; cyt_cong__PIK3R_	kTL77_1*cyt_mrna__PIK3R1_211_*(cyt_prot__IF4E
 vTL78	Cytoplasm	; cyt_cong__PIK3R_	kTL78_1*cyt_mrna__PIK3R2_201_*(cyt_prot__IF4E_1_/(kTL78_2+cyt_prot__IF4E_1_))
 vTL79	Cytoplasm	; cyt_cong__PIK3R_	kTL79_1*cyt_mrna__PIK3R3_201_*(cyt_prot__IF4E_1_/(kTL79_2+cyt_prot__IF4E_1_))
 vTL80	Cytoplasm	; cyt_cong__PIK3R_	kTL80_1*cyt_mrna__PIK3R4_201_*(cyt_prot__IF4E_1_/(kTL80_2+cyt_prot__IF4E_1_))
-vTL81	Cytoplasm	; cyt_prot__P3C2A_	kTL81_1*cyt_mrna__PIK3C2A_206_*(cyt_prot__IF4E_1_/(kTL81_2+cyt_prot__IF4E_1_))
-vTL82	Cytoplasm	; cyt_prot__GRP_1_	kTL82_1*cyt_mrna__RASGRP1_201_*(cyt_prot__IF4E_1_/(kTL82_2+cyt_prot__IF4E_1_))
-vTL83	Cytoplasm	; cyt_prot__GRP_1_	kTL83_1*cyt_mrna__RASGRP3_202_*(cyt_prot__IF4E_1_/(kTL83_2+cyt_prot__IF4E_1_))
+vTL81	Cytoplasm	; cyt_prot__P3C2A_1_	kTL81_1*cyt_mrna__PIK3C2A_206_*(cyt_prot__IF4E_1_/(kTL81_2+cyt_prot__IF4E_1_))
+vTL82	Cytoplasm	; cyt_cong__GRP_	kTL82_1*cyt_mrna__RASGRP1_201_*(cyt_prot__IF4E_1_/(kTL82_2+cyt_prot__IF4E_1_))
+vTL83	Cytoplasm	; cyt_cong__GRP_	kTL83_1*cyt_mrna__RASGRP3_202_*(cyt_prot__IF4E_1_/(kTL83_2+cyt_prot__IF4E_1_))
 vTL84	Cytoplasm	; cyt_mixed__RAS__GDP_	kTL84_1*cyt_mrna__NRAS_201_*(cyt_prot__IF4E_1_/(kTL84_2+cyt_prot__IF4E_1_))
 vTL85	Cytoplasm	; cyt_mixed__RAS__GDP_	kTL85_1*cyt_mrna__KRAS_202_*(cyt_prot__IF4E_1_/(kTL85_2+cyt_prot__IF4E_1_))
-vTL86	Cytoplasm	; cyt_mixed__RAS__GDP_	kTL86_1*cyt_mrna__HRAS_201_*(cyt_prot__IF4E_1_/(kTL86_2+cyt_prot__IF4E_1_))
+vTL86	Cytoplasm	; cyt_mixed__RAS__GDP_	kTL86_1*cyt_mrna__HRAS_221_*(cyt_prot__IF4E_1_/(kTL86_2+cyt_prot__IF4E_1_))
 vTL87	Cytoplasm	; cyt_prot__NF1_1_	kTL87_1*cyt_mrna__NF1_202_*(cyt_prot__IF4E_1_/(kTL87_2+cyt_prot__IF4E_1_))
 vTL88	Cytoplasm	; cyt_prot__RAF1_1_	kTL88_1*cyt_mrna__RAF1_201_*(cyt_prot__IF4E_1_/(kTL88_2+cyt_prot__IF4E_1_))
-vTL89	Cytoplasm	; cyt_prot__BRAF_	kTL89_1*cyt_mrna__BRAF_220_*(cyt_prot__IF4E_1_/(kTL89_2+cyt_prot__IF4E_1_))
-vTL90	Cytoplasm	; cyt_prot__MAP2K_	kTL90_1*cyt_mrna__MAP2K1_201_*(cyt_prot__IF4E_1_/(kTL90_2+cyt_prot__IF4E_1_))
-vTL91	Cytoplasm	; cyt_prot__MAP2K_	kTL91_1*cyt_mrna__MAP2K2_201_*(cyt_prot__IF4E_1_/(kTL91_2+cyt_prot__IF4E_1_))
+vTL89	Cytoplasm	; cyt_prot__BRAF_1_	kTL89_1*cyt_mrna__BRAF_220_*(cyt_prot__IF4E_1_/(kTL89_2+cyt_prot__IF4E_1_))
+vTL90	Cytoplasm	; cyt_cong__MAP2K_	kTL90_1*cyt_mrna__MAP2K1_201_*(cyt_prot__IF4E_1_/(kTL90_2+cyt_prot__IF4E_1_))
+vTL91	Cytoplasm	; cyt_cong__MAP2K_	kTL91_1*cyt_mrna__MAP2K2_201_*(cyt_prot__IF4E_1_/(kTL91_2+cyt_prot__IF4E_1_))
 vTL92	Cytoplasm	; cyt_prot__DUS6_1_	kTL92_1*cyt_mrna__DUSP6_201_*(cyt_prot__IF4E_1_/(kTL92_2+cyt_prot__IF4E_1_))
-vTL93	Cytoplasm	; cyt_prot__RPS6KA_	kTL93_1*cyt_mrna__RPS6KA1_204_*(cyt_prot__IF4E_1_/(kTL93_2+cyt_prot__IF4E_1_))
-vTL94	Cytoplasm	; cyt_prot__RPS6KA_	kTL94_1*cyt_mrna__RPS6KA2_201_*(cyt_prot__IF4E_1_/(kTL94_2+cyt_prot__IF4E_1_))
-vTL95	Cytoplasm	; cyt_prot__RPS6KA_	kTL95_1*cyt_mrna__RPS6KA3_201_*(cyt_prot__IF4E_1_/(kTL95_2+cyt_prot__IF4E_1_))
-vTL96	Cytoplasm	; cyt_prot__RPS6KA_	kTL96_1*cyt_mrna__RPS6KA4_201_*(cyt_prot__IF4E_1_/(kTL96_2+cyt_prot__IF4E_1_))
+vTL93	Cytoplasm	; cyt_cong__RPS6KA_	kTL93_1*cyt_mrna__RPS6KA1_236_*(cyt_prot__IF4E_1_/(kTL93_2+cyt_prot__IF4E_1_))
+vTL94	Cytoplasm	; cyt_cong__RPS6KA_	kTL94_1*cyt_mrna__RPS6KA2_201_*(cyt_prot__IF4E_1_/(kTL94_2+cyt_prot__IF4E_1_))
+vTL95	Cytoplasm	; cyt_cong__RPS6KA_	kTL95_1*cyt_mrna__RPS6KA3_201_*(cyt_prot__IF4E_1_/(kTL95_2+cyt_prot__IF4E_1_))
+vTL96	Cytoplasm	; cyt_cong__RPS6KA_	kTL96_1*cyt_mrna__RPS6KA4_201_*(cyt_prot__IF4E_1_/(kTL96_2+cyt_prot__IF4E_1_))
 vTL97	Cytoplasm	; nuc_prot__DUS1_	kTL97_1*cyt_mrna__DUSP1_201_*(cyt_prot__IF4E_1_/(kTL97_2+cyt_prot__IF4E_1_))
 vTL98	Cytoplasm	; nuc_prot__FOS_1_	kTL98_1*cyt_mrna__FOS_201_*(cyt_prot__IF4E_1_/(kTL98_2+cyt_prot__IF4E_1_))
 vTL99	Cytoplasm	; nuc_prot__JUN_	kTL99_1*cyt_mrna__JUN_201_*(cyt_prot__IF4E_1_/(kTL99_2+cyt_prot__IF4E_1_))
 vTL100	Cytoplasm	; nuc_prot__MYC_2_	kTL100_1*cyt_mrna__MYC_206_*(cyt_prot__IF4E_1_/(kTL100_2+cyt_prot__IF4E_1_))
-vTL101	Cytoplasm	; cyt_prot__CTNB1_	kTL101_1*cyt_mrna__CTNNB1_201_*(cyt_prot__IF4E_1_/(kTL101_2+cyt_prot__IF4E_1_))
-vTL102	Cytoplasm	; cyt_prot__PTEN_	kTL102_1*cyt_mrna__PTEN_201_*(cyt_prot__IF4E_1_/(kTL102_2+cyt_prot__IF4E_1_))
+vTL101	Cytoplasm	; cyt_prot__CTNB1_1_	kTL101_1*cyt_mrna__CTNNB1_201_*(cyt_prot__IF4E_1_/(kTL101_2+cyt_prot__IF4E_1_))
+vTL102	Cytoplasm	; cyt_prot__PTEN_1_	kTL102_1*cyt_mrna__PTEN_227_*(cyt_prot__IF4E_1_/(kTL102_2+cyt_prot__IF4E_1_))
 vTL103	Cytoplasm	; cyt_cong__AKT_	kTL103_1*cyt_mrna__AKT1_218_*(cyt_prot__IF4E_1_/(kTL103_2+cyt_prot__IF4E_1_))
 vTL104	Cytoplasm	; cyt_cong__AKT_	kTL104_1*cyt_mrna__AKT2_206_*(cyt_prot__IF4E_1_/(kTL104_2+cyt_prot__IF4E_1_))
 vTL105	Cytoplasm	; cyt_prot__PDPK1_1_	kTL105_1*cyt_mrna__PDPK1_202_*(cyt_prot__IF4E_1_/(kTL105_2+cyt_prot__IF4E_1_))
-vTL106	Cytoplasm	; cyt_prot_RICTR_1_	kTL106_1*cyt_mrna__RICTOR_202_*(cyt_prot__IF4E_1_/(kTL106_2+cyt_prot__IF4E_1_))
-vTL107	Cytoplasm	; cyt_prot__MTOR_	kTL107_1*cyt_mrna__MTOR_201_*(cyt_prot__IF4E_1_/(kTL107_2+cyt_prot__IF4E_1_))
+vTL106	Cytoplasm	; cyt_prot__RICTR_1_	kTL106_1*cyt_mrna__RICTOR_202_*(cyt_prot__IF4E_1_/(kTL106_2+cyt_prot__IF4E_1_))
+vTL107	Cytoplasm	; cyt_prot__MTOR_1_	kTL107_1*cyt_mrna__MTOR_201_*(cyt_prot__IF4E_1_/(kTL107_2+cyt_prot__IF4E_1_))
 vTL108	Cytoplasm	; cyt_prot__GSK3B_1_	kTL108_1*cyt_mrna__GSK3B_201_*(cyt_prot__IF4E_1_/(kTL108_2+cyt_prot__IF4E_1_))
 vTL109	Cytoplasm	; cyt_prot__TSC1_1_	kTL109_1*cyt_mrna__TSC1_201_*(cyt_prot__IF4E_1_/(kTL109_2+cyt_prot__IF4E_1_))
 vTL110	Cytoplasm	; cyt_prot__TSC2_1_	kTL110_1*cyt_mrna__TSC2_201_*(cyt_prot__IF4E_1_/(kTL110_2+cyt_prot__IF4E_1_))
@@ -114,7 +114,7 @@ vTL111	Cytoplasm	; cyt_cong__KPC_	kTL111_1*cyt_mrna__PRKCA_202_*(cyt_prot__IF4E_
 vTL112	Cytoplasm	; cyt_cong__KPC_	kTL112_1*cyt_mrna__PRKCB_210_*(cyt_prot__IF4E_1_/(kTL112_2+cyt_prot__IF4E_1_))
 vTL113	Cytoplasm	; cyt_cong__KPC_	kTL113_1*cyt_mrna__PRKCG_201_*(cyt_prot__IF4E_1_/(kTL113_2+cyt_prot__IF4E_1_))
 vTL114	Cytoplasm	; cyt_cong__KPC_	kTL114_1*cyt_mrna__PRKCD_201_*(cyt_prot__IF4E_1_/(kTL114_2+cyt_prot__IF4E_1_))
-vTL115	Cytoplasm	; cyt_prot__PEBP1_	kTL115_1*cyt_mrna__PEBP1_201_*(cyt_prot__IF4E_1_/(kTL115_2+cyt_prot__IF4E_1_))
+vTL115	Cytoplasm	; cyt_prot__PEBP1_1_	kTL115_1*cyt_mrna__PEBP1_201_*(cyt_prot__IF4E_1_/(kTL115_2+cyt_prot__IF4E_1_))
 vTL116	Cytoplasm	; cyt_cong__MAPK_	kTL116_1*cyt_mrna__MAPK1_201_*(cyt_prot__IF4E_1_/(kTL116_2+cyt_prot__IF4E_1_))
 vTL117	Cytoplasm	; cyt_cong__MAPK_	kTL117_1*cyt_mrna__MAPK3_201_*(cyt_prot__IF4E_1_/(kTL117_2+cyt_prot__IF4E_1_))
 vTL118	Cytoplasm	; cyt_prot__FOXO3_1_	kTL118_1*cyt_mrna__FOXO3_202_*(cyt_prot__IF4E_1_/(kTL118_2+cyt_prot__IF4E_1_))
@@ -122,9 +122,9 @@ vTL119	Cytoplasm	; cyt_mixed__RHEB__GDP_	kTL119_1*cyt_mrna__RHEB_201_*(cyt_prot_
 vTL120	Cytoplasm	; cyt_prot__RPTOR_1_	kTL120_1*cyt_mrna__RPTOR_201_*(cyt_prot__IF4E_1_/(kTL120_2+cyt_prot__IF4E_1_))
 vTL121	Cytoplasm	; cyt_prot__KS6B1_1_	kTL121_1*cyt_mrna__RPS6KB1_201_*(cyt_prot__IF4E_1_/(kTL121_2+cyt_prot__IF4E_1_))
 vTL122	Cytoplasm	; cyt_prot__KS6B1_1_	kTL122_1*cyt_mrna__RPS6KB2_201_*(cyt_prot__IF4E_1_/(kTL122_2+cyt_prot__IF4E_1_))
-vTL123	Cytoplasm	; cyt_prot__4EBP1_	kTL123_1*cyt_mrna__EIF4EBP1_201_*(cyt_prot__IF4E_1_/(kTL123_2+cyt_prot__IF4E_1_))
+vTL123	Cytoplasm	; cyt_prot__4EBP1_1_	kTL123_1*cyt_mrna__EIF4EBP1_201_*(cyt_prot__IF4E_1_/(kTL123_2+cyt_prot__IF4E_1_))
 vTL124	Cytoplasm	; cyt_prot__SOS1_1_	kTL124_1*cyt_mrna__SOS1_202_*(cyt_prot__IF4E_1_/(kTL124_2+cyt_prot__IF4E_1_))
-vTL125	Cytoplasm	; nuc_prot__ARF_1_	kTL125_1*cyt_mrna__CDKN2A_214_*(cyt_prot__IF4E_1_/(kTL125_2+cyt_prot__IF4E_1_))
+vTL125	Cytoplasm	; nuc_prot__ARF_1_	kTL125_1*cyt_mrna__CDKN2A_201_*(cyt_prot__IF4E_1_/(kTL125_2+cyt_prot__IF4E_1_))
 vTL126	Cytoplasm	; nuc_prot__MDM4_1_	kTL126_1*cyt_mrna__MDM4_203_*(cyt_prot__IF4E_1_/(kTL126_2+cyt_prot__IF4E_1_))
 vTL127	Cytoplasm	; cyt_cong__FGFR_	kTL127_1*cyt_mrna__FGFR1_214_*(cyt_prot__IF4E_1_/(kTL127_2+cyt_prot__IF4E_1_))
 vTL128	Cytoplasm	; cyt_cong__FGFR_	kTL128_1*cyt_mrna__FGFR2_206_*(cyt_prot__IF4E_1_/(kTL128_2+cyt_prot__IF4E_1_))
@@ -135,7 +135,7 @@ vTL132	Cytoplasm	; cyt_cong__IRS_	kTL132_1*cyt_mrna__IRS1_201_*(cyt_prot__IF4E_1
 vTL133	Cytoplasm	; cyt_cong__IRS_	kTL133_1*cyt_mrna__IRS2_201_*(cyt_prot__IF4E_1_/(kTL133_2+cyt_prot__IF4E_1_))
 vTL134	Cytoplasm	; exc_cong__IGF_	kTL134_1*cyt_mrna__IGF1_202_*(cyt_prot__IF4E_1_/(kTL134_2+cyt_prot__IF4E_1_))
 vTL135	Cytoplasm	; exc_cong__IGF_	kTL135_1*cyt_mrna__IGF2_205_*(cyt_prot__IF4E_1_/(kTL135_2+cyt_prot__IF4E_1_))
-vTL136	Cytoplasm	; cyt_prot__IGF1R_	kTL136_1*cyt_mrna__IGF1R_217_*(cyt_prot__IF4E_1_/(kTL136_2+cyt_prot__IF4E_1_))
+vTL136	Cytoplasm	; cyt_prot__IGF1R_1_	kTL136_1*cyt_mrna__IGF1R_217_*(cyt_prot__IF4E_1_/(kTL136_2+cyt_prot__IF4E_1_))
 vTL137	Cytoplasm	; nuc_prot__MSH6_1_	kTL137_1*cyt_mrna__MSH6_201_*(cyt_prot__IF4E_1_/(kTL137_2+cyt_prot__IF4E_1_))
 vTL138	Cytoplasm	; nuc_prot__BRCA2_	kTL138_1*cyt_mrna__BRCA2_201_*(cyt_prot__IF4E_1_/(kTL138_2+cyt_prot__IF4E_1_))
 vTL139	Cytoplasm	; nuc_prot__MGMT_	kTL139_1*cyt_mrna__MGMT_205_*(cyt_prot__IF4E_1_/(kTL139_2+cyt_prot__IF4E_1_))
@@ -172,10 +172,10 @@ vTLd28	Cytoplasm	cyt_cong__TNFRSF10_ ;	kTLd28_1*cyt_cong__TNFRSF10_
 vTLd29	Cytoplasm	cyt_prot__CFLAR_1_ ;	kTLd29_1*cyt_prot__CFLAR_1_
 vTLd30	Cytoplasm	cyt_cong_i__CASP8_ ;	kTLd30_1*cyt_cong_i__CASP8_
 vTLd31	Cytoplasm	cyt_prot__BFAR_1_ ;	kTLd31_1*cyt_prot__BFAR_1_
-vTLd32	Cytoplasm	cyt_cong__CASP3_ ;	kTLd32_1*cyt_cong__CASP3_
-vTLd33	Cytoplasm	cyt_cong_i__CASP6_ ;	kTLd33_1*cyt_cong_i__CASP6_
-vTLd34	Cytoplasm	cyt_prot__XIAP_ ;	kTLd34_1*cyt_prot__XIAP_
-vTLd35	Cytoplasm	cyt_prot__PARP1_ ;	kTLd35_1*cyt_prot__PARP1_
+vTLd32	Cytoplasm	cyt_cong_i__CASP3_ ;	kTLd32_1*cyt_cong_i__CASP3_
+vTLd33	Cytoplasm	cyt_prot_i__CASP6_ ;	kTLd33_1*cyt_prot_i__CASP6_
+vTLd34	Cytoplasm	cyt_prot__XIAP_1_ ;	kTLd34_1*cyt_prot__XIAP_1_
+vTLd35	Cytoplasm	cyt_prot__PARP1_1_ ;	kTLd35_1*cyt_prot__PARP1_1_
 vTLd36	Cytoplasm	cyt_prot__BID_1_ ;	kTLd36_1*cyt_prot__BID_1_
 vTLd37	Cytoplasm	cyt_cong__BCL2_ ;	kTLd37_1*cyt_cong__BCL2_
 vTLd38	Cytoplasm	cyt_prot_i__BAX_1_ ;	kTLd38_1*cyt_prot_i__BAX_1_
@@ -183,7 +183,7 @@ vTLd39	Mitochondria	mit_prot__CY1_ ;	kTLd39_1*mit_prot__CY1_
 vTLd40	Mitochondria	mit_prot__DBLOH_1_ ;	kTLd40_1*mit_prot__DBLOH_1_
 vTLd41	Cytoplasm	cyt_prot__APAF_1_ ;	kTLd41_1*cyt_prot__APAF_1_
 vTLd42	Cytoplasm	cyt_prot__PCSK9_1_ ;	kTLd42_1*cyt_prot__PCSK9_1_
-vTLd43	Cytoplasm	cyt_prot__BAD_ ;	kTLd43_1*cyt_prot__BAD_
+vTLd43	Cytoplasm	cyt_prot__BAD_1_ ;	kTLd43_1*cyt_prot__BAD_1_
 vTLd44	Cytoplasm	cyt_prot__BBC3_1_ ;	kTLd44_1*cyt_prot__BBC3_1_
 vTLd45	Cytoplasm	cyt_prot__APR_1_ ;	kTLd45_1*cyt_prot__APR_1_
 vTLd46	Cytoplasm	cyt_prot__B2L11_1_ ;	kTLd46_1*cyt_prot__B2L11_1_
@@ -201,45 +201,45 @@ vTLd57	Cytoplasm	cyt_prot__ERBB4_1_ ;	kTLd57_1*cyt_prot__ERBB4_1_
 vTLd59	Cytoplasm	cyt_prot__MET_1_ ;	kTLd59_1*cyt_prot__MET_1_
 vTLd60	Cytoplasm	cyt_cong__PGFRB_ ;	kTLd60_1*cyt_cong__PGFRB_
 vTLd61	Cytoplasm	cyt_cong__FGFR_ ;	kTLd61_1*cyt_cong__FGFR_
-vTLd62	Cytoplasm	cyt_prot__IGF1R_ ;	kTLd62_1*cyt_prot__IGF1R_
+vTLd62	Cytoplasm	cyt_prot__IGF1R_1_ ;	kTLd62_1*cyt_prot__IGF1R_1_
 vTLd63	Cytoplasm	cyt_prot__INSR_1_ ;	kTLd63_1*cyt_prot__INSR_1_
 vTLd64	Cytoplasm	cyt_cong__IRS_ ;	kTLd64_1*cyt_cong__IRS_
-vTLd65	Cytoplasm	cyt_prot__SPY2_ ;	kTLd65_1*cyt_prot__SPY2_
-vTLd66	Cytoplasm	cyt_prot__CBL_ ;	kTLd66_1*cyt_prot__CBL_
-vTLd67	Cytoplasm	cyt_prot__GRB2_ ;	kTLd67_1*cyt_prot__GRB2_
+vTLd65	Cytoplasm	cyt_prot__SPY2_1_ ;	kTLd65_1*cyt_prot__SPY2_1_
+vTLd66	Cytoplasm	cyt_prot__CBL_1_ ;	kTLd66_1*cyt_prot__CBL_1_
+vTLd67	Cytoplasm	cyt_prot__GRB2_1_ ;	kTLd67_1*cyt_prot__GRB2_1_
 vTLd68	Cytoplasm	cyt_cong__PLCG_ ;	kTLd68_1*cyt_cong__PLCG_
 vTLd69	Cytoplasm	cyt_cong__PIK3C_ ;	kTLd69_1*cyt_cong__PIK3C_
 vTLd70	Cytoplasm	cyt_cong__PIK3R_ ;	kTLd70_1*cyt_cong__PIK3R_
-vTLd71	Cytoplasm	cyt_prot__P3C2A_ ;	kTLd71_1*cyt_prot__P3C2A_
-vTLd72	Cytoplasm	cyt_prot__GRP_1_ ;	kTLd72_1*cyt_prot__GRP_1_
+vTLd71	Cytoplasm	cyt_prot__P3C2A_1_ ;	kTLd71_1*cyt_prot__P3C2A_1_
+vTLd72	Cytoplasm	cyt_cong__GRP_ ;	kTLd72_1*cyt_cong__GRP_
 vTLd73	Cytoplasm	cyt_mixed__RAS__GDP_ ;	kTLd73_1*cyt_mixed__RAS__GDP_
 vTLd74	Cytoplasm	cyt_prot__NF1_1_ ;	kTLd74_1*cyt_prot__NF1_1_
 vTLd75	Cytoplasm	cyt_prot__RAF1_1_ ;	kTLd75_1*cyt_prot__RAF1_1_
-vTLd76	Cytoplasm	cyt_prot__BRAF_ ;	kTLd76_1*cyt_prot__BRAF_
-vTLd77	Cytoplasm	cyt_prot__MAP2K_ ;	kTLd77_1*cyt_prot__MAP2K_
+vTLd76	Cytoplasm	cyt_prot__BRAF_1_ ;	kTLd76_1*cyt_prot__BRAF_1_
+vTLd77	Cytoplasm	cyt_cong__MAP2K_ ;	kTLd77_1*cyt_cong__MAP2K_
 vTLd78	Nucleus	cyt_prot__DUS6_1_ ;	kTLd78_1*cyt_prot__DUS6_1_
-vTLd79	Nucleus	cyt_prot__RPS6KA_ ;	kTLd79_1*cyt_prot__RPS6KA_
+vTLd79	Nucleus	cyt_cong__RPS6KA_ ;	kTLd79_1*cyt_cong__RPS6KA_
 vTLd80	Nucleus	nuc_prot__DUS1_ ;	kTLd80_1*nuc_prot__DUS1_
 vTLd81	Nucleus	nuc_prot__FOS_1_ ;	kTLd81_1*nuc_prot__FOS_1_
 vTLd82	Cytoplasm	nuc_prot__JUN_ ;	kTLd82_1*nuc_prot__JUN_
 vTLd83	Cytoplasm	nuc_prot__MYC_2_ ;	kTLd83_1*nuc_prot__MYC_2_
-vTLd84	Cytoplasm	cyt_prot__CTNB1_ ;	kTLd84_1*cyt_prot__CTNB1_
-vTLd85	Cytoplasm	cyt_prot__PTEN_ ;	kTLd85_1*cyt_prot__PTEN_
+vTLd84	Cytoplasm	cyt_prot__CTNB1_1_ ;	kTLd84_1*cyt_prot__CTNB1_1_
+vTLd85	Cytoplasm	cyt_prot__PTEN_1_ ;	kTLd85_1*cyt_prot__PTEN_1_
 vTLd86	Cytoplasm	cyt_cong__AKT_ ;	kTLd86_1*cyt_cong__AKT_
 vTLd87	Cytoplasm	cyt_prot__PDPK1_1_ ;	kTLd87_1*cyt_prot__PDPK1_1_
-vTLd88	Cytoplasm	cyt_prot_RICTR_1_ ;	kTLd88_1*cyt_prot_RICTR_1_
-vTLd89	Cytoplasm	cyt_prot__MTOR_ ;	kTLd89_1*cyt_prot__MTOR_
+vTLd88	Cytoplasm	cyt_prot__RICTR_1_ ;	kTLd88_1*cyt_prot__RICTR_1_
+vTLd89	Cytoplasm	cyt_prot__MTOR_1_ ;	kTLd89_1*cyt_prot__MTOR_1_
 vTLd90	Cytoplasm	cyt_prot__GSK3B_1_ ;	kTLd90_1*cyt_prot__GSK3B_1_
 vTLd91	Cytoplasm	cyt_prot__TSC1_1_ ;	kTLd91_1*cyt_prot__TSC1_1_
 vTLd92	Cytoplasm	cyt_prot__TSC2_1_ ;	kTLd92_1*cyt_prot__TSC2_1_
 vTLd93	Cytoplasm	cyt_cong__KPC_ ;	kTLd93_1*cyt_cong__KPC_
-vTLd94	Cytoplasm	cyt_prot__PEBP1_ ;	kTLd94_1*cyt_prot__PEBP1_
+vTLd94	Cytoplasm	cyt_prot__PEBP1_1_ ;	kTLd94_1*cyt_prot__PEBP1_1_
 vTLd95	Cytoplasm	cyt_cong__MAPK_ ;	kTLd95_1*cyt_cong__MAPK_
 vTLd96	Cytoplasm	cyt_prot__FOXO3_1_ ;	kTLd96_1*cyt_prot__FOXO3_1_
 vTLd97	Cytoplasm	cyt_mixed__RHEB__GDP_ ;	kTLd97_1*cyt_mixed__RHEB__GDP_
 vTLd98	Cytoplasm	cyt_prot__RPTOR_1_ ;	kTLd98_1*cyt_prot__RPTOR_1_
 vTLd99	Cytoplasm	cyt_prot__KS6B1_1_ ;	kTLd99_1*cyt_prot__KS6B1_1_
-vTLd100	Cytoplasm	cyt_prot__4EBP1_ ;	kTLd100_1*cyt_prot__4EBP1_
+vTLd100	Cytoplasm	cyt_prot__4EBP1_1_ ;	kTLd100_1*cyt_prot__4EBP1_1_
 vTLd101	Cytoplasm	cyt_prot__SOS1_1_ ;	kTLd101_1*cyt_prot__SOS1_1_
 vTLd102	Cytoplasm	cyt_prot__IF4E_1_ ;	kTLd102_1*cyt_prot__IF4E_1_
 vE1	Cytoplasm	cyt_prot__IF4E_1_ + cyt_abs__TotalmRNA_ ; cyt_abs__IF4E_1__TotalmRNA_	kE1_1*cyt_prot__IF4E_1_*cyt_abs__TotalmRNA_
@@ -427,26 +427,26 @@ vA7	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ; cyt_cong_a__TNF10_1__TNFRS
 vA8	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ; cyt_cong_a__TNF10_1__TNFRSF10_ + cyt_cong_a__CASP8_	kA8_1*cyt_cong_a__TNF10_1__TNFRSF10__CASP8_
 vA9	Cytoplasm	cyt_cong_a__CASP8_ + cyt_prot__BFAR_1_ ; cyt_cong__CASP8__BFAR_1_	kA9_1*cyt_cong_a__CASP8_*cyt_prot__BFAR_1_
 vA10	Cytoplasm	cyt_cong__CASP8__BFAR_1_ ; cyt_cong_a__CASP8_ + cyt_prot__BFAR_1_	kA10_1*cyt_cong__CASP8__BFAR_1_
-vA11	Cytoplasm	cyt_cong_a__CASP8_ + cyt_cong__CASP3_ ; cyt_cong__CASP8__CASP3_	kA11_1*cyt_cong_a__CASP8_*cyt_cong__CASP3_
-vA12	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong__CASP3_	kA12_1*cyt_cong__CASP8__CASP3_
-vA13	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong__cl_CASP3_	kA13_1*cyt_cong__CASP8__CASP3_
-vA14	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_cong_i__CASP6_ ; cyt_cong__CASP3__CASP6_	kA14_1*cyt_cong__cl_CASP3_*cyt_cong_i__CASP6_
-vA15	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong__cl_CASP3_ + cyt_cong_i__CASP6_	kA15_1*cyt_cong__CASP3__CASP6_
-vA16	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong__cl_CASP3_ + cyt_prot_a__CASP6_	kA16_1*cyt_cong__CASP3__CASP6_
+vA11	Cytoplasm	cyt_cong_a__CASP8_ + cyt_cong_i__CASP3_ ; cyt_cong__CASP8__CASP3_	kA11_1*cyt_cong_a__CASP8_*cyt_cong_i__CASP3_
+vA12	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong_i__CASP3_	kA12_1*cyt_cong__CASP8__CASP3_
+vA13	Cytoplasm	cyt_cong__CASP8__CASP3_ ; cyt_cong_a__CASP8_ + cyt_cong_a__CASP3_	kA13_1*cyt_cong__CASP8__CASP3_
+vA14	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot_i__CASP6_ ; cyt_cong__CASP3__CASP6_	kA14_1*cyt_cong_a__CASP3_*cyt_prot_i__CASP6_
+vA15	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong_a__CASP3_ + cyt_prot_i__CASP6_	kA15_1*cyt_cong__CASP3__CASP6_
+vA16	Cytoplasm	cyt_cong__CASP3__CASP6_ ; cyt_cong_a__CASP3_ + cyt_prot_a__CASP6_	kA16_1*cyt_cong__CASP3__CASP6_
 vA17	Cytoplasm	cyt_cong_i__CASP8_ + cyt_prot_a__CASP6_ ; cyt_cong__CASP6__CASP8_	kA17_1*cyt_cong_i__CASP8_*cyt_prot_a__CASP6_
 vA18	Cytoplasm	cyt_cong__CASP6__CASP8_ ; cyt_cong_i__CASP8_ + cyt_prot_a__CASP6_	kA18_1*cyt_cong__CASP6__CASP8_
 vA19	Cytoplasm	cyt_cong__CASP6__CASP8_ ; cyt_cong_a__CASP8_ + cyt_prot_a__CASP6_	kA19_1*cyt_cong__CASP6__CASP8_
-vA20	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_prot__XIAP_ ; cyt_prot__CASP3__XIAP_	kA20_1*cyt_cong__cl_CASP3_*cyt_prot__XIAP_
-vA21	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_cong__cl_CASP3_ + cyt_prot__XIAP_	kA21_1*cyt_prot__CASP3__XIAP_
-vA22	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_prot__XIAP_ + cyt_cong__u_CASP3_	kA22_1*cyt_prot__CASP3__XIAP_
-vA23	Cytoplasm	cyt_cong__cl_CASP3_ + cyt_prot__PARP1_ ; cyt_cong__CASP3__PARP1_	kA23_1*cyt_cong__cl_CASP3_*cyt_prot__PARP1_
-vA24	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong__cl_CASP3_ + cyt_prot__PARP1_	kA24_1*cyt_cong__CASP3__PARP1_
-vA25	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong__cl_CASP3_ + cyt_prot__cl_PARP1_	kA25_1*cyt_cong__CASP3__PARP1_
+vA20	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot__XIAP_1_ ; cyt_prot__CASP3__XIAP_	kA20_1*cyt_cong_a__CASP3_*cyt_prot__XIAP_1_
+vA21	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_cong_a__CASP3_ + cyt_prot__XIAP_1_	kA21_1*cyt_prot__CASP3__XIAP_
+vA22	Cytoplasm	cyt_prot__CASP3__XIAP_ ; cyt_prot__XIAP_1_ + cyt_cong__u_CASP3_	kA22_1*cyt_prot__CASP3__XIAP_
+vA23	Cytoplasm	cyt_cong_a__CASP3_ + cyt_prot__PARP1_1_ ; cyt_cong__CASP3__PARP1_	kA23_1*cyt_cong_a__CASP3_*cyt_prot__PARP1_1_
+vA24	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong_a__CASP3_ + cyt_prot__PARP1_1_	kA24_1*cyt_cong__CASP3__PARP1_
+vA25	Cytoplasm	cyt_cong__CASP3__PARP1_ ; cyt_cong_a__CASP3_ + cyt_prot__cl_PARP1_	kA25_1*cyt_cong__CASP3__PARP1_
 vA26	Cytoplasm	cyt_cong_a__CASP8_ + cyt_prot__BID_1_ ; cyt_cong__CASP8__BID_1_	kA26_1*cyt_cong_a__CASP8_*cyt_prot__BID_1_
 vA27	Cytoplasm	cyt_cong__CASP8__BID_1_ ; cyt_cong_a__CASP8_ + cyt_prot__BID_1_	kA27_1*cyt_cong__CASP8__BID_1_
 vA28	Cytoplasm	cyt_cong__CASP8__BID_1_ ; cyt_cong_a__CASP8_ + cyt_prot__cl_BID_1_	kA28_1*cyt_cong__CASP8__BID_1_
-vA29	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_cong__BCL2_ ; cyt_cong_cl_BID_1__BCL2_	kA29_1*cyt_prot__cl_BID_1_*cyt_cong__BCL2_
-vA30	Cytoplasm	cyt_cong_cl_BID_1__BCL2_ ; cyt_prot__cl_BID_1_ + cyt_cong__BCL2_	kA30_1*cyt_cong_cl_BID_1__BCL2_
+vA29	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_cong__BCL2_ ; cyt_cong__cl_BID_1__BCL2_	kA29_1*cyt_prot__cl_BID_1_*cyt_cong__BCL2_
+vA30	Cytoplasm	cyt_cong__cl_BID_1__BCL2_ ; cyt_prot__cl_BID_1_ + cyt_cong__BCL2_	kA30_1*cyt_cong__cl_BID_1__BCL2_
 vA31	Cytoplasm	cyt_prot__cl_BID_1_ + cyt_prot_i__BAX_1_ ; cyt_prot__cl_BID_1__BAX_1_	kA31_1*cyt_prot__cl_BID_1_*cyt_prot_i__BAX_1_
 vA32	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ; cyt_prot__cl_BID_1_ + cyt_prot_i__BAX_1_	kA32_1*cyt_prot__cl_BID_1__BAX_1_
 vA33	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ; cyt_prot__cl_BID_1_ + cyt_prot_a__BAX_1_	kA33_1*cyt_prot__cl_BID_1__BAX_1_
@@ -478,17 +478,17 @@ vA58	Cytoplasm	cyt_prot__CY1__APAF_1_ ; cyt_prot__CY1_ + cyt_prot__APAF_1_	kA58_
 vA59	Cytoplasm	cyt_prot__CY1__APAF_1_ ; cyt_prot__CY1_ + cyt_prot_a__APAF_1_	kA59_1*cyt_prot__CY1__APAF_1_
 vA60	Cytoplasm	cyt_prot_a__APAF_1_ + cyt_prot__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1_	kA60_1*cyt_prot_a__APAF_1_*cyt_prot__PCSK9_1_
 vA61	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1_ + cyt_prot__PCSK9_1_	kA61_1*cyt_prot_a__APAF_1__PCSK9_1_
-vA62	Cytoplasm	cyt_cong__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__CASP3_	kA62_1*cyt_cong__CASP3_*cyt_prot_a__APAF_1__PCSK9_1_
-vA63	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA63_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
-vA64	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong__cl_CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA64_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
+vA62	Cytoplasm	cyt_cong_i__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__CASP3_	kA62_1*cyt_cong_i__CASP3_*cyt_prot_a__APAF_1__PCSK9_1_
+vA63	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong_i__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA63_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
+vA64	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__CASP3_ ; cyt_cong_a__CASP3_ + cyt_prot_a__APAF_1__PCSK9_1_	kA64_1*cyt_prot_a__APAF_1__PCSK9_1__CASP3_
 vA65	Mitochondria	mit_prot_i__DBLOH_1_ ; cyt_prot__DBLOH_1_	kA65_1*mit_prot_i__DBLOH_1_
 vA66	Cytoplasm	cyt_prot__DBLOH_1_ ; mit_prot_i__DBLOH_1_	kA66_1*cyt_prot__DBLOH_1_
-vA67	Cytoplasm	cyt_prot__XIAP_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__XIAP_	kA67_1*cyt_prot__XIAP_*cyt_prot_a__APAF_1__PCSK9_1_
-vA68	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__XIAP_ ; cyt_prot__XIAP_ + cyt_prot_a__APAF_1__PCSK9_1_	kA68_1*cyt_prot_a__APAF_1__PCSK9_1__XIAP_
-vA69	Cytoplasm	cyt_prot__XIAP_ + cyt_prot__DBLOH_1_ ; cyt_prot__DBLOH_1__XIAP_	kA69_1*cyt_prot__XIAP_*cyt_prot__DBLOH_1_
-vA70	Cytoplasm	cyt_prot__DBLOH_1__XIAP_ ; cyt_prot__XIAP_ + cyt_prot__DBLOH_1_	kA70_1*cyt_prot__DBLOH_1__XIAP_
-vA71	Cytoplasm	cyt_cong__BCL2_ + cyt_prot__BAD_ ; cyt_cong__BCL2__BAD_	kA71_1*cyt_cong__BCL2_*cyt_prot__BAD_
-vA72	Cytoplasm	cyt_cong__BCL2__BAD_ ; cyt_cong__BCL2_ + cyt_prot__BAD_	kA72_1*cyt_cong__BCL2__BAD_
+vA67	Cytoplasm	cyt_prot__XIAP_1_ + cyt_prot_a__APAF_1__PCSK9_1_ ; cyt_prot_a__APAF_1__PCSK9_1__XIAP_	kA67_1*cyt_prot__XIAP_1_*cyt_prot_a__APAF_1__PCSK9_1_
+vA68	Cytoplasm	cyt_prot_a__APAF_1__PCSK9_1__XIAP_ ; cyt_prot__XIAP_1_ + cyt_prot_a__APAF_1__PCSK9_1_	kA68_1*cyt_prot_a__APAF_1__PCSK9_1__XIAP_
+vA69	Cytoplasm	cyt_prot__XIAP_1_ + cyt_prot__DBLOH_1_ ; cyt_prot__DBLOH_1__XIAP_	kA69_1*cyt_prot__XIAP_1_*cyt_prot__DBLOH_1_
+vA70	Cytoplasm	cyt_prot__DBLOH_1__XIAP_ ; cyt_prot__XIAP_1_ + cyt_prot__DBLOH_1_	kA70_1*cyt_prot__DBLOH_1__XIAP_
+vA71	Cytoplasm	cyt_cong__BCL2_ + cyt_prot__BAD_1_ ; cyt_cong__BCL2__BAD_	kA71_1*cyt_cong__BCL2_*cyt_prot__BAD_1_
+vA72	Cytoplasm	cyt_cong__BCL2__BAD_ ; cyt_cong__BCL2_ + cyt_prot__BAD_1_	kA72_1*cyt_cong__BCL2__BAD_
 vA73	Cytoplasm	cyt_cong__BCL2_ + cyt_prot__BBC3_1_ ; cyt_cong__BCL2__BBC3_1_	kA73_1*cyt_cong__BCL2_*cyt_prot__BBC3_1_
 vA74	Cytoplasm	cyt_cong__BCL2__BBC3_1_ ; cyt_cong__BCL2_ + cyt_prot__BBC3_1_	kA74_1*cyt_cong__BCL2__BBC3_1_
 vA75	Cytoplasm	cyt_cong__BCL2_ + cyt_prot__APR_1_ ; cyt_cong__BCL2__APR_1_	kA75_1*cyt_cong__BCL2_*cyt_prot__APR_1_
@@ -592,8 +592,8 @@ vR91	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ ; exc_cong__FGF_ + cyt_cong__FGF_
 vR92	Cytoplasm	exc_cong__FGF_ + cyt_cong__FGF__FGFR__FGFR_ ; cyt_cong__FGF__FGFR__FGF__FGFR_	kR92_1*exc_cong__FGF_*cyt_cong__FGF__FGFR__FGFR_
 vR93	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ ; cyt_cong__FGFR_ + cyt_cong__FGF__FGFR_	kR93_1*cyt_cong__FGF__FGFR__FGFR_
 vR94	Cytoplasm	cyt_cong__FGFR_ + cyt_cong__FGF__FGFR_ ; cyt_cong__FGF__FGFR__FGFR_	kR94_1*cyt_cong__FGFR_*cyt_cong__FGF__FGFR_
-vR95	Cytoplasm	cyt_prot__IGF1R_ + cyt_prot__IGF1R_ ; cyt_prot__IGF1R__IGF1R_	kR95_1*cyt_prot__IGF1R_*cyt_prot__IGF1R_
-vR96	Cytoplasm	cyt_prot__IGF1R__IGF1R_ ; cyt_prot__IGF1R_ + cyt_prot__IGF1R_	kR96_1*cyt_prot__IGF1R__IGF1R_
+vR95	Cytoplasm	cyt_prot__IGF1R_1_ + cyt_prot__IGF1R_1_ ; cyt_prot__IGF1R__IGF1R_	kR95_1*cyt_prot__IGF1R_1_*cyt_prot__IGF1R_1_
+vR96	Cytoplasm	cyt_prot__IGF1R__IGF1R_ ; cyt_prot__IGF1R_1_ + cyt_prot__IGF1R_1_	kR96_1*cyt_prot__IGF1R__IGF1R_
 vR97	Cytoplasm	cyt_prot__INSR_1_ + cyt_prot__INSR_1_ ; cyt_prot__INSR_1__INSR_1_	kR97_1*cyt_prot__INSR_1_*cyt_prot__INSR_1_
 vR98	Cytoplasm	cyt_prot__INSR_1__INSR_1_ ; cyt_prot__INSR_1_ + cyt_prot__INSR_1_	kR98_1*cyt_prot__INSR_1__INSR_1_
 vR99	Cytoplasm	cyt_cong__EGFR_1__p_p_MAPK_ ; cyt_prot__EGFR_1_ + cyt_cong__p_p_MAPK_	kR99_1*cyt_cong__EGFR_1__p_p_MAPK_
@@ -708,84 +708,84 @@ vRP2_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_
 vRP2_27	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_ ; cyt_prot__INS_1__INSR_1__INSR_1_	kRP2_27_1*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_
 vRP2_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_ ; cyt_cong__IGF__IGF1R__IGF__IGF1R_	kRP2_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_
 vRP2_29	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_ ; cyt_prot__INS_1__INSR_1__INS_1__INSR_1_	kRP2_29_1*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_
-vRP3_1	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB2_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_	kRP3_1_1*cyt_prot__EGF_1__EGFR_1__ERBB2_1_*cyt_prot__SPY2_
-vRP3_3	Cytoplasm	cyt_prot__EGF_1__EGFR_1__EGFR_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_	kRP3_3_1*cyt_prot__EGF_1__EGFR_1__EGFR_1_*cyt_prot__SPY2_
-vRP3_4	Cytoplasm	cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_	kRP3_4_1*cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_*cyt_prot__SPY2_
-vRP3_5	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB3_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_	kRP3_5_1*cyt_prot__EGF_1__EGFR_1__ERBB3_1_*cyt_prot__SPY2_
-vRP3_6	Cytoplasm	cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_	kRP3_6_1*cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_
-vRP3_7	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_	kRP3_7_1*cyt_prot__EGF_1__EGFR_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_8	Cytoplasm	cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_	kRP3_8_1*cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_9	Cytoplasm	cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_	kRP3_9_1*cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_
-vRP3_11	Cytoplasm	cyt_prot__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_	kRP3_11_1*cyt_prot__EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_
-vRP3_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_	kRP3_12_1*cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_	kRP3_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_14	Cytoplasm	cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_	kRP3_14_1*cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_16	Cytoplasm	cyt_prot__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_	kRP3_16_1*cyt_prot__EGFR_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_	kRP3_17_1*cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_18	Cytoplasm	cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_	kRP3_18_1*cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_19	Cytoplasm	cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_	kRP3_19_1*cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_
-vRP3_20	Cytoplasm	cyt_prot__HGF_1__MET_1__MET_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__HGF_1__MET_1__MET_1_	kRP3_20_1*cyt_prot__HGF_1__MET_1__MET_1_*cyt_prot__SPY2_
-vRP3_21	Cytoplasm	cyt_prot__HGF_1__MET_1__HGF_1__MET_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_	kRP3_21_1*cyt_prot__HGF_1__MET_1__HGF_1__MET_1_*cyt_prot__SPY2_
-vRP3_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_	kRP3_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_*cyt_prot__SPY2_
-vRP3_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_	kRP3_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB_*cyt_prot__SPY2_
-vRP3_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_	kRP3_24_1*cyt_cong__FGF__FGFR__FGF__FGFR_*cyt_prot__SPY2_
-vRP3_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__FGF__FGFR__FGFR_	kRP3_25_1*cyt_cong__FGF__FGFR__FGFR_*cyt_prot__SPY2_
-vRP3_26	Cytoplasm	cyt_cong__IGF__IGF1R__IGF1R_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__IGF__IGF1R__IGF1R_	kRP3_26_1*cyt_cong__IGF__IGF1R__IGF1R_*cyt_prot__SPY2_
-vRP3_27	Cytoplasm	cyt_prot__INS_1__INSR_1__INSR_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__INS_1__INSR_1__INSR_1_	kRP3_27_1*cyt_prot__INS_1__INSR_1__INSR_1_*cyt_prot__SPY2_
-vRP3_28	Cytoplasm	cyt_cong__IGF__IGF1R__IGF__IGF1R_ + cyt_prot__SPY2_ ; cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_	kRP3_28_1*cyt_cong__IGF__IGF1R__IGF__IGF1R_*cyt_prot__SPY2_
-vRP3_29	Cytoplasm	cyt_prot__INS_1__INSR_1__INS_1__INSR_1_ + cyt_prot__SPY2_ ; cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_	kRP3_29_1*cyt_prot__INS_1__INSR_1__INS_1__INSR_1_*cyt_prot__SPY2_
-vRP4_1	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB2_1_ + cyt_prot__SPY2_	kRP4_1_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_
-vRP4_3	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_ ; cyt_prot__EGF_1__EGFR_1__EGFR_1_ + cyt_prot__SPY2_	kRP4_3_1*cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_
-vRP4_4	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_ ; cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_ + cyt_prot__SPY2_	kRP4_4_1*cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_
-vRP4_5	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB3_1_ + cyt_prot__SPY2_	kRP4_5_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_
-vRP4_6	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_ ; cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_	kRP4_6_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_
-vRP4_7	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_7_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_
-vRP4_8	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ ; cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_8_1*cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_
-vRP4_9	Cytoplasm	cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_ ; cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_	kRP4_9_1*cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_
-vRP4_11	Cytoplasm	cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_	kRP4_11_1*cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_
-vRP4_12	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_12_1*cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_
-vRP4_13	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_13_1*cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_
-vRP4_14	Cytoplasm	cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_ ; cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_14_1*cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_
-vRP4_16	Cytoplasm	cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_ ; cyt_prot__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_16_1*cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_
-vRP4_17	Cytoplasm	cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_ ; cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_17_1*cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_
-vRP4_18	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_18_1*cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_
-vRP4_19	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_	kRP4_19_1*cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_
-vRP4_20	Cytoplasm	cyt_prot__SPY2__HGF_1__MET_1__MET_1_ ; cyt_prot__HGF_1__MET_1__MET_1_ + cyt_prot__SPY2_	kRP4_20_1*cyt_prot__SPY2__HGF_1__MET_1__MET_1_
-vRP4_21	Cytoplasm	cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_ ; cyt_prot__HGF_1__MET_1__HGF_1__MET_1_ + cyt_prot__SPY2_	kRP4_21_1*cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_
-vRP4_22	Cytoplasm	cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__SPY2_	kRP4_22_1*cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_
-vRP4_23	Cytoplasm	cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__SPY2_	kRP4_23_1*cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_
-vRP4_24	Cytoplasm	cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_ ; cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__SPY2_	kRP4_24_1*cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_
-vRP4_25	Cytoplasm	cyt_cong__SPY2__FGF__FGFR__FGFR_ ; cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__SPY2_	kRP4_25_1*cyt_cong__SPY2__FGF__FGFR__FGFR_
-vRP4_26	Cytoplasm	cyt_cong__SPY2__IGF__IGF1R__IGF1R_ ; cyt_cong__IGF__IGF1R__IGF1R_ + cyt_prot__SPY2_	kRP4_26_1*cyt_cong__SPY2__IGF__IGF1R__IGF1R_
-vRP4_27	Cytoplasm	cyt_prot__SPY2__INS_1__INSR_1__INSR_1_ ; cyt_prot__INS_1__INSR_1__INSR_1_ + cyt_prot__SPY2_	kRP4_27_1*cyt_prot__SPY2__INS_1__INSR_1__INSR_1_
-vRP4_28	Cytoplasm	cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_ ; cyt_cong__IGF__IGF1R__IGF__IGF1R_ + cyt_prot__SPY2_	kRP4_28_1*cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_
-vRP4_29	Cytoplasm	cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_ ; cyt_prot__INS_1__INSR_1__INS_1__INSR_1_ + cyt_prot__SPY2_	kRP4_29_1*cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_
-vRP5_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_	(kRP5_1_1*((cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_/(kRP5_1_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_))*cyt_prot__CBL_))+(kRP5_1_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_)
-vRP5_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_	(kRP5_3_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_/(kRP5_3_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_))*cyt_prot__CBL_)+(kRP5_3_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_)
-vRP5_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_	(kRP5_4_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_/(kRP5_4_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_))*cyt_prot__CBL_)+(kRP5_4_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_)
-vRP5_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_	(kRP5_5_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_/(kRP5_5_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_))*cyt_prot__CBL_)+(kRP5_5_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_)
-vRP5_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_	(kRP5_6_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_/(kRP5_6_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_)+(kRP5_6_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_)
-vRP5_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_7_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_7_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_7_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_8_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_8_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_8_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ ; cyt_prot_in_pY1196_pY1222_pY1248_ERBB2_1__NRG1_1_ERBB3_1_	(kRP5_9_1*(cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_/(kRP5_9_2+cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_)+(kRP5_9_3*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_)
-vRP5_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot_in_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1_ERBB3_1_	(kRP5_11_1*(cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_/(kRP5_11_2+cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_)+(kRP5_11_3*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_)
-vRP5_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_12_1*(cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_12_2+cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_12_3*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_13_1*(cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_13_2+cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_13_3*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_14_1*(cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_14_2+cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_14_3*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_16_1*(cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_16_2+cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_16_3*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_17_1*(cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_17_2+cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_17_3*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_18_1*(cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_18_2+cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_18_3*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_19_1*(cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_19_2+cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_)+(kRP5_19_3*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_)
-vRP5_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ ; cyt_prot_in__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_	(kRP5_20_1*(cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_/(kRP5_20_2+cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_))*cyt_prot__CBL_)+(kRP5_20_3*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_)
-vRP5_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ ; cyt_prot_in__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_	(kRP5_21_1*(cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_/(kRP5_21_2+cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_))*cyt_prot__CBL_)+(kRP5_21_3*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_)
-vRP5_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ ; cyt_cong_in__PDGFB_1__PGFRB__PDGFB_1__PGFRB_	(kRP5_22_1*(cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_/(kRP5_22_2+cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_))*cyt_prot__CBL_)+(kRP5_22_3*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_)
-vRP5_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ ; cyt_cong_in__PDGFB_1__PGFRB__PGFRB_	(kRP5_23_1*(cyt_cong__PDGFB_1__PGFRB__PGFRB_/(kRP5_23_2+cyt_cong__PDGFB_1__PGFRB__PGFRB_))*cyt_prot__CBL_)+(kRP5_23_3*cyt_cong__PDGFB_1__PGFRB__PGFRB_)
-vRP5_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ ; cyt_cong_in__FGF__FGFR__FGF__FGFR_	(kRP5_24_1*(cyt_cong__FGF__FGFR__FGF__FGFR_/(kRP5_24_2+cyt_cong__FGF__FGFR__FGF__FGFR_))*cyt_prot__CBL_)+(kRP5_24_3*cyt_cong__FGF__FGFR__FGF__FGFR_)
-vRP5_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ ; cyt_cong_in__FGF__FGFR__FGFR_	(kRP5_25_1*(cyt_cong__FGF__FGFR__FGFR_/(kRP5_25_2+cyt_cong__FGF__FGFR__FGFR_))*cyt_prot__CBL_)+(kRP5_25_3*cyt_cong__FGF__FGFR__FGFR_)
-vRP5_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_ ; cyt_cong_in__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_	(kRP5_26_1*(cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_/(kRP5_26_2+cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_))*cyt_prot__CBL_)+(kRP5_26_3*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_)
-vRP5_27	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_ ; cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_	(kRP5_27_1*(cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_/(kRP5_27_2+cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_))*cyt_prot__CBL_)+(kRP5_27_3*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_)
-vRP5_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_ ; cyt_cong_in__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_	(kRP5_28_1*(cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_/(kRP5_28_2+cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_))*cyt_prot__CBL_)+(kRP5_28_3*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_)
-vRP5_29	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_ ; cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_	(kRP5_29_1*(cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_/(kRP5_29_2+cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_))*cyt_prot__CBL_)+(kRP5_29_3*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_)
+vRP3_1	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB2_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_	kRP3_1_1*cyt_prot__EGF_1__EGFR_1__ERBB2_1_*cyt_prot__SPY2_1_
+vRP3_3	Cytoplasm	cyt_prot__EGF_1__EGFR_1__EGFR_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_	kRP3_3_1*cyt_prot__EGF_1__EGFR_1__EGFR_1_*cyt_prot__SPY2_1_
+vRP3_4	Cytoplasm	cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_	kRP3_4_1*cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_*cyt_prot__SPY2_1_
+vRP3_5	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB3_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_	kRP3_5_1*cyt_prot__EGF_1__EGFR_1__ERBB3_1_*cyt_prot__SPY2_1_
+vRP3_6	Cytoplasm	cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_	kRP3_6_1*cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_1_
+vRP3_7	Cytoplasm	cyt_prot__EGF_1__EGFR_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_	kRP3_7_1*cyt_prot__EGF_1__EGFR_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_8	Cytoplasm	cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_	kRP3_8_1*cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_9	Cytoplasm	cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_	kRP3_9_1*cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_1_
+vRP3_11	Cytoplasm	cyt_prot__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_	kRP3_11_1*cyt_prot__EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__SPY2_1_
+vRP3_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_	kRP3_12_1*cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_	kRP3_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_14	Cytoplasm	cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_	kRP3_14_1*cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_16	Cytoplasm	cyt_prot__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_	kRP3_16_1*cyt_prot__EGFR_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_	kRP3_17_1*cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_18	Cytoplasm	cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_	kRP3_18_1*cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_19	Cytoplasm	cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_	kRP3_19_1*cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_*cyt_prot__SPY2_1_
+vRP3_20	Cytoplasm	cyt_prot__HGF_1__MET_1__MET_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__HGF_1__MET_1__MET_1_	kRP3_20_1*cyt_prot__HGF_1__MET_1__MET_1_*cyt_prot__SPY2_1_
+vRP3_21	Cytoplasm	cyt_prot__HGF_1__MET_1__HGF_1__MET_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_	kRP3_21_1*cyt_prot__HGF_1__MET_1__HGF_1__MET_1_*cyt_prot__SPY2_1_
+vRP3_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_	kRP3_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_*cyt_prot__SPY2_1_
+vRP3_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_	kRP3_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB_*cyt_prot__SPY2_1_
+vRP3_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_	kRP3_24_1*cyt_cong__FGF__FGFR__FGF__FGFR_*cyt_prot__SPY2_1_
+vRP3_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__FGF__FGFR__FGFR_	kRP3_25_1*cyt_cong__FGF__FGFR__FGFR_*cyt_prot__SPY2_1_
+vRP3_26	Cytoplasm	cyt_cong__IGF__IGF1R__IGF1R_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__IGF__IGF1R__IGF1R_	kRP3_26_1*cyt_cong__IGF__IGF1R__IGF1R_*cyt_prot__SPY2_1_
+vRP3_27	Cytoplasm	cyt_prot__INS_1__INSR_1__INSR_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__INS_1__INSR_1__INSR_1_	kRP3_27_1*cyt_prot__INS_1__INSR_1__INSR_1_*cyt_prot__SPY2_1_
+vRP3_28	Cytoplasm	cyt_cong__IGF__IGF1R__IGF__IGF1R_ + cyt_prot__SPY2_1_ ; cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_	kRP3_28_1*cyt_cong__IGF__IGF1R__IGF__IGF1R_*cyt_prot__SPY2_1_
+vRP3_29	Cytoplasm	cyt_prot__INS_1__INSR_1__INS_1__INSR_1_ + cyt_prot__SPY2_1_ ; cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_	kRP3_29_1*cyt_prot__INS_1__INSR_1__INS_1__INSR_1_*cyt_prot__SPY2_1_
+vRP4_1	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB2_1_ + cyt_prot__SPY2_1_	kRP4_1_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_
+vRP4_3	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_ ; cyt_prot__EGF_1__EGFR_1__EGFR_1_ + cyt_prot__SPY2_1_	kRP4_3_1*cyt_prot__SPY2__EGF_1__EGFR_1__EGFR_1_
+vRP4_4	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_ ; cyt_prot__EGF_1__EGFR_1__EGF_1__EGFR_1_ + cyt_prot__SPY2_1_	kRP4_4_1*cyt_prot__SPY2__EGF_1__EGFR_1__EGF_1__EGFR_1_
+vRP4_5	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB3_1_ + cyt_prot__SPY2_1_	kRP4_5_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB3_1_
+vRP4_6	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_ ; cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_	kRP4_6_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB2_1_
+vRP4_7	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_ ; cyt_prot__EGF_1__EGFR_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_7_1*cyt_prot__SPY2__EGF_1__EGFR_1__ERBB4_1_
+vRP4_8	Cytoplasm	cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ ; cyt_prot__EGF_1__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_8_1*cyt_prot__SPY2__EGF_1__EGFR_1__NRG1_1__ERBB4_1_
+vRP4_9	Cytoplasm	cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_ ; cyt_prot__ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_	kRP4_9_1*cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB3_1_
+vRP4_11	Cytoplasm	cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot__EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__SPY2_1_	kRP4_11_1*cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB3_1_
+vRP4_12	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB3_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_12_1*cyt_prot__SPY2__NRG1_1__ERBB3_1__ERBB4_1_
+vRP4_13	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_13_1*cyt_prot__SPY2__NRG1_1__ERBB3_1__NRG1_1__ERBB4_1_
+vRP4_14	Cytoplasm	cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_ ; cyt_prot__ERBB2_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_14_1*cyt_prot__SPY2__ERBB2_1__NRG1_1__ERBB4_1_
+vRP4_16	Cytoplasm	cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_ ; cyt_prot__EGFR_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_16_1*cyt_prot__SPY2__EGFR_1__NRG1_1__ERBB4_1_
+vRP4_17	Cytoplasm	cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_ ; cyt_prot__ERBB3_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_17_1*cyt_prot__SPY2__ERBB3_1__NRG1_1__ERBB4_1_
+vRP4_18	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB4_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_18_1*cyt_prot__SPY2__NRG1_1__ERBB4_1__ERBB4_1_
+vRP4_19	Cytoplasm	cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ ; cyt_prot__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_ + cyt_prot__SPY2_1_	kRP4_19_1*cyt_prot__SPY2__NRG1_1__ERBB4_1__NRG1_1__ERBB4_1_
+vRP4_20	Cytoplasm	cyt_prot__SPY2__HGF_1__MET_1__MET_1_ ; cyt_prot__HGF_1__MET_1__MET_1_ + cyt_prot__SPY2_1_	kRP4_20_1*cyt_prot__SPY2__HGF_1__MET_1__MET_1_
+vRP4_21	Cytoplasm	cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_ ; cyt_prot__HGF_1__MET_1__HGF_1__MET_1_ + cyt_prot__SPY2_1_	kRP4_21_1*cyt_prot__SPY2__HGF_1__MET_1__HGF_1__MET_1_
+vRP4_22	Cytoplasm	cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__SPY2_1_	kRP4_22_1*cyt_cong__SPY2__PDGFB_1__PGFRB__PDGFB_1__PGFRB_
+vRP4_23	Cytoplasm	cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__SPY2_1_	kRP4_23_1*cyt_cong__SPY2__PDGFB_1__PGFRB__PGFRB_
+vRP4_24	Cytoplasm	cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_ ; cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__SPY2_1_	kRP4_24_1*cyt_cong__SPY2__FGF__FGFR__FGF__FGFR_
+vRP4_25	Cytoplasm	cyt_cong__SPY2__FGF__FGFR__FGFR_ ; cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__SPY2_1_	kRP4_25_1*cyt_cong__SPY2__FGF__FGFR__FGFR_
+vRP4_26	Cytoplasm	cyt_cong__SPY2__IGF__IGF1R__IGF1R_ ; cyt_cong__IGF__IGF1R__IGF1R_ + cyt_prot__SPY2_1_	kRP4_26_1*cyt_cong__SPY2__IGF__IGF1R__IGF1R_
+vRP4_27	Cytoplasm	cyt_prot__SPY2__INS_1__INSR_1__INSR_1_ ; cyt_prot__INS_1__INSR_1__INSR_1_ + cyt_prot__SPY2_1_	kRP4_27_1*cyt_prot__SPY2__INS_1__INSR_1__INSR_1_
+vRP4_28	Cytoplasm	cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_ ; cyt_cong__IGF__IGF1R__IGF__IGF1R_ + cyt_prot__SPY2_1_	kRP4_28_1*cyt_cong__SPY2__IGF__IGF1R__IGF1R__IGF_
+vRP4_29	Cytoplasm	cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_ ; cyt_prot__INS_1__INSR_1__INS_1__INSR_1_ + cyt_prot__SPY2_1_	kRP4_29_1*cyt_prot__SPY2__INS_1__INSR_1__INSR_1__INS_1_
+vRP5_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_	(kRP5_1_1*((cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_/(kRP5_1_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_))*cyt_prot__CBL_1_))+(kRP5_1_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_)
+vRP5_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_	(kRP5_3_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_/(kRP5_3_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_))*cyt_prot__CBL_1_)+(kRP5_3_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_)
+vRP5_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_	(kRP5_4_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_/(kRP5_4_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_))*cyt_prot__CBL_1_)+(kRP5_4_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_)
+vRP5_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_	(kRP5_5_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_/(kRP5_5_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_))*cyt_prot__CBL_1_)+(kRP5_5_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_)
+vRP5_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_	(kRP5_6_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_/(kRP5_6_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_1_)+(kRP5_6_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_)
+vRP5_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_7_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_7_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_7_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_8_1*(cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_8_2+cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_8_3*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ ; cyt_prot_in_pY1196_pY1222_pY1248_ERBB2_1__NRG1_1_ERBB3_1_	(kRP5_9_1*(cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_/(kRP5_9_2+cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_1_)+(kRP5_9_3*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_)
+vRP5_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ ; cyt_prot_in_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1_ERBB3_1_	(kRP5_11_1*(cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_/(kRP5_11_2+cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_))*cyt_prot__CBL_1_)+(kRP5_11_3*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_)
+vRP5_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_12_1*(cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_12_2+cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_12_3*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_13_1*(cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_13_2+cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_13_3*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_14_1*(cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_14_2+cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_14_3*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_16_1*(cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_16_2+cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_16_3*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_17_1*(cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_17_2+cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_17_3*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_18_1*(cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_18_2+cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_18_3*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ ; cyt_prot_in__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_	(kRP5_19_1*(cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_/(kRP5_19_2+cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_))*cyt_prot__CBL_1_)+(kRP5_19_3*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_)
+vRP5_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ ; cyt_prot_in__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_	(kRP5_20_1*(cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_/(kRP5_20_2+cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_))*cyt_prot__CBL_1_)+(kRP5_20_3*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_)
+vRP5_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ ; cyt_prot_in__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_	(kRP5_21_1*(cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_/(kRP5_21_2+cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_))*cyt_prot__CBL_1_)+(kRP5_21_3*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_)
+vRP5_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ ; cyt_cong_in__PDGFB_1__PGFRB__PDGFB_1__PGFRB_	(kRP5_22_1*(cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_/(kRP5_22_2+cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_))*cyt_prot__CBL_1_)+(kRP5_22_3*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_)
+vRP5_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ ; cyt_cong_in__PDGFB_1__PGFRB__PGFRB_	(kRP5_23_1*(cyt_cong__PDGFB_1__PGFRB__PGFRB_/(kRP5_23_2+cyt_cong__PDGFB_1__PGFRB__PGFRB_))*cyt_prot__CBL_1_)+(kRP5_23_3*cyt_cong__PDGFB_1__PGFRB__PGFRB_)
+vRP5_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ ; cyt_cong_in__FGF__FGFR__FGF__FGFR_	(kRP5_24_1*(cyt_cong__FGF__FGFR__FGF__FGFR_/(kRP5_24_2+cyt_cong__FGF__FGFR__FGF__FGFR_))*cyt_prot__CBL_1_)+(kRP5_24_3*cyt_cong__FGF__FGFR__FGF__FGFR_)
+vRP5_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ ; cyt_cong_in__FGF__FGFR__FGFR_	(kRP5_25_1*(cyt_cong__FGF__FGFR__FGFR_/(kRP5_25_2+cyt_cong__FGF__FGFR__FGFR_))*cyt_prot__CBL_1_)+(kRP5_25_3*cyt_cong__FGF__FGFR__FGFR_)
+vRP5_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_ ; cyt_cong_in__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_	(kRP5_26_1*(cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_/(kRP5_26_2+cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_))*cyt_prot__CBL_1_)+(kRP5_26_3*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R_)
+vRP5_27	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_ ; cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_	(kRP5_27_1*(cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_/(kRP5_27_2+cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_))*cyt_prot__CBL_1_)+(kRP5_27_3*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1_)
+vRP5_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_ ; cyt_cong_in__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_	(kRP5_28_1*(cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_/(kRP5_28_2+cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_))*cyt_prot__CBL_1_)+(kRP5_28_3*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF_)
+vRP5_29	Cytoplasm	cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_ ; cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_	(kRP5_29_1*(cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_/(kRP5_29_2+cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_))*cyt_prot__CBL_1_)+(kRP5_29_3*cyt_prot__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_)
 vRP6_1	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ ; cyt_prot_in__EGF_1__EGFR_1__ERBB2_1_	kRP6_1_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_
 vRP6_3	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__EGFR_1__EGFR_1_	kRP6_3_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_
 vRP6_4	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ ; cyt_prot_in__EGF_1__EGFR_1__EGF_1__EGFR_1_	kRP6_4_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_
@@ -1072,58 +1072,58 @@ vRP16_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281
 vRP16_27	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__PIK3C__PIK3R_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_ + cyt_cong__PIK3C__PIK3R_	kRP16_27_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__PIK3C__PIK3R_
 vRP16_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__PIK3C__PIK3R_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_ + cyt_cong__PIK3C__PIK3R_	kRP16_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__PIK3C__PIK3R_
 vRP16_29	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__PIK3C__PIK3R_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ + cyt_cong__PIK3C__PIK3R_	kRP16_29_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__PIK3C__PIK3R_
-vRP17_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_	kRP17_1_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_*cyt_prot__P3C2A_
-vRP17_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_	kRP17_3_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*cyt_prot__P3C2A_
-vRP17_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_	kRP17_4_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*cyt_prot__P3C2A_
-vRP17_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_	kRP17_5_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_*cyt_prot__P3C2A_
-vRP17_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_6_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_
-vRP17_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_7_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_8_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_9_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_
-vRP17_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_11_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_
-vRP17_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_12_1*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_14_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_16_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_17_1*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_18_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_19_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_
-vRP17_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_	kRP17_20_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_*cyt_prot__P3C2A_
-vRP17_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_	kRP17_21_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_*cyt_prot__P3C2A_
-vRP17_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_	kRP17_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_*cyt_prot__P3C2A_
-vRP17_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_	kRP17_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB_*cyt_prot__P3C2A_
-vRP17_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__P3C2A_ ; cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_	kRP17_24_1*cyt_cong__FGF__FGFR__FGF__FGFR_*cyt_prot__P3C2A_
-vRP17_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__P3C2A_ ; cyt_cong__FGF__FGFR__FGFR__P3C2A_	kRP17_25_1*cyt_cong__FGF__FGFR__FGFR_*cyt_prot__P3C2A_
-vRP17_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_ + cyt_prot__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_	kRP17_26_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_*cyt_prot__P3C2A_
-vRP17_27	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_ + cyt_prot__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_	kRP17_27_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_*cyt_prot__P3C2A_
-vRP17_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_ + cyt_prot__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_	kRP17_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_*cyt_prot__P3C2A_
-vRP17_29	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ + cyt_prot__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_	kRP17_29_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_*cyt_prot__P3C2A_
-vRP18_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ + cyt_prot__P3C2A_	kRP18_1_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_
-vRP18_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_	kRP18_3_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_
-vRP18_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_	kRP18_4_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_
-vRP18_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ + cyt_prot__P3C2A_	kRP18_5_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_
-vRP18_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_	kRP18_6_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_
-vRP18_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_7_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_8_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_	kRP18_9_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_
-vRP18_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_	kRP18_11_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_
-vRP18_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_12_1*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_14_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_16_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_17_1*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_18_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_	kRP18_19_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
-vRP18_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_	kRP18_20_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_
-vRP18_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_	kRP18_21_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_
-vRP18_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__P3C2A_	kRP18_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_
-vRP18_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__P3C2A_	kRP18_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_
-vRP18_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_ ; cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__P3C2A_	kRP18_24_1*cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_
-vRP18_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR__P3C2A_ ; cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__P3C2A_	kRP18_25_1*cyt_cong__FGF__FGFR__FGFR__P3C2A_
-vRP18_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_ + cyt_prot__P3C2A_	kRP18_26_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_
-vRP18_27	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_ + cyt_prot__P3C2A_	kRP18_27_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_
-vRP18_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_ + cyt_prot__P3C2A_	kRP18_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_
-vRP18_29	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ + cyt_prot__P3C2A_	kRP18_29_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_
+vRP17_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_	kRP17_1_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_*cyt_prot__P3C2A_1_
+vRP17_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_	kRP17_3_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*cyt_prot__P3C2A_1_
+vRP17_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_	kRP17_4_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_*cyt_prot__P3C2A_1_
+vRP17_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_	kRP17_5_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_*cyt_prot__P3C2A_1_
+vRP17_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_6_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_1_
+vRP17_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_7_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_8_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_9_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_1_
+vRP17_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_	kRP17_11_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_*cyt_prot__P3C2A_1_
+vRP17_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_12_1*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_14_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_16_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_17_1*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_18_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_	kRP17_19_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_*cyt_prot__P3C2A_1_
+vRP17_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_	kRP17_20_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_*cyt_prot__P3C2A_1_
+vRP17_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_1_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_	kRP17_21_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_*cyt_prot__P3C2A_1_
+vRP17_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__P3C2A_1_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_	kRP17_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_*cyt_prot__P3C2A_1_
+vRP17_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__P3C2A_1_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_	kRP17_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB_*cyt_prot__P3C2A_1_
+vRP17_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__P3C2A_1_ ; cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_	kRP17_24_1*cyt_cong__FGF__FGFR__FGF__FGFR_*cyt_prot__P3C2A_1_
+vRP17_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__P3C2A_1_ ; cyt_cong__FGF__FGFR__FGFR__P3C2A_	kRP17_25_1*cyt_cong__FGF__FGFR__FGFR_*cyt_prot__P3C2A_1_
+vRP17_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_ + cyt_prot__P3C2A_1_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_	kRP17_26_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_*cyt_prot__P3C2A_1_
+vRP17_27	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_ + cyt_prot__P3C2A_1_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_	kRP17_27_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_*cyt_prot__P3C2A_1_
+vRP17_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_ + cyt_prot__P3C2A_1_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_	kRP17_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_*cyt_prot__P3C2A_1_
+vRP17_29	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ + cyt_prot__P3C2A_1_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_	kRP17_29_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_*cyt_prot__P3C2A_1_
+vRP18_1	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1_ + cyt_prot__P3C2A_1_	kRP18_1_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__P3C2A_
+vRP18_3	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_1_	kRP18_3_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_
+vRP18_4	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1_ + cyt_prot__P3C2A_1_	kRP18_4_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__P3C2A_
+vRP18_5	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1_ + cyt_prot__P3C2A_1_	kRP18_5_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__ERBB3_1__P3C2A_
+vRP18_6	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_	kRP18_6_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_
+vRP18_7	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_7_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_8	Cytoplasm	cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_8_1*cyt_prot__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_9	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_	kRP18_9_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__ERBB3_1__P3C2A_
+vRP18_11	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1_ + cyt_prot__P3C2A_1_	kRP18_11_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__ERBB3_1__P3C2A_
+vRP18_12	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_12_1*cyt_prot__NRG1_1__ERBB3_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_13	Cytoplasm	cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_13_1*cyt_prot__NRG1_1__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_14	Cytoplasm	cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_14_1*cyt_prot__pY1196_pY1222_pY1248_ERBB2_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_16	Cytoplasm	cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_16_1*cyt_prot__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_17	Cytoplasm	cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_17_1*cyt_prot__ERBB3_1__NRG1_1__pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_18	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_18_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_19	Cytoplasm	cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_ ; cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1_ + cyt_prot__P3C2A_1_	kRP18_19_1*cyt_prot__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__NRG1_1__pY1056_pY1162_pY1284_pY1056_pY1162_pY1284_ERBB4_1__P3C2A_
+vRP18_20	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_1_	kRP18_20_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_
+vRP18_21	Cytoplasm	cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_ ; cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1_ + cyt_prot__P3C2A_1_	kRP18_21_1*cyt_prot__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__HGF_1__pY1234_pY1235_pY1234_pY1235_MET_1__P3C2A_
+vRP18_22	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB_ + cyt_prot__P3C2A_1_	kRP18_22_1*cyt_cong__PDGFB_1__PGFRB__PDGFB_1__PGFRB__P3C2A_
+vRP18_23	Cytoplasm	cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_ ; cyt_cong__PDGFB_1__PGFRB__PGFRB_ + cyt_prot__P3C2A_1_	kRP18_23_1*cyt_cong__PDGFB_1__PGFRB__PGFRB__P3C2A_
+vRP18_24	Cytoplasm	cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_ ; cyt_cong__FGF__FGFR__FGF__FGFR_ + cyt_prot__P3C2A_1_	kRP18_24_1*cyt_cong__FGF__FGFR__FGF__FGFR__P3C2A_
+vRP18_25	Cytoplasm	cyt_cong__FGF__FGFR__FGFR__P3C2A_ ; cyt_cong__FGF__FGFR__FGFR_ + cyt_prot__P3C2A_1_	kRP18_25_1*cyt_cong__FGF__FGFR__FGFR__P3C2A_
+vRP18_26	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS_ + cyt_prot__P3C2A_1_	kRP18_26_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IRS__P3C2A_
+vRP18_27	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS_ + cyt_prot__P3C2A_1_	kRP18_27_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__IRS__P3C2A_
+vRP18_28	Cytoplasm	cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_ ; cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS_ + cyt_prot__P3C2A_1_	kRP18_28_1*cyt_cong__IGF__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_pY980_pS982_pY1161_pY1165_pY1166_pY1280_pY1281_IGF1R__IGF__IRS__P3C2A_
+vRP18_29	Cytoplasm	cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_ ; cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ + cyt_prot__P3C2A_1_	kRP18_29_1*cyt_cong__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS__P3C2A_
 vRP19_1	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__GRB2__SOS1_1_ + cyt_mixed__RAS__GDP_ ; cyt_cong_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__GRB2__SOS1_1__RAS__GDP_	kRP19_1_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY1196_pY1222_pY1248_ERBB2_1__GRB2__SOS1_1_*cyt_mixed__RAS__GDP_
 vRP19_3	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1_ + cyt_mixed__RAS__GDP_ ; cyt_cong_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1__RAS__GDP_	kRP19_3_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1_*cyt_mixed__RAS__GDP_
 vRP19_4	Cytoplasm	cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1_ + cyt_mixed__RAS__GDP_ ; cyt_cong_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1__RAS__GDP_	kRP19_4_1*cyt_prot_in__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__EGF_1__pY992_pY1068_pY1086_pY1148_pY1174_pY992_pY1068_pY1086_pY1148_pY1174_EGFR_1__GRB2__SOS1_1_*cyt_mixed__RAS__GDP_
@@ -1532,33 +1532,33 @@ vRP34_15	Cytoplasm	cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_p
 vRP34_16	Cytoplasm	cyt_cong_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_ ; cyt_prot_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1_ + cyt_cong__IRS_	kRP34_16_1*cyt_cong_in__INS_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_pY992_pY999_pY1011_pY1185_pY1189_pY1190_pY1314_pY1348_pY1355_INSR_1__INS_1__IRS_
 vP1	Cytoplasm	cyt_mixed__RAS__GTP_ + cyt_prot__RAF1_1_ ; cyt_mixed__RAS__GTP__RAF1_1_	kP1_1*cyt_mixed__RAS__GTP_*cyt_prot__RAF1_1_
 vP2	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1_ ; cyt_mixed__RAS__GTP_ + cyt_prot__RAF1_1_	kP2_1*cyt_mixed__RAS__GTP__RAF1_1_
-vP3	Cytoplasm	cyt_mixed__RAS__GTP_ + cyt_prot__BRAF_ ; cyt_mixed__RAS__GTP__BRAF_	kP3_1*cyt_mixed__RAS__GTP_*cyt_prot__BRAF_
-vP4	Cytoplasm	cyt_mixed__RAS__GTP__BRAF_ ; cyt_mixed__RAS__GTP_ + cyt_prot__BRAF_	kP4_1*cyt_mixed__RAS__GTP__BRAF_
+vP3	Cytoplasm	cyt_mixed__RAS__GTP_ + cyt_prot__BRAF_1_ ; cyt_mixed__RAS__GTP__BRAF_	kP3_1*cyt_mixed__RAS__GTP_*cyt_prot__BRAF_1_
+vP4	Cytoplasm	cyt_mixed__RAS__GTP__BRAF_ ; cyt_mixed__RAS__GTP_ + cyt_prot__BRAF_1_	kP4_1*cyt_mixed__RAS__GTP__BRAF_
 vP5	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1_ + cyt_mixed__RAS__GTP__RAF1_1_ ; cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP5_1*cyt_mixed__RAS__GTP__RAF1_1_*cyt_mixed__RAS__GTP__RAF1_1_
 vP6	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_mixed__RAS__GTP__RAF1_1_ + cyt_mixed__RAS__GTP__RAF1_1_	kP6_1*cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_
 vP7	Cytoplasm	cyt_mixed__RAS__GTP__BRAF_ + cyt_mixed__RAS__GTP__BRAF_ ; cyt_mixed__RAS__GTP__BRAF__BRAF_	kP7_1*cyt_mixed__RAS__GTP__BRAF_*cyt_mixed__RAS__GTP__BRAF_
 vP8	Cytoplasm	cyt_mixed__RAS__GTP__BRAF__BRAF_ ; cyt_mixed__RAS__GTP__BRAF_ + cyt_mixed__RAS__GTP__BRAF_	kP8_1*cyt_mixed__RAS__GTP__BRAF__BRAF_
 vP9	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1_ + cyt_mixed__RAS__GTP__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_	kP9_1*cyt_mixed__RAS__GTP__RAF1_1_*cyt_mixed__RAS__GTP__BRAF_
 vP10	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1_ + cyt_mixed__RAS__GTP__BRAF_	kP10_1*cyt_mixed__RAS__GTP__RAF1_1__BRAF_
-vP13	Cytoplasm	cyt_prot__MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_	kP13_1*cyt_prot__MAP2K_*cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_
-vP14	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_prot__MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP14_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_
+vP13	Cytoplasm	cyt_cong__MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_	kP13_1*cyt_cong__MAP2K_*cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_
+vP14	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_cong__MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP14_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_
 vP15	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP15_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__RAF1_1_
 vP16	Cytoplasm	cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__RAF1_1_	kP16_1*cyt_prot__p_MAP2K_*cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_
 vP17	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP17_1*cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__RAF1_1_
 vP18	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__RAF1_1_ ; cyt_prot__p_p_MAP2K_ + cyt_mixed__RAS__GTP__RAF1_1__RAF1_1_	kP18_1*cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__RAF1_1_
-vP19	Cytoplasm	cyt_prot__MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_ ; cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_	kP19_1*cyt_prot__MAP2K_*cyt_mixed__RAS__GTP__BRAF__BRAF_
-vP20	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_ ; cyt_prot__MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_	kP20_1*cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_
+vP19	Cytoplasm	cyt_cong__MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_ ; cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_	kP19_1*cyt_cong__MAP2K_*cyt_mixed__RAS__GTP__BRAF__BRAF_
+vP20	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_ ; cyt_cong__MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_	kP20_1*cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_
 vP21	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_ ; cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_	kP21_1*cyt_mixed__MAP2K__RAS__GTP__BRAF__BRAF_
 vP22	Cytoplasm	cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_ ; cyt_mixed__p_MAP2K__RAS__GTP__BRAF__BRAF_	kP22_1*cyt_prot__p_MAP2K_*cyt_mixed__RAS__GTP__BRAF__BRAF_
 vP23	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__BRAF__BRAF_ ; cyt_prot__p_MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_	kP23_1*cyt_mixed__p_MAP2K__RAS__GTP__BRAF__BRAF_
 vP24	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__BRAF__BRAF_ ; cyt_prot__p_p_MAP2K_ + cyt_mixed__RAS__GTP__BRAF__BRAF_	kP24_1*cyt_mixed__p_MAP2K__RAS__GTP__BRAF__BRAF_
-vP25	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__MAP2K_ ; cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_	kP25_1*cyt_mixed__RAS__GTP__RAF1_1__BRAF_*cyt_prot__MAP2K_
-vP26	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__MAP2K_	kP26_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_
+vP25	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_cong__MAP2K_ ; cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_	kP25_1*cyt_mixed__RAS__GTP__RAF1_1__BRAF_*cyt_cong__MAP2K_
+vP26	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_cong__MAP2K_	kP26_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_
 vP27	Cytoplasm	cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__p_MAP2K_	kP27_1*cyt_mixed__MAP2K__RAS__GTP__RAF1_1__BRAF_
 vP28	Cytoplasm	cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__p_MAP2K_ ; cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__BRAF_	kP28_1*cyt_mixed__RAS__GTP__RAF1_1__BRAF_*cyt_prot__p_MAP2K_
 vP29	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__p_MAP2K_	kP29_1*cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__BRAF_
 vP30	Cytoplasm	cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__BRAF_ ; cyt_mixed__RAS__GTP__RAF1_1__BRAF_ + cyt_prot__p_p_MAP2K_	kP30_1*cyt_mixed__p_MAP2K__RAS__GTP__RAF1_1__BRAF_
-vP31	Cytoplasm	cyt_prot__p_MAP2K_ ; cyt_prot__MAP2K_	kP31_1*cyt_prot__p_MAP2K_
+vP31	Cytoplasm	cyt_prot__p_MAP2K_ ; cyt_cong__MAP2K_	kP31_1*cyt_prot__p_MAP2K_
 vP32	Cytoplasm	cyt_prot__p_p_MAP2K_ ; cyt_prot__p_MAP2K_	kP32_1*cyt_prot__p_p_MAP2K_
 vP33	Cytoplasm	cyt_prot__p_p_MAP2K_ + cyt_cong__MAPK_ ; cyt_cong__MAPK__p_p_MAP2K_	kP33_1*cyt_prot__p_p_MAP2K_*cyt_cong__MAPK_
 vP34	Cytoplasm	cyt_cong__MAPK__p_p_MAP2K_ ; cyt_prot__p_p_MAP2K_ + cyt_cong__MAPK_	kP34_1*cyt_cong__MAPK__p_p_MAP2K_
@@ -1597,10 +1597,10 @@ vP66	Cytoplasm	cyt_cong__p_MAPK__DUS6_1_ ; cyt_prot__DUS6_1_ + cyt_cong__MAPK_	k
 vP67	Cytoplasm	cyt_cong__p_p_MAPK_ ; cyt_cong__p_MAPK_	kP67_1*cyt_cong__p_p_MAPK_
 vP68	Cytoplasm	cyt_cong__p_p_MAPK__DUS6_1_ ; cyt_prot__DUS6_1_ + cyt_cong__p_p_MAPK_	kP68_1*cyt_cong__p_p_MAPK__DUS6_1_
 vP69	Cytoplasm	cyt_cong__p_p_MAPK__DUS6_1_ ; cyt_prot__DUS6_1_ + cyt_cong__p_MAPK_	kP69_1*cyt_cong__p_p_MAPK__DUS6_1_
-vP70	Cytoplasm	cyt_prot__RPS6KA_ + cyt_cong__p_p_MAPK_ ; cyt_cong__RPS6KA__p_p_MAPK_	kP70_1*cyt_prot__RPS6KA_*cyt_cong__p_p_MAPK_
-vP71	Cytoplasm	cyt_cong__RPS6KA__p_p_MAPK_ ; cyt_prot__RPS6KA_ + cyt_cong__p_p_MAPK_	kP71_1*cyt_cong__RPS6KA__p_p_MAPK_
+vP70	Cytoplasm	cyt_cong__RPS6KA_ + cyt_cong__p_p_MAPK_ ; cyt_cong__RPS6KA__p_p_MAPK_	kP70_1*cyt_cong__RPS6KA_*cyt_cong__p_p_MAPK_
+vP71	Cytoplasm	cyt_cong__RPS6KA__p_p_MAPK_ ; cyt_cong__RPS6KA_ + cyt_cong__p_p_MAPK_	kP71_1*cyt_cong__RPS6KA__p_p_MAPK_
 vP72	Cytoplasm	cyt_cong__RPS6KA__p_p_MAPK_ ; cyt_prot__p_RPS6KA_ + cyt_cong__p_p_MAPK_	kP72_1*cyt_cong__RPS6KA__p_p_MAPK_
-vP73	Cytoplasm	cyt_prot__p_RPS6KA_ ; cyt_prot__RPS6KA_	kP73_1*cyt_prot__p_RPS6KA_
+vP73	Cytoplasm	cyt_prot__p_RPS6KA_ ; cyt_cong__RPS6KA_	kP73_1*cyt_prot__p_RPS6KA_
 vP74	Cytoplasm	cyt_cong__p_p_MAPK_ ; nuc_cong__p_p_MAPK_	kP74_1*cyt_cong__p_p_MAPK_
 vP75	Nucleus	nuc_cong__MAPK_ ; nuc_cong__p_p_MAPK_	kP75_1*nuc_cong__MAPK_
 vP76	Nucleus	nuc_cong__p_p_MAPK_ + nuc_prot__p_DUS1_ ; cyt_cong__p_p_MAPK__p_DUS1_	kP76_1*nuc_cong__p_p_MAPK_*nuc_prot__p_DUS1_
@@ -1620,25 +1620,25 @@ vP91	Nucleus	nuc_cong__FOS_1__p_p_MAPK_ ; nuc_cong__p_p_MAPK_ + nuc_prot__FOS_1_
 vP92	Nucleus	nuc_cong__FOS_1__p_p_MAPK_ ; nuc_cong__p_p_MAPK_ + nuc_prot__p_FOS_1_	kP92_1*nuc_cong__FOS_1__p_p_MAPK_
 vP93	Nucleus	nuc_prot__p_FOS_1_ + nuc_prot__JUN_ ; nuc_prot__p_FOS_1__JUN_	kP93_1*nuc_prot__p_FOS_1_*nuc_prot__JUN_
 vP94	Nucleus	nuc_prot__p_FOS_1__JUN_ ; nuc_prot__p_FOS_1_ + nuc_prot__JUN_	kP94_1*nuc_prot__p_FOS_1__JUN_
-vP95	Cytoplasm	cyt_comp__CDP_DAG_ + cyt_prot__GRP_1_ ; cyt_mixed__CDP_DAG__GRP_1_	kP95_1*cyt_comp__CDP_DAG_*cyt_prot__GRP_1_
-vP96	Cytoplasm	cyt_mixed__CDP_DAG__GRP_1_ ; cyt_comp__CDP_DAG_ + cyt_prot__GRP_1_	kP96_1*cyt_mixed__CDP_DAG__GRP_1_
+vP95	Cytoplasm	cyt_comp__CDP_DAG_ + cyt_cong__GRP_ ; cyt_mixed__CDP_DAG__GRP_1_	kP95_1*cyt_comp__CDP_DAG_*cyt_cong__GRP_
+vP96	Cytoplasm	cyt_mixed__CDP_DAG__GRP_1_ ; cyt_comp__CDP_DAG_ + cyt_cong__GRP_	kP96_1*cyt_mixed__CDP_DAG__GRP_1_
 vP97	Cytoplasm	cyt_comp__CDP_DAG_ + cyt_cong__KPC_ ; cyt_mixed__CDP_DAG__PRKC_	kP97_1*cyt_comp__CDP_DAG_*cyt_cong__KPC_
 vP98	Cytoplasm	cyt_mixed__CDP_DAG__PRKC_ ; cyt_comp__CDP_DAG_ + cyt_cong__KPC_	kP98_1*cyt_mixed__CDP_DAG__PRKC_
-vP99	Cytoplasm	cyt_mixed__CDP_DAG__PRKC_ + cyt_prot__PEBP1_ ; cyt_cong__PEBP1__CDP_DAG__KPC_	kP99_1*cyt_mixed__CDP_DAG__PRKC_*cyt_prot__PEBP1_
-vP100	Cytoplasm	cyt_cong__PEBP1__CDP_DAG__KPC_ ; cyt_mixed__CDP_DAG__PRKC_ + cyt_prot__PEBP1_	kP100_1*cyt_cong__PEBP1__CDP_DAG__KPC_
+vP99	Cytoplasm	cyt_mixed__CDP_DAG__PRKC_ + cyt_prot__PEBP1_1_ ; cyt_cong__PEBP1__CDP_DAG__KPC_	kP99_1*cyt_mixed__CDP_DAG__PRKC_*cyt_prot__PEBP1_1_
+vP100	Cytoplasm	cyt_cong__PEBP1__CDP_DAG__KPC_ ; cyt_mixed__CDP_DAG__PRKC_ + cyt_prot__PEBP1_1_	kP100_1*cyt_cong__PEBP1__CDP_DAG__KPC_
 vP101	Cytoplasm	cyt_cong__PEBP1__CDP_DAG__KPC_ ; cyt_mixed__CDP_DAG__PRKC_ + cyt_prot__pS153_PEBP1_	kP101_1*cyt_cong__PEBP1__CDP_DAG__KPC_
-vP102	Cytoplasm	cyt_prot__pS153_PEBP1_ ; cyt_prot__PEBP1_	kP102_1*cyt_prot__pS153_PEBP1_
-vP103	Cytoplasm	cyt_prot__RAF1_1_ + cyt_prot__PEBP1_ ; cyt_prot__PEBP1__RAF1_1_	kP103_1*cyt_prot__RAF1_1_*cyt_prot__PEBP1_
-vP104	Cytoplasm	cyt_prot__PEBP1__RAF1_1_ ; cyt_prot__RAF1_1_ + cyt_prot__PEBP1_	kP104_1*cyt_prot__PEBP1__RAF1_1_
-vP105	Cytoplasm	cyt_comp__PIP3_ + cyt_prot__PTEN_ ; cyt_mixed__PIP3__PTEN_	kP105_1*cyt_comp__PIP3_*cyt_prot__PTEN_
-vP106	Cytoplasm	cyt_mixed__PIP3__PTEN_ ; cyt_comp__PIP3_ + cyt_prot__PTEN_	kP106_1*cyt_mixed__PIP3__PTEN_
-vP107	Cytoplasm	cyt_mixed__PIP3__PTEN_ ; cyt_comp__PIP2_ + cyt_prot__PTEN_	kP107_1*cyt_mixed__PIP3__PTEN_
+vP102	Cytoplasm	cyt_prot__pS153_PEBP1_ ; cyt_prot__PEBP1_1_	kP102_1*cyt_prot__pS153_PEBP1_
+vP103	Cytoplasm	cyt_prot__RAF1_1_ + cyt_prot__PEBP1_1_ ; cyt_prot__PEBP1__RAF1_1_	kP103_1*cyt_prot__RAF1_1_*cyt_prot__PEBP1_1_
+vP104	Cytoplasm	cyt_prot__PEBP1__RAF1_1_ ; cyt_prot__RAF1_1_ + cyt_prot__PEBP1_1_	kP104_1*cyt_prot__PEBP1__RAF1_1_
+vP105	Cytoplasm	cyt_comp__PIP3_ + cyt_prot__PTEN_1_ ; cyt_mixed__PIP3__PTEN_	kP105_1*cyt_comp__PIP3_*cyt_prot__PTEN_1_
+vP106	Cytoplasm	cyt_mixed__PIP3__PTEN_ ; cyt_comp__PIP3_ + cyt_prot__PTEN_1_	kP106_1*cyt_mixed__PIP3__PTEN_
+vP107	Cytoplasm	cyt_mixed__PIP3__PTEN_ ; cyt_comp__PIP2_ + cyt_prot__PTEN_1_	kP107_1*cyt_mixed__PIP3__PTEN_
 vP108	Cytoplasm	cyt_comp__PIP3_ + cyt_cong__AKT_ ; cyt_mixed__PIP3__AKT_	kP108_1*cyt_comp__PIP3_*cyt_cong__AKT_
 vP109	Cytoplasm	cyt_mixed__PIP3__AKT_ ; cyt_comp__PIP3_ + cyt_cong__AKT_	kP109_1*cyt_mixed__PIP3__AKT_
 vP110	Cytoplasm	cyt_comp__PIP3_ + cyt_prot__PDPK1_1_ ; cyt_mixed__PIP3__PDK1_	kP110_1*cyt_comp__PIP3_*cyt_prot__PDPK1_1_
 vP111	Cytoplasm	cyt_mixed__PIP3__PDK1_ ; cyt_comp__PIP3_ + cyt_prot__PDPK1_1_	kP111_1*cyt_mixed__PIP3__PDK1_
-vP112	Cytoplasm	cyt_prot_RICTR_1_ + cyt_prot__MTOR_ ; cyt_prot__MTORC2_	kP112_1*cyt_prot_RICTR_1_*cyt_prot__MTOR_
-vP113	Cytoplasm	cyt_prot__MTORC2_ ; cyt_prot_RICTR_1_ + cyt_prot__MTOR_	kP113_1*cyt_prot__MTORC2_
+vP112	Cytoplasm	cyt_prot__RICTR_1_ + cyt_prot__MTOR_1_ ; cyt_prot__MTORC2_	kP112_1*cyt_prot__RICTR_1_*cyt_prot__MTOR_1_
+vP113	Cytoplasm	cyt_prot__MTORC2_ ; cyt_prot__RICTR_1_ + cyt_prot__MTOR_1_	kP113_1*cyt_prot__MTORC2_
 vP114	Cytoplasm	cyt_mixed__PIP3__AKT_ + cyt_mixed__PIP3__PDK1_ ; cyt_mixed__PIP3__AKT__PIP3__PDK1_	kP114_1*cyt_mixed__PIP3__AKT_*cyt_mixed__PIP3__PDK1_
 vP115	Cytoplasm	cyt_mixed__PIP3__AKT__PIP3__PDK1_ ; cyt_mixed__PIP3__AKT_ + cyt_mixed__PIP3__PDK1_	kP115_1*cyt_mixed__PIP3__AKT__PIP3__PDK1_
 vP116	Cytoplasm	cyt_mixed__PIP3__AKT__PIP3__PDK1_ ; cyt_mixed__PIP3__PDK1_ + cyt_mixed__PIP3__p_AKT_	kP116_1*cyt_mixed__PIP3__AKT__PIP3__PDK1_
@@ -1653,10 +1653,10 @@ vP124	Cytoplasm	cyt_cong__p_p_AKT_ + cyt_prot__GSK3B_1_ ; cyt_cong__GSK3B_1__p_p
 vP125	Cytoplasm	cyt_cong__GSK3B_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__GSK3B_1_	kP125_1*cyt_cong__GSK3B_1__p_p_AKT_
 vP126	Cytoplasm	cyt_cong__GSK3B_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__pS9_GSK3B_1_	kP126_1*cyt_cong__GSK3B_1__p_p_AKT_
 vP127	Cytoplasm	cyt_prot__pS9_GSK3B_1_ ; cyt_prot__GSK3B_1_	kP127_1*cyt_prot__pS9_GSK3B_1_
-vP128	Cytoplasm	cyt_prot__CTNB1_ ; cyt_prot__pS33_pS37_T41_CTNB1_	(kP128_1*cyt_prot__CTNB1_*(cyt_prot__GSK3B_1_^kP128_2))/((kP128_3^kP128_2)+(cyt_prot__GSK3B_1_^kP128_2))
-vP131	Cytoplasm	cyt_prot__pS33_pS37_T41_CTNB1_ ; cyt_prot__CTNB1_	kP131_1*cyt_prot__pS33_pS37_T41_CTNB1_
-vP132	Cytoplasm	cyt_prot__CTNB1_ ; nuc_prot__CTNB1_	kP132_1*cyt_prot__CTNB1_
-vP133	Nucleus	nuc_prot__CTNB1_ ; cyt_prot__CTNB1_	kP133_1*nuc_prot__CTNB1_
+vP128	Cytoplasm	cyt_prot__CTNB1_1_ ; cyt_prot__PS33_pS37_pT41_CTNB1_	(kP128_1*cyt_prot__CTNB1_1_*(cyt_prot__GSK3B_1_^kP128_2))/((kP128_3^kP128_2)+(cyt_prot__GSK3B_1_^kP128_2))
+vP131	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ; cyt_prot__CTNB1_1_	kP131_1*cyt_prot__PS33_pS37_pT41_CTNB1_
+vP132	Cytoplasm	cyt_prot__CTNB1_1_ ; nuc_prot__CTNB1_	kP132_1*cyt_prot__CTNB1_1_
+vP133	Nucleus	nuc_prot__CTNB1_ ; cyt_prot__CTNB1_1_	kP133_1*nuc_prot__CTNB1_
 vP134	Cytoplasm	cyt_cong__p_p_AKT_ + cyt_prot__TSC2_1_ ; cyt_cong__TSC2_1__p_p_AKT_	kP134_1*cyt_cong__p_p_AKT_*cyt_prot__TSC2_1_
 vP135	Cytoplasm	cyt_cong__TSC2_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__TSC2_1_	kP135_1*cyt_cong__TSC2_1__p_p_AKT_
 vP136	Cytoplasm	cyt_cong__TSC2_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__p_TSC2_1_	kP136_1*cyt_cong__TSC2_1__p_p_AKT_
@@ -1667,12 +1667,12 @@ vP140	Cytoplasm	cyt_prot__TSC1_1_ + cyt_prot__TSC2_1_ ; cyt_prot__TSC1_1__TSC2_1
 vP141	Cytoplasm	cyt_prot__TSC1_1__TSC2_1_ ; cyt_prot__TSC1_1_ + cyt_prot__TSC2_1_	kP141_1*cyt_prot__TSC1_1__TSC2_1_
 vP146	Cytoplasm	cyt_prot__MTORC1_ ; cyt_prot_a__MTORC1_	kP146_1*cyt_prot__MTORC1_
 vP147	Cytoplasm	cyt_prot_a__MTORC1_ ; cyt_prot__MTORC1_	(kP147_1*cyt_prot_a__MTORC1_*(cyt_prot__TSC1_1__TSC2_1_^kP147_2))/(kP147_3+(cyt_prot__TSC1_1__TSC2_1_^kP147_2))
-vP148	Cytoplasm	cyt_prot__MTOR_ + cyt_prot__RPTOR_1_ ; cyt_prot__MTORC1_	kP148_1*cyt_prot__MTOR_*cyt_prot__RPTOR_1_
-vP149	Cytoplasm	cyt_prot__MTORC1_ ; cyt_prot__MTOR_ + cyt_prot__RPTOR_1_	kP149_1*cyt_prot__MTORC1_
-vP150	Cytoplasm	cyt_prot_a__MTORC1_ + cyt_prot__4EBP1_ ; cyt_prot_a__4EBP1__MTORC1_	kP150_1*cyt_prot_a__MTORC1_*cyt_prot__4EBP1_
-vP151	Cytoplasm	cyt_prot_a__4EBP1__MTORC1_ ; cyt_prot_a__MTORC1_ + cyt_prot__4EBP1_	kP151_1*cyt_prot_a__4EBP1__MTORC1_
+vP148	Cytoplasm	cyt_prot__MTOR_1_ + cyt_prot__RPTOR_1_ ; cyt_prot__MTORC1_	kP148_1*cyt_prot__MTOR_1_*cyt_prot__RPTOR_1_
+vP149	Cytoplasm	cyt_prot__MTORC1_ ; cyt_prot__MTOR_1_ + cyt_prot__RPTOR_1_	kP149_1*cyt_prot__MTORC1_
+vP150	Cytoplasm	cyt_prot_a__MTORC1_ + cyt_prot__4EBP1_1_ ; cyt_prot_a__4EBP1__MTORC1_	kP150_1*cyt_prot_a__MTORC1_*cyt_prot__4EBP1_1_
+vP151	Cytoplasm	cyt_prot_a__4EBP1__MTORC1_ ; cyt_prot_a__MTORC1_ + cyt_prot__4EBP1_1_	kP151_1*cyt_prot_a__4EBP1__MTORC1_
 vP152	Cytoplasm	cyt_prot_a__4EBP1__MTORC1_ ; cyt_prot_a__MTORC1_ + cyt_prot__pT37_pT46_4EBP1_	kP152_1*cyt_prot_a__4EBP1__MTORC1_
-vP153	Cytoplasm	cyt_prot__pT37_pT46_4EBP1_ ; cyt_prot__4EBP1_	kP153_1*cyt_prot__pT37_pT46_4EBP1_
+vP153	Cytoplasm	cyt_prot__pT37_pT46_4EBP1_ ; cyt_prot__4EBP1_1_	kP153_1*cyt_prot__pT37_pT46_4EBP1_
 vP154	Cytoplasm	cyt_prot_a__MTORC1_ + cyt_prot__KS6B1_1_ ; cyt_prot_a__KS6B1_1__MTORC1_	kP154_1*cyt_prot_a__MTORC1_*cyt_prot__KS6B1_1_
 vP155	Cytoplasm	cyt_prot_a__KS6B1_1__MTORC1_ ; cyt_prot_a__MTORC1_ + cyt_prot__KS6B1_1_	kP155_1*cyt_prot_a__KS6B1_1__MTORC1_
 vP156	Cytoplasm	cyt_prot_a__KS6B1_1__MTORC1_ ; cyt_prot_a__MTORC1_ + cyt_prot__pT412_KS6B1_1_	kP156_1*cyt_prot_a__KS6B1_1__MTORC1_
@@ -1688,12 +1688,12 @@ vP165	Cytoplasm	cyt_cong__p_PIK3C__PIK3R_ ; cyt_cong__PIK3C__PIK3R_	kP165_1*cyt_
 vP166	Cytoplasm	cyt_cong__PIK3C_ + cyt_cong__PIK3R_ ; cyt_cong__PIK3C__PIK3R_	kP166_1*cyt_cong__PIK3C_*cyt_cong__PIK3R_
 vP167	Cytoplasm	cyt_cong__PIK3C__PIK3R_ ; cyt_cong__PIK3C_ + cyt_cong__PIK3R_	kP167_1*cyt_cong__PIK3C__PIK3R_
 vP168	Cytoplasm	cyt_comp__PI_3_P_ ; cyt_comp__PIP_	kP168_1*cyt_comp__PI_3_P_
-vP169	Cytoplasm	cyt_prot__GRB2_ + cyt_prot__SOS1_1_ ; cyt_prot__GRB2__SOS1_1_	kP169_1*cyt_prot__GRB2_*cyt_prot__SOS1_1_
-vP170	Cytoplasm	cyt_prot__GRB2__SOS1_1_ ; cyt_prot__GRB2_ + cyt_prot__SOS1_1_	kP170_1*cyt_prot__GRB2__SOS1_1_
-vP171	Cytoplasm	cyt_prot__4EBP1_ + cyt_prot__IF4E_1_ ; cyt_prot__4EBP1__IF4E_1_	kP171_1*cyt_prot__4EBP1_*cyt_prot__IF4E_1_
-vP172	Cytoplasm	cyt_prot__4EBP1__IF4E_1_ ; cyt_prot__4EBP1_ + cyt_prot__IF4E_1_	kP172_1*cyt_prot__4EBP1__IF4E_1_
+vP169	Cytoplasm	cyt_prot__GRB2_1_ + cyt_prot__SOS1_1_ ; cyt_prot__GRB2__SOS1_1_	kP169_1*cyt_prot__GRB2_1_*cyt_prot__SOS1_1_
+vP170	Cytoplasm	cyt_prot__GRB2__SOS1_1_ ; cyt_prot__GRB2_1_ + cyt_prot__SOS1_1_	kP170_1*cyt_prot__GRB2__SOS1_1_
+vP171	Cytoplasm	cyt_prot__4EBP1_1_ + cyt_prot__IF4E_1_ ; cyt_prot__4EBP1__IF4E_1_	kP171_1*cyt_prot__4EBP1_1_*cyt_prot__IF4E_1_
+vP172	Cytoplasm	cyt_prot__4EBP1__IF4E_1_ ; cyt_prot__4EBP1_1_ + cyt_prot__IF4E_1_	kP172_1*cyt_prot__4EBP1__IF4E_1_
 vP173	Cytoplasm	; cyt_comp__PIP2_	kP173_1
-vP174	Cytoplasm	cyt_prot__pS33_pS37_T41_CTNB1_ ;	kP174_1*cyt_prot__pS33_pS37_T41_CTNB1_*cyt_prot__TSC1_1__TSC2_1_
+vP174	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ;	kP174_1*cyt_prot__PS33_pS37_pT41_CTNB1_*cyt_prot__TSC1_1__TSC2_1_
 vP175	Cytoplasm	cyt_cong__p_MAPK_ ; cyt_cong__MAPK_	kP175_1*cyt_cong__p_MAPK_
 vP176	Cytoplasm	cyt_cong__p_p_MAPK_ ; cyt_cong__p_MAPK_	kP176_1*cyt_cong__p_p_MAPK_
 vP177	Nucleus	nuc_cong__p_p_MAPK_ ; nuc_cong__MAPK_	kP177_1*nuc_cong__p_p_MAPK_
@@ -1718,13 +1718,13 @@ vPA1	Cytoplasm	cyt_prot__B2L11_1_ + cyt_cong__p_p_MAPK_ ; cyt_cong__p_p_MAPK__B2
 vPA2	Cytoplasm	cyt_cong__p_p_MAPK__B2L11_1_ ; cyt_prot__B2L11_1_ + cyt_cong__p_p_MAPK_	kPA2_1*cyt_cong__p_p_MAPK__B2L11_1_
 vPA3	Cytoplasm	cyt_cong__p_p_MAPK__B2L11_1_ ; cyt_prot__pS69_B2L11_1_ + cyt_cong__p_p_MAPK_	kPA3_1*cyt_cong__p_p_MAPK__B2L11_1_
 vPA4	Cytoplasm	cyt_prot__pS69_B2L11_1_ ; cyt_prot__B2L11_1_	kPA4_1*cyt_prot__pS69_B2L11_1_
-vPA5	Cytoplasm	cyt_prot__BAD_ + cyt_cong__p_p_AKT_ ; cyt_cong__p_p_AKT__BAD_	kPA5_1*cyt_prot__BAD_*cyt_cong__p_p_AKT_
-vPA6	Cytoplasm	cyt_cong__p_p_AKT__BAD_ ; cyt_prot__BAD_ + cyt_cong__p_p_AKT_	kPA6_1*cyt_cong__p_p_AKT__BAD_
+vPA5	Cytoplasm	cyt_prot__BAD_1_ + cyt_cong__p_p_AKT_ ; cyt_cong__p_p_AKT__BAD_	kPA5_1*cyt_prot__BAD_1_*cyt_cong__p_p_AKT_
+vPA6	Cytoplasm	cyt_cong__p_p_AKT__BAD_ ; cyt_prot__BAD_1_ + cyt_cong__p_p_AKT_	kPA6_1*cyt_cong__p_p_AKT__BAD_
 vPA7	Cytoplasm	cyt_cong__p_p_AKT__BAD_ ; cyt_prot__p_BAD_ + cyt_cong__p_p_AKT_	kPA7_1*cyt_cong__p_p_AKT__BAD_
-vPA8	Cytoplasm	cyt_prot__BAD_ + cyt_cong__p_p_MAPK_ ; cyt_cong__p_p_MAPK__BAD_	kPA8_1*cyt_prot__BAD_*cyt_cong__p_p_MAPK_
-vPA9	Cytoplasm	cyt_cong__p_p_MAPK__BAD_ ; cyt_prot__BAD_ + cyt_cong__p_p_MAPK_	kPA9_1*cyt_cong__p_p_MAPK__BAD_
+vPA8	Cytoplasm	cyt_prot__BAD_1_ + cyt_cong__p_p_MAPK_ ; cyt_cong__p_p_MAPK__BAD_	kPA8_1*cyt_prot__BAD_1_*cyt_cong__p_p_MAPK_
+vPA9	Cytoplasm	cyt_cong__p_p_MAPK__BAD_ ; cyt_prot__BAD_1_ + cyt_cong__p_p_MAPK_	kPA9_1*cyt_cong__p_p_MAPK__BAD_
 vPA10	Cytoplasm	cyt_cong__p_p_MAPK__BAD_ ; cyt_prot__p_BAD_ + cyt_cong__p_p_MAPK_	kPA10_1*cyt_cong__p_p_MAPK__BAD_
-vPA11	Cytoplasm	cyt_prot__p_BAD_ ; cyt_prot__BAD_	kPA11_1*cyt_prot__p_BAD_
+vPA11	Cytoplasm	cyt_prot__p_BAD_ ; cyt_prot__BAD_1_	kPA11_1*cyt_prot__p_BAD_
 vAd1	Cytoplasm	cyt_cong__TNF10_1__TNFRSF10_ ;	kAd1_1*cyt_cong__TNF10_1__TNFRSF10_
 vAd2	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10_ ;	kAd2_1*cyt_cong_a__TNF10_1__TNFRSF10_
 vAd3	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CFLAR_1_ ;	kAd3_1*cyt_cong_a__TNF10_1__TNFRSF10__CFLAR_1_
@@ -1732,7 +1732,7 @@ vAd4	Cytoplasm	cyt_cong_a__TNF10_1__TNFRSF10__CASP8_ ;	kAd4_1*cyt_cong_a__TNF10_
 vAd5	Cytoplasm	cyt_cong_a__CASP8_ ;	kAd5_1*cyt_cong_a__CASP8_
 vAd6	Cytoplasm	cyt_cong__CASP8__BFAR_1_ ;	kAd6_1*cyt_cong__CASP8__BFAR_1_
 vAd7	Cytoplasm	cyt_cong__CASP8__CASP3_ ;	kAd7_1*cyt_cong__CASP8__CASP3_
-vAd8	Cytoplasm	cyt_cong__cl_CASP3_ ;	kAd8_1*cyt_cong__cl_CASP3_
+vAd8	Cytoplasm	cyt_cong_a__CASP3_ ;	kAd8_1*cyt_cong_a__CASP3_
 vAd9	Cytoplasm	cyt_cong__CASP3__CASP6_ ;	kAd9_1*cyt_cong__CASP3__CASP6_
 vAd10	Cytoplasm	cyt_prot_a__CASP6_ ;	kAd10_1*cyt_prot_a__CASP6_
 vAd11	Cytoplasm	cyt_cong__CASP6__CASP8_ ;	kAd11_1*cyt_cong__CASP6__CASP8_
@@ -1741,7 +1741,7 @@ vAd13	Cytoplasm	cyt_cong__CASP3__PARP1_ ;	kAd13_1*cyt_cong__CASP3__PARP1_
 vAd14	Cytoplasm	cyt_prot__cl_PARP1_ ;	kAd14_1*cyt_prot__cl_PARP1_
 vAd15	Cytoplasm	cyt_cong__CASP8__BID_1_ ;	kAd15_1*cyt_cong__CASP8__BID_1_
 vAd16	Cytoplasm	cyt_prot__cl_BID_1_ ;	kAd16_1*cyt_prot__cl_BID_1_
-vAd17	Cytoplasm	cyt_cong_cl_BID_1__BCL2_ ;	kAd17_1*cyt_cong_cl_BID_1__BCL2_
+vAd17	Cytoplasm	cyt_cong__cl_BID_1__BCL2_ ;	kAd17_1*cyt_cong__cl_BID_1__BCL2_
 vAd18	Cytoplasm	cyt_prot__cl_BID_1__BAX_1_ ;	kAd18_1*cyt_prot__cl_BID_1__BAX_1_
 vAd19	Cytoplasm	cyt_prot_a__BAX_1_ ;	kAd19_1*cyt_prot_a__BAX_1_
 vAd20	Mitochondria	mit_prot_a__BAX_1_ ;	kAd20_1*mit_prot_a__BAX_1_
@@ -2222,7 +2222,7 @@ vPd22	Nucleus	nuc_prot__p_DUS1_ ;	kPd22_1*nuc_prot__p_DUS1_
 vPd23	Nucleus	nuc_prot__p_FOS_1_ ;	kPd23_1*nuc_prot__p_FOS_1_
 vPd24	Nucleus	nuc_prot__p_FOS_1__JUN_ ;	kPd24_1*nuc_prot__p_FOS_1__JUN_
 vPd25	Nucleus	nuc_prot__CTNB1_ ;	kPd25_1*nuc_prot__CTNB1_
-vPd26	Cytoplasm	cyt_prot__pS33_pS37_T41_CTNB1_ ;	kPd26_1*cyt_prot__pS33_pS37_T41_CTNB1_
+vPd26	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ;	kPd26_1*cyt_prot__PS33_pS37_pT41_CTNB1_
 vPd27	Cytoplasm	cyt_comp__IP3_ ;	kPd27_1*cyt_comp__IP3_
 vPd28	Cytoplasm	cyt_comp__PIP2_ ;	kPd28_1*cyt_comp__PIP2_
 vPd29	Cytoplasm	cyt_comp__PIP3_ ;	kPd29_1*cyt_comp__PIP3_
@@ -2694,7 +2694,7 @@ vTC4	Nucleus	; cyt_mrna__ATM_229_	kTC4_1*nuc_gene_a__ATM_
 vTC5	Nucleus	; cyt_mrna__ATR_201_	kTC5_1*nuc_gene_a__ATR_
 vTC6	Nucleus	; cyt_mrna__RB1_201_	kTC6_1*nuc_gene_a__RB1_
 vTC7	Nucleus	; cyt_mrna__E2F1_201_	kTC7_1*nuc_gene_a__E2F1_
-vTC8	Nucleus	; cyt_mrna__E2F2_201_	kTC8_1*nuc_gene_a__E2F2_
+vTC8	Nucleus	; cyt_mrna__E2F2_204_	kTC8_1*nuc_gene_a__E2F2_
 vTC9	Nucleus	; cyt_mrna__E2F3_201_	kTC9_1*nuc_gene_a__E2F3_
 vTC10	Nucleus	; cyt_mrna__CCND1_201_	(kTC10_1*nuc_gene_a__CCND1_)+(kTC10_2*nuc_gene_a__CCND1_*(nuc_prot__p_FOS_1__JUN_/kTC10_3)^kTC10_4/(1.0+(nuc_prot__p_FOS_1__JUN_/kTC10_3)^kTC10_4)*(nuc_prot__MYC_2_/kTC10_5)^kTC10_6/(1.0+(nuc_prot__MYC_2_/kTC10_5)^kTC10_6))
 vTC11	Nucleus	; cyt_mrna__CCND2_201_	(kTC11_1*nuc_gene_a__CCND2_)+(kTC11_2*nuc_gene_a__CCND2_*(nuc_prot__p_FOS_1__JUN_/kTC11_3)^kTC11_4/(1.0+(nuc_prot__p_FOS_1__JUN_/kTC11_3)^kTC11_4)*(nuc_prot__MYC_2_/kTC11_5)^kTC11_6/(1.0+(nuc_prot__MYC_2_/kTC11_5)^kTC11_6))
@@ -2723,7 +2723,7 @@ vTC33	Nucleus	; cyt_mrna__TNFRSF10B_201_	kTC33_1*nuc_gene_a__TNFRSF10B_
 vTC34	Nucleus	; cyt_mrna__CFLAR_201_	kTC34_1*nuc_gene_a__CFLAR_
 vTC35	Nucleus	; cyt_mrna__CASP8_218_	kTC35_1*nuc_gene_a__CASP8_
 vTC36	Nucleus	; cyt_mrna__CASP10_202_	kTC36_1*nuc_gene_a__CASP10_
-vTC37	Nucleus	; cyt_mrna__BFAR_201_	kTC37_1*nuc_gene_a__BFAR_
+vTC37	Nucleus	; cyt_mrna__BFAR_222_	kTC37_1*nuc_gene_a__BFAR_
 vTC38	Nucleus	; cyt_mrna__CASP3_201_	kTC38_1*nuc_gene_a__CASP3_
 vTC39	Nucleus	; cyt_mrna__CASP7_203_	kTC39_1*nuc_gene_a__CASP7_
 vTC40	Nucleus	; cyt_mrna__CASP6_201_	kTC40_1*nuc_gene_a__CASP6_
@@ -2771,14 +2771,14 @@ vTC82	Nucleus	; cyt_mrna__RASGRP1_201_	kTC82_1*nuc_gene_a__RASGRP1_
 vTC83	Nucleus	; cyt_mrna__RASGRP3_202_	kTC83_1*nuc_gene_a__RASGRP3_
 vTC84	Nucleus	; cyt_mrna__NRAS_201_	kTC84_1*nuc_gene_a__NRAS_
 vTC85	Nucleus	; cyt_mrna__KRAS_202_	kTC85_1*nuc_gene_a__KRAS_
-vTC86	Nucleus	; cyt_mrna__HRAS_201_	kTC86_1*nuc_gene_a__HRAS_
+vTC86	Nucleus	; cyt_mrna__HRAS_221_	kTC86_1*nuc_gene_a__HRAS_
 vTC87	Nucleus	; cyt_mrna__NF1_202_	kTC87_1*nuc_gene_a__NF1_
 vTC88	Nucleus	; cyt_mrna__RAF1_201_	kTC88_1*nuc_gene_a__RAF1_
 vTC89	Nucleus	; cyt_mrna__BRAF_220_	kTC89_1*nuc_gene_a__BRAF_
 vTC90	Nucleus	; cyt_mrna__MAP2K1_201_	kTC90_1*nuc_gene_a__MAP2K1_
 vTC91	Nucleus	; cyt_mrna__MAP2K2_201_	kTC91_1*nuc_gene_a__MAP2K2_
 vTC92	Nucleus	; cyt_mrna__DUSP6_201_	(kTC92_1*nuc_gene_a__DUSP6_)+(kTC92_2*nuc_gene_a__DUSP6_*(((nuc_cong__p_p_MAPK_/kTC92_3)^kTC92_4 + (nuc_prot__p_RPS6KA_/kTC92_5)^kTC92_6)/(1.0+(nuc_cong__p_p_MAPK_/kTC92_3)^kTC92_4 + (nuc_prot__p_RPS6KA_/kTC92_5)^kTC92_6)))
-vTC93	Nucleus	; cyt_mrna__RPS6KA1_204_	kTC93_1*nuc_gene_a__RPS6KA1_
+vTC93	Nucleus	; cyt_mrna__RPS6KA1_236_	kTC93_1*nuc_gene_a__RPS6KA1_
 vTC94	Nucleus	; cyt_mrna__RPS6KA2_201_	kTC94_1*nuc_gene_a__RPS6KA2_
 vTC95	Nucleus	; cyt_mrna__RPS6KA3_201_	kTC95_1*nuc_gene_a__RPS6KA3_
 vTC96	Nucleus	; cyt_mrna__RPS6KA4_201_	kTC96_1*nuc_gene_a__RPS6KA4_
@@ -2787,7 +2787,7 @@ vTC98	Nucleus	; cyt_mrna__FOS_201_	(kTC98_1*nuc_gene_a__FOS_)+(kTC98_2*nuc_gene_
 vTC99	Nucleus	; cyt_mrna__JUN_201_	(kTC99_1*nuc_gene_a__JUN_)+(kTC99_2*nuc_gene_a__JUN_*(((nuc_prot__p_FOS_1__JUN_/kTC99_3)^kTC99_4)/(1.0+(nuc_prot__p_FOS_1__JUN_/kTC99_3)^kTC99_4)))
 vTC100	Nucleus	; cyt_mrna__MYC_206_	(kTC100_1*nuc_gene_a__MYC_)+(kTC100_2*nuc_gene_a__MYC_*(((nuc_prot__CTNB1_/kTC100_3)^kTC100_4)/(1.0+(nuc_prot__CTNB1_/kTC100_3)^kTC100_4)))
 vTC101	Nucleus	; cyt_mrna__CTNNB1_201_	kTC101_1*nuc_gene_a__CTNNB1_
-vTC102	Nucleus	; cyt_mrna__PTEN_201_	kTC102_1*nuc_gene_a__PTEN_
+vTC102	Nucleus	; cyt_mrna__PTEN_227_	kTC102_1*nuc_gene_a__PTEN_
 vTC103	Nucleus	; cyt_mrna__AKT1_218_	kTC103_1*nuc_gene_a__AKT1_
 vTC104	Nucleus	; cyt_mrna__AKT2_206_	kTC104_1*nuc_gene_a__AKT2_
 vTC105	Nucleus	; cyt_mrna__PDPK1_202_	kTC105_1*nuc_gene_a__PDPK1_
@@ -2810,7 +2810,7 @@ vTC121	Nucleus	; cyt_mrna__RPS6KB1_201_	kTC121_1*nuc_gene_a__RPS6KB1_
 vTC122	Nucleus	; cyt_mrna__RPS6KB2_201_	kTC122_1*nuc_gene_a__RPS6KB2_
 vTC123	Nucleus	; cyt_mrna__EIF4EBP1_201_	kTC123_1*nuc_gene_a__EIF4EBP1_
 vTC124	Nucleus	; cyt_mrna__SOS1_202_	kTC124_1*nuc_gene_a__SOS1_
-vTC125	Nucleus	; cyt_mrna__CDKN2A_214_	kTC125_1*nuc_gene_a__CDKN2A_
+vTC125	Nucleus	; cyt_mrna__CDKN2A_201_	kTC125_1*nuc_gene_a__CDKN2A_
 vTC126	Nucleus	; cyt_mrna__MDM4_203_	kTC126_1*nuc_gene_a__MDM4_
 vTC127	Nucleus	; cyt_mrna__FGFR1_214_	(kTC127_1*nuc_gene_a__FGFR1_)+(kTC127_2*nuc_gene_a__FGFR1_*(((nuc_prot__FOXO3_1_/kTC127_3)^kTC127_4)/(1.0+(nuc_prot__FOXO3_1_/kTC127_3)^kTC127_4)))
 vTC128	Nucleus	; cyt_mrna__FGFR2_206_	(kTC128_1*nuc_gene_a__FGFR2_)+(kTC128_2*nuc_gene_a__FGFR2_*(((nuc_prot__FOXO3_1_/kTC128_3)^kTC128_4)/(1.0+(nuc_prot__FOXO3_1_/kTC128_3)^kTC128_4)))
@@ -2842,7 +2842,7 @@ vTCd4	Cytoplasm	cyt_mrna__ATM_229_ ;	kTCd4_1*cyt_mrna__ATM_229_
 vTCd5	Cytoplasm	cyt_mrna__ATR_201_ ;	kTCd5_1*cyt_mrna__ATR_201_
 vTCd6	Cytoplasm	cyt_mrna__RB1_201_ ;	kTCd6_1*cyt_mrna__RB1_201_
 vTCd7	Cytoplasm	cyt_mrna__E2F1_201_ ;	kTCd7_1*cyt_mrna__E2F1_201_
-vTCd8	Cytoplasm	cyt_mrna__E2F2_201_ ;	kTCd8_1*cyt_mrna__E2F2_201_
+vTCd8	Cytoplasm	cyt_mrna__E2F2_204_ ;	kTCd8_1*cyt_mrna__E2F2_204_
 vTCd9	Cytoplasm	cyt_mrna__E2F3_201_ ;	kTCd9_1*cyt_mrna__E2F3_201_
 vTCd10	Cytoplasm	cyt_mrna__CCND1_201_ ;	kTCd10_1*cyt_mrna__CCND1_201_
 vTCd11	Cytoplasm	cyt_mrna__CCND2_201_ ;	kTCd11_1*cyt_mrna__CCND2_201_
@@ -2871,7 +2871,7 @@ vTCd33	Cytoplasm	cyt_mrna__TNFRSF10B_201_ ;	kTCd33_1*cyt_mrna__TNFRSF10B_201_
 vTCd34	Cytoplasm	cyt_mrna__CFLAR_201_ ;	kTCd34_1*cyt_mrna__CFLAR_201_
 vTCd35	Cytoplasm	cyt_mrna__CASP8_218_ ;	kTCd35_1*cyt_mrna__CASP8_218_
 vTCd36	Cytoplasm	cyt_mrna__CASP10_202_ ;	kTCd36_1*cyt_mrna__CASP10_202_
-vTCd37	Cytoplasm	cyt_mrna__BFAR_201_ ;	kTCd37_1*cyt_mrna__BFAR_201_
+vTCd37	Cytoplasm	cyt_mrna__BFAR_222_ ;	kTCd37_1*cyt_mrna__BFAR_222_
 vTCd38	Cytoplasm	cyt_mrna__CASP3_201_ ;	kTCd38_1*cyt_mrna__CASP3_201_
 vTCd39	Cytoplasm	cyt_mrna__CASP7_203_ ;	kTCd39_1*cyt_mrna__CASP7_203_
 vTCd40	Cytoplasm	cyt_mrna__CASP6_201_ ;	kTCd40_1*cyt_mrna__CASP6_201_
@@ -2919,14 +2919,14 @@ vTCd82	Cytoplasm	cyt_mrna__RASGRP1_201_ ;	kTCd82_1*cyt_mrna__RASGRP1_201_
 vTCd83	Cytoplasm	cyt_mrna__RASGRP3_202_ ;	kTCd83_1*cyt_mrna__RASGRP3_202_
 vTCd84	Cytoplasm	cyt_mrna__NRAS_201_ ;	kTCd84_1*cyt_mrna__NRAS_201_
 vTCd85	Cytoplasm	cyt_mrna__KRAS_202_ ;	kTCd85_1*cyt_mrna__KRAS_202_
-vTCd86	Cytoplasm	cyt_mrna__HRAS_201_ ;	kTCd86_1*cyt_mrna__HRAS_201_
+vTCd86	Cytoplasm	cyt_mrna__HRAS_221_ ;	kTCd86_1*cyt_mrna__HRAS_221_
 vTCd87	Cytoplasm	cyt_mrna__NF1_202_ ;	kTCd87_1*cyt_mrna__NF1_202_
 vTCd88	Cytoplasm	cyt_mrna__RAF1_201_ ;	kTCd88_1*cyt_mrna__RAF1_201_
 vTCd89	Cytoplasm	cyt_mrna__BRAF_220_ ;	kTCd89_1*cyt_mrna__BRAF_220_
 vTCd90	Cytoplasm	cyt_mrna__MAP2K1_201_ ;	kTCd90_1*cyt_mrna__MAP2K1_201_
 vTCd91	Cytoplasm	cyt_mrna__MAP2K2_201_ ;	kTCd91_1*cyt_mrna__MAP2K2_201_
 vTCd92	Cytoplasm	cyt_mrna__DUSP6_201_ ;	kTCd92_1*cyt_mrna__DUSP6_201_
-vTCd93	Cytoplasm	cyt_mrna__RPS6KA1_204_ ;	kTCd93_1*cyt_mrna__RPS6KA1_204_
+vTCd93	Cytoplasm	cyt_mrna__RPS6KA1_236_ ;	kTCd93_1*cyt_mrna__RPS6KA1_236_
 vTCd94	Cytoplasm	cyt_mrna__RPS6KA2_201_ ;	kTCd94_1*cyt_mrna__RPS6KA2_201_
 vTCd95	Cytoplasm	cyt_mrna__RPS6KA3_201_ ;	kTCd95_1*cyt_mrna__RPS6KA3_201_
 vTCd96	Cytoplasm	cyt_mrna__RPS6KA4_201_ ;	kTCd96_1*cyt_mrna__RPS6KA4_201_
@@ -2935,7 +2935,7 @@ vTCd98	Cytoplasm	cyt_mrna__FOS_201_ ;	kTCd98_1*cyt_mrna__FOS_201_
 vTCd99	Cytoplasm	cyt_mrna__JUN_201_ ;	kTCd99_1*cyt_mrna__JUN_201_
 vTCd100	Cytoplasm	cyt_mrna__MYC_206_ ;	kTCd100_1*cyt_mrna__MYC_206_
 vTCd101	Cytoplasm	cyt_mrna__CTNNB1_201_ ;	kTCd101_1*cyt_mrna__CTNNB1_201_
-vTCd102	Cytoplasm	cyt_mrna__PTEN_201_ ;	kTCd102_1*cyt_mrna__PTEN_201_
+vTCd102	Cytoplasm	cyt_mrna__PTEN_227_ ;	kTCd102_1*cyt_mrna__PTEN_227_
 vTCd103	Cytoplasm	cyt_mrna__AKT1_218_ ;	kTCd103_1*cyt_mrna__AKT1_218_
 vTCd104	Cytoplasm	cyt_mrna__AKT2_206_ ;	kTCd104_1*cyt_mrna__AKT2_206_
 vTCd105	Cytoplasm	cyt_mrna__PDPK1_202_ ;	kTCd105_1*cyt_mrna__PDPK1_202_
@@ -2958,7 +2958,7 @@ vTCd121	Cytoplasm	cyt_mrna__RPS6KB1_201_ ;	kTCd121_1*cyt_mrna__RPS6KB1_201_
 vTCd122	Cytoplasm	cyt_mrna__RPS6KB2_201_ ;	kTCd122_1*cyt_mrna__RPS6KB2_201_
 vTCd123	Cytoplasm	cyt_mrna__EIF4EBP1_201_ ;	kTCd123_1*cyt_mrna__EIF4EBP1_201_
 vTCd124	Cytoplasm	cyt_mrna__SOS1_202_ ;	kTCd124_1*cyt_mrna__SOS1_202_
-vTCd125	Cytoplasm	cyt_mrna__CDKN2A_214_ ;	kTCd125_1*cyt_mrna__CDKN2A_214_
+vTCd125	Cytoplasm	cyt_mrna__CDKN2A_201_ ;	kTCd125_1*cyt_mrna__CDKN2A_201_
 vTCd126	Cytoplasm	cyt_mrna__MDM4_203_ ;	kTCd126_1*cyt_mrna__MDM4_203_
 vTCd127	Cytoplasm	cyt_mrna__FGFR1_214_ ;	kTCd127_1*cyt_mrna__FGFR1_214_
 vTCd128	Cytoplasm	cyt_mrna__FGFR2_206_ ;	kTCd128_1*cyt_mrna__FGFR2_206_

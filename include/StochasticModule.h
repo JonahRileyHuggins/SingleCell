@@ -27,6 +27,7 @@
 
 // External Libraries
 #include <Eigen/Dense>
+#include "exprtk.hpp"
 
 //==========================Class Declaration===============================//
 class StochasticModule : public BaseModule{
@@ -187,6 +188,11 @@ class StochasticModule : public BaseModule{
         Eigen::VectorXd realizations; // return variable for samplePoisson method
         Eigen::VectorXd new_state;
         const double inf = std::numeric_limits<double>::infinity();
+        
+        //testing <-- 15/04/2026
+        exprtk::symbol_table<double> symbol_table;
+        exprtk::parser<double> parser;
+        std::vector<exprtk::expression<double>> expressions;
         
 
     protected:
