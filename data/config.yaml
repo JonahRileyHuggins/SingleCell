@@ -13,8 +13,8 @@ compilation:
     directory: "."
     files:
       compartments: "SPARCED-Compartments.tsv"
-      ratelaws: "SPARCED-Ratelaws.tsv"
-      species: "SPARCED-Species.tsv"
-      parameters: "SPARCED-Parameters.tsv"
-      annotations: "SPARCED-Annotations.tsv"
+      ratelaws: "GS-SPARCED-Ratelaws.tsv"
+      species: "GS-SPARCED-Species.tsv"
+      parameters: "GS-SPARCED-Parameters.tsv"
+      annotations: "GS-SPARCED-Annotations.tsv"
 
