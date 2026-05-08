@@ -26,7 +26,7 @@
 
 // Third Party Libraries
 #include "amici/amici.h"
-#include "../amici_models/deterministic/deterministic.h"
+#include "wrapfunctions.h"
 #include <Eigen/Dense>
 
 //=============================Class Details================================//
@@ -34,10 +34,9 @@ DeterministicModule::DeterministicModule(
     SBMLHandler DeterministicModel
  ) : BaseModule(DeterministicModel)
  {
-    // // Import AMICI Model from 'AMICI_MODELS/model
-    std::unique_ptr<amici::Model> new_model = std::make_unique<amici::model_deterministic::Model_deterministic>();
-    this->model = std::move(new_model);
-
+    // Import AMICI Model from 'AMICI_MODELS/model
+    this->model = std::unique_ptr<amici::Model>(amici::generic_model::getModel());
+    
     //Update AMICI model for any modifications present in SBML:
     this->model->setFixedParameters(DeterministicModel.getParameterValues());
     

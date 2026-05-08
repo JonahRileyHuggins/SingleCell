@@ -47,7 +47,6 @@ class Build_Organizer:
         "SINGLECELL_BUILD_DIR": os.path.join(project_root, "build"),
         "SINGLECELL_CMAKE_SOURCE_DIR": project_root,
         "SBML_Only": ['stochastic'],
-        "one4all": True,
         "verbose": False,
         "path": None,
         "name": None,
@@ -72,9 +71,6 @@ class Build_Organizer:
         self.model_files = loader._extract_model_build_files()
     
         self.solvers = self.__get_solvers_list()
-    
-        if config["one4all"]:
-            self.solvers.append('One4All')
     
     def _resolve_config(self, args, kwargs):
         config = self.DEFAULTS.copy()
@@ -111,25 +107,17 @@ class Build_Organizer:
 
         solver_components = copy.deepcopy(self.model_files)
 
-        if solver == 'One4All':
-            solver_components.other_params = pd.DataFrame(
-                [], 
-                columns=['parameterId', 
-                         'value']
-            )
+        # Filter species for non-solver
+        solver_components.other_params = self.__get_other_params(
+            solver,             
+            solver_components.species
+        )
 
-        else: 
-            # Filter species for non-solver
-            solver_components.other_params = self.__get_other_params(
-                solver, 
-                solver_components.species
-            )
+        logger.debug('>>>>>>> immediate parameters dataframe: %s' % (solver_components.other_params))
 
-            logger.debug('>>>>>>> immediate parameters dataframe: %s' % (solver_components.other_params))
-
-            solver_components.species = solver_components.species[
-                solver_components.species['solver'].str.lower().str.strip() == solver
-            ]
+        solver_components.species = solver_components.species[
+            solver_components.species['solver'].str.lower().str.strip() == solver
+        ]
         return solver_components
 
 
