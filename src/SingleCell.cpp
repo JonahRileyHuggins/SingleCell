@@ -18,7 +18,6 @@
 #include "SingleCell.h"
 #include "BaseModule.h"
 #include "SBMLHandler.h"
-#include "One4AllModule.h"
 #include "StochasticModule.h"
 #include "DeterministicModule.h"
 
@@ -28,8 +27,7 @@
 //=============================Class Details================================//
 std::map<std::string, std::function<std::unique_ptr<BaseModule>(const SBMLHandler&)>> SingleCell::moduleFactory = {
     { "deterministic", [](const SBMLHandler& handler) { return std::make_unique<DeterministicModule>(handler); } },
-    { "stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } },
-    { "One4All", [](const SBMLHandler& handler) { return std::make_unique<One4AllModule>(handler); } }
+    { "stochastic", [](const SBMLHandler& handler) { return std::make_unique<StochasticModule>(handler); } }
 };
 
 Eigen::MatrixXd SingleCell::simulate(

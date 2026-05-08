@@ -11,4 +11,4 @@ problems:
     sbml_files:
     - ../LR_sbml_files/deterministic.xml
     - ../LR_sbml_files/stochastic.xml
-    cell_count: 2
+    cell_count: 1

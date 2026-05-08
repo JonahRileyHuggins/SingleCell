@@ -174,7 +174,6 @@ set(SINGLECELL_SRC_LIST
     src/BaseModule.cpp
     src/DeterministicModule.cpp
     src/StochasticModule.cpp
-    src/One4AllModule.cpp
     src/SingleCell.cpp
     src/ArgParsing.cpp
     src/main.cpp
@@ -182,7 +181,6 @@ set(SINGLECELL_SRC_LIST
 
 # === Internal Dependencies ===  
 add_subdirectory(amici_models/deterministic)
-add_subdirectory(amici_models/One4All)
 
 # === Executable target ===
 add_executable(${PROJECT_NAME} ${SINGLECELL_SRC_LIST})
@@ -200,7 +198,6 @@ target_include_directories(SingleCell PRIVATE
 target_link_libraries(SingleCell PRIVATE
     ${AMICI_LIB}
     deterministic
-    One4All
     sbml
     OpenMP::OpenMP_CXX
 )
@@ -233,7 +230,6 @@ target_include_directories(pySingleCell PRIVATE
 target_link_libraries(pySingleCell PRIVATE
     ${AMICI_LIB}
     deterministic
-    One4All
     sbml
     pybind11::module
     OpenMP::OpenMP_CXX
