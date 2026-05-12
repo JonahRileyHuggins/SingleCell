@@ -80,7 +80,7 @@ def parse_args():
     )
     build_group.add_argument(
         '--one4all',
-        default=True,
+        default=False,
         help="Build both deterministic SBML and AMICI model (default: True)."
     )
     build_group.add_argument(
@@ -100,9 +100,14 @@ def parse_args():
         help=f"SBML output directory (default: {os.path.join(project_root, 'sbml_files')})."
     )
     build_group.add_argument(
-        '--AMICI_Only',
-        action='store_false',
-        help="Only build AMICI model (disable SingleCell build)."
+        '--DEFAULT_DETERMINISTIC_MODEL_PATH',
+        default = os.path.join(project_root, "sbml_files/deterministic.xml"),
+        help='Sets what SBML model should be used by AMICI'
+    )
+    build_group.add_argument(
+        '--BUILD_AMICI_MODEL',
+        action='store_true',
+        help=f"Constructs AMICI model using sbml file stored at `--DEFAULT_DETERMINISTIC_MODEL_PATH`,\n \tskips Antimony, SBML, and SingleCell model building steps."
     )
     build_group.add_argument(
         '--AMICI_OUTPUT_DIR',
@@ -119,6 +124,16 @@ def parse_args():
         default=project_root,
         help=f"Directory containing CMakeLists.txt (default: {project_root})."
     )
+    build_group.add_argument(
+        '--COMPILE_SINGLECELL',
+        action='store_true',
+        help='Compile SingleCell, skips antimony, SBML, and AMICI model building steps.'
+    )
+    build_group.add_argument(
+        '--DISABLE_SINGLECELL_BUILD',
+        action='store_false',
+        help="Do not construct SingleCell source code after AMICI Model Compilation"
+    ) 
 
     # =========== [Command: Simulate] =========
     simulate_parser = subparsers.add_parser(
@@ -130,8 +145,8 @@ def parse_args():
     sim_group.add_argument(
         '--sbml', '-s',
         nargs='+',
-        default=[f'{project_root}/sbml_files/One4All.xml'],
-        help=f"One or more SBML files to simulate (default: {project_root}/sbml_files/One4All.xml)."
+        default=[f'{project_root}/sbml_files/deterministic.xml', f'{project_root}/sbml_files/stochastic'],
+        help=f"One or more SBML files to simulate (default: [{project_root}/sbml_files/deterministic.xml, {project_root}/sbml_files/stochastic.xml])."
     )
     sim_group.add_argument(
         '--modify', '-m',

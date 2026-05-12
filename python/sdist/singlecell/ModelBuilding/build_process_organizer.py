@@ -44,9 +44,12 @@ class Build_Organizer:
         "ANTIMONY_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
         "SBML_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
         "AMICI_OUTPUT_DIR": os.path.join(project_root, "amici_models"),
+        "BUILD_AMICI_MODEL": False,
+        "COMPILE_SINGLECELL": False,
         "SINGLECELL_BUILD_DIR": os.path.join(project_root, "build"),
         "SINGLECELL_CMAKE_SOURCE_DIR": project_root,
         "SBML_Only": ['stochastic'],
+        "one4all": False,
         "verbose": False,
         "path": None,
         "name": None,
@@ -71,7 +74,10 @@ class Build_Organizer:
         self.model_files = loader._extract_model_build_files()
     
         self.solvers = self.__get_solvers_list()
-    
+        
+        if config["one4all"]:
+            self.solvers.append("One4All")
+
     def _resolve_config(self, args, kwargs):
         config = self.DEFAULTS.copy()
     

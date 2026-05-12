@@ -24,7 +24,15 @@ class Builder:
     def __init__(self, args: SimpleNamespace) -> None:
     
         builder = Build_Organizer(args=args)
+        
+        if args.BUILD_AMICI_MODEL:
+            builder.build_amici_models()
+            return
 
+        if args.COMPILE_SINGLECELL:
+            builder.build_singlecell_code()
+            return
+        
         logger.info("Creating Antimony file(s)")
         builder.build_antimony_files()
 
@@ -37,4 +45,3 @@ class Builder:
         logger.info("Compiling SingleCell code")
         builder.build_singlecell_code()
 
-        
