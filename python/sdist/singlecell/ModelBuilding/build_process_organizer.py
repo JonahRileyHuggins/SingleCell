@@ -44,8 +44,6 @@ class Build_Organizer:
         "ANTIMONY_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
         "SBML_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
         "AMICI_OUTPUT_DIR": os.path.join(project_root, "amici_models"),
-        "BUILD_AMICI_MODEL": False,
-        "COMPILE_SINGLECELL": False,
         "SINGLECELL_BUILD_DIR": os.path.join(project_root, "build"),
         "SINGLECELL_CMAKE_SOURCE_DIR": project_root,
         "SBML_Only": ['stochastic'],
@@ -74,10 +72,10 @@ class Build_Organizer:
         self.model_files = loader._extract_model_build_files()
     
         self.solvers = self.__get_solvers_list()
-        
+    
         if config["one4all"]:
-            self.solvers.append("One4All")
-
+            self.solvers.append('One4All')
+    
     def _resolve_config(self, args, kwargs):
         config = self.DEFAULTS.copy()
     
@@ -113,17 +111,25 @@ class Build_Organizer:
 
         solver_components = copy.deepcopy(self.model_files)
 
-        # Filter species for non-solver
-        solver_components.other_params = self.__get_other_params(
-            solver,             
-            solver_components.species
-        )
+        if solver == 'One4All':
+            solver_components.other_params = pd.DataFrame(
+                [], 
+                columns=['parameterId', 
+                         'value']
+            )
 
-        logger.debug('>>>>>>> immediate parameters dataframe: %s' % (solver_components.other_params))
+        else: 
+            # Filter species for non-solver
+            solver_components.other_params = self.__get_other_params(
+                solver, 
+                solver_components.species
+            )
 
-        solver_components.species = solver_components.species[
-            solver_components.species['solver'].str.lower().str.strip() == solver
-        ]
+            logger.debug('>>>>>>> immediate parameters dataframe: %s' % (solver_components.other_params))
+
+            solver_components.species = solver_components.species[
+                solver_components.species['solver'].str.lower().str.strip() == solver
+            ]
         return solver_components
 
 

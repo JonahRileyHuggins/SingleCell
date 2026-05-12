@@ -1,3 +1,6 @@
 [submodule "extern/pybind11"]
 	path = extern/pybind11
 	url = https://github.com/pybind/pybind11.git
+[submodule "python/sdist/singlecell/Benchtop"]
+	path = python/sdist/singlecell/Benchtop
+	url = https://jonahrileyhuggins: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@github.com/jonahrileyhuggins/Benchtop.git
