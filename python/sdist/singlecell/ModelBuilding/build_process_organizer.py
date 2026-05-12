@@ -306,7 +306,7 @@ class Build_Organizer:
             )
 
         # Remove add_custom_target() function for 2+ AMICI models
-        CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
+        # CreateAMICIModel.sanitize_multimodel_build(self.amici_output_dir)
 
 
     def build_singlecell_code(self) -> None:
