@@ -41,7 +41,7 @@ From: python:3.12-slim
     chmod +x ./Install.sh
     ./Install.sh
 
-    /root/.local/bin/SingleCell Build -p data/config.yaml -v
+    /root/.local/bin/SingleCell Build -p tests/LR-data/config.yaml -v
 
 %environment
     export PATH=/root/.local/bin:$PATH
