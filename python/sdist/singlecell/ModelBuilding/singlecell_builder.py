@@ -46,7 +46,7 @@ def build_singlecell(
             'cmake', 
             '--build', 
             str(build_dir), 
-            '--parallel'
+            #'--parallel'
         ],
         check=True
     )

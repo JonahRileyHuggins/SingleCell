@@ -145,7 +145,10 @@ def parse_args():
     sim_group.add_argument(
         '--sbml', '-s',
         nargs='+',
-        default=[f'{project_root}/sbml_files/deterministic.xml', f'{project_root}/sbml_files/stochastic'],
+        default=[
+            f'{project_root}/sbml_files/deterministic.xml', 
+            f'{project_root}/sbml_files/stochastic.xml'
+        ],
         help=f"One or more SBML files to simulate (default: [{project_root}/sbml_files/deterministic.xml, {project_root}/sbml_files/stochastic.xml])."
     )
     sim_group.add_argument(
