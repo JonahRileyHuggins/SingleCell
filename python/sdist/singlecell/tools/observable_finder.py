@@ -348,7 +348,7 @@ class ObservableBuilder:
         - dict: The compartmental volumes.
         """
         compartments = self.species_query.model_files['compartments']
-        compartments = compartments.set_index('compartmentId')
+        compartments = compartments.set_index('compartment')
 
         compartment_volumes = {}
 
