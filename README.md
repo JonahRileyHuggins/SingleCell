@@ -5,6 +5,8 @@ _Written by Jonah R. Huggins_
 ## Overview
 ⚠️ Work In Progress ⚠️ 
 
+- Code & Commands are hard-coded for the SingleCell root directory for the moment. Future updates will focus on flexible path specifications.
+
 ### Simple Operation
 A container can be pulled from DockerHub that has the command-line interface pre-installed. The container is intended to be used from the command line, therefore running with an interactive (`-i`) teletypewriter (`-t`) flag is required. The below command will simultaneously pull the container from DockerHub and launch a session: 
 ```docker run -it --name demo jonahrileyhuggins/singlecell:latest```
