@@ -6,8 +6,9 @@
 # =========================================
 import os
 import argparse
+from datetime import datetime
 
-project_root = os.getenv("SINGLECELL_PATH","/SingleCell")
+install_root = os.path.join(os.getenv("HOME"), ".cache", "singlecell")
 
 ASCII_HEADER = r"""
 
@@ -56,11 +57,6 @@ def parse_args():
         '-n', '--name',
         help="Descriptive name for this run."
     )
-    global_group.add_argument(
-        '-o', '--output',
-        default=".",
-        help="Directory to store output files (default: current directory)."
-    )
 
     # ---------- Subcommands ----------
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
@@ -85,8 +81,8 @@ def parse_args():
     )
     build_group.add_argument(
         '--ANTIMONY_OUTPUT_DIR',
-        default=os.path.join(project_root, "sbml_files"),
-        help=f"Antimony output directory (default: {os.path.join(project_root, 'sbml_files')})."
+        default=os.path.join(install_root, "sbml_files"),
+        help=f"Antimony output directory (default: {os.path.join(install_root, 'sbml_files')})."
     )
     build_group.add_argument(
         '--SBML_Only',
@@ -96,12 +92,12 @@ def parse_args():
     )
     build_group.add_argument(
         '--SBML_OUTPUT_DIR',
-        default=os.path.join(project_root, "sbml_files"),
-        help=f"SBML output directory (default: {os.path.join(project_root, 'sbml_files')})."
+        default=os.path.join(install_root, "sbml_files"),
+        help=f"SBML output directory (default: {os.path.join(install_root, 'sbml_files')})."
     )
     build_group.add_argument(
         '--DEFAULT_DETERMINISTIC_MODEL_PATH',
-        default = os.path.join(project_root, "sbml_files/deterministic.xml"),
+        default = os.path.join(install_root, "sbml_files/deterministic.xml"),
         help='Sets what SBML model should be used by AMICI'
     )
     build_group.add_argument(
@@ -111,18 +107,18 @@ def parse_args():
     )
     build_group.add_argument(
         '--AMICI_OUTPUT_DIR',
-        default=os.path.join(project_root, "amici_models"),
-        help=f"AMICI output directory (default: {os.path.join(project_root, 'amici_models')})."
+        default=os.path.join(install_root, "amici_models"),
+        help=f"AMICI output directory (default: {os.path.join(install_root, 'amici_models')})."
     )
     build_group.add_argument(
         '--SINGLECELL_BUILD_DIR',
-        default=os.path.join(project_root, "build"),
-        help=f"CMake build directory (default: {os.path.join(project_root, 'build')})."
+        default=os.path.join(install_root, "build"),
+        help=f"CMake build directory (default: {os.path.join(install_root, 'build')})."
     )
     build_group.add_argument(
         '--SINGLECELL_CMAKE_SOURCE_DIR',
-        default=project_root,
-        help=f"Directory containing CMakeLists.txt (default: {project_root})."
+        default=install_root,
+        help=f"Directory containing CMakeLists.txt (default: {install_root})."
     )
     build_group.add_argument(
         '--COMPILE_SINGLECELL',
@@ -145,8 +141,8 @@ def parse_args():
     sim_group.add_argument(
         '--sbml', '-s',
         nargs='+',
-        default=[f'{project_root}/sbml_files/deterministic.xml', f'{project_root}/sbml_files/stochastic'],
-        help=f"One or more SBML files to simulate (default: [{project_root}/sbml_files/deterministic.xml, {project_root}/sbml_files/stochastic.xml])."
+        default=[f'{install_root}/sbml_files/deterministic.xml', f'{install_root}/sbml_files/stochastic'],
+        help=f"One or more SBML files to simulate (default: [{install_root}/sbml_files/deterministic.xml, {install_root}/sbml_files/stochastic.xml])."
     )
     sim_group.add_argument(
         '--modify', '-m',
@@ -172,6 +168,11 @@ def parse_args():
         type=float,
         default=30.0,
         help="Simulation step size in seconds (default: 30.0)."
+    )
+    sim_group.add_argument(
+        '-o', '--output',
+        default=f"./{datetime.now().strftime("%Y%m%d_%H%M%S_%f")}.tsv",
+        help="name for simulation results (default: timestamp" 
     )
 
     # =========== [Command: Experiment] ======

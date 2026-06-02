@@ -39,6 +39,13 @@ set(LIBSBML_ROOT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" CACHE PATH
 set(LIBSBML_ROOT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH
     "Path to the libSBML root build directory")
 
+set(VECTOR_FLAGS
+    -Ofast
+    -march=native        # Auto-detect +
+    -mavx2               # enable AVX2 instructions explicitly
+    -ftree-vectorize     # allow auto vectorization
+)
+
 include (CMakeTestCCompiler)
 include (CheckCSourceCompiles)
 include (CheckCXXSourceCompiles)

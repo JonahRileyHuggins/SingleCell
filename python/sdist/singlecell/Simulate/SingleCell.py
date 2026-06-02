@@ -17,19 +17,17 @@ Output:
 # -----------------------Package Import & Defined Arguements-------------------#
 import os
 import sys
+from pathlib import Path
+import platform
 import importlib.util
 
 import pandas as pd
 
-sys.path.append(f'{os.path.dirname(os.path.dirname(__file__))}/Benchtop/src/benchtop/')
-from AbstractSimulator import AbstractSimulator
+from singlecell.Simulate.AbstractSimulator import AbstractSimulator
+
 
 # Absolute path to compiled extension (pySingleCell*.so file)
-so_path = os.path.join(
-    os.getenv("SINGLECELL_PATH"),
-    "build",
-    "pySingleCell.cpython-312-x86_64-linux-gnu.so"
-)
+so_path = Path.home() / ".cache" / "singlecell" / "build" / "pySingleCell.cpython-312-x86_64-linux-gnu.so"
 
 if not os.path.isfile(so_path):
     raise FileNotFoundError(f"Could not find pySingleCell shared object at: {so_path}")
@@ -91,3 +89,4 @@ class SingleCell(AbstractSimulator):
         Method for SingleCell simulator modify method
         """
         self.tool.modify(component, float(value))
+

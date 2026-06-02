@@ -12,6 +12,7 @@ Description: Entrypoint to call atomized commands for build:
 import os
 import copy
 import logging
+import shutil
 from types import SimpleNamespace
 
 import pandas as pd
@@ -36,16 +37,16 @@ class Build_Organizer:
         3. AMICI Model compilation
         4. SingleCell source code compilation
     """
-
+   
     # Absolute path to compiled extension (pySingleCell*.so file)
-    project_root = os.getenv("SINGLECELL_PATH")
+    install_root = os.path.join(os.getenv("HOME"), ".cache", "singlecell")
 
     DEFAULTS = {
-        "ANTIMONY_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
-        "SBML_OUTPUT_DIR": os.path.join(project_root, "sbml_files"),
-        "AMICI_OUTPUT_DIR": os.path.join(project_root, "amici_models"),
-        "SINGLECELL_BUILD_DIR": os.path.join(project_root, "build"),
-        "SINGLECELL_CMAKE_SOURCE_DIR": project_root,
+        "ANTIMONY_OUTPUT_DIR": os.path.join(install_root, "sbml_files"),
+        "SBML_OUTPUT_DIR": os.path.join(install_root, "sbml_files"),
+        "AMICI_OUTPUT_DIR": os.path.join(install_root, "amici_models"),
+        "SINGLECELL_BUILD_DIR": os.path.join(install_root, "build"),
+        "SINGLECELL_CMAKE_SOURCE_DIR": install_root,
         "SBML_Only": ['stochastic'],
         "one4all": False,
         "verbose": False,
@@ -55,8 +56,23 @@ class Build_Organizer:
     
     def __init__(self, args=None, **kwargs):
     
-        config = self._resolve_config(args, kwargs)
-    
+        config = self.__resolve_config(args, kwargs)
+        
+        if not os.path.exists(self.install_root):
+            os.makedirs(self.install_root)
+
+        code_paths = [
+                config["ANTIMONY_OUTPUT_DIR"], 
+                config["SBML_OUTPUT_DIR"], 
+                config["AMICI_OUTPUT_DIR"], 
+                config["SINGLECELL_BUILD_DIR"]
+        ]
+        
+        for code_path in code_paths:
+            self.__prepare_cache_dir(code_path)
+        
+        self.__move_extern_to_cache()
+
         logger.info('Starting build process for solver %s ...', config["name"])
     
         self.antimony_output_dir = config["ANTIMONY_OUTPUT_DIR"]
@@ -75,10 +91,11 @@ class Build_Organizer:
     
         if config["one4all"]:
             self.solvers.append('One4All')
-    
-    def _resolve_config(self, args, kwargs):
+
+
+    def __resolve_config(self, args, kwargs):
         config = self.DEFAULTS.copy()
-    
+
         if args is not None:
             if isinstance(args, dict):
                 config.update(args)
@@ -87,7 +104,47 @@ class Build_Organizer:
     
         config.update(kwargs)
         return config
-    
+
+
+    def __prepare_cache_dir(self, code_path) -> None:
+        """
+        Create code directory or remove all files if the output directory
+        already exists.
+        """
+        os.makedirs(code_path, exist_ok=True)
+
+        for file in os.listdir(code_path):
+            file_path = os.path.join(code_path, file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+
+    def __move_extern_to_cache(self) -> None:
+        """
+        Safe moves external dependencies for project to cache directory
+        """
+        src_dirs = [
+                os.path.join(os.getenv("SINGLECELL_PATH"), "extern"), 
+                os.path.join(os.getenv("SINGLECELL_PATH"), "src"),
+                os.path.join(os.getenv("SINGLECELL_PATH"), "include"),
+
+        ]
+        dst_dirs = [
+                os.path.join(self.install_root, "extern"), 
+                os.path.join(self.install_root, "src"),
+                os.path.join(self.install_root, "include"),
+
+        ]
+
+        for idx, d in enumerate(src_dirs):
+            if not os.path.exists(dst_dirs[idx]):
+                shutil.copytree(d, dst_dirs[idx], symlinks=True)
+        
+        shutil.copyfile(
+                os.path.join(os.getenv("SINGLECELL_PATH"), "CMakeLists.txt"), 
+                os.path.join(self.install_root, "CMakeLists.txt")
+        )
+
+
     def __get_solvers_list(self) -> list:
         """Finds list of unique solver types in species build file"""
         # A) Extract the column & clean / sanitize

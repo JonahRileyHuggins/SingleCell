@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-base_path= os.getenv("SINGLECELL_PATH")
+base_path= os.path.join(os.getenv("HOME"), ".cache", "singlecell")
 
 def build_singlecell(
         source_dir: os.PathLike | str = base_path,
@@ -31,6 +31,7 @@ def build_singlecell(
     : param build_dir (str):
         path to the build directory
     """
+
     build_dir = pathlib.Path(build_dir)
     build_dir.mkdir(exist_ok=True)
 
