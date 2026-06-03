@@ -16,6 +16,7 @@ import os
 import amici
 import logging
 import subprocess
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO, # Overriden if Verbose Arg. True
@@ -24,7 +25,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Absolute path to compiled extension (pySingleCell*.so file)
-base_path = os.getenv("SINGLECELL_PATH")
+base_path = Path.home() / ".cache" / "singlecell"
 
 class CreateAMICIModel:
 

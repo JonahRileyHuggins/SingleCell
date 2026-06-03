@@ -13,6 +13,7 @@ import os
 import copy
 import logging
 import shutil
+from pathlib import Path
 from types import SimpleNamespace
 
 import pandas as pd
@@ -41,6 +42,8 @@ class Build_Organizer:
     # Absolute path to compiled extension (pySingleCell*.so file)
     install_root = os.path.join(os.getenv("HOME"), ".cache", "singlecell")
 
+    PROJECT_ROOT = Path(__file__).resolve().parents[4]
+
     DEFAULTS = {
         "ANTIMONY_OUTPUT_DIR": os.path.join(install_root, "sbml_files"),
         "SBML_OUTPUT_DIR": os.path.join(install_root, "sbml_files"),
@@ -55,7 +58,8 @@ class Build_Organizer:
     }
     
     def __init__(self, args=None, **kwargs):
-    
+        logger.info(f'PROJECT ROOT IS: {self.PROJECT_ROOT}')
+
         config = self.__resolve_config(args, kwargs)
         
         if not os.path.exists(self.install_root):
@@ -123,9 +127,9 @@ class Build_Organizer:
         Safe moves external dependencies for project to cache directory
         """
         src_dirs = [
-                os.path.join(os.getenv("SINGLECELL_PATH"), "extern"), 
-                os.path.join(os.getenv("SINGLECELL_PATH"), "src"),
-                os.path.join(os.getenv("SINGLECELL_PATH"), "include"),
+                os.path.join(self.PROJECT_ROOT, "extern"), 
+                os.path.join(self.PROJECT_ROOT, "src"),
+                os.path.join(self.PROJECT_ROOT, "include"),
 
         ]
         dst_dirs = [
@@ -140,7 +144,7 @@ class Build_Organizer:
                 shutil.copytree(d, dst_dirs[idx], symlinks=True)
         
         shutil.copyfile(
-                os.path.join(os.getenv("SINGLECELL_PATH"), "CMakeLists.txt"), 
+                os.path.join(self.PROJECT_ROOT, "CMakeLists.txt"), 
                 os.path.join(self.install_root, "CMakeLists.txt")
         )
 
