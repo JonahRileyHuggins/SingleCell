@@ -6,8 +6,8 @@ Created on Fri Jan. 17th 2025
 Author: Jonah R. Huggins
 
 Description: This script generates an Observable formula for a given species in an SBML model.
-            The goal is to take a particular species name or annotation number and generate the summated 
-            formula for the observable, including the compartment volume ratio.
+            The goal is to take a particular species name or annotation number and generate the 
+            summated formula for the observable, including the compartment volume ratio.
 
 """
 # -----------------------Package Import & Defined Arguements-------------------#
