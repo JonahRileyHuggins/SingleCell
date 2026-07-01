@@ -5,24 +5,89 @@ _Written by Jonah R. Huggins_
 ## Overview
 ⚠️ Work In Progress ⚠️ 
 
-- Code & Commands are hard-coded for the SingleCell root directory for the moment. Future updates will focus on flexible path specifications.
+Commands assume the SingleCell root directory (`/SingleCell` in the container). Use `SingleCell <command> --help` for full option lists.
 
-### Simple Operation
-A container can be pulled from DockerHub that has the command-line interface pre-installed. The container is intended to be used from the command line, therefore running with an interactive (`-i`) teletypewriter (`-t`) flag is required. The below command will simultaneously pull the container from DockerHub and launch a session: 
-```docker run -it --name demo jonahrileyhuggins/singlecell:latest```
+### Quick Start
+A container can be pulled from DockerHub that has the command-line interface pre-installed. The container is 
+intended to be used from the command line, therefore running with an interactive (`-i`) teletypewriter (`-t`) flag 
+is required. The below command will simultaneously pull the container from DockerHub and launch a session: 
 
-To restart the container from your last session, call the container by the assigned name, an example is provided below:
-`docker start -ai demo`
+Pull and start an interactive session:
 
-#### SingleCell CLI Commands
-The container has 3 primary commands, each with their own help profile. While the container should launch the command list on startup, to view the primary commands again, type
-```SingleCell --help #or -h```
+```bash
+docker run -it --name demo jonahrileyhuggins/singlecell:latest
+```
 
-Further, to view the list of arguments and an example use case, you can use the `--help` flag with these as well
-```SingleCell <Primary Command> --help```
+To restart a named container:
 
-### Note! 
-This is a work in progress, if you encounter errors during any process, following these steps helps in development:
+```bash
+docker start -ai demo
+```
 
-1. Ensure you're working with the latest container version on DockerHub
-2. If the error persists; navigate to the GitHub page and leave an issue describing the problem you've encountered
+### CLI Commands
+The container has 3 primary commands, each with their own help profile. While the container should launch the 
+command list on startup, to view the primary commands again, type:
+```bash
+SingleCell --help #or -h
+```
+
+All examples below use a small test model in `tests/`. Run them from `/SingleCell` inside the container.
+
+### Build
+To create the various models (i.e. antimony, SBML, AMICI) and compile Linked- and simulatable-SingleCell code:
+
+**Use:**
+```bash
+SingleCell Build --path <Path/to/configuration file>
+```
+This compiles model input files listed in the configuration file from tabular inputs into SBML (and AMICI/SingleCell binaries). 
+
+**Example:**
+```bash
+SingleCell Build --path tests/LR-data/config.yaml --SBML_OUTPUT_DIR tests/LR_sbml_files -v
+```
+
+### Simulate
+Run a single simulation using the built SBML models. Requires prior execution of **Build** step.
+
+#### Fully Deterministic Simulations:
+For simulations using deterministic-only methods; pass the path to the generated "One4All.xml" model:
+```bash
+SingleCell Simulate --sbml <path/to/One4All.xml> --output <output.tsv>
+```
+Note: This functionality is just using a wrapper around the compiled One4All AMICI model in `SingleCell/amici_models/`
+
+#### Hybrid-Stochastic Simulations:
+Alternatively to run hybrid-stochastic simulations; pass the paths to both the deterministic and stochastic SBML models:
+
+**Use:**
+```bash
+SingleCell Simulate --sbml <path/to/deterministic.xml> <path/to/stochastic.xml> --output <output.tsv>
+```
+Note: The order in which you specify sbml paths **does not matter**.
+
+**Example:**
+```bash
+SingleCell Simulate --sbml tests/LR_sbml_files/deterministic.xml tests/LR_sbml_files/stochastic.xml --modify cyt_prot__LIGAND_=18.5166 cyt_prot__RECEPTOR_=18.5166 --start 0 --stop 86400 --step 30 --output simulation_results.tsv
+```
+
+### Experiment
+Run a simulation experiment formatted according to PEtab format (version 1) guidelines. Requires prior execution of **Build** step.
+
+**Use:**
+```bash
+SingleCell Experiment --path <Path/to/benchmark.yaml>
+```
+
+**Example:**
+```bash
+SingleCell Experiment --path tests/LR-Benchmark/LR-benchmark.yaml -v
+```
+
+Note: Click Here for PEtab format guidelines (version 1)
+
+## Note
+This is a work in progress. If you encounter errors:
+
+1. Ensure you're using the latest container from DockerHub.
+2. If the error persists, open an issue on GitHub describing the problem.
