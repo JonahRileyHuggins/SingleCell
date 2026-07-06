@@ -641,7 +641,7 @@ nuc_prot__p_FOS_1__JUN_	Nucleus	0.06914120439	Deterministic
 nuc_prot__MYC_2_	Nucleus	45.43934455	Deterministic
 nuc_prot__CTNB1_	Nucleus	35.4866998	Deterministic
 cyt_prot__CTNB1_1_	Cytoplasm	17.75651187	Deterministic
-cyt_prot__PS33_pS37_pT41_CTNB1_	Cytoplasm	179.7919173	Deterministic
+cyt_prot__pS33_pS37_pT41_CTNB1_	Cytoplasm	179.7919173	Deterministic
 cyt_comp__IP3_	Cytoplasm	0.0	Deterministic
 cyt_comp__PIP2_	Cytoplasm	9998.269998	Deterministic
 cyt_comp__PIP3_	Cytoplasm	1.607259025	Deterministic

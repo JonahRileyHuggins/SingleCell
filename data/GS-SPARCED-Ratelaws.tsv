@@ -112632,8 +112632,8 @@ vP124	Cytoplasm	cyt_cong__p_p_AKT_ + cyt_prot__GSK3B_1_ ; cyt_cong__GSK3B_1__p_p
 vP125	Cytoplasm	cyt_cong__GSK3B_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__GSK3B_1_	kP125_1*cyt_cong__GSK3B_1__p_p_AKT_
 vP126	Cytoplasm	cyt_cong__GSK3B_1__p_p_AKT_ ; cyt_cong__p_p_AKT_ + cyt_prot__pS9_GSK3B_1_	kP126_1*cyt_cong__GSK3B_1__p_p_AKT_
 vP127	Cytoplasm	cyt_prot__pS9_GSK3B_1_ ; cyt_prot__GSK3B_1_	kP127_1*cyt_prot__pS9_GSK3B_1_
-vP128	Cytoplasm	cyt_prot__CTNB1_1_ ; cyt_prot__PS33_pS37_pT41_CTNB1_	(kP128_1*cyt_prot__CTNB1_1_*(cyt_prot__GSK3B_1_^kP128_2))/((kP128_3^kP128_2)+(cyt_prot__GSK3B_1_^kP128_2))
-vP131	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ; cyt_prot__CTNB1_1_	kP131_1*cyt_prot__PS33_pS37_pT41_CTNB1_
+vP128	Cytoplasm	cyt_prot__CTNB1_1_ ; cyt_prot__pS33_pS37_pT41_CTNB1_	(kP128_1*cyt_prot__CTNB1_1_*(cyt_prot__GSK3B_1_^kP128_2))/((kP128_3^kP128_2)+(cyt_prot__GSK3B_1_^kP128_2))
+vP131	Cytoplasm	cyt_prot__pS33_pS37_pT41_CTNB1_ ; cyt_prot__CTNB1_1_	kP131_1*cyt_prot__pS33_pS37_pT41_CTNB1_
 vP132	Cytoplasm	cyt_prot__CTNB1_1_ ; nuc_prot__CTNB1_	kP132_1*cyt_prot__CTNB1_1_
 vP133	Nucleus	nuc_prot__CTNB1_ ; cyt_prot__CTNB1_1_	kP133_1*nuc_prot__CTNB1_
 vP134	Cytoplasm	cyt_cong__p_p_AKT_ + cyt_prot__TSC2_1_ ; cyt_cong__TSC2_1__p_p_AKT_	kP134_1*cyt_cong__p_p_AKT_*cyt_prot__TSC2_1_
@@ -112672,7 +112672,7 @@ vP170	Cytoplasm	cyt_prot__GRB2__SOS1_1_ ; cyt_prot__GRB2_1_ + cyt_prot__SOS1_1_	
 vP171	Cytoplasm	cyt_prot__4EBP1_1_ + cyt_prot__IF4E_1_ ; cyt_prot__4EBP1__IF4E_1_	kP171_1*cyt_prot__4EBP1_1_*cyt_prot__IF4E_1_
 vP172	Cytoplasm	cyt_prot__4EBP1__IF4E_1_ ; cyt_prot__4EBP1_1_ + cyt_prot__IF4E_1_	kP172_1*cyt_prot__4EBP1__IF4E_1_
 vP173	Cytoplasm	; cyt_comp__PIP2_	kP173_1
-vP174	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ;	kP174_1*cyt_prot__PS33_pS37_pT41_CTNB1_*cyt_prot__TSC1_1__TSC2_1_
+vP174	Cytoplasm	cyt_prot__pS33_pS37_pT41_CTNB1_ ;	kP174_1*cyt_prot__pS33_pS37_pT41_CTNB1_*cyt_prot__TSC1_1__TSC2_1_
 vP175	Cytoplasm	cyt_cong__p_MAPK_ ; cyt_cong__MAPK_	kP175_1*cyt_cong__p_MAPK_
 vP176	Cytoplasm	cyt_cong__p_p_MAPK_ ; cyt_cong__p_MAPK_	kP176_1*cyt_cong__p_p_MAPK_
 vP177	Nucleus	nuc_cong__p_p_MAPK_ ; nuc_cong__MAPK_	kP177_1*nuc_cong__p_p_MAPK_
@@ -113200,7 +113200,7 @@ vPd22	Nucleus	nuc_prot__p_DUS1_ ;	kPd22_1*nuc_prot__p_DUS1_
 vPd23	Nucleus	nuc_prot__p_FOS_1_ ;	kPd23_1*nuc_prot__p_FOS_1_
 vPd24	Nucleus	nuc_prot__p_FOS_1__JUN_ ;	kPd24_1*nuc_prot__p_FOS_1__JUN_
 vPd25	Nucleus	nuc_prot__CTNB1_ ;	kPd25_1*nuc_prot__CTNB1_
-vPd26	Cytoplasm	cyt_prot__PS33_pS37_pT41_CTNB1_ ;	kPd26_1*cyt_prot__PS33_pS37_pT41_CTNB1_
+vPd26	Cytoplasm	cyt_prot__pS33_pS37_pT41_CTNB1_ ;	kPd26_1*cyt_prot__pS33_pS37_pT41_CTNB1_
 vPd27	Cytoplasm	cyt_comp__IP3_ ;	kPd27_1*cyt_comp__IP3_
 vPd28	Cytoplasm	cyt_comp__PIP2_ ;	kPd28_1*cyt_comp__PIP2_
 vPd29	Cytoplasm	cyt_comp__PIP3_ ;	kPd29_1*cyt_comp__PIP3_
@@ -113369,3 +113369,4 @@ vI83	Cytoplasm	exc_prot__IFNG_ ;	kI83_1*exc_prot__IFNG_
 vI84	Cytoplasm	cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__PTN11__STAT1_ ;	kI84_1*cyt_cong__p_IFNG__INGR2__JAK__INGR2__JAK__PTN11__STAT1_
 vI85	Cytoplasm	cyt_cong__IFNG__p_INGR2__JAK__p_INGR2__JAK__PTN11__SOCS1_ ;	kI85_1*cyt_cong__IFNG__p_INGR2__JAK__p_INGR2__JAK__PTN11__SOCS1_
 vI86	Cytoplasm	cyt_prot__IFNG__INGR2_ ;	kI86_1*cyt_prot__IFNG__INGR2_
+vAd34	Cytoplasm	cyt_prot__DBLOH_1_ ;	kAd34_1*cyt_prot__DBLOH_1_
