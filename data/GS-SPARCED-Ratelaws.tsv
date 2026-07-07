@@ -111161,6 +111161,7 @@ vTL18574	Cytoplasm	; nuc_prot__MSH6_1_	kTL18574_1*cyt_mrna__MSH6_201_*(cyt_prot_
 vTL18575	Cytoplasm	; nuc_prot__BRCA2_	kTL18575_1*cyt_mrna__BRCA2_201_*(cyt_prot__IF4E_1_/(kTL18575_2+cyt_prot__IF4E_1_))
 vTL18576	Cytoplasm	; nuc_prot__MGMT_	kTL18576_1*cyt_mrna__MGMT_205_*(cyt_prot__IF4E_1_/(kTL18576_2+cyt_prot__IF4E_1_))
 vTL18578	Cytoplasm	; exc_prot__INS_1_	kTL18578_1*cyt_mrna__INS_202_*(cyt_prot__IF4E_1_/(kTL18578_2+cyt_prot__IF4E_1_))
+vTL18579	Cytoplasm	; cyt_prot__KS6B1_1_	kTL18579_1*cyt_mrna__RPS6KB1_201_*(cyt_prot__IF4E_1_/(kTL18579_2+cyt_prot__IF4E_1_))
 vTLd18438	Nucleus	nuc_prot_i__P53_ ;	kTLd18438_1*nuc_prot_i__P53_
 vTLd18439	Nucleus	nuc_prot__MDM2_1_ ;	kTLd18439_1*nuc_prot__MDM2_1_
 vTLd18440	Nucleus	nuc_prot__PPM1D_1_ ;	kTLd18440_1*nuc_prot__PPM1D_1_
